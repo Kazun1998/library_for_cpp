@@ -45,6 +45,20 @@ class Field_Matrix{
     inline const vector<F> &operator[](int i) const { return mat[i]; }
     inline vector<F> &operator[](int i) { return mat[i]; }
 
+    // 比較
+    bool operator==(const Field_Matrix &B) const {
+        if (row != B.row || col != B.col){ return false; }
+
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+                if ((*this)[i] != B[i]) return false;
+            }
+        }
+        return true;
+    }
+
+    bool operator!=(const Field_Matrix &B) const { return !((*this) == B); }
+
     // マイナス元
     Field_Matrix operator-() const {
         Field_Matrix A(row, col);
