@@ -4,9 +4,10 @@ class Union_Find{
     private:
     int N;
     vector<int> data;
+    int group_number;
 
     public:
-    Union_Find(int N) : N(N), data(N, -1) {}
+    Union_Find(int N) : N(N), data(N, -1), group_number(N) {}
 
     // x が属する族の代表元を求める.
     int find(int x) { return data[x] < 0 ? x: data[x] = find(data[x]); }
@@ -23,6 +24,8 @@ class Union_Find{
 
         data[x] += data[y];
         data[y] = x;
+
+        group_number--;
 
         return true;
     }
