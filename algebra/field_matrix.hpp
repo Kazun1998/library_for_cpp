@@ -99,16 +99,14 @@ class Field_Matrix{
 
     Field_Matrix operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }
 
-    // 比較
-    bool operator==(const Field_Matrix &B) const {
-        if (row != B.row || col != B.col){ return false; }
-
-        for (int i = 0; i < row; i++){
-            for (int j = 0; j < col; j++){
-                if ((*this)[i] != B[i]) { return false; }
-            }
+    // スカラー倍
+    friend Field_Matrix operator*(const F &scaler, const Field_Matrix &rhs){
+        Field_Matrix res(rhs);
+        for (int i = 0; i < rhs.row; i++){
+            for (int j = 0; j < rhs.col; j++) { res[i][j] *= scaler; }
         }
-        return true;
+
+        return res;
     }
 
     bool operator!=(const Field_Matrix &B) const {return !((*this) == B);}
