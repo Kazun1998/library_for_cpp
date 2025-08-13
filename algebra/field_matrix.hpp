@@ -123,8 +123,6 @@ class Field_Matrix{
         return res;
     }
 
-    bool operator!=(const Field_Matrix &B) const {return !((*this) == B);}
-
     // 逆行列
     Field_Matrix inverse(){
         assert (is_square());
