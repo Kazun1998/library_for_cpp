@@ -1,20 +1,16 @@
 name: verify
 
-on:
-  push:
-    branches:
-    - main
-  pull_request:
+on: push
 
 jobs:
   verify:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v1
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v1
 
     - name: Install dependencies
       run: pip3 install -U git+https://github.com/Kazun1998/verification-helper.git
