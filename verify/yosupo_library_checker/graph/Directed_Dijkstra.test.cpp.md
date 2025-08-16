@@ -93,7 +93,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-16 23:39:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

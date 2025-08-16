@@ -103,7 +103,7 @@ data:
   isVerificationFile: false
   path: Modulo/Discrete_Log.hpp
   requiredBy: []
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-16 17:32:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Modulo/Discrete_Log.hpp

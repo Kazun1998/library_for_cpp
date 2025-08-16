@@ -66,7 +66,7 @@ data:
   path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   requiredBy:
   - Graph/Weighed_Digraph/Dijkstra.hpp
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-16 20:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

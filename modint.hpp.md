@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: modint.hpp
   requiredBy: []
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-11 23:06:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp

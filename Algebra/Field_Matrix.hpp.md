@@ -210,7 +210,7 @@ data:
   isVerificationFile: false
   path: Algebra/Field_Matrix.hpp
   requiredBy: []
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-16 23:33:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp

@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: Segment_Tree/Segment_Tree.hpp
   requiredBy: []
-  timestamp: '2025-08-16 23:42:34+09:00'
+  timestamp: '2025-08-13 01:10:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Segment_Tree/Segment_Tree.hpp
