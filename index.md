@@ -72,6 +72,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - name: verify/yosupo_library_checker/number_theory
     pages:
     - icon: ':heavy_check_mark:'

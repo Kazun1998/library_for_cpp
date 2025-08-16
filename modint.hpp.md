@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
 documentation_of: modint.hpp
 layout: document
 redirect_from:
