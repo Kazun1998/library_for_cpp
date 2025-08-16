@@ -1,21 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/Field_Matrix.hpp
     title: Algebra/Field_Matrix.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: modint.hpp
     title: modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
     links:
     - https://judge.yosupo.jp/problem/matrix_det
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Determinant.cpp\"\
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include<bits/stdc++.h>\n\
     \nusing namespace std;\n\n#line 2 \"modint.hpp\"\n\ntemplate<int mod>\nclass modint{\n\
     \    public:\n    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr\
@@ -139,7 +141,7 @@ data:
     \ F a_inv = B[j][j].inverse();\n        for (int i = j + 1; i < n; i++){\n   \
     \         F c = -a_inv * B[i][j];\n            for (int k = 0; k < n; k++) { B[i][k]\
     \ += c * B[j][k]; }\n        }\n\n        det *= B[j][j];\n    }\n\n    return\
-    \ det;\n}\n#line 9 \"verify/yosupo_library_checker/linear_algebra/Determinant.cpp\"\
+    \ det;\n}\n#line 9 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\
     \n\nint main(){\n    int N; cin >> N;\n    Field_Matrix<modint<998244353>> A(N);\n\
     \    cin >> A;\n    cout << Determinant(A) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include<bits/stdc++.h>\n\
@@ -149,16 +151,16 @@ data:
   dependsOn:
   - modint.hpp
   - Algebra/Field_Matrix.hpp
-  isVerificationFile: false
-  path: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 23:33:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-08-16 23:42:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+documentation_of: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
 layout: document
 redirect_from:
-- /library/verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-- /library/verify/yosupo_library_checker/linear_algebra/Determinant.cpp.html
-title: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp.html
+title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
 ---

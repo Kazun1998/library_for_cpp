@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighed_Digraph/Dijkstra.hpp
     title: Graph/Weighed_Digraph/Dijkstra.hpp
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
-    title: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
+    title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/Weighed_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
@@ -66,10 +66,10 @@ data:
   path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   requiredBy:
   - Graph/Weighed_Digraph/Dijkstra.hpp
-  - verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
-  timestamp: '2025-08-16 23:35:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-08-16 23:42:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
 documentation_of: Graph/Weighed_Digraph/Weighted_Digraph.hpp
 layout: document
 redirect_from:

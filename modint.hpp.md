@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-    title: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"modint.hpp\"\n\ntemplate<int mod>\nclass modint{\n    public:\n\
@@ -66,11 +66,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: modint.hpp
-  requiredBy:
-  - verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-  timestamp: '2025-08-16 23:35:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy: []
+  timestamp: '2025-08-16 23:42:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
 documentation_of: modint.hpp
 layout: document
 redirect_from:

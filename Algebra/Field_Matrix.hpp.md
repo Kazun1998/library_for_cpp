@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-    title: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
@@ -209,11 +209,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Algebra/Field_Matrix.hpp
-  requiredBy:
-  - verify/yosupo_library_checker/linear_algebra/Determinant.cpp
-  timestamp: '2025-08-16 23:33:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy: []
+  timestamp: '2025-08-16 23:42:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
 documentation_of: Algebra/Field_Matrix.hpp
 layout: document
 redirect_from:

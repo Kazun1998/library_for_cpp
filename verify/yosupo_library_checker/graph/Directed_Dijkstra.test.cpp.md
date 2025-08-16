@@ -1,21 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighed_Digraph/Dijkstra.hpp
     title: Graph/Weighed_Digraph/Dijkstra.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
     title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp\"\
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include<bits/stdc++.h>\n\
     \nusing namespace std;\n\n#line 2 \"Graph/Weighed_Digraph/Weighted_Digraph.hpp\"\
     \n\nnamespace Weighted_Digraph {\n  template<typename W>\n  struct Weighted_Arc\
@@ -66,7 +68,7 @@ data:
     \n      path_arc_ids.emplace_back(arc_id);\n      path_vertices.emplace_back(arc.source);\n\
     \    }\n\n    reverse(path_arc_ids.begin(), path_arc_ids.end());\n    reverse(path_vertices.begin(),\
     \ path_vertices.end());\n\n    return Shortest_Path<W>(path_arc_ids, path_vertices,\
-    \ dist[goal]);\n  }\n}\n#line 8 \"verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp\"\
+    \ dist[goal]);\n  }\n}\n#line 8 \"verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp\"\
     \n\nint main(){\n  int N, M, s, t; cin >> N >> M >> s >> t;\n  auto D = Weighted_Digraph::Weighted_Digraph<long\
     \ long>(N);\n\n  for (int j = 0; j < M; j++) {\n    int a, b, c;\n    scanf(\"\
     %d%d%d\", &a, &b, &c);\n    D.add_arc(a, b, c);\n  }\n\n  try {\n    auto shortest_path\
@@ -88,16 +90,16 @@ data:
   dependsOn:
   - Graph/Weighed_Digraph/Dijkstra.hpp
   - Graph/Weighed_Digraph/Weighted_Digraph.hpp
-  isVerificationFile: false
-  path: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 23:35:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-08-16 23:42:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
+documentation_of: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
 layout: document
 redirect_from:
-- /library/verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
-- /library/verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp.html
-title: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
+- /verify/verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp.html
+title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
 ---
