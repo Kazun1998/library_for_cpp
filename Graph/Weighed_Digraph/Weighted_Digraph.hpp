@@ -3,10 +3,10 @@
 namespace Weighted_Digraph {
   template<typename W>
   struct Weighted_Arc {
-    int id, from, to;
+    int id, source, target;
     W weight;
 
-    Weighted_Arc (int id, int from, int to, W weight): id(id), from(from), to(to), weight(weight) {}
+    Weighted_Arc (int id, int source, int target, W weight): id(id), source(source), target(target), weight(weight) {}
   };
 
   template<typename W>
