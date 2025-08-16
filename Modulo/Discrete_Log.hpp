@@ -1,4 +1,4 @@
-#include"Modulo/Modulo.hpp"
+#include"Modulo.hpp"
 
 namespace Modulo {
     long long Discrete_Log (Modulo &X, Modulo &Y, long long not_exist = -1) {
