@@ -39,7 +39,7 @@ class Field_Matrix{
     pair<int, int> size() { return make_pair(row, col); }
 
     // 正方行列?
-    bool is_square() { return row == col; }
+    bool is_square() const { return row == col; }
 
     // 要素
     inline const vector<F> &operator[](int i) const { return mat[i]; }
@@ -242,4 +242,38 @@ Field_Matrix<F> power(Field_Matrix<F> A, int64_t n){
         Field_Matrix<F> B = power(A, (n - 1) / 2);
         return A * B * B;
     }
+}
+
+// 行列 A の行列式を求める
+template<typename F>
+F Determinant(const Field_Matrix<F> &A){
+    assert (A.is_square());
+
+    int n = A.row;
+    F det(1);
+    Field_Matrix<F> B(A);
+
+    for (int j = 0; j < n; j ++){
+        if (B[j][j] == 0){
+            int i = j + 1;
+            for (; i < n; i++) {
+                if (B[i][j] != 0) { break; }
+            } 
+
+            if (i == n) { return F(0); }
+
+            swap(B[i], B[j]);
+            det = -det;
+        }
+
+        F a_inv = B[j][j].inverse();
+        for (int i = j + 1; i < n; i++){
+            F c = -a_inv * B[i][j];
+            for (int k = 0; k < n; k++) { B[i][k] += c * B[j][k]; }
+        }
+
+        det *= B[j][j];
+    }
+
+    return det;
 }
