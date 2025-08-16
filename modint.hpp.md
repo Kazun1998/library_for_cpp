@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: modint.hpp
   requiredBy: []
-  timestamp: '2025-08-16 19:37:20+09:00'
+  timestamp: '2025-08-16 19:50:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint.hpp

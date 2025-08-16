@@ -140,7 +140,7 @@ data:
   path: Modulo/Modulo.hpp
   requiredBy:
   - Modulo/Discrete_Log.hpp
-  timestamp: '2025-08-16 19:37:20+09:00'
+  timestamp: '2025-08-16 19:50:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Modulo/Modulo.hpp

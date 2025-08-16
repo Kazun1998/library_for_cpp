@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
   requiredBy: []
-  timestamp: '2025-08-16 19:37:20+09:00'
+  timestamp: '2025-08-16 19:50:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
