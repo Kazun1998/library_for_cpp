@@ -1,3 +1,5 @@
+#pragma once
+
 namespace Modulo {
     class DifferentModulus : public exception {
       public: // publicに指定
