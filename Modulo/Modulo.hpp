@@ -1,4 +1,9 @@
 namespace Modulo {
+    class DifferentModulus : public exception {
+      public: // publicに指定
+      const char* what() const noexcept override { return "異なる法同士の四則演算です"; }
+    };
+
     struct Modulo {
         long long a, n;
 
@@ -12,6 +17,8 @@ namespace Modulo {
 
         // 加法
         Modulo& operator+=(const Modulo &y) {
+            if (n != y.n) { throw DifferentModulus(); }
+    
             if ((a += y.a) >= n) a -= n;
             return *this;
         }
@@ -24,6 +31,7 @@ namespace Modulo {
 
         // 減法
         Modulo& operator-=(const Modulo &y) {
+            if (n != y.n) { throw DifferentModulus(); }
             if ((a += (n - y.a)) >= n) a -= n;
             return *this;
         }
@@ -36,6 +44,7 @@ namespace Modulo {
 
         // 乗法
         Modulo& operator*=(const Modulo &y) {
+            if (n != y.n) { throw DifferentModulus(); }
             (a *= y.a) %= n;
             return *this;
         }
@@ -48,6 +57,7 @@ namespace Modulo {
 
         // 除法
         Modulo& operator/=(const Modulo &y){
+            if (n != y.n) { throw DifferentModulus(); }
             return (*this) *= y.inverse();
         }
 
