@@ -21,15 +21,15 @@ data:
       title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   - name: Modulo
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Modulo/Discrete_Log.hpp
       title: Modulo/Discrete_Log.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
   - name: Segment_Tree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment_Tree/Segment_Tree.hpp
   - name: Union_Find
@@ -49,6 +49,9 @@ data:
       path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   - name: verify/yosupo_library_checker/graph
@@ -61,6 +64,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - name: verify/yosupo_library_checker/number_theory
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'

@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: Modulo/Discrete_Log.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo/Modulo.hpp\"\n\nnamespace Modulo {\n    class DifferentModulus\
@@ -141,8 +144,9 @@ data:
   requiredBy:
   - Modulo/Discrete_Log.hpp
   timestamp: '2025-08-16 17:32:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
 documentation_of: Modulo/Modulo.hpp
 layout: document
 redirect_from:

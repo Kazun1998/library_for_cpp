@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo/Modulo.hpp\"\n\nnamespace Modulo {\n    class DifferentModulus\
@@ -85,7 +88,7 @@ data:
     \   if (body == Y) { return n; }\n\n                body *= X;\n            }\n\
     \n            count++;\n\n            if (count == 2) { return not_exist; }\n\
     \        }\n\n        return not_exist;\n    }\n}\n"
-  code: "#include\"Modulo/Modulo.hpp\"\n\nnamespace Modulo {\n    long long Discrete_Log\
+  code: "#include\"Modulo.hpp\"\n\nnamespace Modulo {\n    long long Discrete_Log\
     \ (Modulo &X, Modulo &Y, long long not_exist = -1) {\n        assert(X.n == Y.n);\n\
     \n        long long m = 0;\n        for (; m * m < X.n; m++) {}\n\n        auto\
     \ y = Modulo(Y);\n        unordered_set<long long> st;\n        for (int i = 0;\
@@ -103,9 +106,10 @@ data:
   isVerificationFile: false
   path: Modulo/Discrete_Log.hpp
   requiredBy: []
-  timestamp: '2025-08-16 17:32:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-08-17 00:06:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
 documentation_of: Modulo/Discrete_Log.hpp
 layout: document
 redirect_from:
