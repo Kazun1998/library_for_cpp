@@ -1,11 +1,24 @@
 ---
 data:
   libraryCategories:
+  - name: Algebra
+    pages:
+    - icon: ':warning:'
+      path: Algebra/Field_Matrix.hpp
+      title: Algebra/Field_Matrix.hpp
   - name: Binary_Indexed_Tree
     pages:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
       title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+  - name: Graph/Weighed_Digraph
+    pages:
+    - icon: ':warning:'
+      path: Graph/Weighed_Digraph/Dijkstra.hpp
+      title: Graph/Weighed_Digraph/Dijkstra.hpp
+    - icon: ':warning:'
+      path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+      title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   - name: Modulo
     pages:
     - icon: ':warning:'
@@ -24,16 +37,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
       title: Union_Find/Union_Find.hpp
-  - name: algebra
-    pages:
-    - icon: ':warning:'
-      path: algebra/field_matrix.hpp
-      title: algebra/field_matrix.hpp
   - name: .
     pages:
     - icon: ':warning:'
       path: modint.hpp
       title: modint.hpp
+  - name: verify/yosupo_library_checker/graph
+    pages:
+    - icon: ':warning:'
+      path: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
+      title: verify/yosupo_library_checker/graph/Directed_Dijkstra.cpp
+  - name: verify/yosupo_library_checker/linear_algebra
+    pages:
+    - icon: ':warning:'
+      path: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
   verificationCategories:
   - name: verify/yosupo_library_checker/data_structure
     pages:

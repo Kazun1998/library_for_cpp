@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -63,8 +66,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: modint.hpp
-  requiredBy: []
-  timestamp: '2025-08-16 19:50:50+09:00'
+  requiredBy:
+  - verify/yosupo_library_checker/linear_algebra/Determinant.cpp
+  timestamp: '2025-08-16 23:35:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint.hpp

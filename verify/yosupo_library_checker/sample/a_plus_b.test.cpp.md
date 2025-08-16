@@ -22,7 +22,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 19:50:50+09:00'
+  timestamp: '2025-08-16 23:35:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
