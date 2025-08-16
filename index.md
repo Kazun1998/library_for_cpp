@@ -19,6 +19,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
       title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+  - name: Integer
+    pages:
+    - icon: ':warning:'
+      path: Integer/Euler_Totient.hpp
+      title: Integer/Euler_Totient.hpp
+    - icon: ':heavy_check_mark:'
+      path: Integer/Prime.hpp
+      title: Integer/Prime.hpp
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -69,6 +77,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
       title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'
