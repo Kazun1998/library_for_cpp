@@ -249,7 +249,7 @@ template<typename F>
 F Determinant(const Field_Matrix<F> &A){
     assert (A.is_square());
 
-    int n = M.row();
+    int n = A.row;
     F det(1);
     Field_Matrix<F> B(A);
 
