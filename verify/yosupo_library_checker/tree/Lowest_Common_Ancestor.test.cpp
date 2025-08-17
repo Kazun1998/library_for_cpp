@@ -4,9 +4,10 @@
 
 int main () {
     int N, Q; cin >> N >> Q;
-    vector<int> p(N + 1);
+    vector<int> p(N);
     auto T = Tree(N);
 
+    T.set_root(0);
     for (int i = 1; i < N; i++) {
         scanf("%d", &p[i]);
         T.set_parent(i, p[i]);
