@@ -22,3 +22,8 @@ T Floor_Linear_Sum(T a, T b, T m, T n) {
         tie(a, b, m, n) = make_tuple(m, mod(x, a), a, y);
     }
 }
+
+template<typename T>
+T Floor_Linear_Sum(T a, T b, T m, T l, T r) {
+    return Floor_Linear_Sum(a, a * l + b, m, r - l + 1);
+}
