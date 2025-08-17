@@ -43,9 +43,7 @@ class Tree {
         parent[root] = -1;
         children.assign(N + offset, set<int>());
         for (int v = offset; v < N + offset; v++) {
-            unless(is_root(v)) {
-                children[parent[v]].insert(v);
-            }
+            unless(is_root(v)) {  children[parent[v]].insert(v); }
         }
 
         locked = true;
