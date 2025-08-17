@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Integer/Quotients.hpp
+    title: Integer/Quotients.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -11,45 +14,29 @@ data:
     path: template/math.hpp
     title: template/math.hpp
   - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
-  - icon: ':heavy_check_mark:'
-    path: Math/Floor_Linear_Sum.hpp
-    title: Math/Floor_Linear_Sum.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
-    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
-    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
-    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
-    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
-    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
+    links:
+    - https://judge.yosupo.jp/problem/enumerate_quotients
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\n\
+    #include<bits/stdc++.h>\n\nusing namespace std;\n\n#line 2 \"Integer/Quotients.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#line 29 \"template/template.hpp\"\n#include <initializer_list>\n\
+    #line 50 \"template/template.hpp\"\n#include <type_traits>\n#line 56 \"template/template.hpp\"\
+    \n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n\
+    // a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
     \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
     \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
     }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
@@ -113,156 +100,42 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\
-    \n"
-  code: '#pragma once
-
-
-    using namespace std;
-
-
-    // intrinstic
-
-    #include <immintrin.h>
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cctype>
-
-    #include <cfenv>
-
-    #include <cfloat>
-
-    #include <chrono>
-
-    #include <cinttypes>
-
-    #include <climits>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <cstdarg>
-
-    #include <cstddef>
-
-    #include <cstdint>
-
-    #include <cstdio>
-
-    #include <cstdlib>
-
-    #include <cstring>
-
-    #include <deque>
-
-    #include <fstream>
-
-    #include <functional>
-
-    #include <initializer_list>
-
-    #include <iomanip>
-
-    #include <ios>
-
-    #include <iostream>
-
-    #include <istream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <list>
-
-    #include <map>
-
-    #include <memory>
-
-    #include <new>
-
-    #include <numeric>
-
-    #include <ostream>
-
-    #include <queue>
-
-    #include <random>
-
-    #include <set>
-
-    #include <sstream>
-
-    #include <stack>
-
-    #include <streambuf>
-
-    #include <string>
-
-    #include <tuple>
-
-    #include <type_traits>
-
-    #include <typeinfo>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <utility>
-
-    #include <vector>
-
-
-    // utility
-
-    #include"utility.hpp"
-
-
-    // math
-
-    #include"math.hpp"
-
-
-    // inout
-
-    #include"inout.hpp"
-
-
-    // macro
-
-    #include"macro.hpp"
-
-    '
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Integer/Quotients.hpp\"\
+    \n\nvector<tuple<ll, ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll,\
+    \ ll, ll>>();\n\n    ll k = 1;\n    for(; k * k <= N; k++) { quotients.emplace_back(make_tuple(N\
+    \ / k, k, k)); }\n\n    for (ll t = k; t > 0; t--) {\n        ll l = N / (t +\
+    \ 1) + 1, r = N / t;\n        if (l <= r && get<1>(quotients.back()) < l) {\n\
+    \            quotients.emplace_back(make_tuple(t, l, r));\n        }\n    }\n\n\
+    \    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
+    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
+    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
+    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
+    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
+    \ << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
+    \n#include<bits/stdc++.h>\n\nusing namespace std;\n\n#include\"../../../Integer/Quotients.hpp\"\
+    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
+    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
+    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
+    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
+    \ << endl;\n}\n"
   dependsOn:
+  - Integer/Quotients.hpp
+  - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  isVerificationFile: false
-  path: template/template.hpp
-  requiredBy:
-  - Math/Floor_Linear_Sum.hpp
-  - Integer/Quotients.hpp
-  timestamp: '2025-08-17 13:03:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-documentation_of: template/template.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+  requiredBy: []
+  timestamp: '2025-08-17 22:15:08+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
 layout: document
 redirect_from:
-- /library/template/template.hpp
-- /library/template/template.hpp.html
-title: template/template.hpp
+- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
 ---

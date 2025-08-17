@@ -27,6 +27,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
+    - icon: ':heavy_check_mark:'
+      path: Integer/Quotients.hpp
+      title: Integer/Quotients.hpp
   - name: Math
     pages:
     - icon: ':heavy_check_mark:'
@@ -105,6 +108,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
       title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
       title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
