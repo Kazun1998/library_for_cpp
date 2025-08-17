@@ -11,6 +11,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
       title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+  - name: Graph/Digraph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Graph/Digraph/Digraph.hpp
+      title: Graph/Digraph/Digraph.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Digraph/Strongly_Connected_Components.hpp
+      title: Graph/Digraph/Strongly_Connected_Components.hpp
   - name: Graph/Weighed_Digraph
     pages:
     - icon: ':heavy_check_mark:'
@@ -92,6 +100,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
       title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+      title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - name: verify/yosupo_library_checker/linear_algebra
     pages:
     - icon: ':heavy_check_mark:'
