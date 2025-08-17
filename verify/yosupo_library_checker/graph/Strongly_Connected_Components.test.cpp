@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/scc"
+
 #include"../../../template/template.hpp"
 #include"../../../Graph/Digraph/Strongly_Connected_Components.hpp"
 
