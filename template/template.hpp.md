@@ -1,23 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Math/Floor_Linear_Sum.hpp
+    title: Math/Floor_Linear_Sum.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
@@ -235,10 +244,13 @@ data:
   - template/macro.hpp
   isVerificationFile: false
   path: template/template.hpp
-  requiredBy: []
+  requiredBy:
+  - Math/Floor_Linear_Sum.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

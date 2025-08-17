@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: Math/Floor_Linear_Sum.hpp
+    title: Math/Floor_Linear_Sum.hpp
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
@@ -60,10 +69,13 @@ data:
   isVerificationFile: false
   path: template/inout.hpp
   requiredBy:
+  - Math/Floor_Linear_Sum.hpp
   - template/template.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
 documentation_of: template/inout.hpp
 layout: document
 redirect_from:

@@ -27,6 +27,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
+  - name: Math
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Math/Floor_Linear_Sum.hpp
+      title: Math/Floor_Linear_Sum.hpp
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -52,19 +57,19 @@ data:
       title: modint.hpp
   - name: template
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
@@ -100,6 +105,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
       title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'
