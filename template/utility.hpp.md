@@ -1,0 +1,43 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/template.hpp
+    title: template/template.hpp
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a\
+    \ \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\
+    \u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\n\
+    inline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n\
+    // a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n\
+    }\n"
+  code: "#pragma once\n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\
+    \u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\
+    \u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool chmax(T &a,\
+    \ const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\
+    \u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\
+    \u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool chmin(T\
+    \ &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: template/utility.hpp
+  requiredBy:
+  - template/template.hpp
+  timestamp: '2025-08-17 13:03:30+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: template/utility.hpp
+layout: document
+redirect_from:
+- /library/template/utility.hpp
+- /library/template/utility.hpp.html
+title: template/utility.hpp
+---

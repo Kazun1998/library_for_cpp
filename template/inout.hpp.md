@@ -1,0 +1,73 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/template.hpp
+    title: template/template.hpp
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
+    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
+    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
+    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
+    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
+    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
+    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
+    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
+    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
+    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
+    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
+    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
+    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
+    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
+    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
+    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n"
+  code: "// \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >>\
+    \ ... >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class...\
+    \ Ts>\nvoid print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ...\
+    \ << (cout << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename\
+    \ U>\nistream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
+    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
+    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
+    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
+    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
+    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
+    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
+    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
+    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
+    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
+    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
+    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
+    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: template/inout.hpp
+  requiredBy:
+  - template/template.hpp
+  timestamp: '2025-08-17 13:03:30+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: template/inout.hpp
+layout: document
+redirect_from:
+- /library/template/inout.hpp
+- /library/template/inout.hpp.html
+title: template/inout.hpp
+---

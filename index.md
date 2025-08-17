@@ -50,6 +50,23 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint.hpp
       title: modint.hpp
+  - name: template
+    pages:
+    - icon: ':warning:'
+      path: template/inout.hpp
+      title: template/inout.hpp
+    - icon: ':warning:'
+      path: template/macro.hpp
+      title: template/macro.hpp
+    - icon: ':warning:'
+      path: template/math.hpp
+      title: template/math.hpp
+    - icon: ':warning:'
+      path: template/template.hpp
+      title: template/template.hpp
+    - icon: ':warning:'
+      path: template/utility.hpp
+      title: template/utility.hpp
   verificationCategories:
   - name: verify/yosupo_library_checker/data_structure
     pages:
