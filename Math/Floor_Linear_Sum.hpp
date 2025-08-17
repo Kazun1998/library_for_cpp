@@ -27,3 +27,19 @@ template<typename T>
 T Floor_Linear_Sum(T a, T b, T m, T l, T r) {
     return Floor_Linear_Sum(a, a * l + b, m, r - l + 1);
 }
+
+template<typename T>
+T Min_of_Mod_of_Linear(T a, T b, T m, T n) {
+    T l = 0, r = m;
+    T target = Floor_Linear_Sum(a, b, m, n);
+    while (r - l > 1) {
+        T x = l + (r - l) / 2;
+        if (target == Floor_Linear_Sum(a, b - x, m, n)) {
+            l = x;
+        } else {
+            r = x;
+        }
+    }
+
+    return l;
+}
