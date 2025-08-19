@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../template/template.hpp"
+
 namespace Modulo {
     class DifferentModulus : public exception {
       public: // publicに指定
