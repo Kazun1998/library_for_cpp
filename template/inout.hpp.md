@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Algebra/Gaussian_Integer.hpp
+    title: Algebra/Gaussian_Integer.hpp
+  - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
     title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
@@ -78,6 +84,7 @@ data:
   isVerificationFile: false
   path: template/inout.hpp
   requiredBy:
+  - Algebra/Gaussian_Integer.hpp
   - Math/Floor_Linear_Sum.hpp
   - Integer/Quotients.hpp
   - template/template.hpp
@@ -85,6 +92,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp

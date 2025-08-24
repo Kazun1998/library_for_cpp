@@ -6,6 +6,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algebra/Field_Matrix.hpp
       title: Algebra/Field_Matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: Algebra/Gaussian_Integer.hpp
+      title: Algebra/Gaussian_Integer.hpp
   - name: Binary_Indexed_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -125,6 +128,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
       title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
       title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp

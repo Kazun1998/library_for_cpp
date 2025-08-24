@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
+    path: Algebra/Gaussian_Integer.hpp
+    title: Algebra/Gaussian_Integer.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -26,17 +26,26 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
+    PROBLEM: https://judge.yosupo.jp/problem/gcd_of_gaussian_integers
     links:
-    - https://judge.yosupo.jp/problem/enumerate_quotients
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\n\
-    #include<bits/stdc++.h>\n\nusing namespace std;\n\n#line 2 \"Integer/Quotients.hpp\"\
+    - https://judge.yosupo.jp/problem/gcd_of_gaussian_integers
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_of_gaussian_integers\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#line 29 \"template/template.hpp\"\n#include <initializer_list>\n\
-    #line 50 \"template/template.hpp\"\n#include <type_traits>\n#line 56 \"template/template.hpp\"\
-    \n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n\
-    // a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
     \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
     \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
     }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
@@ -103,41 +112,69 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 4 \"Integer/Quotients.hpp\"\n\nvector<tuple<ll, ll, ll>> Quotients(ll N)\
-    \ {\n    auto quotients = vector<tuple<ll, ll, ll>>();\n\n    ll k = 1;\n    for(;\
-    \ k * k <= N; k++) { quotients.emplace_back(make_tuple(N / k, k, k)); }\n\n  \
-    \  for (ll t = k; t > 0; t--) {\n        ll l = N / (t + 1) + 1, r = N / t;\n\
-    \        if (l <= r && get<1>(quotients.back()) < l) {\n            quotients.emplace_back(make_tuple(t,\
-    \ l, r));\n        }\n    }\n\n    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
-    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
-    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
-    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
-    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
-    \n#include<bits/stdc++.h>\n\nusing namespace std;\n\n#include\"../../../Integer/Quotients.hpp\"\
-    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
-    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
-    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
-    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
-    \ << endl;\n}\n"
+    #line 2 \"Algebra/Gaussian_Integer.hpp\"\n\n#line 4 \"Algebra/Gaussian_Integer.hpp\"\
+    \n\ntemplate<typename R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\
+    \n    constexpr Gaussian_Integer(R re, R im): re(re), im(im) {}\n    constexpr\
+    \ Gaussian_Integer(R re): re(re), im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im);\
+    \ }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer& operator+=(const Gaussian_Integer\
+    \ &b){\n        re += b.re;\n        im += b.im;\n        return *this;\n    }\n\
+    \n    friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer\
+    \ &y) { return Gaussian_Integer(x) += y; }\n\n    // \u6E1B\u6CD5\n    Gaussian_Integer&\
+    \ operator-=(const Gaussian_Integer &b){\n        re -= b.re;\n        im -= b.im;\n\
+    \        return *this;\n    }\n\n    friend Gaussian_Integer operator-(const Gaussian_Integer\
+    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }\n\n    //\
+    \ \u4E57\u6CD5\n    Gaussian_Integer& operator*=(const Gaussian_Integer &b){\n\
+    \        tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im * b.re);\n\
+    \        return *this;\n    }\n\n    friend Gaussian_Integer operator*(const Gaussian_Integer\
+    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }\n\n    //\
+    \ \u9664\u6CD5\n    Gaussian_Integer& operator/=(const Gaussian_Integer &b){\n\
+    \        R n = b.norm();\n        R x = round(re * b.re + im * b.im, n);\n   \
+    \     R y = round(im * b.re - re * b.im, n);\n        re = x;\n        im = y;\n\
+    \        return *this;\n    }\n\n    friend Gaussian_Integer operator/(const Gaussian_Integer\
+    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) /= y; }\n\n    //\
+    \ \u5270\u4F59\n    Gaussian_Integer& operator%=(const Gaussian_Integer &b){\n\
+    \        Gaussian_Integer a(re, im);\n        auto q = a / b;\n        auto r\
+    \ = a - b * q;\n        re = r.re;\n        im = r.im;\n        return *this;\n\
+    \    }\n\n    friend Gaussian_Integer operator%(const Gaussian_Integer &x, const\
+    \ Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }\n\n    // \u5171\u5F79\
+    \n    Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }\n\
+    \n    // \u30CE\u30EB\u30E0\n    R norm() const { return re * re + im * im; }\n\
+    \n    // \u5165\u529B\n    friend istream &operator>>(istream &is, Gaussian_Integer\
+    \ &a) {\n        is >> a.re >> a.im;\n        return is;\n    }\n\n    // \u51FA\
+    \u529B\n    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x)\
+    \ { return os << x.re << \"+\" << x.im << \"i\"; }\n\n    // \u30BC\u30ED?\n \
+    \   bool is_zero() const { return re == 0 && im == 0; }\n};\n\ntemplate<typename\
+    \ R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R> beta)\
+    \ {\n    while(!beta.is_zero()) {\n        tie(alpha, beta) = make_pair(beta,\
+    \ alpha % beta);\n    }\n\n    return alpha;\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
+    \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++){\n   \
+    \     ll a1, b1, a2, b2;\n        scanf(\"%lld%lld%lld%lld\", &a1, &b1, &a2, &b2);\n\
+    \        Gaussian_Integer<ll> x1(a1, b1), x2(a2, b2);\n        auto g = gcd(x1,\
+    \ x2);\n        cout << g.re << \" \" << g.im << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_of_gaussian_integers\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/Gaussian_Integer.hpp\"\
+    \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++){\n   \
+    \     ll a1, b1, a2, b2;\n        scanf(\"%lld%lld%lld%lld\", &a1, &b1, &a2, &b2);\n\
+    \        Gaussian_Integer<ll> x1(a1, b1), x2(a2, b2);\n        auto g = gcd(x1,\
+    \ x2);\n        cout << g.re << \" \" << g.im << \"\\n\";\n    }\n}\n"
   dependsOn:
-  - Integer/Quotients.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - Algebra/Gaussian_Integer.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+  path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   requiredBy: []
-  timestamp: '2025-08-23 11:25:00+09:00'
+  timestamp: '2025-08-25 00:45:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+documentation_of: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp.html
-title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
 ---
