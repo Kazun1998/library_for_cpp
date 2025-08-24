@@ -33,6 +33,9 @@ data:
   - name: Integer
     pages:
     - icon: ':warning:'
+      path: Integer/Divisors.hpp
+      title: Integer/Divisors.hpp
+    - icon: ':warning:'
       path: Integer/Euler_Totient.hpp
       title: Integer/Euler_Totient.hpp
     - icon: ':heavy_check_mark:'

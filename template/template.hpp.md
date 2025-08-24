@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
+  - icon: ':warning:'
+    path: Integer/Divisors.hpp
+    title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
@@ -264,6 +267,7 @@ data:
   requiredBy:
   - Algebra/Gaussian_Integer.hpp
   - Math/Floor_Linear_Sum.hpp
+  - Integer/Divisors.hpp
   - Integer/Quotients.hpp
   timestamp: '2025-08-23 11:25:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
