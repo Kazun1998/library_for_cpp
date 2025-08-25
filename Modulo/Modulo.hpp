@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../template/template.hpp"
+
 namespace Modulo {
     class DifferentModulus : public exception {
       public: // publicに指定
@@ -93,6 +95,12 @@ namespace Modulo {
 
             return Modulo(s, n);
         }
+
+        // include?
+        bool is_member(ll x) { return mod(x - a, n) == 0; }
+
+        bool is_zero() { return is_member(0); }
+        
 
         // 比較
         friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a; }
