@@ -15,12 +15,21 @@ data:
     path: Math/Floor_Linear_Sum.hpp
     title: Math/Floor_Linear_Sum.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo/Discrete_Log.hpp
+    title: Modulo/Discrete_Log.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Modulo.hpp
+    title: Modulo/Modulo.hpp
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
@@ -70,6 +79,8 @@ data:
   isVerificationFile: false
   path: template/macro.hpp
   requiredBy:
+  - Modulo/Modulo.hpp
+  - Modulo/Discrete_Log.hpp
   - Algebra/Gaussian_Integer.hpp
   - Math/Floor_Linear_Sum.hpp
   - Integer/Divisors.hpp
@@ -79,6 +90,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
