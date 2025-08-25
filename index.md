@@ -32,10 +32,10 @@ data:
       title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
   - name: Integer
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Divisors.hpp
       title: Integer/Divisors.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Euler_Totient.hpp
       title: Integer/Euler_Totient.hpp
     - icon: ':heavy_check_mark:'
@@ -57,6 +57,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo/Order.hpp
+      title: Modulo/Order.hpp
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -142,5 +145,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
       title: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
+  - name: verify/yukicoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yukicoder/Modulo_Order.test.cpp
+      title: verify/yukicoder/Modulo_Order.test.cpp
 layout: toppage
 ---

@@ -4,11 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Order.hpp
+    title: Modulo/Order.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/Modulo_Order.test.cpp
+    title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
@@ -59,10 +65,12 @@ data:
   - Integer/Prime.hpp
   isVerificationFile: false
   path: Integer/Euler_Totient.hpp
-  requiredBy: []
+  requiredBy:
+  - Modulo/Order.hpp
   timestamp: '2025-08-16 18:00:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document
 redirect_from:

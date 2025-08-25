@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Order.hpp
+    title: Modulo/Order.hpp
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/Modulo_Order.test.cpp
+    title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -97,6 +103,7 @@ data:
   path: template/inout.hpp
   requiredBy:
   - Modulo/Modulo.hpp
+  - Modulo/Order.hpp
   - Modulo/Discrete_Log.hpp
   - Algebra/Gaussian_Integer.hpp
   - Math/Floor_Linear_Sum.hpp
@@ -106,6 +113,7 @@ data:
   timestamp: '2025-08-17 13:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp

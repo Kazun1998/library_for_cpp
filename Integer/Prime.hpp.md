@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Euler_Totient.hpp
     title: Integer/Euler_Totient.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Order.hpp
+    title: Modulo/Order.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/Modulo_Order.test.cpp
+    title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -86,10 +92,12 @@ data:
   isVerificationFile: false
   path: Integer/Prime.hpp
   requiredBy:
+  - Modulo/Order.hpp
   - Integer/Euler_Totient.hpp
   timestamp: '2025-08-15 01:10:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document

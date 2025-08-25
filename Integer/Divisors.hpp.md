@@ -16,11 +16,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Order.hpp
+    title: Modulo/Order.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/Modulo_Order.test.cpp
+    title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Divisors.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -124,10 +130,12 @@ data:
   - template/macro.hpp
   isVerificationFile: false
   path: Integer/Divisors.hpp
-  requiredBy: []
+  requiredBy:
+  - Modulo/Order.hpp
   timestamp: '2025-08-25 01:28:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Divisors.hpp
 layout: document
 redirect_from:
