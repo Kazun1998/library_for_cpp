@@ -170,4 +170,9 @@ class Tree {
 
         return is_root(x) ? root : parent[x];
     }
+
+    // 2 頂点 x, y 間の距離を求める.
+    int distance(int x, int y) {
+        return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
+    }
 };
