@@ -94,6 +94,7 @@ class Tree {
         return d;
     }
 
+    // 頂点 x の深さを求める.
     inline int vertex_depth(const int &x) { return depth[x]; }
 
     // 2 頂点に関する条件
@@ -141,6 +142,8 @@ class Tree {
     }
 
     public:
+    // 頂点 x から見て k 代前の頂点を求める.
+    // vertex_depth(x) < k のとき返り値は over = true ならば root, false ならば, -1 である.
     int upper(int x, int k, bool over = true) {
         assert(is_locked());
 
@@ -155,6 +158,7 @@ class Tree {
     }
 
     public:
+    // 頂点 x と頂点 y の最小共通先祖を求める.
     int lowest_common_ancestor(int x, int y) {
         assert(is_locked());
 
