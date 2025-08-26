@@ -49,6 +49,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Floor_Linear_Sum.hpp
       title: Math/Floor_Linear_Sum.hpp
+    - icon: ':heavy_check_mark:'
+      path: Math/Two_SAT.hpp
+      title: Math/Two_SAT.hpp
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -140,6 +143,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
       title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - name: verify/yosupo_library_checker/other
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/two_sat.test.cpp
+      title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'

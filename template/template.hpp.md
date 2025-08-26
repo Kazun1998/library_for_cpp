@@ -27,6 +27,9 @@ data:
     path: Math/Floor_Linear_Sum.hpp
     title: Math/Floor_Linear_Sum.hpp
   - icon: ':heavy_check_mark:'
+    path: Math/Two_SAT.hpp
+    title: Math/Two_SAT.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: Modulo/Discrete_Log.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/two_sat.test.cpp
+    title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -284,6 +290,7 @@ data:
   - Modulo/Order.hpp
   - Modulo/Discrete_Log.hpp
   - Algebra/Gaussian_Integer.hpp
+  - Math/Two_SAT.hpp
   - Math/Floor_Linear_Sum.hpp
   - Integer/Divisors.hpp
   - Integer/Quotients.hpp
@@ -297,6 +304,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - verify/yosupo_library_checker/other/two_sat.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:
