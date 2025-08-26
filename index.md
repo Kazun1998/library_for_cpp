@@ -68,6 +68,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment_Tree/Segment_Tree.hpp
+  - name: Tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Tree/Tree.hpp
+      title: Tree/Tree.hpp
   - name: Union_Find
     pages:
     - icon: ':heavy_check_mark:'
@@ -153,6 +158,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
       title: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
+  - name: verify/yosupo_library_checker/tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+      title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - name: verify/yukicoder
     pages:
     - icon: ':heavy_check_mark:'

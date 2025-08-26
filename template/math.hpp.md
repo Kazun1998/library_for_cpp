@@ -27,6 +27,9 @@ data:
     path: Modulo/Order.hpp
     title: Modulo/Order.hpp
   - icon: ':heavy_check_mark:'
+    path: Tree/Tree.hpp
+    title: Tree/Tree.hpp
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+    title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -114,6 +120,7 @@ data:
   - Modulo/Modulo.hpp
   - Modulo/Order.hpp
   - Modulo/Discrete_Log.hpp
+  - Tree/Tree.hpp
   - Algebra/Gaussian_Integer.hpp
   - Math/Two_SAT.hpp
   - Math/Floor_Linear_Sum.hpp
@@ -130,6 +137,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
 documentation_of: template/math.hpp
 layout: document

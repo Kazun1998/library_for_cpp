@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Tree/Tree.hpp
+    title: Tree/Tree.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -11,70 +14,24 @@ data:
     path: template/math.hpp
     title: template/math.hpp
   - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Algebra/Gaussian_Integer.hpp
-    title: Algebra/Gaussian_Integer.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Divisors.hpp
-    title: Integer/Divisors.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
-  - icon: ':heavy_check_mark:'
-    path: Math/Floor_Linear_Sum.hpp
-    title: Math/Floor_Linear_Sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: Math/Two_SAT.hpp
-    title: Math/Two_SAT.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Discrete_Log.hpp
-    title: Modulo/Discrete_Log.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Modulo.hpp
-    title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Tree.hpp
-    title: Tree/Tree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/two_sat.test.cpp
-    title: verify/yosupo_library_checker/other/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-    title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/Modulo_Order.test.cpp
-    title: verify/yukicoder/Modulo_Order.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/lca
+    links:
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#line 2 \"Tree/Tree.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -155,168 +112,92 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 68 \"template/template.hpp\"\n"
-  code: '#pragma once
-
-
-    using namespace std;
-
-
-    // intrinstic
-
-    #include <immintrin.h>
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cctype>
-
-    #include <cfenv>
-
-    #include <cfloat>
-
-    #include <chrono>
-
-    #include <cinttypes>
-
-    #include <climits>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <cstdarg>
-
-    #include <cstddef>
-
-    #include <cstdint>
-
-    #include <cstdio>
-
-    #include <cstdlib>
-
-    #include <cstring>
-
-    #include <deque>
-
-    #include <fstream>
-
-    #include <functional>
-
-    #include <initializer_list>
-
-    #include <iomanip>
-
-    #include <ios>
-
-    #include <iostream>
-
-    #include <istream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <list>
-
-    #include <map>
-
-    #include <memory>
-
-    #include <new>
-
-    #include <numeric>
-
-    #include <ostream>
-
-    #include <queue>
-
-    #include <random>
-
-    #include <set>
-
-    #include <sstream>
-
-    #include <stack>
-
-    #include <streambuf>
-
-    #include <string>
-
-    #include <tuple>
-
-    #include <type_traits>
-
-    #include <typeinfo>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <utility>
-
-    #include <vector>
-
-
-    // utility
-
-    #include"utility.hpp"
-
-
-    // math
-
-    #include"math.hpp"
-
-
-    // inout
-
-    #include"inout.hpp"
-
-
-    // macro
-
-    #include"macro.hpp"
-
-    '
+    #line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, offset, root;\n\
+    \    vector<int> parent;\n    vector<set<int>> children;\n\n    int N_bit;\n \
+    \   bool locked;\n\n    public:\n    Tree(int N, int offset = 0): N(N), offset(offset),\
+    \ N_bit(0) {\n        parent.assign(N + offset, -1);\n        for (; (1 << N_bit)\
+    \ <= N; N_bit++) {}\n        locked = false;\n    }\n\n    bool is_locked() const\
+    \ { return locked; }\n\n    public:\n    inline void set_root(const int &x) {\n\
+    \        assert (!is_locked());\n        root = x;\n    }\n\n    public:\n   \
+    \ // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B\
+    .\n    inline void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
+    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
+    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
+    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
+    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
+    \   parent[root] = -1;\n        children.assign(N + offset, set<int>());\n   \
+    \     for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
+    \ { children[parent[v]].insert(v); }\n        }\n\n        locked = true;\n  \
+    \      bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
+    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
+    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
+    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
+    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
+    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \                Q.push_back(y);\n            }\n        }\n    }\n\n    // 1\
+    \ \u9802\u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\
+    \u6839?\n    bool is_root(const int &x) const { return x == root; }\n\n    //\
+    \ x \u306F\u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
+    \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
+    \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
+    \ d = children[x].size();\n        if (is_root(x)) { d--; }\n        return d;\n\
+    \    }\n\n    inline int vertex_depth(const int &x) { return depth[x]; }\n\n \
+    \   // 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\u4EF6\n\n    // x \u306F y\
+    \ \u306E\u89AA\u304B?\n    bool is_parent(const int &x, const int &y) const {\n\
+    \        assert(is_locked());\n        return !is_root(y) && x == parent[y];\n\
+    \    }\n\n    // x \u306F y \u306E\u500B\u304B?\n    inline bool is_children(const\
+    \ int &x, const int &y) const { return is_parent(y, x); }\n\n    // x \u3068 y\
+    \ \u306F\u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B?\n    bool is_brother(const\
+    \ int &x, const int &y) const {\n        assert(is_locked());\n        return\
+    \ !is_root(x) && !is_root(y) && parent[x] == parent[y];\n    }\n\n    private:\n\
+    \    bool has_upper_list = false;\n    vector<vector<int>> upper_list;\n\n   \
+    \ void build_upper_list() {\n        assert(is_locked());\n\n        if (has_upper_list)\
+    \ { return; }\n\n        has_upper_list = true;\n\n        upper_list.assign(N_bit,\
+    \ vector<int>(N + offset, -1));\n\n        // Step I\n        for (int i = offset;\
+    \ i < N + offset; i++) {\n            if (is_root(i)) { upper_list[0][i] = i;\
+    \ }\n            else { upper_list[0][i] = parent[i]; }\n        }\n\n       \
+    \ // Step II\n        for (int k = 1; k < N_bit; k++) {\n            for (int\
+    \ i = offset; i < N + offset; i++) {\n                upper_list[k][i] = upper_list[k\
+    \ - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n    public:\n\
+    \    int upper(int x, int k, bool over = true) {\n        assert(is_locked());\n\
+    \n        build_upper_list();\n        if (vertex_depth(x) < k) { return over?\
+    \ root: -1; }\n\n        for(int b = 0; k; k >>= 1, b++){ \n            if (k\
+    \ & 1) { x = upper_list[b][x]; }\n        }\n\n        return x;\n    }\n\n  \
+    \  public:\n    int lowest_common_ancestor(int x, int y) {\n        assert(is_locked());\n\
+    \n        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }\n        y =\
+    \ upper(y, vertex_depth(y) - vertex_depth(x));\n\n        if (is_root(x) || x\
+    \ == y) { return x; }\n\n        for (int k = N_bit - 1; k >= 0; k--) {\n    \
+    \        int px = upper_list[k][x], py = upper_list[k][y];\n            if (px\
+    \ != py) { x = px, y = py; }\n        }\n\n        return is_root(x) ? root :\
+    \ parent[x];\n    }\n};\n#line 4 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
+    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
+    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
+    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
+    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
+    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include\"../../../Tree/Tree.hpp\"\
+    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
+    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
+    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
+    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
+    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
   dependsOn:
+  - Tree/Tree.hpp
+  - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  isVerificationFile: false
-  path: template/template.hpp
-  requiredBy:
-  - Modulo/Modulo.hpp
-  - Modulo/Order.hpp
-  - Modulo/Discrete_Log.hpp
-  - Tree/Tree.hpp
-  - Algebra/Gaussian_Integer.hpp
-  - Math/Two_SAT.hpp
-  - Math/Floor_Linear_Sum.hpp
-  - Integer/Divisors.hpp
-  - Integer/Quotients.hpp
-  timestamp: '2025-08-23 11:25:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/other/two_sat.test.cpp
-documentation_of: template/template.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  requiredBy: []
+  timestamp: '2025-08-27 01:19:14+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
 layout: document
 redirect_from:
-- /library/template/template.hpp
-- /library/template/template.hpp.html
-title: template/template.hpp
+- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp.html
+title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
 ---
