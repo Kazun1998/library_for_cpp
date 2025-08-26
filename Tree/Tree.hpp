@@ -8,7 +8,7 @@ class Tree {
     vector<int> parent;
     vector<set<int>> children;
 
-    int N_bit;
+    int N_bit = 0;
     bool locked;
 
     public:
@@ -43,7 +43,7 @@ class Tree {
         parent[root] = -1;
         children.assign(N + offset, set<int>());
         for (int v = offset; v < N + offset; v++) {
-            unless(is_root(v)) {  children[parent[v]].insert(v); }
+            unless(is_root(v)) { children[parent[v]].insert(v); }
         }
 
         locked = true;
@@ -116,6 +116,7 @@ class Tree {
     private:
     bool has_upper_list = false;
     vector<vector<int>> upper_list;
+
     void build_upper_list() {
         assert(is_locked());
 
@@ -154,7 +155,7 @@ class Tree {
     }
 
     public:
-    int lowest_common_ancestor(int &x, int &y) {
+    int lowest_common_ancestor(int x, int y) {
         assert(is_locked());
 
         if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
