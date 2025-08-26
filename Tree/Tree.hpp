@@ -8,11 +8,11 @@ class Tree {
     vector<int> parent;
     vector<set<int>> children;
 
-    int N_bit = 0;
+    int N_bit;
     bool locked;
 
     public:
-    Tree(int N, int offset = 0): N(N), offset(offset) {
+    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {
         parent.assign(N + offset, -1);
         for (; (1 << N_bit) <= N; N_bit++) {}
         locked = false;
