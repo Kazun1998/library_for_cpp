@@ -96,6 +96,12 @@ namespace Modulo {
             return Modulo(s, n);
         }
 
+        // include?
+        bool is_member(ll x) { return mod(x - a, n) == 0; }
+
+        bool is_zero() { return is_member(0); }
+        
+
         // 比較
         friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a; }
         friend bool operator==(const Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }
