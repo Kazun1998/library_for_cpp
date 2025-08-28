@@ -22,14 +22,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Digraph/Strongly_Connected_Components.hpp
       title: Graph/Digraph/Strongly_Connected_Components.hpp
-  - name: Graph/Weighed_Digraph
+  - name: Graph/Weighted_Digraph
     pages:
     - icon: ':heavy_check_mark:'
-      path: Graph/Weighed_Digraph/Dijkstra.hpp
-      title: Graph/Weighed_Digraph/Dijkstra.hpp
+      path: Graph/Weighted_Digraph/Dijkstra.hpp
+      title: Graph/Weighted_Digraph/Dijkstra.hpp
     - icon: ':heavy_check_mark:'
-      path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
-      title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+      path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+      title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   - name: Integer
     pages:
     - icon: ':heavy_check_mark:'

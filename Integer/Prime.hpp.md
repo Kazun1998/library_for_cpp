@@ -97,8 +97,8 @@ data:
   timestamp: '2025-08-15 01:10:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document
 redirect_from:

@@ -254,13 +254,13 @@ data:
   isVerificationFile: false
   path: Modulo/Modulo.hpp
   requiredBy:
-  - Modulo/Order.hpp
   - Modulo/Discrete_Log.hpp
+  - Modulo/Order.hpp
   timestamp: '2025-08-25 23:23:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Modulo/Modulo.hpp
 layout: document
 redirect_from:

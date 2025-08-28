@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Graph/Weighed_Digraph/Dijkstra.hpp
-    title: Graph/Weighed_Digraph/Dijkstra.hpp
+    path: Graph/Weighted_Digraph/Dijkstra.hpp
+    title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
-    path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
-    title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+    path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+    title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -19,7 +19,7 @@ data:
     - https://judge.yosupo.jp/problem/shortest_path
   bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#line 2 \"Graph/Weighed_Digraph/Weighted_Digraph.hpp\"\
+    \nusing namespace std;\n\n#line 2 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\
     \n\nnamespace Weighted_Digraph {\n  template<typename W>\n  struct Weighted_Arc\
     \ {\n    int id, source, target;\n    W weight;\n\n    Weighted_Arc (int id, int\
     \ source, int target, W weight): id(id), source(source), target(target), weight(weight)\
@@ -42,7 +42,7 @@ data:
     \ predecessors(int u) const { return adjacent_in[u]; }\n\n    // \u5F27 ID \u304C\
     \ id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n    inline const\
     \ Arc& get_arc(int id) const { return arcs[id]; }\n    inline Arc& get_arc(int\
-    \ id) { return arcs[id]; }\n  };\n}\n#line 3 \"Graph/Weighed_Digraph/Dijkstra.hpp\"\
+    \ id) { return arcs[id]; }\n  };\n}\n#line 3 \"Graph/Weighted_Digraph/Dijkstra.hpp\"\
     \n\nnamespace Weighted_Digraph::Dijkstra {\n    class UnreachableException : public\
     \ exception {\n      public: // public\u306B\u6307\u5B9A\n      const char* what()\
     \ const noexcept override { return \"\u6C42\u3081\u308B\u30D1\u30B9\u304C\u5B58\
@@ -78,7 +78,7 @@ data:
     \ << P[j] << \" \" << P[j + 1] << \"\\n\";\n    }\n  } catch (Weighted_Digraph::Dijkstra::UnreachableException\
     \ &e) {\n    cout << -1 << endl;\n  }\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#include\"../../../Graph/Weighed_Digraph/Dijkstra.hpp\"\
+    \nusing namespace std;\n\n#include\"../../../Graph/Weighted_Digraph/Dijkstra.hpp\"\
     \n\nint main(){\n  int N, M, s, t; cin >> N >> M >> s >> t;\n  auto D = Weighted_Digraph::Weighted_Digraph<long\
     \ long>(N);\n\n  for (int j = 0; j < M; j++) {\n    int a, b, c;\n    scanf(\"\
     %d%d%d\", &a, &b, &c);\n    D.add_arc(a, b, c);\n  }\n\n  try {\n    auto shortest_path\
@@ -88,12 +88,12 @@ data:
     \ << P[j] << \" \" << P[j + 1] << \"\\n\";\n    }\n  } catch (Weighted_Digraph::Dijkstra::UnreachableException\
     \ &e) {\n    cout << -1 << endl;\n  }\n}\n\n"
   dependsOn:
-  - Graph/Weighed_Digraph/Dijkstra.hpp
-  - Graph/Weighed_Digraph/Weighted_Digraph.hpp
+  - Graph/Weighted_Digraph/Dijkstra.hpp
+  - Graph/Weighted_Digraph/Weighted_Digraph.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 23:39:07+09:00'
+  timestamp: '2025-08-29 00:06:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

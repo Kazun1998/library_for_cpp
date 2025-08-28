@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Graph/Weighed_Digraph/Dijkstra.hpp
-    title: Graph/Weighed_Digraph/Dijkstra.hpp
+    path: Graph/Weighted_Digraph/Dijkstra.hpp
+    title: Graph/Weighted_Digraph/Dijkstra.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Graph/Weighed_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
+  bundledCode: "#line 2 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
     \ Weighted_Digraph {\n  template<typename W>\n  struct Weighted_Arc {\n    int\
     \ id, source, target;\n    W weight;\n\n    Weighted_Arc (int id, int source,\
     \ int target, W weight): id(id), source(source), target(target), weight(weight)\
@@ -63,17 +63,17 @@ data:
     \  inline Arc& get_arc(int id) { return arcs[id]; }\n  };\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+  path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   requiredBy:
-  - Graph/Weighed_Digraph/Dijkstra.hpp
-  timestamp: '2025-08-16 20:33:32+09:00'
+  - Graph/Weighted_Digraph/Dijkstra.hpp
+  timestamp: '2025-08-29 00:04:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
-documentation_of: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+documentation_of: Graph/Weighted_Digraph/Weighted_Digraph.hpp
 layout: document
 redirect_from:
-- /library/Graph/Weighed_Digraph/Weighted_Digraph.hpp
-- /library/Graph/Weighed_Digraph/Weighted_Digraph.hpp.html
-title: Graph/Weighed_Digraph/Weighted_Digraph.hpp
+- /library/Graph/Weighted_Digraph/Weighted_Digraph.hpp
+- /library/Graph/Weighted_Digraph/Weighted_Digraph.hpp.html
+title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
 ---
