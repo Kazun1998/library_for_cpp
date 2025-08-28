@@ -6,7 +6,7 @@ class Tree {
     private:
     int N, offset, root;
     vector<int> parent;
-    vector<set<int>> children;
+    vector<vector<int>> children;
 
     int N_bit;
     bool locked;
@@ -41,9 +41,9 @@ class Tree {
         assert(!is_locked());
 
         parent[root] = -1;
-        children.assign(N + offset, set<int>());
+        children.assign(N + offset, vector<int>());
         for (int v = offset; v < N + offset; v++) {
-            unless(is_root(v)) { children[parent[v]].insert(v); }
+            unless(is_root(v)) { children[parent[v]].emplace_back(v); }
         }
 
         locked = true;
