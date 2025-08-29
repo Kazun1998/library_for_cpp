@@ -179,4 +179,52 @@ class Tree {
     int distance(int x, int y) {
         return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
     }
+
+    private:
+    bool has_euler_tour_vertex = false, has_euler_tour_edge = false;
+
+    public:
+    vector<int> in_time, out_time;
+    vector<int> euler_tour_vertex;
+    vector<tuple<int, int, int>> euler_tour_edge;
+
+    // Euler Tour に関する計算を行う.
+    void calculate_euler_tour_vertex() {
+        if(has_euler_tour_vertex) { return; }
+
+        euler_tour_vertex.clear();
+        in_time.assign(N + offset, -1);
+        out_time.assign(N + offset, -1);
+
+        auto dfs = [&](auto self, int x) -> void {
+            in_time[x] = (int)euler_tour_vertex.size();
+            euler_tour_vertex.emplace_back(x);
+
+            for (int y: children[x]) {
+                self(self, y);
+            }
+
+            out_time[x] = (int)euler_tour_vertex.size() - 1;
+            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]); }
+        };
+
+        dfs(dfs, root);
+
+        has_euler_tour_vertex = true;
+    }
+
+    void calculate_euler_tour_edge() {
+        if(has_euler_tour_edge) { return; }
+
+        calculate_euler_tour_vertex();
+        euler_tour_edge.clear();
+
+        for (int t = 0; t < 2 * (N - 1); t++) {
+            int x = euler_tour_vertex[t], y = euler_tour_vertex[t + 1];
+            int k = (x == parent[y]) ? 1 : -1;
+            euler_tour_edge.emplace_back(make_tuple(x, y, k));
+        }
+
+        has_euler_tour_edge = true;
+    }
 };
