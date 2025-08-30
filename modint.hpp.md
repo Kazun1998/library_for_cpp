@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
@@ -69,7 +72,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: modint.hpp
-  requiredBy: []
+  requiredBy:
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   timestamp: '2025-08-11 23:06:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

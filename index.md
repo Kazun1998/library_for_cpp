@@ -65,6 +65,9 @@ data:
       title: Modulo/Order.hpp
   - name: Segment_Tree
     pages:
+    - icon: ':warning:'
+      path: Segment_Tree/Lazy_Segment_Tree.hpp
+      title: Segment_Tree/Lazy_Segment_Tree.hpp
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment_Tree/Segment_Tree.hpp
@@ -100,6 +103,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/utility.hpp
       title: template/utility.hpp
+  - name: verify/yosupo_library_checker/data_structure
+    pages:
+    - icon: ':warning:'
+      path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+      title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   verificationCategories:
   - name: verify/yosupo_library_checker/data_structure
     pages:

@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
+  - icon: ':warning:'
+    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
@@ -97,6 +100,7 @@ data:
   isVerificationFile: false
   path: template/macro.hpp
   requiredBy:
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   - Tree/Tree.hpp
   - template/template.hpp
   - Modulo/Modulo.hpp
