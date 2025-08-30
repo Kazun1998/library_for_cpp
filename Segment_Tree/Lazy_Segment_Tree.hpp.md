@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\n/* \u9045\u5EF6\u30BB\
@@ -176,11 +176,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Segment_Tree/Lazy_Segment_Tree.hpp
-  requiredBy:
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+  requiredBy: []
   timestamp: '2025-08-30 19:18:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
 documentation_of: Segment_Tree/Lazy_Segment_Tree.hpp
 layout: document
 redirect_from:

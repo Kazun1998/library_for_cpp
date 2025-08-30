@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: Segment_Tree/Lazy_Segment_Tree.hpp
   - icon: ':heavy_check_mark:'
@@ -26,11 +26,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp\"\
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\
     \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
@@ -218,7 +220,7 @@ data:
     \ == id) ? lazy[m] : comp(lazy[m], lazy[left]);\n\n                int right =\
     \ m << 1 | 1;\n                lazy[right] = (lazy[right] == id) ? lazy[m] : comp(lazy[m],\
     \ lazy[m << 1 | 1]);\n            }\n            lazy[m] = id;\n        }\n  \
-    \  }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp\"\
+    \  }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
     \n\nusing L = modint<998244353>;\nusing M = pair<L, int>;\nusing F = pair<L, L>;\n\
     \nauto op = [](M x, M y) -> M {\n    auto first  = x.first  + y.first;\n    auto\
     \ second = x.second + y.second;\n    return { first, second };\n};\n\nauto act\
@@ -261,16 +263,16 @@ data:
   - template/macro.hpp
   - modint.hpp
   - Segment_Tree/Lazy_Segment_Tree.hpp
-  isVerificationFile: false
-  path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-08-30 19:21:01+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-08-30 19:45:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
 layout: document
 redirect_from:
-- /library/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
-- /library/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp.html
-title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp.html
+title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
 ---

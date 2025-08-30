@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
@@ -72,11 +72,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: modint.hpp
-  requiredBy:
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
+  requiredBy: []
   timestamp: '2025-08-11 23:06:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
 documentation_of: modint.hpp

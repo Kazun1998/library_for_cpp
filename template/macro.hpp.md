@@ -32,10 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':warning:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
@@ -100,7 +100,6 @@ data:
   isVerificationFile: false
   path: template/macro.hpp
   requiredBy:
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.cpp
   - Tree/Tree.hpp
   - template/template.hpp
   - Modulo/Modulo.hpp
@@ -114,6 +113,7 @@ data:
   timestamp: '2025-08-17 13:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
