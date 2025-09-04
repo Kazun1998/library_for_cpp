@@ -76,6 +76,16 @@ class Tree {
         }
     }
 
+    public:
+    vector<int> top_down() const {
+        vector<int> res;
+        for (auto layer: tower) {
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
+    }
+
     // 1 頂点に関する情報
     public:
 
