@@ -39,6 +39,9 @@ data:
       path: Integer/Euler_Totient.hpp
       title: Integer/Euler_Totient.hpp
     - icon: ':heavy_check_mark:'
+      path: Integer/Miller_Rabin_Primality.hpp
+      title: Integer/Miller_Rabin_Primality.hpp
+    - icon: ':heavy_check_mark:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
     - icon: ':heavy_check_mark:'
@@ -151,6 +154,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
       title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
       title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp

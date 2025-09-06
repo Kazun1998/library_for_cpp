@@ -9,6 +9,9 @@ data:
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
+    path: Integer/Miller_Rabin_Primality.hpp
+    title: Integer/Miller_Rabin_Primality.hpp
+  - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
     title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
@@ -125,6 +131,7 @@ data:
   - Algebra/Gaussian_Integer.hpp
   - Integer/Divisors.hpp
   - Integer/Quotients.hpp
+  - Integer/Miller_Rabin_Primality.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
@@ -134,6 +141,7 @@ data:
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

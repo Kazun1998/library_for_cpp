@@ -70,70 +70,74 @@ data:
     \ 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\
     \u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n  \
     \  ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x\
-    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// vector \u306E\u8981\
-    \u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n  \
-    \  ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\
-    \u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\n\
-    T sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n   \
-    \ return y;\n}\n#line 62 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\
-    \n// \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ...\
-    \ >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
-    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
-    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
-    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
-    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
-    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
-    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
-    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
-    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
-    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
-    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
-    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
-    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
-    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
-    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
-    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n#line 65\
-    \ \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\n\n//\
-    \ \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n#define\
-    \ len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
-    \n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1,\
-    \ _2, name, ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define\
-    \ overload4(_1, _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4,\
-    \ _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ rep3(i, a, b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i\
-    \ = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2,\
-    \ rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x,\
-    \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
-    \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
-    \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, offset, root;\n\
-    \    vector<int> parent;\n    vector<set<int>> children;\n\n    int N_bit;\n \
-    \   bool locked;\n\n    public:\n    Tree(int N, int offset = 0): N(N), offset(offset),\
-    \ N_bit(0) {\n        parent.assign(N + offset, -1);\n        for (; (1 << N_bit)\
-    \ <= N; N_bit++) {}\n        locked = false;\n    }\n\n    bool is_locked() const\
-    \ { return locked; }\n\n    public:\n    inline void set_root(const int &x) {\n\
-    \        assert (!is_locked());\n        root = x;\n    }\n\n    public:\n   \
-    \ // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B\
-    .\n    inline void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset, set<int>());\n   \
-    \     for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].insert(v); }\n        }\n\n        locked = true;\n  \
-    \      bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
-    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
-    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
-    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
+    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n \
+    \       if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>=\
+    \ 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
+    \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
+    \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
+    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n#line 62\
+    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
+    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
+    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
+    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
+    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
+    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
+    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
+    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
+    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
+    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
+    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
+    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
+    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
+    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
+    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
+    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
+    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
+    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
+    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
+    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
+    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
+    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
+    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
+    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
+    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
+    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
+    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Tree/Tree.hpp\"\
+    \n\nclass Tree {\n    private:\n    int N, offset, root;\n    vector<int> parent;\n\
+    \    vector<set<int>> children;\n\n    int N_bit;\n    bool locked;\n\n    public:\n\
+    \    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N\
+    \ + offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked\
+    \ = false;\n    }\n\n    bool is_locked() const { return locked; }\n\n    public:\n\
+    \    inline void set_root(const int &x) {\n        assert (!is_locked());\n  \
+    \      root = x;\n    }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\
+    \u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
+    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
+    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
+    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
+    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
+    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
+    \ = -1;\n        children.assign(N + offset, set<int>());\n        for (int v\
+    \ = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].insert(v);\
+    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
+    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
+    \ + offset, -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root };\n\
+    \        depth[root] = 0;\n\n        while (!Q.empty()){\n            int x =\
+    \ Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n      \
+    \          depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
     \                Q.push_back(y);\n            }\n        }\n    }\n\n    // 1\
     \ \u9802\u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\
     \u6839?\n    bool is_root(const int &x) const { return x == root; }\n\n    //\
@@ -191,7 +195,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2025-08-27 01:19:14+09:00'
+  timestamp: '2025-09-06 23:10:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp

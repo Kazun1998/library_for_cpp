@@ -9,6 +9,9 @@ data:
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
+    path: Integer/Miller_Rabin_Primality.hpp
+    title: Integer/Miller_Rabin_Primality.hpp
+  - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
   - icon: ':heavy_check_mark:'
@@ -52,6 +55,9 @@ data:
     path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
     title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,11 +93,15 @@ data:
     \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll\
     \ x, ll y, ll z){\n    ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x)\
     \ %= z; }\n        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\
-    \n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll\
-    \ sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return\
-    \ y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B\
-    .\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto\
-    \ &&x: X) { y += x; }\n    return y;\n}\n"
+    \n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\
+    \u3081\u308B.\ntemplate<typename T, typename U>\nT modpow(T x, U y, T z) {\n \
+    \   T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n     \
+    \   (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\
+    \u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n\
+    \    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector\
+    \ \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n\
+    \    return y;\n}\n"
   code: "#pragma once\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n//\
     \ floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT\
     \ div_floor(T x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x\
@@ -110,12 +120,15 @@ data:
     \      y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
     \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y,\
     \ ll z){\n    ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n\
-    \        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// vector\
-    \ \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll>\
-    \ &X){\n    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n//\
-    \ vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n\
-    \    return y;\n}\n"
+    \        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E\
+    \ y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
+    .\ntemplate<typename T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n\
+    \    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %=\
+    \ z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\
+    \u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y\
+    \ = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\
+    \u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T>\
+    \ &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -128,15 +141,17 @@ data:
   - Algebra/Gaussian_Integer.hpp
   - Integer/Divisors.hpp
   - Integer/Quotients.hpp
+  - Integer/Miller_Rabin_Primality.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
-  timestamp: '2025-08-23 11:25:00+09:00'
+  timestamp: '2025-09-06 23:10:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

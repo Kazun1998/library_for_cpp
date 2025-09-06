@@ -6,12 +6,18 @@ data:
     path: Integer/Euler_Totient.hpp
     title: Integer/Euler_Totient.hpp
   - icon: ':heavy_check_mark:'
+    path: Integer/Miller_Rabin_Primality.hpp
+    title: Integer/Miller_Rabin_Primality.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: Modulo/Order.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -94,9 +100,11 @@ data:
   requiredBy:
   - Modulo/Order.hpp
   - Integer/Euler_Totient.hpp
+  - Integer/Miller_Rabin_Primality.hpp
   timestamp: '2025-08-15 01:10:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Prime.hpp

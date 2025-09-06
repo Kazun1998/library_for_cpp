@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
+    path: Integer/Miller_Rabin_Primality.hpp
+    title: Integer/Miller_Rabin_Primality.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime.hpp
+    title: Integer/Prime.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -26,17 +29,26 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
+    PROBLEM: https://judge.yosupo.jp/problem/primality_test
     links:
-    - https://judge.yosupo.jp/problem/enumerate_quotients
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\n\
-    #include<bits/stdc++.h>\n\nusing namespace std;\n\n#line 2 \"Integer/Quotients.hpp\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#line 29 \"template/template.hpp\"\n#include <initializer_list>\n\
-    #line 50 \"template/template.hpp\"\n#include <type_traits>\n#line 56 \"template/template.hpp\"\
-    \n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n\
-    // a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    - https://judge.yosupo.jp/problem/primality_test
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
     \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
     \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
     }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
@@ -106,42 +118,78 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Integer/Quotients.hpp\"\
-    \n\nvector<tuple<ll, ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll,\
-    \ ll, ll>>();\n\n    ll k = 1;\n    for(; k * k <= N; k++) { quotients.emplace_back(make_tuple(N\
-    \ / k, k, k)); }\n\n    for (ll t = k; t > 0; t--) {\n        ll l = N / (t +\
-    \ 1) + 1, r = N / t;\n        if (l <= r && get<1>(quotients.back()) < l) {\n\
-    \            quotients.emplace_back(make_tuple(t, l, r));\n        }\n    }\n\n\
-    \    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
-    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
-    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
-    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
-    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
-    \n#include<bits/stdc++.h>\n\nusing namespace std;\n\n#include\"../../../Integer/Quotients.hpp\"\
-    \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
-    \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
-    \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
-    \ get<0>(quotients[i]) << (i < quotients.size() ? \" \" : \"\");\n    }\n    cout\
-    \ << endl;\n}\n"
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Integer/Miller_Rabin_Primality.hpp\"\
+    \n\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace Prime {\n  class Pseudo_Prime_Generator\
+    \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
+    \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
+    \ step;\n      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime\
+    \ == 2) { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n\
+    \      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
+    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
+    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
+    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
+    \    }\n\n    return true;\n  }\n\n  pair<long long, long long> exponents(long\
+    \ long n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++,\
+    \ n /= p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n\
+    \  vector<pair<long long, long long>> prime_factorization (long long n) {\n  \
+    \  if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long long,\
+    \ long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
+    \ 1));\n      n = abs(n);\n    }\n\n    Pseudo_Prime_Generator generator;\n  \
+    \  for (long long p =generator.get(); p * p <= n; p = generator.get()) {\n   \
+    \   long long e;\n      tie(e, n) = exponents(n, p); \n      if (e) { factors.emplace_back(make_pair(p,\
+    \ e)); }\n    }\n\n    if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n\
+    \  \n    return factors;\n  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\
+    \u30B9\u30C8\u3092\u4F5C\u6210\u3059\u308B.\n  vector<long long> prime_list(long\
+    \ long n) {\n    if (n == 0 || n == 1) { return {}; }\n    else if (n == 2) {\
+    \ return {2}; }\n\n    if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) /\
+    \ 2;\n\n    // prime_flag[k] := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool>\
+    \ prime_flag(m, true);\n    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E\
+    \ 3 \u306E\u500D\u6570\u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x\
+    \ += 3) { prime_flag[x] = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n\
+    \    for (auto p = generator.get(); p * p <= n; p = generator.get()) {\n     \
+    \ if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue;\
+    \ }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false;\
+    \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
+    \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
+    \    }\n\n    return primes;\n  }\n}\n#line 5 \"Integer/Miller_Rabin_Primality.hpp\"\
+    \n\n// N \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    .\nbool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) {\
+    \ return true; }\n    if (N == 1 || N % 2 == 0) { return false; }\n\n    ll q;\
+    \ int k;\n    tie (k, q) = Prime::exponents(N - 1, 2);\n\n    random_device device;\n\
+    \    mt19937_64 gen(device());\n    uniform_int_distribution<ll> distribute(2,\
+    \ N - 1);\n\n    auto challenge = [&]() -> bool {\n        __int128_t m = distribute(gen);\n\
+    \        auto y = modpow(m, q, (__int128_t)N);\n\n        if (y == 1) { return\
+    \ true; }\n\n        rep(k) {\n            if ((y + 1) % N == 0) { return true;\
+    \ }\n\n            y *= y; y %= N;\n        }\n\n        return false;\n    };\n\
+    \n    rep(trial) { unless(challenge()) { return false; } }\n\n    return true;\n\
+    }\n#line 5 \"verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp\"\
+    \n\nint main(){\n    int Q; cin >> Q;\n    for (int q = 1; q <= Q; q++) {\n  \
+    \      ll N; scanf(\"%lld\", &N);\n        cout << (Miller_Rabin_Primality_Test(N,\
+    \ 10) ? \"Yes\" : \"No\") << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Integer/Miller_Rabin_Primality.hpp\"\
+    \n\nint main(){\n    int Q; cin >> Q;\n    for (int q = 1; q <= Q; q++) {\n  \
+    \      ll N; scanf(\"%lld\", &N);\n        cout << (Miller_Rabin_Primality_Test(N,\
+    \ 10) ? \"Yes\" : \"No\") << \"\\n\";\n    }\n}\n"
   dependsOn:
-  - Integer/Quotients.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - Integer/Miller_Rabin_Primality.hpp
+  - Integer/Prime.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+  path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   requiredBy: []
   timestamp: '2025-09-06 23:10:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+documentation_of: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp.html
-title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
 ---
