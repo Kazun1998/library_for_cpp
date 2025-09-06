@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality.hpp
-    title: Integer/Miller_Rabin_Primality.hpp
+    path: Integer/Miller_Rabin_Primality_Test.hpp
+    title: Integer/Miller_Rabin_Primality_Test.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
@@ -118,7 +118,7 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Integer/Miller_Rabin_Primality.hpp\"\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\
     \n\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace Prime {\n  class Pseudo_Prime_Generator\
     \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
     \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
@@ -152,7 +152,7 @@ data:
     \ }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false;\
     \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
     \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
-    \    }\n\n    return primes;\n  }\n}\n#line 5 \"Integer/Miller_Rabin_Primality.hpp\"\
+    \    }\n\n    return primes;\n  }\n}\n#line 5 \"Integer/Miller_Rabin_Primality_Test.hpp\"\
     \n\n// N \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
     .\nbool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) {\
     \ return true; }\n    if (N == 1 || N % 2 == 0) { return false; }\n\n    ll q;\
@@ -168,7 +168,7 @@ data:
     \      ll N; scanf(\"%lld\", &N);\n        cout << (Miller_Rabin_Primality_Test(N,\
     \ 10) ? \"Yes\" : \"No\") << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../Integer/Miller_Rabin_Primality.hpp\"\
+    ../../../template/template.hpp\"\n#include\"../../../Integer/Miller_Rabin_Primality_Test.hpp\"\
     \n\nint main(){\n    int Q; cin >> Q;\n    for (int q = 1; q <= Q; q++) {\n  \
     \      ll N; scanf(\"%lld\", &N);\n        cout << (Miller_Rabin_Primality_Test(N,\
     \ 10) ? \"Yes\" : \"No\") << \"\\n\";\n    }\n}\n"
@@ -178,12 +178,12 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Integer/Miller_Rabin_Primality.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Prime.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   requiredBy: []
-  timestamp: '2025-09-06 23:10:47+09:00'
+  timestamp: '2025-09-06 23:55:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

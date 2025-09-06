@@ -39,8 +39,8 @@ data:
       path: Integer/Euler_Totient.hpp
       title: Integer/Euler_Totient.hpp
     - icon: ':heavy_check_mark:'
-      path: Integer/Miller_Rabin_Primality.hpp
-      title: Integer/Miller_Rabin_Primality.hpp
+      path: Integer/Miller_Rabin_Primality_Test.hpp
+      title: Integer/Miller_Rabin_Primality_Test.hpp
     - icon: ':heavy_check_mark:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp

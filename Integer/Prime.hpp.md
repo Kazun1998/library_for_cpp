@@ -6,8 +6,8 @@ data:
     path: Integer/Euler_Totient.hpp
     title: Integer/Euler_Totient.hpp
   - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality.hpp
-    title: Integer/Miller_Rabin_Primality.hpp
+    path: Integer/Miller_Rabin_Primality_Test.hpp
+    title: Integer/Miller_Rabin_Primality_Test.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: Modulo/Order.hpp
@@ -100,7 +100,7 @@ data:
   requiredBy:
   - Modulo/Order.hpp
   - Integer/Euler_Totient.hpp
-  - Integer/Miller_Rabin_Primality.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
   timestamp: '2025-08-15 01:10:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -29,22 +29,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Integer/Miller_Rabin_Primality.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
-    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
-    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
-    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
-    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
-    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
-    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
-    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
+  bundledCode: "#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\n\n#line 2 \"\
+    template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\
+    \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
+    \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include\
+    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n\
+    #line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a,\
+    \ b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
     , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
     \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
     \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
@@ -148,17 +148,18 @@ data:
     \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
     \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
     \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
-    \ primes;\n  }\n}\n#line 5 \"Integer/Miller_Rabin_Primality.hpp\"\n\n// N \u304C\
-    \u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B.\nbool Miller_Rabin_Primality_Test(ll\
-    \ N, int trial = 30) {\n    if (N == 2) { return true; }\n    if (N == 1 || N\
-    \ % 2 == 0) { return false; }\n\n    ll q; int k;\n    tie (k, q) = Prime::exponents(N\
-    \ - 1, 2);\n\n    random_device device;\n    mt19937_64 gen(device());\n    uniform_int_distribution<ll>\
-    \ distribute(2, N - 1);\n\n    auto challenge = [&]() -> bool {\n        __int128_t\
-    \ m = distribute(gen);\n        auto y = modpow(m, q, (__int128_t)N);\n\n    \
-    \    if (y == 1) { return true; }\n\n        rep(k) {\n            if ((y + 1)\
-    \ % N == 0) { return true; }\n\n            y *= y; y %= N;\n        }\n\n   \
-    \     return false;\n    };\n\n    rep(trial) { unless(challenge()) { return false;\
-    \ } }\n\n    return true;\n}\n"
+    \ primes;\n  }\n}\n#line 5 \"Integer/Miller_Rabin_Primality_Test.hpp\"\n\n// N\
+    \ \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B.\n\
+    bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) { return\
+    \ true; }\n    if (N == 1 || N % 2 == 0) { return false; }\n\n    ll q; int k;\n\
+    \    tie (k, q) = Prime::exponents(N - 1, 2);\n\n    random_device device;\n \
+    \   mt19937_64 gen(device());\n    uniform_int_distribution<ll> distribute(2,\
+    \ N - 1);\n\n    auto challenge = [&]() -> bool {\n        __int128_t m = distribute(gen);\n\
+    \        auto y = modpow(m, q, (__int128_t)N);\n\n        if (y == 1) { return\
+    \ true; }\n\n        rep(k) {\n            if ((y + 1) % N == 0) { return true;\
+    \ }\n\n            y *= y; y %= N;\n        }\n\n        return false;\n    };\n\
+    \n    rep(trial) { unless(challenge()) { return false; } }\n\n    return true;\n\
+    }\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Prime.hpp\"\
     \n\n// N \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
     .\nbool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) {\
@@ -179,16 +180,16 @@ data:
   - template/macro.hpp
   - Integer/Prime.hpp
   isVerificationFile: false
-  path: Integer/Miller_Rabin_Primality.hpp
+  path: Integer/Miller_Rabin_Primality_Test.hpp
   requiredBy: []
-  timestamp: '2025-09-06 23:10:47+09:00'
+  timestamp: '2025-09-06 23:55:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-documentation_of: Integer/Miller_Rabin_Primality.hpp
+documentation_of: Integer/Miller_Rabin_Primality_Test.hpp
 layout: document
 redirect_from:
-- /library/Integer/Miller_Rabin_Primality.hpp
-- /library/Integer/Miller_Rabin_Primality.hpp.html
-title: Integer/Miller_Rabin_Primality.hpp
+- /library/Integer/Miller_Rabin_Primality_Test.hpp
+- /library/Integer/Miller_Rabin_Primality_Test.hpp.html
+title: Integer/Miller_Rabin_Primality_Test.hpp
 ---

@@ -9,8 +9,8 @@ data:
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality.hpp
-    title: Integer/Miller_Rabin_Primality.hpp
+    path: Integer/Miller_Rabin_Primality_Test.hpp
+    title: Integer/Miller_Rabin_Primality_Test.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
@@ -101,7 +101,7 @@ data:
   - Algebra/Gaussian_Integer.hpp
   - Integer/Divisors.hpp
   - Integer/Quotients.hpp
-  - Integer/Miller_Rabin_Primality.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
