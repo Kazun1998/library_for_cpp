@@ -13,7 +13,7 @@ bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {
 
     random_device device;
     mt19937_64 gen(device());
-    uniform_int_distribution<__int128_t> distribute(2, N - 1);
+    uniform_int_distribution<ll> distribute(2, N - 1);
 
     auto challenge = [&]() -> bool {
         __int128_t m = distribute(gen);
