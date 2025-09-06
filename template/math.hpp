@@ -48,6 +48,20 @@ ll modpow(ll x, ll y, ll z){
     return a;
 }
 
+// x の y 乗を z で割った余りを求める.
+template<typename T, typename U>
+T modpow(T x, U y, T z) {
+    T a = 1;
+    while (y) {
+        if (y & 1) { (a *= x) %= z; }
+
+        (x *= x) %= z;
+        y >>= 1;
+    }
+
+    return a;
+}
+
 // vector の要素の総和を求める.
 ll sum(vector<ll> &X){
     ll y = 0;
