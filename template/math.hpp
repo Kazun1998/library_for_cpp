@@ -20,8 +20,16 @@ T mod(T x, U y){
 // x を y で割った商と余りを求める.
 template<typename T, typename U>
 pair<T, T> divmod(T x, U y){
-    T q = floor(x, y);
+    T q = div_floor(x, y);
     return {q, x - q * y};
+}
+
+// 四捨五入を求める.
+template<typename T, typename U>
+T round(T x, U y){
+    T q, r;
+    tie (q, r) = divmod(x, y);
+    return (r >= div_ceil(y, 2)) ? q + 1 : q;
 }
 
 // 指数に関する関数
