@@ -21,7 +21,6 @@ bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {
 
         if (y == 1) { return true; }
 
-        bool flag = true;
         rep(k) {
             if ((y + 1) % N == 0) { return true; }
 
