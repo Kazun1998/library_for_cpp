@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
+
 #include"../../../template/template.hpp"
 #include"../../../Integer/Miller_Rabin_Primality.hpp"
 
