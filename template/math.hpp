@@ -84,3 +84,13 @@ T sum(vector<T> &X){
     for (auto &&x: X) { y += x; }
     return y;
 }
+
+template<typename T>
+T gcd(T x, T y) {
+    T q, r;
+    while (y) {
+        tie (q, r) = divmod(x, y);
+        tie (x, y) = make_pair(y, r);
+    }
+    return x;
+}
