@@ -277,3 +277,14 @@ F Determinant(const Field_Matrix<F> &A){
 
     return det;
 }
+
+// 第 (i, i) 要素が a[i] である対角行列を生成する.
+template<typename F>
+Field_Matrix<F> Diagonal_Matrix(vector<F> a) {
+    int n = a.size();
+    vector<vector<F>> X(n, vector<F>(n));
+
+    for (int i = 0; i < n; i++) { X[i][i] = a[i]; }
+
+    return X;
+}
