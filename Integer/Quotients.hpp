@@ -8,8 +8,9 @@ vector<tuple<ll, ll, ll>> Quotients(ll N) {
     ll l = 1;
     while (l <= N) {
         ll q = N / l;
-        ll r = div_ceil(N, q + 1);
+        ll r = N / q;
         quotients.emplace_back(q, l, r);
+        l = r + 1;
     }
 
     return quotients;
