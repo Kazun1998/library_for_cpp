@@ -1,21 +1,21 @@
 #pragma once
 
-template<int mod>
-class modint{
+template<int Mod>
+class modint {
     public:
     int64_t x;
 
     public:
     // 初期化
     constexpr modint(): x(0) {}
-    constexpr modint(int64_t a): x((a % mod + mod) % mod) {}
+    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}
 
     // マイナス元
     modint operator-() const { return modint(-x); }
 
     // 加法
     modint& operator+=(const modint &b){
-        if ((x += b.x) >= mod) x -= mod;
+        if ((x += b.x) >= Mod) x -= Mod;
         return *this;
     }
 
@@ -23,7 +23,7 @@ class modint{
 
     // 減法
     modint& operator-=(const modint &b){
-        if ((x += mod - b.x) >= mod) x -= mod;
+        if ((x += Mod - b.x) >= Mod) x -= Mod;
         return *this;
     }
 
@@ -31,7 +31,7 @@ class modint{
 
     // 乗法
     modint& operator*=(const modint &b){
-        (x *= b.x) %= mod;
+        (x *= b.x) %= Mod;
         return *this;
     }
 
@@ -44,7 +44,7 @@ class modint{
 
     modint inverse() const {
         int64_t s = 1, t = 0;
-        int64_t a = x, b = mod;
+        int64_t a = x, b = Mod;
 
         while (b > 0) {
             int64_t q = a / b;
@@ -65,10 +65,26 @@ class modint{
     // 入力
     friend istream &operator>>(istream &is, modint &a) {
         is >> a.x;
-        a.x = (a.x % mod + mod) % mod;
+        a.x = (a.x % Mod + Mod) % Mod;
         return is;
     }
 
     // 出力
     friend ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }
+
+    bool is_zero() const { return x == 0; }
+    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }
 };
+
+template<int mod>
+modint<mod> pow(modint<mod> x, int64_t n){
+    if (n<0) return pow(x,-n).inverse();
+
+    modint<mod> y(1);
+    while (n){
+        if (n&1) y*=x;
+        x*=x; n>>=1;
+    }
+
+    return y;
+}
