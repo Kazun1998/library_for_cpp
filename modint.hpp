@@ -1,5 +1,7 @@
 #pragma once
 
+#include"template/template.hpp"
+
 template<int Mod>
 class modint {
     public:
