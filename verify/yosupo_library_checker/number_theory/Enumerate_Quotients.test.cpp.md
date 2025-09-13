@@ -108,11 +108,9 @@ data:
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
     \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Integer/Quotients.hpp\"\
     \n\nvector<tuple<ll, ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll,\
-    \ ll, ll>>();\n\n    ll k = 1;\n    for(; k * k <= N; k++) { quotients.emplace_back(make_tuple(N\
-    \ / k, k, k)); }\n\n    for (ll t = k; t > 0; t--) {\n        ll l = N / (t +\
-    \ 1) + 1, r = N / t;\n        if (l <= r && get<1>(quotients.back()) < l) {\n\
-    \            quotients.emplace_back(make_tuple(t, l, r));\n        }\n    }\n\n\
-    \    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
+    \ ll, ll>>();\n\n    ll l = 1;\n    while (l <= N) {\n        ll q = N / l;\n\
+    \        ll r = N / q;\n        quotients.emplace_back(q, l, r);\n        l =\
+    \ r + 1;\n    }\n\n    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
     \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
     \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
     \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
@@ -135,7 +133,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   requiredBy: []
-  timestamp: '2025-09-06 23:10:47+09:00'
+  timestamp: '2025-09-13 11:11:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
