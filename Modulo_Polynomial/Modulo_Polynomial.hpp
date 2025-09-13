@@ -8,7 +8,7 @@ class Modulo_Polynomial {
     public:
     using mint = modint<Mod>;
 
-    private:
+    protected:
     vector<mint> poly;
     int precision = 0;
 
@@ -122,7 +122,9 @@ class Modulo_Polynomial {
 
     // ostream
     friend ostream &operator<<(ostream &os, const Modulo_Polynomial &P){
-        for (int i = 0; i < (int)P.poly.size(); i++){ os << (i ? " " : "") << P.poly[i]; }
+        for (int i = 0; i < (int)P.poly.size(); i++){
+            os << (i ? " " : "") << P[i];
+        }
         return os;
     }
 
@@ -134,7 +136,7 @@ class Modulo_Polynomial {
         poly.resize(size);
     }
 
-    private:
+    protected:
     int size() const { return poly.size(); }
 
     void reduce() {
