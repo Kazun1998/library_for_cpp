@@ -7,10 +7,10 @@ template<const ll Mod>
 class Modulo_Polynomial {
     public:
     using mint = modint<Mod>;
+    int precision = 0;
 
     protected:
     vector<mint> poly;
-    int precision = 0;
 
     public:
     Modulo_Polynomial(vector<mint> poly, int precision): poly(poly), precision(precision) {}
@@ -134,6 +134,11 @@ class Modulo_Polynomial {
         if (size == -1) { size = this -> precision; }
         size = min(size, this -> precision);
         poly.resize(size);
+    }
+
+    bool is_zero() const {
+        for (auto &a: poly) { unless(a.is_zero()) {return false;} }
+        return true;
     }
 
     protected:
