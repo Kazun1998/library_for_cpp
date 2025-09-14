@@ -33,4 +33,16 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
         vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision : min(d, this->precision));
         return {p, this->precision};
     }
+
+    // 除算
+    Fast_Polynominal_Series& operator/=(const Fast_Polynominal_Series &P) {
+        vector<mint> inv = calculator.inverse(P.poly, P.precision);
+        this->poly = calculator.convolution(this->poly, inv);
+        this->precision = min(this->precision, P.precision);
+        this->resize(this->precision);
+        this->reduce();
+        return *this;
+    }
+
+    friend Fast_Polynominal_Series operator/(const Fast_Polynominal_Series &lhs, const Fast_Polynominal_Series &rhs) { return Fast_Polynominal_Series(lhs) /= rhs; }
 };
