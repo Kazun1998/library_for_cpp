@@ -13,7 +13,10 @@ class Modulo_Polynomial {
     vector<mint> poly;
 
     public:
-    Modulo_Polynomial(vector<mint> poly, int precision): poly(poly), precision(precision) {}
+    Modulo_Polynomial(vector<mint> _poly, int precision): precision(precision) {
+        if (_poly.size() > precision) { _poly.resize(precision); }
+        poly = _poly;
+    }
 
     Modulo_Polynomial() = default;
     Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly, poly.size()) {}
