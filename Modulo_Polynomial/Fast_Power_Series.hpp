@@ -18,6 +18,36 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
     Fast_Polynominal_Series(vector<mint> _poly) : Fast_Polynominal_Series(_poly, _poly.size()) {}
     Fast_Polynominal_Series(int _precision) : Fast_Polynominal_Series({}, _precision) {}
 
+    // 加算
+    Fast_Polynominal_Series& operator+=(const Fast_Polynominal_Series &B) {
+        this->poly.resize(max(this->poly.size(), B.poly.size()));
+        for (int i = 0; i < B.poly.size(); i++) {
+            this->poly[i] += B.poly[i];
+        }
+        this->precision = min(this->precision, B.precision);
+        this->reduce();
+        return *this;
+    }
+
+    friend Fast_Polynominal_Series<Mod> operator+(const Fast_Polynominal_Series<Mod> &lhs, const Fast_Polynominal_Series<Mod> &rhs) {
+        return Fast_Polynominal_Series<Mod>(lhs) += rhs; 
+    }
+
+    // 減算
+    Fast_Polynominal_Series& operator-=(const Fast_Polynominal_Series &B) {
+        this->poly.resize(max(this->poly.size(), B.poly.size()));
+        for (int i = 0; i < B.poly.size(); i++) {
+            this->poly[i] -= B.poly[i];
+        }
+        this->precision = min(this->precision, B.precision);
+        this->reduce();
+        return *this;
+    }
+
+    friend Fast_Polynominal_Series<Mod> operator-(const Fast_Polynominal_Series<Mod> &lhs, const Fast_Polynominal_Series<Mod> &rhs) {
+        return Fast_Polynominal_Series<Mod>(lhs) -= rhs; 
+    }
+
     // 積
     Fast_Polynominal_Series& operator*=(const Fast_Polynominal_Series &P) {
         auto tmp = calculator.convolution(this->poly, P.poly);
