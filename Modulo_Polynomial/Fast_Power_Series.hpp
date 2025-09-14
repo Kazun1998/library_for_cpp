@@ -14,6 +14,10 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
     public:
     Fast_Polynominal_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<Mod>(_poly, _precision) {}
 
+    Fast_Polynominal_Series() = default;
+    Fast_Polynominal_Series(vector<mint> _poly) : Fast_Polynominal_Series(_poly, _poly.size()) {}
+    Fast_Polynominal_Series(int _precision) : Fast_Polynominal_Series({}, _precision) {}
+
     // 積
     Fast_Polynominal_Series& operator*=(const Fast_Polynominal_Series &P) {
         auto tmp = calculator.convolution(this->poly, P.poly);
