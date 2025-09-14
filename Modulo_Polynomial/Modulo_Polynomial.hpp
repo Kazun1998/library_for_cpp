@@ -116,7 +116,8 @@ class Modulo_Polynomial {
 
     // istream
     friend istream &operator>>(istream &is, Modulo_Polynomial &P) {
-        for (int i = 0; i < (int)P.poly.size(); i++) { is >> P.poly[i]; }
+        P.poly.resize(P.precision);
+        for (int i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }
         return (is);
     }
 
