@@ -9,7 +9,7 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
     using mint = modint<Mod>;
 
     protected:
-    Numeric_Theory_Translation<Mod> calculator;
+    static auto calculator =  Numeric_Theory_Translation<Mod>();
 
     public:
     Fast_Polynominal_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<Mod>(_poly, _precision) {}
