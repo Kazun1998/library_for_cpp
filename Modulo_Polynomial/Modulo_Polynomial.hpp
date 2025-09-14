@@ -145,10 +145,9 @@ class Modulo_Polynomial {
         return true;
     }
 
-    protected:
-    int size() const { return poly.size(); }
-
     void reduce() {
         while (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }
     }
+
+    int size() const { return poly.size(); }
 };
