@@ -10,7 +10,7 @@ int main() {
     Point<ll> A, B; cin >> A >> B;
 
     int Q; cin >> Q;
-    for (int  q= 0; q < Q; q++) {
+    for (int  q = 0; q < Q; q++) {
         Point<ll> P; cin >> P;
         int res = Counter_Clockwise(A, B, P);
         if (res == COUNTER_CLOCKWISE) {
