@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Line_Projection.hpp"
+#include"Projection_Point_Line.hpp"
 
 namespace geometry {
     // 直線 L に関して, 点 P と対称な点
