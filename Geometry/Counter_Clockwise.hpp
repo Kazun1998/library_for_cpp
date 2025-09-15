@@ -15,7 +15,7 @@ namespace geometry {
     // B: 中継地点
     // C: 終点
     template<typename R>
-    int counter_clockwise(const Point<R> &A, Point<R> B, Point<R> C) {
+    int Counter_Clockwise(const Point<R> &A, Point<R> B, Point<R> C) {
         B = B - A; C = C - A;
         if (sign(cross(B, C)) == +1) { return COUNTER_CLOCKWISE; }
         if (sign(cross(B, C)) == -1) { return CLOCKWISE; }
