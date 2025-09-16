@@ -84,3 +84,16 @@ T sum(vector<T> &X){
     for (auto &&x: X) { y += x; }
     return y;
 }
+
+// a x + b y = gcd(a, b) を満たす整数の組 (a, b) に対して, (x, y, gcd(a, b)) を求める.
+tuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {
+    ll s = 1, t = 0, u = 0, v = 1;
+    while (b) {
+        ll q;
+        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));
+        tie(s, t) = make_pair(t, s - q * t);
+        tie(u, v) = make_pair(v, u - q * v);
+    }
+
+    return make_tuple(s, u, a);
+}
