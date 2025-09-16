@@ -40,6 +40,9 @@ data:
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/ntl/1E.test.cpp
+    title: verify/aizu_online_judge/ntl/1E.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -121,6 +124,7 @@ data:
   - verify/yosupo_library_checker/other/two_sat.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: template/utility.hpp
 layout: document

@@ -40,6 +40,9 @@ data:
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/ntl/1E.test.cpp
+    title: verify/aizu_online_judge/ntl/1E.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +107,12 @@ data:
     \    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector\
     \ \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename\
     \ T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n\
-    \    return y;\n}\n"
+    \    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\
+    \u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\
+    \u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0,\
+    \ u = 0, v = 1;\n    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
+    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n"
   code: "#pragma once\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n//\
     \ floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT\
     \ div_floor(T x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x\
@@ -131,7 +139,13 @@ data:
     \u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y\
     \ = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\
     \u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T>\
-    \ &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n"
+    \ &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\
+    \n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a,\
+    \ b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll,\
+    \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
+    \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
+    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -147,7 +161,7 @@ data:
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
-  timestamp: '2025-09-06 23:10:47+09:00'
+  timestamp: '2025-09-17 00:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
@@ -161,6 +175,7 @@ data:
   - verify/yosupo_library_checker/other/two_sat.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: template/math.hpp
 layout: document

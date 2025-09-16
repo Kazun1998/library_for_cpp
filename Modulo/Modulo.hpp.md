@@ -83,7 +83,13 @@ data:
     \u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x:\
     \ X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
     \u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y\
-    \ = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n#line 62 \"template/template.hpp\"\
+    \ = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y\
+    \ = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\
+    \u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll\
+    \ a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll\
+    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));\n    \
+    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
+    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n#line 62 \"template/template.hpp\"\
     \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
     \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
     n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
@@ -259,7 +265,7 @@ data:
   requiredBy:
   - Modulo/Discrete_Log.hpp
   - Modulo/Order.hpp
-  timestamp: '2025-09-06 23:10:47+09:00'
+  timestamp: '2025-09-17 00:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

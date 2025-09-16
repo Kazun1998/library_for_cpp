@@ -112,6 +112,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/ntl/1D.test.cpp
       title: verify/aizu_online_judge/ntl/1D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/ntl/1E.test.cpp
+      title: verify/aizu_online_judge/ntl/1E.test.cpp
   - name: verify/yosupo_library_checker/data_structure
     pages:
     - icon: ':heavy_check_mark:'
