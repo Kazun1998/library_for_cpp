@@ -107,6 +107,11 @@ data:
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
+  - name: verify/aizu_online_judge/ntl
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/ntl/1D.test.cpp
+      title: verify/aizu_online_judge/ntl/1D.test.cpp
   - name: verify/yosupo_library_checker/data_structure
     pages:
     - icon: ':heavy_check_mark:'

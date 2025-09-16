@@ -10,6 +10,9 @@ data:
     title: Modulo/Order.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/ntl/1D.test.cpp
+    title: verify/aizu_online_judge/ntl/1D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
@@ -71,6 +74,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document
 redirect_from:

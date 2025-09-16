@@ -13,6 +13,9 @@ data:
     title: Modulo/Order.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/ntl/1D.test.cpp
+    title: verify/aizu_online_judge/ntl/1D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -107,6 +110,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document
 redirect_from:
