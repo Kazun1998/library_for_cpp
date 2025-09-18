@@ -12,9 +12,11 @@ namespace graph {
 
     class Graph {
         private:
-        int edge_id_offset;
         vector<vector<pair<int, int>>> incidences; // { edge_id, neighbor_vertex }
         vector<Edge> edges;
+
+        public:
+        int edge_id_offset;
 
         public:
         Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset) {

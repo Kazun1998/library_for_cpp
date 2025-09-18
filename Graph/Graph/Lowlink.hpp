@@ -17,7 +17,7 @@ namespace graph {
             ord.assign(N, -1);
             low.assign(N, -1);
 
-            bridge.assign(M, false);
+            bridge.assign(M + G.edge_id_offset, false);
             articulation.assign(N, false);
 
             int k = 0;
