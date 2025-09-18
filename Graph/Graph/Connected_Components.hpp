@@ -41,4 +41,9 @@ namespace graph {
             }
         }
     };
+
+    bool is_Connected(const Graph &G) {
+        auto connected_components = Connected_Components(G);
+        return connected_components.components.size() == 1;
+    }
 }
