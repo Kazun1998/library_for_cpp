@@ -12,10 +12,13 @@ namespace geometry {
 
     inline int sign(const Real &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }
     inline int equal(const Real &a, const Real &b) { return sign(a - b) == 0; }
+    inline int compare(const Real &a, const Real &b) { return sign(b - a); }
 
     inline int sign(const ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }
     inline int equal(const ll &a, const ll &b) { return sign(a - b) == 0; }
+    inline int compare(const ll &a, const ll &b) { return sign(b - a); }
 
     inline int sign(const int &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }
-    inline int equal(const int &a, const ll &b) { return sign(a - b) == 0; }
+    inline int equal(const int &a, const int &b) { return sign(a - b) == 0; }
+    inline int compare(const int &a, const int &b) { return sign(b - a); }
 };
