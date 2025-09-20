@@ -40,6 +40,14 @@ namespace geometry {
         friend Point operator*(const Point &P, const R &a) { return Point(P) *= a; }
         friend Point operator*(const R &a, const Point &P) { return Point(P) *= a; }
 
+        Point& operator/=(const R &a){
+            x /= a;
+            y /= a;
+            return *this;
+        }
+
+        friend Point operator/(const Point &P, const R &a) { return Point(P) /= a; }
+
         friend istream& operator>>(istream &is, Point &P) {
             R a, b;
             is >> a >> b;
