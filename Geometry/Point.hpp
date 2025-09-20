@@ -58,6 +58,11 @@ namespace geometry {
     };
 
     template<typename R>
+    bool compare_x(const Point<R> &A, const Point<R> &b) {
+        return equal(A.x, B.x) ? A.y < B.y : A.x < B.x;
+    }
+
+    template<typename R>
     inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x + A.y * B.y; }
 
     template<typename R>
