@@ -58,9 +58,10 @@ namespace geometry {
     };
 
     template<typename R>
-    bool compare_x(const Point<R> &A, const Point<R> &B) {
-        return equal(A.x, B.x) ? A.y < B.y : A.x < B.x;
-    }
+    bool compare_x(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }
+
+    template<typename R>
+    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }
 
     template<typename R>
     inline bool operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) && equal(A.y, B.y); }
