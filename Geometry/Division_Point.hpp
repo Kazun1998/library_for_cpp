@@ -11,7 +11,7 @@ namespace geometry {
 
     // 線分 AB の中点
     template<typename R>
-    Point<R> MidPoint(const Point<R> &A, const Point<R> &B) { return Internal_Division(A, B, 1, 1); }
+    Point<R> MidPoint(const Point<R> &A, const Point<R> &B) { return (A + B) / 2; }
 
     // 線分 AB を p:q に外分する点を求める.
     template<typename R>
