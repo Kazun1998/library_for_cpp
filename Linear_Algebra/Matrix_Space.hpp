@@ -26,3 +26,15 @@ vector<Field_Vector<F>> Column_Vectors(const Field_Matrix<F> &A) {
     for (int j = 0; j < A.col; j++) { column_vectors[j] = Field_Vector(tmp[j]); }
     return column_vectors;
 }
+
+template<typename F>
+Field_Vector<F> operator* (const Field_Matrix<F> &A, const Field_Vector<F> &v) {
+    vector<F> pre_w(A.row, F(0));
+    for (int i = 0; i < A.row; i++) {
+        for (int j = 0; j < A.col; j++) {
+            pre_w[i] += A.mat[i][j] * v[j];
+        }
+    }
+
+    return Field_Vector(pre_w);
+}
