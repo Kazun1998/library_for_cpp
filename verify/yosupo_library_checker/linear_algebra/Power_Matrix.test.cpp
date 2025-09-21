@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
+#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include"../../../template/template.hpp"
 #include"../../../modint.hpp"
@@ -6,7 +6,8 @@
 
 int main(){
     int N; cin >> N;
+    ll K; cin >> K;
     Field_Matrix<modint<998244353>> A(N);
     cin >> A;
-    cout << Determinant(A) << endl;
+    cout << power(A, K) << endl;
 }
