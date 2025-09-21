@@ -4,8 +4,8 @@
 
 namespace geometry {
     template<typename R>
-    int Relationship(Circle<R> &C, Circle<R> &D) {
-        unless (C.radius < D.radius) { swap(C, D); }
+    int Relationship(const Circle<R> &C, const Circle<R> &D) {
+        unless (C.radius <= D.radius) { return Relationship(D, C); }
 
         auto d = norm(C.center - D.center);
         auto r = C.radius, s = D.radius;
