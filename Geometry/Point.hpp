@@ -65,6 +65,7 @@ namespace geometry {
         inline R det(const Point B) const { return x * B.y - y * B.x; }
 
         inline Point<R> normalize() const { return *this / norm(); }
+        inline Point<R> normal() const { return Point(-y, x); }
     };
 
     template<typename R>
