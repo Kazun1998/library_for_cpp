@@ -5,7 +5,7 @@
 using namespace std;
 
 #include"../../../modint.hpp"
-#include"../../../Algebra/Field_Matrix.hpp"
+#include"../../../Linear_Algebra/Field_Matrix.hpp"
 
 int main(){
     int N, M, K; cin >> N >> M >> K;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../template/template.hpp"
+
 class SingularMatrixError: private exception{
     const char* what() const throw() {
         return "非正則行列に関する操作を行いました.";
