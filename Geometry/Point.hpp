@@ -63,6 +63,8 @@ namespace geometry {
         inline double norm() const { return sqrt(norm_2()); }
         inline R dot(const Point B) const { return x * B.x + y * B.y; }
         inline R det(const Point B) const { return x * B.y - y * B.x; }
+
+        inline Point<R> normalize() const { return *this / norm(); }
     };
 
     template<typename R>
