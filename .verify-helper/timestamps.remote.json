@@ -25,6 +25,7 @@
 "verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp": "2025-08-29 00:06:23 +0900",
 "verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp": "2025-09-17 00:08:32 +0900",
 "verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp": "2025-09-21 13:32:57 +0900",
+"verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp": "2025-09-21 13:39:13 +0900",
 "verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp": "2025-09-21 13:32:57 +0900",
 "verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp": "2025-09-17 00:08:32 +0900",
 "verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp": "2025-08-17 00:13:14 +0900",
