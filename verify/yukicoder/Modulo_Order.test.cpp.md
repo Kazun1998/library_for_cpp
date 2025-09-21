@@ -135,7 +135,7 @@ data:
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
     \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Modulo/Order.hpp\"\
     \n\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace\
-    \ Modulo {\n    class DifferentModulus : public exception {\n      public: //\
+    \ modulo {\n    class DifferentModulus : public exception {\n      public: //\
     \ public\u306B\u6307\u5B9A\n      const char* what() const noexcept override {\
     \ return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\
     \u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n      \
@@ -241,21 +241,21 @@ data:
     \nvector<ll> Divisors(ll N) {\n    vector<ll> divisors;\n    for (int x = 1; x\
     \ * x <= N; x++){\n        unless(N % x == 0) { continue; }\n\n        divisors.emplace_back(x);\n\
     \        if (N / x != x) { divisors.emplace_back(N / x); }\n    }\n\n    sort(all(divisors));\n\
-    \n    return divisors;\n}\n#line 6 \"Modulo/Order.hpp\"\n\nnamespace Modulo {\n\
+    \n    return divisors;\n}\n#line 6 \"Modulo/Order.hpp\"\n\nnamespace modulo {\n\
     \    // X \u306E\u4F4D\u6570\u3092\u6C42\u3081\u308B\n    ll Order(const Modulo\
     \ &X, ll irreversible = -1) { \n        ll phi = Euler_Totient(X.n);\n\n     \
     \   ll a = X.n + 1;\n        for (ll k = 1; k * k <= phi; k++) {\n           \
     \ unless(phi % k == 0) { continue; }\n\n            if (k < a && pow(X, k).is_member(1))\
     \ { return k; }\n\n            if (phi / k < a && pow(X, phi / k).is_member(1))\
     \ { a = phi / k; }\n        }\n\n        return a < X.n + 1 ? a : irreversible;\n\
-    \    }\n}\n#line 5 \"verify/yukicoder/Modulo_Order.test.cpp\"\n\nint main() {\n\
-    \    int T; cin >> T;\n\n    for (int t = 1; t <= T; t++) {\n        ll N; cin\
-    \ >> N;\n        cout << Modulo::Order(Modulo::Modulo(2, 2 * N - 1)) << endl;\n\
-    \    }\n}\n"
+    \    }\n}\n#line 5 \"verify/yukicoder/Modulo_Order.test.cpp\"\n\nusing namespace\
+    \ modulo;\n\nint main() {\n    int T; cin >> T;\n\n    for (int t = 1; t <= T;\
+    \ t++) {\n        ll N; cin >> N;\n        cout << Order(Modulo(2, 2 * N - 1))\
+    \ << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1255\"\n\n#include\"../../template/template.hpp\"\
-    \n#include\"../../Modulo/Order.hpp\"\n\nint main() {\n    int T; cin >> T;\n\n\
-    \    for (int t = 1; t <= T; t++) {\n        ll N; cin >> N;\n        cout <<\
-    \ Modulo::Order(Modulo::Modulo(2, 2 * N - 1)) << endl;\n    }\n}\n"
+    \n#include\"../../Modulo/Order.hpp\"\n\nusing namespace modulo;\n\nint main()\
+    \ {\n    int T; cin >> T;\n\n    for (int t = 1; t <= T; t++) {\n        ll N;\
+    \ cin >> N;\n        cout << Order(Modulo(2, 2 * N - 1)) << endl;\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -270,7 +270,7 @@ data:
   isVerificationFile: true
   path: verify/yukicoder/Modulo_Order.test.cpp
   requiredBy: []
-  timestamp: '2025-09-17 00:08:32+09:00'
+  timestamp: '2025-09-21 15:00:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yukicoder/Modulo_Order.test.cpp

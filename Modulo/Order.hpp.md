@@ -130,7 +130,7 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 4 \"Modulo/Modulo.hpp\"\n\nnamespace Modulo {\n    class DifferentModulus\
+    #line 4 \"Modulo/Modulo.hpp\"\n\nnamespace modulo {\n    class DifferentModulus\
     \ : public exception {\n      public: // public\u306B\u6307\u5B9A\n      const\
     \ char* what() const noexcept override { return \"\u7570\u306A\u308B\u6CD5\u540C\
     \u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo\
@@ -236,7 +236,7 @@ data:
     \nvector<ll> Divisors(ll N) {\n    vector<ll> divisors;\n    for (int x = 1; x\
     \ * x <= N; x++){\n        unless(N % x == 0) { continue; }\n\n        divisors.emplace_back(x);\n\
     \        if (N / x != x) { divisors.emplace_back(N / x); }\n    }\n\n    sort(all(divisors));\n\
-    \n    return divisors;\n}\n#line 6 \"Modulo/Order.hpp\"\n\nnamespace Modulo {\n\
+    \n    return divisors;\n}\n#line 6 \"Modulo/Order.hpp\"\n\nnamespace modulo {\n\
     \    // X \u306E\u4F4D\u6570\u3092\u6C42\u3081\u308B\n    ll Order(const Modulo\
     \ &X, ll irreversible = -1) { \n        ll phi = Euler_Totient(X.n);\n\n     \
     \   ll a = X.n + 1;\n        for (ll k = 1; k * k <= phi; k++) {\n           \
@@ -245,7 +245,7 @@ data:
     \ { a = phi / k; }\n        }\n\n        return a < X.n + 1 ? a : irreversible;\n\
     \    }\n}\n"
   code: "#pragma once\n\n#include\"Modulo.hpp\"\n#include\"../Integer/Euler_Totient.hpp\"\
-    \n#include\"../Integer/Divisors.hpp\"\n\nnamespace Modulo {\n    // X \u306E\u4F4D\
+    \n#include\"../Integer/Divisors.hpp\"\n\nnamespace modulo {\n    // X \u306E\u4F4D\
     \u6570\u3092\u6C42\u3081\u308B\n    ll Order(const Modulo &X, ll irreversible\
     \ = -1) { \n        ll phi = Euler_Totient(X.n);\n\n        ll a = X.n + 1;\n\
     \        for (ll k = 1; k * k <= phi; k++) {\n            unless(phi % k == 0)\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: false
   path: Modulo/Order.hpp
   requiredBy: []
-  timestamp: '2025-09-17 00:08:32+09:00'
+  timestamp: '2025-09-21 15:00:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp

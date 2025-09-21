@@ -127,7 +127,7 @@ data:
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
     \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Modulo/Modulo.hpp\"\
-    \n\nnamespace Modulo {\n    class DifferentModulus : public exception {\n    \
+    \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
     \  public: // public\u306B\u6307\u5B9A\n      const char* what() const noexcept\
     \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
     \u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\
@@ -190,7 +190,7 @@ data:
     \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
     \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
     \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace Modulo\
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace modulo\
     \ {\n    class DifferentModulus : public exception {\n      public: // public\u306B\
     \u6307\u5B9A\n      const char* what() const noexcept override { return \"\u7570\
     \u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n\
@@ -265,7 +265,7 @@ data:
   requiredBy:
   - Modulo/Discrete_Log.hpp
   - Modulo/Order.hpp
-  timestamp: '2025-09-17 00:08:32+09:00'
+  timestamp: '2025-09-21 15:00:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
