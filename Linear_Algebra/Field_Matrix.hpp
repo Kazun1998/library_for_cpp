@@ -10,10 +10,8 @@ class SingularMatrixError: private exception{
 
 template<typename F>
 class Field_Matrix{
-    private:
-    vector<vector<F>> mat;
-
     public:
+    vector<vector<F>> mat;
     int row, col;
 
     public:
