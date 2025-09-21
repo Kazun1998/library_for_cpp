@@ -16,6 +16,9 @@ data:
       title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
   - name: Geometry
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Argument_Sort.hpp
+      title: Geometry/Argument_Sort.hpp
     - icon: ':warning:'
       path: Geometry/Centroid.hpp
       title: Geometry/Centroid.hpp
@@ -264,6 +267,9 @@ data:
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   - name: verify/yosupo_library_checker/geometry
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+      title: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
       title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp

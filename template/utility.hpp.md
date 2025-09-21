@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/Argument_Sort.hpp
+    title: Geometry/Argument_Sort.hpp
   - icon: ':warning:'
     path: Geometry/Centroid.hpp
     title: Geometry/Centroid.hpp
@@ -175,6 +178,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+    title: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
     title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,6 +252,7 @@ data:
   - Geometry/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/Centroid.hpp
   - Geometry/Perpendicular_Bisector.hpp
+  - Geometry/Argument_Sort.hpp
   - Geometry/Counter_Clockwise.hpp
   - Geometry/Incenter.hpp
   - Geometry/Intersection_Line_and_Line.hpp
@@ -283,6 +290,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp
