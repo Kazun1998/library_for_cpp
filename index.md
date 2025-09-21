@@ -14,6 +14,92 @@ data:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
       title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+  - name: Geometry
+    pages:
+    - icon: ':warning:'
+      path: Geometry/Centroid.hpp
+      title: Geometry/Centroid.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Circle.hpp
+      title: Geometry/Circle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Circumcenter.hpp
+      title: Geometry/Circumcenter.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Circumcircle.hpp
+      title: Geometry/Circumcircle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Common_Tangent_Points.hpp
+      title: Geometry/Common_Tangent_Points.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Convex_Hull.hpp
+      title: Geometry/Convex_Hull.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Counter_Clockwise.hpp
+      title: Geometry/Counter_Clockwise.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Distance_Line_and_Point.hpp
+      title: Geometry/Distance_Line_and_Point.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Division_Point.hpp
+      title: Geometry/Division_Point.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Incenter.hpp
+      title: Geometry/Incenter.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Incircle.hpp
+      title: Geometry/Incircle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Intersection_Circle_and_Circle.hpp
+      title: Geometry/Intersection_Circle_and_Circle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Intersection_Circle_and_Line.hpp
+      title: Geometry/Intersection_Circle_and_Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Intersection_Line_and_Line.hpp
+      title: Geometry/Intersection_Line_and_Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Intersection_Segment_and_Segment.hpp
+      title: Geometry/Intersection_Segment_and_Segment.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Line.hpp
+      title: Geometry/Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Parallel_Orthogonal_Line_Line.hpp
+      title: Geometry/Parallel_Orthogonal_Line_Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Perpendicular_Bisector.hpp
+      title: Geometry/Perpendicular_Bisector.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Point.hpp
+      title: Geometry/Point.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Polygon.hpp
+      title: Geometry/Polygon.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Projection_Point_Line.hpp
+      title: Geometry/Projection_Point_Line.hpp
+    - icon: ':warning:'
+      path: Geometry/Projection_Point_Point.hpp
+      title: Geometry/Projection_Point_Point.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Refection_Point_Line.hpp
+      title: Geometry/Refection_Point_Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Relationship_Circle_and_Circle.hpp
+      title: Geometry/Relationship_Circle_and_Circle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Segment.hpp
+      title: Geometry/Segment.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Tangent_Point_from_Point_to_Circle.hpp
+      title: Geometry/Tangent_Point_from_Point_to_Circle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Triangle.hpp
+      title: Geometry/Triangle.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/base.hpp
+      title: Geometry/base.hpp
   - name: Graph/Digraph
     pages:
     - icon: ':heavy_check_mark:'
@@ -107,6 +193,53 @@ data:
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
+  - name: verify/aizu_online_judge/cgl
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/1A.test.cpp
+      title: verify/aizu_online_judge/cgl/1A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/1B.test.cpp
+      title: verify/aizu_online_judge/cgl/1B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/1C.test.cpp
+      title: verify/aizu_online_judge/cgl/1C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/2A.test.cpp
+      title: verify/aizu_online_judge/cgl/2A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/2B.test.cpp
+      title: verify/aizu_online_judge/cgl/2B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/2C.test.cpp
+      title: verify/aizu_online_judge/cgl/2C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/3A.test.cpp
+      title: verify/aizu_online_judge/cgl/3A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/4A.test.cpp
+      title: verify/aizu_online_judge/cgl/4A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7A.test.cpp
+      title: verify/aizu_online_judge/cgl/7A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7B.test.cpp
+      title: verify/aizu_online_judge/cgl/7B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7C.test.cpp
+      title: verify/aizu_online_judge/cgl/7C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7D.test.cpp
+      title: verify/aizu_online_judge/cgl/7D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7E.test.cpp
+      title: verify/aizu_online_judge/cgl/7E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7F.test.cpp
+      title: verify/aizu_online_judge/cgl/7F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/cgl/7G.test.cpp
+      title: verify/aizu_online_judge/cgl/7G.test.cpp
   - name: verify/aizu_online_judge/ntl
     pages:
     - icon: ':heavy_check_mark:'
@@ -129,6 +262,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
+  - name: verify/yosupo_library_checker/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+      title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - name: verify/yosupo_library_checker/graph
     pages:
     - icon: ':heavy_check_mark:'

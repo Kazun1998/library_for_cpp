@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Geometry/base.hpp
+    title: Geometry/base.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -11,12 +14,12 @@ data:
     path: template/math.hpp
     title: template/math.hpp
   - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Algebra/Gaussian_Integer.hpp
-    title: Algebra/Gaussian_Integer.hpp
   - icon: ':warning:'
     path: Geometry/Centroid.hpp
     title: Geometry/Centroid.hpp
@@ -72,9 +75,6 @@ data:
     path: Geometry/Perpendicular_Bisector.hpp
     title: Geometry/Perpendicular_Bisector.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Point.hpp
-    title: Geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -98,36 +98,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Divisors.hpp
-    title: Integer/Divisors.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality_Test.hpp
-    title: Integer/Miller_Rabin_Primality_Test.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
-  - icon: ':heavy_check_mark:'
-    path: Math/Floor_Linear_Sum.hpp
-    title: Math/Floor_Linear_Sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: Math/Two_SAT.hpp
-    title: Math/Two_SAT.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Discrete_Log.hpp
-    title: Modulo/Discrete_Log.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Modulo.hpp
-    title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Tree.hpp
-    title: Tree/Tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/1A.test.cpp
@@ -175,54 +145,16 @@ data:
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/ntl/1D.test.cpp
-    title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/ntl/1E.test.cpp
-    title: verify/aizu_online_judge/ntl/1E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
     title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/two_sat.test.cpp
-    title: verify/yosupo_library_checker/other/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-    title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/Modulo_Order.test.cpp
-    title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+  bundledCode: "#line 2 \"Geometry/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -312,151 +244,120 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 68 \"template/template.hpp\"\n"
-  code: '#pragma once
-
-
-    using namespace std;
-
-
-    // intrinstic
-
-    #include <immintrin.h>
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cctype>
-
-    #include <cfenv>
-
-    #include <cfloat>
-
-    #include <chrono>
-
-    #include <cinttypes>
-
-    #include <climits>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <cstdarg>
-
-    #include <cstddef>
-
-    #include <cstdint>
-
-    #include <cstdio>
-
-    #include <cstdlib>
-
-    #include <cstring>
-
-    #include <deque>
-
-    #include <fstream>
-
-    #include <functional>
-
-    #include <initializer_list>
-
-    #include <iomanip>
-
-    #include <ios>
-
-    #include <iostream>
-
-    #include <istream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <list>
-
-    #include <map>
-
-    #include <memory>
-
-    #include <new>
-
-    #include <numeric>
-
-    #include <ostream>
-
-    #include <queue>
-
-    #include <random>
-
-    #include <set>
-
-    #include <sstream>
-
-    #include <stack>
-
-    #include <streambuf>
-
-    #include <string>
-
-    #include <tuple>
-
-    #include <type_traits>
-
-    #include <typeinfo>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <utility>
-
-    #include <vector>
-
-
-    // utility
-
-    #include"utility.hpp"
-
-
-    // math
-
-    #include"math.hpp"
-
-
-    // inout
-
-    #include"inout.hpp"
-
-
-    // macro
-
-    #include"macro.hpp"
-
-    '
+    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
+    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
+    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
+    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
+    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
+    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
+    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
+    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
+    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
+    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/Point.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
+    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
+    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
+    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
+    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
+    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
+    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
+    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
+    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
+    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
+    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
+    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
+    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
+    \            return *this;\n        }\n\n        friend Point operator/(const\
+    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
+    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
+    \            x = x1;\n            y = y1;\n            return *this;\n       \
+    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
+    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
+    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
+    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
+    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
+    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
+    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
+    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
+    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
+    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
+    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
+    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
+    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
+    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
+    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
+    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
+    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
+    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
+    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
+    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
+    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
+    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
+    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
+    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
+    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
+    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n"
+  code: "#pragma once\n\n#include\"base.hpp\"\n\nnamespace geometry {\n    template<typename\
+    \ R>\n    class Point {\n        public:\n        R x, y;\n\n        public:\n\
+    \        Point(): x(0), y(0) {}\n        Point(R _x, R _y): x(_x), y(_y) {}\n\n\
+    \        // \u52A0\u6CD5\n        Point& operator+=(const Point &B){\n       \
+    \     x += B.x;\n            y += B.y;\n            return *this;\n        }\n\
+    \n        friend Point operator+(const Point &P, const Point &Q) { return Point(P)\
+    \ += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const Point &B){\n\
+    \            x -= B.x;\n            y -= B.y;\n            return *this;\n   \
+    \     }\n\n        friend Point operator-(const Point &P, const Point &Q) { return\
+    \ Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n        Point&\
+    \ operator*=(const R &a){\n            x *= a;\n            y *= a;\n        \
+    \    return *this;\n        }\n\n        friend Point operator*(const Point &P,\
+    \ const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
+    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
+    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
+    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
+    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
+    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
+    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
+    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
+    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
+    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
+    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
+    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
+    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
+    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
+    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
+    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
+    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
+    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
+    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
+    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
+    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
+    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
+    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
+    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
+    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
+    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
+    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
+    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
+    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
+    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
+    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
+    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
+    \ P.x); }\n}\n"
   dependsOn:
+  - Geometry/base.hpp
+  - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   isVerificationFile: false
-  path: template/template.hpp
+  path: Geometry/Point.hpp
   requiredBy:
-  - Tree/Tree.hpp
-  - Modulo/Modulo.hpp
-  - Modulo/Discrete_Log.hpp
-  - Modulo/Order.hpp
-  - Algebra/Gaussian_Integer.hpp
-  - Integer/Divisors.hpp
-  - Integer/Quotients.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
   - Geometry/Parallel_Orthogonal_Line_Line.hpp
   - Geometry/Convex_Hull.hpp
   - Geometry/Line.hpp
@@ -473,7 +374,6 @@ data:
   - Geometry/Projection_Point_Point.hpp
   - Geometry/Projection_Point_Line.hpp
   - Geometry/Polygon.hpp
-  - Geometry/base.hpp
   - Geometry/Relationship_Circle_and_Circle.hpp
   - Geometry/Intersection_Circle_and_Line.hpp
   - Geometry/Triangle.hpp
@@ -484,26 +384,10 @@ data:
   - Geometry/Refection_Point_Line.hpp
   - Geometry/Division_Point.hpp
   - Geometry/Circumcenter.hpp
-  - Geometry/Point.hpp
-  - Math/Floor_Linear_Sum.hpp
-  - Math/Two_SAT.hpp
-  timestamp: '2025-09-17 00:08:32+09:00'
+  timestamp: '2025-09-21 12:25:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - verify/yosupo_library_checker/other/two_sat.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/aizu_online_judge/ntl/1E.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/aizu_online_judge/cgl/7E.test.cpp
   - verify/aizu_online_judge/cgl/4A.test.cpp
   - verify/aizu_online_judge/cgl/2A.test.cpp
@@ -519,10 +403,10 @@ data:
   - verify/aizu_online_judge/cgl/7D.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp
   - verify/aizu_online_judge/cgl/7B.test.cpp
-documentation_of: template/template.hpp
+documentation_of: Geometry/Point.hpp
 layout: document
 redirect_from:
-- /library/template/template.hpp
-- /library/template/template.hpp.html
-title: template/template.hpp
+- /library/Geometry/Point.hpp
+- /library/Geometry/Point.hpp.html
+title: Geometry/Point.hpp
 ---
