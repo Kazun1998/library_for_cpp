@@ -29,12 +29,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
     links:
-    - https://judge.yosupo.jp/problem/matrix_product
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    - https://judge.yosupo.jp/problem/pow_of_matrix
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#line 2\
+    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -251,14 +251,14 @@ data:
     \u89D2\u884C\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F>\
     \ Diagonal_Matrix(vector<F> a) {\n    int n = a.size();\n    vector<vector<F>>\
     \ X(n, vector<F>(n));\n\n    for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\
-    \n    return X;\n}\n#line 6 \"verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp\"\
-    \n\nint main(){\n    int N, M, K; cin >> N >> M >> K;\n    Field_Matrix<modint<998244353>>\
-    \ A(N, M), B(M, K);\n    cin >> A >> B;\n    cout << A * B << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\"\
+    \n    return X;\n}\n#line 6 \"verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp\"\
+    \n\nint main(){\n    int N; cin >> N;\n    ll K; cin >> K;\n    Field_Matrix<modint<998244353>>\
+    \ A(N);\n    cin >> A;\n    cout << power(A, K) << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#include\"\
     ../../../template/template.hpp\"\n#include\"../../../modint.hpp\"\n#include\"\
-    ../../../Linear_Algebra/Field_Matrix.hpp\"\n\nint main(){\n    int N, M, K; cin\
-    \ >> N >> M >> K;\n    Field_Matrix<modint<998244353>> A(N, M), B(M, K);\n   \
-    \ cin >> A >> B;\n    cout << A * B << endl;\n}\n"
+    ../../../Linear_Algebra/Field_Matrix.hpp\"\n\nint main(){\n    int N; cin >> N;\n\
+    \    ll K; cin >> K;\n    Field_Matrix<modint<998244353>> A(N);\n    cin >> A;\n\
+    \    cout << power(A, K) << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -268,15 +268,15 @@ data:
   - modint.hpp
   - Linear_Algebra/Field_Matrix.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+  path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   requiredBy: []
   timestamp: '2025-09-21 14:45:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+documentation_of: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-- /verify/verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp.html
-title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp.html
+title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
 ---

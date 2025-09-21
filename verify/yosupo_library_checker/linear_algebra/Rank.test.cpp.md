@@ -5,6 +5,12 @@ data:
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Rank.hpp
+    title: Linear_Algebra/Rank.hpp
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Reduction.hpp
+    title: Linear_Algebra/Reduction.hpp
+  - icon: ':heavy_check_mark:'
     path: modint.hpp
     title: modint.hpp
   - icon: ':heavy_check_mark:'
@@ -29,11 +35,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
     links:
-    - https://judge.yosupo.jp/problem/matrix_det
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#line 2 \"\
+    - https://judge.yosupo.jp/problem/matrix_rank
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/Rank.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n\n#line 2 \"\
     template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\
     \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
@@ -149,21 +155,21 @@ data:
     \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
     \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod + mod) % mod;\n\
     \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\
-    \n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
-    \ private exception{\n    const char* what() const throw() {\n        return \"\
-    \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
-    \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
-    \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
-    \   Field_Matrix(int row, int col): row(row), col(col){\n        mat.assign(row,\
-    \ vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row): Field_Matrix(row,\
-    \ row){}\n\n    Field_Matrix(vector<vector<F>> &ele): Field_Matrix(ele.size(),\
-    \ ele[0].size()){\n        for (int i = 0; i < row; i++){\n            copy(ele[i].begin(),\
-    \ ele[i].end(), mat[i].begin());\n        }\n    }\n\n    static Field_Matrix\
-    \ Zero_Matrix(int row, int col) { return Field_Matrix(row, col); }\n\n    static\
-    \ Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix A(size);\n  \
-    \      for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return A;\n  \
-    \  }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ &os, const modint &a) { return os << a.x; }\n};\n#line 2 \"Linear_Algebra/Rank.hpp\"\
+    \n\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
+    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
+    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
+    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
+    \ col;\n\n    public:\n    Field_Matrix(int row, int col): row(row), col(col){\n\
+    \        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
     \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
     \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
     \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
@@ -251,13 +257,29 @@ data:
     \u89D2\u884C\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F>\
     \ Diagonal_Matrix(vector<F> a) {\n    int n = a.size();\n    vector<vector<F>>\
     \ X(n, vector<F>(n));\n\n    for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\
-    \n    return X;\n}\n#line 6 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\
-    \n\nint main(){\n    int N; cin >> N;\n    Field_Matrix<modint<998244353>> A(N);\n\
-    \    cin >> A;\n    cout << Determinant(A) << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\"\
+    \n    return X;\n}\n#line 2 \"Linear_Algebra/Reduction.hpp\"\n\n#line 4 \"Linear_Algebra/Reduction.hpp\"\
+    \n\ntemplate<typename F>\nField_Matrix<F> Row_Reduce(const Field_Matrix<F> &A)\
+    \ {\n    if (A.row == 0) { return Field_Matrix(A); }\n\n    vector<vector<F>>\
+    \ X(A.mat);\n    for (int i = 0, j = 0; i < A.row && j < A.col; j++) {\n     \
+    \   if(X[i][j] == 0) {\n            int p = i + 1;\n            for (; p < A.row;\
+    \ p++) {\n                if (X[p][j] == 0) { continue; }\n\n                swap(X[p],\
+    \ X[i]);\n                break;\n            }\n\n            if (p == A.row)\
+    \ { continue; }\n        }\n\n        F u = X[i][j], u_inv = u.inverse();\n  \
+    \      for (int q = 0; q < A.col; q++) { X[i][q] *= u_inv; }\n\n        for (int\
+    \ p = 0; p < A.row; p++) {\n            if (p == i) { continue; }\n\n        \
+    \    F v = X[p][j];\n            for (int q = 0; q < A.col; q++) { X[p][q] -=\
+    \ v * X[i][q]; }\n        }\n\n        i++;\n    }\n\n    return Field_Matrix<F>(X);\n\
+    }\n#line 5 \"Linear_Algebra/Rank.hpp\"\n\ntemplate<typename F>\nint Rank(const\
+    \ Field_Matrix<F> &A) {\n    Field_Matrix<F> B = Row_Reduce(A);\n\n    int rank\
+    \ = 0;\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
+    \ j++) {\n            unless(B.mat[i][j] == 0) { rank++; break; }\n        }\n\
+    \    }\n    return rank;\n}\n#line 6 \"verify/yosupo_library_checker/linear_algebra/Rank.test.cpp\"\
+    \n\nint main() {\n    int N, M; cin >> N >> M;\n    Field_Matrix<modint<998244353>>\
+    \ A(N, M); cin >> A;\n\n    cout << Rank(A) << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n\n#include\"\
     ../../../template/template.hpp\"\n#include\"../../../modint.hpp\"\n#include\"\
-    ../../../Linear_Algebra/Field_Matrix.hpp\"\n\nint main(){\n    int N; cin >> N;\n\
-    \    Field_Matrix<modint<998244353>> A(N);\n    cin >> A;\n    cout << Determinant(A)\
+    ../../../Linear_Algebra/Rank.hpp\"\n\nint main() {\n    int N, M; cin >> N >>\
+    \ M;\n    Field_Matrix<modint<998244353>> A(N, M); cin >> A;\n\n    cout << Rank(A)\
     \ << endl;\n}\n"
   dependsOn:
   - template/template.hpp
@@ -266,17 +288,19 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - modint.hpp
+  - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Matrix.hpp
+  - Linear_Algebra/Reduction.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   requiredBy: []
-  timestamp: '2025-09-21 14:45:22+09:00'
+  timestamp: '2025-09-21 14:45:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+documentation_of: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
-- /verify/verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp.html
-title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/Rank.test.cpp.html
+title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
 ---

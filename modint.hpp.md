@@ -10,8 +10,17 @@ data:
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,7 +86,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
 documentation_of: modint.hpp
 layout: document

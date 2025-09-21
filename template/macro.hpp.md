@@ -102,6 +102,15 @@ data:
     path: Integer/Quotients.hpp
     title: Integer/Quotients.hpp
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Field_Matrix.hpp
+    title: Linear_Algebra/Field_Matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Rank.hpp
+    title: Linear_Algebra/Rank.hpp
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Reduction.hpp
+    title: Linear_Algebra/Reduction.hpp
+  - icon: ':heavy_check_mark:'
     path: Math/Floor_Linear_Sum.hpp
     title: Math/Floor_Linear_Sum.hpp
   - icon: ':heavy_check_mark:'
@@ -186,6 +195,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
@@ -288,6 +312,9 @@ data:
   - Geometry/Division_Point.hpp
   - Geometry/Circumcenter.hpp
   - Geometry/Point.hpp
+  - Linear_Algebra/Field_Matrix.hpp
+  - Linear_Algebra/Reduction.hpp
+  - Linear_Algebra/Rank.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
@@ -305,6 +332,11 @@ data:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp

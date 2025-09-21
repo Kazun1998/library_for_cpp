@@ -4,9 +4,6 @@ data:
   - name: Algebra
     pages:
     - icon: ':heavy_check_mark:'
-      path: Algebra/Field_Matrix.hpp
-      title: Algebra/Field_Matrix.hpp
-    - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
   - name: Binary_Indexed_Tree
@@ -136,6 +133,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
       title: Integer/Quotients.hpp
+  - name: Linear_Algebra
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Field_Matrix.hpp
+      title: Linear_Algebra/Field_Matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Rank.hpp
+      title: Linear_Algebra/Rank.hpp
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Reduction.hpp
+      title: Linear_Algebra/Reduction.hpp
   - name: Math
     pages:
     - icon: ':heavy_check_mark:'
@@ -287,8 +295,17 @@ data:
       path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - name: verify/yosupo_library_checker/number_theory
     pages:
     - icon: ':heavy_check_mark:'
