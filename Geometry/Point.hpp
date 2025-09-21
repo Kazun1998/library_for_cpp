@@ -48,6 +48,15 @@ namespace geometry {
 
         friend Point operator/(const Point &P, const R &a) { return Point(P) /= a; }
 
+        Point& operator*=(const Point &P){
+            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;
+            x = x1;
+            y = y1;
+            return *this;
+        }
+
+        friend Point operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }
+
         friend istream& operator>>(istream &is, Point &P) {
             R a, b;
             is >> a >> b;
@@ -66,6 +75,12 @@ namespace geometry {
 
         inline Point<R> normalize() const { return *this / norm(); }
         inline Point<R> normal() const { return Point(-y, x); }
+
+        inline Point<Real> rotate(double theta) const {
+            Real alpha = sin(theta), beta = cos(theta);
+            Real s = beta * x - alpha * y, t = alpha * x + beta * y;
+            return Point(s, t);
+        }
     };
 
     template<typename R>
@@ -91,4 +106,7 @@ namespace geometry {
 
     template<typename R>
     inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }
+
+    template<typename R>
+    inline Real arg(const Point<R> &P) { return atan2(P.y, P.x); }
 }
