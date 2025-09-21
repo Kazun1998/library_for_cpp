@@ -1,9 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
-#include<bits/stdc++.h>
-
-using namespace std;
-
+#include"../../../template/template.hpp"
 #include"../../../modint.hpp"
 #include"../../../Linear_Algebra/Field_Matrix.hpp"
 
