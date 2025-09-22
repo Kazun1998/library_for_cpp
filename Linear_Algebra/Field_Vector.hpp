@@ -105,3 +105,6 @@ class Field_Vector {
 
 template<typename F>
 Field_Vector<F> operator* (const F &a, const Field_Vector<F> &v) { return v * a; }
+
+template<typename F>
+F inner(const Field_Vector<F> &u, const Field_Vector<F> &v) { return u.inner(v); }
