@@ -1,9 +1,9 @@
 #pragma once
 
-#include"Projection_Point_Line.hpp"
-#include"Line.hpp"
-#include"Circle.hpp"
-#include"Distance_Line_and_Point.hpp"
+#include"../projection/Projection_Point_Line.hpp"
+#include"../object/Line.hpp"
+#include"../object/Circle.hpp"
+#include"../distance/Distance_Line_and_Point.hpp"
 
 namespace geometry {
     template<typename R>

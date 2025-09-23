@@ -1,8 +1,8 @@
 #pragma once
 
-#include"Point.hpp"
-#include"Circle.hpp"
-#include"Intersection_Circle_and_Circle.hpp"
+#include"../object/Point.hpp"
+#include"../object/Circle.hpp"
+#include"../intersection/Intersection_Circle_and_Circle.hpp"
 
 namespace geometry {
     template<typename R>

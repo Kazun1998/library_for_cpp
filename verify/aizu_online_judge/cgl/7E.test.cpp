@@ -2,17 +2,16 @@
 #define ERROR 0.000001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Intersection_Circle_and_Circle.hpp"
+#include"../../../Geometry/intersection/Intersection_Circle_and_Circle.hpp"
 
 using namespace geometry;
 
 int main() {
     cout << fixed << setprecision(15);
-    Point<Real> p, q;
-    Real r, s;
-    cin >> p >> r >> q >> s;
 
-    Circle<Real> C(p, r), D(q, s);
+    Circle<Real> C, D;
+    cin >> C.center >> C.radius;
+    cin >> D.center >> D.radius;
 
     vector<Point<Real>> intersections = Intersection(C, D);
     unless(compare_x(intersections[0], intersections[1])) {
