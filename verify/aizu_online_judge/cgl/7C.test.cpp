@@ -8,7 +8,8 @@ using namespace geometry;
 
 int main() {
     cout << fixed << setprecision(15);
-    Point<Real> A, B, C; cin >> A >> B >> C;
-    auto X = Circumcircle(Triangle<Real>(A, B, C));
+    Triangle<Real> T; cin >> T.A >> T.B >> T.C;
+
+    auto X = Circumcircle(T);
     cout << X.center << " " << X.radius << endl;
 }

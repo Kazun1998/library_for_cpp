@@ -10,8 +10,7 @@ int main() {
 
     int Q; cin >> Q;
     for (int q = 0; q < Q; q++) {
-        Point<int> A, B, C, D; cin >> A >> B >> C >> D;
-        Line<int> l(A, B), m(C, D);
+        Line<int> l, m; cin >> l.A >> l.B >> m.A >> m.B;
 
         switch (Parallel_Orthogonal(l, m)) {
             case Direction_Relation::PARALLEL:

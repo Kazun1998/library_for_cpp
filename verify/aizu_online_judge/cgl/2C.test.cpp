@@ -12,8 +12,8 @@ int main() {
     int Q; cin >> Q;
     cout << fixed << setprecision(10);
     for (int q = 0; q < Q; q++) {
-        Point<Real> A, B, C, D; cin >> A >> B >> C >> D;
-        Segment<Real> s(A, B), t(C, D);
+        Segment<Real> s, t; cin >> s.A >> s.B >> t.A >> t.B;
+
         cout << Intersection(s, t) << endl;
     }
 }

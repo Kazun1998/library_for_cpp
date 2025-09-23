@@ -7,8 +7,7 @@
 using namespace geometry;
 
 int main() {
-    Point<Real> A, B; cin >> A >> B;
-    Line<Real> l(A, B);
+    Line<Real> l; cin >> l.A >> l.B;
 
     int Q; cin >> Q;
     cout << fixed << setprecision(10);

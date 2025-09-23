@@ -6,12 +6,10 @@
 using namespace geometry;
 
 int main() {
-    Point<Real> A, B;
-    Real r, s;
+    Circle<Real> C, D;
 
-    cin >> A >> r;
-    cin >> B >> s;
-
-    Circle<Real> C(A, r), D(B, s);
+    cin >> C.center >> C.radius;
+    cin >> D.center >> D.radius;
+    
     cout << Relationship(C, D) << endl;
 }
