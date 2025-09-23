@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_convex_hull"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Convex_Hull.hpp"
+#include"../../../Geometry/utility/Convex_Hull.hpp"
 
 using namespace geometry;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Triangle.hpp"
+#include"../object/Triangle.hpp"
 
 namespace geometry {
     template<typename R>

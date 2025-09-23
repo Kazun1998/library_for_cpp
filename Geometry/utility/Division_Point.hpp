@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Point.hpp"
+#include"../object/Point.hpp"
 
 namespace geometry {
     // 線分 AB を p:q に内分する点を求める.

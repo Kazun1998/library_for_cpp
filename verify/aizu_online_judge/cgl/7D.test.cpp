@@ -2,16 +2,14 @@
 #define ERROR 0.000001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Intersection_Circle_and_Line.hpp"
+#include"../../../Geometry/intersection/Intersection_Circle_and_Line.hpp"
 
 using namespace geometry;
 
 int main() {
     cout << fixed << setprecision(15);
-    Point<Real> c;
-    Real r;
-    cin >> c >> r;
-    Circle<Real> C(c, r);
+
+    Circle<Real> C; cin >> C.center >> C.radius;
 
     int Q; cin >> Q;
     for (int q = 1; q <= Q; q++) {

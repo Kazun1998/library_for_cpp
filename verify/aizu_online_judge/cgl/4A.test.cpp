@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Convex_Hull.hpp"
+#include"../../../Geometry/utility/Convex_Hull.hpp"
 
 using namespace geometry;
 

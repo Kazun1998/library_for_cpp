@@ -2,13 +2,12 @@
 #define ERROR 0.00000001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Refection_Point_Line.hpp"
+#include"../../../Geometry/reflection/Reflection_Point_Line.hpp"
 
 using namespace geometry;
 
 int main() {
-    Point<Real> A, B; cin >> A >> B;
-    Line<Real> l(A, B);
+    Line<Real> l; cin >> l.A >> l.B;
 
     int Q; cin >> Q;
     cout << fixed << setprecision(10);

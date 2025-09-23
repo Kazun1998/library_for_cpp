@@ -97,3 +97,23 @@ tuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {
 
     return make_tuple(s, u, a);
 }
+
+// floor(sqrt(N)) を求める (N < 0 のときは, 0 とする).
+ll isqrt(const ll &N) { 
+    if (N <= 0) { return 0; }
+
+    ll x = sqrt(N);
+    while ((x + 1) * (x + 1) <= N) { x++; }
+    while (x * x > N) { x--; }
+
+    return x;
+}
+
+// floor(sqrt(N)) を求める (N < 0 のときは, 0 とする).
+ll floor_sqrt(const ll &N) { return isqrt(N); }
+
+// ceil(sqrt(N)) を求める (N < 0 のときは, 0 とする).
+ll ceil_sqrt(const ll &N) {
+    ll x = isqrt(N);
+    return x * x == N ? x : x + 1;
+}

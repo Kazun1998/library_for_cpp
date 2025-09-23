@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Polygon.hpp"
+#include"../../../Geometry/object/Polygon.hpp"
 
 using namespace geometry;
 

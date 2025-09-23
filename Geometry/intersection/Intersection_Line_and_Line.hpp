@@ -1,7 +1,7 @@
 #pragma once
 
-#include"Line.hpp"
-#include"Parallel_Orthogonal_Line_Line.hpp"
+#include"../object/Line.hpp"
+#include"../relationship/Parallel_Orthogonal_Line_Line.hpp"
 
 namespace geometry {
     template<typename R>
