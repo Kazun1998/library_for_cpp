@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
-    title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+    title: Binary Indexed Tree (Fenwick Tree)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

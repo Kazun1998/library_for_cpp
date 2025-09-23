@@ -10,7 +10,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
-      title: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+      title: Binary Indexed Tree (Fenwick Tree)
   - name: Geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -188,7 +188,7 @@ data:
       title: Segment_Tree/Lazy_Segment_Tree.hpp
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
-      title: Segment_Tree/Segment_Tree.hpp
+      title: Segment Tree
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
-      title: Union_Find/Union_Find.hpp
+      title: Union Find
   - name: .
     pages:
     - icon: ':heavy_check_mark:'
