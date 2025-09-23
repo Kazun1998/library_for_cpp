@@ -274,7 +274,15 @@ data:
     \u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0,\
     \ u = 0, v = 1;\n    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
     \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
-    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n"
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
+    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
+    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
+    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
+    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
+    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
+    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
+    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
+    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   code: "#pragma once\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n//\
     \ floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT\
     \ div_floor(T x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x\
@@ -307,7 +315,15 @@ data:
     \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
     \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
     \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
-    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n"
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
+    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
+    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
+    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
+    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
+    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
+    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
+    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
+    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -355,7 +371,7 @@ data:
   - Linear_Algebra/Rank.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Two_SAT.hpp
-  timestamp: '2025-09-17 00:08:32+09:00'
+  timestamp: '2025-09-23 12:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp

@@ -100,47 +100,55 @@ data:
     \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
     \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
     \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
-    #line 62 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\
-    \n// \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ...\
-    \ >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
-    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
-    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
-    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
-    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
-    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
-    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
-    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
-    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
-    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
-    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
-    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
-    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
-    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
-    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
-    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n#line 65\
-    \ \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\n\n//\
-    \ \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n#define\
-    \ len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
-    \n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1,\
-    \ _2, name, ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define\
-    \ overload4(_1, _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4,\
-    \ _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define\
-    \ rep3(i, a, b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i\
-    \ = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2,\
-    \ rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x,\
-    \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
-    \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
-    \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
-    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
-    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
-    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
+    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
+    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
+    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
+    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
+    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
+    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
+    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62\
+    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
+    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
+    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
+    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
+    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
+    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
+    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
+    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
+    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
+    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
+    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
+    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
+    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
+    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
+    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
+    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
+    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
+    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
+    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
+    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
+    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
+    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
+    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
+    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
+    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
+    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
+    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\
+    \n\nnamespace geometry {\n    using Real = double long;\n    const Real epsilon\
+    \ = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class\
+    \ Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation {\
+    \ PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
     \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
     \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
@@ -232,7 +240,7 @@ data:
   path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   requiredBy:
   - Geometry/tangent/Common_Tangent_Points.hpp
-  timestamp: '2025-09-23 11:02:03+09:00'
+  timestamp: '2025-09-23 12:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7G.test.cpp
