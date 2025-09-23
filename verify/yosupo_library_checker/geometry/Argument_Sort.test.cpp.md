@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Geometry/Argument_Sort.hpp
-    title: Geometry/Argument_Sort.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Point.hpp
-    title: Geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Point.hpp
+    title: Geometry/object/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Argument_Sort.hpp
+    title: Geometry/utility/Argument_Sort.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -128,79 +128,79 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 2 \"Geometry/Argument_Sort.hpp\"\n\n#line 2 \"Geometry/Point.hpp\"\n\n#line\
-    \ 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry\
-    \ {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n    const\
-    \ Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1,\
-    \ ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
-    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
-    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
-    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
-    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
-    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
-    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
-    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
-    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
-    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
-    \ { return sign(b - a); }\n};\n#line 4 \"Geometry/Point.hpp\"\n\nnamespace geometry\
-    \ {\n    template<typename R>\n    class Point {\n        public:\n        R x,\
-    \ y;\n\n        public:\n        Point(): x(0), y(0) {}\n        Point(R _x, R\
-    \ _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n        Point& operator+=(const\
-    \ Point &B){\n            x += B.x;\n            y += B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator+(const Point &P, const Point\
-    \ &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const\
-    \ Point &B){\n            x -= B.x;\n            y -= B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator-(const Point &P, const Point\
-    \ &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n\
-    \        Point& operator*=(const R &a){\n            x *= a;\n            y *=\
-    \ a;\n            return *this;\n        }\n\n        friend Point operator*(const\
-    \ Point &P, const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
-    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
-    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
-    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
-    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
-    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
-    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
-    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
-    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
-    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
-    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
-    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
-    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
-    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
-    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
-    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
-    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
-    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
-    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
-    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
-    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
-    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
-    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
-    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
-    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
-    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
-    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
-    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
-    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
-    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
-    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
-    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
-    \ P.x); }\n}\n#line 4 \"Geometry/Argument_Sort.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    void Argument_Sort(vector<Point<R>> &points) {\n\
-    \        function<int(Point<R>)> section = [](const Point<R> &P) {\n         \
-    \   int sx = sign(P.x), sy = sign(P.y);\n            if (sy != 0) { return sy;\
-    \ }\n            return -sx;\n        };\n\n        function<bool(Point<R>, Point<R>)>\
-    \ cmp = [&](const Point<R> &P, const Point<R> &Q) {\n            int sp = section(P),\
-    \ sq = section(Q);\n            if (sp != sq) { return sp < sq; }\n          \
-    \  return sign(cross(P, Q)) > 0;\n        };\n\n        sort(points.begin(), points.end(),\
-    \ cmp);\n    }\n}\n#line 5 \"verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp\"\
+    #line 2 \"Geometry/utility/Argument_Sort.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
+    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
+    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
+    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
+    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
+    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
+    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
+    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
+    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
+    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
+    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
+    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
+    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
+    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
+    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
+    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
+    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
+    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
+    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
+    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
+    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
+    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
+    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
+    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
+    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
+    \            return *this;\n        }\n\n        friend Point operator/(const\
+    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
+    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
+    \            x = x1;\n            y = y1;\n            return *this;\n       \
+    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
+    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
+    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
+    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
+    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
+    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
+    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
+    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
+    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
+    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
+    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
+    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
+    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
+    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
+    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
+    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
+    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
+    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
+    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
+    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
+    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
+    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
+    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
+    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
+    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
+    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/utility/Argument_Sort.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    void Argument_Sort(vector<Point<R>>\
+    \ &points) {\n        function<int(Point<R>)> section = [](const Point<R> &P)\
+    \ {\n            int sx = sign(P.x), sy = sign(P.y);\n            if (sy != 0)\
+    \ { return sy; }\n            return -sx;\n        };\n\n        function<bool(Point<R>,\
+    \ Point<R>)> cmp = [&](const Point<R> &P, const Point<R> &Q) {\n            int\
+    \ sp = section(P), sq = section(Q);\n            if (sp != sq) { return sp < sq;\
+    \ }\n            return sign(cross(P, Q)) > 0;\n        };\n\n        sort(points.begin(),\
+    \ points.end(), cmp);\n    }\n}\n#line 5 \"verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp\"\
     \n\nusing namespace geometry;\n\nint main() {\n    int N; cin >> N;\n    vector<Point<ll>>\
     \ P(N); cin >> P;\n\n    Argument_Sort(P);\n\n    for (int i = 0; i < N; i++)\
     \ { cout << P[i] << endl; }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Geometry/Argument_Sort.hpp\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Geometry/utility/Argument_Sort.hpp\"\
     \n\nusing namespace geometry;\n\nint main() {\n    int N; cin >> N;\n    vector<Point<ll>>\
     \ P(N); cin >> P;\n\n    Argument_Sort(P);\n\n    for (int i = 0; i < N; i++)\
     \ { cout << P[i] << endl; }\n}\n"
@@ -210,13 +210,13 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/Argument_Sort.hpp
-  - Geometry/Point.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/object/Point.hpp
   - Geometry/base.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   requiredBy: []
-  timestamp: '2025-09-21 13:25:19+09:00'
+  timestamp: '2025-09-23 11:02:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp

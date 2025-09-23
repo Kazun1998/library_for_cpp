@@ -8,9 +8,6 @@ data:
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Polygon.hpp
-    title: Geometry/object/Polygon.hpp
-  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -26,24 +23,24 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+    title: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    links: []
+  bundledCode: "#line 2 \"Geometry/utility/Argument_Sort.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
+    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
+    \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
     #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
     #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
     \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
@@ -127,12 +124,11 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Geometry/object/Polygon.hpp\"\
-    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
-    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
-    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
-    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
-    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\
+    \n\nnamespace geometry {\n    using Real = double long;\n    const Real epsilon\
+    \ = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class\
+    \ Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation {\
+    \ PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
     \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
     \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
@@ -186,45 +182,43 @@ data:
     \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
     \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
     \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/object/Polygon.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    struct Polygon {\n   \
-    \     vector<Point<R>> vertices;\n        int n;\n\n        Polygon() = default;\n\
-    \        Polygon(const vector<Point<R>> &_vertices): vertices(_vertices), n(_vertices.size())\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Polygon<R> &X) {\n\
-    \        R area = cross(X.vertices[X.n - 1], X.vertices[0]);\n        for (int\
-    \ i = 0; i < X.n - 1; i++) {\n            area += cross(X.vertices[i], X.vertices[i\
-    \ + 1]);\n        }\n\n        return abs(area) / 2;\n    }\n}\n#line 5 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Geometry/object/Polygon.hpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/utility/Argument_Sort.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    void Argument_Sort(vector<Point<R>>\
+    \ &points) {\n        function<int(Point<R>)> section = [](const Point<R> &P)\
+    \ {\n            int sx = sign(P.x), sy = sign(P.y);\n            if (sy != 0)\
+    \ { return sy; }\n            return -sx;\n        };\n\n        function<bool(Point<R>,\
+    \ Point<R>)> cmp = [&](const Point<R> &P, const Point<R> &Q) {\n            int\
+    \ sp = section(P), sq = section(Q);\n            if (sp != sq) { return sp < sq;\
+    \ }\n            return sign(cross(P, Q)) > 0;\n        };\n\n        sort(points.begin(),\
+    \ points.end(), cmp);\n    }\n}\n"
+  code: "#pragma once\n\n#include\"../object/Point.hpp\"\n\nnamespace geometry {\n\
+    \    template<typename R>\n    void Argument_Sort(vector<Point<R>> &points) {\n\
+    \        function<int(Point<R>)> section = [](const Point<R> &P) {\n         \
+    \   int sx = sign(P.x), sy = sign(P.y);\n            if (sy != 0) { return sy;\
+    \ }\n            return -sx;\n        };\n\n        function<bool(Point<R>, Point<R>)>\
+    \ cmp = [&](const Point<R> &P, const Point<R> &Q) {\n            int sp = section(P),\
+    \ sq = section(Q);\n            if (sp != sq) { return sp < sq; }\n          \
+    \  return sign(cross(P, Q)) > 0;\n        };\n\n        sort(points.begin(), points.end(),\
+    \ cmp);\n    }\n}\n"
   dependsOn:
+  - Geometry/object/Point.hpp
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/object/Polygon.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/3A.test.cpp
+  isVerificationFile: false
+  path: Geometry/utility/Argument_Sort.hpp
   requiredBy: []
   timestamp: '2025-09-23 11:02:03+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/3A.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+documentation_of: Geometry/utility/Argument_Sort.hpp
 layout: document
 redirect_from:
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp.html
-title: verify/aizu_online_judge/cgl/3A.test.cpp
+- /library/Geometry/utility/Argument_Sort.hpp
+- /library/Geometry/utility/Argument_Sort.hpp.html
+title: Geometry/utility/Argument_Sort.hpp
 ---

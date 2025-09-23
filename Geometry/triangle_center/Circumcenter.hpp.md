@@ -5,23 +5,29 @@ data:
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Line_and_Line.hpp
+    title: Geometry/intersection/Intersection_Line_and_Line.hpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Line.hpp
     title: Geometry/object/Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/projection/Projection_Point_Line.hpp
-    title: Geometry/projection/Projection_Point_Line.hpp
+    path: Geometry/object/Triangle.hpp
+    title: Geometry/object/Triangle.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/reflection/Reflection_Point_Line.hpp
-    title: Geometry/reflection/Reflection_Point_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/reflection/Reflection_Point_Point.hpp
-    title: Geometry/reflection/Reflection_Point_Point.hpp
+    path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+    title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Division_Point.hpp
+    title: Geometry/utility/Division_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Perpendicular_Bisector.hpp
+    title: Geometry/utility/Perpendicular_Bisector.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -37,40 +43,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Geometry/triangle_center/Circumcircle.hpp
+    title: Geometry/triangle_center/Circumcircle.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7C.test.cpp
+    title: verify/aizu_online_judge/cgl/7C.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/1B.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\n#define\
-    \ ERROR 0.00000001\n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\
-    \n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"Geometry/triangle_center/Circumcenter.hpp\"\n\n#line 2 \"\
+    Geometry/utility/Perpendicular_Bisector.hpp\"\n\n#line 2 \"Geometry/object/Line.hpp\"\
+    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
     \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
     \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
     \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
@@ -141,15 +150,12 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 2 \"Geometry/reflection/Reflection_Point_Line.hpp\"\n\n#line 2 \"Geometry/projection/Projection_Point_Line.hpp\"\
-    \n\n#line 2 \"Geometry/object/Line.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
+    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
+    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
+    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
+    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
     \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
     \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
@@ -221,53 +227,90 @@ data:
     \ counter_vectorize() const { return A - B; }\n\n        Inclusion include(const\
     \ Point<R> &P) {\n            int m = Counter_Clockwise(A, B, P);\n          \
     \  return (m == ON_SEGMENT || m == ONLINE_BACK || m == ONLINE_FRONT) ? Inclusion::ON\
-    \ : Inclusion::OUT;\n        }\n    };\n}\n#line 4 \"Geometry/projection/Projection_Point_Line.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    Point<R> Projection(const\
-    \ Point<R> &P, const Line<R> &l) {\n        auto d = l.vectorize();\n        auto\
-    \ t = dot(P - l.A, d) / norm_2(d); \n        return l.A + t * d;\n    }\n}\n#line\
-    \ 2 \"Geometry/reflection/Reflection_Point_Point.hpp\"\n\n#line 4 \"Geometry/reflection/Reflection_Point_Point.hpp\"\
-    \n\nnamespace geometry {\n    // \u70B9 P \u304C\u70B9 X \u306B\u95A2\u3057\u3066\
-    \u5BFE\u79F0\u79FB\u52D5\u3057\u305F\u5F8C\u306E\u70B9\u3092\u6C42\u3081\u308B\
-    .\n    template<typename R>\n    Point<R> Reflection(const Point<R> &P, const\
-    \ Point<R> &X) {\n        return 2 * X - P;\n    }\n}\n#line 5 \"Geometry/reflection/Reflection_Point_Line.hpp\"\
-    \n\nnamespace geometry {\n    // \u76F4\u7DDA L \u306B\u95A2\u3057\u3066, \u70B9\
-    \ P \u3068\u5BFE\u79F0\u306A\u70B9\n    template<typename R>\n    Point<R> Reflection(const\
-    \ Point<R> &P, const Line<R> &l) {\n        return Reflection(P, Projection(P,\
-    \ l));\n    }\n}\n#line 6 \"verify/aizu_online_judge/cgl/1B.test.cpp\"\n\nusing\
-    \ namespace geometry;\n\nint main() {\n    Line<Real> l; cin >> l.A >> l.B;\n\n\
-    \    int Q; cin >> Q;\n    cout << fixed << setprecision(10);\n    for (int q\
-    \ = 0; q < Q; q++) {\n        Point<Real> P; cin >> P;\n        cout << Reflection(P,\
-    \ l) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#include\"../../../template/template.hpp\"\n#include\"\
-    ../../../Geometry/reflection/Reflection_Point_Line.hpp\"\n\nusing namespace geometry;\n\
-    \nint main() {\n    Line<Real> l; cin >> l.A >> l.B;\n\n    int Q; cin >> Q;\n\
-    \    cout << fixed << setprecision(10);\n    for (int q = 0; q < Q; q++) {\n \
-    \       Point<Real> P; cin >> P;\n        cout << Reflection(P, l) << endl;\n\
-    \    }\n}\n"
+    \ : Inclusion::OUT;\n        }\n    };\n}\n#line 2 \"Geometry/utility/Division_Point.hpp\"\
+    \n\n#line 4 \"Geometry/utility/Division_Point.hpp\"\n\nnamespace geometry {\n\
+    \    // \u7DDA\u5206 AB \u3092 p:q \u306B\u5185\u5206\u3059\u308B\u70B9\u3092\u6C42\
+    \u3081\u308B.\n    template<typename R>\n    Point<R> Internal_Division(const\
+    \ Point<R> &A, const Point<R> &B, const R &p, const R &q) {\n        return (q\
+    \ * A + p * B) / (p + q);\n    }\n\n    // \u7DDA\u5206 AB \u306E\u4E2D\u70B9\n\
+    \    template<typename R>\n    Point<R> MidPoint(const Point<R> &A, const Point<R>\
+    \ &B) { return (A + B) / 2; }\n\n    // \u7DDA\u5206 AB \u3092 p:q \u306B\u5916\
+    \u5206\u3059\u308B\u70B9\u3092\u6C42\u3081\u308B.\n    template<typename R>\n\
+    \    Point<R> External_Division(const Point<R> &A, const Point<R> &B, const R\
+    \ &p, const R &q) {\n        return (-q * A + p * B) / (p - q);\n    }\n}\n#line\
+    \ 5 \"Geometry/utility/Perpendicular_Bisector.hpp\"\n\nnamespace geometry {\n\
+    \    // 2 \u70B9 A, B \u306B\u95A2\u3059\u308B\u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\
+    \u3092\u6C42\u3081\u308B.\n    template<typename R>\n    Line<R> Perpendicular_Bisector(const\
+    \ Point<R> &A, const Point<R> &B) {\n        auto M = MidPoint(A, B);\n      \
+    \  auto d = B - A;\n        Point<R> n(-d.y, d.x);\n\n        return Line<R>(M,\
+    \ M + n);\n    }\n}\n#line 2 \"Geometry/intersection/Intersection_Line_and_Line.hpp\"\
+    \n\n#line 2 \"Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp\"\n\n#line\
+    \ 4 \"Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp\"\n\nnamespace geometry\
+    \ {\n    template<typename R>\n    bool is_Parallel(const Line<R> &l, const Line<R>\
+    \ &m) {\n        return sign(dot(l.vectorize(), m.vectorize())) == 0;\n    }\n\
+    \n    template<typename R>\n    bool is_Orthogonal(const Line<R> &l, const Line<R>\
+    \ &m) {\n        return sign(cross(l.vectorize(), m.vectorize())) == 0;\n    }\n\
+    \n    template<typename R>\n    Direction_Relation Parallel_Orthogonal (const\
+    \ Line<R> &l, const Line<R> &m) {\n        if (is_Parallel(l, m)) { return Direction_Relation::ORTHOGONAL;\
+    \ }\n        if (is_Orthogonal(l, m)) { return Direction_Relation::PARALLEL; }\n\
+    \        return Direction_Relation::CROSS;\n    }\n};\n#line 5 \"Geometry/intersection/Intersection_Line_and_Line.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    bool has_Intersection(const\
+    \ Line<R> &l, const Line<R> &m) {\n        if (Parallel_Orthogonal(l, m) == Direction_Relation::CROSS)\
+    \ { return true; }\n        return l.include(m.A);\n    }\n\n    template<typename\
+    \ R>\n    Point<R> Intersection(const Line<R> &l, const Line<R> &m) {\n      \
+    \  auto a = l.A, b = l.B, c = m.A, d = m.B;\n        R S1 = cross(d - a, d - c),\
+    \ S2 = cross(b - a, d - c);\n        R k = S1 / S2;\n        return a + k * (b\
+    \ - a);\n    }\n}\n#line 2 \"Geometry/object/Triangle.hpp\"\n\n#line 4 \"Geometry/object/Triangle.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    class Triangle {\n   \
+    \     public:\n        Point<R> A, B, C;\n\n        public:\n        Triangle()\
+    \ = default;\n        Triangle(const Point<R> a, const Point<R> b, const Point<R>\
+    \ c): A(a), B(b), C(c) {}\n\n        // \u8FBA BC, \u8FBA CA, \u8FBA AB \u306E\
+    \u9577\u3055\u3092\u51FA\u529B\u3059\u308B.\n        tuple<double, double, double>\
+    \ edges() const {\n            return make_tuple(norm(C - B), norm(A - C), norm(B\
+    \ - A));\n        }\n\n        // [PBC] : [PCA] : [PAB] = alpha : beta : gamma\
+    \ \u3092\u6E80\u305F\u3059\u70B9 P \u3092\u6C42\u3081\u308B.\n        Point<R>\
+    \ balance(const R &alpha, const R &beta, const R &gamma) const {\n           \
+    \ return (alpha * A + beta * B + gamma * C) / (alpha + beta + gamma);\n      \
+    \  }\n    };\n\n    template<typename R>\n    R Area(const Triangle<R> &T) {\n\
+    \        auto X = cross(T.B - T.A, T.C - T.A);\n        return sign(X) >= 0 ?\
+    \ X / 2 : -X / 2;\n    }\n}\n#line 6 \"Geometry/triangle_center/Circumcenter.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    Point<R> Circumcenter(const\
+    \ Triangle<R> &T) { \n        Line<R> l = Perpendicular_Bisector(T.A, T.B), m\
+    \ = Perpendicular_Bisector(T.A, T.C);\n        return Intersection(l, m);\n  \
+    \  }\n}\n"
+  code: "#pragma once\n\n#include\"../utility/Perpendicular_Bisector.hpp\"\n#include\"\
+    ../intersection/Intersection_Line_and_Line.hpp\"\n#include\"../object/Triangle.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    Point<R> Circumcenter(const\
+    \ Triangle<R> &T) { \n        Line<R> l = Perpendicular_Bisector(T.A, T.B), m\
+    \ = Perpendicular_Bisector(T.A, T.C);\n        return Intersection(l, m);\n  \
+    \  }\n}\n"
   dependsOn:
+  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/projection/Projection_Point_Line.hpp
-  - Geometry/object/Line.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
   - Geometry/utility/Counter_Clockwise.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/1B.test.cpp
-  requiredBy: []
-  timestamp: '2025-09-23 11:12:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/1B.test.cpp
+  - Geometry/utility/Division_Point.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/object/Triangle.hpp
+  isVerificationFile: false
+  path: Geometry/triangle_center/Circumcenter.hpp
+  requiredBy:
+  - Geometry/triangle_center/Circumcircle.hpp
+  timestamp: '2025-09-23 11:16:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+documentation_of: Geometry/triangle_center/Circumcenter.hpp
 layout: document
 redirect_from:
-- /verify/verify/aizu_online_judge/cgl/1B.test.cpp
-- /verify/verify/aizu_online_judge/cgl/1B.test.cpp.html
-title: verify/aizu_online_judge/cgl/1B.test.cpp
+- /library/Geometry/triangle_center/Circumcenter.hpp
+- /library/Geometry/triangle_center/Circumcenter.hpp.html
+title: Geometry/triangle_center/Circumcenter.hpp
 ---

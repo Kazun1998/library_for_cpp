@@ -5,11 +5,14 @@ data:
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/object/Line.hpp
+    title: Geometry/object/Line.hpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Polygon.hpp
-    title: Geometry/object/Polygon.hpp
+    path: Geometry/utility/Counter_Clockwise.hpp
+    title: Geometry/utility/Counter_Clockwise.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -25,25 +28,38 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Line.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/reflection/Reflection_Point_Line.hpp
+    title: Geometry/reflection/Reflection_Point_Line.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1A.test.cpp
+    title: verify/aizu_online_judge/cgl/1A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1B.test.cpp
+    title: verify/aizu_online_judge/cgl/1B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7D.test.cpp
+    title: verify/aizu_online_judge/cgl/7D.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    links: []
+  bundledCode: "#line 2 \"Geometry/projection/Projection_Point_Line.hpp\"\n\n#line\
+    \ 2 \"Geometry/object/Line.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\n\n\
+    #line 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing namespace\
+    \ std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n#include\
+    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
     #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
     #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
     \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
@@ -127,12 +143,11 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Geometry/object/Polygon.hpp\"\
-    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
-    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
-    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
-    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
-    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\
+    \n\nnamespace geometry {\n    using Real = double long;\n    const Real epsilon\
+    \ = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class\
+    \ Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation {\
+    \ PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
     \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
     \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
@@ -186,45 +201,59 @@ data:
     \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
     \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
     \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/object/Polygon.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    struct Polygon {\n   \
-    \     vector<Point<R>> vertices;\n        int n;\n\n        Polygon() = default;\n\
-    \        Polygon(const vector<Point<R>> &_vertices): vertices(_vertices), n(_vertices.size())\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Polygon<R> &X) {\n\
-    \        R area = cross(X.vertices[X.n - 1], X.vertices[0]);\n        for (int\
-    \ i = 0; i < X.n - 1; i++) {\n            area += cross(X.vertices[i], X.vertices[i\
-    \ + 1]);\n        }\n\n        return abs(area) / 2;\n    }\n}\n#line 5 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Geometry/object/Polygon.hpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\
+    \n\n#line 4 \"Geometry/utility/Counter_Clockwise.hpp\"\n\nnamespace geometry {\n\
+    \    constexpr int COUNTER_CLOCKWISE = +1;\n    constexpr int CLOCKWISE = -1;\n\
+    \    constexpr int ONLINE_BACK = -2;   // c-a-b\n    constexpr int ONLINE_FRONT\
+    \ = +2;  // a-b-c\n    constexpr int ON_SEGMENT = 0;     // a-c-b\n\n    // A\
+    \ -> B -> C \u3068\u9032\u3093\u3060\u6642\u306E\u9032\u884C\u65B9\u5411\u3092\
+    \u8ABF\u3079\u308B (B \u8996\u70B9)\n    // Input\n    // A: \u59CB\u70B9\n  \
+    \  // B: \u4E2D\u7D99\u5730\u70B9\n    // C: \u7D42\u70B9\n    template<typename\
+    \ R>\n    int Counter_Clockwise(const Point<R> &A, Point<R> B, Point<R> C) {\n\
+    \        B = B - A; C = C - A;\n        if (sign(cross(B, C)) == +1) { return\
+    \ COUNTER_CLOCKWISE; }\n        if (sign(cross(B, C)) == -1) { return CLOCKWISE;\
+    \ }\n        if (sign(dot(B, C)) == -1) { return ONLINE_BACK; }\n        if (norm_2(B)\
+    \ < norm_2(C)) { return ONLINE_FRONT; }\n        return ON_SEGMENT;\n    }\n}\n\
+    #line 5 \"Geometry/object/Line.hpp\"\n\nnamespace geometry {\n    template<typename\
+    \ R>\n    struct Line {\n        Point<R> A, B;\n\n        Line() = default;\n\
+    \        Line(const Point<R> &A, const Point<R> &B): A(A), B(B) {}\n\n       \
+    \ inline Point<R> vectorize() const { return B - A; }\n        inline Point<R>\
+    \ counter_vectorize() const { return A - B; }\n\n        Inclusion include(const\
+    \ Point<R> &P) {\n            int m = Counter_Clockwise(A, B, P);\n          \
+    \  return (m == ON_SEGMENT || m == ONLINE_BACK || m == ONLINE_FRONT) ? Inclusion::ON\
+    \ : Inclusion::OUT;\n        }\n    };\n}\n#line 4 \"Geometry/projection/Projection_Point_Line.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    Point<R> Projection(const\
+    \ Point<R> &P, const Line<R> &l) {\n        auto d = l.vectorize();\n        auto\
+    \ t = dot(P - l.A, d) / norm_2(d); \n        return l.A + t * d;\n    }\n}\n"
+  code: "#pragma once\n\n#include\"../object/Line.hpp\"\n\nnamespace geometry {\n\
+    \    template<typename R>\n    Point<R> Projection(const Point<R> &P, const Line<R>\
+    \ &l) {\n        auto d = l.vectorize();\n        auto t = dot(P - l.A, d) / norm_2(d);\
+    \ \n        return l.A + t * d;\n    }\n}\n"
   dependsOn:
+  - Geometry/object/Line.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/object/Polygon.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/3A.test.cpp
-  requiredBy: []
+  - Geometry/utility/Counter_Clockwise.hpp
+  isVerificationFile: false
+  path: Geometry/projection/Projection_Point_Line.hpp
+  requiredBy:
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
   timestamp: '2025-09-23 11:02:03+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/3A.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+documentation_of: Geometry/projection/Projection_Point_Line.hpp
 layout: document
 redirect_from:
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp.html
-title: verify/aizu_online_judge/cgl/3A.test.cpp
+- /library/Geometry/projection/Projection_Point_Line.hpp
+- /library/Geometry/projection/Projection_Point_Line.hpp.html
+title: Geometry/projection/Projection_Point_Line.hpp
 ---

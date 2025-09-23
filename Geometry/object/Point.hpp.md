@@ -5,18 +5,6 @@ data:
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Polygon.hpp
-    title: Geometry/object/Polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Convex_Hull.hpp
-    title: Geometry/utility/Convex_Hull.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Counter_Clockwise.hpp
-    title: Geometry/utility/Counter_Clockwise.hpp
-  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -31,20 +19,148 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Geometry/distance/Distance_Line_and_Point.hpp
+    title: Geometry/distance/Distance_Line_and_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Line.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Line_and_Line.hpp
+    title: Geometry/intersection/Intersection_Line_and_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Segment_and_Segment.hpp
+    title: Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Circle.hpp
+    title: Geometry/object/Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Line.hpp
+    title: Geometry/object/Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Polygon.hpp
+    title: Geometry/object/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Segment.hpp
+    title: Geometry/object/Segment.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Triangle.hpp
+    title: Geometry/object/Triangle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/projection/Projection_Point_Line.hpp
+    title: Geometry/projection/Projection_Point_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/reflection/Reflection_Point_Line.hpp
+    title: Geometry/reflection/Reflection_Point_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/reflection/Reflection_Point_Point.hpp
+    title: Geometry/reflection/Reflection_Point_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+    title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/relationship/Relationship_Circle_and_Circle.hpp
+    title: Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/tangent/Common_Tangent_Points.hpp
+    title: Geometry/tangent/Common_Tangent_Points.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+    title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - icon: ':warning:'
+    path: Geometry/triangle_center/Centroid.hpp
+    title: Geometry/triangle_center/Centroid.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/triangle_center/Circumcenter.hpp
+    title: Geometry/triangle_center/Circumcenter.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/triangle_center/Circumcircle.hpp
+    title: Geometry/triangle_center/Circumcircle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/triangle_center/Incenter.hpp
+    title: Geometry/triangle_center/Incenter.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/triangle_center/Incircle.hpp
+    title: Geometry/triangle_center/Incircle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Argument_Sort.hpp
+    title: Geometry/utility/Argument_Sort.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Convex_Hull.hpp
+    title: Geometry/utility/Convex_Hull.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Counter_Clockwise.hpp
+    title: Geometry/utility/Counter_Clockwise.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Division_Point.hpp
+    title: Geometry/utility/Division_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/utility/Perpendicular_Bisector.hpp
+    title: Geometry/utility/Perpendicular_Bisector.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1A.test.cpp
+    title: verify/aizu_online_judge/cgl/1A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1B.test.cpp
+    title: verify/aizu_online_judge/cgl/1B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1C.test.cpp
+    title: verify/aizu_online_judge/cgl/1C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/2A.test.cpp
+    title: verify/aizu_online_judge/cgl/2A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/2B.test.cpp
+    title: verify/aizu_online_judge/cgl/2B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/2C.test.cpp
+    title: verify/aizu_online_judge/cgl/2C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/3A.test.cpp
+    title: verify/aizu_online_judge/cgl/3A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/4A.test.cpp
+    title: verify/aizu_online_judge/cgl/4A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7A.test.cpp
+    title: verify/aizu_online_judge/cgl/7A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7B.test.cpp
+    title: verify/aizu_online_judge/cgl/7B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7C.test.cpp
+    title: verify/aizu_online_judge/cgl/7C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7D.test.cpp
+    title: verify/aizu_online_judge/cgl/7D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7E.test.cpp
+    title: verify/aizu_online_judge/cgl/7E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7F.test.cpp
+    title: verify/aizu_online_judge/cgl/7F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7G.test.cpp
+    title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+    title: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+    title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
-    links:
-    - https://judge.yosupo.jp/problem/static_convex_hull
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    links: []
+  bundledCode: "#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -134,8 +250,6 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 2 \"Geometry/utility/Convex_Hull.hpp\"\n\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\
-    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
     #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
     \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
     \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
@@ -193,73 +307,114 @@ data:
     \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
     \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
     \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/utility/Counter_Clockwise.hpp\"\
-    \n\nnamespace geometry {\n    constexpr int COUNTER_CLOCKWISE = +1;\n    constexpr\
-    \ int CLOCKWISE = -1;\n    constexpr int ONLINE_BACK = -2;   // c-a-b\n    constexpr\
-    \ int ONLINE_FRONT = +2;  // a-b-c\n    constexpr int ON_SEGMENT = 0;     // a-c-b\n\
-    \n    // A -> B -> C \u3068\u9032\u3093\u3060\u6642\u306E\u9032\u884C\u65B9\u5411\
-    \u3092\u8ABF\u3079\u308B (B \u8996\u70B9)\n    // Input\n    // A: \u59CB\u70B9\
-    \n    // B: \u4E2D\u7D99\u5730\u70B9\n    // C: \u7D42\u70B9\n    template<typename\
-    \ R>\n    int Counter_Clockwise(const Point<R> &A, Point<R> B, Point<R> C) {\n\
-    \        B = B - A; C = C - A;\n        if (sign(cross(B, C)) == +1) { return\
-    \ COUNTER_CLOCKWISE; }\n        if (sign(cross(B, C)) == -1) { return CLOCKWISE;\
-    \ }\n        if (sign(dot(B, C)) == -1) { return ONLINE_BACK; }\n        if (norm_2(B)\
-    \ < norm_2(C)) { return ONLINE_FRONT; }\n        return ON_SEGMENT;\n    }\n}\n\
-    #line 2 \"Geometry/object/Polygon.hpp\"\n\n#line 4 \"Geometry/object/Polygon.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    struct Polygon {\n   \
-    \     vector<Point<R>> vertices;\n        int n;\n\n        Polygon() = default;\n\
-    \        Polygon(const vector<Point<R>> &_vertices): vertices(_vertices), n(_vertices.size())\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Polygon<R> &X) {\n\
-    \        R area = cross(X.vertices[X.n - 1], X.vertices[0]);\n        for (int\
-    \ i = 0; i < X.n - 1; i++) {\n            area += cross(X.vertices[i], X.vertices[i\
-    \ + 1]);\n        }\n\n        return abs(area) / 2;\n    }\n}\n#line 5 \"Geometry/utility/Convex_Hull.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    Polygon<R> Convex_Hull(vector<Point<R>>\
-    \ points, bool strict = true) {\n        // \u524D\u51E6\u7406\n        sort(points.begin(),\
-    \ points.end(), compare_x<R>);\n        points.erase(unique(points.begin(), points.end()),\
-    \ points.end());\n\n        int n = points.size();\n\n        if (n <= 2) { return\
-    \ Polygon(points); }\n\n        int k = 0;\n        vector<Point<R>> vertices(2\
-    \ * n);\n        auto is_valid = [&](const int i) -> bool { \n            int\
-    \ d = Counter_Clockwise(vertices[k - 2], vertices[k - 1], points[i]);\n      \
-    \      return (d == COUNTER_CLOCKWISE || (!strict && d == ONLINE_FRONT));\n  \
-    \      };\n\n        for (int i = 0; i < n; vertices[k++] = points[i++]) {\n \
-    \           if (!vertices.empty() && vertices.back() == points[i]) { vertices.pop_back();\
-    \ }\n\n            while(k >= 2 && !is_valid(i)) {\n                k--;\n   \
-    \         }\n        }\n\n        for (int i = n - 2, t = k + 1; i >= 0; vertices[k++]\
-    \ = points[i--]) {\n            if (!vertices.empty() && vertices.back() == points[i])\
-    \ { vertices.pop_back(); }\n\n            while (k >= t && !is_valid(i)) {\n \
-    \               k--;\n            }\n        }\n\n        vertices.resize(k -\
-    \ 1);\n        return Polygon(vertices);\n    }\n}\n#line 5 \"verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp\"\
-    \n\nusing namespace geometry;\n\nvoid verify() {\n    int N; cin >> N;\n    vector<Point<ll>>\
-    \ points(N); cin >> points;\n\n    auto X = Convex_Hull(points);\n\n    cout <<\
-    \ X.n << \"\\n\";\n    for (auto point: X.vertices) { cout << point << \"\\n\"\
-    ; }\n}\n\nint main() {\n    int T; cin >> T;\n    rep(T) { verify(); }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Geometry/utility/Convex_Hull.hpp\"\
-    \n\nusing namespace geometry;\n\nvoid verify() {\n    int N; cin >> N;\n    vector<Point<ll>>\
-    \ points(N); cin >> points;\n\n    auto X = Convex_Hull(points);\n\n    cout <<\
-    \ X.n << \"\\n\";\n    for (auto point: X.vertices) { cout << point << \"\\n\"\
-    ; }\n}\n\nint main() {\n    int T; cin >> T;\n    rep(T) { verify(); }\n}\n"
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n"
+  code: "#pragma once\n\n#include\"../base.hpp\"\n\nnamespace geometry {\n    template<typename\
+    \ R>\n    class Point {\n        public:\n        R x, y;\n\n        public:\n\
+    \        Point(): x(0), y(0) {}\n        Point(R _x, R _y): x(_x), y(_y) {}\n\n\
+    \        // \u52A0\u6CD5\n        Point& operator+=(const Point &B){\n       \
+    \     x += B.x;\n            y += B.y;\n            return *this;\n        }\n\
+    \n        friend Point operator+(const Point &P, const Point &Q) { return Point(P)\
+    \ += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const Point &B){\n\
+    \            x -= B.x;\n            y -= B.y;\n            return *this;\n   \
+    \     }\n\n        friend Point operator-(const Point &P, const Point &Q) { return\
+    \ Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n        Point&\
+    \ operator*=(const R &a){\n            x *= a;\n            y *= a;\n        \
+    \    return *this;\n        }\n\n        friend Point operator*(const Point &P,\
+    \ const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
+    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
+    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
+    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
+    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
+    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
+    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
+    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
+    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
+    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
+    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
+    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
+    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
+    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
+    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
+    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
+    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
+    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
+    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
+    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
+    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
+    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
+    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
+    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
+    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
+    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
+    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
+    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
+    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
+    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
+    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
+    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
+    \ P.x); }\n}\n"
   dependsOn:
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/utility/Convex_Hull.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
+  isVerificationFile: false
+  path: Geometry/object/Point.hpp
+  requiredBy:
+  - Geometry/triangle_center/Centroid.hpp
+  - Geometry/triangle_center/Incenter.hpp
+  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/projection/Projection_Point_Line.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Circle.hpp
   - Geometry/object/Polygon.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  requiredBy: []
+  - Geometry/object/Triangle.hpp
+  - Geometry/object/Segment.hpp
+  - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/utility/Division_Point.hpp
   timestamp: '2025-09-23 11:02:03+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/7A.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/2B.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+documentation_of: Geometry/object/Point.hpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-- /verify/verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp.html
-title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+- /library/Geometry/object/Point.hpp
+- /library/Geometry/object/Point.hpp.html
+title: Geometry/object/Point.hpp
 ---

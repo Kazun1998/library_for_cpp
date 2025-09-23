@@ -14,9 +14,6 @@ data:
     path: Geometry/projection/Projection_Point_Line.hpp
     title: Geometry/projection/Projection_Point_Line.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/reflection/Reflection_Point_Line.hpp
-    title: Geometry/reflection/Reflection_Point_Line.hpp
-  - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Point.hpp
     title: Geometry/reflection/Reflection_Point_Point.hpp
   - icon: ':heavy_check_mark:'
@@ -38,39 +35,39 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/1B.test.cpp
+    title: verify/aizu_online_judge/cgl/1B.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/1B.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\n#define\
-    \ ERROR 0.00000001\n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\
-    \n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"Geometry/reflection/Reflection_Point_Line.hpp\"\n\n#line\
+    \ 2 \"Geometry/projection/Projection_Point_Line.hpp\"\n\n#line 2 \"Geometry/object/Line.hpp\"\
+    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
     \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
     \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
     \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
@@ -141,15 +138,12 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 2 \"Geometry/reflection/Reflection_Point_Line.hpp\"\n\n#line 2 \"Geometry/projection/Projection_Point_Line.hpp\"\
-    \n\n#line 2 \"Geometry/object/Line.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
+    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
+    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
+    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
+    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
     \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
     \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
@@ -233,41 +227,35 @@ data:
     \n\nnamespace geometry {\n    // \u76F4\u7DDA L \u306B\u95A2\u3057\u3066, \u70B9\
     \ P \u3068\u5BFE\u79F0\u306A\u70B9\n    template<typename R>\n    Point<R> Reflection(const\
     \ Point<R> &P, const Line<R> &l) {\n        return Reflection(P, Projection(P,\
-    \ l));\n    }\n}\n#line 6 \"verify/aizu_online_judge/cgl/1B.test.cpp\"\n\nusing\
-    \ namespace geometry;\n\nint main() {\n    Line<Real> l; cin >> l.A >> l.B;\n\n\
-    \    int Q; cin >> Q;\n    cout << fixed << setprecision(10);\n    for (int q\
-    \ = 0; q < Q; q++) {\n        Point<Real> P; cin >> P;\n        cout << Reflection(P,\
-    \ l) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#include\"../../../template/template.hpp\"\n#include\"\
-    ../../../Geometry/reflection/Reflection_Point_Line.hpp\"\n\nusing namespace geometry;\n\
-    \nint main() {\n    Line<Real> l; cin >> l.A >> l.B;\n\n    int Q; cin >> Q;\n\
-    \    cout << fixed << setprecision(10);\n    for (int q = 0; q < Q; q++) {\n \
-    \       Point<Real> P; cin >> P;\n        cout << Reflection(P, l) << endl;\n\
-    \    }\n}\n"
+    \ l));\n    }\n}\n"
+  code: "#pragma once\n\n#include\"../projection/Projection_Point_Line.hpp\"\n#include\"\
+    Reflection_Point_Point.hpp\"\n\nnamespace geometry {\n    // \u76F4\u7DDA L \u306B\
+    \u95A2\u3057\u3066, \u70B9 P \u3068\u5BFE\u79F0\u306A\u70B9\n    template<typename\
+    \ R>\n    Point<R> Reflection(const Point<R> &P, const Line<R> &l) {\n       \
+    \ return Reflection(P, Projection(P, l));\n    }\n}\n"
   dependsOn:
+  - Geometry/projection/Projection_Point_Line.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/projection/Projection_Point_Line.hpp
-  - Geometry/object/Line.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
   - Geometry/utility/Counter_Clockwise.hpp
   - Geometry/reflection/Reflection_Point_Point.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/1B.test.cpp
+  isVerificationFile: false
+  path: Geometry/reflection/Reflection_Point_Line.hpp
   requiredBy: []
-  timestamp: '2025-09-23 11:12:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/1B.test.cpp
+  timestamp: '2025-09-23 11:02:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+documentation_of: Geometry/reflection/Reflection_Point_Line.hpp
 layout: document
 redirect_from:
-- /verify/verify/aizu_online_judge/cgl/1B.test.cpp
-- /verify/verify/aizu_online_judge/cgl/1B.test.cpp.html
-title: verify/aizu_online_judge/cgl/1B.test.cpp
+- /library/Geometry/reflection/Reflection_Point_Line.hpp
+- /library/Geometry/reflection/Reflection_Point_Line.hpp.html
+title: Geometry/reflection/Reflection_Point_Line.hpp
 ---

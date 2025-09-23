@@ -5,14 +5,14 @@ data:
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Circle.hpp
     title: Geometry/object/Circle.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/relationship/Relationship_Circle_and_Circle.hpp
-    title: Geometry/relationship/Relationship_Circle_and_Circle.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -28,19 +28,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Geometry/tangent/Common_Tangent_Points.hpp
+    title: Geometry/tangent/Common_Tangent_Points.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7F.test.cpp
+    title: verify/aizu_online_judge/cgl/7F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/cgl/7G.test.cpp
+    title: verify/aizu_online_judge/cgl/7G.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/7A.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    links: []
+  bundledCode: "#line 2 \"Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp\"\
+    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -131,107 +137,110 @@ data:
     \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
     \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
     \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n\
-    #line 2 \"Geometry/relationship/Relationship_Circle_and_Circle.hpp\"\n\n#line\
-    \ 2 \"Geometry/object/Circle.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\n\n\
-    #line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry\
-    \ {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n    const\
-    \ Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1,\
-    \ ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
-    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
-    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
-    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
-    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
-    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
-    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
-    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
-    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
-    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
-    \ { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\n\nnamespace\
-    \ geometry {\n    template<typename R>\n    class Point {\n        public:\n \
-    \       R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n        Point(R\
-    \ _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n        Point& operator+=(const\
-    \ Point &B){\n            x += B.x;\n            y += B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator+(const Point &P, const Point\
-    \ &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const\
-    \ Point &B){\n            x -= B.x;\n            y -= B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator-(const Point &P, const Point\
-    \ &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n\
-    \        Point& operator*=(const R &a){\n            x *= a;\n            y *=\
-    \ a;\n            return *this;\n        }\n\n        friend Point operator*(const\
-    \ Point &P, const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
-    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
-    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
-    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
-    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
-    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
-    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
-    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
-    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
-    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
-    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
-    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
-    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
-    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
-    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
-    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
-    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
-    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
-    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
-    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
-    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
-    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
-    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
-    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
-    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
-    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
-    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
-    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
-    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
-    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
-    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
-    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
-    \ P.x); }\n}\n#line 4 \"Geometry/object/Circle.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    class Circle {\n        public:\n        Point<R>\
-    \ center;\n        R radius;\n\n        public:\n        Circle() = default;\n\
-    \        Circle(const Point<R> &_center, const R &_radius): center(_center), radius(_radius)\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Circle<R> &C) { return\
-    \ pi * C.radius * C.radius; }\n}\n#line 4 \"Geometry/relationship/Relationship_Circle_and_Circle.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    int Relationship(const\
-    \ Circle<R> &C, const Circle<R> &D) {\n        unless (C.radius <= D.radius) {\
-    \ return Relationship(D, C); }\n\n        auto d = norm(C.center - D.center);\n\
-    \        auto r = C.radius, s = D.radius;\n\n        int p = compare(r + s, d);\n\
-    \        if (p == 1) { return 4; }\n        else if (p == 0) { return 3; }\n\n\
-    \        int q = compare(s - r, d);\n        if (q == 1) { return 2; }\n     \
-    \   else if (q == 0) { return 1; }\n\n        return 0;\n    }\n}\n#line 5 \"\
-    verify/aizu_online_judge/cgl/7A.test.cpp\"\n\nusing namespace geometry;\n\nint\
-    \ main() {\n    Circle<Real> C, D;\n\n    cin >> C.center >> C.radius;\n    cin\
-    \ >> D.center >> D.radius;\n    \n    cout << Relationship(C, D) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Geometry/relationship/Relationship_Circle_and_Circle.hpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    Circle<Real> C, D;\n\n    cin\
-    \ >> C.center >> C.radius;\n    cin >> D.center >> D.radius;\n    \n    cout <<\
-    \ Relationship(C, D) << endl;\n}\n"
+    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
+    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
+    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
+    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
+    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
+    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
+    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
+    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
+    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
+    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
+    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
+    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
+    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
+    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
+    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
+    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
+    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
+    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
+    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
+    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
+    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
+    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
+    \            return *this;\n        }\n\n        friend Point operator/(const\
+    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
+    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
+    \            x = x1;\n            y = y1;\n            return *this;\n       \
+    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
+    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
+    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
+    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
+    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
+    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
+    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
+    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
+    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
+    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
+    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
+    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
+    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
+    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
+    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
+    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
+    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
+    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
+    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
+    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
+    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
+    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
+    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
+    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
+    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
+    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 2 \"Geometry/object/Circle.hpp\"\
+    \n\n#line 4 \"Geometry/object/Circle.hpp\"\n\nnamespace geometry {\n    template<typename\
+    \ R>\n    class Circle {\n        public:\n        Point<R> center;\n        R\
+    \ radius;\n\n        public:\n        Circle() = default;\n        Circle(const\
+    \ Point<R> &_center, const R &_radius): center(_center), radius(_radius) {}\n\
+    \    };\n\n    template<typename R>\n    R Area(const Circle<R> &C) { return pi\
+    \ * C.radius * C.radius; }\n}\n#line 2 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\
+    \n\n#line 4 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\n\nnamespace\
+    \ geometry {\n    template<typename R>\n    vector<Point<Real>> Intersection(const\
+    \ Circle<R> &C, const Circle<R> &D) {\n        Point<R> v = D.center - C.center;\n\
+    \        Point<R> e = v.normalize();\n        Point<R> f = e.normal();\n\n   \
+    \     R d= v.norm(), r = C.radius, s = D.radius;\n        R x = (d * d + r * r\
+    \ - s * s) / (2 * d), y = sqrt(r * r - x * x);\n        return { C.center + x\
+    \ * e + y * f, C.center + x * e - y * f };\n    }\n}\n#line 6 \"Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp\"\
+    \n\nnamespace geometry {\n    template<typename R>\n    vector<Point<Real>> Tangent_Points(const\
+    \ Point<R> &P, const Circle<R> &C) {\n        Real d = norm(P - C.center), r =\
+    \ C.radius, s = sqrt(d * d - r * r);\n        return Intersection(C, Circle<Real>(P,\
+    \ s));\n    }\n}\n"
+  code: "#pragma once\n\n#include\"../object/Point.hpp\"\n#include\"../object/Circle.hpp\"\
+    \n#include\"../intersection/Intersection_Circle_and_Circle.hpp\"\n\nnamespace\
+    \ geometry {\n    template<typename R>\n    vector<Point<Real>> Tangent_Points(const\
+    \ Point<R> &P, const Circle<R> &C) {\n        Real d = norm(P - C.center), r =\
+    \ C.radius, s = sqrt(d * d - r * r);\n        return Intersection(C, Circle<Real>(P,\
+    \ s));\n    }\n}"
   dependsOn:
+  - Geometry/object/Point.hpp
+  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
   - Geometry/object/Circle.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/7A.test.cpp
-  requiredBy: []
-  timestamp: '2025-09-23 11:12:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/7A.test.cpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  isVerificationFile: false
+  path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  requiredBy:
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  timestamp: '2025-09-23 11:02:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+documentation_of: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
 layout: document
 redirect_from:
-- /verify/verify/aizu_online_judge/cgl/7A.test.cpp
-- /verify/verify/aizu_online_judge/cgl/7A.test.cpp.html
-title: verify/aizu_online_judge/cgl/7A.test.cpp
+- /library/Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+- /library/Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp.html
+title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
 ---

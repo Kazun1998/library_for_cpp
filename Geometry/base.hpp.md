@@ -18,89 +18,89 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Geometry/Argument_Sort.hpp
-    title: Geometry/Argument_Sort.hpp
+    path: Geometry/distance/Distance_Line_and_Point.hpp
+    title: Geometry/distance/Distance_Line_and_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Circle_and_Line.hpp
+    title: Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Line_and_Line.hpp
+    title: Geometry/intersection/Intersection_Line_and_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/intersection/Intersection_Segment_and_Segment.hpp
+    title: Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Circle.hpp
+    title: Geometry/object/Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Line.hpp
+    title: Geometry/object/Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Point.hpp
+    title: Geometry/object/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Polygon.hpp
+    title: Geometry/object/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Segment.hpp
+    title: Geometry/object/Segment.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/object/Triangle.hpp
+    title: Geometry/object/Triangle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/projection/Projection_Point_Line.hpp
+    title: Geometry/projection/Projection_Point_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/reflection/Reflection_Point_Line.hpp
+    title: Geometry/reflection/Reflection_Point_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/reflection/Reflection_Point_Point.hpp
+    title: Geometry/reflection/Reflection_Point_Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+    title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/relationship/Relationship_Circle_and_Circle.hpp
+    title: Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/tangent/Common_Tangent_Points.hpp
+    title: Geometry/tangent/Common_Tangent_Points.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+    title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - icon: ':warning:'
-    path: Geometry/Centroid.hpp
-    title: Geometry/Centroid.hpp
+    path: Geometry/triangle_center/Centroid.hpp
+    title: Geometry/triangle_center/Centroid.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Circle.hpp
-    title: Geometry/Circle.hpp
+    path: Geometry/triangle_center/Circumcenter.hpp
+    title: Geometry/triangle_center/Circumcenter.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Circumcenter.hpp
-    title: Geometry/Circumcenter.hpp
+    path: Geometry/triangle_center/Circumcircle.hpp
+    title: Geometry/triangle_center/Circumcircle.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Circumcircle.hpp
-    title: Geometry/Circumcircle.hpp
+    path: Geometry/triangle_center/Incenter.hpp
+    title: Geometry/triangle_center/Incenter.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Common_Tangent_Points.hpp
-    title: Geometry/Common_Tangent_Points.hpp
+    path: Geometry/triangle_center/Incircle.hpp
+    title: Geometry/triangle_center/Incircle.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Convex_Hull.hpp
-    title: Geometry/Convex_Hull.hpp
+    path: Geometry/utility/Argument_Sort.hpp
+    title: Geometry/utility/Argument_Sort.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Counter_Clockwise.hpp
-    title: Geometry/Counter_Clockwise.hpp
+    path: Geometry/utility/Convex_Hull.hpp
+    title: Geometry/utility/Convex_Hull.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Distance_Line_and_Point.hpp
-    title: Geometry/Distance_Line_and_Point.hpp
+    path: Geometry/utility/Counter_Clockwise.hpp
+    title: Geometry/utility/Counter_Clockwise.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Division_Point.hpp
-    title: Geometry/Division_Point.hpp
+    path: Geometry/utility/Division_Point.hpp
+    title: Geometry/utility/Division_Point.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/Incenter.hpp
-    title: Geometry/Incenter.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Incircle.hpp
-    title: Geometry/Incircle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Intersection_Circle_and_Circle.hpp
-    title: Geometry/Intersection_Circle_and_Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Intersection_Circle_and_Line.hpp
-    title: Geometry/Intersection_Circle_and_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Intersection_Line_and_Line.hpp
-    title: Geometry/Intersection_Line_and_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Intersection_Segment_and_Segment.hpp
-    title: Geometry/Intersection_Segment_and_Segment.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Line.hpp
-    title: Geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Parallel_Orthogonal_Line_Line.hpp
-    title: Geometry/Parallel_Orthogonal_Line_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Perpendicular_Bisector.hpp
-    title: Geometry/Perpendicular_Bisector.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Point.hpp
-    title: Geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Polygon.hpp
-    title: Geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Projection_Point_Line.hpp
-    title: Geometry/Projection_Point_Line.hpp
-  - icon: ':warning:'
-    path: Geometry/Projection_Point_Point.hpp
-    title: Geometry/Projection_Point_Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Refection_Point_Line.hpp
-    title: Geometry/Refection_Point_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Relationship_Circle_and_Circle.hpp
-    title: Geometry/Relationship_Circle_and_Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Segment.hpp
-    title: Geometry/Segment.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Tangent_Point_from_Point_to_Circle.hpp
-    title: Geometry/Tangent_Point_from_Point_to_Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/Triangle.hpp
-    title: Geometry/Triangle.hpp
+    path: Geometry/utility/Perpendicular_Bisector.hpp
+    title: Geometry/utility/Perpendicular_Bisector.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/1A.test.cpp
@@ -286,34 +286,34 @@ data:
   isVerificationFile: false
   path: Geometry/base.hpp
   requiredBy:
-  - Geometry/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/Convex_Hull.hpp
-  - Geometry/Line.hpp
-  - Geometry/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/Centroid.hpp
-  - Geometry/Perpendicular_Bisector.hpp
-  - Geometry/Argument_Sort.hpp
-  - Geometry/Counter_Clockwise.hpp
-  - Geometry/Incenter.hpp
-  - Geometry/Intersection_Line_and_Line.hpp
-  - Geometry/Incircle.hpp
-  - Geometry/Circle.hpp
-  - Geometry/Distance_Line_and_Point.hpp
-  - Geometry/Intersection_Circle_and_Circle.hpp
-  - Geometry/Projection_Point_Point.hpp
-  - Geometry/Projection_Point_Line.hpp
-  - Geometry/Polygon.hpp
-  - Geometry/Relationship_Circle_and_Circle.hpp
-  - Geometry/Intersection_Circle_and_Line.hpp
-  - Geometry/Triangle.hpp
-  - Geometry/Intersection_Segment_and_Segment.hpp
-  - Geometry/Circumcircle.hpp
-  - Geometry/Common_Tangent_Points.hpp
-  - Geometry/Segment.hpp
-  - Geometry/Refection_Point_Line.hpp
-  - Geometry/Division_Point.hpp
-  - Geometry/Circumcenter.hpp
-  - Geometry/Point.hpp
+  - Geometry/triangle_center/Centroid.hpp
+  - Geometry/triangle_center/Incenter.hpp
+  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/projection/Projection_Point_Line.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Circle.hpp
+  - Geometry/object/Polygon.hpp
+  - Geometry/object/Triangle.hpp
+  - Geometry/object/Segment.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/utility/Division_Point.hpp
   timestamp: '2025-09-21 00:16:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
