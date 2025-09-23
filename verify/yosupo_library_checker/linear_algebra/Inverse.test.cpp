@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
+#define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
 #include"../../../template/template.hpp"
 #include"../../../modint.hpp"
@@ -8,5 +8,10 @@ int main(){
     int N; cin >> N;
     Field_Matrix<modint<998244353>> A(N);
     cin >> A;
-    cout << Determinant(A) << endl;
+
+    try {
+        cout << A.inverse() << endl;
+    } catch (const SingularMatrixError &error) {
+        cout << -1 << endl;
+    }
 }
