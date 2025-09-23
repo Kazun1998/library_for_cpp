@@ -1,7 +1,7 @@
 #pragma once
 
-#include"Point.hpp"
-#include"Counter_Clockwise.hpp"
+#include"../object/Point.hpp"
+#include"../utility/Counter_Clockwise.hpp"
 
 namespace geometry {
     template<typename R>

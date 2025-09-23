@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Parallel_Orthogonal_Line_Line.hpp"
+#include"../../../Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp"
 
 using namespace geometry;
 

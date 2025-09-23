@@ -2,7 +2,7 @@
 #define ERROR 0.00001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Common_Tangent_Points.hpp"
+#include"../../../Geometry/tangent/Common_Tangent_Points.hpp"
 
 using namespace geometry;
 

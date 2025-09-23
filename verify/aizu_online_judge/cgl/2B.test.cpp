@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_B"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Intersection_Segment_and_Segment.hpp"
+#include"../../../Geometry/intersection/Intersection_Segment_and_Segment.hpp"
 
 using namespace geometry;
 

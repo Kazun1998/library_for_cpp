@@ -1,7 +1,7 @@
 #pragma once
 
-#include"Line.hpp"
-#include"Division_Point.hpp"
+#include"../object/Line.hpp"
+#include"../utility/Division_Point.hpp"
 
 namespace geometry {
     // 2 点 A, B に関する垂直二等分線を求める.

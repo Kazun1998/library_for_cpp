@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Line.hpp"
+#include"../object/Line.hpp"
 
 namespace geometry {
     template<typename R>

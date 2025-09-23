@@ -2,7 +2,7 @@
 #define ERROR 0.00000001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Intersection_Segment_and_Segment.hpp"
+#include"../../../Geometry/intersection/Intersection_Segment_and_Segment.hpp"
 
 using namespace geometry;
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include"Circle.hpp"
-#include"Line.hpp"
-#include"Relationship_Circle_and_Circle.hpp"
-#include"Tangent_Point_from_Point_to_Circle.hpp"
+#include"../object/Circle.hpp"
+#include"../object/Line.hpp"
+#include"../relationship/Relationship_Circle_and_Circle.hpp"
+#include"../tangent/Tangent_Point_from_Point_to_Circle.hpp"
 
 namespace geometry {
     // 共通接線の円 C における接点

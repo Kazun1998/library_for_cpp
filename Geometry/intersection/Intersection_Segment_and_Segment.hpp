@@ -1,7 +1,7 @@
 #pragma once
 
-#include"Counter_Clockwise.hpp"
-#include"Segment.hpp"
+#include"../utility/Counter_Clockwise.hpp"
+#include"../object/Segment.hpp"
 
 namespace geometry {
     template<typename R>

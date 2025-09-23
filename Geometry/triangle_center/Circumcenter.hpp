@@ -1,8 +1,8 @@
 #pragma once
 
-#include"Perpendicular_Bisector.hpp"
-#include"Intersection_Line_and_Line.hpp"
-#include"Triangle.hpp"
+#include"../utility/Perpendicular_Bisector.hpp"
+#include"../intersection/Intersection_Line_and_Line.hpp"
+#include"../object/Triangle.hpp"
 
 namespace geometry {
     template<typename R>
