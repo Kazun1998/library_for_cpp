@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: modint.hpp
-    title: modint.hpp
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
@@ -132,7 +132,7 @@ data:
     \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
     \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
     \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"modint.hpp\"\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Algebra/modint.hpp\"\
     \n\ntemplate<int mod>\nclass modint{\n    public:\n    int64_t x;\n\n    public:\n\
     \    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
     \ a): x((a % mod + mod) % mod) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n \
@@ -157,21 +157,24 @@ data:
     \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
     \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod + mod) % mod;\n\
     \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\
-    \n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
-    \ private exception{\n    const char* what() const throw() {\n        return \"\
-    \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
-    \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
-    \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
-    \   Field_Matrix(int row, int col): row(row), col(col){\n        mat.assign(row,\
-    \ vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row): Field_Matrix(row,\
-    \ row){}\n\n    Field_Matrix(vector<vector<F>> &ele): Field_Matrix(ele.size(),\
-    \ ele[0].size()){\n        for (int i = 0; i < row; i++){\n            copy(ele[i].begin(),\
-    \ ele[i].end(), mat[i].begin());\n        }\n    }\n\n    static Field_Matrix\
-    \ Zero_Matrix(int row, int col) { return Field_Matrix(row, col); }\n\n    static\
-    \ Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix A(size);\n  \
-    \      for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return A;\n  \
-    \  }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ &os, const modint &a) { return os << a.x; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
+    \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
+    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"\
+    Linear_Algebra/Field_Matrix.hpp\"\n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
+    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
+    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
+    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
+    \ col;\n\n    public:\n    Field_Matrix(int row, int col): row(row), col(col){\n\
+    \        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
     \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
     \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
     \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
@@ -263,7 +266,7 @@ data:
     \n\nint main(){\n    int N, M, K; cin >> N >> M >> K;\n    Field_Matrix<modint<998244353>>\
     \ A(N, M), B(M, K);\n    cin >> A >> B;\n    cout << A * B << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../modint.hpp\"\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\n#include\"\
     ../../../Linear_Algebra/Field_Matrix.hpp\"\n\nint main(){\n    int N, M, K; cin\
     \ >> N >> M >> K;\n    Field_Matrix<modint<998244353>> A(N, M), B(M, K);\n   \
     \ cin >> A >> B;\n    cout << A * B << endl;\n}\n"
@@ -273,12 +276,12 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
-  - modint.hpp
+  - Algebra/modint.hpp
   - Linear_Algebra/Field_Matrix.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-24 00:56:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp

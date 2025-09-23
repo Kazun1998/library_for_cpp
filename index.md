@@ -6,6 +6,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
+    - icon: ':heavy_check_mark:'
+      path: Algebra/modint.hpp
+      title: Algebra/modint.hpp
   - name: Binary_Indexed_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -213,11 +216,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
       title: Union Find
-  - name: .
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: modint.hpp
-      title: modint.hpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
