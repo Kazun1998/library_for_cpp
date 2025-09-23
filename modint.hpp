@@ -72,3 +72,16 @@ class modint{
     // 出力
     friend ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }
 };
+
+template<int Mod>
+modint<Mod> pow(modint<Mod> x, long long n) {
+    if (n < 0) { return pow(x, -n).inverse(); }
+
+    auto res = modint<Mod>(1);
+    for (; n; n >>= 1) {
+        if (n & 1) { res *= x; }
+        x *= x;
+    }
+
+    return res;
+}
