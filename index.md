@@ -126,6 +126,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Digraph/Strongly_Connected_Components.hpp
       title: Graph/Digraph/Strongly_Connected_Components.hpp
+  - name: Graph/Graph
+    pages:
+    - icon: ':warning:'
+      path: Graph/Graph/Connected_Components.hpp
+      title: Graph/Graph/Connected_Components.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Graph.hpp
+      title: Graph/Graph/Graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Lowlink.hpp
+      title: Graph/Graph/Lowlink.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Two_Edge_Connected_Components.hpp
+      title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - name: Graph/Weighted_Digraph
     pages:
     - icon: ':heavy_check_mark:'
@@ -269,6 +283,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/cgl/7G.test.cpp
       title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - name: verify/aizu_online_judge/grl
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/3A.test.cpp
+      title: verify/aizu_online_judge/grl/3A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/3B.test.cpp
+      title: verify/aizu_online_judge/grl/3B.test.cpp
   - name: verify/aizu_online_judge/ntl
     pages:
     - icon: ':heavy_check_mark:'
@@ -307,6 +329,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
       title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+      title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - name: verify/yosupo_library_checker/linear_algebra
     pages:
     - icon: ':heavy_check_mark:'
