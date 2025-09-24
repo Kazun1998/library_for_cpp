@@ -167,7 +167,7 @@ data:
       title: Integer/Prime.hpp
     - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
-      title: Integer/Quotients.hpp
+      title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - name: Linear_Algebra
     pages:
     - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Math/Floor_Linear_Sum.hpp
-      title: Math/Floor_Linear_Sum.hpp
+      title: Floor Linear Sum
     - icon: ':heavy_check_mark:'
       path: Math/Two_SAT.hpp
       title: Math/Two_SAT.hpp

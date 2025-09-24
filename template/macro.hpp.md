@@ -112,7 +112,7 @@ data:
     title: Integer/Miller_Rabin_Primality_Test.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
+    title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
@@ -124,7 +124,7 @@ data:
     title: Linear_Algebra/Reduction.hpp
   - icon: ':heavy_check_mark:'
     path: Math/Floor_Linear_Sum.hpp
-    title: Math/Floor_Linear_Sum.hpp
+    title: Floor Linear Sum
   - icon: ':heavy_check_mark:'
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp

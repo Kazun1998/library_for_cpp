@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/Floor_Linear_Sum.hpp
-    title: Math/Floor_Linear_Sum.hpp
+    title: Floor Linear Sum
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp

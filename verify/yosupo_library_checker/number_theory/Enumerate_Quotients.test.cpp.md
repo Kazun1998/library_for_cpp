@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
-    title: Integer/Quotients.hpp
+    title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
