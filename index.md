@@ -14,6 +14,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
       title: Binary Indexed Tree (Fenwick Tree)
+  - name: Binary_Search
+    pages:
+    - icon: ':warning:'
+      path: Binary_Search/General_Integer.hpp
+      title: Binary_Search/General_Integer.hpp
+    - icon: ':warning:'
+      path: Binary_Search/Value.hpp
+      title: Binary_Search/Value.hpp
   - name: Geometry
     pages:
     - icon: ':heavy_check_mark:'

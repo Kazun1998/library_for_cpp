@@ -17,6 +17,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
+  - icon: ':warning:'
+    path: Binary_Search/General_Integer.hpp
+    title: Binary_Search/General_Integer.hpp
+  - icon: ':warning:'
+    path: Binary_Search/Value.hpp
+    title: Binary_Search/Value.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
@@ -512,6 +518,8 @@ data:
   - Modulo/Modulo.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Order.hpp
+  - Binary_Search/General_Integer.hpp
+  - Binary_Search/Value.hpp
   - Graph/Graph/Graph.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
