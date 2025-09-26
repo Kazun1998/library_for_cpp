@@ -97,10 +97,9 @@ namespace modulo {
         }
 
         // include?
-        bool is_member(ll x) { return mod(x - a, n) == 0; }
+        bool is_member(ll x) const { return mod(x - a, n) == 0; }
 
-        bool is_zero() { return is_member(0); }
-        
+        bool is_zero() const { return is_member(0); }
 
         // 比較
         friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a; }
