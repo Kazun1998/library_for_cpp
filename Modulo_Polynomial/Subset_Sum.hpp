@@ -4,14 +4,14 @@
 #include"Fast_Power_Series.hpp"
 #include"Exp.hpp"
 
-// 多重集合 X の要素のうち, 任意個を用いて, 和が k=0,1,...,K になる組み合わせの総数を Mod で割った余りを求める.
+// A の (連続とは限らない) 部分列のうち, 和が k=0,1,...,K になる組み合わせの総数を Mod で割った余りを求める.
 template<const ll Mod>
-vector<modint<Mod>> Subset_Sum(vector<int> X, int K) {
+vector<modint<Mod>> Subset_Sum(vector<int> A, int K) {
     using mint = modint<Mod>;
 
     vector<ll> chi(K + 1);
-    for (ll x: X) {
-        if (x <= K) { chi[x] += 1; }
+    for (ll a: A) {
+        if (a <= K) { chi[a] += 1; }
     }
 
     vector<mint> inv(K + 1); inv[1] = 1;
