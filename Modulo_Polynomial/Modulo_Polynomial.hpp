@@ -1,7 +1,7 @@
 #pragma once
 
 #include"../template/template.hpp"
-#include"../modint.hpp"
+#include"../Algebra/modint.hpp"
 
 template<const ll Mod>
 class Modulo_Polynomial {
