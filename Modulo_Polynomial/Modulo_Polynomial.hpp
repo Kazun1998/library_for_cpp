@@ -145,9 +145,19 @@ class Modulo_Polynomial {
         return true;
     }
 
+    // 高次に連なる 0 を削除する
     void reduce() {
         while (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }
     }
 
+    // 保持している多項式の乗法の項の長さを求める
     int size() const { return poly.size(); }
+
+    // 次数を求める (ゼロ多項式の時は -1)
+    int degree() const {
+        for (int d = size() - 1; d >= 0; d--) {
+            unless(poly[d].is_zero()) { return d; }
+        }
+        return -1;
+    }
 };
