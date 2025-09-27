@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -258,20 +261,36 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
-    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
-    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
-    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
-    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
-    \ &a, const int &b) { return sign(b - a); }\n};\n"
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n \
+    \   using Real = double long;\n    const Real epsilon = 1e-9;\n    const Real\
+    \ pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1, ON\
+    \ = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
+    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
+    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
+    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
+    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
+    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
+    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
+    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
+    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
+    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
+    \ { return sign(b - a); }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace geometry\
     \ {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n    const\
     \ Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1,\
@@ -292,6 +311,7 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: Geometry/base.hpp
   requiredBy:
@@ -323,7 +343,7 @@ data:
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/projection/Projection_Point_Line.hpp
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp

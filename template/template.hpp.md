@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -17,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
+  - icon: ':heavy_check_mark:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
   - icon: ':warning:'
     path: Binary_Search/General_Integer.hpp
     title: Binary_Search/General_Integer.hpp
@@ -156,6 +162,27 @@ data:
     path: Modulo/Order.hpp
     title: Modulo/Order.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Calculus.hpp
+    title: Modulo_Polynomial/Calculus.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Exp.hpp
+    title: Modulo_Polynomial/Exp.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Log.hpp
+    title: Modulo_Polynomial/Log.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Modulo_Polynomial.hpp
+    title: Modulo_Polynomial/Modulo_Polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Power.hpp
+    title: Modulo_Polynomial/Power.hpp
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   _extendedVerifiedWith:
@@ -268,6 +295,21 @@ data:
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Division.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -377,7 +419,23 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n"
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n"
   code: '#pragma once
 
 
@@ -505,12 +563,18 @@ data:
 
     #include"macro.hpp"
 
+
+    // bitop
+
+    #include"bitop.hpp"
+
     '
   dependsOn:
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy:
@@ -521,6 +585,7 @@ data:
   - Linear_Algebra/Field_Matrix.hpp
   - Linear_Algebra/Reduction.hpp
   - Algebra/Gaussian_Integer.hpp
+  - Algebra/modint.hpp
   - Tree/Tree.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
@@ -560,9 +625,16 @@ data:
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/projection/Projection_Point_Line.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
@@ -581,6 +653,11 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp

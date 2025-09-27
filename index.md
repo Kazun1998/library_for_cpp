@@ -206,6 +206,29 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo/Order.hpp
       title: Modulo/Order.hpp
+  - name: Modulo_Polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Calculus.hpp
+      title: Modulo_Polynomial/Calculus.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Exp.hpp
+      title: Modulo_Polynomial/Exp.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Fast_Power_Series.hpp
+      title: Modulo_Polynomial/Fast_Power_Series.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Log.hpp
+      title: Modulo_Polynomial/Log.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Modulo_Polynomial.hpp
+      title: Modulo_Polynomial/Modulo_Polynomial.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+      title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Power.hpp
+      title: Modulo_Polynomial/Power.hpp
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -226,6 +249,9 @@ data:
       title: Union Find
   - name: template
     pages:
+    - icon: ':heavy_check_mark:'
+      path: template/bitop.hpp
+      title: template/bitop.hpp
     - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
@@ -383,6 +409,23 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/two_sat.test.cpp
       title: verify/yosupo_library_checker/other/two_sat.test.cpp
+  - name: verify/yosupo_library_checker/polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Division.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Division.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Log.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Log.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Power.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Power.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'

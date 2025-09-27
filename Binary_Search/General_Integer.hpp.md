@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -122,32 +125,47 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Binary_Search/General_Integer.hpp\"\
-    \n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\
-    \ cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C True \u306B\u306A\u308B\u6700\u5C0F\
-    \u306E\u6574\u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n\
-    // Args\n// T L: \u4E0B\u9650\n// T R: \u4E0A\u9650\n// function<bool(T)> cond:\
-    \ [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\n// T default_value:\
-    \ cond(R) \u304C False \u306E\u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename\
-    \ T>\nT General_Binary_Increase_Search_Integer(T L, T R, const function<bool(T)>\
-    \ cond, T default_value) {\n    // \u4F8B\u5916\u30B1\u30FC\u30B9\u306E\u51E6\u7406\
-    \n    // R \u3067\u3082 False \u2192 \u7570\u5E38\u5024\n    unless(cond(R)) {\
-    \ return default_value; }\n    // L \u306B\u3066 True \u2192 L\n    if(cond(L))\
-    \ { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\n    while (R - L > 1)\
-    \ {\n        T C = L + (R - L) / 2;\n        cond(C) ? R = C : L = C;\n    }\n\
-    \n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\
-    \u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C True \u306B\u306A\
-    \u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\
-    \u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R: \u4E0A\u9650\n// function<bool(T)>\
-    \ cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6\n\
-    // T default_value: cond(L) \u304C False \u306E\u6642\u306E\u8FD4\u308A\u5024\n\
-    template<typename T>\nT General_Binary_Decrease_Search_Integer(T L, T R, const\
-    \ function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\u30B1\u30FC\u30B9\
-    \u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\u5E38\u5024\n  \
-    \  unless(cond(L)) { return default_value; }\n    // R \u306B\u3066 True \u2192\
-    \ R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\n\
-    \    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C) ? L\
-    \ = C : R = C;\n    }\n\n    return L;\n}\n"
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 2 \"Binary_Search/General_Integer.hpp\"\n\n// [L, R]\
+    \ \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\
+    \u5BFE\u3057\u3066, cond(x) \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\
+    \u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n//\
+    \ T L: \u4E0B\u9650\n// T R: \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\
+    \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\n// T default_value: cond(R)\
+    \ \u304C False \u306E\u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Increase_Search_Integer(T\
+    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
+    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 False \u2192 \u7570\
+    \u5E38\u5024\n    unless(cond(R)) { return default_value; }\n    // L \u306B\u3066\
+    \ True \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
+    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
+    \ ? R = C : L = C;\n    }\n\n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
+    \u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
+    \ \u304C True \u306B\u306A\u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
+    \u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R:\
+    \ \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\
+    \u6E1B\u5C11\u306A\u6761\u4EF6\n// T default_value: cond(L) \u304C False \u306E\
+    \u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Decrease_Search_Integer(T\
+    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
+    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\
+    \u5E38\u5024\n    unless(cond(L)) { return default_value; }\n    // R \u306B\u3066\
+    \ True \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
+    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
+    \ ? L = C : R = C;\n    }\n\n    return L;\n}\n"
   code: "#include\"../template/template.hpp\"\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
     \u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
     \ \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
@@ -179,10 +197,11 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: Binary_Search/General_Integer.hpp
   requiredBy: []
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/General_Integer.hpp

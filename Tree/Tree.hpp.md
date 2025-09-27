@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -126,22 +129,38 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n\
-    \    private:\n    int N, offset, root;\n    vector<int> parent;\n    vector<set<int>>\
-    \ children;\n\n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N,\
-    \ int offset = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N +\
-    \ offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked\
-    \ = false;\n    }\n\n    bool is_locked() const { return locked; }\n\n    public:\n\
-    \    inline void set_root(const int &x) {\n        assert (!is_locked());\n  \
-    \      root = x;\n    }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\
-    \u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
-    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
-    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
-    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
-    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
-    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
-    \ = -1;\n        children.assign(N + offset, set<int>());\n        for (int v\
-    \ = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].insert(v);\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n\
+    \    int N, offset, root;\n    vector<int> parent;\n    vector<set<int>> children;\n\
+    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset\
+    \ = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n\
+    \        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\
+    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
+    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
+    \    }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y\
+    \ \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int &x, const\
+    \ int &y) {\n        assert (!is_locked());\n        parent[x] = y;\n    }\n\n\
+    \    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\
+    \u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const int &y)\
+    \ { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n\
+    \    void seal() {\n        assert(!is_locked());\n\n        parent[root] = -1;\n\
+    \        children.assign(N + offset, set<int>());\n        for (int v = offset;\
+    \ v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].insert(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
     \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
     \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
@@ -250,10 +269,11 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: Tree/Tree.hpp
   requiredBy: []
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp

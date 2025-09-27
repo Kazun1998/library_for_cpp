@@ -8,6 +8,9 @@ data:
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: Graph/Digraph/Strongly_Connected_Components.hpp
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -133,28 +136,44 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Graph/Digraph/Digraph.hpp\"\n\n\
-    #include<bits/stdc++.h>\nusing namespace std;\n\nnamespace Digraph {\n  struct\
-    \ Arc {\n    int id, source, target;\n\n    Arc(int id, int source, int target):\
-    \ id(id), source(source), target(target) {}\n  };\n\n  class Digraph {\n    private:\n\
-    \    int arc_id_offset;\n    vector<vector<int>> adjacent_out, adjacent_in;\n\
-    \    vector<Arc> arcs;\n\n    public:\n    Digraph(int n, int arc_id_offset =\
-    \ 0): arc_id_offset(arc_id_offset) {\n        adjacent_out.assign(n, {});\n  \
-    \      adjacent_in.assign(n, {});\n        arcs.resize(arc_id_offset, Arc(-1,\
-    \ -1, -1));\n      }\n    \n    inline int order() const { return int(adjacent_in.size());\
-    \ }\n\n    inline int size() const { return int(arcs.size()) - arc_id_offset;\
-    \ }\n\n    // \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F\
-    \ w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B.\n    int add_arc(int u, int v){\n\
-    \      int id = int(arcs.size());\n\n      adjacent_out[u].emplace_back(id);\n\
-    \      adjacent_in[v].emplace_back(id);\n      arcs.emplace_back(id, u, v);\n\n\
-    \      return id;\n    }\n\n    // \u9802\u70B9 u \u304B\u3089\u51FA\u308B\u5F27\
-    \u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n    inline const std::vector<int>&\
-    \ successors(int u) const { return adjacent_out[u]; }\n\n    // \u9802\u70B9 u\
-    \ \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\
-    \n    inline const std::vector<int>& predecessors(int u) const { return adjacent_in[u];\
-    \ }\n\n    // \u5F27 ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\
-    \u308B.\n    inline const Arc& get_arc(int id) const { return arcs[id]; }\n  \
-    \  inline Arc& get_arc(int id) { return arcs[id]; }\n  };\n}\n#line 2 \"Graph/Digraph/Strongly_Connected_Components.hpp\"\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 2 \"Graph/Digraph/Digraph.hpp\"\n\n#include<bits/stdc++.h>\n\
+    using namespace std;\n\nnamespace Digraph {\n  struct Arc {\n    int id, source,\
+    \ target;\n\n    Arc(int id, int source, int target): id(id), source(source),\
+    \ target(target) {}\n  };\n\n  class Digraph {\n    private:\n    int arc_id_offset;\n\
+    \    vector<vector<int>> adjacent_out, adjacent_in;\n    vector<Arc> arcs;\n\n\
+    \    public:\n    Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset)\
+    \ {\n        adjacent_out.assign(n, {});\n        adjacent_in.assign(n, {});\n\
+    \        arcs.resize(arc_id_offset, Arc(-1, -1, -1));\n      }\n    \n    inline\
+    \ int order() const { return int(adjacent_in.size()); }\n\n    inline int size()\
+    \ const { return int(arcs.size()) - arc_id_offset; }\n\n    // \u9802\u70B9 u\
+    \ \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\u3092\u8FFD\
+    \u52A0\u3059\u308B.\n    int add_arc(int u, int v){\n      int id = int(arcs.size());\n\
+    \n      adjacent_out[u].emplace_back(id);\n      adjacent_in[v].emplace_back(id);\n\
+    \      arcs.emplace_back(id, u, v);\n\n      return id;\n    }\n\n    // \u9802\
+    \u70B9 u \u304B\u3089\u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\
+    \u53D6\u5F97\n    inline const std::vector<int>& successors(int u) const { return\
+    \ adjacent_out[u]; }\n\n    // \u9802\u70B9 u \u306B\u5165\u308B\u5F27\u306E ID\
+    \ \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n    inline const std::vector<int>&\
+    \ predecessors(int u) const { return adjacent_in[u]; }\n\n    // \u5F27 ID \u304C\
+    \ id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n    inline const\
+    \ Arc& get_arc(int id) const { return arcs[id]; }\n    inline Arc& get_arc(int\
+    \ id) { return arcs[id]; }\n  };\n}\n#line 2 \"Graph/Digraph/Strongly_Connected_Components.hpp\"\
     \n\nnamespace Digraph {\n    class Strongly_Connected_Components {\n        public:\n\
     \        vector<vector<int>> components;\n        vector<int> group;\n\n     \
     \   private:\n        vector<int> order;\n        vector<bool> used;\n\n     \
@@ -196,12 +215,13 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   - Graph/Digraph/Strongly_Connected_Components.hpp
   - Graph/Digraph/Digraph.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp

@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
+  - icon: ':heavy_check_mark:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
   - icon: ':warning:'
     path: Binary_Search/General_Integer.hpp
     title: Binary_Search/General_Integer.hpp
@@ -144,6 +147,27 @@ data:
     path: Modulo/Order.hpp
     title: Modulo/Order.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Calculus.hpp
+    title: Modulo_Polynomial/Calculus.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Exp.hpp
+    title: Modulo_Polynomial/Exp.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Log.hpp
+    title: Modulo_Polynomial/Log.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Modulo_Polynomial.hpp
+    title: Modulo_Polynomial/Modulo_Polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Power.hpp
+    title: Modulo_Polynomial/Power.hpp
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   - icon: ':heavy_check_mark:'
@@ -259,6 +283,21 @@ data:
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Division.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -326,6 +365,7 @@ data:
   - Linear_Algebra/Reduction.hpp
   - template/template.hpp
   - Algebra/Gaussian_Integer.hpp
+  - Algebra/modint.hpp
   - Tree/Tree.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
@@ -365,6 +405,13 @@ data:
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/projection/Projection_Point_Line.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
@@ -386,6 +433,11 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp

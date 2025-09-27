@@ -11,6 +11,9 @@ data:
     path: Geometry/object/Triangle.hpp
     title: Geometry/object/Triangle.hpp
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -133,80 +136,96 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
-    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
-    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
-    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
-    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
-    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
-    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
-    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
-    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
-    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
-    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
-    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
-    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
-    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
-    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
-    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
-    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
-    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
-    \            return *this;\n        }\n\n        friend Point operator/(const\
-    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
-    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
-    \            x = x1;\n            y = y1;\n            return *this;\n       \
-    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
-    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
-    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
-    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
-    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
-    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
-    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
-    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
-    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
-    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
-    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
-    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
-    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
-    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
-    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
-    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
-    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
-    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
-    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
-    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
-    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
-    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
-    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
-    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
-    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/object/Triangle.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Triangle {\n   \
-    \     public:\n        Point<R> A, B, C;\n\n        public:\n        Triangle()\
-    \ = default;\n        Triangle(const Point<R> a, const Point<R> b, const Point<R>\
-    \ c): A(a), B(b), C(c) {}\n\n        // \u8FBA BC, \u8FBA CA, \u8FBA AB \u306E\
-    \u9577\u3055\u3092\u51FA\u529B\u3059\u308B.\n        tuple<double, double, double>\
-    \ edges() const {\n            return make_tuple(norm(C - B), norm(A - C), norm(B\
-    \ - A));\n        }\n\n        // [PBC] : [PCA] : [PAB] = alpha : beta : gamma\
-    \ \u3092\u6E80\u305F\u3059\u70B9 P \u3092\u6C42\u3081\u308B.\n        Point<R>\
-    \ balance(const R &alpha, const R &beta, const R &gamma) const {\n           \
-    \ return (alpha * A + beta * B + gamma * C) / (alpha + beta + gamma);\n      \
-    \  }\n    };\n\n    template<typename R>\n    R Area(const Triangle<R> &T) {\n\
-    \        auto X = cross(T.B - T.A, T.C - T.A);\n        return sign(X) >= 0 ?\
-    \ X / 2 : -X / 2;\n    }\n}\n#line 4 \"Geometry/triangle_center/Centroid.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    Point<R> Centroid(const\
-    \ Triangle<R> &T) { return T.balance(1, 1, 1); }\n}\n"
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n \
+    \   using Real = double long;\n    const Real epsilon = 1e-9;\n    const Real\
+    \ pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1, ON\
+    \ = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
+    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
+    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
+    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
+    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
+    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
+    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
+    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
+    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
+    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
+    \ { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\n\nnamespace\
+    \ geometry {\n    template<typename R>\n    class Point {\n        public:\n \
+    \       R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n        Point(R\
+    \ _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n        Point& operator+=(const\
+    \ Point &B){\n            x += B.x;\n            y += B.y;\n            return\
+    \ *this;\n        }\n\n        friend Point operator+(const Point &P, const Point\
+    \ &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const\
+    \ Point &B){\n            x -= B.x;\n            y -= B.y;\n            return\
+    \ *this;\n        }\n\n        friend Point operator-(const Point &P, const Point\
+    \ &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n\
+    \        Point& operator*=(const R &a){\n            x *= a;\n            y *=\
+    \ a;\n            return *this;\n        }\n\n        friend Point operator*(const\
+    \ Point &P, const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
+    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
+    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
+    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
+    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
+    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
+    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
+    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
+    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
+    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
+    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
+    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
+    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
+    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
+    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
+    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
+    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
+    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
+    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
+    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
+    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
+    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
+    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
+    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
+    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
+    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
+    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
+    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
+    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
+    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
+    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
+    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
+    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
+    \ P.x); }\n}\n#line 4 \"Geometry/object/Triangle.hpp\"\n\nnamespace geometry {\n\
+    \    template<typename R>\n    class Triangle {\n        public:\n        Point<R>\
+    \ A, B, C;\n\n        public:\n        Triangle() = default;\n        Triangle(const\
+    \ Point<R> a, const Point<R> b, const Point<R> c): A(a), B(b), C(c) {}\n\n   \
+    \     // \u8FBA BC, \u8FBA CA, \u8FBA AB \u306E\u9577\u3055\u3092\u51FA\u529B\u3059\
+    \u308B.\n        tuple<double, double, double> edges() const {\n            return\
+    \ make_tuple(norm(C - B), norm(A - C), norm(B - A));\n        }\n\n        //\
+    \ [PBC] : [PCA] : [PAB] = alpha : beta : gamma \u3092\u6E80\u305F\u3059\u70B9\
+    \ P \u3092\u6C42\u3081\u308B.\n        Point<R> balance(const R &alpha, const\
+    \ R &beta, const R &gamma) const {\n            return (alpha * A + beta * B +\
+    \ gamma * C) / (alpha + beta + gamma);\n        }\n    };\n\n    template<typename\
+    \ R>\n    R Area(const Triangle<R> &T) {\n        auto X = cross(T.B - T.A, T.C\
+    \ - T.A);\n        return sign(X) >= 0 ? X / 2 : -X / 2;\n    }\n}\n#line 4 \"\
+    Geometry/triangle_center/Centroid.hpp\"\n\nnamespace geometry {\n    template<typename\
+    \ R>\n    Point<R> Centroid(const Triangle<R> &T) { return T.balance(1, 1, 1);\
+    \ }\n}\n"
   code: "#pragma once\n\n#include\"../object/Triangle.hpp\"\n\nnamespace geometry\
     \ {\n    template<typename R>\n    Point<R> Centroid(const Triangle<R> &T) { return\
     \ T.balance(1, 1, 1); }\n}\n"
@@ -219,10 +238,11 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: Geometry/triangle_center/Centroid.hpp
   requiredBy: []
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/triangle_center/Centroid.hpp

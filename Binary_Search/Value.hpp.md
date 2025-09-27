@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -122,26 +125,42 @@ data:
     \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
     \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
     \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Binary_Search/Value.hpp\"\n\n//\
-    \ \u30BD\u30FC\u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066, x\
-    \ \u672A\u6E80\u3067\u6700\u5927\u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n\
-    // A \u306B\u304A\u3044\u3066, x \u672A\u6E80\u306E\u8981\u7D20\u304C\u5B58\u5728\
-    \u3057\u306A\u3044\u5834\u5408\u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\
-    \u3059\u308B.\n// equal = true \u306B\u3059\u308B\u3068, \u300C\u672A\u6E80\u300D\
-    \u304C\u300C\u4EE5\u4E0B\u300D\u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename\
-    \ T>\nT Binary_Search_Low_Value(const vector<T> &A, T x, T default_value, bool\
-    \ equal = false) {\n    auto it = equal ? upper_bound(A.begin(), A.end(), x) :\
-    \ lower_bound(A.begin(), A.end(), x);\n    return (it == A.begin()) ? default_value\
-    \ : *(--it);\n}\n\n// \u30BD\u30FC\u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\
-    \u3057\u3066, x \u3088\u308A\u5927\u304D\u3044\u6700\u5C0F\u306E\u8981\u7D20\u3092\
-    \u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066, x \u3088\u308A\u5927\u304D\
-    \u3044\u8981\u7D20\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F, default_value\
-    \ \u3092\u8FD4\u308A\u5024\u3068\u3059\u308B.\n// equal = true \u306B\u3059\u308B\
-    \u3068, \u300C\u3088\u308A\u5927\u304D\u3044\u300D\u304C\u300C\u4EE5\u4E0A\u300D\
-    \u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename T>\nT Binary_Search_High_Value(const\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n#line 2 \"Binary_Search/Value.hpp\"\n\n// \u30BD\u30FC\u30C8\
+    \u6E08\u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u672A\u6E80\u3067\u6700\
+    \u5927\u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066\
+    , x \u672A\u6E80\u306E\u8981\u7D20\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
+    \u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\u3059\u308B.\n// equal =\
+    \ true \u306B\u3059\u308B\u3068, \u300C\u672A\u6E80\u300D\u304C\u300C\u4EE5\u4E0B\
+    \u300D\u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename T>\nT Binary_Search_Low_Value(const\
     \ vector<T> &A, T x, T default_value, bool equal = false) {\n    auto it = equal\
-    \ ? lower_bound(A.begin(), A.end(), x) : upper_bound(A.begin(), A.end(), x);\n\
-    \    return (it == A.end()) ? default_value : *it;\n}\n"
+    \ ? upper_bound(A.begin(), A.end(), x) : lower_bound(A.begin(), A.end(), x);\n\
+    \    return (it == A.begin()) ? default_value : *(--it);\n}\n\n// \u30BD\u30FC\
+    \u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u3088\u308A\u5927\
+    \u304D\u3044\u6700\u5C0F\u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\
+    \u304A\u3044\u3066, x \u3088\u308A\u5927\u304D\u3044\u8981\u7D20\u304C\u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408\u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\
+    \u3059\u308B.\n// equal = true \u306B\u3059\u308B\u3068, \u300C\u3088\u308A\u5927\
+    \u304D\u3044\u300D\u304C\u300C\u4EE5\u4E0A\u300D\u306B\u7F6E\u304D\u304B\u308F\
+    \u308B.\ntemplate<typename T>\nT Binary_Search_High_Value(const vector<T> &A,\
+    \ T x, T default_value, bool equal = false) {\n    auto it = equal ? lower_bound(A.begin(),\
+    \ A.end(), x) : upper_bound(A.begin(), A.end(), x);\n    return (it == A.end())\
+    \ ? default_value : *it;\n}\n"
   code: "#include\"../template/template.hpp\"\n\n// \u30BD\u30FC\u30C8\u6E08\u307F\
     \u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u672A\u6E80\u3067\u6700\u5927\u306E\
     \u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066, x \u672A\
@@ -168,10 +187,11 @@ data:
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
+  - template/bitop.hpp
   isVerificationFile: false
   path: Binary_Search/Value.hpp
   requiredBy: []
-  timestamp: '2025-09-27 09:56:51+09:00'
+  timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/Value.hpp
