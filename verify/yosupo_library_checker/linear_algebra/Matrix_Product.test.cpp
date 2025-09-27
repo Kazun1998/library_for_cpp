@@ -1,11 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
-#include<bits/stdc++.h>
-
-using namespace std;
-
-#include"../../../modint.hpp"
-#include"../../../Algebra/Field_Matrix.hpp"
+#include"../../../template/template.hpp"
+#include"../../../Algebra/modint.hpp"
+#include"../../../Linear_Algebra/Field_Matrix.hpp"
 
 int main(){
     int N, M, K; cin >> N >> M >> K;

@@ -78,15 +78,15 @@ class modint {
     bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }
 };
 
-template<int mod>
-modint<mod> pow(modint<mod> x, int64_t n){
-    if (n<0) return pow(x,-n).inverse();
+template<int Mod>
+modint<Mod> pow(modint<Mod> x, long long n) {
+    if (n < 0) { return pow(x, -n).inverse(); }
 
-    modint<mod> y(1);
-    while (n){
-        if (n&1) y*=x;
-        x*=x; n>>=1;
+    auto res = modint<Mod>(1);
+    for (; n; n >>= 1) {
+        if (n & 1) { res *= x; }
+        x *= x;
     }
 
-    return y;
+    return res;
 }
