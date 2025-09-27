@@ -36,18 +36,17 @@ namespace modulo {
         }
 
         int m = s;
-        Modulo c = pow(z, q), t = pow(X, q), r = pow(X, (q + 1) / 2);
+        Modulo c = pow(z, q), t = pow(X, q), y = pow(X, (q + 1) / 2);
         while (m > 1) {
-            if(pow(t, intpow(2, m - 2)).is_member(1)) {
-                c = c * c;
-                m--;
-            } else {
-                tuple<Modulo, Modulo, Modulo> tmp(c * c, c * c * t, c * r);
-                tie(c, t, r) = tmp;
-                m--;
+            unless (pow(t, intpow(2, m - 2)).is_member(1)) {
+                tie (t, y) = make_pair(c * c * t, c * y);
             }
+
+            c *= c;
+            m -= 1;
         }
 
-        return r;
+
+        return y;
     }
 }
