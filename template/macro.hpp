@@ -5,6 +5,8 @@
 #define len(x) ll(x.size())
 #define elif else if
 #define unless(cond) if (!(cond))
+#define until(cond) while (!(cond))
+#define loop while (true)
 
 // オーバーロードマクロ
 #define overload2(_1, _2, name, ...) name
