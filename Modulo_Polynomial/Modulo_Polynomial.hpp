@@ -9,10 +9,8 @@ class Modulo_Polynomial {
     using mint = modint<Mod>;
     int precision = 0;
 
-    protected:
-    vector<mint> poly;
-
     public:
+    vector<mint> poly;
     Modulo_Polynomial(vector<mint> _poly, int precision): precision(precision) {
         if (_poly.size() > precision) { _poly.resize(precision); }
         poly = _poly;
@@ -156,6 +154,14 @@ class Modulo_Polynomial {
     // 次数を求める (ゼロ多項式の時は -1)
     int degree() const {
         for (int d = size() - 1; d >= 0; d--) {
+            unless(poly[d].is_zero()) { return d; }
+        }
+        return -1;
+    }
+
+    // 位数 (係数が非ゼロである次数の最小値)
+    int order() const {
+        for (int d = 0; d < size(); d++) {
             unless(poly[d].is_zero()) { return d; }
         }
         return -1;
