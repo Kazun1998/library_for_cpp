@@ -9,7 +9,7 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
     using mint = modint<Mod>;
 
     protected:
-    static auto calculator =  Numeric_Theory_Translation<Mod>();
+    static Numeric_Theory_Translation<Mod> calculator;
 
     public:
     Fast_Polynominal_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<Mod>(_poly, _precision) {}
@@ -79,4 +79,40 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
     }
 
     friend Fast_Polynominal_Series operator/(const Fast_Polynominal_Series &lhs, const Fast_Polynominal_Series &rhs) { return Fast_Polynominal_Series(lhs) /= rhs; }
+
+    // 多項式としての除算
+    Fast_Polynominal_Series div(Fast_Polynominal_Series &B) {
+        this->reduce(); B.reduce();
+
+        int n = this->poly.size(), m = B.poly.size();
+
+        if (n < m) { return Fast_Polynominal_Series({0}); }
+
+        vector<mint> a_rev(this->poly), b_rev(B.poly);
+        reverse(a_rev.begin(), a_rev.end());
+        reverse(b_rev.begin(), b_rev.end());
+
+        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, n));
+        c.resize(n - m + 1);
+        reverse(c.begin(), c.end());
+        return Fast_Polynominal_Series(c, n);
+    }
+
+    Fast_Polynominal_Series& operator%=(Fast_Polynominal_Series &B) {
+        Fast_Polynominal_Series Q = this->div(B);
+        this->poly = ((*this) - B * Q).poly;
+        return *this;
+    }
+
+    friend Fast_Polynominal_Series operator%(Fast_Polynominal_Series &lhs, Fast_Polynominal_Series &rhs) { return Fast_Polynominal_Series(lhs) %= rhs; }
 };
+
+template<const ll Mod>
+Numeric_Theory_Translation<Mod> Fast_Polynominal_Series<Mod>::calculator = Numeric_Theory_Translation<Mod>();
+
+template<const ll Mod>
+pair<Fast_Polynominal_Series<Mod>, Fast_Polynominal_Series<Mod>> divmod(Fast_Polynominal_Series<Mod> &A, Fast_Polynominal_Series<Mod> &B) {
+    Fast_Polynominal_Series Q = A.div(B);
+    Fast_Polynominal_Series R = A - B * Q;
+    return {Q, R};
+}
