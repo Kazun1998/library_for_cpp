@@ -25,18 +25,13 @@ namespace modulo {
             return pow(X, (p - 1) / 4).is_member(1) ? pow(X, (p + 3) / 8) : pow(Modulo(2, p), (p - 1) / 4) * pow(X, (p + 3) / 8);
         }
 
-        ll u = 2, s = 1;
-        while ((p - 1) % (2 * u) == 0) {
-            u *= 2;
-            s++;
-        }
+        ll q = p - 1, s = 0;
+        while (mod(q, 2) == 0) { q >>= 1; s++; }
 
-        ll q = (p - 1) / u;
-
-        random_device seed_gen;
+        random_device device;
         Modulo z;
         while (true) {
-            z = Modulo(seed_gen(), p);
+            z = Modulo(device(), p);
             if (Legendre(z) == -1) { break; }
         }
 
