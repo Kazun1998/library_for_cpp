@@ -65,3 +65,6 @@ using namespace std;
 
 // macro
 #include"macro.hpp"
+
+// bitop
+#include"bitop.hpp"
