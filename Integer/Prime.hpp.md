@@ -109,8 +109,8 @@ data:
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document
 redirect_from:

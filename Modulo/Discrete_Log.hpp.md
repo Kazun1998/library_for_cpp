@@ -117,26 +117,27 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Modulo/Modulo.hpp\"\
-    \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
-    \  public: // public\u306B\u6307\u5B9A\n      const char* what() const noexcept\
-    \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
-    \u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\
-    \n        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace\
+    \ modulo {\n    class DifferentModulus : public exception {\n      public: //\
+    \ public\u306B\u6307\u5B9A\n      const char* what() const noexcept override {\
+    \ return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\
+    \u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n      \
+    \  public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1) {}\n \
+    \       Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n    \
+    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const { return\
+    \ Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
     \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
     \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
     \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
@@ -228,7 +229,7 @@ data:
   isVerificationFile: false
   path: Modulo/Discrete_Log.hpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

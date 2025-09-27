@@ -109,22 +109,23 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Integer/Quotients.hpp\"\
-    \n\nvector<tuple<ll, ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll,\
-    \ ll, ll>>();\n\n    ll l = 1;\n    while (l <= N) {\n        ll q = N / l;\n\
-    \        ll r = N / q;\n        quotients.emplace_back(q, l, r);\n        l =\
-    \ r + 1;\n    }\n\n    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Integer/Quotients.hpp\"\n\nvector<tuple<ll,\
+    \ ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll, ll, ll>>();\n\
+    \n    ll l = 1;\n    while (l <= N) {\n        ll q = N / l;\n        ll r = N\
+    \ / q;\n        quotients.emplace_back(q, l, r);\n        l = r + 1;\n    }\n\n\
+    \    return quotients;\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp\"\
     \n\nint main() {\n    ll N; cin >> N;\n    auto quotients = Quotients(N);\n\n\
     \    reverse(quotients.begin(), quotients.end());\n    cout << quotients.size()\
     \ << endl;\n    for (int i = 0; i < quotients.size(); i ++) {\n        cout <<\
@@ -147,7 +148,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp

@@ -118,25 +118,26 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Math/Two_SAT.hpp\"\
-    \n\nclass Two_SAT{\n    public:\n    vector<vector<int>> arc,rev;\n    bool satisfiable;\n\
-    \    vector<bool> answer;\n\n    private:\n    int N;\n\n    public:\n    Two_SAT(int\
-    \ N): N(N) {\n        arc.resize(2 * N);\n        rev.resize(2 * N);\n    }\n\n\
-    \    public:\n    // \u9802\u70B9\u3092 1 \u500B\u8FFD\u52A0\u3059\u308B.\n  \
-    \  int add_variable() {\n        int id = N;\n        arc.emplace_back(vector<int>());\
-    \ arc.emplace_back(vector<int>());\n        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n\
-    \        N++;\n\n        return id;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Math/Two_SAT.hpp\"\n\nclass Two_SAT{\n\
+    \    public:\n    vector<vector<int>> arc,rev;\n    bool satisfiable;\n    vector<bool>\
+    \ answer;\n\n    private:\n    int N;\n\n    public:\n    Two_SAT(int N): N(N)\
+    \ {\n        arc.resize(2 * N);\n        rev.resize(2 * N);\n    }\n\n    public:\n\
+    \    // \u9802\u70B9\u3092 1 \u500B\u8FFD\u52A0\u3059\u308B.\n    int add_variable()\
+    \ {\n        int id = N;\n        arc.emplace_back(vector<int>()); arc.emplace_back(vector<int>());\n\
+    \        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n \
+    \       N++;\n\n        return id;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\
     \u8FFD\u52A0\u3059\u308B.\n    vector<int> add_variables(int k = 1) {\n      \
     \  vector<int> I;\n        for (; k > 0; k--){ I.emplace_back(add_variable());\
     \ }\n        return I;\n    }\n\n    public:\n    inline int variable_number()\
@@ -210,7 +211,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/other/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/other/two_sat.test.cpp

@@ -149,24 +149,25 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\
-    \n\nnamespace geometry {\n    using Real = double long;\n    const Real epsilon\
-    \ = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class\
-    \ Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation {\
-    \ PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
-    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
-    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
+    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
+    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
+    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
+    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
+    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
+    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
     \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
     \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
@@ -324,7 +325,7 @@ data:
   isVerificationFile: false
   path: Geometry/triangle_center/Circumcircle.hpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7C.test.cpp

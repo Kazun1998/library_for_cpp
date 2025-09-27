@@ -73,8 +73,8 @@ data:
   timestamp: '2025-08-16 18:00:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document
 redirect_from:

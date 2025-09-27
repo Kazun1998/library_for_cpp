@@ -129,40 +129,41 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Graph/Graph/Graph.hpp\"\
-    \n\nnamespace graph {\n    struct Edge {\n        int id, u, v;\n\n        Edge()\
-    \ = default;\n        Edge(int id, int u, int v): id(id), u(u), v(v) {}\n    };\n\
-    \n    class Graph {\n        private:\n        vector<vector<pair<int, int>>>\
-    \ incidences; // { edge_id, neighbor_vertex }\n        vector<Edge> edges;\n\n\
-    \        public:\n        int edge_id_offset;\n\n        public:\n        Graph(int\
-    \ n, int edge_id_offset = 0): edge_id_offset(edge_id_offset) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n       \
-    \ \n        inline int order() const { return int(incidences.size()); }\n\n  \
-    \      inline int size() const { return int(edges.size()) - edge_id_offset; }\n\
-    \n        // \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u8FBA\u3092\
-    \u8FFD\u52A0\u3059\u308B.\n        int add_edge(int u, int v) {\n            int\
-    \ id = int(edges.size());\n\n            incidences[u].emplace_back(id, v);\n\
-    \            incidences[v].emplace_back(id, u);\n            edges.emplace_back(Edge(id,\
-    \ u, v));\n\n            return id;\n        }\n\n        // \u9802\u70B9 u \u306B\
-    \u63A5\u7D9A\u3059\u308B\u8FBA ID \u3068\u96A3\u63A5\u9802\u70B9 v \u306E\u30DA\
-    \u30A2 { ID, v } \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n        inline const\
-    \ vector<pair<int, int>>& incidence (int u) const { return incidences[u]; }\n\n\
-    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n    };\n}\n"
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace\
+    \ graph {\n    struct Edge {\n        int id, u, v;\n\n        Edge() = default;\n\
+    \        Edge(int id, int u, int v): id(id), u(u), v(v) {}\n    };\n\n    class\
+    \ Graph {\n        private:\n        vector<vector<pair<int, int>>> incidences;\
+    \ // { edge_id, neighbor_vertex }\n        vector<Edge> edges;\n\n        public:\n\
+    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
+    \ = 0): edge_id_offset(edge_id_offset) {\n            incidences.assign(n, {});\n\
+    \            edges.resize(edge_id_offset, Edge());\n        }\n        \n    \
+    \    inline int order() const { return int(incidences.size()); }\n\n        inline\
+    \ int size() const { return int(edges.size()) - edge_id_offset; }\n\n        //\
+    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u8FBA\u3092\u8FFD\u52A0\
+    \u3059\u308B.\n        int add_edge(int u, int v) {\n            int id = int(edges.size());\n\
+    \n            incidences[u].emplace_back(id, v);\n            incidences[v].emplace_back(id,\
+    \ u);\n            edges.emplace_back(Edge(id, u, v));\n\n            return id;\n\
+    \        }\n\n        // \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA ID\
+    \ \u3068\u96A3\u63A5\u9802\u70B9 v \u306E\u30DA\u30A2 { ID, v } \u306E\u30EA\u30B9\
+    \u30C8\u3092\u53D6\u5F97\n        inline const vector<pair<int, int>>& incidence\
+    \ (int u) const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\
+    \u3042\u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\
+    \u308B.\n        inline const Edge& get_edge(int id) const { return edges[id];\
+    \ }\n\n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\
+    \u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
+    \ id) { return edges[id]; }\n    };\n}\n"
   code: "#pragma once\n\n#include\"../../template/template.hpp\"\n\nnamespace graph\
     \ {\n    struct Edge {\n        int id, u, v;\n\n        Edge() = default;\n \
     \       Edge(int id, int u, int v): id(id), u(u), v(v) {}\n    };\n\n    class\
@@ -195,15 +196,15 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Graph.hpp
   requiredBy:
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Connected_Components.hpp
-  timestamp: '2025-09-23 20:21:08+09:00'
+  - Graph/Graph/Two_Edge_Connected_Components.hpp
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
 documentation_of: Graph/Graph/Graph.hpp
 layout: document
 redirect_from:

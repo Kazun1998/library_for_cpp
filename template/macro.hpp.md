@@ -271,126 +271,127 @@ data:
     links: []
   bundledCode: "#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n"
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n"
   code: "#pragma once\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(),\
     \ x.end()\n#define len(x) ll(x.size())\n#define elif else if\n#define unless(cond)\
-    \ if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\
-    \n#define overload2(_1, _2, name, ...) name\n#define overload3(_1, _2, _3, name,\
-    \ ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n#define overload5(_1,\
-    \ _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define\
-    \ rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n;\
-    \ i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b,\
-    \ c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4,\
-    \ rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x: a)\n\
-    #define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a)\
-    \ for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y,\
-    \ z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2,\
-    \ foreach1)(__VA_ARGS__)\n"
+    \ if (!(cond))\n#define until(cond) while (!(cond))\n#define loop while (true)\n\
+    \n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1,\
+    \ _2, name, ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define\
+    \ overload4(_1, _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4,\
+    \ _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define\
+    \ rep3(i, a, b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i\
+    \ = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2,\
+    \ rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x,\
+    \ y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y,\
+    \ z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define\
+    \ foreach(...) overload5(__VA_ARGS__, foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n"
   dependsOn: []
   isVerificationFile: false
   path: template/macro.hpp
   requiredBy:
-  - Tree/Tree.hpp
-  - template/template.hpp
-  - Modulo/Modulo.hpp
-  - Modulo/Discrete_Log.hpp
   - Modulo/Order.hpp
-  - Binary_Search/General_Integer.hpp
-  - Binary_Search/Value.hpp
-  - Graph/Graph/Graph.hpp
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  - Graph/Graph/Lowlink.hpp
-  - Graph/Graph/Connected_Components.hpp
+  - Modulo/Discrete_Log.hpp
+  - Modulo/Modulo.hpp
+  - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Field_Matrix.hpp
+  - Linear_Algebra/Reduction.hpp
+  - template/template.hpp
   - Algebra/Gaussian_Integer.hpp
-  - Integer/Divisors.hpp
+  - Tree/Tree.hpp
+  - Graph/Graph/Lowlink.hpp
+  - Graph/Graph/Graph.hpp
+  - Graph/Graph/Connected_Components.hpp
+  - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Integer/Quotients.hpp
+  - Integer/Divisors.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
-  - Geometry/triangle_center/Centroid.hpp
-  - Geometry/triangle_center/Incenter.hpp
-  - Geometry/triangle_center/Incircle.hpp
-  - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Circumcenter.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/projection/Projection_Point_Line.hpp
-  - Geometry/base.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
-  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
-  - Geometry/intersection/Intersection_Circle_and_Line.hpp
-  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Math/Floor_Linear_Sum.hpp
+  - Math/Two_SAT.hpp
   - Geometry/reflection/Reflection_Point_Line.hpp
   - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
   - Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/base.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Division_Point.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
   - Geometry/distance/Distance_Line_and_Point.hpp
   - Geometry/object/Line.hpp
+  - Geometry/object/Point.hpp
   - Geometry/object/Circle.hpp
+  - Geometry/object/Segment.hpp
   - Geometry/object/Polygon.hpp
   - Geometry/object/Triangle.hpp
-  - Geometry/object/Segment.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/utility/Convex_Hull.hpp
-  - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/utility/Argument_Sort.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
-  - Geometry/utility/Division_Point.hpp
-  - Linear_Algebra/Field_Matrix.hpp
-  - Linear_Algebra/Reduction.hpp
-  - Linear_Algebra/Rank.hpp
-  - Math/Floor_Linear_Sum.hpp
-  - Math/Two_SAT.hpp
-  timestamp: '2025-08-17 13:03:30+09:00'
+  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/triangle_center/Centroid.hpp
+  - Geometry/triangle_center/Incenter.hpp
+  - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/projection/Projection_Point_Line.hpp
+  - Binary_Search/General_Integer.hpp
+  - Binary_Search/Value.hpp
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
-  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
-  - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/aizu_online_judge/ntl/1E.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
   - verify/aizu_online_judge/cgl/7E.test.cpp
   - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
   - verify/aizu_online_judge/cgl/7A.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
-  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/2B.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
+  - verify/aizu_online_judge/ntl/1E.test.cpp
+  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: template/macro.hpp
 layout: document
 redirect_from:

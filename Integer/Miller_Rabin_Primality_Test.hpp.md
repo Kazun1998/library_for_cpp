@@ -117,26 +117,27 @@ data:
     \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
     \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
     \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n\n// \u30AA\u30FC\u30D0\u30FC\
-    \u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n\
-    #define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4,\
-    \ name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n//\
-    \ \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n\
-    #define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i\
-    \ = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define\
-    \ rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define\
-    \ foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto &&[x,\
-    \ y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x,\
-    \ y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Integer/Prime.hpp\"\
-    \n\nnamespace Prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
-    \ long prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
-    \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
-    \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
-    \   else if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n   \
-    \ }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if\
-    \ (n <= 3) { return n >= 2; }\n    else if (n == 5) { return true; }\n    else\
-    \ if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace\
+    \ Prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long long prime\
+    \ = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step) {\n  \
+    \      prime += step;\n        step = 6 - step;\n      }\n      else if (prime\
+    \ == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n      else\
+    \ if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\
+    \n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if (n <= 3)\
+    \ { return n >= 2; }\n    else if (n == 5) { return true; }\n    else if ((n %\
+    \ 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
     \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
     \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
     \n  pair<long long, long long> exponents(long long n, long long p) {\n    long\
@@ -196,7 +197,7 @@ data:
   isVerificationFile: false
   path: Integer/Miller_Rabin_Primality_Test.hpp
   requiredBy: []
-  timestamp: '2025-09-23 12:48:48+09:00'
+  timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
