@@ -48,6 +48,19 @@ class Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {
         return Fast_Polynominal_Series<Mod>(lhs) -= rhs; 
     }
 
+    // スカラー倍
+    Fast_Polynominal_Series& operator*=(const mint &a){
+        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }
+        this->reduce();
+        return *this;
+    }
+
+    Fast_Polynominal_Series operator*(const mint &a) const {return Fast_Polynominal_Series(*this) *= a; }
+
+    friend Fast_Polynominal_Series operator*(const mint &a, const Fast_Polynominal_Series &P) { return Fast_Polynominal_Series(P) *= a; }
+
+    friend Fast_Polynominal_Series operator*(const ll &a, const Fast_Polynominal_Series &P) { return mint(a) * P; }
+
     // 積
     Fast_Polynominal_Series& operator*=(const Fast_Polynominal_Series &P) {
         auto tmp = calculator.convolution(this->poly, P.poly);
