@@ -31,11 +31,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+    title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\n\n#line 2\
@@ -455,10 +461,12 @@ data:
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   isVerificationFile: false
   path: Modulo_Polynomial/Fraction_Coefficient.hpp
-  requiredBy: []
+  requiredBy:
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   timestamp: '2025-09-27 20:12:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
 documentation_of: Modulo_Polynomial/Fraction_Coefficient.hpp
 layout: document
 title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"

@@ -32,12 +32,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Modulo_Polynomial/Log.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+    title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
@@ -378,10 +384,12 @@ data:
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   timestamp: '2025-09-27 16:14:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp

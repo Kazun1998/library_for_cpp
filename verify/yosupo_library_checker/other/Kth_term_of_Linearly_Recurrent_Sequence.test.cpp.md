@@ -5,8 +5,20 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Fraction_Coefficient.hpp
+    title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -25,61 +37,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Calculus.hpp
-    title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Exp.hpp
-    title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fraction_Coefficient.hpp
-    title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Log.hpp
-    title: Modulo_Polynomial/Log.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Power.hpp
-    title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-    title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Division.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    links:
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -193,27 +164,28 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line\
-    \ 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int Mod>\n\
-    class modint {\n    public:\n    int64_t x;\n\n    public:\n    // \u521D\u671F\
-    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a): x((a\
-    \ % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
-    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
-    \ operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n   \
-    \     return *this;\n    }\n\n    friend modint operator+(const modint &x, const\
-    \ modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const\
-    \ modint &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return\
-    \ *this;\n    }\n\n    friend modint operator-(const modint &x, const modint &y)\
-    \ { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const\
-    \ modint &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n  \
-    \  friend modint operator*(const modint &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b\
-    \ > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n\
-    \            s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n\
-    \        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
+    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line\
+    \ 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
+    \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int Mod>\nclass modint {\n    public:\n\
+    \    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr modint():\
+    \ x(0) {}\n    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n  \
+    \  // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
+    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
+    \ if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
+    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
+    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
+    \ if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n   \
+    \ friend modint operator-(const modint &x, const modint &y) { return modint(x)\
+    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
+    \       (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint\
+    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n\n \
+    \   // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return (*this) *=\
+    \ b.inverse(); }\n\n    friend modint operator/(const modint &x, const modint\
+    \ &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n        int64_t\
+    \ s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b > 0) {\n\
+    \            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n     \
+    \       s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n   \
+    \     return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
     \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator!=(const\
     \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
     \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
@@ -294,8 +266,9 @@ data:
     \u304C\u975E\u30BC\u30ED\u3067\u3042\u308B\u6B21\u6570\u306E\u6700\u5C0F\u5024\
     )\n    int order() const {\n        for (int d = 0; d < size(); d++) {\n     \
     \       unless(poly[d].is_zero()) { return d; }\n        }\n        return -1;\n\
-    \    }\n};\n#line 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<const\
-    \ ll Mod>\nclass Numeric_Theory_Translation {\n    public:\n    using F = modint<Mod>;\n\
+    \    }\n};\n#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line\
+    \ 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<const ll\
+    \ Mod>\nclass Numeric_Theory_Translation {\n    public:\n    using F = modint<Mod>;\n\
     \    F primitive;\n    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n\
     \    public:\n    Numeric_Theory_Translation() {\n        primitive = primitive_root();\n\
     \        build_up();\n    }\n\n    private:\n    F primitive_root(){\n       \
@@ -389,104 +362,102 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Modulo_Polynomial.hpp\"\
-    \n\ntemplate<const ll Mod>\nclass Numeric_Theory_Translation {\n    public:\n\
-    \    using F = modint<Mod>;\n    F primitive;\n    vector<F> root, iroot, rate2,\
-    \ irate2, rate3, irate3;\n\n    public:\n    Numeric_Theory_Translation() {\n\
-    \        primitive = primitive_root();\n        build_up();\n    }\n\n    private:\n\
-    \    F primitive_root(){\n        if (Mod == 2) { return F(1); }\n        if (Mod\
-    \ == 998244353) { return F(3); }\n\n        vector<int> fac;\n        int v =\
-    \ Mod - 1;\n\n        for (int q = 2; q * q <= v; q++){\n            int e = 0;\n\
-    \            while (v % q == 0){\n                e++; v /= q;\n            }\n\
-    \n            if (e > 0) { fac.emplace_back(q); }\n        }\n\n        if (v\
-    \ > 1) { fac.emplace_back(v); }\n\n        F g(2);\n        while (true) {\n \
-    \           bool flag = true;\n            for (int q: fac) {\n              \
-    \  if (pow(g, (Mod - 1) / q) == 1){\n                    flag = false;\n     \
-    \               break;\n                }\n            }\n            if (flag)\
-    \ { break; }\n            g += 1;\n        }\n        return g;\n    }\n\n   \
-    \ void build_up() {\n        int x = ~(Mod - 1) & (Mod - 2);\n        int rank2\
-    \ = bit_length(x);\n\n        root.resize(rank2 + 1); iroot.resize(rank2 + 1);\n\
-    \        rate2.resize(max(0, rank2 - 1)); irate2.resize(max(0, rank2 - 1));\n\
-    \        rate3.resize(max(0, rank2 - 2)); irate3.resize(max(0, rank2 - 2));\n\n\
-    \        root.back() = pow(primitive, (Mod - 1) >> rank2);\n        iroot.back()\
-    \ = root.back().inverse();\n\n        for (int i = rank2 - 1; i >= 0; i--){\n\
-    \            root[i] = root[i + 1] * root[i + 1];\n            iroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\n        }\n\n        F prod(1), iprod(1);\n        for\
-    \ (int i = 0; i < rank2 - 1; i++){\n            rate2[i] = root[i + 2] * prod;\n\
-    \            irate2[i] = iroot[i + 2] * prod;\n\n            prod *= iroot[i +\
-    \ 2]; iprod *= root[i + 2];\n        }\n\n        prod = 1; iprod = 1;\n     \
-    \   for (int i = 0; i < rank2 - 2; i++){\n            rate3[i] = root[i + 3] *\
-    \ prod;\n            irate3[i] = iroot[i + 3] * iprod;\n\n            prod *=\
-    \ iroot[i + 3]; iprod *= root[i + 3];\n        }\n    }\n\n    public:\n    void\
-    \ ntt(vector<F> &A){\n        int N = A.size();\n        int h = ceil_log2(N);\n\
-    \n        F I = root[2];\n        for (int l = 0; l < h;){\n            if (h\
-    \ - l == 1){\n                int p = 1 << (h - l - 1);\n                F rot(1);\n\
-    \                for (int s = 0; s < (1 << l); s++){\n                    int\
-    \ offset = s << (h - l);\n                    for(int i = 0; i < p; i++){\n  \
-    \                      F x = A[i + offset], y = A[i + offset + p] * rot;\n   \
-    \                     A[i + offset] = x + y;\n                        A[i + offset\
-    \ + p] = x - y;\n                    }\n\n                    unless (s + 1 ==\
-    \ (1 << l)){ rot *= rate2[bit_length(~s & -(~s)) - 1]; }\n                }\n\
-    \                l++;\n            } else {\n                int p = 1 << (h -\
-    \ l - 2);\n                F rot(1);\n                for (int s = 0; s < (1 <<\
-    \ l); s++){\n                    F rot2 = rot * rot, rot3 = rot2 * rot;\n    \
-    \                int offset = s << (h - l);\n                    for (int i =\
-    \ 0; i < p; i++){\n                        F a0 = A[i + offset];\n           \
-    \             F a1 = A[i + offset + p] * rot;\n                        F a2 =\
-    \ A[i + offset + 2 * p] * rot2;\n                        F a3 = A[i + offset +\
-    \ 3 * p] * rot3;\n\n                        F alpha = (a1 - a3) * I;\n\n     \
-    \                   A[i + offset]         = a0 + a2 + a1 + a3;\n             \
-    \           A[i + offset + p]     = a0 + a2 - a1 - a3;\n                     \
-    \   A[i + offset + 2 * p] = a0 - a2 + alpha;\n                        A[i + offset\
-    \ + 3 * p] = a0 - a2 - alpha;\n                    }\n\n                    unless(s\
-    \ + 1 == 1 << l) { rot *= rate3[bit_length(~s & -(~s)) - 1]; }\n             \
-    \   }\n                l += 2;\n            }\n        }\n    }\n\n    public:\n\
-    \    void inverse_ntt(vector<F> &A){\n        int N = A.size();\n        int h\
-    \ = ceil_log2(N);\n\n        F J = iroot[2];\n        for (int l = h; l > 0;){\n\
-    \            if (l == 1){\n                int p = 1 << (h - l);\n           \
-    \     F irot(1);\n                for (int s = 0; s < (1 << (l - 1)); s++){\n\
-    \                    int offset = s << (h - l + 1);\n                    for(int\
-    \ i = 0; i < p; i++){\n                        F x = A[i + offset], y = A[i +\
-    \ offset + p];\n                        A[i + offset]   = x + y;\n           \
-    \             A[i + offset + p] = (x - y) * irot;\n                    }\n\n \
-    \                   unless (s+1 == 1 << (l - 1) ) { irot *= irate2[bit_length(~s\
-    \ & -(~s)) -1]; }\n                }\n                l--;\n            } else\
-    \ {\n                int p = 1 << (h - l);\n                F irot(1);\n     \
-    \           for (int s=0; s<(1<<(l-2)); s++){\n                    F irot2 = irot\
-    \ * irot, irot3 = irot2  *irot;\n                    int offset=s<<(h-l+2);\n\
-    \                    for (int i = 0; i < p; i++){\n                        F a0\
-    \ = A[i + offset];\n                        F a1 = A[i + offset + p];\n      \
-    \                  F a2 = A[i + offset + 2 * p];\n                        F a3\
-    \ = A[i + offset + 3 * p];\n\n                        F beta = (a2 - a3) * J;\n\
-    \n                        A[i + offset]         = a0 + a2 + a1 + a3;\n       \
-    \                 A[i + offset + p]     = (a0 - a1 + beta) * irot;\n         \
-    \               A[i + offset + 2 * p] = (a0 + a1 - a2 - a3) * irot2;\n       \
-    \                 A[i + offset + 3 * p] = (a0 - a1 - beta) * irot3;\n        \
-    \            }\n\n                    unless (s + 1 == 1 << (l - 2)) { irot *=\
-    \ irate3[bit_length(~s & -(~s)) - 1]; }\n                }\n                l-=2;\n\
-    \            }\n        }\n\n        F N_inv=F(N).inverse();\n        for (int\
-    \ i=0; i<N; i++) A[i]*=N_inv;\n    }\n\n    vector<F> convolution(vector<F> A,\
-    \ vector<F> B){\n        if (A.empty() || B.empty()) return vector<F>{};\n\n \
-    \       int M=A.size(), N=B.size(), L=M+N-1;\n        if (min(M,N)<64){\n    \
-    \        vector<F> C(L);\n            for(int i=0; i<M; i++){\n              \
-    \  for (int j=0; j<N; j++){\n                    C[i+j]+=A[i]*B[j];\n        \
-    \        }\n            }\n            return C;\n        }\n\n        int h=bit_length(L);\n\
-    \        int K=1<<h;\n\n        vector<F> X(K), Y(K);\n        copy(A.begin(),\
-    \ A.end(), X.begin());\n        copy(B.begin(), B.end(), Y.begin());\n\n     \
-    \   ntt(X); ntt(Y);\n        for (int i=0; i<K; i++) X[i]*=Y[i];\n\n        inverse_ntt(X);\
-    \ X.resize(L);\n        return X;\n    }\n\n    vector<F> inverse(vector<F> P,\
-    \ int d) {\n        int n = P.size();\n        assert(!P.empty() && !P[0].is_zero());\n\
-    \n        vector<F> G{P[0].inverse()};\n        while (G.size() < d) {\n     \
-    \       int m = G.size();\n            vector<F> A(P.begin(), P.begin() + min(n,\
-    \ 2 * m));\n            A.resize(2 * m);\n            vector<F> B(G);\n      \
-    \      B.resize(2 * m);\n\n            ntt(A); ntt(B);\n            for (int i\
-    \ = 0; i < 2 * m; i++) { A[i] *= B[i]; }\n\n            inverse_ntt(A);\n    \
-    \        A.erase(A.begin(), A.begin() + m);\n            A.resize(2 * m);\n\n\
-    \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
-    \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
-    \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
+    \ 5 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\ntemplate<const ll Mod>\nclass\
+    \ Fast_Polynominal_Series : public Modulo_Polynomial<Mod> {\n    private:\n  \
+    \  using mint = modint<Mod>;\n\n    protected:\n    static Numeric_Theory_Translation<Mod>\
+    \ calculator;\n\n    public:\n    Fast_Polynominal_Series(vector<mint> _poly,\
+    \ int _precision) : Modulo_Polynomial<Mod>(_poly, _precision) {}\n\n    Fast_Polynominal_Series()\
+    \ = default;\n    Fast_Polynominal_Series(vector<mint> _poly) : Fast_Polynominal_Series(_poly,\
+    \ _poly.size()) {}\n    Fast_Polynominal_Series(int _precision) : Fast_Polynominal_Series({},\
+    \ _precision) {}\n\n    // \u52A0\u7B97\n    Fast_Polynominal_Series& operator+=(const\
+    \ Fast_Polynominal_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
+    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
+    \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
+    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
+    \ friend Fast_Polynominal_Series<Mod> operator+(const Fast_Polynominal_Series<Mod>\
+    \ &lhs, const Fast_Polynominal_Series<Mod> &rhs) {\n        return Fast_Polynominal_Series<Mod>(lhs)\
+    \ += rhs; \n    }\n\n    // \u6E1B\u7B97\n    Fast_Polynominal_Series& operator-=(const\
+    \ Fast_Polynominal_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
+    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
+    \      this->poly[i] -= B.poly[i];\n        }\n        this->precision = min(this->precision,\
+    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
+    \ friend Fast_Polynominal_Series<Mod> operator-(const Fast_Polynominal_Series<Mod>\
+    \ &lhs, const Fast_Polynominal_Series<Mod> &rhs) {\n        return Fast_Polynominal_Series<Mod>(lhs)\
+    \ -= rhs; \n    }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    Fast_Polynominal_Series&\
+    \ operator*=(const mint &a){\n        for (int i = 0; i < this->size(); i++) {\
+    \ this->poly[i] *= a; }\n        this->reduce();\n        return *this;\n    }\n\
+    \n    Fast_Polynominal_Series operator*(const mint &a) const {return Fast_Polynominal_Series(*this)\
+    \ *= a; }\n\n    friend Fast_Polynominal_Series operator*(const mint &a, const\
+    \ Fast_Polynominal_Series &P) { return Fast_Polynominal_Series(P) *= a; }\n\n\
+    \    friend Fast_Polynominal_Series operator*(const ll &a, const Fast_Polynominal_Series\
+    \ &P) { return mint(a) * P; }\n\n    // \u7A4D\n    Fast_Polynominal_Series& operator*=(const\
+    \ Fast_Polynominal_Series &P) {\n        auto tmp = calculator.convolution(this->poly,\
+    \ P.poly);\n\n        this->poly = tmp;\n        this->precision = min(this->precision,\
+    \ P.precision);\n        this->resize(this->precision);\n        this->reduce();\n\
+    \        return *this;\n    }\n\n    friend Fast_Polynominal_Series operator*(const\
+    \ Fast_Polynominal_Series &lhs, const Fast_Polynominal_Series &rhs) { return Fast_Polynominal_Series(lhs)\
+    \ *= rhs; }\n\n    // (mod X^d) \u306B\u304A\u3051\u308B\u9006\u5143\u3092\u6C42\
+    \u3081\u308B\n    // d = -1 \u306E\u3068\u304D\u306F, d = precision \u306B\u306A\
+    \u308B.\n    Fast_Polynominal_Series inverse(int d = -1) {\n        vector<mint>\
+    \ p = calculator.inverse(this->poly, (d == -1) ? this->precision : min(d, this->precision));\n\
+    \        return {p, this->precision};\n    }\n\n    // \u9664\u7B97\n    Fast_Polynominal_Series&\
+    \ operator/=(const Fast_Polynominal_Series &P) {\n        vector<mint> inv = calculator.inverse(P.poly,\
+    \ P.precision);\n        this->poly = calculator.convolution(this->poly, inv);\n\
+    \        this->precision = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
+    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Polynominal_Series\
+    \ operator/(const Fast_Polynominal_Series &lhs, const Fast_Polynominal_Series\
+    \ &rhs) { return Fast_Polynominal_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\
+    \u5F0F\u3068\u3057\u3066\u306E\u9664\u7B97\n    Fast_Polynominal_Series div(Fast_Polynominal_Series\
+    \ &B) {\n        this->reduce(); B.reduce();\n\n        int n = this->poly.size(),\
+    \ m = B.poly.size();\n\n        if (n < m) { return Fast_Polynominal_Series({0});\
+    \ }\n\n        vector<mint> a_rev(this->poly), b_rev(B.poly);\n        reverse(a_rev.begin(),\
+    \ a_rev.end());\n        reverse(b_rev.begin(), b_rev.end());\n\n        vector<mint>\
+    \ c = calculator.convolution(a_rev, calculator.inverse(b_rev, n));\n        c.resize(n\
+    \ - m + 1);\n        reverse(c.begin(), c.end());\n        return Fast_Polynominal_Series(c,\
+    \ n);\n    }\n\n    Fast_Polynominal_Series& operator%=(Fast_Polynominal_Series\
+    \ &B) {\n        Fast_Polynominal_Series Q = this->div(B);\n        this->poly\
+    \ = ((*this) - B * Q).poly;\n        return *this;\n    }\n\n    friend Fast_Polynominal_Series\
+    \ operator%(Fast_Polynominal_Series &lhs, Fast_Polynominal_Series &rhs) { return\
+    \ Fast_Polynominal_Series(lhs) %= rhs; }\n};\n\ntemplate<const ll Mod>\nNumeric_Theory_Translation<Mod>\
+    \ Fast_Polynominal_Series<Mod>::calculator = Numeric_Theory_Translation<Mod>();\n\
+    \ntemplate<const ll Mod>\npair<Fast_Polynominal_Series<Mod>, Fast_Polynominal_Series<Mod>>\
+    \ divmod(Fast_Polynominal_Series<Mod> &A, Fast_Polynominal_Series<Mod> &B) {\n\
+    \    Fast_Polynominal_Series Q = A.div(B);\n    Fast_Polynominal_Series R = A\
+    \ - B * Q;\n    return {Q, R};\n}\n#line 2 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
+    \n\n#line 2 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\n\n#line 5 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\
+    \n\ntemplate<const ll Mod>\nmodint<Mod> Fraction_Coefficient(const Fast_Polynominal_Series<Mod>\
+    \ &P, const Fast_Polynominal_Series<Mod> &Q, ll N) {\n    using mint = modint<Mod>;\n\
+    \n    vector<mint> p(P.poly), q(Q.poly);\n    int m = 1 << ceil_log2(q.size());\n\
+    \n    Numeric_Theory_Translation<Mod> calc;\n\n    p.resize(2 * m);\n    q.resize(2\
+    \ * m);\n\n    while (N > 0) {\n        vector<mint> r(2 * m);\n        for (int\
+    \ i = 0; i < 2 * m; i++) { r[i] = (i % 2 == 0) ? q[i] : -q[i]; }\n\n        calc.ntt(p),\
+    \ calc.ntt(q), calc.ntt(r);\n        for (int i = 0; i < 2 * m; i++) { p[i] *=\
+    \ r[i]; q[i] *= r[i]; }\n\n        calc.inverse_ntt(p); calc.inverse_ntt(q);\n\
+    \n        if (N % 2 == 0) {\n            for (int i = 0; i < m; i++) { p[i] =\
+    \ p[2 * i]; }\n        } else {\n            for (int i = 0; i < m; i++) { p[i]\
+    \ = p[2 * i + 1]; }\n        }\n\n        for (int i = 0; i < m; i++) { q[i] =\
+    \ q[2 * i]; }\n\n        for (int i = m; i < 2 * m; i++) { p[i] = q[i] = 0; }\n\
+    \n        N /= 2;\n    }\n\n    return p[0] / q[0];\n}\n#line 6 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
+    \n\ntemplate<const ll Mod>\nmodint<Mod> Nth_Term_of_Linearly_Recurrent_Sequence(const\
+    \ vector<modint<Mod>> &a, const vector<modint<Mod>> &c, ll n, ll offset = 0) {\n\
+    \    using FPS = Fast_Polynominal_Series<Mod>;\n\n    ll d = a.size();\n    n\
+    \ -= offset;\n\n    if (n < 0) { return 0; }\n    if (n < d) { return a[n]; }\n\
+    \n    FPS A(a, d + 1);\n    vector<modint<Mod>> q(d + 1);\n    for (int i = 0;\
+    \ i < d + 1; i++) { q[i] = i ? -c[i - 1] : 1; }\n\n    FPS Q(q, d + 1);\n    FPS\
+    \ P = A * Q;\n    P.poly[d] = 0;\n\n    return Fraction_Coefficient(P, Q, n);\n\
+    }\n#line 6 \"verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\nusing FPS = Fast_Polynominal_Series<Mod>;\n\
+    \nint main() {\n    int d; ll k; cin >> d >> k;\n    vector<modint<Mod>> a(d),\
+    \ c(d); cin >> a >> c;\n    cout << Nth_Term_of_Linearly_Recurrent_Sequence<Mod>(a,\
+    \ c, k) << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Fast_Power_Series.hpp\"\
+    \n#include\"../../../Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\nusing FPS = Fast_Polynominal_Series<Mod>;\n\
+    \nint main() {\n    int d; ll k; cin >> d >> k;\n    vector<modint<Mod>> a(d),\
+    \ c(d); cin >> a >> c;\n    cout << Nth_Term_of_Linearly_Recurrent_Sequence<Mod>(a,\
+    \ c, k) << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -494,33 +465,22 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Algebra/modint.hpp
-  isVerificationFile: false
-  path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  requiredBy:
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  timestamp: '2025-09-27 16:14:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-documentation_of: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+  requiredBy: []
+  timestamp: '2025-09-27 21:50:09+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
 layout: document
 redirect_from:
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp.html
-title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+- /verify/verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+- /verify/verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp.html
+title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
 ---

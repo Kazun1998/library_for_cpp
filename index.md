@@ -217,7 +217,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Fast_Power_Series.hpp
       title: Modulo_Polynomial/Fast_Power_Series.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Fraction_Coefficient.hpp
       title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
     - icon: ':heavy_check_mark:'
@@ -226,6 +226,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Modulo_Polynomial.hpp
       title: Modulo_Polynomial/Modulo_Polynomial.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+      title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
       title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
@@ -417,6 +420,9 @@ data:
       title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - name: verify/yosupo_library_checker/other
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+      title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/two_sat.test.cpp
       title: verify/yosupo_library_checker/other/two_sat.test.cpp
