@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':warning:'
+    path: Modulo_Polynomial/Fraction_Coefficient.hpp
+    title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Modulo_Polynomial/Log.hpp
@@ -274,6 +277,7 @@ data:
   requiredBy:
   - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Power.hpp
