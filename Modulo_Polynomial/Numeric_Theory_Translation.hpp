@@ -182,32 +182,36 @@ class Numeric_Theory_Translation {
         for (int i=0; i<N; i++) A[i]*=N_inv;
     }
 
-    vector<F> convolution(vector<F> A, vector<F> B){
-        if (A.empty() || B.empty()) return vector<F>{};
+    vector<F> convolution_greedy(const vector<F> &a, const vector<F> &b) {
+        int m = a.size(), n = b.size();
+        vector<F> c(m + n - 1);
 
-        int M=A.size(), N=B.size(), L=M+N-1;
-        if (min(M,N)<64){
-            vector<F> C(L);
-            for(int i=0; i<M; i++){
-                for (int j=0; j<N; j++){
-                    C[i+j]+=A[i]*B[j];
-                }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                c[i + j] += a[i] * b[j];
             }
-            return C;
         }
 
-        int h=bit_length(L);
-        int K=1<<h;
+        return c;
+    }
 
-        vector<F> X(K), Y(K);
-        copy(A.begin(), A.end(), X.begin());
-        copy(B.begin(), B.end(), Y.begin());
+    vector<F> convolution(vector<F> a, vector<F> b){
+        if (a.empty() || b.empty()) { return vector<F>{}; }
 
-        ntt(X); ntt(Y);
-        for (int i=0; i<K; i++) X[i]*=Y[i];
+        int m = a.size(), n = b.size(), l = m + n -1;
+        if (min(m, n) < 64) { return convolution_greedy(a, b); }
 
-        inverse_ntt(X); X.resize(L);
-        return X;
+        int K = 1 << bit_length(l);
+
+        vector<F> x(K), y(K);
+        copy(a.begin(), a.end(), x.begin());
+        copy(b.begin(), b.end(), y.begin());
+
+        ntt(x); ntt(y);
+        for (int i = 0; i < K; i++) { x[i] *= y[i]; }
+
+        inverse_ntt(x); x.resize(l);
+        return x;
     }
 
     vector<F> inverse(vector<F> P, int d) {
