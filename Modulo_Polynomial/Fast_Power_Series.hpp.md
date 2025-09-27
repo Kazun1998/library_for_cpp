@@ -41,7 +41,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Subset_Sum.hpp
+    title: "Subset Sum (\u591A\u9805\u5F0F)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
@@ -511,6 +517,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Fast_Power_Series.hpp
   requiredBy:
+  - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Log.hpp
@@ -518,6 +525,7 @@ data:
   timestamp: '2025-09-27 16:14:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp

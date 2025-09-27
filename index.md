@@ -229,6 +229,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Power.hpp
       title: Modulo_Polynomial/Power.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Subset_Sum.hpp
+      title: "Subset Sum (\u591A\u9805\u5F0F)"
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -345,6 +348,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
+  - name: verify/yosupo_library_checker/enumerate_combinatorics
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+      title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - name: verify/yosupo_library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'

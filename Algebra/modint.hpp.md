@@ -41,10 +41,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Subset_Sum.hpp
+    title: "Subset Sum (\u591A\u9805\u5F0F)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
@@ -266,6 +272,7 @@ data:
   isVerificationFile: false
   path: Algebra/modint.hpp
   requiredBy:
+  - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
@@ -277,6 +284,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
