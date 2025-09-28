@@ -43,13 +43,13 @@ data:
     title: Geometry/object/Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/projection/Projection_Point_Line.hpp
-    title: Geometry/projection/Projection_Point_Line.hpp
+    title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Line.hpp
     title: Geometry/reflection/Reflection_Point_Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Point.hpp
-    title: Geometry/reflection/Reflection_Point_Point.hpp
+    title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
   - icon: ':heavy_check_mark:'
     path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
     title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp

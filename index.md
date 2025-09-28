@@ -70,7 +70,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Geometry/projection/Projection_Point_Line.hpp
-      title: Geometry/projection/Projection_Point_Line.hpp
+      title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
   - name: Geometry/reflection
     pages:
     - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
       title: Geometry/reflection/Reflection_Point_Line.hpp
     - icon: ':heavy_check_mark:'
       path: Geometry/reflection/Reflection_Point_Point.hpp
-      title: Geometry/reflection/Reflection_Point_Point.hpp
+      title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
   - name: Geometry/relationship
     pages:
     - icon: ':heavy_check_mark:'
