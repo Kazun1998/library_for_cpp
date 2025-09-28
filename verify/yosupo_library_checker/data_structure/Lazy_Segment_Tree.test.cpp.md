@@ -6,7 +6,7 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/Lazy_Segment_Tree.hpp
-    title: Segment_Tree/Lazy_Segment_Tree.hpp
+    title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -235,26 +235,26 @@ data:
     \    // \u7B2C k \u9805\u3092\u53D6\u5F97\u3059\u308B.\n    inline M operator[](int\
     \ k){\n        int m = k + n;\n        propagate_above(m);\n        lazy[m] =\
     \ id;\n        return data[m] = evaluate_at(m);\n    }\n\n    // i = l, l + 1,\
-    \ ..., r \u306B\u5BFE\u3057\u3066, a \u3092\u4F5C\u7528\u3055\u305B\u308B.\n \
-    \   // \u4F5C\u7528\u306E\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\u308B\
-    \u3053\u3068\u306B\u6CE8\u610F.\n    void action(int l, int r, F a){\n       \
-    \ int L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n        int\
-    \ L = l + n, R = r + n + 1;\n        while (L < R){\n            if (L & 1){\n\
-    \                lazy[L] = (a == id) ? id : comp(a, lazy[L]); \n             \
-    \   L++;\n            }\n\n            if (R & 1){\n                R--;\n   \
-    \             lazy[R] = (a == id) ? id : comp(a, lazy[R]);\n            }\n\n\
-    \            L >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0); recalc_above(R0);\n\
-    \    }\n\n    // \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\u3059\u308B.\n   \
-    \ inline void update(int k, M x){\n        int m = k + n;\n        propagate_above(m);\n\
-    \        data[m] = x; lazy[m] = id;\n        recalc_above(m);\n    }\n\n    //\
-    \ \u7A4D x[l] * x[l + 1] * ... * x[r] \u3092\u6C42\u3081\u308B.\n    // \u7A4D\
-    \u3092\u53D6\u308B\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\u308B\u3053\
-    \u3068\u306B\u6CE8\u610F.\n    M product(int l, int r){\n        int L0, R0;\n\
-    \        tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L = l + n, R\
-    \ = r + n + 1;\n        M vL = unit, vR = unit;\n        while (L < R){\n    \
-    \        if (L & 1) { vL = op(vL, evaluate_at(L)); L++; }\n            if (R &\
-    \ 1) { R--; vR=op(evaluate_at(R), vR); }\n\n            L >>= 1; R >>= 1;\n  \
-    \      }\n\n        return op(vL, vR);\n    }\n\n    // \u5168\u8981\u7D20\u306E\
+    \ ..., r \u306B\u5BFE\u3057\u3066, alpha \u3092\u4F5C\u7528\u3055\u305B\u308B\
+    .\n    // \u4F5C\u7528\u306E\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\u308B\
+    \u3053\u3068\u306B\u6CE8\u610F.\n    void action(int l, int r, F alpha){\n   \
+    \     int L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n      \
+    \  int L = l + n, R = r + n + 1;\n        while (L < R){\n            if (L &\
+    \ 1){\n                lazy[L] = (alpha == id) ? id : comp(alpha, lazy[L]); \n\
+    \                L++;\n            }\n\n            if (R & 1){\n            \
+    \    R--;\n                lazy[R] = (alpha == id) ? id : comp(alpha, lazy[R]);\n\
+    \            }\n\n            L >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0);\
+    \ recalc_above(R0);\n    }\n\n    // \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\
+    \u3059\u308B.\n    inline void update(int k, M x){\n        int m = k + n;\n \
+    \       propagate_above(m);\n        data[m] = x; lazy[m] = id;\n        recalc_above(m);\n\
+    \    }\n\n    // \u7A4D x[l] * x[l + 1] * ... * x[r] \u3092\u6C42\u3081\u308B\
+    .\n    // \u7A4D\u3092\u53D6\u308B\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\
+    \u308B\u3053\u3068\u306B\u6CE8\u610F.\n    M product(int l, int r){\n        int\
+    \ L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L =\
+    \ l + n, R = r + n + 1;\n        M vL = unit, vR = unit;\n        while (L < R){\n\
+    \            if (L & 1) { vL = op(vL, evaluate_at(L)); L++; }\n            if\
+    \ (R & 1) { R--; vR=op(evaluate_at(R), vR); }\n\n            L >>= 1; R >>= 1;\n\
+    \        }\n\n        return op(vL, vR);\n    }\n\n    // \u5168\u8981\u7D20\u306E\
     \u7A4D\u3092\u6C42\u3081\u308B.\n    inline M all_product() {return product(0,\
     \ n);}\n\n    void refresh() {\n        for (int m = 1; m < 2 * n; m++){\n   \
     \         data[m] = evaluate_at(m);\n            if ((m < n) && (lazy[m] != id)){\n\
@@ -309,7 +309,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-09-27 15:11:37+09:00'
+  timestamp: '2025-09-28 23:39:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp

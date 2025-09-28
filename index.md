@@ -242,7 +242,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Lazy_Segment_Tree.hpp
-      title: Segment_Tree/Lazy_Segment_Tree.hpp
+      title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment Tree
