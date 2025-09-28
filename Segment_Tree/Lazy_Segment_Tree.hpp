@@ -104,22 +104,22 @@ class Lazy_Segment_Tree {
         return data[m] = evaluate_at(m);
     }
 
-    // i = l, l + 1, ..., r に対して, a を作用させる.
+    // i = l, l + 1, ..., r に対して, alpha を作用させる.
     // 作用の範囲が閉区間であることに注意.
-    void action(int l, int r, F a){
+    void action(int l, int r, F alpha){
         int L0, R0;
         tie(L0, R0) = range_propagate(l, r + 1);
 
         int L = l + n, R = r + n + 1;
         while (L < R){
             if (L & 1){
-                lazy[L] = (a == id) ? id : comp(a, lazy[L]); 
+                lazy[L] = (alpha == id) ? id : comp(alpha, lazy[L]); 
                 L++;
             }
 
             if (R & 1){
                 R--;
-                lazy[R] = (a == id) ? id : comp(a, lazy[R]);
+                lazy[R] = (alpha == id) ? id : comp(alpha, lazy[R]);
             }
 
             L >>= 1; R >>= 1;
