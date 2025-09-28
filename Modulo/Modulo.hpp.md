@@ -22,10 +22,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
-    title: Modulo/Discrete_Log.hpp
+    title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
+    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

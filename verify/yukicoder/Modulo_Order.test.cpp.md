@@ -6,7 +6,7 @@ data:
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Euler_Totient.hpp
-    title: Integer/Euler_Totient.hpp
+    title: "Euler's Totient \u95A2\u6570"
   - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
@@ -15,7 +15,7 @@ data:
     title: Modulo/Modulo.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
+    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp

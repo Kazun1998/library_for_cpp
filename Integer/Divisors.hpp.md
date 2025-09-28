@@ -22,7 +22,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
+    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp

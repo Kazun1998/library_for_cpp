@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
-    title: Modulo/Discrete_Log.hpp
+    title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp

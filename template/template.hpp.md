@@ -154,13 +154,13 @@ data:
     title: Math/Two_SAT.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
-    title: Modulo/Discrete_Log.hpp
+    title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
-    title: Modulo/Order.hpp
+    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
