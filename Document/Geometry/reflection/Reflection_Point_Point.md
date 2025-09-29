@@ -9,7 +9,7 @@ documentation_of: //Geometry/reflection/Reflection_Point_Point.hpp
 
 ## Theory
 
-点 $\textrm{X}$ は線分 $\textrm{PQ}$ の点である. よって,
+点 $\textrm{X}$ は線分 $\textrm{PQ}$ の中点である. よって,
 
  $$ \dfrac{\textrm{P} + \textrm{Q}}{2} = \textrm{X} $$
 
