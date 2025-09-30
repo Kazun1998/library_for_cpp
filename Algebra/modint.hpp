@@ -38,6 +38,8 @@ class modint {
     }
 
     friend modint operator*(const modint &x, const modint &y) { return modint(x) *= y; }
+    friend modint operator*(const int &x, const modint &y) { return modint(x) *= y; }
+    friend modint operator*(const ll &x, const modint &y) { return modint(x) *= y; }
 
     // 除法
     modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }
@@ -76,6 +78,8 @@ class modint {
 
     bool is_zero() const { return x == 0; }
     bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }
+
+    operator int() const { return x; }
 };
 
 template<int Mod>
