@@ -30,7 +30,7 @@ vector<modint<Mod>> Subset_Sum(vector<int> A, int K) {
         }
     }
 
-    auto g = Exp(Fast_Polynominal_Series<Mod>(f)).poly;
+    auto g = Exp(Fast_Power_Series<Mod>(f)).poly;
     g.resize(K + 1);
     return g;
 }

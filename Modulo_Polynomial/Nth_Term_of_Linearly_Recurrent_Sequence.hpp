@@ -6,7 +6,7 @@
 
 template<const ll Mod>
 modint<Mod> Nth_Term_of_Linearly_Recurrent_Sequence(const vector<modint<Mod>> &a, const vector<modint<Mod>> &c, ll n, ll offset = 0) {
-    using FPS = Fast_Polynominal_Series<Mod>;
+    using FPS = Fast_Power_Series<Mod>;
 
     ll d = a.size();
     n -= offset;
