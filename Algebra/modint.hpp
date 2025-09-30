@@ -64,6 +64,7 @@ class modint {
 
     // 比較
     friend bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }
+    friend bool operator==(const modint &a, const int &b) { return a.x == mod(b, Mod); }
     friend bool operator!=(const modint &a, const modint &b) { return (a.x != b.x); }
 
     // 入力
