@@ -4,7 +4,7 @@
 #include"Fast_Power_Series.hpp"
 
 template<const ll Mod>
-modint<Mod> Fraction_Coefficient(const Fast_Polynominal_Series<Mod> &P, const Fast_Polynominal_Series<Mod> &Q, ll N) {
+modint<Mod> Fraction_Coefficient(const Fast_Power_Series<Mod> &P, const Fast_Power_Series<Mod> &Q, ll N) {
     using mint = modint<Mod>;
 
     vector<mint> p(P.poly), q(Q.poly);

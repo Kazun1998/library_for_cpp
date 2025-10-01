@@ -6,7 +6,7 @@
 int main(){
     const int Mod = 998244353;
     int N; cin >> N;
-    Fast_Polynominal_Series<Mod> A(N); cin >> A;
+    Fast_Power_Series<Mod> A(N); cin >> A;
 
     auto B = Log(A);
     B.resize(N);
