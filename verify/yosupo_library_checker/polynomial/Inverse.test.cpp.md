@@ -169,15 +169,18 @@ data:
     \ friend modint operator-(const modint &x, const modint &y) { return modint(x)\
     \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
     \       (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n\n \
-    \   // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return (*this) *=\
-    \ b.inverse(); }\n\n    friend modint operator/(const modint &x, const modint\
-    \ &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n        int64_t\
-    \ s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b > 0) {\n\
-    \            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n     \
-    \       s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n   \
-    \     return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
-    \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator!=(const\
+    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
+    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
+    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
+    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
+    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
+    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
+    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b\
+    \ > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n\
+    \            s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n\
+    \        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
+    \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator==(const\
+    \ modint &a, const int &b) { return a.x == mod(b, Mod); }\n    friend bool operator!=(const\
     \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
     \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
     \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
@@ -375,7 +378,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   requiredBy: []
-  timestamp: '2025-09-27 16:14:07+09:00'
+  timestamp: '2025-10-01 23:01:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
