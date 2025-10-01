@@ -28,6 +28,7 @@
 "verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp": "2025-09-27 14:54:24 +0900",
 "verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp": "2025-10-01 01:09:50 +0900",
 "verify/yosupo_library_checker/linear_algebra/Rank.test.cpp": "2025-10-01 01:09:50 +0900",
+"verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp": "2025-10-01 01:14:21 +0900",
 "verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp": "2025-09-27 14:54:24 +0900",
 "verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp": "2025-08-17 00:13:14 +0900",
 "verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp": "2025-09-27 14:54:24 +0900",
