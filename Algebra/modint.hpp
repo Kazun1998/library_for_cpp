@@ -79,8 +79,6 @@ class modint {
 
     bool is_zero() const { return x == 0; }
     bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }
-
-    operator int() const { return x; }
 };
 
 template<int Mod>
