@@ -21,6 +21,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Bernoulli_Number.hpp
+    title: "Bernoulli \u6570"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
@@ -299,11 +305,13 @@ data:
   - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2025-10-01 23:01:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp

@@ -209,6 +209,9 @@ data:
   - name: Modulo_Polynomial
     pages:
     - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Bernoulli_Number.hpp
+      title: "Bernoulli \u6570"
+    - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Calculus.hpp
       title: Modulo_Polynomial/Calculus.hpp
     - icon: ':heavy_check_mark:'
@@ -397,6 +400,9 @@ data:
       title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - name: verify/yosupo_library_checker/number_theory
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
       title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
