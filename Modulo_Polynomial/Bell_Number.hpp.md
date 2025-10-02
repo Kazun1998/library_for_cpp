@@ -8,6 +8,9 @@ data:
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Exp.hpp
+    title: Modulo_Polynomial/Exp.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
@@ -37,42 +40,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bell_Number.hpp
-    title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bernoulli_Number.hpp
-    title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Power.hpp
-    title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
-    \n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Modulo_Polynomial/Bell_Number.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -221,11 +199,12 @@ data:
     \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
     \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
     \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
-    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"\
-    Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<const ll Mod>\nclass Modulo_Polynomial\
-    \ {\n    public:\n    using mint = modint<Mod>;\n    int precision = 0;\n\n  \
-    \  public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint> _poly,\
-    \ int precision): precision(precision) {\n        if (_poly.size() > precision)\
+    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"\
+    Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \n\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<const ll Mod>\n\
+    class Modulo_Polynomial {\n    public:\n    using mint = modint<Mod>;\n    int\
+    \ precision = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
+    \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
     \ { _poly.resize(precision); }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial()\
     \ = default;\n    Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly,\
     \ poly.size()) {}\n    Modulo_Polynomial(int precision) : Modulo_Polynomial({},\
@@ -448,36 +427,46 @@ data:
     \ntemplate<const ll Mod>\npair<Fast_Power_Series<Mod>, Fast_Power_Series<Mod>>\
     \ divmod(Fast_Power_Series<Mod> &A, Fast_Power_Series<Mod> &B) {\n    Fast_Power_Series\
     \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n\
-    #line 2 \"Modulo_Polynomial/Log.hpp\"\n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\
-    \n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\n\n// A \u306E\u5F62\u5F0F\u7684\
-    \u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<const ll Mod>\nFast_Power_Series<Mod>\
-    \ Differential(const Fast_Power_Series<Mod> &A) {\n    vector<modint<Mod>> b(A.precision);\n\
-    \    for (int k = 1; k < A.precision; k++) { b[k - 1] = k * A[k]; }\n    return\
-    \ Fast_Power_Series<Mod>(b, A.precision);\n}\n\n// A \u306E\u4E0D\u5B9A\u7A4D\u5206\
-    \u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u5B9A\u6570\u9805\u306F C (default\
-    \ 0) \u3092\u4F7F\u3046.\ntemplate<const ll Mod>\nFast_Power_Series<Mod> Integrate(const\
-    \ Fast_Power_Series<Mod> &A, modint<Mod> C = 0) {\n    using mint = modint<Mod>;\n\
-    \    if (A.is_zero()) { return Fast_Power_Series<Mod>({0}, A.precision); }\n\n\
-    \    vector<mint> inv(A.precision + 1);\n    inv[1] = mint(1);\n    for (int k\
-    \ = 2; k <= A.precision; k++) {\n        ll q, r;\n        tie (q, r) = divmod(Mod,\
-    \ k);\n        inv[k] = -q * inv[r];\n    }\n\n    vector<mint> b(A.precision\
-    \ + 1);\n    b[0] = C;\n    for (int k = 0; k < A.precision; k++) { b[k + 1] =\
-    \ inv[k + 1] * A[k]; }\n    return Fast_Power_Series<Mod>(b, A.precision);\n}\n\
-    #line 4 \"Modulo_Polynomial/Log.hpp\"\n\ntemplate<const ll Mod>\nFast_Power_Series<Mod>\
+    #line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\
+    \n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\
+    \n\n// A \u306E\u5F62\u5F0F\u7684\u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<const\
+    \ ll Mod>\nFast_Power_Series<Mod> Differential(const Fast_Power_Series<Mod> &A)\
+    \ {\n    vector<modint<Mod>> b(A.precision);\n    for (int k = 1; k < A.precision;\
+    \ k++) { b[k - 1] = k * A[k]; }\n    return Fast_Power_Series<Mod>(b, A.precision);\n\
+    }\n\n// A \u306E\u4E0D\u5B9A\u7A4D\u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\
+    \u3057, \u5B9A\u6570\u9805\u306F C (default 0) \u3092\u4F7F\u3046.\ntemplate<const\
+    \ ll Mod>\nFast_Power_Series<Mod> Integrate(const Fast_Power_Series<Mod> &A, modint<Mod>\
+    \ C = 0) {\n    using mint = modint<Mod>;\n    if (A.is_zero()) { return Fast_Power_Series<Mod>({0},\
+    \ A.precision); }\n\n    vector<mint> inv(A.precision + 1);\n    inv[1] = mint(1);\n\
+    \    for (int k = 2; k <= A.precision; k++) {\n        ll q, r;\n        tie (q,\
+    \ r) = divmod(Mod, k);\n        inv[k] = -q * inv[r];\n    }\n\n    vector<mint>\
+    \ b(A.precision + 1);\n    b[0] = C;\n    for (int k = 0; k < A.precision; k++)\
+    \ { b[k + 1] = inv[k + 1] * A[k]; }\n    return Fast_Power_Series<Mod>(b, A.precision);\n\
+    }\n#line 4 \"Modulo_Polynomial/Log.hpp\"\n\ntemplate<const ll Mod>\nFast_Power_Series<Mod>\
     \ Log(const Fast_Power_Series<Mod> &A) {\n    return Integrate(Differential(A)\
     \ / A);\n}\n#line 5 \"Modulo_Polynomial/Exp.hpp\"\n\ntemplate<const ll Mod>\n\
     Fast_Power_Series<Mod> Exp(const Fast_Power_Series<Mod> &A) {\n    assert(A[0].is_zero());\n\
     \n    int n = A.precision;\n\n    Fast_Power_Series<Mod> G({1}, 1), one({1}, n);\n\
     \    for (; G.precision < n;) {\n        G.precision *= 2;\n        G = G * (one\
-    \ - Log(G) + A);\n    }\n\n    return G;\n}\n"
-  code: "#pragma once\n\n#include\"Fast_Power_Series.hpp\"\n#include\"Log.hpp\"\n\n\
-    template<const ll Mod>\nFast_Power_Series<Mod> Exp(const Fast_Power_Series<Mod>\
-    \ &A) {\n    assert(A[0].is_zero());\n\n    int n = A.precision;\n\n    Fast_Power_Series<Mod>\
-    \ G({1}, 1), one({1}, n);\n    for (; G.precision < n;) {\n        G.precision\
-    \ *= 2;\n        G = G * (one - Log(G) + A);\n    }\n\n    return G;\n}\n"
+    \ - Log(G) + A);\n    }\n\n    return G;\n}\n#line 7 \"Modulo_Polynomial/Bell_Number.hpp\"\
+    \n\ntemplate<const ll Mod>\nvector<modint<Mod>> Bell_Number(int N) {\n    using\
+    \ mint = modint<Mod>;\n\n    vector<mint> fact(N + 1), fact_inv(N + 1);\n    fact[0]\
+    \ = 1;\n    for (int x = 1; x <= N; x++) { fact[x] = x * fact[x - 1]; }\n\n  \
+    \  fact_inv[N] = fact[N].inverse();\n    for (int x = N - 1; x >= 0; x--) { fact_inv[x]\
+    \ = (x + 1) * fact_inv[x + 1]; }\n\n    vector<mint> f(fact_inv); f[0] = 0;\n\
+    \    Fast_Power_Series<Mod> G = Exp(Fast_Power_Series<Mod>(f, N + 1));\n\n   \
+    \ vector<mint> g = G.poly;\n    for (int k = 1; k <= N; k++) { g[k] *= fact[k];\
+    \ }\n    return g;\n}\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"../Algebra/modint.hpp\"\
+    \n#include\"Fast_Power_Series.hpp\"\n#include\"Exp.hpp\"\n\ntemplate<const ll\
+    \ Mod>\nvector<modint<Mod>> Bell_Number(int N) {\n    using mint = modint<Mod>;\n\
+    \n    vector<mint> fact(N + 1), fact_inv(N + 1);\n    fact[0] = 1;\n    for (int\
+    \ x = 1; x <= N; x++) { fact[x] = x * fact[x - 1]; }\n\n    fact_inv[N] = fact[N].inverse();\n\
+    \    for (int x = N - 1; x >= 0; x--) { fact_inv[x] = (x + 1) * fact_inv[x + 1];\
+    \ }\n\n    vector<mint> f(fact_inv); f[0] = 0;\n    Fast_Power_Series<Mod> G =\
+    \ Exp(Fast_Power_Series<Mod>(f, N + 1));\n\n    vector<mint> g = G.poly;\n   \
+    \ for (int k = 1; k <= N; k++) { g[k] *= fact[k]; }\n    return g;\n}\n"
   dependsOn:
-  - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -485,28 +474,40 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - Algebra/modint.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
   isVerificationFile: false
-  path: Modulo_Polynomial/Exp.hpp
-  requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-01 23:01:50+09:00'
+  path: Modulo_Polynomial/Bell_Number.hpp
+  requiredBy: []
+  timestamp: '2025-10-03 00:36:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-documentation_of: Modulo_Polynomial/Exp.hpp
+documentation_of: Modulo_Polynomial/Bell_Number.hpp
 layout: document
-redirect_from:
-- /library/Modulo_Polynomial/Exp.hpp
-- /library/Modulo_Polynomial/Exp.hpp.html
-title: Modulo_Polynomial/Exp.hpp
+title: "Bell \u6570"
 ---
+
+## Outline
+
+$n = 0, 1, 2, \dots, N$ における Bell 数 $B_n$ を高速に求める.
+
+## Theory
+
+$\{1, 2, \dots, n\}$ の分割の数を $n$ 番目の Bell 数 $B_n$ として定義された数列 $(B_n)_{n \geq 0}$ を Bell 数という.
+
+Bell 数について, 以下が成り立つ.
+
+$$ \sum_{n=0}^\infty B_n X^n = \exp(\exp(X) - 1)$$
+
+## Contents
+
+```cpp
+vector<modint<Mod>> Bell_Number(int N)
+```
+
+* $n = 0, 1, 2, \dots, N$ における Bell 数の第 $n$ 項 $B_n$ を $\textrm{Mod}$ で割った余りを求める.

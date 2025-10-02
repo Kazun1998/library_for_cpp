@@ -209,6 +209,9 @@ data:
   - name: Modulo_Polynomial
     pages:
     - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Bell_Number.hpp
+      title: "Bell \u6570"
+    - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Bernoulli_Number.hpp
       title: "Bernoulli \u6570"
     - icon: ':heavy_check_mark:'
@@ -359,6 +362,9 @@ data:
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   - name: verify/yosupo_library_checker/enumerate_combinatorics
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+      title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
