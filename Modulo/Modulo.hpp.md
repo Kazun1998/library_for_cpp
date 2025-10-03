@@ -21,12 +21,18 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Math/Montmort_Number.hpp
+    title: "Montmort \u6570"
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
@@ -294,9 +300,11 @@ data:
   requiredBy:
   - Modulo/Order.hpp
   - Modulo/Discrete_Log.hpp
+  - Math/Montmort_Number.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Modulo/Modulo.hpp

@@ -135,6 +135,9 @@ data:
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
   - icon: ':heavy_check_mark:'
+    path: Math/Montmort_Number.hpp
+    title: "Montmort \u6570"
+  - icon: ':heavy_check_mark:'
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
   - icon: ':heavy_check_mark:'
@@ -252,6 +255,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
@@ -372,6 +378,7 @@ data:
   - Integer/Divisors.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Math/Floor_Linear_Sum.hpp
+  - Math/Montmort_Number.hpp
   - Math/Two_SAT.hpp
   - Geometry/reflection/Reflection_Point_Line.hpp
   - Geometry/reflection/Reflection_Point_Point.hpp
@@ -420,6 +427,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

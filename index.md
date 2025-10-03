@@ -193,6 +193,9 @@ data:
       path: Math/Floor_Linear_Sum.hpp
       title: Floor Linear Sum
     - icon: ':heavy_check_mark:'
+      path: Math/Montmort_Number.hpp
+      title: "Montmort \u6570"
+    - icon: ':heavy_check_mark:'
       path: Math/Two_SAT.hpp
       title: Math/Two_SAT.hpp
   - name: Modulo
@@ -365,6 +368,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+      title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
