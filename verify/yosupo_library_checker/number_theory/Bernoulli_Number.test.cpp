@@ -7,6 +7,6 @@ using mint = modint<Mod>;
 
 int main() {
     int N; cin >> N;
-    vector<modint<Mod>> B = Bernoulli_Number<Mod>(N);
+    vector<mint> B = Bernoulli_Number<mint>(N);
     cout << B << endl;
 }

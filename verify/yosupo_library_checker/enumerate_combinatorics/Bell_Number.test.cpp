@@ -8,5 +8,5 @@ using mint = modint<Mod>;
 
 int main() {
     int N; cin >> N;
-    cout << Bell_Number<Mod>(N) << endl;
+    cout << Bell_Number<mint>(N) << endl;
 }
