@@ -3,11 +3,14 @@
 #include"../../../template/template.hpp"
 #include"../../../Modulo_Polynomial/Numeric_Theory_Translation.hpp"
 
+const ll Mod = 998244353;
+using mint = modint<Mod>;
+
 int main(){
     const int Mod = 998244353;
-    Numeric_Theory_Translation<Mod> calculator;
+    Numeric_Theory_Translation<mint> calculator;
 
     int N; cin >> N;
-    vector<modint<Mod>> A(N); cin >> A;
+    vector<mint> A(N); cin >> A;
     cout << calculator.inverse(A) << endl;
 }

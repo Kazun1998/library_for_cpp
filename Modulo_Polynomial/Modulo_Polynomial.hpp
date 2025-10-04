@@ -3,10 +3,9 @@
 #include"../template/template.hpp"
 #include"../Algebra/modint.hpp"
 
-template<const ll Mod>
+template<typename mint>
 class Modulo_Polynomial {
     public:
-    using mint = modint<Mod>;
     int precision = 0;
 
     public:

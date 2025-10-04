@@ -5,10 +5,8 @@
 #include"Exp.hpp"
 
 // A の (連続とは限らない) 部分列のうち, 和が k=0,1,...,K になる組み合わせの総数を Mod で割った余りを求める.
-template<const ll Mod>
-vector<modint<Mod>> Subset_Sum(vector<int> A, int K) {
-    using mint = modint<Mod>;
-
+template<typename mint>
+vector<mint> Subset_Sum(vector<int> A, int K) {
     vector<ll> chi(K + 1);
     for (ll a: A) {
         if (a <= K) { chi[a] += 1; }
@@ -16,7 +14,7 @@ vector<modint<Mod>> Subset_Sum(vector<int> A, int K) {
 
     vector<mint> inv(K + 1); inv[1] = 1;
     for (int x = 2; x <= K; x++) {
-        auto [q, r] = divmod(Mod, x);
+        auto [q, r] = divmod(mint::Mod, x);
         inv[x] = -q * inv[r];
     }
 
@@ -30,7 +28,7 @@ vector<modint<Mod>> Subset_Sum(vector<int> A, int K) {
         }
     }
 
-    auto g = Exp(Fast_Power_Series<Mod>(f)).poly;
+    auto g = Exp(Fast_Power_Series<mint>(f)).poly;
     g.resize(K + 1);
     return g;
 }

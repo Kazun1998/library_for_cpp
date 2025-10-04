@@ -6,13 +6,12 @@
 
 const ll Mod = 998244353;
 using mint = modint<Mod>;
-using FPS = Fast_Power_Series<Mod>;
 
 int main() {
     int N, T; cin >> N >> T;
     vector<int> s(N); cin >> s;
 
-    auto p = Subset_Sum<Mod>(s, T);
+    auto p = Subset_Sum<mint>(s, T);
     p.erase(p.begin());
 
     cout << p << endl;

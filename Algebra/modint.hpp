@@ -2,9 +2,10 @@
 
 #include"../template/template.hpp"
 
-template<int Mod>
+template<int M>
 class modint {
     public:
+    static constexpr int Mod = M; 
     int64_t x;
 
     public:
