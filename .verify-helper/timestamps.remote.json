@@ -50,6 +50,7 @@
 "verify/yosupo_library_checker/polynomial/Inverse.test.cpp": "2025-10-05 01:19:35 +0900",
 "verify/yosupo_library_checker/polynomial/Log.test.cpp": "2025-10-05 01:19:35 +0900",
 "verify/yosupo_library_checker/polynomial/Power.test.cpp": "2025-10-05 01:19:35 +0900",
+"verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp": "2025-10-05 11:57:34 +0900",
 "verify/yosupo_library_checker/sample/a_plus_b.test.cpp": "2025-08-16 18:30:36 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2025-09-27 14:54:24 +0900",
 "verify/yukicoder/Modulo_Order.test.cpp": "2025-09-27 14:54:24 +0900"
