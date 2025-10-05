@@ -247,6 +247,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Subset_Sum.hpp
       title: "Subset Sum (\u591A\u9805\u5F0F)"
+    - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Taylor_Shift.hpp
+      title: Taylor Shift
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -461,6 +464,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/polynomial/Power.test.cpp
       title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - name: verify/yosupo_library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'

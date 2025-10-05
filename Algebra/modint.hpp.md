@@ -56,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Taylor_Shift.hpp
+    title: Taylor Shift
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
@@ -102,6 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -305,6 +311,7 @@ data:
   - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Power.hpp
@@ -330,6 +337,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
 documentation_of: Algebra/modint.hpp
 layout: document

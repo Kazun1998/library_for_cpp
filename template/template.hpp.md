@@ -201,6 +201,9 @@ data:
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Taylor_Shift.hpp
+    title: Taylor Shift
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   _extendedVerifiedWith:
@@ -342,6 +345,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
@@ -663,6 +669,7 @@ data:
   - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Power.hpp
@@ -701,6 +708,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
