@@ -569,7 +569,7 @@ $$\begin{align*}
 vector<mint> Stirling_1st(int N, bool sign = false)
 ```
 
-* 第 I 種 Stirling 数 $S^{(1)}_{N,0}, S^{(1)}_{N,1}, \dots, S^{(1)}_{N,N}$ を求める.
+* 第 I 種 Stirling 数 $S^{(1)}\_{N,0}, S^{(1)}\_{N,1}, \dots, S^{(1)}\_{N,N}$ を求める.
 * **引数**
   * `sign`: `true` にすると, 第 I 種 Stirling 数が符号を付けたバージョンの返り値になる. つまり, $(-1)^{N-k} S^{(1)}_{N,k}$ になる.
 * **計算量** : $O(N \log N)$ 時間.

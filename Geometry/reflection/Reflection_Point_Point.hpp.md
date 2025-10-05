@@ -279,7 +279,7 @@ title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
 
 ## Theory
 
-点 $\textrm{X}$ は線分 $\textrm{PQ}$ の点である. よって,
+点 $\textrm{X}$ は線分 $\textrm{PQ}$ の中点である. よって,
 
  $$ \dfrac{\textrm{P} + \textrm{Q}}{2} = \textrm{X} $$
 
