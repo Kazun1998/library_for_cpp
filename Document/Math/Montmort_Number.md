@@ -27,9 +27,9 @@ $n \geq 2$ とする. $\sigma \in \mathfrak{S}_n$ に対して, $\sigma(\sigma(1
 
 ### $\sigma(\sigma(1)) = 1$ のとき
 
-$\sigma(1), \sigma(k)$ が確定している. 残りの $(n-2)$ 個の $\sigma(j)~(1 \leq j \leq n, j \neq 1,k)$ に対して, $\sigma(j) = j$ の条件が課される.
+$\sigma(1), \sigma(k)$ が確定している. 残りの $(n-2)$ 個の $\sigma(j)~(1 \leq j \leq n, j \neq 1,k)$ に対して, $\sigma(j) \neq j$ の条件が課される.
 
-よって, この場合分けの条件を満たす $\sigma \in \mathfrak{S}_n$ の数は $m_{n-2}$ である.
+よって, この場合分けの条件を満たす $\sigma \in \mathfrak{S}\_n$ の数は $m_{n-2}$ である.
 
 
 ### $\sigma(\sigma(1)) \neq 1$ のとき
@@ -43,7 +43,7 @@ $\sigma(k) \neq 1$ である. $\sigma(j)~(1 \leq j \leq n, j \neq 1)$ につい�
 
 禁止条件の右辺における値は $j \neq 1$ より, 互いに交わらない. よって, $(n-1)$ 要素の攪乱順列の条件とみなすことができる.
 
-よって, この場合分けの条件を満たす $\sigma \in \mathfrak{S}_n$ の数は $m_{n-1}$ である.
+よって, この場合分けの条件を満たす $\sigma \in \mathfrak{S}\_n$ の数は $m_{n-1}$ である.
 
 以上から, $\sigma(1)=k$ を満たす攪乱順列の数は $m_{n-1}+m_{n-2}$ である.
 
@@ -58,7 +58,7 @@ $$ m_n = (n-1)(m_{n-1}+m_{n-2}) \quad (n \geq 2)$$
 この漸化式を変形させる. $n \geq 2$ のとき
 
 $$\begin{align*}
-    m_n - m a_{n-1}
+    m_n - n m_{n-1}
     &= (n-1)(m_{n-1}+m_{n-2}) - n m_{n-1} \\
     &= -(m_{n-1}+(n-1)m_{n-2})
 \end{align*}$$
