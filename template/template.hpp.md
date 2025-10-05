@@ -195,6 +195,9 @@ data:
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_P.hpp
+    title: "\u5206\u5272\u6570 (P)"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -279,6 +282,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
@@ -682,6 +688,7 @@ data:
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Fraction_Coefficient.hpp
   - Modulo_Polynomial/Taylor_Shift.hpp
+  - Modulo_Polynomial/Partition_P.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Power.hpp
@@ -699,6 +706,7 @@ data:
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
