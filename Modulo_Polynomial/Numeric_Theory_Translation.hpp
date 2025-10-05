@@ -3,10 +3,9 @@
 #include"../template/template.hpp"
 #include"Modulo_Polynomial.hpp"
 
-template<const ll Mod>
+template<typename F>
 class Numeric_Theory_Translation {
     public:
-    using F = modint<Mod>;
     F primitive;
     vector<F> root, iroot, rate2, irate2, rate3, irate3;
 
@@ -18,11 +17,11 @@ class Numeric_Theory_Translation {
 
     private:
     F primitive_root(){
-        if (Mod == 2) { return F(1); }
-        if (Mod == 998244353) { return F(3); }
+        if (F::Mod == 2) { return F(1); }
+        if (F::Mod == 998244353) { return F(3); }
 
         vector<int> fac;
-        int v = Mod - 1;
+        int v = F::Mod - 1;
 
         for (int q = 2; q * q <= v; q++){
             int e = 0;
@@ -39,7 +38,7 @@ class Numeric_Theory_Translation {
         while (true) {
             bool flag = true;
             for (int q: fac) {
-                if (pow(g, (Mod - 1) / q) == 1){
+                if (pow(g, (F::Mod - 1) / q) == 1){
                     flag = false;
                     break;
                 }
@@ -51,14 +50,14 @@ class Numeric_Theory_Translation {
     }
 
     void build_up() {
-        int x = ~(Mod - 1) & (Mod - 2);
+        int x = ~(F::Mod - 1) & (F::Mod - 2);
         int rank2 = bit_length(x);
 
         root.resize(rank2 + 1); iroot.resize(rank2 + 1);
         rate2.resize(max(0, rank2 - 1)); irate2.resize(max(0, rank2 - 1));
         rate3.resize(max(0, rank2 - 2)); irate3.resize(max(0, rank2 - 2));
 
-        root.back() = pow(primitive, (Mod - 1) >> rank2);
+        root.back() = pow(primitive, (F::Mod - 1) >> rank2);
         iroot.back() = root.back().inverse();
 
         for (int i = rank2 - 1; i >= 0; i--){

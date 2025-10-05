@@ -6,10 +6,10 @@
 
 const ll Mod = 998244353;
 using mint = modint<Mod>;
-using FPS = Fast_Power_Series<Mod>;
+using FPS = Fast_Power_Series<mint>;
 
 int main() {
     int d; ll k; cin >> d >> k;
-    vector<modint<Mod>> a(d), c(d); cin >> a >> c;
-    cout << Nth_Term_of_Linearly_Recurrent_Sequence<Mod>(a, c, k) << endl;
+    vector<mint> a(d), c(d); cin >> a >> c;
+    cout << Nth_Term_of_Linearly_Recurrent_Sequence<mint>(a, c, k) << endl;
 }

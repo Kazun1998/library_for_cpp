@@ -3,16 +3,13 @@
 #include"Modulo_Polynomial.hpp"
 #include"Numeric_Theory_Translation.hpp"
 
-template<const ll Mod>
-class Fast_Power_Series : public Modulo_Polynomial<Mod> {
-    private:
-    using mint = modint<Mod>;
-
+template<typename mint>
+class Fast_Power_Series : public Modulo_Polynomial<mint> {
     protected:
-    static Numeric_Theory_Translation<Mod> calculator;
+    static Numeric_Theory_Translation<mint> calculator;
 
     public:
-    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<Mod>(_poly, _precision) {}
+    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly, _precision) {}
 
     Fast_Power_Series() = default;
     Fast_Power_Series(vector<mint> _poly) : Fast_Power_Series(_poly, _poly.size()) {}
@@ -29,8 +26,8 @@ class Fast_Power_Series : public Modulo_Polynomial<Mod> {
         return *this;
     }
 
-    friend Fast_Power_Series<Mod> operator+(const Fast_Power_Series<Mod> &lhs, const Fast_Power_Series<Mod> &rhs) {
-        return Fast_Power_Series<Mod>(lhs) += rhs; 
+    friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
+        return Fast_Power_Series<mint>(lhs) += rhs; 
     }
 
     // 減算
@@ -44,8 +41,8 @@ class Fast_Power_Series : public Modulo_Polynomial<Mod> {
         return *this;
     }
 
-    friend Fast_Power_Series<Mod> operator-(const Fast_Power_Series<Mod> &lhs, const Fast_Power_Series<Mod> &rhs) {
-        return Fast_Power_Series<Mod>(lhs) -= rhs; 
+    friend Fast_Power_Series<mint> operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
+        return Fast_Power_Series<mint>(lhs) -= rhs; 
     }
 
     // スカラー倍
@@ -120,11 +117,11 @@ class Fast_Power_Series : public Modulo_Polynomial<Mod> {
     friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
 };
 
-template<const ll Mod>
-Numeric_Theory_Translation<Mod> Fast_Power_Series<Mod>::calculator = Numeric_Theory_Translation<Mod>();
+template<typename mint>
+Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();
 
-template<const ll Mod>
-pair<Fast_Power_Series<Mod>, Fast_Power_Series<Mod>> divmod(Fast_Power_Series<Mod> &A, Fast_Power_Series<Mod> &B) {
+template<typename mint>
+pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {
     Fast_Power_Series Q = A.div(B);
     Fast_Power_Series R = A - B * Q;
     return {Q, R};
