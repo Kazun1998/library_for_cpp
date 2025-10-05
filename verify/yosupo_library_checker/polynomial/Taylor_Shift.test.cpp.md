@@ -434,7 +434,10 @@ data:
     \n    auto calculator = Numeric_Theory_Translation<mint>();\n\n    vector<mint>\
     \ h = calculator.convolution(f, g);\n    h.erase(h.begin(), h.begin() + n - 1);\n\
     \n    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }\n\n    return Fast_Power_Series<mint>(h,\
-    \ P.precision);\n}\n#line 6 \"verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp\"\
+    \ P.precision);\n}\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const\
+    \ Fast_Power_Series<mint> &P, const int &a) {\n    return Taylor_Shift(P, mint(a));\n\
+    }\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
+    \ &P, const ll &a) {\n    return Taylor_Shift(P, mint(a));\n}\n#line 6 \"verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp\"\
     \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
     \ int N; mint c; cin >> N >> c;\n    vector<mint> a(N); cin >> a;\n    Fast_Power_Series<mint>\
     \ P(a, N);\n\n    cout << Taylor_Shift(P, c).poly << endl;\n}\n"
@@ -459,7 +462,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   requiredBy: []
-  timestamp: '2025-10-05 11:57:34+09:00'
+  timestamp: '2025-10-05 17:08:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp

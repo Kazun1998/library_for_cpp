@@ -5,11 +5,20 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Stirling_1st.hpp
+    title: "\u7B2C I \u7A2E Stirling \u6570"
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Taylor_Shift.hpp
+    title: Taylor Shift
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -28,148 +37,88 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bell_Number.hpp
-    title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bernoulli_Number.hpp
-    title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Calculus.hpp
-    title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Exp.hpp
-    title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fraction_Coefficient.hpp
-    title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Log.hpp
-    title: Modulo_Polynomial/Log.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Power.hpp
-    title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Stirling_1st.hpp
-    title: "\u7B2C I \u7A2E Stirling \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Taylor_Shift.hpp
-    title: Taylor Shift
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-    title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Division.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"\
-    Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
-    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
-    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
-    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
-    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
-    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
-    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
-    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
-    , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
-    \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
-    \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
-    \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
-    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n#line 59\
-    \ \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n// \u9664\
-    \u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\u6C42\u3081\
-    \u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){ return (x >\
-    \ 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\n\
-    template<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0 ? (x + y\
-    \ - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x, U y){\n    T\
-    \ q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\
-    \u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x, y);\n \
-    \   return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
-    \u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q, r;\n \
-    \   tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n\
-    }\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\
-    \u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n\
-    \        if (y & 1) { a *= x; }\n        x *= x;\n        y >>= 1;\n    }\n  \
-    \  return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\
-    \u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n    ll a = 1;\n\
-    \    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x *= x) %= z;\n\
-    \        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
-    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
-    \ typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n    \
-    \    if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n\
-    \    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\
-    \u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x:\
-    \ X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
-    \u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y\
-    \ = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y\
-    \ = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\
-    \u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll\
-    \ a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll\
-    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));\n    \
-    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
-    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
-    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
-    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
-    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
-    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
-    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
-    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
-    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
-    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62 \"template/template.hpp\"\
-    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
-    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
-    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
-    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
-    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
-    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
-    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
-    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
+    links:
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
+    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
+    \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0\
+    \ ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\
+    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x,\
+    \ U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
+    \ y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\n\
+    template<typename T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x,\
+    \ y);\n    return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\
+    \u3081\u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q,\
+    \ r;\n    tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1\
+    \ : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E\
+    \ y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n \
+    \   while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n        y >>=\
+    \ 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\
+    \u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n  \
+    \  ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x\
+    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
+    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n \
+    \       if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>=\
+    \ 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
+    \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
+    \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
+    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a\
+    \ x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b)\
+    \ \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll,\
+    \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
+    \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
+    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
+    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
+    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
+    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
+    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
+    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
+    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
+    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
+    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62\
+    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
+    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
+    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
+    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
+    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
+    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
+    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
+    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
     \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
     \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
     \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
@@ -215,31 +164,33 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\
-    \n\ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int Mod\
-    \ = M; \n    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr\
-    \ modint(): x(0) {}\n    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod)\
-    \ {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const {\
-    \ return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint\
-    \ &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\
-    \n    friend modint operator+(const modint &x, const modint &y) { return modint(x)\
-    \ += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n \
-    \       if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b\
-    \ > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n\
-    \            s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n\
-    \        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
-    \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator==(const\
-    \ modint &a, const int &b) { return a.x == mod(b, Mod); }\n    friend bool operator!=(const\
+    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Stirling_1st.hpp\"\n\n#line 2\
+    \ \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \n\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int\
+    \ M>\nclass modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t\
+    \ x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n\
+    \    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\
+    \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
+    \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
+    \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
+    \ operator+(const modint &x, const modint &y) { return modint(x) += y; }\n\n \
+    \   // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n        if ((x\
+    \ += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
+    \ modint operator-(const modint &x, const modint &y) { return modint(x) -= y;\
+    \ }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n       \
+    \ (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint operator*(const\
+    \ modint &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ int &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
+    \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
+    \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
+    \     int64_t a = x, b = Mod;\n\n        while (b > 0) {\n            int64_t\
+    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
+    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
+    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
+    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
+    \ &a, const int &b) { return a.x == mod(b, Mod); }\n    friend bool operator!=(const\
     \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
     \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
     \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
@@ -473,107 +424,61 @@ data:
     Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();\n\
     \ntemplate<typename mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
     \ divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {\n    Fast_Power_Series\
-    \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n"
-  code: "#pragma once\n\n#include\"Modulo_Polynomial.hpp\"\n#include\"Numeric_Theory_Translation.hpp\"\
-    \n\ntemplate<typename mint>\nclass Fast_Power_Series : public Modulo_Polynomial<mint>\
-    \ {\n    protected:\n    static Numeric_Theory_Translation<mint> calculator;\n\
-    \n    public:\n    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly,\
-    \ _precision) {}\n\n    Fast_Power_Series() = default;\n    Fast_Power_Series(vector<mint>\
-    \ _poly) : Fast_Power_Series(_poly, _poly.size()) {}\n    Fast_Power_Series(int\
-    \ _precision) : Fast_Power_Series({}, _precision) {}\n\n    // \u52A0\u7B97\n\
-    \    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
-    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
-    \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
-    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
-    \ friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs,\
-    \ const Fast_Power_Series<mint> &rhs) {\n        return Fast_Power_Series<mint>(lhs)\
-    \ += rhs; \n    }\n\n    // \u6E1B\u7B97\n    Fast_Power_Series& operator-=(const\
-    \ Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(), B.poly.size()));\n\
-    \        for (int i = 0; i < B.poly.size(); i++) {\n            this->poly[i]\
-    \ -= B.poly[i];\n        }\n        this->precision = min(this->precision, B.precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series<mint>\
-    \ operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint>\
-    \ &rhs) {\n        return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n   \
-    \ // \u30B9\u30AB\u30E9\u30FC\u500D\n    Fast_Power_Series& operator*=(const mint\
-    \ &a){\n        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    Fast_Power_Series\
-    \ operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }\n\n\
-    \    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series\
-    \ &P) { return Fast_Power_Series(P) *= a; }\n\n    friend Fast_Power_Series operator*(const\
-    \ ll &a, const Fast_Power_Series &P) { return mint(a) * P; }\n\n    // \u7A4D\n\
-    \    Fast_Power_Series& operator*=(const Fast_Power_Series &P) {\n        auto\
-    \ tmp = calculator.convolution(this->poly, P.poly);\n\n        this->poly = tmp;\n\
-    \        this->precision = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) *= rhs; }\n\n    // (mod X^d) \u306B\u304A\u3051\u308B\
-    \u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1 \u306E\u3068\u304D\u306F,\
-    \ d = precision \u306B\u306A\u308B.\n    Fast_Power_Series inverse(int d = -1)\
-    \ {\n        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision\
-    \ : min(d, this->precision));\n        return {p, this->precision};\n    }\n\n\
-    \    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const Fast_Power_Series\
-    \ &P) {\n        vector<mint> inv = calculator.inverse(P.poly, P.precision);\n\
-    \        this->poly = calculator.convolution(this->poly, inv);\n        this->precision\
-    \ = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\
-    \u306E\u9664\u7B97\n    Fast_Power_Series div(Fast_Power_Series &B) {\n      \
-    \  this->reduce(); B.reduce();\n\n        int n = this->poly.size(), m = B.poly.size();\n\
-    \n        if (n < m) { return Fast_Power_Series({0}); }\n\n        vector<mint>\
-    \ a_rev(this->poly), b_rev(B.poly);\n        reverse(a_rev.begin(), a_rev.end());\n\
-    \        reverse(b_rev.begin(), b_rev.end());\n\n        vector<mint> c = calculator.convolution(a_rev,\
-    \ calculator.inverse(b_rev, n));\n        c.resize(n - m + 1);\n        reverse(c.begin(),\
-    \ c.end());\n        return Fast_Power_Series(c, n);\n    }\n\n    Fast_Power_Series&\
-    \ operator%=(Fast_Power_Series &B) {\n        Fast_Power_Series Q = this->div(B);\n\
-    \        this->poly = ((*this) - B * Q).poly;\n        return *this;\n    }\n\n\
-    \    friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series\
-    \ &rhs) { return Fast_Power_Series(lhs) %= rhs; }\n};\n\ntemplate<typename mint>\n\
-    Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();\n\
-    \ntemplate<typename mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
-    \ divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {\n    Fast_Power_Series\
-    \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n"
+    \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n\
+    #line 2 \"Modulo_Polynomial/Taylor_Shift.hpp\"\n\n#line 4 \"Modulo_Polynomial/Taylor_Shift.hpp\"\
+    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
+    \ &P, const mint &a) {\n    int n = P.precision;\n    vector<mint> fact(n), fact_inv(n);\n\
+    \    fact[0] = 1;\n    for (int k = 1; k < n; k++) { fact[k] = k * fact[k - 1];\
+    \ }\n\n    fact_inv[n - 1] = fact[n - 1].inverse();\n    for (int k = n - 2; k\
+    \ >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1]; }\n\n    vector<mint>\
+    \ f(n), g(n);\n    for (int i = 0; i < n; i++) { f[i] = P[i] * fact[i]; }\n  \
+    \  mint a_pow = 1;\n    for (int i = 0; i < n; i++) {\n        g[i] = a_pow *\
+    \ fact_inv[i];\n        a_pow *= a;\n    }\n\n    reverse(g.begin(), g.end());\n\
+    \n    auto calculator = Numeric_Theory_Translation<mint>();\n\n    vector<mint>\
+    \ h = calculator.convolution(f, g);\n    h.erase(h.begin(), h.begin() + n - 1);\n\
+    \n    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }\n\n    return Fast_Power_Series<mint>(h,\
+    \ P.precision);\n}\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const\
+    \ Fast_Power_Series<mint> &P, const int &a) {\n    return Taylor_Shift(P, mint(a));\n\
+    }\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
+    \ &P, const ll &a) {\n    return Taylor_Shift(P, mint(a));\n}\n#line 5 \"Modulo_Polynomial/Stirling_1st.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Stirling_1st(int N, bool sign = false)\
+    \ {\n    using FPS = Fast_Power_Series<mint>;\n\n    auto g = [&N](auto self,\
+    \ int n) -> FPS {\n        if (n == 0) { return FPS({1}, N + 1); }\n        if\
+    \ (n == 1) { return FPS({0, 1}, N + 1); }\n\n        if (n % 2 == 1) { return\
+    \ self(self, n - 1) * FPS({n - 1, 1}, N + 1); }\n\n        FPS P = self(self,\
+    \ n / 2);\n        return P * Taylor_Shift(P, n / 2);\n    };\n    \n    auto\
+    \ c = g(g, N).poly;\n\n    unless(sign) { return c; }\n\n    for (int k = 0; k\
+    \ <= N; k++) {\n        unless (mod(k, 2) == mod(N, 2)) { c[k] *= -1; }\n    }\n\
+    \n    return c;\n}\n#line 5 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
+    \ int N; cin >> N;\n    cout << Stirling_1st<mint>(N, true) << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Stirling_1st.hpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
+    \ int N; cin >> N;\n    cout << Stirling_1st<mint>(N, true) << endl;\n}\n"
   dependsOn:
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Modulo_Polynomial/Stirling_1st.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Algebra/modint.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  isVerificationFile: false
-  path: Modulo_Polynomial/Fast_Power_Series.hpp
-  requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
   - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-05 01:19:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-documentation_of: Modulo_Polynomial/Fast_Power_Series.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+  requiredBy: []
+  timestamp: '2025-10-05 17:08:51+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
 layout: document
 redirect_from:
-- /library/Modulo_Polynomial/Fast_Power_Series.hpp
-- /library/Modulo_Polynomial/Fast_Power_Series.hpp.html
-title: Modulo_Polynomial/Fast_Power_Series.hpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp.html
+title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
 ---

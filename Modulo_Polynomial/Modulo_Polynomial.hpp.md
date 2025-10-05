@@ -54,6 +54,9 @@ data:
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Stirling_1st.hpp
+    title: "\u7B2C I \u7A2E Stirling \u6570"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
@@ -404,6 +410,7 @@ data:
   - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Stirling_1st.hpp
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
@@ -413,6 +420,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp

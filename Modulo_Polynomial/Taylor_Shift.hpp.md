@@ -31,8 +31,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Stirling_1st.hpp
+    title: "\u7B2C I \u7A2E Stirling \u6570"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
@@ -428,7 +434,11 @@ data:
     \ *= a;\n    }\n\n    reverse(g.begin(), g.end());\n\n    auto calculator = Numeric_Theory_Translation<mint>();\n\
     \n    vector<mint> h = calculator.convolution(f, g);\n    h.erase(h.begin(), h.begin()\
     \ + n - 1);\n\n    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }\n\n  \
-    \  return Fast_Power_Series<mint>(h, P.precision);\n}\n"
+    \  return Fast_Power_Series<mint>(h, P.precision);\n}\n\ntemplate<typename mint>\n\
+    Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const int\
+    \ &a) {\n    return Taylor_Shift(P, mint(a));\n}\n\ntemplate<typename mint>\n\
+    Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const ll\
+    \ &a) {\n    return Taylor_Shift(P, mint(a));\n}\n"
   code: "#pragma once\n\n#include\"Fast_Power_Series.hpp\"\n\ntemplate<typename mint>\n\
     Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const mint\
     \ &a) {\n    int n = P.precision;\n    vector<mint> fact(n), fact_inv(n);\n  \
@@ -441,7 +451,10 @@ data:
     \n    auto calculator = Numeric_Theory_Translation<mint>();\n\n    vector<mint>\
     \ h = calculator.convolution(f, g);\n    h.erase(h.begin(), h.begin() + n - 1);\n\
     \n    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }\n\n    return Fast_Power_Series<mint>(h,\
-    \ P.precision);\n}\n"
+    \ P.precision);\n}\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const\
+    \ Fast_Power_Series<mint> &P, const int &a) {\n    return Taylor_Shift(P, mint(a));\n\
+    }\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
+    \ &P, const ll &a) {\n    return Taylor_Shift(P, mint(a));\n}\n"
   dependsOn:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
@@ -455,10 +468,12 @@ data:
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   isVerificationFile: false
   path: Modulo_Polynomial/Taylor_Shift.hpp
-  requiredBy: []
-  timestamp: '2025-10-05 10:49:20+09:00'
+  requiredBy:
+  - Modulo_Polynomial/Stirling_1st.hpp
+  timestamp: '2025-10-05 17:08:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
 documentation_of: Modulo_Polynomial/Taylor_Shift.hpp
 layout: document
