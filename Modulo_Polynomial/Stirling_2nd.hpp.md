@@ -8,6 +8,9 @@ data:
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -25,91 +28,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bell_Number.hpp
-    title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bernoulli_Number.hpp
-    title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Calculus.hpp
-    title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Exp.hpp
-    title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fraction_Coefficient.hpp
-    title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Log.hpp
-    title: Modulo_Polynomial/Log.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Power.hpp
-    title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Stirling_1st.hpp
-    title: "\u7B2C I \u7A2E Stirling \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Stirling_2nd.hpp
-    title: "\u7B2C II \u7A2E Stirling \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Taylor_Shift.hpp
-    title: Taylor Shift
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-    title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Division.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+  bundledCode: "#line 2 \"Modulo_Polynomial/Stirling_2nd.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -223,11 +154,10 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line\
-    \ 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\n\
-    class modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t x;\n\
-    \n    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n  \
-    \  constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\
+    \ bit_length(x)); }\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass\
+    \ modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t x;\n\n\
+    \    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n   \
+    \ constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\
     \u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\n  \
     \  // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x +=\
     \ b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint operator+(const\
@@ -257,12 +187,13 @@ data:
     \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
     \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
     \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
-    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"\
-    Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<typename mint>\nclass Modulo_Polynomial\
-    \ {\n    public:\n    int precision = 0;\n\n    public:\n    vector<mint> poly;\n\
-    \    Modulo_Polynomial(vector<mint> _poly, int precision): precision(precision)\
-    \ {\n        if (_poly.size() > precision) { _poly.resize(precision); }\n    \
-    \    poly = _poly;\n    }\n\n    Modulo_Polynomial() = default;\n    Modulo_Polynomial(vector<mint>\
+    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"\
+    Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \n\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<typename mint>\n\
+    class Modulo_Polynomial {\n    public:\n    int precision = 0;\n\n    public:\n\
+    \    vector<mint> poly;\n    Modulo_Polynomial(vector<mint> _poly, int precision):\
+    \ precision(precision) {\n        if (_poly.size() > precision) { _poly.resize(precision);\
+    \ }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial() = default;\n    Modulo_Polynomial(vector<mint>\
     \ poly) : Modulo_Polynomial(poly, poly.size()) {}\n    Modulo_Polynomial(int precision)\
     \ : Modulo_Polynomial({}, precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\
     \u7FA9\n    public:\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial\
@@ -422,147 +353,140 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Modulo_Polynomial.hpp\"\
-    \n\ntemplate<typename F>\nclass Numeric_Theory_Translation {\n    public:\n  \
-    \  F primitive;\n    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n\
-    \    public:\n    Numeric_Theory_Translation() {\n        primitive = primitive_root();\n\
-    \        build_up();\n    }\n\n    private:\n    F primitive_root(){\n       \
-    \ if (F::Mod == 2) { return F(1); }\n        if (F::Mod == 998244353) { return\
-    \ F(3); }\n\n        vector<int> fac;\n        int v = F::Mod - 1;\n\n       \
-    \ for (int q = 2; q * q <= v; q++){\n            int e = 0;\n            while\
-    \ (v % q == 0){\n                e++; v /= q;\n            }\n\n            if\
-    \ (e > 0) { fac.emplace_back(q); }\n        }\n\n        if (v > 1) { fac.emplace_back(v);\
-    \ }\n\n        F g(2);\n        while (true) {\n            bool flag = true;\n\
-    \            for (int q: fac) {\n                if (pow(g, (F::Mod - 1) / q)\
-    \ == 1){\n                    flag = false;\n                    break;\n    \
-    \            }\n            }\n            if (flag) { break; }\n            g\
-    \ += 1;\n        }\n        return g;\n    }\n\n    void build_up() {\n      \
-    \  int x = ~(F::Mod - 1) & (F::Mod - 2);\n        int rank2 = bit_length(x);\n\
-    \n        root.resize(rank2 + 1); iroot.resize(rank2 + 1);\n        rate2.resize(max(0,\
-    \ rank2 - 1)); irate2.resize(max(0, rank2 - 1));\n        rate3.resize(max(0,\
-    \ rank2 - 2)); irate3.resize(max(0, rank2 - 2));\n\n        root.back() = pow(primitive,\
-    \ (F::Mod - 1) >> rank2);\n        iroot.back() = root.back().inverse();\n\n \
-    \       for (int i = rank2 - 1; i >= 0; i--){\n            root[i] = root[i +\
-    \ 1] * root[i + 1];\n            iroot[i] = iroot[i + 1] * iroot[i + 1];\n   \
-    \     }\n\n        F prod(1), iprod(1);\n        for (int i = 0; i < rank2 - 1;\
-    \ i++){\n            rate2[i] = root[i + 2] * prod;\n            irate2[i] = iroot[i\
-    \ + 2] * prod;\n\n            prod *= iroot[i + 2]; iprod *= root[i + 2];\n  \
-    \      }\n\n        prod = 1; iprod = 1;\n        for (int i = 0; i < rank2 -\
-    \ 2; i++){\n            rate3[i] = root[i + 3] * prod;\n            irate3[i]\
-    \ = iroot[i + 3] * iprod;\n\n            prod *= iroot[i + 3]; iprod *= root[i\
-    \ + 3];\n        }\n    }\n\n    public:\n    void ntt(vector<F> &A){\n      \
-    \  int N = A.size();\n        int h = ceil_log2(N);\n\n        F I = root[2];\n\
-    \        for (int l = 0; l < h;){\n            if (h - l == 1){\n            \
-    \    int p = 1 << (h - l - 1);\n                F rot(1);\n                for\
-    \ (int s = 0; s < (1 << l); s++){\n                    int offset = s << (h -\
-    \ l);\n                    for(int i = 0; i < p; i++){\n                     \
-    \   F x = A[i + offset], y = A[i + offset + p] * rot;\n                      \
-    \  A[i + offset] = x + y;\n                        A[i + offset + p] = x - y;\n\
-    \                    }\n\n                    unless (s + 1 == (1 << l)){ rot\
-    \ *= rate2[bit_length(~s & -(~s)) - 1]; }\n                }\n               \
-    \ l++;\n            } else {\n                int p = 1 << (h - l - 2);\n    \
-    \            F rot(1);\n                for (int s = 0; s < (1 << l); s++){\n\
-    \                    F rot2 = rot * rot, rot3 = rot2 * rot;\n                \
-    \    int offset = s << (h - l);\n                    for (int i = 0; i < p; i++){\n\
-    \                        F a0 = A[i + offset];\n                        F a1 =\
-    \ A[i + offset + p] * rot;\n                        F a2 = A[i + offset + 2 *\
-    \ p] * rot2;\n                        F a3 = A[i + offset + 3 * p] * rot3;\n\n\
-    \                        F alpha = (a1 - a3) * I;\n\n                        A[i\
-    \ + offset]         = a0 + a2 + a1 + a3;\n                        A[i + offset\
-    \ + p]     = a0 + a2 - a1 - a3;\n                        A[i + offset + 2 * p]\
-    \ = a0 - a2 + alpha;\n                        A[i + offset + 3 * p] = a0 - a2\
-    \ - alpha;\n                    }\n\n                    unless(s + 1 == 1 <<\
-    \ l) { rot *= rate3[bit_length(~s & -(~s)) - 1]; }\n                }\n      \
-    \          l += 2;\n            }\n        }\n    }\n\n    public:\n    void inverse_ntt(vector<F>\
-    \ &A){\n        int N = A.size();\n        int h = ceil_log2(N);\n\n        F\
-    \ J = iroot[2];\n        for (int l = h; l > 0;){\n            if (l == 1){\n\
-    \                int p = 1 << (h - l);\n                F irot(1);\n         \
-    \       for (int s = 0; s < (1 << (l - 1)); s++){\n                    int offset\
-    \ = s << (h - l + 1);\n                    for(int i = 0; i < p; i++){\n     \
-    \                   F x = A[i + offset], y = A[i + offset + p];\n            \
-    \            A[i + offset]   = x + y;\n                        A[i + offset +\
-    \ p] = (x - y) * irot;\n                    }\n\n                    unless (s+1\
-    \ == 1 << (l - 1) ) { irot *= irate2[bit_length(~s & -(~s)) -1]; }\n         \
-    \       }\n                l--;\n            } else {\n                int p =\
-    \ 1 << (h - l);\n                F irot(1);\n                for (int s=0; s<(1<<(l-2));\
-    \ s++){\n                    F irot2 = irot * irot, irot3 = irot2  *irot;\n  \
-    \                  int offset=s<<(h-l+2);\n                    for (int i = 0;\
-    \ i < p; i++){\n                        F a0 = A[i + offset];\n              \
-    \          F a1 = A[i + offset + p];\n                        F a2 = A[i + offset\
-    \ + 2 * p];\n                        F a3 = A[i + offset + 3 * p];\n\n       \
-    \                 F beta = (a2 - a3) * J;\n\n                        A[i + offset]\
-    \         = a0 + a2 + a1 + a3;\n                        A[i + offset + p]    \
-    \ = (a0 - a1 + beta) * irot;\n                        A[i + offset + 2 * p] =\
-    \ (a0 + a1 - a2 - a3) * irot2;\n                        A[i + offset + 3 * p]\
-    \ = (a0 - a1 - beta) * irot3;\n                    }\n\n                    unless\
-    \ (s + 1 == 1 << (l - 2)) { irot *= irate3[bit_length(~s & -(~s)) - 1]; }\n  \
-    \              }\n                l-=2;\n            }\n        }\n\n        F\
-    \ N_inv=F(N).inverse();\n        for (int i=0; i<N; i++) A[i]*=N_inv;\n    }\n\
-    \n    vector<F> convolution(vector<F> A, vector<F> B){\n        if (A.empty()\
-    \ || B.empty()) return vector<F>{};\n\n        int M=A.size(), N=B.size(), L=M+N-1;\n\
-    \        if (min(M,N)<64){\n            vector<F> C(L);\n            for(int i=0;\
-    \ i<M; i++){\n                for (int j=0; j<N; j++){\n                    C[i+j]+=A[i]*B[j];\n\
-    \                }\n            }\n            return C;\n        }\n\n      \
-    \  int h=bit_length(L);\n        int K=1<<h;\n\n        vector<F> X(K), Y(K);\n\
-    \        copy(A.begin(), A.end(), X.begin());\n        copy(B.begin(), B.end(),\
-    \ Y.begin());\n\n        ntt(X); ntt(Y);\n        for (int i=0; i<K; i++) X[i]*=Y[i];\n\
-    \n        inverse_ntt(X); X.resize(L);\n        return X;\n    }\n\n    vector<F>\
-    \ inverse(vector<F> P, int d) {\n        int n = P.size();\n        assert(!P.empty()\
-    \ && !P[0].is_zero());\n\n        vector<F> G{P[0].inverse()};\n        while\
-    \ (G.size() < d) {\n            int m = G.size();\n            vector<F> A(P.begin(),\
-    \ P.begin() + min(n, 2 * m));\n            A.resize(2 * m);\n            vector<F>\
-    \ B(G);\n            B.resize(2 * m);\n\n            ntt(A); ntt(B);\n       \
-    \     for (int i = 0; i < 2 * m; i++) { A[i] *= B[i]; }\n\n            inverse_ntt(A);\n\
-    \            A.erase(A.begin(), A.begin() + m);\n            A.resize(2 * m);\n\
-    \n            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
-    \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
-    \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
+    \ 5 \"Modulo_Polynomial/Stirling_2nd.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
+    \ Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint> calc;\n\n    vector<mint>\
+    \ fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n    for (int k = 1; k <=\
+    \ N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N] = fact[N].inverse();\n\
+    \    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1];\
+    \ }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int i = 0; i <= N; i++)\
+    \ { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int j = 0; j <= N; j++)\
+    \ { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n    vector<mint> c\
+    \ = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1, c.end());\n    return\
+    \ c;\n}\n"
+  code: "#pragma once\n\n#include\"../Algebra/modint.hpp\"\n#include\"Numeric_Theory_Translation.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint>\
+    \ calc;\n\n    vector<mint> fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n\
+    \    for (int k = 1; k <= N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N]\
+    \ = fact[N].inverse();\n    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k\
+    \ + 1) * fact_inv[k + 1]; }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int\
+    \ i = 0; i <= N; i++) { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int\
+    \ j = 0; j <= N; j++) { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n\
+    \    vector<mint> c = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1,\
+    \ c.end());\n    return c;\n}\n"
   dependsOn:
+  - Algebra/modint.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
-  - Algebra/modint.hpp
   isVerificationFile: false
-  path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Stirling_2nd.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-05 01:19:35+09:00'
+  path: Modulo_Polynomial/Stirling_2nd.hpp
+  requiredBy: []
+  timestamp: '2025-10-05 18:32:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-documentation_of: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+documentation_of: Modulo_Polynomial/Stirling_2nd.hpp
 layout: document
-redirect_from:
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp.html
-title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+title: "\u7B2C II \u7A2E Stirling \u6570"
 ---
+
+## Outline
+
+第 II 種 Stirling 数 $S^{(2)}_{n,k}$ を求める.
+
+## Define
+
+第 II 種 Stirling 数 $S^{(2)}_{n,k}$ とは, 以下の展開係数として定義される.
+
+$$ x^n = \sum_{k=0}^n S^{(2)}_{n,k} \cdot x(x-1)\cdots(x-(n-1))$$
+
+## Theory
+
+### 漸化式としての特徴づけ
+第 II 種 Stirling 数 $S^{(2)}_{n,k}$ について, 以下が成り立つ.
+
+$$ S^{(2)}_{n,k} = S^{(2)}_{n-1,k-1} + k S^{(1)}_{n-1,k} \quad (n \geq 1, 0 \leq k \leq n) $$
+
+### 組み合わせ理論による特徴づけ
+$S^{(2)}_{n, k}$ について, 以下が成り立つ.
+
+> $\{1, 2, \dots, n\}$ を $k$ 個の部分集合に分割する方法の数は $S^{(2)}_{n,k}$ である.
+
+#### 証明
+
+$I_n := \{1, 2, \dots, n\}$ を $k$ 個の部分集合に分割する方法 $T_{n,k}$ を以下のようにして場合分けして求める.
+
+##### $n$ のみ独立させた集合を形成させる場合
+
+残りは $I_{n-1}$ を $(k-1)$ 個の部分集合に分割させる方法である. これは $T_{n-1,k-1}$ 通りである.
+
+##### $n$ を既存の部分集合に含ませる場合
+
+$I_{n-1}$ の $k$ 個の部分集合への分割 $J_1, \dots, J_k$ それぞれに対して, $n$ を $J_1, \dots, J_k$ をどこに分割させるかが $k$ 通りである.
+
+$J_1, \dots, J_k$ の選び方が $T_{n - 1, k}$ 通りである.
+
+よって, 合計 $k T_{n-1,k}$ 個である.
+
+以上を合計して,
+
+$$ T_{n,k} = T_{n-1,k-1} + k T_{n-1,k} $$
+
+である.
+
+この漸化式は, $S^{(2)}\_{n,k}$ と一致する. また, $T\_{0, 0} = 1$ であるため, $T\_{n,k} = S^{(2)}\_{n,k}$ となる.
+
+$\square$
+
+### 第 II 種 Stirling 数の明示的表示
+
+包除原理によって求めることができる. まず, 以下は $1$ 対 $k!$ 対応する.
+
+* $I_n$ の $k$ 個の部分集合への分割.
+* $I_n$ から $I_k$ への全射の数.
+
+$I_n$ から $I_k$ への全射の数を包除原理を使って考える. $I_n$ から, $I_k$ の部分集合のうち, 固定された $m$ 要素の集合への写像の数は $m^n$ 個である.
+
+$I_k$ の部分集合のうち, $m$ 要素の集合は $\binom{n}{m}$ 個である.
+
+故に, 包除原理によって,
+
+$$ k! S^{(2)}_{n,k} = \sum_{m=0}^k (-1)^{k-m} \binom{k}{m} m^n $$
+
+であるため,
+
+$$ S^{(2)}_{n,k} = \dfrac{1}{k!} \sum_{m=0}^k (-1)^{k-m} \binom{k}{m} m^n $$
+
+となる.
+
+### 畳み込みを用いた, 第 II 種 Stirling 数を求めるアルゴリズム
+
+第 II 種 Stirling 数の明示的表示から, $S^{(2)}\_{n,0}, S^{(2)}\_{n,1}, \dots, S^{(2)}\_{n, n}$ を高速に求めることができる.
+
+第 II 種 Stirling 数の明示的表示を更に変形させると,
+
+$$ S^{(2)}_{n, k} = \sum_{m=0}^k \dfrac{m^n}{m!} \cdot \dfrac{(-1)^{k-m}}{(k-m)!} $$
+
+そのため, $n$ 次の多項式 $P, Q$ を
+
+$$ P := \sum_{d=0}^n \dfrac{d^n}{d!} X^d, \quad Q := \sum_{d=0}^n \dfrac{(-1)^d}{d!} X^d $$
+
+とすると, $S^{(2)}_{n,k} = \left[X^k \right] PQ$ である.
+
+そのため, $S^{(2)}\_{n,0}, S^{(2)}\_{n,1}, \dots, S^{(2)}\_{n, n}$ は $O(n \log n)$ 時間で求められる.
+
+## Contents
+
+```cpp
+vector<mint> Stirling_2nd(int N)
+```
+
+* 第 II 種 Stirling 数 $S^{(2)}\_{N,0}, S^{(2)}\_{N,1}, \dots, S^{(2)}\_{N,N}$ を求める.
+* **計算量** : $O(N \log N)$ 時間.
+
