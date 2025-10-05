@@ -25,6 +25,7 @@
 "verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp": "2025-10-05 01:19:35 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp": "2025-10-03 01:04:54 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp": "2025-10-05 17:08:51 +0900",
+"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp": "2025-10-05 18:33:06 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp": "2025-10-05 01:19:35 +0900",
 "verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp": "2025-09-27 14:54:24 +0900",
 "verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp": "2025-09-27 14:54:24 +0900",
