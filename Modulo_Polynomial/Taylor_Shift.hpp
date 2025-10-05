@@ -31,3 +31,13 @@ Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const min
 
     return Fast_Power_Series<mint>(h, P.precision);
 }
+
+template<typename mint>
+Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const int &a) {
+    return Taylor_Shift(P, mint(a));
+}
+
+template<typename mint>
+Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const ll &a) {
+    return Taylor_Shift(P, mint(a));
+}
