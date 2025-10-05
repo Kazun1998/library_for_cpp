@@ -2,7 +2,7 @@
 
 #include"Calculus.hpp"
 
-template<const ll Mod>
-Fast_Polynominal_Series<Mod> Log(const Fast_Polynominal_Series<Mod> &A) {
+template<typename mint>
+Fast_Power_Series<mint> Log(const Fast_Power_Series<mint> &A) {
     return Integrate(Differential(A) / A);
 }

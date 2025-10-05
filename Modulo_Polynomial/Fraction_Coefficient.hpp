@@ -3,14 +3,12 @@
 #include"../Algebra/modint.hpp"
 #include"Fast_Power_Series.hpp"
 
-template<const ll Mod>
-modint<Mod> Fraction_Coefficient(const Fast_Polynominal_Series<Mod> &P, const Fast_Polynominal_Series<Mod> &Q, ll N) {
-    using mint = modint<Mod>;
-
+template<typename mint>
+mint Fraction_Coefficient(const Fast_Power_Series<mint> &P, const Fast_Power_Series<mint> &Q, ll N) {
     vector<mint> p(P.poly), q(Q.poly);
     int m = 1 << ceil_log2(q.size());
 
-    Numeric_Theory_Translation<Mod> calc;
+    Numeric_Theory_Translation<mint> calc;
 
     p.resize(2 * m);
     q.resize(2 * m);

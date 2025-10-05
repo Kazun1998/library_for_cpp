@@ -5,7 +5,7 @@
 
 const int Mod = 998244353;
 using mint = modint<Mod>;
-using FPS = Fast_Polynominal_Series<Mod>;
+using FPS = Fast_Power_Series<mint>;
 
 int main() {
     int N, M; cin >> N >> M;

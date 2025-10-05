@@ -72,7 +72,7 @@ $P, Q$ が高々 $d$ 次として, 形式的冪級数の除算に $O(d \log d)$ 
 
 ```cpp
 template<const ll Mod>
-modint<Mod> Fraction_Coefficient(const Fast_Polynominal_Series<Mod> &P, const Fast_Polynominal_Series<Mod> &Q, ll N)
+modint<Mod> Fraction_Coefficient(const Fast_Power_Series<Mod> &P, const Fast_Power_Series<Mod> &Q, ll N)
 ```
 
 * $\left[ X^N \right] \dfrac{P}{Q}$ を求める.
