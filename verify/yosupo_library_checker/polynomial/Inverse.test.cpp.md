@@ -157,43 +157,43 @@ data:
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
     \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
     \n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
-    \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int Mod>\nclass modint {\n    public:\n\
-    \    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n  \
-    \  // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n   \
-    \ friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b\
-    \ > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n\
-    \            s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n\
-    \        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
-    \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator==(const\
-    \ modint &a, const int &b) { return a.x == mod(b, Mod); }\n    friend bool operator!=(const\
-    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
-    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
-    \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
-    \u529B\n    friend ostream &operator<<(ostream &os, const modint &a) { return\
-    \ os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n    bool is_member(ll\
-    \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
-    \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
-    \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
-    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"\
-    Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<const ll Mod>\nclass Modulo_Polynomial\
-    \ {\n    public:\n    using mint = modint<Mod>;\n    int precision = 0;\n\n  \
-    \  public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint> _poly,\
-    \ int precision): precision(precision) {\n        if (_poly.size() > precision)\
+    \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
+    \    static constexpr int Mod = M; \n    int64_t x;\n\n    public:\n    // \u521D\
+    \u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a):\
+    \ x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
+    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
+    \ operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n   \
+    \     return *this;\n    }\n\n    friend modint operator+(const modint &x, const\
+    \ modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const\
+    \ modint &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return\
+    \ *this;\n    }\n\n    friend modint operator-(const modint &x, const modint &y)\
+    \ { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const\
+    \ modint &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n  \
+    \  friend modint operator*(const modint &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const int &x, const modint &y) { return\
+    \ modint(x) *= y; }\n    friend modint operator*(const ll &x, const modint &y)\
+    \ { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const\
+    \ modint &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const\
+    \ modint &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse()\
+    \ const {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n\
+    \        while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q\
+    \ * b; swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n       \
+    \ assert (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n\
+    \    friend bool operator==(const modint &a, const modint &b) { return (a.x ==\
+    \ b.x); }\n    friend bool operator==(const modint &a, const int &b) { return\
+    \ a.x == mod(b, Mod); }\n    friend bool operator!=(const modint &a, const modint\
+    \ &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % Mod + Mod) % Mod;\n\
+    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
+    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod;\
+    \ }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod> x, long long n) {\n\
+    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<Mod>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
+    \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
+    \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
     \ { _poly.resize(precision); }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial()\
     \ = default;\n    Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly,\
     \ poly.size()) {}\n    Modulo_Polynomial(int precision) : Modulo_Polynomial({},\
@@ -260,25 +260,25 @@ data:
     \u304C\u975E\u30BC\u30ED\u3067\u3042\u308B\u6B21\u6570\u306E\u6700\u5C0F\u5024\
     )\n    int order() const {\n        for (int d = 0; d < size(); d++) {\n     \
     \       unless(poly[d].is_zero()) { return d; }\n        }\n        return -1;\n\
-    \    }\n};\n#line 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<const\
-    \ ll Mod>\nclass Numeric_Theory_Translation {\n    public:\n    using F = modint<Mod>;\n\
-    \    F primitive;\n    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n\
-    \    public:\n    Numeric_Theory_Translation() {\n        primitive = primitive_root();\n\
-    \        build_up();\n    }\n\n    private:\n    F primitive_root(){\n       \
-    \ if (Mod == 2) { return F(1); }\n        if (Mod == 998244353) { return F(3);\
-    \ }\n\n        vector<int> fac;\n        int v = Mod - 1;\n\n        for (int\
-    \ q = 2; q * q <= v; q++){\n            int e = 0;\n            while (v % q ==\
-    \ 0){\n                e++; v /= q;\n            }\n\n            if (e > 0) {\
-    \ fac.emplace_back(q); }\n        }\n\n        if (v > 1) { fac.emplace_back(v);\
-    \ }\n\n        F g(2);\n        while (true) {\n            bool flag = true;\n\
-    \            for (int q: fac) {\n                if (pow(g, (Mod - 1) / q) ==\
-    \ 1){\n                    flag = false;\n                    break;\n       \
-    \         }\n            }\n            if (flag) { break; }\n            g +=\
-    \ 1;\n        }\n        return g;\n    }\n\n    void build_up() {\n        int\
-    \ x = ~(Mod - 1) & (Mod - 2);\n        int rank2 = bit_length(x);\n\n        root.resize(rank2\
+    \    }\n};\n#line 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<typename\
+    \ F>\nclass Numeric_Theory_Translation {\n    public:\n    F primitive;\n    vector<F>\
+    \ root, iroot, rate2, irate2, rate3, irate3;\n\n    public:\n    Numeric_Theory_Translation()\
+    \ {\n        primitive = primitive_root();\n        build_up();\n    }\n\n   \
+    \ private:\n    F primitive_root(){\n        if (F::Mod == 2) { return F(1); }\n\
+    \        if (F::Mod == 998244353) { return F(3); }\n\n        vector<int> fac;\n\
+    \        int v = F::Mod - 1;\n\n        for (int q = 2; q * q <= v; q++){\n  \
+    \          int e = 0;\n            while (v % q == 0){\n                e++; v\
+    \ /= q;\n            }\n\n            if (e > 0) { fac.emplace_back(q); }\n  \
+    \      }\n\n        if (v > 1) { fac.emplace_back(v); }\n\n        F g(2);\n \
+    \       while (true) {\n            bool flag = true;\n            for (int q:\
+    \ fac) {\n                if (pow(g, (F::Mod - 1) / q) == 1){\n              \
+    \      flag = false;\n                    break;\n                }\n        \
+    \    }\n            if (flag) { break; }\n            g += 1;\n        }\n   \
+    \     return g;\n    }\n\n    void build_up() {\n        int x = ~(F::Mod - 1)\
+    \ & (F::Mod - 2);\n        int rank2 = bit_length(x);\n\n        root.resize(rank2\
     \ + 1); iroot.resize(rank2 + 1);\n        rate2.resize(max(0, rank2 - 1)); irate2.resize(max(0,\
     \ rank2 - 1));\n        rate3.resize(max(0, rank2 - 2)); irate3.resize(max(0,\
-    \ rank2 - 2));\n\n        root.back() = pow(primitive, (Mod - 1) >> rank2);\n\
+    \ rank2 - 2));\n\n        root.back() = pow(primitive, (F::Mod - 1) >> rank2);\n\
     \        iroot.back() = root.back().inverse();\n\n        for (int i = rank2 -\
     \ 1; i >= 0; i--){\n            root[i] = root[i + 1] * root[i + 1];\n       \
     \     iroot[i] = iroot[i + 1] * iroot[i + 1];\n        }\n\n        F prod(1),\
@@ -356,15 +356,17 @@ data:
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
     \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"verify/yosupo_library_checker/polynomial/Inverse.test.cpp\"\n\nint main(){\n\
-    \    const int Mod = 998244353;\n    Numeric_Theory_Translation<Mod> calculator;\n\
-    \n    int N; cin >> N;\n    vector<modint<Mod>> A(N); cin >> A;\n    cout << calculator.inverse(A)\
+    \ 5 \"verify/yosupo_library_checker/polynomial/Inverse.test.cpp\"\n\nconst ll\
+    \ Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main(){\n    const int Mod\
+    \ = 998244353;\n    Numeric_Theory_Translation<mint> calculator;\n\n    int N;\
+    \ cin >> N;\n    vector<mint> A(N); cin >> A;\n    cout << calculator.inverse(A)\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
-    \n\nint main(){\n    const int Mod = 998244353;\n    Numeric_Theory_Translation<Mod>\
-    \ calculator;\n\n    int N; cin >> N;\n    vector<modint<Mod>> A(N); cin >> A;\n\
-    \    cout << calculator.inverse(A) << endl;\n}\n"
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main(){\n    const\
+    \ int Mod = 998244353;\n    Numeric_Theory_Translation<mint> calculator;\n\n \
+    \   int N; cin >> N;\n    vector<mint> A(N); cin >> A;\n    cout << calculator.inverse(A)\
+    \ << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -378,7 +380,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   requiredBy: []
-  timestamp: '2025-10-01 23:01:50+09:00'
+  timestamp: '2025-10-05 01:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
