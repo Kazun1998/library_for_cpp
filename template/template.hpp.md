@@ -156,6 +156,9 @@ data:
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo/Composite.hpp
+    title: Modulo/Composite.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
@@ -164,6 +167,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
+  - icon: ':warning:'
+    path: Modulo/Solve.hpp
+    title: Modulo/Solve.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
@@ -369,6 +375,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/2558.test.cpp
+    title: verify/yukicoder/2558.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -636,7 +645,9 @@ data:
   path: template/template.hpp
   requiredBy:
   - Modulo/Order.hpp
+  - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
+  - Modulo/Composite.hpp
   - Modulo/Modulo.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Matrix.hpp
@@ -755,6 +766,7 @@ data:
   - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: template/template.hpp
 layout: document

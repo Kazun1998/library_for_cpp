@@ -201,6 +201,9 @@ data:
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
+      path: Modulo/Composite.hpp
+      title: Modulo/Composite.hpp
+    - icon: ':heavy_check_mark:'
       path: Modulo/Discrete_Log.hpp
       title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
     - icon: ':heavy_check_mark:'
@@ -209,6 +212,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo/Order.hpp
       title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
+    - icon: ':warning:'
+      path: Modulo/Solve.hpp
+      title: Modulo/Solve.hpp
   - name: Modulo_Polynomial
     pages:
     - icon: ':heavy_check_mark:'
@@ -497,6 +503,9 @@ data:
       title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - name: verify/yukicoder
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yukicoder/2558.test.cpp
+      title: verify/yukicoder/2558.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yukicoder/Modulo_Order.test.cpp
       title: verify/yukicoder/Modulo_Order.test.cpp

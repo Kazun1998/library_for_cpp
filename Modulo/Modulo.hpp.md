@@ -24,11 +24,17 @@ data:
     path: Math/Montmort_Number.hpp
     title: "Montmort \u6570"
   - icon: ':heavy_check_mark:'
+    path: Modulo/Composite.hpp
+    title: Modulo/Composite.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
+  - icon: ':warning:'
+    path: Modulo/Solve.hpp
+    title: Modulo/Solve.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
@@ -36,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/2558.test.cpp
+    title: verify/yukicoder/2558.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -299,13 +308,16 @@ data:
   path: Modulo/Modulo.hpp
   requiredBy:
   - Modulo/Order.hpp
+  - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
+  - Modulo/Composite.hpp
   - Math/Montmort_Number.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Modulo/Modulo.hpp
 layout: document
