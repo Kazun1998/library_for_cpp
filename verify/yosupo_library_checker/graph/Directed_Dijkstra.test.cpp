@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#include"../../../Graph/Weighed_Digraph/Dijkstra.hpp"
+#include"../../../Graph/Weighted_Digraph/Dijkstra.hpp"
 
 int main(){
   int N, M, s, t; cin >> N >> M >> s >> t;
