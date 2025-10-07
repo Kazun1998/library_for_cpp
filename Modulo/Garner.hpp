@@ -25,4 +25,15 @@ namespace modulo {
 
         return s;
     }
+
+    ll Minimize_Garner(vector<Modulo> X, const ll M) {
+        vector<ll> s = Garner_Base(X);
+        ll y = 0, h = 1;
+        for (int i = 0; i < X.size(); i++) {
+            y = mod(y + s[i] * h, M);
+            h = mod(h * X[i].n, M);
+        }
+
+        return y;
+    }
 }
