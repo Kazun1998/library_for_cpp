@@ -2,7 +2,7 @@
 #include"Composite.hpp"
 
 
-namespace Modulo {
+namespace modulo {
     class NoSolutionException : public std::runtime_error {
     public:
         NoSolutionException(const std::string& message) : std::runtime_error(message) {}
