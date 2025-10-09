@@ -569,8 +569,67 @@ data:
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
 documentation_of: Modulo_Polynomial/Numeric_Theory_Translation.hpp
 layout: document
-redirect_from:
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp
-- /library/Modulo_Polynomial/Numeric_Theory_Translation.hpp.html
-title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+title: "\u6570\u8AD6\u5909\u63DB"
 ---
+
+## Outline
+
+畳み込みに関する計算及び, 応用例として, 形式的ベキ級数に関する演算を高速に行う.
+
+## Theory
+
+### 逆元
+
+定数項が $0$ でない形式的ベキ級数 $f$ に対して, $fg=1$ となる形式的ベキ級数 $g$ がただ一つ存在する. この $g$ を $f$ の逆元といい, $g = f^{-1}$ とかく.
+
+$g$ の $n$ 次までの係数を求めたい.
+
+$g^{(n)}$ を以下を満たす多項式とする.
+
+* $fg^{(n)} \equiv 1 \pmod{x^n}$.
+* $g$ は $n$ 次未満の多項式.
+
+なお, $g$ の一意性から, $g^{(n)} = g \mod{x^n}$ である.
+
+まず, $n = 1$ のときは $g^{(0)}$ は定数多項式である. これは
+
+$$ g^{(0)} = (f_0)^{-1} $$
+
+である.
+
+$g^{(n)}$ が求まっている時, $g^{(2n)}$ を求めたい.
+
+$g$ と $g^{(n)}$ の関係性から, $g \equiv g^{(n)} \pmod{x^n}$ である. このとき,
+
+$$ 0 = \left(g - g^{(n)} \right)^2 \equiv g^2 - 2 g g^{(n)} + \left(g^{(n)} \right)^2 \pmod{x^{2n}} $$
+
+が成り立つ.
+
+両辺に $f$ を掛けると, $fg=1$ であることに注意して, 整理すると,
+
+$$ g \equiv 2g^{(n)} - f \left(g^{(n)} \right)^2 \pmod{x^{2n}} \quad \cdots (*) $$
+
+となる. よって,
+
+$$ g^{(2n)} = \left(2g^{(n)} - f \left(g^{(n)} \right)^2 \right) \mod{x^{2n}} $$
+
+となる.
+
+$g^{(N)}$ を求める計算量は, $T(2n) = T(n) + O(n \log n)$ を解くことにおよって, $T(N) = O(N \log N)$ 時間とわかる.
+
+これでも求めれるが, 更に定数倍の高速化を行うことができる.
+
+$fg^{(n)} \equiv 1 \pmod{x^n}$  であるため, ある形式的ベキ級数 $h^{(n)}$ が存在して,
+
+$$ fg^{(n)} = 1 + x^n h^{(n)} $$
+
+と書ける. $(*)$ に代入すると,
+
+$$ g \equiv 2 g^{(n)} - \left(1 + x^n h^{(n)} \right) g^{(n)} = g^{(n)} - x^n g^{(n)} h^{(n)} \pmod{x^{2n}}$$
+
+となる.
+
+この式から, $g$ の $2n$ 未満の係数について, 以下が従う.
+
+* $g$ の $n$ 次未満の係数は $g^{(n)}$ と一致する.
+* $g$ の $n$ 次から $2n$ 次未満の係数は $-g^{(n)} h^{(n)}$ の $n$ 次未満の係数と一致する.

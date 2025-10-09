@@ -246,7 +246,7 @@ data:
       title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
-      title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+      title: "\u6570\u8AD6\u5909\u63DB"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Partition_P.hpp
       title: "\u5206\u5272\u6570 (P)"

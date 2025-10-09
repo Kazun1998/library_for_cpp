@@ -24,7 +24,7 @@ data:
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
-    title: Modulo_Polynomial/Numeric_Theory_Translation.hpp
+    title: "\u6570\u8AD6\u5909\u63DB"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
