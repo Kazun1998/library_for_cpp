@@ -204,6 +204,9 @@ data:
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   - icon: ':heavy_check_mark:'
+    path: Sequence/Longest_Increasing_Subsequence.hpp
+    title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   - icon: ':heavy_check_mark:'
@@ -340,6 +343,9 @@ data:
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
+    title: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,6 +432,7 @@ data:
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
+  - Sequence/Longest_Increasing_Subsequence.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Montmort_Number.hpp
   - Math/Two_SAT.hpp
@@ -496,6 +503,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+  - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp

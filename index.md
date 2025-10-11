@@ -274,6 +274,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment Tree
+  - name: Sequence
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Sequence/Longest_Increasing_Subsequence.hpp
+      title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -469,6 +474,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
       title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
+      title: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/two_sat.test.cpp
       title: verify/yosupo_library_checker/other/two_sat.test.cpp
