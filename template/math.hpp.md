@@ -373,6 +373,9 @@ data:
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+    title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -566,6 +569,7 @@ data:
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
+  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp

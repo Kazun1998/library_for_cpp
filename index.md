@@ -516,6 +516,9 @@ data:
   - name: verify/yosupo_library_checker/tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+      title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
       title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - name: verify/yukicoder

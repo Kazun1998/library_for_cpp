@@ -29,13 +29,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
+    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
     links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#line 2 \"Tree/Tree.hpp\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/jump_on_tree
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2\
+    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -149,22 +149,22 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n\
-    \    int N, offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
-    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset\
-    \ = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n\
-    \        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\
-    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
-    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
-    \    }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y\
-    \ \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int &x, const\
-    \ int &y) {\n        assert (!is_locked());\n        parent[x] = y;\n    }\n\n\
-    \    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\
-    \u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const int &y)\
-    \ { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n\
-    \    void seal() {\n        assert(!is_locked());\n\n        parent[root] = -1;\n\
-    \        children.assign(N + offset, vector<int>());\n        for (int v = offset;\
-    \ v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \ bit_length(x)); }\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\n\
+    class Tree {\n    private:\n    int N, offset, root;\n    vector<int> parent;\n\
+    \    vector<vector<int>> children;\n\n    int N_bit;\n    bool locked;\n\n   \
+    \ public:\n    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {\n\
+    \        parent.assign(N + offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++)\
+    \ {}\n        locked = false;\n    }\n\n    bool is_locked() const { return locked;\
+    \ }\n\n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
+    \        root = x;\n    }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\
+    \u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
+    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
+    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
+    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
+    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
+    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
+    \ = -1;\n        children.assign(N + offset, vector<int>());\n        for (int\
+    \ v = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
     \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
     \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
@@ -250,36 +250,39 @@ data:
     \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
     \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
     \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
-    \        }\n    }\n\n    T.seal();\n    return T;\n}\n#line 4 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
-    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
-    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
-    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
-    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include\"../../../Tree/Tree.hpp\"\
-    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
-    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
-    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
-    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n#line 5 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\
+    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N\
+    \ - 1);\n    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"\
+    %d%d\", &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
+    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
+    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
+    ;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Tree/Tree.hpp\"\n\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N - 1);\n\
+    \    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"%d%d\"\
+    , &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
+    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
+    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
+    ;\n    }\n}\n"
   dependsOn:
-  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Tree/Tree.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-10-12 00:34:41+09:00'
+  timestamp: '2025-10-12 00:34:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+documentation_of: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp.html
-title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp.html
+title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
 ---
