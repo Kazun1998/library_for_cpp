@@ -5,26 +5,11 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Calculus.hpp
-    title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Exp.hpp
-    title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Log.hpp
-    title: Modulo_Polynomial/Log.hpp
-  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -50,13 +35,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
+    PROBLEM: https://judge.yosupo.jp/problem/product_of_polynomial_sequence
     links:
-    - https://judge.yosupo.jp/problem/sharp_p_subset_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/product_of_polynomial_sequence
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -170,8 +155,8 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line\
-    \ 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
+    \ bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
+    \n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
     \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
     \    static constexpr int Mod = M; \n    int64_t x;\n\n    public:\n    // \u521D\
     \u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a):\
@@ -275,8 +260,7 @@ data:
     \u304C\u975E\u30BC\u30ED\u3067\u3042\u308B\u6B21\u6570\u306E\u6700\u5C0F\u5024\
     )\n    int order() const {\n        for (int d = 0; d < size(); d++) {\n     \
     \       unless(poly[d].is_zero()) { return d; }\n        }\n        return -1;\n\
-    \    }\n};\n#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line\
-    \ 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<typename\
+    \    }\n};\n#line 5 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<typename\
     \ F>\nclass Numeric_Theory_Translation {\n    public:\n    F primitive;\n    vector<F>\
     \ root, iroot, rate2, irate2, rate3, irate3;\n\n    public:\n    Numeric_Theory_Translation()\
     \ {\n        primitive = primitive_root();\n        build_up();\n    }\n\n   \
@@ -377,109 +361,21 @@ data:
     \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
     \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
     \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
-    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
-    \n\ntemplate<typename mint>\nclass Fast_Power_Series : public Modulo_Polynomial<mint>\
-    \ {\n    protected:\n    static Numeric_Theory_Translation<mint> calculator;\n\
-    \n    public:\n    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly,\
-    \ _precision) {}\n\n    Fast_Power_Series() = default;\n    Fast_Power_Series(vector<mint>\
-    \ _poly) : Fast_Power_Series(_poly, _poly.size()) {}\n    Fast_Power_Series(int\
-    \ _precision) : Fast_Power_Series({}, _precision) {}\n\n    // \u52A0\u7B97\n\
-    \    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
-    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
-    \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
-    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
-    \ friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs,\
-    \ const Fast_Power_Series<mint> &rhs) {\n        return Fast_Power_Series<mint>(lhs)\
-    \ += rhs; \n    }\n\n    // \u6E1B\u7B97\n    Fast_Power_Series& operator-=(const\
-    \ Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(), B.poly.size()));\n\
-    \        for (int i = 0; i < B.poly.size(); i++) {\n            this->poly[i]\
-    \ -= B.poly[i];\n        }\n        this->precision = min(this->precision, B.precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series<mint>\
-    \ operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint>\
-    \ &rhs) {\n        return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n   \
-    \ // \u30B9\u30AB\u30E9\u30FC\u500D\n    Fast_Power_Series& operator*=(const mint\
-    \ &a){\n        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    Fast_Power_Series\
-    \ operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }\n\n\
-    \    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series\
-    \ &P) { return Fast_Power_Series(P) *= a; }\n\n    friend Fast_Power_Series operator*(const\
-    \ ll &a, const Fast_Power_Series &P) { return mint(a) * P; }\n\n    // \u7A4D\n\
-    \    Fast_Power_Series& operator*=(const Fast_Power_Series &P) {\n        auto\
-    \ tmp = calculator.convolution(this->poly, P.poly);\n\n        this->poly = tmp;\n\
-    \        this->precision = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) *= rhs; }\n\n    // (mod X^d) \u306B\u304A\u3051\u308B\
-    \u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1 \u306E\u3068\u304D\u306F,\
-    \ d = precision \u306B\u306A\u308B.\n    Fast_Power_Series inverse(int d = -1)\
-    \ {\n        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision\
-    \ : min(d, this->precision));\n        return {p, this->precision};\n    }\n\n\
-    \    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const Fast_Power_Series\
-    \ &P) {\n        vector<mint> inv = calculator.inverse(P.poly, P.precision);\n\
-    \        this->poly = calculator.convolution(this->poly, inv);\n        this->precision\
-    \ = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\
-    \u306E\u9664\u7B97\n    Fast_Power_Series div(Fast_Power_Series &B) {\n      \
-    \  this->reduce(); B.reduce();\n\n        int n = this->poly.size(), m = B.poly.size();\n\
-    \n        if (n < m) { return Fast_Power_Series({0}); }\n\n        vector<mint>\
-    \ a_rev(this->poly), b_rev(B.poly);\n        reverse(a_rev.begin(), a_rev.end());\n\
-    \        reverse(b_rev.begin(), b_rev.end());\n\n        vector<mint> c = calculator.convolution(a_rev,\
-    \ calculator.inverse(b_rev, n));\n        c.resize(n - m + 1);\n        reverse(c.begin(),\
-    \ c.end());\n        return Fast_Power_Series(c, n);\n    }\n\n    Fast_Power_Series&\
-    \ operator%=(Fast_Power_Series &B) {\n        Fast_Power_Series Q = this->div(B);\n\
-    \        this->poly = ((*this) - B * Q).poly;\n        return *this;\n    }\n\n\
-    \    friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series\
-    \ &rhs) { return Fast_Power_Series(lhs) %= rhs; }\n};\n\ntemplate<typename mint>\n\
-    Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();\n\
-    \ntemplate<typename mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
-    \ divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {\n    Fast_Power_Series\
-    \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n\
-    #line 2 \"Modulo_Polynomial/Subset_Sum.hpp\"\n\n#line 2 \"Modulo_Polynomial/Exp.hpp\"\
-    \n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\
-    \n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\n\n// A \u306E\u5F62\u5F0F\u7684\
-    \u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<typename mint>\nFast_Power_Series<mint>\
-    \ Differential(const Fast_Power_Series<mint> &A) {\n    vector<mint> b(A.precision);\n\
-    \    for (int k = 1; k < A.precision; k++) { b[k - 1] = k * A[k]; }\n    return\
-    \ Fast_Power_Series<mint>(b, A.precision);\n}\n\n// A \u306E\u4E0D\u5B9A\u7A4D\
-    \u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u5B9A\u6570\u9805\u306F C\
-    \ (default 0) \u3092\u4F7F\u3046.\ntemplate<typename mint>\nFast_Power_Series<mint>\
-    \ Integrate(const Fast_Power_Series<mint> &A, const mint C = 0) {\n    if (A.is_zero())\
-    \ { return Fast_Power_Series<mint>({0}, A.precision); }\n\n    vector<mint> inv(A.precision\
-    \ + 1);\n    inv[1] = mint(1);\n    for (int k = 2; k <= A.precision; k++) {\n\
-    \        ll q, r;\n        tie (q, r) = divmod(mint::Mod, k);\n        inv[k]\
-    \ = -q * inv[r];\n    }\n\n    vector<mint> b(A.precision + 1);\n    b[0] = C;\n\
-    \    for (int k = 0; k < A.precision; k++) { b[k + 1] = inv[k + 1] * A[k]; }\n\
-    \    return Fast_Power_Series<mint>(b, A.precision);\n}\n#line 4 \"Modulo_Polynomial/Log.hpp\"\
-    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Log(const Fast_Power_Series<mint>\
-    \ &A) {\n    return Integrate(Differential(A) / A);\n}\n#line 5 \"Modulo_Polynomial/Exp.hpp\"\
-    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Exp(const Fast_Power_Series<mint>\
-    \ &A) {\n    assert(A[0].is_zero());\n\n    int n = A.precision;\n\n    Fast_Power_Series<mint>\
-    \ G({1}, 1), one({1}, n);\n    for (; G.precision < n;) {\n        G.precision\
-    \ *= 2;\n        G = G * (one - Log(G) + A);\n    }\n\n    return G;\n}\n#line\
-    \ 6 \"Modulo_Polynomial/Subset_Sum.hpp\"\n\n// A \u306E (\u9023\u7D9A\u3068\u306F\
-    \u9650\u3089\u306A\u3044) \u90E8\u5206\u5217\u306E\u3046\u3061, \u548C\u304C k=0,1,...,K\
-    \ \u306B\u306A\u308B\u7D44\u307F\u5408\u308F\u305B\u306E\u7DCF\u6570\u3092 Mod\
-    \ \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ mint>\nvector<mint> Subset_Sum(vector<int> A, int K) {\n    vector<ll> chi(K\
-    \ + 1);\n    for (ll a: A) {\n        if (a <= K) { chi[a] += 1; }\n    }\n\n\
-    \    vector<mint> inv(K + 1); inv[1] = 1;\n    for (int x = 2; x <= K; x++) {\n\
-    \        auto [q, r] = divmod(mint::Mod, x);\n        inv[x] = -q * inv[r];\n\
-    \    }\n\n    vector<mint> f(K + 1);\n    for (int x = 1; x <= K; x++) {\n   \
-    \     if (chi[x] == 0) { continue; }\n\n        for (int k = 1, c = 1; k * x <=\
-    \ K; k++) {\n            f[k * x] += c * inv[k] * chi[x];\n            c *= -1;\n\
-    \        }\n    }\n\n    auto g = Exp(Fast_Power_Series<mint>(f)).poly;\n    g.resize(K\
-    \ + 1);\n    return g;\n}\n#line 6 \"verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp\"\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp\"\
     \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
-    \ int N, T; cin >> N >> T;\n    vector<int> s(N); cin >> s;\n\n    auto p = Subset_Sum<mint>(s,\
-    \ T);\n    p.erase(p.begin());\n\n    cout << p << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Fast_Power_Series.hpp\"\
-    \n#include\"../../../Modulo_Polynomial/Subset_Sum.hpp\"\n\nconst ll Mod = 998244353;\n\
-    using mint = modint<Mod>;\n\nint main() {\n    int N, T; cin >> N >> T;\n    vector<int>\
-    \ s(N); cin >> s;\n\n    auto p = Subset_Sum<mint>(s, T);\n    p.erase(p.begin());\n\
-    \n    cout << p << endl;\n}\n"
+    \ int N; cin >> N;\n    vector<vector<mint>> a(N, vector<mint>{});\n    for (int\
+    \ i = 0; i < N; i++) {\n        int d; scanf(\"%d\", &d);\n        a[i].resize(d\
+    \ + 1);\n        for (int j = 0; j <= d; j++) { cin >> a[i][j]; }\n    }\n\n \
+    \   auto B = Numeric_Theory_Translation<mint>().multiple_convolution(a);\n\n \
+    \   cout << B << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
+    \ int N; cin >> N;\n    vector<vector<mint>> a(N, vector<mint>{});\n    for (int\
+    \ i = 0; i < N; i++) {\n        int d; scanf(\"%d\", &d);\n        a[i].resize(d\
+    \ + 1);\n        for (int j = 0; j <= d; j++) { cin >> a[i][j]; }\n    }\n\n \
+    \   auto B = Numeric_Theory_Translation<mint>().multiple_convolution(a);\n\n \
+    \   cout << B << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -487,24 +383,19 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Algebra/modint.hpp
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-10-12 01:12:49+09:00'
+  timestamp: '2025-10-12 01:12:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+documentation_of: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp.html
-title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+- /verify/verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+- /verify/verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp.html
+title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
 ---

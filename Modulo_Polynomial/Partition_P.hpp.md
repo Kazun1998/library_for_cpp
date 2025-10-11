@@ -353,13 +353,19 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"Modulo_Polynomial/Partition_P.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
-    \ Partitions_P(int N) {\n    Numeric_Theory_Translation<mint> calc;\n\n    vector<mint>\
-    \ f(N + 1);\n    f[0] = 1;\n\n    for (int k = 1; k * (3 * k - 1) <= 2 * N; k++)\
-    \ {\n        mint m = ((k & 1) == 0) ? 1 : -1;\n\n        int d1 = k * (3 * k\
-    \ - 1) / 2, d2 = k * (3 * k + 1) / 2;\n        f[d1] += m;\n        if (d2 <=\
-    \ N) { f[d2] += m; }\n    }\n\n    return calc.inverse(f);\n}\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"Modulo_Polynomial/Partition_P.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Partitions_P(int N) {\n    Numeric_Theory_Translation<mint>\
+    \ calc;\n\n    vector<mint> f(N + 1);\n    f[0] = 1;\n\n    for (int k = 1; k\
+    \ * (3 * k - 1) <= 2 * N; k++) {\n        mint m = ((k & 1) == 0) ? 1 : -1;\n\n\
+    \        int d1 = k * (3 * k - 1) / 2, d2 = k * (3 * k + 1) / 2;\n        f[d1]\
+    \ += m;\n        if (d2 <= N) { f[d2] += m; }\n    }\n\n    return calc.inverse(f);\n\
+    }\n"
   code: "#pragma once\n\n#include\"../Algebra/modint.hpp\"\n#include\"Numeric_Theory_Translation.hpp\"\
     \n\ntemplate<typename mint>\nvector<mint> Partitions_P(int N) {\n    Numeric_Theory_Translation<mint>\
     \ calc;\n\n    vector<mint> f(N + 1);\n    f[0] = 1;\n\n    for (int k = 1; k\
@@ -380,7 +386,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Partition_P.hpp
   requiredBy: []
-  timestamp: '2025-10-05 19:52:54+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp

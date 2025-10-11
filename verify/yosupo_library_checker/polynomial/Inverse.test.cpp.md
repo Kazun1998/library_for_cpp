@@ -355,11 +355,16 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"verify/yosupo_library_checker/polynomial/Inverse.test.cpp\"\n\nconst ll\
-    \ Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main(){\n    const int Mod\
-    \ = 998244353;\n    Numeric_Theory_Translation<mint> calculator;\n\n    int N;\
-    \ cin >> N;\n    vector<mint> A(N); cin >> A;\n    cout << calculator.inverse(A)\
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"verify/yosupo_library_checker/polynomial/Inverse.test.cpp\"\
+    \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main(){\n    const\
+    \ int Mod = 998244353;\n    Numeric_Theory_Translation<mint> calculator;\n\n \
+    \   int N; cin >> N;\n    vector<mint> A(N); cin >> A;\n    cout << calculator.inverse(A)\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
@@ -380,7 +385,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   requiredBy: []
-  timestamp: '2025-10-05 01:19:35+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Inverse.test.cpp

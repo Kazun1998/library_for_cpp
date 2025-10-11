@@ -353,17 +353,22 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"Modulo_Polynomial/Stirling_2nd.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
-    \ Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint> calc;\n\n    vector<mint>\
-    \ fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n    for (int k = 1; k <=\
-    \ N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N] = fact[N].inverse();\n\
-    \    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1];\
-    \ }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int i = 0; i <= N; i++)\
-    \ { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int j = 0; j <= N; j++)\
-    \ { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n    vector<mint> c\
-    \ = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1, c.end());\n    return\
-    \ c;\n}\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"Modulo_Polynomial/Stirling_2nd.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint>\
+    \ calc;\n\n    vector<mint> fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n\
+    \    for (int k = 1; k <= N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N]\
+    \ = fact[N].inverse();\n    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k\
+    \ + 1) * fact_inv[k + 1]; }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int\
+    \ i = 0; i <= N; i++) { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int\
+    \ j = 0; j <= N; j++) { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n\
+    \    vector<mint> c = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1,\
+    \ c.end());\n    return c;\n}\n"
   code: "#pragma once\n\n#include\"../Algebra/modint.hpp\"\n#include\"Numeric_Theory_Translation.hpp\"\
     \n\ntemplate<typename mint>\nvector<mint> Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint>\
     \ calc;\n\n    vector<mint> fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n\
@@ -387,7 +392,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Stirling_2nd.hpp
   requiredBy: []
-  timestamp: '2025-10-05 18:32:58+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp

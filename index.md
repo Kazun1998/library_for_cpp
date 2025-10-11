@@ -506,6 +506,9 @@ data:
       path: verify/yosupo_library_checker/polynomial/Power.test.cpp
       title: verify/yosupo_library_checker/polynomial/Power.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
       title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - name: verify/yosupo_library_checker/sample

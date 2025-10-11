@@ -124,6 +124,9 @@ data:
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   _isVerificationFailed: false
@@ -359,6 +362,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp

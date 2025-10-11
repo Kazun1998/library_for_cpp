@@ -106,6 +106,9 @@ data:
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   _isVerificationFailed: false
@@ -428,7 +431,13 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Modulo_Polynomial.hpp\"\
     \n\ntemplate<typename F>\nclass Numeric_Theory_Translation {\n    public:\n  \
     \  F primitive;\n    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n\
@@ -524,7 +533,13 @@ data:
     \n            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n"
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -551,7 +566,7 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-05 01:19:35+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
@@ -563,6 +578,7 @@ data:
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp

@@ -371,15 +371,20 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\ntemplate<typename mint>\nclass\
-    \ Fast_Power_Series : public Modulo_Polynomial<mint> {\n    protected:\n    static\
-    \ Numeric_Theory_Translation<mint> calculator;\n\n    public:\n    Fast_Power_Series(vector<mint>\
-    \ _poly, int _precision) : Modulo_Polynomial<mint>(_poly, _precision) {}\n\n \
-    \   Fast_Power_Series() = default;\n    Fast_Power_Series(vector<mint> _poly)\
-    \ : Fast_Power_Series(_poly, _poly.size()) {}\n    Fast_Power_Series(int _precision)\
-    \ : Fast_Power_Series({}, _precision) {}\n\n    // \u52A0\u7B97\n    Fast_Power_Series&\
-    \ operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
+    \n\ntemplate<typename mint>\nclass Fast_Power_Series : public Modulo_Polynomial<mint>\
+    \ {\n    protected:\n    static Numeric_Theory_Translation<mint> calculator;\n\
+    \n    public:\n    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly,\
+    \ _precision) {}\n\n    Fast_Power_Series() = default;\n    Fast_Power_Series(vector<mint>\
+    \ _poly) : Fast_Power_Series(_poly, _poly.size()) {}\n    Fast_Power_Series(int\
+    \ _precision) : Fast_Power_Series({}, _precision) {}\n\n    // \u52A0\u7B97\n\
+    \    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
     \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
     \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
     \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
@@ -487,7 +492,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   requiredBy: []
-  timestamp: '2025-10-05 01:19:35+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp

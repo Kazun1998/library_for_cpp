@@ -358,17 +358,22 @@ data:
     \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
     \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
     \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n};\n#line\
-    \ 5 \"Modulo_Polynomial/Stirling_2nd.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
-    \ Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint> calc;\n\n    vector<mint>\
-    \ fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n    for (int k = 1; k <=\
-    \ N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N] = fact[N].inverse();\n\
-    \    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1];\
-    \ }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int i = 0; i <= N; i++)\
-    \ { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int j = 0; j <= N; j++)\
-    \ { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n    vector<mint> c\
-    \ = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1, c.end());\n    return\
-    \ c;\n}\n#line 5 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp\"\
+    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
+    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
+    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
+    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
+    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
+    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
+    \        }\n\n        return A[queue.back()];\n    }\n};\n#line 5 \"Modulo_Polynomial/Stirling_2nd.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Stirling_2nd(int N) {\n    Numeric_Theory_Translation<mint>\
+    \ calc;\n\n    vector<mint> fact(N + 1), fact_inv(N + 1);\n\n    fact[0] = 1;\n\
+    \    for (int k = 1; k <= N; k++) { fact[k] = k * fact[k - 1]; }\n\n    fact_inv[N]\
+    \ = fact[N].inverse();\n    for (int k = N - 1; k >= 0; k--) { fact_inv[k] = (k\
+    \ + 1) * fact_inv[k + 1]; }\n\n    vector<mint> a(N + 1), b(N + 1);\n    for (int\
+    \ i = 0; i <= N; i++) { a[i] = pow(mint(i), N) * fact_inv[i]; }\n    for (int\
+    \ j = 0; j <= N; j++) { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }\n\n\
+    \    vector<mint> c = calc.convolution(a, b);\n    c.erase(c.begin() + N + 1,\
+    \ c.end());\n    return c;\n}\n#line 5 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp\"\
     \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
     \ int N; cin >> N;\n    cout << Stirling_2nd<mint>(N) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
@@ -389,7 +394,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   requiredBy: []
-  timestamp: '2025-10-05 18:33:06+09:00'
+  timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
