@@ -241,4 +241,21 @@ class Numeric_Theory_Translation {
     }
 
     vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }
+
+    vector<F> multiple_convolution(vector<vector<F>> A) {
+        if (A.empty()) { return {1}; }
+
+        deque<int> queue(A.size());
+        iota(queue.begin(), queue.end(), 0);
+
+        while (queue.size() > 1) {
+            int i = queue.front(); queue.pop_front();
+            int j = queue.front(); queue.pop_front();
+
+            A[i] = convolution(A[i], A[j]);
+            queue.emplace_back(i);
+        }
+
+        return A[queue.back()];
+    }
 };
