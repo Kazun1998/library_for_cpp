@@ -228,3 +228,34 @@ class Tree {
         has_euler_tour_edge = true;
     }
 };
+
+Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
+    vector<vector<int>> adj(N + offset, vector<int>());
+    for (auto &[u, v]: edges) {
+        adj[u].emplace_back(v);
+        adj[v].emplace_back(u);
+    }
+
+    Tree T(N, offset);
+    T.set_root(root);
+
+    vector<bool> seen(N + 1, false);
+    seen[root] = true;
+    vector<int> stack({root});
+
+    until(stack.empty()) {
+        int v = stack.back();
+        stack.pop_back();
+
+        for (int w: adj[v]) {
+            if (seen[w]) { continue; }
+
+            seen[w] = true;
+            T.set_parent(w, v);
+            stack.emplace_back(w);
+        }
+    }
+
+    T.seal();
+    return T;
+}
