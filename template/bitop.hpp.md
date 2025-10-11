@@ -355,6 +355,9 @@ data:
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
   - icon: ':heavy_check_mark:'
@@ -533,6 +536,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp

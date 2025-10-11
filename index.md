@@ -491,6 +491,9 @@ data:
   - name: verify/yosupo_library_checker/polynomial
     pages:
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+      title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/polynomial/Division.test.cpp
       title: verify/yosupo_library_checker/polynomial/Division.test.cpp
     - icon: ':heavy_check_mark:'
