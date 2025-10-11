@@ -227,6 +227,24 @@ class Tree {
 
         has_euler_tour_edge = true;
     }
+
+    // 頂点 u から頂点 v へ向かうパスにおいて k 番目 (0-indexed) に通る頂点 (パスの長さが k より大きい場合は over)
+    int jump(int u, int v, int k, int over = -1) {
+        if (k == 0) { return u; }
+
+        int w = lowest_common_ancestor(u, v);
+        int dist_uw = vertex_depth(u) - vertex_depth(w);
+        int dist_wv = vertex_depth(v) - vertex_depth(w);
+        int dist_uv = dist_uw + dist_wv;
+
+        if (dist_uv < k) { 
+            return over;
+        } else if (k <= dist_uw) {
+            return upper(u, k);
+        } else {
+            return upper(v, dist_uv - k);
+        }
+    }
 };
 
 Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
