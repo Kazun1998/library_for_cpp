@@ -30,6 +30,9 @@ data:
     path: Binary_Search/Value.hpp
     title: Binary_Search/Value.hpp
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/Dual_Heap.hpp
+    title: Dual Heap
+  - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
@@ -282,6 +285,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1E.test.cpp
     title: verify/aizu_online_judge/ntl/1E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
@@ -658,6 +664,7 @@ data:
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Matrix.hpp
   - Linear_Algebra/Reduction.hpp
+  - Data_Structure/Dual_Heap.hpp
   - Algebra/Gaussian_Integer.hpp
   - Algebra/modint.hpp
   - Tree/Tree.hpp
@@ -723,6 +730,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp

@@ -22,6 +22,11 @@ data:
     - icon: ':warning:'
       path: Binary_Search/Value.hpp
       title: Binary_Search/Value.hpp
+  - name: Data_Structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Data_Structure/Dual_Heap.hpp
+      title: Dual Heap
   - name: Geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -378,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
