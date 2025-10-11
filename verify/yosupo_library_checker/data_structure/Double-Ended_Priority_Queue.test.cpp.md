@@ -177,20 +177,22 @@ data:
     \        return (it != count_map.end()) ? it -> second : 0;\n    }\n\n    inline\
     \ int size() const { return _size; }\n\n    inline bool empty() const { return\
     \ _size == 0; }\n};\n#line 5 \"verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> S(N); cin >> S;\n\
-    \n    Dual_Heap<int> D(S);\n\n    for (int q = 1; q <= Q; q++) {\n        int\
-    \ t; cin >> t;\n        if (t == 0) {\n            int x; cin >> x;\n        \
-    \    D.push(x);\n        } else if (t == 1) {\n            cout << D.pop_min()\
-    \ << endl;\n        } else if (t == 2) { \n            cout << D.pop_max() <<\
-    \ endl;\n        }\n    }\n}\n"
+    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> S(N);\n    for\
+    \ (int i = 0; i < N; i++) { scanf(\"%d\", &S[i]); }\n\n    Dual_Heap<int> D(S);\n\
+    \n    for (int q = 1; q <= Q; q++) {\n        int t; scanf(\"%d\", &t);\n    \
+    \    if (t == 0) {\n            int x; scanf(\"%d\", &x);\n            D.push(x);\n\
+    \        } else if (t == 1) {\n            cout << D.pop_min() << \"\\n\";\n \
+    \       } else if (t == 2) { \n            cout << D.pop_max() << \"\\n\";\n \
+    \       }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Data_Structure/Dual_Heap.hpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> S(N); cin >> S;\n\
-    \n    Dual_Heap<int> D(S);\n\n    for (int q = 1; q <= Q; q++) {\n        int\
-    \ t; cin >> t;\n        if (t == 0) {\n            int x; cin >> x;\n        \
-    \    D.push(x);\n        } else if (t == 1) {\n            cout << D.pop_min()\
-    \ << endl;\n        } else if (t == 2) { \n            cout << D.pop_max() <<\
-    \ endl;\n        }\n    }\n}\n"
+    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> S(N);\n    for\
+    \ (int i = 0; i < N; i++) { scanf(\"%d\", &S[i]); }\n\n    Dual_Heap<int> D(S);\n\
+    \n    for (int q = 1; q <= Q; q++) {\n        int t; scanf(\"%d\", &t);\n    \
+    \    if (t == 0) {\n            int x; scanf(\"%d\", &x);\n            D.push(x);\n\
+    \        } else if (t == 1) {\n            cout << D.pop_min() << \"\\n\";\n \
+    \       } else if (t == 2) { \n            cout << D.pop_max() << \"\\n\";\n \
+    \       }\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -202,7 +204,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   requiredBy: []
-  timestamp: '2025-10-11 18:50:40+09:00'
+  timestamp: '2025-10-12 00:40:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
