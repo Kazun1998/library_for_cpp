@@ -22,17 +22,15 @@ struct Longest_Increasing_Subsequence {
             I[i] = k;
         }
 
-        lis.clear(); index.clear();
-        for (int i = N - 1, j = X.size() - 1; i >= 0; i--) {
+        length = X.size();
+        lis.resize(length); index.resize(length);
+
+        for (int i = N - 1, j = length - 1; i >= 0; i--) {
             unless(I[i] == j) { continue; }
 
+            lis[j] = data[i];
+            index[j] = i;
             j--;
-            lis.emplace_back(data[i]);
-            index.emplace_back(i);
-            length++;
         }
-
-        reverse(lis.begin(), lis.end());
-        reverse(index.begin(), index.end());
     }
 };
