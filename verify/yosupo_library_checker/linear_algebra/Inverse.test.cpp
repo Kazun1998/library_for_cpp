@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
 #include"../../../template/template.hpp"
-#include"../../../modint.hpp"
+#include"../../../Algebra/modint.hpp"
 #include"../../../Linear_Algebra/Field_Matrix.hpp"
 
 int main(){

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include"../../../template/template.hpp"
-#include"../../../modint.hpp"
+#include"../../../Algebra/modint.hpp"
 #include"../../../Segment_Tree/Lazy_Segment_Tree.hpp"
 
 using L = modint<998244353>;

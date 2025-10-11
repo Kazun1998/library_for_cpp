@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_rank"
 
 #include"../../../template/template.hpp"
-#include"../../../modint.hpp"
+#include"../../../Algebra/modint.hpp"
 #include"../../../Linear_Algebra/Rank.hpp"
 
 int main() {
