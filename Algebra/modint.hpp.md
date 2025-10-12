@@ -70,6 +70,9 @@ data:
     title: Taylor Shift
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+    title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -356,6 +359,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
