@@ -2,13 +2,14 @@
 #define ERROR 0.000001
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Incircle.hpp"
+#include"../../../Geometry/triangle_center/Incircle.hpp"
 
 using namespace geometry;
 
 int main() {
     cout << fixed << setprecision(10);
-    Point<Real> A, B, C; cin >> A >> B >> C;
-    auto X = Incircle(Triangle<Real>(A, B, C));
+    Triangle<Real> T; cin >> T.A >> T.B >> T.C;
+
+    auto X = Incircle(T);
     cout << X.center << " " << X.radius << endl;
 }

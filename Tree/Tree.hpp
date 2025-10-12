@@ -6,7 +6,7 @@ class Tree {
     private:
     int N, offset, root;
     vector<int> parent;
-    vector<set<int>> children;
+    vector<vector<int>> children;
 
     int N_bit;
     bool locked;
@@ -41,9 +41,9 @@ class Tree {
         assert(!is_locked());
 
         parent[root] = -1;
-        children.assign(N + offset, set<int>());
+        children.assign(N + offset, vector<int>());
         for (int v = offset; v < N + offset; v++) {
-            unless(is_root(v)) { children[parent[v]].insert(v); }
+            unless(is_root(v)) { children[parent[v]].emplace_back(v); }
         }
 
         locked = true;
@@ -94,6 +94,7 @@ class Tree {
         return d;
     }
 
+    // 頂点 x の深さを求める.
     inline int vertex_depth(const int &x) { return depth[x]; }
 
     // 2 頂点に関する条件
@@ -141,6 +142,8 @@ class Tree {
     }
 
     public:
+    // 頂点 x から見て k 代前の頂点を求める.
+    // vertex_depth(x) < k のとき返り値は over = true ならば root, false ならば, -1 である.
     int upper(int x, int k, bool over = true) {
         assert(is_locked());
 
@@ -155,6 +158,7 @@ class Tree {
     }
 
     public:
+    // 頂点 x と頂点 y の最小共通先祖を求める.
     int lowest_common_ancestor(int x, int y) {
         assert(is_locked());
 
@@ -170,4 +174,106 @@ class Tree {
 
         return is_root(x) ? root : parent[x];
     }
+
+    // 2 頂点 x, y 間の距離を求める.
+    int distance(int x, int y) {
+        return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
+    }
+
+    private:
+    bool has_euler_tour_vertex = false, has_euler_tour_edge = false;
+
+    public:
+    vector<int> in_time, out_time;
+    vector<int> euler_tour_vertex;
+    vector<tuple<int, int, int>> euler_tour_edge;
+
+    // Euler Tour に関する計算を行う.
+    void calculate_euler_tour_vertex() {
+        if(has_euler_tour_vertex) { return; }
+
+        euler_tour_vertex.clear();
+        in_time.assign(N + offset, -1);
+        out_time.assign(N + offset, -1);
+
+        auto dfs = [&](auto self, int x) -> void {
+            in_time[x] = (int)euler_tour_vertex.size();
+            euler_tour_vertex.emplace_back(x);
+
+            for (int y: children[x]) {
+                self(self, y);
+            }
+
+            out_time[x] = (int)euler_tour_vertex.size() - 1;
+            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]); }
+        };
+
+        dfs(dfs, root);
+
+        has_euler_tour_vertex = true;
+    }
+
+    void calculate_euler_tour_edge() {
+        if(has_euler_tour_edge) { return; }
+
+        calculate_euler_tour_vertex();
+        euler_tour_edge.clear();
+
+        for (int t = 0; t < 2 * (N - 1); t++) {
+            int x = euler_tour_vertex[t], y = euler_tour_vertex[t + 1];
+            int k = (x == parent[y]) ? 1 : -1;
+            euler_tour_edge.emplace_back(make_tuple(x, y, k));
+        }
+
+        has_euler_tour_edge = true;
+    }
+
+    // 頂点 u から頂点 v へ向かうパスにおいて k 番目 (0-indexed) に通る頂点 (パスの長さが k より大きい場合は over)
+    int jump(int u, int v, int k, int over = -1) {
+        if (k == 0) { return u; }
+
+        int w = lowest_common_ancestor(u, v);
+        int dist_uw = vertex_depth(u) - vertex_depth(w);
+        int dist_wv = vertex_depth(v) - vertex_depth(w);
+        int dist_uv = dist_uw + dist_wv;
+
+        if (dist_uv < k) { 
+            return over;
+        } else if (k <= dist_uw) {
+            return upper(u, k);
+        } else {
+            return upper(v, dist_uv - k);
+        }
+    }
 };
+
+Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
+    vector<vector<int>> adj(N + offset, vector<int>());
+    for (auto &[u, v]: edges) {
+        adj[u].emplace_back(v);
+        adj[v].emplace_back(u);
+    }
+
+    Tree T(N, offset);
+    T.set_root(root);
+
+    vector<bool> seen(N + 1, false);
+    seen[root] = true;
+    vector<int> stack({root});
+
+    until(stack.empty()) {
+        int v = stack.back();
+        stack.pop_back();
+
+        for (int w: adj[v]) {
+            if (seen[w]) { continue; }
+
+            seen[w] = true;
+            T.set_parent(w, v);
+            stack.emplace_back(w);
+        }
+    }
+
+    T.seal();
+    return T;
+}

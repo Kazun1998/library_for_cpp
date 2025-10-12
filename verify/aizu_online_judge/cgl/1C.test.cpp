@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C"
 
 #include"../../../template/template.hpp"
-#include"../../../Geometry/Counter_Clockwise.hpp"
+#include"../../../Geometry/utility/Counter_Clockwise.hpp"
 
 using namespace geometry;
 
