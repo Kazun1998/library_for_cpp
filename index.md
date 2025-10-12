@@ -25,6 +25,9 @@ data:
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
+      path: Data_Structure/Disjoint_Sparse_Table.hpp
+      title: Disjoint Sparse Table
+    - icon: ':heavy_check_mark:'
       path: Data_Structure/Dual_Heap.hpp
       title: Dual Heap
   - name: Geometry
@@ -392,6 +395,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp

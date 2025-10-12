@@ -15,6 +15,9 @@ data:
     path: Binary_Search/Value.hpp
     title: Binary_Search/Value.hpp
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/Disjoint_Sparse_Table.hpp
+    title: Disjoint Sparse Table
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
   - icon: ':heavy_check_mark:'
@@ -280,6 +283,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -440,6 +446,7 @@ data:
   - Linear_Algebra/Reduction.hpp
   - template/template.hpp
   - Data_Structure/Dual_Heap.hpp
+  - Data_Structure/Disjoint_Sparse_Table.hpp
   - Algebra/Gaussian_Integer.hpp
   - Algebra/modint.hpp
   - Tree/Tree.hpp
@@ -504,6 +511,7 @@ data:
   timestamp: '2025-09-07 16:29:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
