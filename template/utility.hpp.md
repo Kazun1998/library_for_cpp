@@ -24,6 +24,9 @@ data:
     path: Convolution/Convolution_Base.hpp
     title: Convolution/Convolution_Base.hpp
   - icon: ':heavy_check_mark:'
+    path: Convolution/Gcd_Convolution.hpp
+    title: Convolution/Gcd_Convolution.hpp
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
   - icon: ':heavy_check_mark:'
@@ -286,6 +289,9 @@ data:
     path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+    title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - icon: ':heavy_check_mark:'
@@ -439,6 +445,7 @@ data:
   - Linear_Algebra/Reduction.hpp
   - template/template.hpp
   - Data_Structure/Dual_Heap.hpp
+  - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
   - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
@@ -517,6 +524,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp

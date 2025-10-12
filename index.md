@@ -33,6 +33,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/Convolution_Base.hpp
       title: Convolution/Convolution_Base.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/Gcd_Convolution.hpp
+      title: Convolution/Gcd_Convolution.hpp
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -397,6 +400,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
       title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+      title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - name: verify/yosupo_library_checker/data_structure
     pages:
     - icon: ':heavy_check_mark:'

@@ -26,10 +26,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/Bitwise_And_Convolution.hpp
     title: Convolution/Bitwise_And_Convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: Convolution/Gcd_Convolution.hpp
+    title: Convolution/Gcd_Convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+    title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -216,10 +222,12 @@ data:
   isVerificationFile: false
   path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
   requiredBy:
+  - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   timestamp: '2025-10-13 01:02:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
 documentation_of: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
 layout: document

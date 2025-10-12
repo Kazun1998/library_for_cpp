@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+    title: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - icon: ':heavy_check_mark:'
+    path: Convolution/Convolution_Base.hpp
+    title: Convolution/Convolution_Base.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -19,20 +25,8 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Convolution/Bitwise_And_Convolution.hpp
-    title: Convolution/Bitwise_And_Convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-    title: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-  - icon: ':heavy_check_mark:'
-    path: Convolution/Gcd_Convolution.hpp
-    title: Convolution/Gcd_Convolution.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
-    title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
@@ -41,7 +35,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Convolution/Convolution_Base.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\
+    \n\n#line 2 \"Convolution/Convolution_Base.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -178,30 +173,85 @@ data:
     \ const { return data.size(); }\n\n        inline R& operator[](size_t k) { return\
     \ data[k]; }\n        inline const R& operator[](size_t k) const { return data[k];\
     \ }\n\n        const std::vector<R>& to_vector() const { return data; }\n    };\n\
-    }\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace convolution\
-    \ {\n    template<typename R>\n    class Convolution_Base {\n        protected:\n\
-    \        std::vector<R> data;\n\n        public:\n        Convolution_Base() =\
-    \ default;\n        Convolution_Base(std::vector<R> data_in): data(std::move(data_in))\
-    \ {}\n        \n        Convolution_Base(size_t n): data(std::vector<R>(n)) {}\
-    \ \n        \n        // \u52A0\u6CD5 (+=)\n        Convolution_Base& operator+=(const\
-    \ Convolution_Base<R> &B) {\n            if(data.size() != B.data.size()) { throw\
-    \ std::length_error(\"Convolution operands must have the same size.\"); }\n\n\
-    \            for (size_t i = 0; i < data.size(); i++) { data[i] += B.data[i];\
-    \ }\n            return *this;\n        }\n\n        // \u6E1B\u6CD5 (-=)\n  \
-    \      Convolution_Base& operator-=(const Convolution_Base<R> &B) {\n        \
-    \    if(data.size() != B.data.size()) { throw std::length_error(\"Convolution\
-    \ operands must have the same size.\"); }\n            for (size_t i = 0; i <\
-    \ data.size(); i++) { data[i] -= B.data[i]; }\n            return *this;\n   \
-    \     }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D (*=)\n        Convolution_Base&\
-    \ operator*=(const R &a) {\n            for (size_t i = 0; i < data.size(); i++)\
-    \ { data[i] *= a; }\n            return *this;\n        }\n\n        virtual Convolution_Base<R>&\
-    \ operator*=(const Convolution_Base<R> &B) = 0;\n\n        inline size_t size()\
-    \ const { return data.size(); }\n\n        inline R& operator[](size_t k) { return\
-    \ data[k]; }\n        inline const R& operator[](size_t k) const { return data[k];\
-    \ }\n\n        const std::vector<R>& to_vector() const { return data; }\n    };\n\
-    }\n"
+    }\n#line 4 \"Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\n\
+    \nnamespace convolution {\n    template<typename R>\n    class Commutative_Idempotent_Monoid_Convolution_Base:\
+    \ public Convolution_Base<R> {\n        // \u578B\u30A8\u30A4\u30EA\u30A2\u30B9\
+    \n        using Base = Convolution_Base<R>;\n        using Self = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
+    \n        using Base::Base;\n\n        public:\n        virtual void zeta_transform(std::vector<R>\
+    \ &f) const = 0;\n        virtual void mobius_transform(std::vector<R> &g) const\
+    \ = 0;\n\n        Self& operator*=(const Base &B) override {\n            if (this->data.size()\
+    \ != B.to_vector().size()) {\n                throw std::length_error(\"Convolution\
+    \ operands must have the same size.\");\n            }\n\n            std::vector<R>\
+    \ f_copy(this->data); \n            std::vector<R> g_copy(B.to_vector()); \n\n\
+    \            this->zeta_transform(f_copy);\n            this->zeta_transform(g_copy);\
+    \ \n\n            for (size_t i = 0; i < f_copy.size(); i++) { \n            \
+    \    f_copy[i] *= g_copy[i]; \n            }\n\n            this->mobius_transform(f_copy);\n\
+    \            this->data = std::move(f_copy);\n            return *this;\n    \
+    \    }\n\n        void zeta() { zeta_transform(this->data); }\n        void mobius()\
+    \ { mobius_transform(this->data); }\n    };\n}\n#line 2 \"Convolution/Gcd_Convolution.hpp\"\
+    \n\nnamespace convolution {\n    template<typename R>\n    class Gcd_Convolution:\
+    \ public Commutative_Idempotent_Monoid_Convolution_Base<R> {\n        using Base\
+    \ = Convolution_Base<R>;\n        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
+    \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
+    \ Gcd_Convolution operator+(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(lhs);\n            temp += rhs;\n\
+    \            return temp;\n        }\n\n        // \u6E1B\u6CD5 (-)\n        friend\
+    \ Gcd_Convolution operator-(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(lhs);\n            temp -= rhs;\n\
+    \            return temp;\n        }\n\n        // \u4E57\u6CD5 (*)\n        friend\
+    \ Gcd_Convolution operator*(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) { \n            Gcd_Convolution temp(lhs);\n            temp *= rhs;\n\
+    \            return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (a * rhs)\n        friend Gcd_Convolution operator*(const R &a, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(rhs);\n            temp *= a;\n  \
+    \          return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (lhs * a)\n        friend Gcd_Convolution operator*(const Gcd_Convolution &lhs,\
+    \ const R &a) {\n            Gcd_Convolution temp(lhs);\n            temp *= a;\n\
+    \            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
+    \ &f) const override {\n            size_t n = f.size() - 1;\n            vector<bool>\
+    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n + 1; p++) {\n \
+    \               if (!is_prime[p]) { continue; }\n\n                for (size_t\
+    \ k = n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n   \
+    \                 f[k] += f[k * p];\n                }\n            }\n      \
+    \  }\n\n        void mobius_transform(std::vector<R> &g) const override {\n  \
+    \          size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1,\
+    \ true);\n\n            for (int p = 2; p <= n + 1; p++) {\n                if\
+    \ (!is_prime[p]) { continue; }\n\n                for (size_t k = 1; k <= n /\
+    \ p; k++) {\n                    is_prime[k * p] = false;\n                  \
+    \  g[k] -= g[k * p];\n                }\n            }\n        }\n    };\n}\n"
+  code: "#include\"Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\n\nnamespace\
+    \ convolution {\n    template<typename R>\n    class Gcd_Convolution: public Commutative_Idempotent_Monoid_Convolution_Base<R>\
+    \ {\n        using Base = Convolution_Base<R>;\n        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
+    \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
+    \ Gcd_Convolution operator+(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(lhs);\n            temp += rhs;\n\
+    \            return temp;\n        }\n\n        // \u6E1B\u6CD5 (-)\n        friend\
+    \ Gcd_Convolution operator-(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(lhs);\n            temp -= rhs;\n\
+    \            return temp;\n        }\n\n        // \u4E57\u6CD5 (*)\n        friend\
+    \ Gcd_Convolution operator*(const Gcd_Convolution &lhs, const Gcd_Convolution\
+    \ &rhs) { \n            Gcd_Convolution temp(lhs);\n            temp *= rhs;\n\
+    \            return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (a * rhs)\n        friend Gcd_Convolution operator*(const R &a, const Gcd_Convolution\
+    \ &rhs) {\n            Gcd_Convolution temp(rhs);\n            temp *= a;\n  \
+    \          return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (lhs * a)\n        friend Gcd_Convolution operator*(const Gcd_Convolution &lhs,\
+    \ const R &a) {\n            Gcd_Convolution temp(lhs);\n            temp *= a;\n\
+    \            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
+    \ &f) const override {\n            size_t n = f.size() - 1;\n            vector<bool>\
+    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n + 1; p++) {\n \
+    \               if (!is_prime[p]) { continue; }\n\n                for (size_t\
+    \ k = n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n   \
+    \                 f[k] += f[k * p];\n                }\n            }\n      \
+    \  }\n\n        void mobius_transform(std::vector<R> &g) const override {\n  \
+    \          size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1,\
+    \ true);\n\n            for (int p = 2; p <= n + 1; p++) {\n                if\
+    \ (!is_prime[p]) { continue; }\n\n                for (size_t k = 1; k <= n /\
+    \ p; k++) {\n                    is_prime[k * p] = false;\n                  \
+    \  g[k] -= g[k * p];\n                }\n            }\n        }\n    };\n}\n"
   dependsOn:
+  - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Convolution/Convolution_Base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -209,20 +259,16 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   isVerificationFile: false
-  path: Convolution/Convolution_Base.hpp
-  requiredBy:
-  - Convolution/Gcd_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
-  - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-  timestamp: '2025-10-13 01:02:27+09:00'
+  path: Convolution/Gcd_Convolution.hpp
+  requiredBy: []
+  timestamp: '2025-10-13 01:59:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
-  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
-documentation_of: Convolution/Convolution_Base.hpp
+documentation_of: Convolution/Gcd_Convolution.hpp
 layout: document
 redirect_from:
-- /library/Convolution/Convolution_Base.hpp
-- /library/Convolution/Convolution_Base.hpp.html
-title: Convolution/Convolution_Base.hpp
+- /library/Convolution/Gcd_Convolution.hpp
+- /library/Convolution/Gcd_Convolution.hpp.html
+title: Convolution/Gcd_Convolution.hpp
 ---
