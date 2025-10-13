@@ -3,8 +3,8 @@
 #include"../template/template.hpp"
 
 template<typename S>
-vector<pair<S, size_t>> Run_Length_Encoding(const vector<S> &x) {
-    vector<pair<S, size_t>> res;
+std::vector<pair<S, size_t>> Run_Length_Encoding(const std::vector<S> &x) {
+    std::vector<pair<S, size_t>> res;
 
     if (x.empty()) { return res; }
 
