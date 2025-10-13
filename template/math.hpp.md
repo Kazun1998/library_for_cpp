@@ -221,6 +221,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Sequence/Longest_Increasing_Subsequence.hpp
     title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
+  - icon: ':warning:'
+    path: Sequence/Run_Length_Encoding.hpp
+    title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
@@ -526,6 +529,7 @@ data:
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
+  - Sequence/Run_Length_Encoding.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Montmort_Number.hpp

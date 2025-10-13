@@ -301,6 +301,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Sequence/Longest_Increasing_Subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
+    - icon: ':warning:'
+      path: Sequence/Run_Length_Encoding.hpp
+      title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
