@@ -282,8 +282,21 @@ data:
   - verify/aizu_online_judge/cgl/1B.test.cpp
 documentation_of: Geometry/reflection/Reflection_Point_Line.hpp
 layout: document
-redirect_from:
-- /library/Geometry/reflection/Reflection_Point_Line.hpp
-- /library/Geometry/reflection/Reflection_Point_Line.hpp.html
-title: Geometry/reflection/Reflection_Point_Line.hpp
+title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
 ---
+
+## Outline
+
+点 $\textrm{P}$ の直線 $\ell$ に関して対称な点を求める.
+
+## Theory
+
+点 $\textrm{P}$ の直線 $\ell$ に関して対称な点とは, [点 $\mathrm{P}$ の直線 $\ell$ への斜影](../projection/Projection_Point_Line.hpp)に関する[直線 $\textrm{P}$ と対称な点](../reflection/Reflection_Point_Line.hpp)である.
+
+## Contents
+
+```cpp
+Point<R> Reflection(const Point<R> &P, const Line<R> &l)
+```
+
+* 点 $\textrm{P}$ の直線 $\ell$ に関して対称な点を求める.

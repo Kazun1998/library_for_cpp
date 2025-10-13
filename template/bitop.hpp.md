@@ -73,7 +73,7 @@ data:
     title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Line.hpp
-    title: Geometry/reflection/Reflection_Point_Line.hpp
+    title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Point.hpp
     title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
@@ -91,7 +91,7 @@ data:
     title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - icon: ':warning:'
     path: Geometry/triangle_center/Centroid.hpp
-    title: Geometry/triangle_center/Centroid.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
     title: Geometry/triangle_center/Circumcenter.hpp

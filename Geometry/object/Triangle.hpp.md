@@ -28,7 +28,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Geometry/triangle_center/Centroid.hpp
-    title: Geometry/triangle_center/Centroid.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
     title: Geometry/triangle_center/Circumcenter.hpp

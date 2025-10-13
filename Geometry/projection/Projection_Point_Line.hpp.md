@@ -37,7 +37,7 @@ data:
     title: Geometry/intersection/Intersection_Circle_and_Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Line.hpp
-    title: Geometry/reflection/Reflection_Point_Line.hpp
+    title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/1A.test.cpp
