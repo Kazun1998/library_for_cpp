@@ -291,7 +291,7 @@ title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5
 
 ## Theory
 
-点 $\textrm{P}$ の直線 $\ell$ に関して対称な点とは, [点 $\mathrm{P}$ の直線 $\ell$ への斜影](../projection/Projection_Point_Line.hpp)に関する[直線 $\textrm{P}$ と対称な点](../reflection/Reflection_Point_Line.hpp)である.
+点 $\textrm{P}$ の直線 $\ell$ に関して対称な点とは, [点 $\mathrm{P}$ の直線 $\ell$ への斜影](../projection/Projection_Point_Line.hpp)に関する[直線 $\textrm{P}$ と対称な点](../reflection/Reflection_Point_Point.hpp)である.
 
 ## Contents
 

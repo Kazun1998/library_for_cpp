@@ -258,8 +258,8 @@ data:
   isVerificationFile: false
   path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
   requiredBy:
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
