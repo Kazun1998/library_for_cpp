@@ -26,6 +26,12 @@ class Tree {
         root = x;
     }
 
+    inline int vector_size() const { return N + offset; }
+
+    inline int get_root() const { return root; }
+    inline int get_parent(const int &x) const { return parent[x]; }
+    inline vector<int> get_children(const int &x) const { return children[x]; }
+
     public:
     // 頂点 x の親を頂点 y に設定する.
     inline void set_parent(const int &x, const int &y) {
@@ -72,6 +78,27 @@ class Tree {
                 Q.push_back(y);
             }
         }
+    }
+
+    public:
+    vector<int> top_down() const {
+        vector<int> res;
+        for (auto layer: tower) {
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
+    }
+
+    public:
+    vector<int> bottom_up() const {
+        vector<int> res;
+        for (auto it = tower.rbegin(); it != tower.rend(); ++it) {
+            const auto &layer = *it;
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
     }
 
     // 1 頂点に関する情報
@@ -175,6 +202,23 @@ class Tree {
         return is_root(x) ? root : parent[x];
     }
 
+    int lowest_common_ancestor_greedy(int x, int y) {
+        assert(is_locked());
+
+        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
+
+        while (vertex_depth(x) < vertex_depth(y)) {
+            y = parent[y];
+        }
+
+        while (x != y) {
+            x = get_parent(x);
+            y = get_parent(y);
+        }
+
+        return x;
+    }
+
     // 2 頂点 x, y 間の距離を求める.
     int distance(int x, int y) {
         return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
@@ -244,6 +288,29 @@ class Tree {
         } else {
             return upper(v, dist_uv - k);
         }
+    }
+
+    vector<int> path(int u, int v) {
+        int w = lowest_common_ancestor_greedy(u, v);
+
+        vector<int> path_first{u}, path_second{v};
+
+        while (u != w) {
+            u = get_parent(u);
+            path_first.emplace_back(u);
+        }
+
+        while (v != w) {
+            v = get_parent(v);
+            path_second.emplace_back(v);
+        }
+
+        path_second.pop_back();
+        reverse(path_second.begin(), path_second.end());
+
+        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));
+
+        return path_first;
     }
 };
 
