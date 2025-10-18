@@ -16,3 +16,20 @@ vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) 
 
     return data;
 }
+
+template<typename X, typename M>
+vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {
+    using V = int;
+
+    vector<X> data(T.vector_size(), unit);
+
+    for (V v: T.bottom_up()) {
+        M tmp = unit;
+        for (V w: T.get_children(v)) {
+            tmp = merge(tmp, f(data[w], v, w));
+        }
+        data[v] = g(tmp, v);
+    }
+
+    return data;
+}
