@@ -243,8 +243,14 @@ data:
     path: Sequence/Run_Length_Encoding.hpp
     title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - icon: ':heavy_check_mark:'
+    path: Tree/Generator.hpp
+    title: Tree/Generator.hpp
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: Tree/Tree_DP.hpp
+    title: "\u6728 DP"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/1A.test.cpp
@@ -424,8 +430,14 @@ data:
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/763.test.cpp
+    title: verify/yukicoder/763.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -767,6 +779,8 @@ data:
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
   - Convolution/Gcd_Convolution.hpp
+  - Tree/Generator.hpp
+  - Tree/Tree_DP.hpp
   - Tree/Tree.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -798,6 +812,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
@@ -831,6 +846,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yukicoder/2558.test.cpp
+  - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: template/template.hpp
 layout: document

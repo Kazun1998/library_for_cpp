@@ -23,18 +23,20 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/763.test.cpp
+    title: verify/yukicoder/763.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
-    links:
-    - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2\
-    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    links: []
+  bundledCode: "#line 2 \"Tree/Tree_DP.hpp\"\n\n#line 2 \"Tree/Tree.hpp\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -149,32 +151,32 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\n\
-    class Tree {\n    private:\n    int N, offset, root;\n    vector<int> parent;\n\
-    \    vector<vector<int>> children;\n\n    int N_bit;\n    bool locked;\n\n   \
-    \ public:\n    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {\n\
-    \        parent.assign(N + offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++)\
-    \ {}\n        locked = false;\n    }\n\n    bool is_locked() const { return locked;\
-    \ }\n\n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
-    \        root = x;\n    }\n\n    inline int vector_size() const { return N + offset;\
-    \ }\n\n    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset, vector<int>());\n\
-    \        for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
-    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
-    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
-    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \ bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n\
+    \    int N, offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
+    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset\
+    \ = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n\
+    \        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\
+    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
+    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
+    \    }\n\n    inline int vector_size() const { return N + offset; }\n\n    inline\
+    \ int get_root() const { return root; }\n    inline int get_parent(const int &x)\
+    \ const { return parent[x]; }\n    inline vector<int> get_children(const int &x)\
+    \ const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\
+    \u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
+    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
+    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
+    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
+    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
+    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
+    \ = -1;\n        children.assign(N + offset, vector<int>());\n        for (int\
+    \ v = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
+    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
+    \ + offset, -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root };\n\
+    \        depth[root] = 0;\n\n        while (!Q.empty()){\n            int x =\
+    \ Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n      \
+    \          depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
     \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
     \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
     \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
@@ -272,39 +274,182 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 5 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\n\
-    \nint main() {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N\
-    \ - 1);\n    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"\
-    %d%d\", &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../Tree/Tree.hpp\"\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N - 1);\n\
-    \    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"%d%d\"\
-    , &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
+    \ T;\n}\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
+    \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
+    \n    data[T.get_root()] = alpha;\n\n    for (int x: T.top_down()) {\n       \
+    \ for (int y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n\
+    \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
+    vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
+    \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
+    \  vector<X> data(T.vector_size(), unit);\n\n    for (V v: T.bottom_up()) {\n\
+    \        M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp\
+    \ = merge(tmp, f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n \
+    \   }\n\n    return data;\n}\n"
+  code: "#pragma once\n\n#include \"Tree.hpp\"\n\ntemplate<typename X>\nvector<X>\
+    \ Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) {\n  \
+    \  vector<X> data(T.vector_size());\n\n    data[T.get_root()] = alpha;\n\n   \
+    \ for (int x: T.top_down()) {\n        for (int y: T.get_children(x)) {\n    \
+    \        data[y] = f(data[x], x, y);\n        }\n    }\n\n    return data;\n}\n\
+    \ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree &T, function<M(X,\
+    \ int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)\
+    \ {\n    using V = int;\n\n    vector<X> data(T.vector_size(), unit);\n\n    for\
+    \ (V v: T.bottom_up()) {\n        M tmp = unit;\n        for (V w: T.get_children(v))\
+    \ {\n            tmp = merge(tmp, f(data[w], v, w));\n        }\n        data[v]\
+    \ = g(tmp, v);\n    }\n\n    return data;\n}\n"
   dependsOn:
+  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Tree/Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  isVerificationFile: false
+  path: Tree/Tree_DP.hpp
   requiredBy: []
-  timestamp: '2025-10-18 19:18:33+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  timestamp: '2025-10-18 19:18:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yukicoder/763.test.cpp
+documentation_of: Tree/Tree_DP.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp.html
-title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+title: "\u6728 DP"
 ---
+
+## Outline
+
+木上の DP を計算するメソッドを提供する.
+
+## Theory
+
+このページでは, $T = (V, E)$ を木とする. また, 以下の記号を定義する.
+
+* $T$ の根を $r$ とする.
+* $v \in V \setminus \{r\}$ に対して, $\mathrm{par}(v) \in V$ を $V$ の親とする.
+* $v \in V$ に対して $\mathrm{ch}(v) \subset V$ を $v$ の子全体の集合とする.
+
+### Tree_DP_from_Root
+
+`Tree_DP_from_Root` では, $\mathrm{dp}(v)$ が以下の要件をみたす場合の各 $\mathrm{dp}(v)$ を求める.
+
+$X$ を集合, $\alpha \in X, f: X \times V \times V \to X$ とする. このとき,
+
+$$ \mathrm{dp}(v) = \begin{cases}
+        \alpha & (v = r) \\
+        f(\mathrm{dp}(\mathrm{par}(v)), \mathrm{par}(v), v) & (\text{otherwise})
+    \end{cases}$$
+
+が成り立つときに適用できる.
+
+つまり, $\mathrm{dp}(v)$ は根から $v$ へのパスを $u_0, u_1, \dots, u_k$ としたとき,
+
+$$ \alpha , f(u_0, u_1), f(u_1, u_2), \dots, f(u_{k-1}, u_k) $$
+
+から定まる値を求めることができる.
+
+ここで, $f$ について,
+
+* $f(v, w)$ について, $w$ のみに着目すれば, 頂点に着目していることになる.
+* $f(v, w)$ について, $f(v, w) = f(w, v)$ が成立すれば, 辺に着目していることになる.
+
+### Tree_DP_from_Leaf
+
+`Tree_DP_from_Leaf` では, $\mathrm{dp}(v)$ が以下の要件をみたす場合の各 $\mathrm{dp}(v)$ を求める.
+
+$X$ を集合, $(M, \odot)$ を $e \in M$ を単位元とする可換モノイド, $f: X \times V \times V \to X, g: M \times V \to X$ とする. このとき,
+
+$$ \mathrm{dp}(v) = g \left(\bigodot_{w \in \mathrm{ch}(v)} f(\mathrm{dp}(w), v, w), v \right)$$
+
+が成り立つときに適用できる.
+
+これは, $\mathrm{dp}(v)$ は $v$ を含む部分木から定まる値を求めることができる.
+
+## Examples
+
+### Tree_DP_from_Root
+
+[[Library Checker] Tree Diameter](https://judge.yosupo.jp/problem/tree_diameter)
+
+適当な頂点 $r$ からの距離 $\mathrm{dist}(v)$ を求める必要がある. これは
+
+$$\mathrm{dp}(v) = \begin{cases}
+        0 & (v = r) \\
+        \mathrm{dist}(\mathrm{par}(v)) + \mathrm{weight}(\mathrm{par}(v), v) & (\text{otherwise})
+    \end{cases}$$
+
+によって書ける. ただし, $uv \in E$ に対して, $\mathrm{weight}(u, v)$ で辺 $uv$ を表すとする.
+
+このとき,
+
+$$ X = \mathbb{N}, \quad f(w, u, v) = w + \mathrm{weight}(u, v), \quad \alpha = 0 $$
+
+とすればよい.
+
+### Tree_DP_from_Leaf
+
+[[yukicoder] No.763 Noelちゃんと木遊び](https://yukicoder.me/problems/no/763)
+
+$T$ を $r \in V$ を根とする根付き木と見なす.
+
+各 $v \in V$ に対して, $x_v, y_v \in \mathbb{N}$ をそれぞれ以下で定める.
+
+* $x_v$: 頂点 $v$ を根とする部分木において, 頂点 $v$ を削除する場合での連結成分の数の最大値.
+* $y_v$: 頂点 $v$ を根とする部分木において, 頂点 $v$ を削除しない場合での連結成分の数の最大値.
+
+このとき, $v \in V$ に対して,
+
+$$ x_v = \sum_{w \in \mathrm{ch}(v)} \max(x_w, y_w), \quad y_v = \sum_{w \in \mathrm{ch}(v)} \max(x_w, y_w - 1) + 1 $$
+
+をみたす.
+
+$\boldsymbol{z}_v := \begin{pmatrix} x_v \\ y_v \end{pmatrix} \in \mathbb{N}^2$ と定めると,
+
+$$ \mathbb{z}_v = \sum_{w \in \mathrm{ch}(v)} \begin{pmatrix} \max(x_w, y_w) \\ \max(x_w, y_w - 1) \end{pmatrix} + 1$$
+
+である.
+
+そのため,
+
+$$
+  X = \mathbb{N}^2, \quad
+  (M, \odot) = (\mathbb{N}^2, +), \quad
+  f \left(\begin{pmatrix} x \\ y \end{pmatrix}, u, v \right)
+    = \begin{pmatrix} \max(x, y) \\ \max(x, y - 1) \end{pmatrix}, \quad
+  g \left(\begin{pmatrix} x \\ y \end{pmatrix} \right)
+    = \begin{pmatrix} x \\ y + 1 \end{pmatrix}, \quad
+  e = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+$$
+
+とすればよい.
+
+なお, 最終解答は $\max(x_r, y_r)$ である. このように, $\mathrm{dp}(r)$ そのままが最終解答になるとは限らないので注意すること.
+
+## Contents
+
+### Tree_DP_from_Root
+```cpp
+vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha)
+```
+
+* 根からの DP を行い, 各頂点における結果が入っているベクトルを求める. 適用条件等の詳細は Theory 節を参照.
+* **引数**
+  * $f: X \times V \times V \to X$.
+  * $\alpha \in X$.
+* **返り値**: 第 $v$ 要素が $\mathrm{dp}(v)$ であるベクトル.
+* **計算量**: $O(N)$ 時間.
+
+### Tree_DP_from_Leaf
+
+```cpp
+vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)
+```
+
+* 根からの DP を行い, 各頂点における結果が入っているベクトルを求める. 適用条件等の詳細は Theory 節を参照.
+* **引数**
+  * $f: X \times V \times V \to M$.
+  * $g: M \times V \to X$.
+  * `merge`: $M$ 上の演算 $\odot$.
+  * `unit`: $M$ の単位元.
+* **返り値**: 第 $v$ 要素が $\mathrm{dp}(v)$ であるベクトル.
+* **計算量**: $O(N)$ 時間.

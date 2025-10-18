@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Tree/Generator.hpp
+    title: Tree/Generator.hpp
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: Tree/Tree_DP.hpp
+    title: "\u6728 DP"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -29,11 +35,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
+    PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
     links:
-    - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2\
+    - https://judge.yosupo.jp/problem/tree_diameter
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#line 2\
     \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -272,21 +278,60 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 5 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\n\
-    \nint main() {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N\
-    \ - 1);\n    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"\
-    %d%d\", &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../Tree/Tree.hpp\"\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N - 1);\n\
-    \    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"%d%d\"\
-    , &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
+    \ T;\n}\n#line 2 \"Tree/Generator.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>>\
+    \ adjacent, int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
+    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
+    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
+    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
+    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
+    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
+    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
+    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
+    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n#line 2 \"Tree/Tree_DP.hpp\"\
+    \n\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
+    \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
+    \n    data[T.get_root()] = alpha;\n\n    for (int x: T.top_down()) {\n       \
+    \ for (int y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n\
+    \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
+    vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
+    \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
+    \  vector<X> data(T.vector_size(), unit);\n\n    for (V v: T.bottom_up()) {\n\
+    \        M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp\
+    \ = merge(tmp, f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n \
+    \   }\n\n    return data;\n}\n#line 6 \"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\
+    \n\nint main() {\n    int N; cin >> N;\n\n    vector<pair<int, int>> edges(N -\
+    \ 1);\n    map<pair<int, int>, ll> edge_weight;\n    for (int j = 0; j < N - 1;\
+    \ j++) {\n        int a, b; ll c; scanf(\"%d%d%lld\", &a, &b, &c);\n        edges[j]\
+    \ = {a, b};\n        edge_weight[{a, b}] = c;\n        edge_weight[{b, a}] = c;\n\
+    \    }\n\n    function<ll(ll, int, int)> f = [&edge_weight](const ll w, const\
+    \ int x, const int y) -> ll {\n        return w + edge_weight[{x, y}];\n    };\n\
+    \n    Tree T1 = Generate_Tree(N, edges, 0);\n    vector<ll> dist_1 = Tree_DP_from_Root(T1,\
+    \ f, 0LL);\n\n    int s = 0;\n    for (int v = 0; v < N; v++) {\n        if (dist_1[s]\
+    \ < dist_1[v]) { s = v; }\n    }\n\n    Tree T2 = Generate_Tree(N, edges, s);\n\
+    \    vector<ll> dist_2 = Tree_DP_from_Root(T2, f, 0LL);\n\n    int t = 0;\n  \
+    \  for (int v = 0; v < N; v++) {\n        if (dist_2[t] < dist_2[v]) { t = v;\
+    \ }\n    }\n\n    vector<int> path = T1.path(s, t);\n    ll X = dist_2[t];\n \
+    \   int Y = path.size();\n\n    cout << X << \" \" << Y << endl;\n    for (int\
+    \ i = 0; i < path.size(); i++) {\n        cout << (i ? \" \" : \"\") << path[i];\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Tree/Generator.hpp\"\n#include\"\
+    ../../../Tree/Tree_DP.hpp\"\n\nint main() {\n    int N; cin >> N;\n\n    vector<pair<int,\
+    \ int>> edges(N - 1);\n    map<pair<int, int>, ll> edge_weight;\n    for (int\
+    \ j = 0; j < N - 1; j++) {\n        int a, b; ll c; scanf(\"%d%d%lld\", &a, &b,\
+    \ &c);\n        edges[j] = {a, b};\n        edge_weight[{a, b}] = c;\n       \
+    \ edge_weight[{b, a}] = c;\n    }\n\n    function<ll(ll, int, int)> f = [&edge_weight](const\
+    \ ll w, const int x, const int y) -> ll {\n        return w + edge_weight[{x,\
+    \ y}];\n    };\n\n    Tree T1 = Generate_Tree(N, edges, 0);\n    vector<ll> dist_1\
+    \ = Tree_DP_from_Root(T1, f, 0LL);\n\n    int s = 0;\n    for (int v = 0; v <\
+    \ N; v++) {\n        if (dist_1[s] < dist_1[v]) { s = v; }\n    }\n\n    Tree\
+    \ T2 = Generate_Tree(N, edges, s);\n    vector<ll> dist_2 = Tree_DP_from_Root(T2,\
+    \ f, 0LL);\n\n    int t = 0;\n    for (int v = 0; v < N; v++) {\n        if (dist_2[t]\
+    \ < dist_2[v]) { t = v; }\n    }\n\n    vector<int> path = T1.path(s, t);\n  \
+    \  ll X = dist_2[t];\n    int Y = path.size();\n\n    cout << X << \" \" << Y\
+    \ << endl;\n    for (int i = 0; i < path.size(); i++) {\n        cout << (i ?\
+    \ \" \" : \"\") << path[i];\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -294,17 +339,19 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Tree/Generator.hpp
   - Tree/Tree.hpp
+  - Tree/Tree_DP.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
-  timestamp: '2025-10-18 19:18:33+09:00'
+  timestamp: '2025-10-18 19:18:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp.html
-title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp.html
+title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
 ---

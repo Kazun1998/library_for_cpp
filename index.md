@@ -310,8 +310,14 @@ data:
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: Tree/Generator.hpp
+      title: Tree/Generator.hpp
+    - icon: ':heavy_check_mark:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: Tree/Tree_DP.hpp
+      title: "\u6728 DP"
   - name: Union_Find
     pages:
     - icon: ':heavy_check_mark:'
@@ -561,11 +567,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
       title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+      title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - name: verify/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
       path: verify/yukicoder/2558.test.cpp
       title: verify/yukicoder/2558.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yukicoder/763.test.cpp
+      title: verify/yukicoder/763.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yukicoder/Modulo_Order.test.cpp
       title: verify/yukicoder/Modulo_Order.test.cpp

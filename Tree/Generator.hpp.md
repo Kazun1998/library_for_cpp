@@ -23,87 +23,89 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/763.test.cpp
+    title: verify/yukicoder/763.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
-    links:
-    - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2\
-    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
-    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
-    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
-    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
-    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
-    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
-    \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
-    \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
-    \u308B.\ntemplate<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0\
-    \ ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\
-    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x,\
-    \ U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
-    \ y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\n\
-    template<typename T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x,\
-    \ y);\n    return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\
-    \u3081\u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q,\
-    \ r;\n    tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1\
-    \ : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E\
-    \ y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n \
-    \   while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n        y >>=\
-    \ 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\
-    \u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n  \
-    \  ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x\
-    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
-    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n \
-    \       if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>=\
-    \ 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
-    \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
-    \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
-    \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
-    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a\
-    \ x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b)\
-    \ \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll,\
-    \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
-    \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
-    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
-    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
-    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
-    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
-    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
-    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
-    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
-    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
-    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
-    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62\
-    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
-    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
-    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
-    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
-    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
-    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
-    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
-    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    links: []
+  bundledCode: "#line 2 \"Tree/Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
+    using namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
+    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
+    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
+    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
+    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
+    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
+    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
+    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
+    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
+    , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
+    \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
+    \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
+    \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
+    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n#line 59\
+    \ \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n// \u9664\
+    \u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){ return (x >\
+    \ 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\n\
+    template<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0 ? (x + y\
+    \ - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
+    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x, U y){\n    T\
+    \ q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\
+    \u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x, y);\n \
+    \   return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q, r;\n \
+    \   tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n\
+    }\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\
+    \u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n\
+    \        if (y & 1) { a *= x; }\n        x *= x;\n        y >>= 1;\n    }\n  \
+    \  return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\
+    \u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n    ll a = 1;\n\
+    \    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x *= x) %= z;\n\
+    \        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
+    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
+    \ typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n    \
+    \    if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n\
+    \    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\
+    \u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x:\
+    \ X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y\
+    \ = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y\
+    \ = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\
+    \u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll\
+    \ a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll\
+    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));\n    \
+    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
+    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
+    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62 \"template/template.hpp\"\
+    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
+    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
+    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
+    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
+    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
+    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
+    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
+    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
     \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
     \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
     \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
@@ -149,32 +151,32 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\n\
-    class Tree {\n    private:\n    int N, offset, root;\n    vector<int> parent;\n\
-    \    vector<vector<int>> children;\n\n    int N_bit;\n    bool locked;\n\n   \
-    \ public:\n    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {\n\
-    \        parent.assign(N + offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++)\
-    \ {}\n        locked = false;\n    }\n\n    bool is_locked() const { return locked;\
-    \ }\n\n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
-    \        root = x;\n    }\n\n    inline int vector_size() const { return N + offset;\
-    \ }\n\n    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset, vector<int>());\n\
-    \        for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
-    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
-    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
-    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \ bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n\
+    \    int N, offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
+    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset\
+    \ = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n\
+    \        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\
+    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
+    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
+    \    }\n\n    inline int vector_size() const { return N + offset; }\n\n    inline\
+    \ int get_root() const { return root; }\n    inline int get_parent(const int &x)\
+    \ const { return parent[x]; }\n    inline vector<int> get_children(const int &x)\
+    \ const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\
+    \u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
+    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
+    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
+    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
+    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
+    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
+    \ = -1;\n        children.assign(N + offset, vector<int>());\n        for (int\
+    \ v = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
+    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
+    \ + offset, -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root };\n\
+    \        depth[root] = 0;\n\n        while (!Q.empty()){\n            int x =\
+    \ Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n      \
+    \          depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
     \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
     \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
     \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
@@ -272,39 +274,48 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 5 \"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp\"\n\
-    \nint main() {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N\
-    \ - 1);\n    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"\
-    %d%d\", &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../Tree/Tree.hpp\"\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n\n    vector<pair<int, int>> edges(N - 1);\n\
-    \    for (int j = 0; j <= N - 2; j++) {\n        int u, v;\n        scanf(\"%d%d\"\
-    , &u, &v);\n        edges[j] = make_pair(u, v);\n    }\n\n    Tree T = Construct_Tree(N,\
-    \ edges, 0);\n    for (int q = 0; q < Q; q++) {\n        int s, t, i;\n      \
-    \  scanf(\"%d%d%d\", &s, &t, &i);\n        cout << T.jump(s, t, i) << \"\\n\"\
-    ;\n    }\n}\n"
+    \ T;\n}\n#line 2 \"Tree/Generator.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>>\
+    \ adjacent, int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
+    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
+    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
+    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
+    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
+    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
+    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
+    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
+    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n"
+  code: "#include\"Tree.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>> adjacent,\
+    \ int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
+    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
+    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
+    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
+    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
+    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
+    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
+    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
+    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n"
   dependsOn:
+  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Tree/Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  isVerificationFile: false
+  path: Tree/Generator.hpp
   requiredBy: []
   timestamp: '2025-10-18 19:18:33+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yukicoder/763.test.cpp
+documentation_of: Tree/Generator.hpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp.html
-title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+- /library/Tree/Generator.hpp
+- /library/Tree/Generator.hpp.html
+title: Tree/Generator.hpp
 ---
