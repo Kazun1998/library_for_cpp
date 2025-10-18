@@ -298,6 +298,9 @@ data:
       title: Segment Tree
   - name: Sequence
     pages:
+    - icon: ':warning:'
+      path: Sequence/Hamming_Distance.hpp
+      title: "Hamming \u8DDD\u96E2"
     - icon: ':heavy_check_mark:'
       path: Sequence/Longest_Increasing_Subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"

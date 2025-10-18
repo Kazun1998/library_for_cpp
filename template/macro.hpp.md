@@ -218,6 +218,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
+  - icon: ':warning:'
+    path: Sequence/Hamming_Distance.hpp
+    title: "Hamming \u8DDD\u96E2"
   - icon: ':heavy_check_mark:'
     path: Sequence/Longest_Increasing_Subsequence.hpp
     title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
@@ -468,6 +471,7 @@ data:
   - Modulo_Polynomial/Fraction_Coefficient.hpp
   - Modulo_Polynomial/Stirling_2nd.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Sequence/Hamming_Distance.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
   - Sequence/Run_Length_Encoding.hpp
   - template/template.hpp
