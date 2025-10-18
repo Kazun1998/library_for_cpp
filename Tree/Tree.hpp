@@ -90,6 +90,17 @@ class Tree {
         return res;
     }
 
+    public:
+    vector<int> bottom_up() const {
+        vector<int> res;
+        for (auto it = tower.rbegin(); it != tower.rend(); ++it) {
+            const auto &layer = *it;
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
+    }
+
     // 1 頂点に関する情報
     public:
 
