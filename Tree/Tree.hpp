@@ -278,6 +278,29 @@ class Tree {
             return upper(v, dist_uv - k);
         }
     }
+
+    vector<int> path(int u, int v) {
+        int w = lowest_common_ancestor_greedy(u, v);
+
+        vector<int> path_first{u}, path_second{v};
+
+        while (u != w) {
+            u = get_parent(u);
+            path_first.emplace_back(u);
+        }
+
+        while (v != w) {
+            v = get_parent(v);
+            path_second.emplace_back(v);
+        }
+
+        path_second.pop_back();
+        reverse(path_second.begin(), path_second.end());
+
+        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));
+
+        return path_first;
+    }
 };
 
 Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
