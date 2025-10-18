@@ -30,14 +30,15 @@ class Union_Find{
     }
 
     // x と y を結合する.
+    // force を true にすると, 必ず find(x) が根になるように結合する.
     // 返り値: 元々非連結ならば true, 連結ならば false
-    bool unite(int x, int y) {
+    bool unite(int x, int y, bool force = false) {
         x = find(x);
         y = find(y);
 
         if (x == y) { return false; }
 
-        if (data[x] > data[y]) { swap(x, y); }
+        if (!force && (data[x] > data[y])) { swap(x, y); }
 
         data[x] += data[y];
         data[y] = x;
