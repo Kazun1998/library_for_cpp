@@ -4,7 +4,7 @@
 #include"../Integer/Euler_Totient.hpp"
 #include"../Integer/Divisors.hpp"
 
-namespace Modulo {
+namespace modulo {
     // X の位数を求める
     ll Order(const Modulo &X, ll irreversible = -1) { 
         ll phi = Euler_Totient(X.n);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../template/template.hpp"
+
 class SingularMatrixError: private exception{
     const char* what() const throw() {
         return "非正則行列に関する操作を行いました.";
@@ -8,10 +10,8 @@ class SingularMatrixError: private exception{
 
 template<typename F>
 class Field_Matrix{
-    private:
-    vector<vector<F>> mat;
-
     public:
+    vector<vector<F>> mat;
     int row, col;
 
     public:
@@ -276,4 +276,15 @@ F Determinant(const Field_Matrix<F> &A){
     }
 
     return det;
+}
+
+// 第 (i, i) 要素が a[i] である対角行列を生成する.
+template<typename F>
+Field_Matrix<F> Diagonal_Matrix(vector<F> a) {
+    int n = a.size();
+    vector<vector<F>> X(n, vector<F>(n));
+
+    for (int i = 0; i < n; i++) { X[i][i] = a[i]; }
+
+    return X;
 }

@@ -2,7 +2,7 @@
 
 #include"../template/template.hpp"
 
-namespace Modulo {
+namespace modulo {
     class DifferentModulus : public exception {
       public: // publicに指定
       const char* what() const noexcept override { return "異なる法同士の四則演算です"; }

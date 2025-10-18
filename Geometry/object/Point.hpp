@@ -1,0 +1,112 @@
+#pragma once
+
+#include"../base.hpp"
+
+namespace geometry {
+    template<typename R>
+    class Point {
+        public:
+        R x, y;
+
+        public:
+        Point(): x(0), y(0) {}
+        Point(R _x, R _y): x(_x), y(_y) {}
+
+        // 加法
+        Point& operator+=(const Point &B){
+            x += B.x;
+            y += B.y;
+            return *this;
+        }
+
+        friend Point operator+(const Point &P, const Point &Q) { return Point(P) += Q; }
+
+        // 減法
+        Point& operator-=(const Point &B){
+            x -= B.x;
+            y -= B.y;
+            return *this;
+        }
+
+        friend Point operator-(const Point &P, const Point &Q) { return Point(P) -= Q; }
+
+        // スカラー倍
+        Point& operator*=(const R &a){
+            x *= a;
+            y *= a;
+            return *this;
+        }
+
+        friend Point operator*(const Point &P, const R &a) { return Point(P) *= a; }
+        friend Point operator*(const R &a, const Point &P) { return Point(P) *= a; }
+
+        Point& operator/=(const R &a){
+            x /= a;
+            y /= a;
+            return *this;
+        }
+
+        friend Point operator/(const Point &P, const R &a) { return Point(P) /= a; }
+
+        Point& operator*=(const Point &P){
+            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;
+            x = x1;
+            y = y1;
+            return *this;
+        }
+
+        friend Point operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }
+
+        friend istream& operator>>(istream &is, Point &P) {
+            R a, b;
+            is >> a >> b;
+            P = Point(a, b);
+            return is;
+        }
+
+        friend ostream& operator<<(ostream &os, const Point &P) {
+            return os << P.x << " " << P.y;
+        }
+
+        inline R norm_2() const { return x * x + y * y; }
+        inline double norm() const { return sqrt(norm_2()); }
+        inline R dot(const Point B) const { return x * B.x + y * B.y; }
+        inline R det(const Point B) const { return x * B.y - y * B.x; }
+
+        inline Point<R> normalize() const { return *this / norm(); }
+        inline Point<R> normal() const { return Point(-y, x); }
+
+        inline Point<Real> rotate(double theta) const {
+            Real alpha = sin(theta), beta = cos(theta);
+            Real s = beta * x - alpha * y, t = alpha * x + beta * y;
+            return Point(s, t);
+        }
+    };
+
+    template<typename R>
+    bool compare_x(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }
+
+    template<typename R>
+    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }
+
+    template<typename R>
+    inline bool operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) && equal(A.y, B.y); }
+
+    template<typename R>
+    inline bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }
+
+    template<typename R>
+    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x + A.y * B.y; }
+
+    template<typename R>
+    inline R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }
+
+    template<typename R>
+    inline R norm_2(const Point<R> &P) { return dot(P, P); }
+
+    template<typename R>
+    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }
+
+    template<typename R>
+    inline Real arg(const Point<R> &P) { return atan2(P.y, P.x); }
+}
