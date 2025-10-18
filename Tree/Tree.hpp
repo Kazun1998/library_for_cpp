@@ -30,6 +30,7 @@ class Tree {
 
     inline int get_root() const { return root; }
     inline int get_parent(const int &x) const { return parent[x]; }
+    inline vector<int> get_children(const int &x) const { return children[x]; }
 
     public:
     // 頂点 x の親を頂点 y に設定する.
