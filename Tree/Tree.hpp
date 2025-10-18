@@ -28,6 +28,8 @@ class Tree {
 
     inline int vector_size() const { return N + offset; }
 
+    inline int get_root() const { return root; }
+
     public:
     // 頂点 x の親を頂点 y に設定する.
     inline void set_parent(const int &x, const int &y) {
