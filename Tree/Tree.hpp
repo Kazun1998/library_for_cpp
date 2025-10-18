@@ -191,6 +191,23 @@ class Tree {
         return is_root(x) ? root : parent[x];
     }
 
+    int lowest_common_ancestor_greedy(int x, int y) {
+        assert(is_locked());
+
+        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
+
+        while (vertex_depth(x) < vertex_depth(y)) {
+            y = parent[y];
+        }
+
+        while (x != y) {
+            x = get_parent(x);
+            y = get_parent(y);
+        }
+
+        return x;
+    }
+
     // 2 頂点 x, y 間の距離を求める.
     int distance(int x, int y) {
         return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
