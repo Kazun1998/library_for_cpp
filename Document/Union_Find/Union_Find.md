@@ -37,10 +37,12 @@ int U.find(int x)
 ### unite
 
 ```cpp
-bool U.unite(int x, int y)
+bool U.unite(int x, int y, bool force = false)
 ```
 
 * 無向辺 $xy$ を追加する.
+* **引数**
+  * `force` を `true` にすると, 連結成分の代表元を `find(x)` になるようにマージするようになる.
 * **制約**
   * $0 \leq x \lt N$.
   * $0 \leq y \lt N$.
@@ -72,3 +74,13 @@ bool U.same(int x, int y)
   * $0 \leq y \lt N$.
 * **計算量**
   * ならし $O(\alpha(N))$ 時間.
+
+### group_count
+
+```cpp
+int U.group_count()
+```
+
+* グラフ $G$ の連結成分を求める.
+* **計算量**
+  * $O(1)$ 時間.
