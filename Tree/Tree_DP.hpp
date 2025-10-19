@@ -21,7 +21,7 @@ template<typename X, typename M>
 vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {
     using V = int;
 
-    vector<X> data(T.vector_size(), unit);
+    vector<X> data(T.vector_size());
 
     for (V v: T.bottom_up()) {
         M tmp = unit;
