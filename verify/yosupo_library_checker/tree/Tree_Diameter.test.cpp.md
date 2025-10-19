@@ -296,10 +296,10 @@ data:
     \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
     vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
     \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
-    \  vector<X> data(T.vector_size(), unit);\n\n    for (V v: T.bottom_up()) {\n\
-    \        M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp\
-    \ = merge(tmp, f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n \
-    \   }\n\n    return data;\n}\n#line 6 \"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\
+    \  vector<X> data(T.vector_size());\n\n    for (V v: T.bottom_up()) {\n      \
+    \  M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp = merge(tmp,\
+    \ f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n    }\n\n    return\
+    \ data;\n}\n#line 6 \"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\
     \n\nint main() {\n    int N; cin >> N;\n\n    vector<pair<int, int>> edges(N -\
     \ 1);\n    map<pair<int, int>, ll> edge_weight;\n    for (int j = 0; j < N - 1;\
     \ j++) {\n        int a, b; ll c; scanf(\"%d%d%lld\", &a, &b, &c);\n        edges[j]\
@@ -345,7 +345,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
-  timestamp: '2025-10-18 19:18:42+09:00'
+  timestamp: '2025-10-19 11:22:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp

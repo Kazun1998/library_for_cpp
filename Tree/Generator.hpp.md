@@ -28,6 +28,9 @@ data:
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+    title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
   _isVerificationFailed: false
@@ -311,6 +314,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - verify/yukicoder/763.test.cpp
 documentation_of: Tree/Generator.hpp
 layout: document

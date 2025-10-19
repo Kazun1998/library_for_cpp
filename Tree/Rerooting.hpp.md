@@ -5,6 +5,9 @@ data:
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   - icon: ':heavy_check_mark:'
+    path: Tree/Tree_DP.hpp
+    title: "\u6728 DP"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,96 +25,87 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Tree/Rerooting.hpp
-    title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/763.test.cpp
-    title: verify/yukicoder/763.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Tree/Tree_DP.hpp\"\n\n#line 2 \"Tree/Tree.hpp\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
-    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
-    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
-    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
-    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
-    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
-    \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
-    \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
-    \u308B.\ntemplate<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0\
-    \ ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\
-    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x,\
-    \ U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
-    \ y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\n\
-    template<typename T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x,\
-    \ y);\n    return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\
-    \u3081\u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q,\
-    \ r;\n    tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1\
-    \ : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E\
-    \ y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n \
-    \   while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n        y >>=\
-    \ 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\
-    \u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n  \
-    \  ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x\
-    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
-    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n \
-    \       if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>=\
-    \ 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
-    \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
-    \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
-    \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
-    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a\
-    \ x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b)\
-    \ \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll,\
-    \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
-    \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
-    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
-    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
-    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
-    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
-    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
-    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
-    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
-    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
-    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
-    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62\
-    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
-    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
-    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
-    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
-    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
-    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
-    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
-    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+  bundledCode: "#line 2 \"Tree/Rerooting.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
+    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
+    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
+    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
+    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
+    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
+    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
+    , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
+    \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
+    \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
+    \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
+    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n#line 59\
+    \ \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n// \u9664\
+    \u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){ return (x >\
+    \ 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\n\
+    template<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0 ? (x + y\
+    \ - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
+    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x, U y){\n    T\
+    \ q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\
+    \u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x, y);\n \
+    \   return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q, r;\n \
+    \   tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n\
+    }\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\
+    \u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n\
+    \        if (y & 1) { a *= x; }\n        x *= x;\n        y >>= 1;\n    }\n  \
+    \  return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\
+    \u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n    ll a = 1;\n\
+    \    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x *= x) %= z;\n\
+    \        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
+    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
+    \ typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n    \
+    \    if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n\
+    \    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\
+    \u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x:\
+    \ X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y\
+    \ = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y\
+    \ = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\
+    \u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll\
+    \ a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll\
+    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));\n    \
+    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
+    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
+    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62 \"template/template.hpp\"\
+    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
+    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
+    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
+    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
+    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
+    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
+    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
+    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
     \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
     \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
     \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
@@ -157,23 +151,24 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n\
-    \    int N, offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
-    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset\
-    \ = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n\
-    \        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\
-    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
-    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
-    \    }\n\n    inline int vector_size() const { return N + offset; }\n\n    inline\
-    \ int get_root() const { return root; }\n    inline int get_parent(const int &x)\
-    \ const { return parent[x]; }\n    inline vector<int> get_children(const int &x)\
-    \ const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\
-    \u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const\
-    \ int &x, const int &y) {\n        assert (!is_locked());\n        parent[x] =\
-    \ y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\
-    \u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int\
-    \ &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\
-    \u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
+    \ bit_length(x)); }\n#line 2 \"Tree/Tree_DP.hpp\"\n\n#line 2 \"Tree/Tree.hpp\"\
+    \n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, offset,\
+    \ root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\n    int\
+    \ N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset = 0): N(N),\
+    \ offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n       \
+    \ for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\n  \
+    \  bool is_locked() const { return locked; }\n\n    public:\n    inline void set_root(const\
+    \ int &x) {\n        assert (!is_locked());\n        root = x;\n    }\n\n    inline\
+    \ int vector_size() const { return N + offset; }\n\n    inline int get_root()\
+    \ const { return root; }\n    inline int get_parent(const int &x) const { return\
+    \ parent[x]; }\n    inline vector<int> get_children(const int &x) const { return\
+    \ children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\
+    \u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int\
+    \ &x, const int &y) {\n        assert (!is_locked());\n        parent[x] = y;\n\
+    \    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9\
+    \ y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const\
+    \ int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\
+    \u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
     \ = -1;\n        children.assign(N + offset, vector<int>());\n        for (int\
     \ v = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
@@ -290,174 +285,151 @@ data:
     \  vector<X> data(T.vector_size());\n\n    for (V v: T.bottom_up()) {\n      \
     \  M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp = merge(tmp,\
     \ f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n    }\n\n    return\
-    \ data;\n}\n"
-  code: "#pragma once\n\n#include \"Tree.hpp\"\n\ntemplate<typename X>\nvector<X>\
-    \ Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) {\n  \
-    \  vector<X> data(T.vector_size());\n\n    data[T.get_root()] = alpha;\n\n   \
-    \ for (int x: T.top_down()) {\n        for (int y: T.get_children(x)) {\n    \
-    \        data[y] = f(data[x], x, y);\n        }\n    }\n\n    return data;\n}\n\
-    \ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree &T, function<M(X,\
-    \ int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)\
-    \ {\n    using V = int;\n\n    vector<X> data(T.vector_size());\n\n    for (V\
-    \ v: T.bottom_up()) {\n        M tmp = unit;\n        for (V w: T.get_children(v))\
-    \ {\n            tmp = merge(tmp, f(data[w], v, w));\n        }\n        data[v]\
-    \ = g(tmp, v);\n    }\n\n    return data;\n}\n"
+    \ data;\n}\n#line 5 \"Tree/Rerooting.hpp\"\n\ntemplate<typename X, typename M>\n\
+    class Rerooting_DP {\n    public:\n    vector<X> lower, upper, result;\n\n   \
+    \ public:\n    Rerooting_DP(Tree &T, function<M(X, int, int)> f, function<X(M,\
+    \ int)> g, function<X(M, int)> h, function<M(M, M)> merge, const M unit) {\n \
+    \       using V = int;\n\n        // T \u306E\u9802\u70B9 v \u3092\u6839\u3068\
+    \u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u5024\n        lower =\
+    \ Tree_DP_from_Leaf(T, f, g, merge, unit);\n        upper.resize(T.vector_size());\n\
+    \n        for (V v: T.top_down()) {\n            const auto &children_v = T.get_children(v);\n\
+    \    \n            vector<M> left{unit}, right{unit};\n            for (V c: children_v)\
+    \ {\n                left.emplace_back(merge(left.back(), f(lower[c], v, c)));\n\
+    \            }\n\n            for (auto it = children_v.rbegin(); it != children_v.rend();\
+    \ ++it) {\n                V c = *it;\n                right.emplace_back(merge(right.back(),\
+    \ f(lower[c], v, c)));\n            }\n\n            reverse(right.begin(), right.end());\n\
+    \            for (int i = 0; i < children_v.size(); i++) {\n                V\
+    \ c = children_v[i];\n                M a = merge(left[i], right[i + 1]);\n  \
+    \              M b = T.is_root(v) ? a : merge(a, f(upper[v], v, T.get_parent(v)));\n\
+    \n                upper[c] = g(b, v);\n            }\n        }\n\n        result.resize(T.vector_size());\n\
+    \        for (V v: T.top_down()) {\n            M a = T.is_root(v) ? unit : f(upper[v],\
+    \ v, T.get_parent(v));\n            for (V c: T.get_children(v)) {\n         \
+    \       a = merge(a, f(lower[c], v, c));\n            }\n\n            result[v]\
+    \ = h(a, v);\n        }\n    }\n\n    Rerooting_DP(Tree &T, function<M(X, int,\
+    \ int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit):\n  \
+    \      Rerooting_DP(T, f, g, g, merge, unit) {}\n};\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Tree_DP.hpp\"\
+    \n\ntemplate<typename X, typename M>\nclass Rerooting_DP {\n    public:\n    vector<X>\
+    \ lower, upper, result;\n\n    public:\n    Rerooting_DP(Tree &T, function<M(X,\
+    \ int, int)> f, function<X(M, int)> g, function<X(M, int)> h, function<M(M, M)>\
+    \ merge, const M unit) {\n        using V = int;\n\n        // T \u306E\u9802\u70B9\
+    \ v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u5024\
+    \n        lower = Tree_DP_from_Leaf(T, f, g, merge, unit);\n        upper.resize(T.vector_size());\n\
+    \n        for (V v: T.top_down()) {\n            const auto &children_v = T.get_children(v);\n\
+    \    \n            vector<M> left{unit}, right{unit};\n            for (V c: children_v)\
+    \ {\n                left.emplace_back(merge(left.back(), f(lower[c], v, c)));\n\
+    \            }\n\n            for (auto it = children_v.rbegin(); it != children_v.rend();\
+    \ ++it) {\n                V c = *it;\n                right.emplace_back(merge(right.back(),\
+    \ f(lower[c], v, c)));\n            }\n\n            reverse(right.begin(), right.end());\n\
+    \            for (int i = 0; i < children_v.size(); i++) {\n                V\
+    \ c = children_v[i];\n                M a = merge(left[i], right[i + 1]);\n  \
+    \              M b = T.is_root(v) ? a : merge(a, f(upper[v], v, T.get_parent(v)));\n\
+    \n                upper[c] = g(b, v);\n            }\n        }\n\n        result.resize(T.vector_size());\n\
+    \        for (V v: T.top_down()) {\n            M a = T.is_root(v) ? unit : f(upper[v],\
+    \ v, T.get_parent(v));\n            for (V c: T.get_children(v)) {\n         \
+    \       a = merge(a, f(lower[c], v, c));\n            }\n\n            result[v]\
+    \ = h(a, v);\n        }\n    }\n\n    Rerooting_DP(Tree &T, function<M(X, int,\
+    \ int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit):\n  \
+    \      Rerooting_DP(T, f, g, g, merge, unit) {}\n};\n"
   dependsOn:
-  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - Tree/Tree_DP.hpp
+  - Tree/Tree.hpp
   isVerificationFile: false
-  path: Tree/Tree_DP.hpp
-  requiredBy:
-  - Tree/Rerooting.hpp
-  timestamp: '2025-10-19 11:22:01+09:00'
+  path: Tree/Rerooting.hpp
+  requiredBy: []
+  timestamp: '2025-10-19 11:22:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yukicoder/763.test.cpp
-documentation_of: Tree/Tree_DP.hpp
+documentation_of: Tree/Rerooting.hpp
 layout: document
-title: "\u6728 DP"
+title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
 ---
 
 ## Outline
 
-木上の DP を計算するメソッドを提供する.
+木上の全方位木 DP を計算するメソッドを提供する.
 
 ## Theory
 
 このページでは, $T = (V, E)$ を木とする. また, 以下の記号を定義する.
 
 * $T$ の根を $r$ とする.
-* $v \in V \setminus \{r\}$ に対して, $\mathrm{par}(v) \in V$ を $V$ の親とする.
-* $v \in V$ に対して $\mathrm{ch}(v) \subset V$ を $v$ の子全体の集合とする.
+* $v \in V \setminus \{r\}$ に対して, $\mathrm{par}^{(r)}(v) \in V$ を $T$ を $r$ を根としたときの $V$ の親とする.
+* $v \in V$ に対して $\mathrm{ch}^{(r)}(v) \subset V$ $T$ を $r$ を根としたときの $v$ の子全体の集合とする.
+* $v \in V$ に対して $\mathrm{des}^{(r)}(v) \subset V$ $T$ を $r$ を根としたときの $v$ の子孫全体の集合とする.
 
-### Tree_DP_from_Root
+[葉からのDP](Tree_DP.hpp) では, 木 $T$ について, 固定された $1$ 頂点 $r_0$ を根とする根付き木に関して, 全ての部分木に関する値 $\mathrm{dp}^{(r_0)}(v)$ を $O(N)$ 時間で求めた.
 
-`Tree_DP_from_Root` では, $\mathrm{dp}(v)$ が以下の要件をみたす場合の各 $\mathrm{dp}(v)$ を求める.
+全方位木 DP では, $T$ 上の各頂点について, その頂点を根とする根付き木と見なしたときの値 $\mathrm{dp}^{(r)}(r)$ を, 合計で $O(N)$ 時間で求めることができる.
 
-$X$ を集合, $\alpha \in X, f: X \times V \times V \to X$ とする. このとき,
+オラクルは [葉からのDP](Tree_DP.hpp) と同様に行うことができる. ただし, 場合によっては, $g$ について, 頂点が根かどうかで切り分けることができる.
 
-$$ \mathrm{dp}(v) = \begin{cases}
-        \alpha & (v = r) \\
-        f(\mathrm{dp}(\mathrm{par}(v)), \mathrm{par}(v), v) & (\text{otherwise})
-    \end{cases}$$
+### 適用条件
 
-が成り立つときに適用できる.
+$X$ を集合, $(M, \odot)$ を $e \in M$ を単位元とする可換モノイド, $f: X \times V \times V \to X, g: M \times V \to X$ とする. このとき, 固定された $r \in V$ において,
 
-つまり, $\mathrm{dp}(v)$ は根から $v$ へのパスを $u_0, u_1, \dots, u_k$ としたとき,
+$$ \mathrm{dp}^{(r)}(v) = g \left(\bigodot_{w \in \mathrm{ch}^{(r)}(v)} f(\mathrm{dp}^{(r)}(w), v, w), v \right)$$
 
-$$ \alpha , f(u_0, u_1), f(u_1, u_2), \dots, f(u_{k-1}, u_k) $$
-
-から定まる値を求めることができる.
-
-ここで, $f$ について,
-
-* $f(v, w)$ について, $w$ のみに着目すれば, 頂点に着目していることになる.
-* $f(v, w)$ について, $f(v, w) = f(w, v)$ が成立すれば, 辺に着目していることになる.
-
-### Tree_DP_from_Leaf
-
-`Tree_DP_from_Leaf` では, $\mathrm{dp}(v)$ が以下の要件をみたす場合の各 $\mathrm{dp}(v)$ を求める.
-
-$X$ を集合, $(M, \odot)$ を $e \in M$ を単位元とする可換モノイド, $f: X \times V \times V \to X, g: M \times V \to X$ とする. このとき,
-
-$$ \mathrm{dp}(v) = g \left(\bigodot_{w \in \mathrm{ch}(v)} f(\mathrm{dp}(w), v, w), v \right)$$
-
-が成り立つときに適用できる.
-
-これは, $\mathrm{dp}(v)$ は $v$ を含む部分木から定まる値を求めることができる.
+が成り立つときに適用できる. ただし, $f(x, v, w)$ について, 頂点 $v$ が頂点 $w$ に親であることを想定している.
 
 ## Examples
 
-### Tree_DP_from_Root
+[[Library Checker] Tree Path Composite Sum](https://judge.yosupo.jp/problem/tree_path_composite_sum)
 
-[[Library Checker] Tree Diameter](https://judge.yosupo.jp/problem/tree_diameter)
+$r \in V$ と $x \in V$ に対して,
 
-適当な頂点 $r$ からの距離 $\mathrm{dist}(v)$ を求める必要がある. これは
+$$ \mathrm{dp}^{(r)}(x) := \sum_{y \in \mathrm{des}(x)} P(x, y) $$
 
-$$\mathrm{dp}(v) = \begin{cases}
-        0 & (v = r) \\
-        \mathrm{dist}(\mathrm{par}(v)) + \mathrm{weight}(\mathrm{par}(v), v) & (\text{otherwise})
-    \end{cases}$$
-
-によって書ける. ただし, $uv \in E$ に対して, $\mathrm{weight}(u, v)$ で辺 $uv$ を表すとする.
+とする.
 
 このとき,
 
-$$ X = \mathbb{N}, \quad f(w, u, v) = w + \mathrm{weight}(u, v), \quad \alpha = 0 $$
+$$\begin{align*}
+    \mathrm{dp}^{(r)}(v)
+    &= \sum_{w \in \mathrm{des}(v)} P(v, w) \\
+    &= P(v, v) + \sum_{\substack{w \in \mathrm{des}^{(r)}(v) \\ w \neq v}} P(v, w) \\
+    &= a_v + \sum_{u \in \mathrm{ch}^{(r)}(v)} \sum_{w \in \mathrm{ch}^{(r)}(u) } P(v, w) \\
+    &= a_v + \sum_{u \in \mathrm{ch}^{(r)}(v)} \sum_{w \in \mathrm{ch}^{(r)}(u) } f_{vu}(P(u, w)) \\
+    &= a_v + \sum_{u \in \mathrm{ch}^{(r)}(v)} \sum_{w \in \mathrm{ch}^{(r)}(u) } \left(b_{uv} P(u, w) + c_{uv} \right) \\
+    &= a_v + \sum_{u \in \mathrm{ch}^{(r)}(v)} \left(b_{uv} \sum_{w \in \mathrm{ch}^{(r)}(u) } P(u, w) + (\# \mathrm{des}^{(r)}(u)) c_{uv} \right) \\
+    &= a_v + \sum_{u \in \mathrm{ch}^{(r)}(v)} \left(b_{uv} \mathrm{dp}^{(r)}(u) P(u, w) + (\# \mathrm{des}^{(r)}(u)) c_{uv} \right) \\
+\end{align*}$$
 
-とすればよい.
-
-### Tree_DP_from_Leaf
-
-[[yukicoder] No.763 Noelちゃんと木遊び](https://yukicoder.me/problems/no/763)
-
-$T$ を $r \in V$ を根とする根付き木と見なす.
-
-各 $v \in V$ に対して, $x_v, y_v \in \mathbb{N}$ をそれぞれ以下で定める.
-
-* $x_v$: 頂点 $v$ を根とする部分木において, 頂点 $v$ を削除する場合での連結成分の数の最大値.
-* $y_v$: 頂点 $v$ を根とする部分木において, 頂点 $v$ を削除しない場合での連結成分の数の最大値.
-
-このとき, $v \in V$ に対して,
-
-$$ x_v = \sum_{w \in \mathrm{ch}(v)} \max(x_w, y_w), \quad y_v = \sum_{w \in \mathrm{ch}(v)} \max(x_w, y_w - 1) + 1 $$
-
-をみたす.
-
-$\boldsymbol{z}_v := \begin{pmatrix} x_v \\ y_v \end{pmatrix} \in \mathbb{N}^2$ と定めると,
-
-$$ \mathbb{z}_v = \sum_{w \in \mathrm{ch}(v)} \begin{pmatrix} \max(x_w, y_w) \\ \max(x_w, y_w - 1) \end{pmatrix} + 1$$
-
-である.
+となる.
 
 そのため,
 
 $$
-  X = \mathbb{N}^2, \quad
-  (M, \odot) = (\mathbb{N}^2, +), \quad
-  f \left(\begin{pmatrix} x \\ y \end{pmatrix}, u, v \right)
-    = \begin{pmatrix} \max(x, y) \\ \max(x, y - 1) \end{pmatrix}, \quad
-  g \left(\begin{pmatrix} x \\ y \end{pmatrix} \right)
-    = \begin{pmatrix} x \\ y + 1 \end{pmatrix}, \quad
-  e = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
-$$
-
-とすればよい.
-
-なお, 最終解答は $\max(x_r, y_r)$ である. このように, $\mathrm{dp}(r)$ そのままが最終解答になるとは限らないので注意すること.
+    X = \mathbb{N}^2, \quad
+    (M, \odot) = (\mathbb{N}^2, (0, 0)), \quad 
+    f((s, t), u, v) = (b_{uv} \cdot s + c_{uv} \cdot t, t), \quad
+    g\left((s, t), v \right) = (s + a_v, t + 1), \quad
+    e = (0, 0) $$
 
 ## Contents
 
-### Tree_DP_from_Root
 ```cpp
-vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha)
+template<typename X, typename M>
+Rerooting_DP(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)
 ```
 
-* 根からの DP を行い, 各頂点における結果が入っているベクトルを求める. 適用条件等の詳細は Theory 節を参照.
-* **引数**
-  * $f: X \times V \times V \to X$.
-  * $\alpha \in X$.
-* **返り値**: 第 $v$ 要素が $\mathrm{dp}(v)$ であるベクトル.
-* **計算量**: $O(N)$ 時間.
-
-### Tree_DP_from_Leaf
-
-```cpp
-vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)
-```
-
-* 根からの DP を行い, 各頂点における結果が入っているベクトルを求める. 適用条件等の詳細は Theory 節を参照.
+* 全方位木 DP を行い, 各 $r \in V$ に対する $\mathrm{dp}^{(r)}(r)$ を求める. 適用条件等の詳細は Theory 節を参照.
 * **引数**
   * $f: X \times V \times V \to M$.
   * $g: M \times V \to X$.
   * `merge`: $M$ 上の演算 $\odot$.
   * `unit`: $M$ の単位元.
-* **返り値**: 第 $v$ 要素が $\mathrm{dp}(v)$ であるベクトル.
+* **返り値**: 第 $r$ 要素が $\mathrm{dp}(r)$ であるベクトル.
 * **計算量**: $O(N)$ 時間.
+
+```cpp
+template<typename X, typename M>
+Rerooting_DP(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<X(M, int)> h, function<M(M, M)> merge, const M unit)
+```

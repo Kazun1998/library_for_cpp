@@ -24,6 +24,9 @@ data:
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
+    path: Tree/Rerooting.hpp
+    title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   _extendedVerifiedWith:
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+    title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
@@ -420,12 +426,14 @@ data:
   requiredBy:
   - Tree/Generator.hpp
   - Tree/Tree_DP.hpp
+  - Tree/Rerooting.hpp
   timestamp: '2025-10-18 19:18:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - verify/yukicoder/763.test.cpp
 documentation_of: Tree/Tree.hpp
 layout: document

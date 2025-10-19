@@ -313,6 +313,9 @@ data:
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'
+      path: Tree/Rerooting.hpp
+      title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
+    - icon: ':heavy_check_mark:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
     - icon: ':heavy_check_mark:'
@@ -570,6 +573,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
       title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+      title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - name: verify/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
