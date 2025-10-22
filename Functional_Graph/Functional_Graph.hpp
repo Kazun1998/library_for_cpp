@@ -4,7 +4,7 @@ class Functional_Graph {
     private:
     vector<int> f;
     vector<vector<int>> f_inv;
-    size_t N;
+    int N;
 
     vector<vector<int>> cycles;
     vector<int> cycle_ids, cycle_vertex_ids;
@@ -115,9 +115,8 @@ class Functional_Graph {
             int m = tree_vertex.size();
             vector<vector<int>> doubling(max<int>(1, bit_length(max_depth)), vector<int>(m, -1));
 
-            for (int j = 0; j < m; j++) {
-                if (j == 0) { doubling[0][j] = 0; }
-                else { doubling[0][j] = tree_vertex_ids[f[tree_vertex[j]]]; }
+            for (int j = 1; j < m; j++) {
+                doubling[0][j] = tree_vertex_ids[f[tree_vertex[j]]];
             }
 
             for (int b = 1; b < max<int>(1, bit_length(max_depth)); b++) {
@@ -142,6 +141,13 @@ class Functional_Graph {
         return tree_vertices[tree_id][vertex_id];
     }
 
+    int jump_on_cycle(int cycle_id, int vertex_id, ll k) {
+        auto &cycle = cycles[cycle_id];
+        int m = cycle.size();
+        k = mod(k, m);
+        return cycle[(vertex_id + k) % m];
+    }
+
     public:
     int calculate(int x, ll k) {
         if ( k < tree_depth[x]) { return upper(x, k); }
@@ -151,8 +157,7 @@ class Functional_Graph {
 
         int cycle_id = cycle_ids[x];
         int vertex_id = cycle_vertex_ids[x];
-        int m = cycles[cycle_id].size();
-        return cycles[cycle_id][mod(vertex_id + k, m)];
+        return jump_on_cycle(cycle_id, vertex_id, k);
     }
 
     vector<vector<int>> &get_cycles() {
