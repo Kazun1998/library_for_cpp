@@ -154,4 +154,8 @@ class Functional_Graph {
         int m = cycles[cycle_id].size();
         return cycles[cycle_id][mod(vertex_id + k, m)];
     }
+
+    vector<vector<int>> &get_cycles() {
+        return cycles;
+    }
 };
