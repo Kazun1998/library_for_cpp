@@ -22,7 +22,7 @@ vector<mint> Stirling_1st(int N, bool sign = false) {
     unless(sign) { return c; }
 
     for (int k = 0; k <= N; k++) {
-        unless (mod(k, 2) == mod(N, 2)) { c[k] *= -1; }
+        unless (safe_mod(k, 2) == safe_mod(N, 2)) { c[k] *= -1; }
     }
 
     return c;

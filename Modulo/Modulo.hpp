@@ -97,7 +97,7 @@ namespace modulo {
         }
 
         // include?
-        bool is_member(ll x) { return mod(x - a, n) == 0; }
+        bool is_member(ll x) { return safe_mod(x - a, n) == 0; }
 
         bool is_zero() { return is_member(0); }
         
