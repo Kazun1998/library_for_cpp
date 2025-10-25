@@ -76,4 +76,8 @@ class Combination_Calculator {
 
         return nCr(n + r - 1, r);
     }
+
+    mint catalan(const int n) {
+        return fact(2 * n) * fact_inv(n + 1) * fact_inv(n);
+    }
 };
