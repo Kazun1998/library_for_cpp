@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1255
@@ -72,9 +72,9 @@ data:
     \ 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\n\
     template<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0 ? (x + y\
     \ - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x, U y){\n    T\
-    \ q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\
-    \u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT safe_mod(T x, U y){\n\
+    \    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\
+    \u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
     \ T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x, y);\n \
     \   return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
     \u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q, r;\n \
@@ -97,9 +97,9 @@ data:
     \ = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\
     \u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll\
     \ a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll\
-    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));\n    \
-    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
-    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n\
+    \        tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v,\
+    \ u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
     \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
     ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
     \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
@@ -208,7 +208,7 @@ data:
     \ = n;\n            while (y){\n                auto q = x / y;\n            \
     \    swap(x -= q * y, y);\n                swap(s -= q * t, t);\n            }\n\
     \n            return Modulo(s, n);\n        }\n\n        // include?\n       \
-    \ bool is_member(ll x) { return mod(x - a, n) == 0; }\n\n        bool is_zero()\
+    \ bool is_member(ll x) { return safe_mod(x - a, n) == 0; }\n\n        bool is_zero()\
     \ { return is_member(0); }\n        \n\n        // \u6BD4\u8F03\n        friend\
     \ bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a; }\n   \
     \     friend bool operator==(const Modulo &x, const long long &a) { return (x.a\
@@ -298,8 +298,8 @@ data:
   isVerificationFile: true
   path: verify/yukicoder/Modulo_Order.test.cpp
   requiredBy: []
-  timestamp: '2025-09-27 14:54:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-10-25 13:41:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yukicoder/Modulo_Order.test.cpp
 layout: document

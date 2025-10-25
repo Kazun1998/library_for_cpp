@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -60,8 +60,8 @@ data:
     \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
     \u308B.\ntemplate<typename T, typename U>\nT div_ceil(T x, U y){ return (x > 0\
     \ ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\
-    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT mod(T x,\
-    \ U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
+    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT safe_mod(T\
+    \ x, U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
     \ y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\n\
     template<typename T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x,\
     \ y);\n    return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\
@@ -86,105 +86,106 @@ data:
     \ \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntuple<ll,\
     \ ll, ll> Extended_Euclid(ll a, ll b) {\n    ll s = 1, t = 0, u = 0, v = 1;\n\
     \    while (b) {\n        ll q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
-    \ b), b, mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
-    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
-    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
-    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
-    \ }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n    while\
-    \ (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
-    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
-    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
-    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
-    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 62\
-    \ \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\
-    \u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\
-    \nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const\
-    \ T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout << \" \",\
-    \ b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream\
-    \ &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\n\
-    template<typename T, typename U>\nostream &operator<<(ostream &os, const pair<T,\
-    \ U> &P){\n    os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
-    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
-    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
-    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
-    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
-    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
-    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
-    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
-    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
-    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
-    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
-    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
-    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
-    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
-    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
-    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
-    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
-    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
-    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
-    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
-    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
-    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
-    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
-    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
-    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
-    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
-    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
-    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
-    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
-    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
-    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
-    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
-    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
-    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
-    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
-    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Algebra/Gaussian_Integer.hpp\"\n\n#line 4 \"Algebra/Gaussian_Integer.hpp\"\
-    \n\ntemplate<typename R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\
-    \n    constexpr Gaussian_Integer(R re, R im): re(re), im(im) {}\n    constexpr\
-    \ Gaussian_Integer(R re): re(re), im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
-    \n    Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im);\
-    \ }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer& operator+=(const Gaussian_Integer\
-    \ &b){\n        re += b.re;\n        im += b.im;\n        return *this;\n    }\n\
-    \n    friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) += y; }\n\n    // \u6E1B\u6CD5\n    Gaussian_Integer&\
-    \ operator-=(const Gaussian_Integer &b){\n        re -= b.re;\n        im -= b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator-(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }\n\n    //\
-    \ \u4E57\u6CD5\n    Gaussian_Integer& operator*=(const Gaussian_Integer &b){\n\
-    \        tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im * b.re);\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator*(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }\n\n    //\
-    \ \u9664\u6CD5\n    Gaussian_Integer& operator/=(const Gaussian_Integer &b){\n\
-    \        R n = b.norm();\n        R x = round(re * b.re + im * b.im, n);\n   \
-    \     R y = round(im * b.re - re * b.im, n);\n        re = x;\n        im = y;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator/(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) /= y; }\n\n    //\
-    \ \u5270\u4F59\n    Gaussian_Integer& operator%=(const Gaussian_Integer &b){\n\
-    \        Gaussian_Integer a(re, im);\n        auto q = a / b;\n        auto r\
-    \ = a - b * q;\n        re = r.re;\n        im = r.im;\n        return *this;\n\
-    \    }\n\n    friend Gaussian_Integer operator%(const Gaussian_Integer &x, const\
-    \ Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }\n\n    // \u5171\u5F79\
-    \n    Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }\n\
-    \n    // \u30CE\u30EB\u30E0\n    R norm() const { return re * re + im * im; }\n\
-    \n    // \u5165\u529B\n    friend istream &operator>>(istream &is, Gaussian_Integer\
-    \ &a) {\n        is >> a.re >> a.im;\n        return is;\n    }\n\n    // \u51FA\
-    \u529B\n    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x)\
-    \ { return os << x.re << \"+\" << x.im << \"i\"; }\n\n    // \u30BC\u30ED?\n \
-    \   bool is_zero() const { return re == 0 && im == 0; }\n};\n\ntemplate<typename\
-    \ R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R> beta)\
-    \ {\n    while(!beta.is_zero()) {\n        tie(alpha, beta) = make_pair(beta,\
-    \ alpha % beta);\n    }\n\n    return alpha;\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
+    \ b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n    \
+    \    tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u,\
+    \ a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
+    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
+    \ 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n \
+    \   while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
+    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
+    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
+    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
+    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
+    \ 62 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
+    \ \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >>\
+    \ a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
+    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
+    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
+    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
+    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
+    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
+    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
+    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
+    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
+    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
+    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
+    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
+    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
+    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
+    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
+    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n#line 65\
+    \ \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\n\n//\
+    \ \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n#define\
+    \ len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
+    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
+    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
+    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
+    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
+    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
+    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
+    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
+    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
+    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\
+    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x\
+    \ \u306E bit legnth \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x\
+    \ == 0) { return 0; }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n\
+    }\n\n// \u975E\u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\n\
+    ll popcount(ll x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\
+    \u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\n\
+    ll floor_log2(ll x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570\
+    \ x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll\
+    \ x) { return bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\
+    \u53D6\u5F97\u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n\
+    // x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\
+    \u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll\
+    \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
+    \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
+    \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
+    \ get_bits(x, bit_length(x)); }\n#line 2 \"Algebra/Gaussian_Integer.hpp\"\n\n\
+    #line 4 \"Algebra/Gaussian_Integer.hpp\"\n\ntemplate<typename R>\nclass Gaussian_Integer\
+    \ {\n    public:\n    R re, im;\n\n    constexpr Gaussian_Integer(R re, R im):\
+    \ re(re), im(im) {}\n    constexpr Gaussian_Integer(R re): re(re), im(0) {}\n\n\
+    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Gaussian_Integer operator-() const\
+    \ { return Gaussian_Integer(-re, -im); }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer&\
+    \ operator+=(const Gaussian_Integer &b){\n        re += b.re;\n        im += b.im;\n\
+    \        return *this;\n    }\n\n    friend Gaussian_Integer operator+(const Gaussian_Integer\
+    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }\n\n    //\
+    \ \u6E1B\u6CD5\n    Gaussian_Integer& operator-=(const Gaussian_Integer &b){\n\
+    \        re -= b.re;\n        im -= b.im;\n        return *this;\n    }\n\n  \
+    \  friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer\
+    \ &y) { return Gaussian_Integer(x) -= y; }\n\n    // \u4E57\u6CD5\n    Gaussian_Integer&\
+    \ operator*=(const Gaussian_Integer &b){\n        tie (re, im) = make_pair(re\
+    \ * b.re - im * b.im, re * b.im + im * b.re);\n        return *this;\n    }\n\n\
+    \    friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer\
+    \ &y) { return Gaussian_Integer(x) *= y; }\n\n    // \u9664\u6CD5\n    Gaussian_Integer&\
+    \ operator/=(const Gaussian_Integer &b){\n        R n = b.norm();\n        R x\
+    \ = round(re * b.re + im * b.im, n);\n        R y = round(im * b.re - re * b.im,\
+    \ n);\n        re = x;\n        im = y;\n        return *this;\n    }\n\n    friend\
+    \ Gaussian_Integer operator/(const Gaussian_Integer &x, const Gaussian_Integer\
+    \ &y) { return Gaussian_Integer(x) /= y; }\n\n    // \u5270\u4F59\n    Gaussian_Integer&\
+    \ operator%=(const Gaussian_Integer &b){\n        Gaussian_Integer a(re, im);\n\
+    \        auto q = a / b;\n        auto r = a - b * q;\n        re = r.re;\n  \
+    \      im = r.im;\n        return *this;\n    }\n\n    friend Gaussian_Integer\
+    \ operator%(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
+    \ %= y; }\n\n    // \u5171\u5F79\n    Gaussian_Integer conjugate() const { return\
+    \ Gaussian_Integer(re, -im); }\n\n    // \u30CE\u30EB\u30E0\n    R norm() const\
+    \ { return re * re + im * im; }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, Gaussian_Integer &a) {\n        is >> a.re >> a.im;\n        return is;\n\
+    \    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
+    \ Gaussian_Integer &x) { return os << x.re << \"+\" << x.im << \"i\"; }\n\n  \
+    \  // \u30BC\u30ED?\n    bool is_zero() const { return re == 0 && im == 0; }\n\
+    };\n\ntemplate<typename R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha,\
+    \ Gaussian_Integer<R> beta) {\n    while(!beta.is_zero()) {\n        tie(alpha,\
+    \ beta) = make_pair(beta, alpha % beta);\n    }\n\n    return alpha;\n}\n#line\
+    \ 5 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
     \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++){\n   \
     \     ll a1, b1, a2, b2;\n        scanf(\"%lld%lld%lld%lld\", &a1, &b1, &a2, &b2);\n\
     \        Gaussian_Integer<ll> x1(a1, b1), x2(a2, b2);\n        auto g = gcd(x1,\
@@ -206,7 +207,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   requiredBy: []
-  timestamp: '2025-09-27 14:54:24+09:00'
+  timestamp: '2025-10-25 13:41:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
