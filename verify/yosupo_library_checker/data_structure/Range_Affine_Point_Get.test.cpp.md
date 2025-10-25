@@ -2,17 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Line.hpp
-    title: Geometry/object/Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Counter_Clockwise.hpp
-    title: Geometry/utility/Counter_Clockwise.hpp
+    path: Segment_Tree/Dual_Segment_Tree.hpp
+    title: "\u53CC\u5BFE Segment Tree"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -31,31 +25,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Geometry/intersection/Intersection_Line_and_Line.hpp
-    title: Geometry/intersection/Intersection_Line_and_Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/2A.test.cpp
-    title: verify/aizu_online_judge/cgl/2A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7C.test.cpp
-    title: verify/aizu_online_judge/cgl/7C.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp\"\
-    \n\n#line 2 \"Geometry/object/Line.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
+    links:
+    - https://judge.yosupo.jp/problem/range_affine_point_get
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n\
+    \n#line 2 \"Algebra/modint.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
     \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
     \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
@@ -171,128 +153,114 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n \
-    \   using Real = double long;\n    const Real epsilon = 1e-9;\n    const Real\
-    \ pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1, ON\
-    \ = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
-    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
-    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
-    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
-    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
-    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
-    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
-    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
-    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
-    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
-    \ { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\n\nnamespace\
-    \ geometry {\n    template<typename R>\n    class Point {\n        public:\n \
-    \       R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n        Point(R\
-    \ _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n        Point& operator+=(const\
-    \ Point &B){\n            x += B.x;\n            y += B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator+(const Point &P, const Point\
-    \ &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const\
-    \ Point &B){\n            x -= B.x;\n            y -= B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator-(const Point &P, const Point\
-    \ &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n\
-    \        Point& operator*=(const R &a){\n            x *= a;\n            y *=\
-    \ a;\n            return *this;\n        }\n\n        friend Point operator*(const\
-    \ Point &P, const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
-    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
-    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
-    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
-    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
-    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
-    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
-    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
-    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
-    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
-    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
-    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
-    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
-    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
-    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
-    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
-    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
-    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
-    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
-    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
-    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
-    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
-    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
-    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
-    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
-    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
-    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
-    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
-    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
-    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
-    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
-    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
-    \ P.x); }\n}\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\n\n#line 4 \"\
-    Geometry/utility/Counter_Clockwise.hpp\"\n\nnamespace geometry {\n    constexpr\
-    \ int COUNTER_CLOCKWISE = +1;\n    constexpr int CLOCKWISE = -1;\n    constexpr\
-    \ int ONLINE_BACK = -2;   // c-a-b\n    constexpr int ONLINE_FRONT = +2;  // a-b-c\n\
-    \    constexpr int ON_SEGMENT = 0;     // a-c-b\n\n    // A -> B -> C \u3068\u9032\
-    \u3093\u3060\u6642\u306E\u9032\u884C\u65B9\u5411\u3092\u8ABF\u3079\u308B (B \u8996\
-    \u70B9)\n    // Input\n    // A: \u59CB\u70B9\n    // B: \u4E2D\u7D99\u5730\u70B9\
-    \n    // C: \u7D42\u70B9\n    template<typename R>\n    int Counter_Clockwise(const\
-    \ Point<R> &A, Point<R> B, Point<R> C) {\n        B = B - A; C = C - A;\n    \
-    \    if (sign(cross(B, C)) == +1) { return COUNTER_CLOCKWISE; }\n        if (sign(cross(B,\
-    \ C)) == -1) { return CLOCKWISE; }\n        if (sign(dot(B, C)) == -1) { return\
-    \ ONLINE_BACK; }\n        if (norm_2(B) < norm_2(C)) { return ONLINE_FRONT; }\n\
-    \        return ON_SEGMENT;\n    }\n}\n#line 5 \"Geometry/object/Line.hpp\"\n\n\
-    namespace geometry {\n    template<typename R>\n    struct Line {\n        Point<R>\
-    \ A, B;\n\n        Line() = default;\n        Line(const Point<R> &A, const Point<R>\
-    \ &B): A(A), B(B) {}\n\n        inline Point<R> vectorize() const { return B -\
-    \ A; }\n        inline Point<R> counter_vectorize() const { return A - B; }\n\n\
-    \        Inclusion include(const Point<R> &P) {\n            int m = Counter_Clockwise(A,\
-    \ B, P);\n            return (m == ON_SEGMENT || m == ONLINE_BACK || m == ONLINE_FRONT)\
-    \ ? Inclusion::ON : Inclusion::OUT;\n        }\n    };\n}\n#line 4 \"Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    bool is_Parallel(const\
-    \ Line<R> &l, const Line<R> &m) {\n        return sign(dot(l.vectorize(), m.vectorize()))\
-    \ == 0;\n    }\n\n    template<typename R>\n    bool is_Orthogonal(const Line<R>\
-    \ &l, const Line<R> &m) {\n        return sign(cross(l.vectorize(), m.vectorize()))\
-    \ == 0;\n    }\n\n    template<typename R>\n    Direction_Relation Parallel_Orthogonal\
-    \ (const Line<R> &l, const Line<R> &m) {\n        if (is_Parallel(l, m)) { return\
-    \ Direction_Relation::ORTHOGONAL; }\n        if (is_Orthogonal(l, m)) { return\
-    \ Direction_Relation::PARALLEL; }\n        return Direction_Relation::CROSS;\n\
-    \    }\n};\n"
-  code: "#pragma once\n\n#include\"../object/Line.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    bool is_Parallel(const Line<R> &l, const Line<R>\
-    \ &m) {\n        return sign(dot(l.vectorize(), m.vectorize())) == 0;\n    }\n\
-    \n    template<typename R>\n    bool is_Orthogonal(const Line<R> &l, const Line<R>\
-    \ &m) {\n        return sign(cross(l.vectorize(), m.vectorize())) == 0;\n    }\n\
-    \n    template<typename R>\n    Direction_Relation Parallel_Orthogonal (const\
-    \ Line<R> &l, const Line<R> &m) {\n        if (is_Parallel(l, m)) { return Direction_Relation::ORTHOGONAL;\
-    \ }\n        if (is_Orthogonal(l, m)) { return Direction_Relation::PARALLEL; }\n\
-    \        return Direction_Relation::CROSS;\n    }\n};\n"
+    \ bit_length(x)); }\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass\
+    \ modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t x;\n\n\
+    \    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n   \
+    \ constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\
+    \u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\n  \
+    \  // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x +=\
+    \ b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint operator+(const\
+    \ modint &x, const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\
+    \n    modint& operator-=(const modint &b){\n        if ((x += Mod - b.x) >= Mod)\
+    \ x -= Mod;\n        return *this;\n    }\n\n    friend modint operator-(const\
+    \ modint &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\
+    \n    modint& operator*=(const modint &b){\n        (x *= b.x) %= Mod;\n     \
+    \   return *this;\n    }\n\n    friend modint operator*(const modint &x, const\
+    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const int\
+    \ &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
+    \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
+    \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
+    \     int64_t a = x, b = Mod;\n\n        while (b > 0) {\n            int64_t\
+    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
+    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
+    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
+    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
+    \ &a, const int &b) { return a.x == mod(b, Mod); }\n    friend bool operator!=(const\
+    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
+    \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
+    \u529B\n    friend ostream &operator<<(ostream &os, const modint &a) { return\
+    \ os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n    bool is_member(ll\
+    \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
+    \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
+    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"\
+    Segment_Tree/Dual_Segment_Tree.hpp\"\n\n#line 4 \"Segment_Tree/Dual_Segment_Tree.hpp\"\
+    \n\ntemplate <typename F>\nclass Dual_Segment_Tree {\n    private:\n    function<F(F,\
+    \ F)> comp;\n    F id;\n    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int\
+    \ m) {\n        if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] =\
+    \ comp(lazy[m], lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m],\
+    \ lazy[(m << 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
+    \ m) {\n        for (int h = bit_length(m) - 1; h > 0; --h) {\n            propagate_at(m\
+    \ >> h);\n        }\n    }\n\n    public:\n    Dual_Segment_Tree(int N, std::function<F(F,\
+    \ F)> comp, const F& id): N(N), comp(comp), id(id) {\n        int d = max(1, (int)bit_length(N\
+    \ - 1));\n        int k = 1 << d;\n\n        lazy.resize(2 * k, id);\n       \
+    \ size = k;\n    }\n\n    void action(int l, int r, const F &alpha, bool left_closed\
+    \ = true, bool right_closed = true) {\n        int L = l + size + (left_closed\
+    \ ? 0 : 1);\n        int R = r + size + (right_closed ? 1 : 0);\n\n        //\
+    \ \u8449\u30CE\u30FC\u30C9\u3088\u308A\u4E0A\u306E\u4F1D\u642C\u304C\u5FC5\u8981\
+    \u306A\u30CE\u30FC\u30C9\u306E\u6700\u5927\u756A\u53F7\u3092\u6C42\u3081\u308B\
+    \u51E6\u7406\n        int L0 = -1, R0 = -1;\n        int X = L, Y = R - 1; //\
+    \ R\u306F\u958B\u533A\u9593\u306A\u306E\u3067 R-1\n        \n        while (X\
+    \ < Y) {\n            if (X & 1) {\n                L0 = max(L0, X);\n       \
+    \         X++;\n            }\n\n            if ((Y & 1) == 0) {\n           \
+    \     R0 = max(R0, Y);\n                Y--;\n            }\n\n            X >>=\
+    \ 1;\n            Y >>= 1;\n        }\n\n        L0 = max(L0, X);\n        R0\
+    \ = max(R0, Y);\n\n        if (L0 != -1) { propagate_above(L0); }\n        if\
+    \ (R0 != -1) { propagate_above(R0); }\n\n        while (L < R) {\n           \
+    \ if (L & 1) {\n                lazy[L] = comp(alpha, lazy[L]);\n            \
+    \    L++;\n            }\n\n            if (R & 1) {\n                R--;\n \
+    \               lazy[R] = comp(alpha, lazy[R]);\n            }\n\n           \
+    \ L >>= 1;\n            R >>= 1;\n        }\n    }\n\n    inline void refresh()\
+    \ {\n        for (int m = 1; m < size; ++m) { propagate_at(m); }\n    }\n\n  \
+    \  inline F get(int k) {\n        int m = k + size;\n        propagate_above(m);\n\
+    \        return lazy[m];\n    }\n\n    inline const F operator[](const int index)\
+    \ { return get(index); }\n};\n#line 5 \"verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\nusing F = pair<mint, mint>;\n\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> a(N);\n\n    for (int i =\
+    \ 0; i < N; i++) {\n        int _a; scanf(\"%d\", &_a);\n        a[i] = _a;\n\
+    \    }\n\n    auto comp = [](const F &f, const F &g) -> F {\n        return {\
+    \ f.first * g.first, f.second + f.first * g.second };\n    };\n\n    Dual_Segment_Tree<F>\
+    \ D(N, comp, {1, 0});\n    for (int q = 0; q < Q; ++q) {\n        int t; scanf(\"\
+    %d\", &t);\n\n        if (t == 0) {\n            int l, r, _b, _c; scanf(\"%d%d%d%d\"\
+    , &l, &r, &_b, &_c);\n            mint b(_b), c(_c);\n            D.action(l,\
+    \ r - 1, {b, c});\n        } else if (t == 1) {\n            int i; scanf(\"%d\"\
+    , &i);\n            auto &[b, c] = D[i];\n            cout << b * a[i] + c <<\
+    \ \"\\n\";\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
+    \n\n#include\"../../../Algebra/modint.hpp\"\n#include\"../../../Segment_Tree/Dual_Segment_Tree.hpp\"\
+    \n\nusing mint = modint<998244353>;\nusing F = pair<mint, mint>;\n\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> a(N);\n\n    for (int i =\
+    \ 0; i < N; i++) {\n        int _a; scanf(\"%d\", &_a);\n        a[i] = _a;\n\
+    \    }\n\n    auto comp = [](const F &f, const F &g) -> F {\n        return {\
+    \ f.first * g.first, f.second + f.first * g.second };\n    };\n\n    Dual_Segment_Tree<F>\
+    \ D(N, comp, {1, 0});\n    for (int q = 0; q < Q; ++q) {\n        int t; scanf(\"\
+    %d\", &t);\n\n        if (t == 0) {\n            int l, r, _b, _c; scanf(\"%d%d%d%d\"\
+    , &l, &r, &_b, &_c);\n            mint b(_b), c(_c);\n            D.action(l,\
+    \ r - 1, {b, c});\n        } else if (t == 1) {\n            int i; scanf(\"%d\"\
+    , &i);\n            auto &[b, c] = D[i];\n            cout << b * a[i] + c <<\
+    \ \"\\n\";\n        }\n    }\n}\n"
   dependsOn:
-  - Geometry/object/Line.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
+  - Algebra/modint.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
-  isVerificationFile: false
-  path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  requiredBy:
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
-  - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Circumcenter.hpp
-  timestamp: '2025-09-27 14:54:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
-documentation_of: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Segment_Tree/Dual_Segment_Tree.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  requiredBy: []
+  timestamp: '2025-10-25 11:42:21+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
 layout: document
 redirect_from:
-- /library/Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-- /library/Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp.html
-title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+- /verify/verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp.html
+title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
 ---

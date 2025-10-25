@@ -421,39 +421,39 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Modulo_Polynomial.hpp
   requiredBy:
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Partition_P.hpp
   - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Stirling_1st.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2025-10-05 01:19:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
 documentation_of: Modulo_Polynomial/Modulo_Polynomial.hpp
 layout: document
 redirect_from:

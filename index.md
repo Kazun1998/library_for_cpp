@@ -291,6 +291,9 @@ data:
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: Segment_Tree/Dual_Segment_Tree.hpp
+      title: "\u53CC\u5BFE Segment Tree"
+    - icon: ':heavy_check_mark:'
       path: Segment_Tree/Lazy_Segment_Tree.hpp
       title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
     - icon: ':heavy_check_mark:'
@@ -429,6 +432,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp

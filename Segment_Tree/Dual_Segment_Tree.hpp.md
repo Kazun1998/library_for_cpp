@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Circle.hpp
-    title: Geometry/object/Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -28,38 +19,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Geometry/tangent/Common_Tangent_Points.hpp
-    title: Geometry/tangent/Common_Tangent_Points.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-    title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7E.test.cpp
-    title: verify/aizu_online_judge/cgl/7E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7F.test.cpp
-    title: verify/aizu_online_judge/cgl/7F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7G.test.cpp
-    title: verify/aizu_online_judge/cgl/7G.test.cpp
+    path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\
-    \n\n#line 2 \"Geometry/object/Circle.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
-    \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
-    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
-    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
-    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+  bundledCode: "#line 2 \"Segment_Tree/Dual_Segment_Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
+    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
     #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
     #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
     \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
@@ -168,87 +145,69 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n \
-    \   using Real = double long;\n    const Real epsilon = 1e-9;\n    const Real\
-    \ pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion { OUT = -1, ON\
-    \ = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL = 1, ORTHOGONAL\
-    \ = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return r <= -epsilon\
-    \ ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real &a, const Real\
-    \ &b) { return sign(a - b) == 0; }\n    inline int compare(const Real &a, const\
-    \ Real &b) { return sign(b - a); }\n\n    inline int sign(const ll &r) { return\
-    \ r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll &a, const ll &b)\
-    \ { return sign(a - b) == 0; }\n    inline int compare(const ll &a, const ll &b)\
-    \ { return sign(b - a); }\n\n    inline int sign(const int &r) { return r < 0\
-    \ ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a, const int &b) {\
-    \ return sign(a - b) == 0; }\n    inline int compare(const int &a, const int &b)\
-    \ { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\n\nnamespace\
-    \ geometry {\n    template<typename R>\n    class Point {\n        public:\n \
-    \       R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n        Point(R\
-    \ _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n        Point& operator+=(const\
-    \ Point &B){\n            x += B.x;\n            y += B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator+(const Point &P, const Point\
-    \ &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\n        Point& operator-=(const\
-    \ Point &B){\n            x -= B.x;\n            y -= B.y;\n            return\
-    \ *this;\n        }\n\n        friend Point operator-(const Point &P, const Point\
-    \ &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\n\
-    \        Point& operator*=(const R &a){\n            x *= a;\n            y *=\
-    \ a;\n            return *this;\n        }\n\n        friend Point operator*(const\
-    \ Point &P, const R &a) { return Point(P) *= a; }\n        friend Point operator*(const\
-    \ R &a, const Point &P) { return Point(P) *= a; }\n\n        Point& operator/=(const\
-    \ R &a){\n            x /= a;\n            y /= a;\n            return *this;\n\
-    \        }\n\n        friend Point operator/(const Point &P, const R &a) { return\
-    \ Point(P) /= a; }\n\n        Point& operator*=(const Point &P){\n           \
-    \ R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n            x = x1;\n   \
-    \         y = y1;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const Point<R> &Q) { return Point(P) *= Q; }\n\n \
-    \       friend istream& operator>>(istream &is, Point &P) {\n            R a,\
-    \ b;\n            is >> a >> b;\n            P = Point(a, b);\n            return\
-    \ is;\n        }\n\n        friend ostream& operator<<(ostream &os, const Point\
-    \ &P) {\n            return os << P.x << \" \" << P.y;\n        }\n\n        inline\
-    \ R norm_2() const { return x * x + y * y; }\n        inline double norm() const\
-    \ { return sqrt(norm_2()); }\n        inline R dot(const Point B) const { return\
-    \ x * B.x + y * B.y; }\n        inline R det(const Point B) const { return x *\
-    \ B.y - y * B.x; }\n\n        inline Point<R> normalize() const { return *this\
-    \ / norm(); }\n        inline Point<R> normal() const { return Point(-y, x); }\n\
-    \n        inline Point<Real> rotate(double theta) const {\n            Real alpha\
-    \ = sin(theta), beta = cos(theta);\n            Real s = beta * x - alpha * y,\
-    \ t = alpha * x + beta * y;\n            return Point(s, t);\n        }\n    };\n\
-    \n    template<typename R>\n    bool compare_x(const Point<R> &A, const Point<R>\
-    \ &B) { return equal(A.x, B.x) ? A.y < B.y : A.x < B.x; }\n\n    template<typename\
-    \ R>\n    bool compare_y(const Point<R> &A, const Point<R> &B) { return equal(A.y,\
-    \ B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename R>\n    inline bool\
-    \ operator==(const Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) &&\
-    \ equal(A.y, B.y); }\n\n    template<typename R>\n    inline bool operator!=(const\
-    \ Point<R> &A, const Point<R> &B) { return !(A == B); }\n\n    template<typename\
-    \ R>\n    inline R dot(const Point<R> &A, const Point<R> &B) { return A.x * B.x\
-    \ + A.y * B.y; }\n\n    template<typename R>\n    inline R cross(const Point<R>\
-    \ &A, const Point<R> &B) { return A.x * B.y - A.y * B.x; }\n\n    template<typename\
-    \ R>\n    inline R norm_2(const Point<R> &P) { return dot(P, P); }\n\n    template<typename\
-    \ R>\n    inline double norm(const Point<R> &P) { return sqrt(norm_2(P)); }\n\n\
-    \    template<typename R>\n    inline Real arg(const Point<R> &P) { return atan2(P.y,\
-    \ P.x); }\n}\n#line 4 \"Geometry/object/Circle.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    class Circle {\n        public:\n        Point<R>\
-    \ center;\n        R radius;\n\n        public:\n        Circle() = default;\n\
-    \        Circle(const Point<R> &_center, const R &_radius): center(_center), radius(_radius)\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Circle<R> &C) { return\
-    \ pi * C.radius * C.radius; }\n}\n#line 4 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    vector<Point<Real>> Intersection(const\
-    \ Circle<R> &C, const Circle<R> &D) {\n        Point<R> v = D.center - C.center;\n\
-    \        Point<R> e = v.normalize();\n        Point<R> f = e.normal();\n\n   \
-    \     R d= v.norm(), r = C.radius, s = D.radius;\n        R x = (d * d + r * r\
-    \ - s * s) / (2 * d), y = sqrt(r * r - x * x);\n        return { C.center + x\
-    \ * e + y * f, C.center + x * e - y * f };\n    }\n}\n"
-  code: "#pragma once\n\n#include\"../object/Circle.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    vector<Point<Real>> Intersection(const Circle<R>\
-    \ &C, const Circle<R> &D) {\n        Point<R> v = D.center - C.center;\n     \
-    \   Point<R> e = v.normalize();\n        Point<R> f = e.normal();\n\n        R\
-    \ d= v.norm(), r = C.radius, s = D.radius;\n        R x = (d * d + r * r - s *\
-    \ s) / (2 * d), y = sqrt(r * r - x * x);\n        return { C.center + x * e +\
-    \ y * f, C.center + x * e - y * f };\n    }\n}\n"
+    \ bit_length(x)); }\n#line 4 \"Segment_Tree/Dual_Segment_Tree.hpp\"\n\ntemplate\
+    \ <typename F>\nclass Dual_Segment_Tree {\n    private:\n    function<F(F, F)>\
+    \ comp;\n    F id;\n    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int\
+    \ m) {\n        if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] =\
+    \ comp(lazy[m], lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m],\
+    \ lazy[(m << 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
+    \ m) {\n        for (int h = bit_length(m) - 1; h > 0; --h) {\n            propagate_at(m\
+    \ >> h);\n        }\n    }\n\n    public:\n    Dual_Segment_Tree(int N, std::function<F(F,\
+    \ F)> comp, const F& id): N(N), comp(comp), id(id) {\n        int d = max(1, (int)bit_length(N\
+    \ - 1));\n        int k = 1 << d;\n\n        lazy.resize(2 * k, id);\n       \
+    \ size = k;\n    }\n\n    void action(int l, int r, const F &alpha, bool left_closed\
+    \ = true, bool right_closed = true) {\n        int L = l + size + (left_closed\
+    \ ? 0 : 1);\n        int R = r + size + (right_closed ? 1 : 0);\n\n        //\
+    \ \u8449\u30CE\u30FC\u30C9\u3088\u308A\u4E0A\u306E\u4F1D\u642C\u304C\u5FC5\u8981\
+    \u306A\u30CE\u30FC\u30C9\u306E\u6700\u5927\u756A\u53F7\u3092\u6C42\u3081\u308B\
+    \u51E6\u7406\n        int L0 = -1, R0 = -1;\n        int X = L, Y = R - 1; //\
+    \ R\u306F\u958B\u533A\u9593\u306A\u306E\u3067 R-1\n        \n        while (X\
+    \ < Y) {\n            if (X & 1) {\n                L0 = max(L0, X);\n       \
+    \         X++;\n            }\n\n            if ((Y & 1) == 0) {\n           \
+    \     R0 = max(R0, Y);\n                Y--;\n            }\n\n            X >>=\
+    \ 1;\n            Y >>= 1;\n        }\n\n        L0 = max(L0, X);\n        R0\
+    \ = max(R0, Y);\n\n        if (L0 != -1) { propagate_above(L0); }\n        if\
+    \ (R0 != -1) { propagate_above(R0); }\n\n        while (L < R) {\n           \
+    \ if (L & 1) {\n                lazy[L] = comp(alpha, lazy[L]);\n            \
+    \    L++;\n            }\n\n            if (R & 1) {\n                R--;\n \
+    \               lazy[R] = comp(alpha, lazy[R]);\n            }\n\n           \
+    \ L >>= 1;\n            R >>= 1;\n        }\n    }\n\n    inline void refresh()\
+    \ {\n        for (int m = 1; m < size; ++m) { propagate_at(m); }\n    }\n\n  \
+    \  inline F get(int k) {\n        int m = k + size;\n        propagate_above(m);\n\
+    \        return lazy[m];\n    }\n\n    inline const F operator[](const int index)\
+    \ { return get(index); }\n};\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate <typename\
+    \ F>\nclass Dual_Segment_Tree {\n    private:\n    function<F(F, F)> comp;\n \
+    \   F id;\n    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int\
+    \ m) {\n        if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] =\
+    \ comp(lazy[m], lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m],\
+    \ lazy[(m << 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
+    \ m) {\n        for (int h = bit_length(m) - 1; h > 0; --h) {\n            propagate_at(m\
+    \ >> h);\n        }\n    }\n\n    public:\n    Dual_Segment_Tree(int N, std::function<F(F,\
+    \ F)> comp, const F& id): N(N), comp(comp), id(id) {\n        int d = max(1, (int)bit_length(N\
+    \ - 1));\n        int k = 1 << d;\n\n        lazy.resize(2 * k, id);\n       \
+    \ size = k;\n    }\n\n    void action(int l, int r, const F &alpha, bool left_closed\
+    \ = true, bool right_closed = true) {\n        int L = l + size + (left_closed\
+    \ ? 0 : 1);\n        int R = r + size + (right_closed ? 1 : 0);\n\n        //\
+    \ \u8449\u30CE\u30FC\u30C9\u3088\u308A\u4E0A\u306E\u4F1D\u642C\u304C\u5FC5\u8981\
+    \u306A\u30CE\u30FC\u30C9\u306E\u6700\u5927\u756A\u53F7\u3092\u6C42\u3081\u308B\
+    \u51E6\u7406\n        int L0 = -1, R0 = -1;\n        int X = L, Y = R - 1; //\
+    \ R\u306F\u958B\u533A\u9593\u306A\u306E\u3067 R-1\n        \n        while (X\
+    \ < Y) {\n            if (X & 1) {\n                L0 = max(L0, X);\n       \
+    \         X++;\n            }\n\n            if ((Y & 1) == 0) {\n           \
+    \     R0 = max(R0, Y);\n                Y--;\n            }\n\n            X >>=\
+    \ 1;\n            Y >>= 1;\n        }\n\n        L0 = max(L0, X);\n        R0\
+    \ = max(R0, Y);\n\n        if (L0 != -1) { propagate_above(L0); }\n        if\
+    \ (R0 != -1) { propagate_above(R0); }\n\n        while (L < R) {\n           \
+    \ if (L & 1) {\n                lazy[L] = comp(alpha, lazy[L]);\n            \
+    \    L++;\n            }\n\n            if (R & 1) {\n                R--;\n \
+    \               lazy[R] = comp(alpha, lazy[R]);\n            }\n\n           \
+    \ L >>= 1;\n            R >>= 1;\n        }\n    }\n\n    inline void refresh()\
+    \ {\n        for (int m = 1; m < size; ++m) { propagate_at(m); }\n    }\n\n  \
+    \  inline F get(int k) {\n        int m = k + size;\n        propagate_above(m);\n\
+    \        return lazy[m];\n    }\n\n    inline const F operator[](const int index)\
+    \ { return get(index); }\n};"
   dependsOn:
-  - Geometry/object/Circle.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -256,20 +215,70 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   isVerificationFile: false
-  path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
-  requiredBy:
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  timestamp: '2025-09-27 14:54:24+09:00'
+  path: Segment_Tree/Dual_Segment_Tree.hpp
+  requiredBy: []
+  timestamp: '2025-10-25 11:41:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
-documentation_of: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+documentation_of: Segment_Tree/Dual_Segment_Tree.hpp
 layout: document
-redirect_from:
-- /library/Geometry/intersection/Intersection_Circle_and_Circle.hpp
-- /library/Geometry/intersection/Intersection_Circle_and_Circle.hpp.html
-title: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+title: "\u53CC\u5BFE Segment Tree"
 ---
+
+## Outline
+
+モノイド $F = (F, \circ, 1_F)$ 上の列 $A$ に対する 区間更新, 一点取得を得意とするデータ構造.
+
+"双対" とついているのは, [Segment Tree](Segment_Tree.hpp) が一点更新と区間積取得を得意としているのに対して区間と一点が入れ替わっているからである.
+
+また, 双対 Segment Tree は, [遅延評価 Segment Tree](Lazy_Segment_Tree.hpp) の作用素部分のみを抜き出したデータ構造とも言える.
+
+## Contents
+
+### Constructer
+
+```cpp
+Dual_Segment_Tree(int N, std::function<F(F, F)> comp, const F& id): N(N), comp(comp), id(id)
+```
+
+- 長さが $N$ の各項が $1_F$ の列で初期化する.
+- $\operatorname{comp}: F \times F \to F; (\alpha, \beta) \mapsto \alpha \circ \beta$ : $F$ 上の二項演算
+- $\mathrm{id}$ : $F$ の単位元 $1_F$.
+- **計算量**
+  * $O(N)$ Time.
+
+### action
+
+```cpp
+void action(int l, int r, const F &alpha, bool left_closed = true, bool right_closed = true)
+```
+
+- 第 $l$ 要素から第 $r$ 要素に $\alpha \in F$ を作用させる.
+* **引数**
+  * `left_close`: `false` にすると, 左端が開区間になる.
+  * `right_close`: `false` にすると, 右端が開区間になる.
+* **制約**
+  * 積を取る区間が $[0, N)$ に含まれる.
+- **計算量**
+  * $O(\log N)$ Time.
+
+### get
+
+```cpp
+F get(int k)
+```
+
+* 第 $k$ 要素を取得する.
+* **制約**
+  * $0 \leq k \lt N$.
+* **計算量**
+  * $O(\log N)$ 時間.
+
+### subscript operator
+
+```cpp
+F operator[](const int k)
+```
+
+* `get(k)` のエイリアス.

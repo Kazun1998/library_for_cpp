@@ -307,16 +307,16 @@ data:
   isVerificationFile: false
   path: Modulo/Modulo.hpp
   requiredBy:
-  - Math/Montmort_Number.hpp
   - Modulo/Order.hpp
+  - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Composite.hpp
-  - Modulo/Solve.hpp
+  - Math/Montmort_Number.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Modulo/Modulo.hpp

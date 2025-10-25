@@ -101,15 +101,15 @@ data:
   isVerificationFile: false
   path: Integer/Prime.hpp
   requiredBy:
-  - Integer/Miller_Rabin_Primality_Test.hpp
-  - Integer/Euler_Totient.hpp
   - Modulo/Order.hpp
+  - Integer/Euler_Totient.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
   timestamp: '2025-08-15 01:10:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/ntl/1D.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document

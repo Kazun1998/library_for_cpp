@@ -218,6 +218,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/Dual_Segment_Tree.hpp
+    title: "\u53CC\u5BFE Segment Tree"
   - icon: ':warning:'
     path: Sequence/Hamming_Distance.hpp
     title: "Hamming \u8DDD\u96E2"
@@ -312,6 +315,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
@@ -473,150 +479,152 @@ data:
   isVerificationFile: false
   path: template/macro.hpp
   requiredBy:
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  - Modulo_Polynomial/Partition_P.hpp
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Stirling_2nd.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Sequence/Hamming_Distance.hpp
-  - Sequence/Longest_Increasing_Subsequence.hpp
-  - Sequence/Run_Length_Encoding.hpp
-  - template/template.hpp
-  - Geometry/base.hpp
-  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
-  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
-  - Geometry/intersection/Intersection_Circle_and_Line.hpp
-  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
-  - Geometry/projection/Projection_Point_Line.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/object/Line.hpp
-  - Geometry/object/Circle.hpp
-  - Geometry/object/Triangle.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/object/Segment.hpp
-  - Geometry/object/Polygon.hpp
-  - Geometry/utility/Convex_Hull.hpp
-  - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/utility/Argument_Sort.hpp
-  - Geometry/utility/Division_Point.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
-  - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/distance/Distance_Line_and_Point.hpp
-  - Geometry/triangle_center/Centroid.hpp
-  - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Incenter.hpp
-  - Geometry/triangle_center/Incircle.hpp
-  - Geometry/triangle_center/Circumcenter.hpp
-  - Linear_Algebra/Rank.hpp
-  - Linear_Algebra/Reduction.hpp
-  - Linear_Algebra/Field_Matrix.hpp
-  - Algebra/Gaussian_Integer.hpp
-  - Algebra/modint.hpp
-  - Math/Montmort_Number.hpp
-  - Math/Two_SAT.hpp
-  - Math/Floor_Linear_Sum.hpp
-  - Graph/Graph/Connected_Components.hpp
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  - Graph/Graph/Graph.hpp
-  - Graph/Graph/Lowlink.hpp
-  - Integer/Quotients.hpp
-  - Integer/Divisors.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
-  - Binary_Search/Value.hpp
-  - Binary_Search/General_Integer.hpp
-  - Data_Structure/Dual_Heap.hpp
   - Modulo/Order.hpp
+  - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Composite.hpp
   - Modulo/Modulo.hpp
-  - Modulo/Solve.hpp
-  - Convolution/Convolution_Base.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
-  - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Field_Matrix.hpp
+  - Linear_Algebra/Reduction.hpp
+  - template/template.hpp
+  - Data_Structure/Dual_Heap.hpp
   - Convolution/Gcd_Convolution.hpp
+  - Convolution/Bitwise_And_Convolution.hpp
+  - Convolution/Convolution_Base.hpp
+  - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Algebra/Gaussian_Integer.hpp
+  - Algebra/modint.hpp
   - Tree/Generator.hpp
-  - Tree/Tree_DP.hpp
   - Tree/Tree.hpp
   - Tree/Rerooting.hpp
+  - Tree/Tree_DP.hpp
+  - Graph/Graph/Lowlink.hpp
+  - Graph/Graph/Graph.hpp
+  - Graph/Graph/Connected_Components.hpp
+  - Graph/Graph/Two_Edge_Connected_Components.hpp
+  - Integer/Quotients.hpp
+  - Integer/Divisors.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
+  - Sequence/Run_Length_Encoding.hpp
+  - Sequence/Hamming_Distance.hpp
+  - Sequence/Longest_Increasing_Subsequence.hpp
+  - Math/Floor_Linear_Sum.hpp
+  - Math/Montmort_Number.hpp
+  - Math/Two_SAT.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/base.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Division_Point.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/object/Circle.hpp
+  - Geometry/object/Segment.hpp
+  - Geometry/object/Polygon.hpp
+  - Geometry/object/Triangle.hpp
+  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/triangle_center/Centroid.hpp
+  - Geometry/triangle_center/Incenter.hpp
+  - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/projection/Projection_Point_Line.hpp
+  - Modulo_Polynomial/Bell_Number.hpp
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
+  - Modulo_Polynomial/Partition_P.hpp
+  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Stirling_1st.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Binary_Search/General_Integer.hpp
+  - Binary_Search/Value.hpp
+  - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-09-27 09:56:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/grl/3B.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/ntl/1E.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
-  - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/7B.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/3A.test.cpp
-  - verify/aizu_online_judge/cgl/7A.test.cpp
-  - verify/aizu_online_judge/cgl/2B.test.cpp
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
-  - verify/yosupo_library_checker/other/two_sat.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
-  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
-  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
+  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
+  - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
+  - verify/yosupo_library_checker/other/two_sat.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
+  - verify/aizu_online_judge/cgl/7A.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/2B.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
+  - verify/aizu_online_judge/ntl/1E.test.cpp
+  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp

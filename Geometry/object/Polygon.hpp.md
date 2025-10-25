@@ -251,9 +251,9 @@ data:
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/3A.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
 documentation_of: Geometry/object/Polygon.hpp
 layout: document
 redirect_from:

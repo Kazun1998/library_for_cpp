@@ -551,30 +551,30 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Fast_Power_Series.hpp
   requiredBy:
-  - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
+  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Stirling_1st.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2025-10-12 01:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
 documentation_of: Modulo_Polynomial/Fast_Power_Series.hpp
 layout: document
 redirect_from:

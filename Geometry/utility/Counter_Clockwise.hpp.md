@@ -318,34 +318,34 @@ data:
   isVerificationFile: false
   path: Geometry/utility/Counter_Clockwise.hpp
   requiredBy:
-  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
-  - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/projection/Projection_Point_Line.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/intersection/Intersection_Circle_and_Line.hpp
   - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/object/Line.hpp
   - Geometry/utility/Convex_Hull.hpp
   - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
-  - Geometry/reflection/Reflection_Point_Line.hpp
   - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Line.hpp
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/projection/Projection_Point_Line.hpp
   timestamp: '2025-09-27 14:54:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
   - verify/aizu_online_judge/cgl/7D.test.cpp
   - verify/aizu_online_judge/cgl/1B.test.cpp
   - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/2B.test.cpp
-  - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
 documentation_of: Geometry/utility/Counter_Clockwise.hpp
 layout: document
 redirect_from:
