@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':heavy_check_mark:'
@@ -160,9 +160,11 @@ data:
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
     \ get_bits(x, bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Partition_P.hpp\"\
     \n\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int\
-    \ M>\nclass modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t\
-    \ x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n\
-    \    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\
+    \ M>\nclass modint {\n    public:\n    static constexpr int Mod = M; \n    uint64_t\
+    \ x;\n\n    public:\n    static modint raw(int v) {\n        modint a;\n     \
+    \   a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr\
+    \ modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % Mod;\n        if (w < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\
     \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
     \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
     \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
@@ -391,7 +393,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-25 13:51:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp

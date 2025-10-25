@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -346,7 +346,7 @@ data:
   path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
   timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
 layout: document

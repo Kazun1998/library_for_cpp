@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -161,96 +161,98 @@ data:
     \ get_bits(x, bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
     \n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
     \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
-    \    static constexpr int Mod = M; \n    int64_t x;\n\n    public:\n    // \u521D\
-    \u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a):\
-    \ x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
-    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
-    \ operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n   \
-    \     return *this;\n    }\n\n    friend modint operator+(const modint &x, const\
-    \ modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const\
-    \ modint &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return\
-    \ *this;\n    }\n\n    friend modint operator-(const modint &x, const modint &y)\
-    \ { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const\
-    \ modint &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n  \
-    \  friend modint operator*(const modint &x, const modint &y) { return modint(x)\
-    \ *= y; }\n    friend modint operator*(const int &x, const modint &y) { return\
-    \ modint(x) *= y; }\n    friend modint operator*(const ll &x, const modint &y)\
-    \ { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const\
-    \ modint &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const\
-    \ modint &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse()\
-    \ const {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n\
-    \        while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q\
-    \ * b; swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n       \
-    \ assert (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n\
-    \    friend bool operator==(const modint &a, const modint &b) { return (a.x ==\
-    \ b.x); }\n    friend bool operator==(const modint &a, const int &b) { return\
-    \ a.x == safe_mod(b, Mod); }\n    friend bool operator!=(const modint &a, const\
-    \ modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream\
-    \ &operator>>(istream &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x\
-    \ % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend\
-    \ ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n\
-    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
-    \ return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
-    \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
-    \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
-    \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
-    \ { _poly.resize(precision); }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial()\
-    \ = default;\n    Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly,\
-    \ poly.size()) {}\n    Modulo_Polynomial(int precision) : Modulo_Polynomial({},\
-    \ precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\u7FA9\n    public:\n\
-    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial operator-() const\
-    \ {\n        Modulo_Polynomial res(*this);\n        for (auto &a : res.poly) {\
-    \ a = -a; }\n        return res;\n    }\n\n    // \u52A0\u6CD5\n    Modulo_Polynomial&\
-    \ operator+=(const Modulo_Polynomial &P){\n        if (size() < P.size()) { resize(P.size());\
-    \ }\n\n        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] += P[i];\
-    \ }\n        reduce();\n\n        return *this;\n    }\n\n    Modulo_Polynomial&\
-    \ operator+=(const mint &a){\n        if (poly.empty()) { resize(1); }\n     \
-    \   poly[0] += a;\n        reduce();\n\n        return *this;\n    }\n\n    friend\
-    \ Modulo_Polynomial operator+(const Modulo_Polynomial &lhs, const Modulo_Polynomial\
-    \ &rhs) { return Modulo_Polynomial(lhs) += rhs; }\n    Modulo_Polynomial operator+(const\
-    \ mint &a) const { return Modulo_Polynomial(*this) += a; }\n\n    // \u6E1B\u6CD5\
-    \n    Modulo_Polynomial& operator-=(const Modulo_Polynomial &P){\n        if (size()\
+    \    static constexpr int Mod = M; \n    uint64_t x;\n\n    public:\n    static\
+    \ modint raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n\
+    \    }\n\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr\
+    \ modint(int64_t a) {\n        int64_t w = (int64_t)(a) % Mod;\n        if (w\
+    \ < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\
+    \u5143\n    modint operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\
+    \n    modint& operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -=\
+    \ Mod;\n        return *this;\n    }\n\n    friend modint operator+(const modint\
+    \ &x, const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n   \
+    \ modint& operator-=(const modint &b){\n        if ((x += Mod - b.x) >= Mod) x\
+    \ -= Mod;\n        return *this;\n    }\n\n    friend modint operator-(const modint\
+    \ &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n   \
+    \ modint& operator*=(const modint &b){\n        (x *= b.x) %= Mod;\n        return\
+    \ *this;\n    }\n\n    friend modint operator*(const modint &x, const modint &y)\
+    \ { return modint(x) *= y; }\n    friend modint operator*(const int &x, const\
+    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const ll\
+    \ &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n   \
+    \ modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
+    \     int64_t a = x, b = Mod;\n\n        while (b > 0) {\n            int64_t\
+    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
+    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
+    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
+    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
+    \ &a, const int &b) { return a.x == safe_mod(b, Mod); }\n    friend bool operator!=(const\
+    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
+    \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
+    \u529B\n    friend ostream &operator<<(ostream &os, const modint &a) { return\
+    \ os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n    bool is_member(ll\
+    \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
+    \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
+    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"\
+    Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<typename mint>\nclass Modulo_Polynomial\
+    \ {\n    public:\n    int precision = 0;\n\n    public:\n    vector<mint> poly;\n\
+    \    Modulo_Polynomial(vector<mint> _poly, int precision): precision(precision)\
+    \ {\n        if (_poly.size() > precision) { _poly.resize(precision); }\n    \
+    \    poly = _poly;\n    }\n\n    Modulo_Polynomial() = default;\n    Modulo_Polynomial(vector<mint>\
+    \ poly) : Modulo_Polynomial(poly, poly.size()) {}\n    Modulo_Polynomial(int precision)\
+    \ : Modulo_Polynomial({}, precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\
+    \u7FA9\n    public:\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial\
+    \ operator-() const {\n        Modulo_Polynomial res(*this);\n        for (auto\
+    \ &a : res.poly) { a = -a; }\n        return res;\n    }\n\n    // \u52A0\u6CD5\
+    \n    Modulo_Polynomial& operator+=(const Modulo_Polynomial &P){\n        if (size()\
     \ < P.size()) { resize(P.size()); }\n\n        for (int i = 0; i < (int) P.poly.size();\
-    \ i++) { poly[i] -= P[i]; }\n        reduce();\n\n        return *this;\n    }\n\
-    \n    Modulo_Polynomial& operator-=(const mint &a){\n        if (poly.empty())\
-    \ { resize(1); }\n        poly[0] -= a;\n        reduce();\n\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator-(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) -= rhs; }\n  \
-    \  Modulo_Polynomial operator-(const mint &a) const { return Modulo_Polynomial(*this)\
-    \ -= a; }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    Modulo_Polynomial& operator*=(const\
-    \ mint &a){\n        for (int i = 0; i < size(); i++) { poly[i] *= a; }\n    \
-    \    reduce();\n        return *this;\n    }\n\n    Modulo_Polynomial operator*(const\
-    \ mint &a) const {return Modulo_Polynomial(*this) *= a;}\n\n    friend Modulo_Polynomial\
-    \ operator*(const mint &a, const Modulo_Polynomial &P) {\n        Modulo_Polynomial\
-    \ res(P);\n        res *= a;\n        return res;\n    }\n\n    // \u7A4D\n  \
-    \  Modulo_Polynomial& operator*=(const Modulo_Polynomial &P) {\n        int r\
-    \ = min({(int) (poly.size() + P.poly.size()) - 1, precision, P.precision});\n\
-    \        vector<mint> A(r);\n        for (int i = 0; i < size(); i++) {\n    \
-    \        for (int j = 0; j < P.size(); j++) {\n                if (i + j < r)\
-    \ { A[i + j] += poly[i] * P.poly[j]; }\n            }\n        }\n\n        poly\
-    \ = A;\n        precision = min(precision, P.precision);\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator*(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) *= rhs; }\n\n\
-    \    // \u30B9\u30AB\u30E9\u30FC\u9664\u7B97\n    Modulo_Polynomial& operator/=(const\
-    \ mint &a) {\n        mint a_inv = a.inverse();\n        for (int i = 0; i < size();\
-    \ i++) { poly[i] *= a_inv; }\n        return *this;\n    }\n\n    Modulo_Polynomial\
-    \ operator/(const mint &a) const { return Modulo_Polynomial(*this) /= a; }\n\n\
-    \    // index\n    mint operator[] (int k) const { return (k < poly.size()) ?\
-    \ poly[k] : 0; }\n\n    // istream\n    friend istream &operator>>(istream &is,\
-    \ Modulo_Polynomial &P) {\n        P.poly.resize(P.precision);\n        for (int\
-    \ i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }\n        return (is);\n\
-    \    }\n\n    // ostream\n    friend ostream &operator<<(ostream &os, const Modulo_Polynomial\
-    \ &P){\n        for (int i = 0; i < (int)P.poly.size(); i++){\n            os\
-    \ << (i ? \" \" : \"\") << P[i];\n        }\n        return os;\n    }\n\n   \
-    \ // poly \u3067\u4FDD\u6301\u3057\u3066\u3044\u308B\u30D9\u30AF\u30C8\u30EB\u306E\
-    \u9577\u3055\u3092 size \u306B\u3059\u308B.\n    // size = -1 \u306E\u3068\u304D\
-    \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
-    \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
-    \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
-    \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
+    \ i++) { poly[i] += P[i]; }\n        reduce();\n\n        return *this;\n    }\n\
+    \n    Modulo_Polynomial& operator+=(const mint &a){\n        if (poly.empty())\
+    \ { resize(1); }\n        poly[0] += a;\n        reduce();\n\n        return *this;\n\
+    \    }\n\n    friend Modulo_Polynomial operator+(const Modulo_Polynomial &lhs,\
+    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) += rhs; }\n  \
+    \  Modulo_Polynomial operator+(const mint &a) const { return Modulo_Polynomial(*this)\
+    \ += a; }\n\n    // \u6E1B\u6CD5\n    Modulo_Polynomial& operator-=(const Modulo_Polynomial\
+    \ &P){\n        if (size() < P.size()) { resize(P.size()); }\n\n        for (int\
+    \ i = 0; i < (int) P.poly.size(); i++) { poly[i] -= P[i]; }\n        reduce();\n\
+    \n        return *this;\n    }\n\n    Modulo_Polynomial& operator-=(const mint\
+    \ &a){\n        if (poly.empty()) { resize(1); }\n        poly[0] -= a;\n    \
+    \    reduce();\n\n        return *this;\n    }\n\n    friend Modulo_Polynomial\
+    \ operator-(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return\
+    \ Modulo_Polynomial(lhs) -= rhs; }\n    Modulo_Polynomial operator-(const mint\
+    \ &a) const { return Modulo_Polynomial(*this) -= a; }\n\n    // \u30B9\u30AB\u30E9\
+    \u30FC\u500D\n    Modulo_Polynomial& operator*=(const mint &a){\n        for (int\
+    \ i = 0; i < size(); i++) { poly[i] *= a; }\n        reduce();\n        return\
+    \ *this;\n    }\n\n    Modulo_Polynomial operator*(const mint &a) const {return\
+    \ Modulo_Polynomial(*this) *= a;}\n\n    friend Modulo_Polynomial operator*(const\
+    \ mint &a, const Modulo_Polynomial &P) {\n        Modulo_Polynomial res(P);\n\
+    \        res *= a;\n        return res;\n    }\n\n    // \u7A4D\n    Modulo_Polynomial&\
+    \ operator*=(const Modulo_Polynomial &P) {\n        int r = min({(int) (poly.size()\
+    \ + P.poly.size()) - 1, precision, P.precision});\n        vector<mint> A(r);\n\
+    \        for (int i = 0; i < size(); i++) {\n            for (int j = 0; j < P.size();\
+    \ j++) {\n                if (i + j < r) { A[i + j] += poly[i] * P.poly[j]; }\n\
+    \            }\n        }\n\n        poly = A;\n        precision = min(precision,\
+    \ P.precision);\n        return *this;\n    }\n\n    friend Modulo_Polynomial\
+    \ operator*(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return\
+    \ Modulo_Polynomial(lhs) *= rhs; }\n\n    // \u30B9\u30AB\u30E9\u30FC\u9664\u7B97\
+    \n    Modulo_Polynomial& operator/=(const mint &a) {\n        mint a_inv = a.inverse();\n\
+    \        for (int i = 0; i < size(); i++) { poly[i] *= a_inv; }\n        return\
+    \ *this;\n    }\n\n    Modulo_Polynomial operator/(const mint &a) const { return\
+    \ Modulo_Polynomial(*this) /= a; }\n\n    // index\n    mint operator[] (int k)\
+    \ const { return (k < poly.size()) ? poly[k] : 0; }\n\n    // istream\n    friend\
+    \ istream &operator>>(istream &is, Modulo_Polynomial &P) {\n        P.poly.resize(P.precision);\n\
+    \        for (int i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }\n   \
+    \     return (is);\n    }\n\n    // ostream\n    friend ostream &operator<<(ostream\
+    \ &os, const Modulo_Polynomial &P){\n        for (int i = 0; i < (int)P.poly.size();\
+    \ i++){\n            os << (i ? \" \" : \"\") << P[i];\n        }\n        return\
+    \ os;\n    }\n\n    // poly \u3067\u4FDD\u6301\u3057\u3066\u3044\u308B\u30D9\u30AF\
+    \u30C8\u30EB\u306E\u9577\u3055\u3092 size \u306B\u3059\u308B.\n    // size = -1\
+    \ \u306E\u3068\u304D\u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B\
+    .\n    void resize(int size = -1) {\n        if (size == -1) { size = this ->\
+    \ precision; }\n        size = min(size, this -> precision);\n        poly.resize(size);\n\
+    \    }\n\n    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
     \ (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }\n    }\n\n   \
@@ -453,8 +455,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Division.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-10-25 13:51:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Division.test.cpp
 layout: document

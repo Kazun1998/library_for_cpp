@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -154,48 +154,50 @@ data:
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
     \ get_bits(x, bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"\
     Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n    static\
-    \ constexpr int Mod = M; \n    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\
-    \n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a): x((a % Mod\
-    \ + Mod) % Mod) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
-    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
-    \ modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n\
-    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
-    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
-    \ &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n\
-    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
-    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
-    \ &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend\
-    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
-    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
-    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
-    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
-    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
-    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
-    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n      \
-    \  while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
-    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
-    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
-    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
-    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
-    \ Mod); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
-    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % Mod + Mod) % Mod;\n\
-    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
-    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod;\
-    \ }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod> x, long long n) {\n\
-    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<Mod>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\
-    \n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\
-    \u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\
-    \u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\
-    \u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\
-    \u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M \u4E0A\
-    \u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192 M:\
-    \ F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\
-    \u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F\
-    \ \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
+    \ constexpr int Mod = M; \n    uint64_t x;\n\n    public:\n    static modint raw(int\
+    \ v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\n    //\
+    \ \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
+    \ a) {\n        int64_t w = (int64_t)(a) % Mod;\n        if (w < 0) { w += Mod;\
+    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
+    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
+    \ operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n   \
+    \     return *this;\n    }\n\n    friend modint operator+(const modint &x, const\
+    \ modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const\
+    \ modint &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return\
+    \ *this;\n    }\n\n    friend modint operator-(const modint &x, const modint &y)\
+    \ { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const\
+    \ modint &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n  \
+    \  friend modint operator*(const modint &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const int &x, const modint &y) { return\
+    \ modint(x) *= y; }\n    friend modint operator*(const ll &x, const modint &y)\
+    \ { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const\
+    \ modint &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const\
+    \ modint &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse()\
+    \ const {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n\
+    \        while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q\
+    \ * b; swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n       \
+    \ assert (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n\
+    \    friend bool operator==(const modint &a, const modint &b) { return (a.x ==\
+    \ b.x); }\n    friend bool operator==(const modint &a, const int &b) { return\
+    \ a.x == safe_mod(b, Mod); }\n    friend bool operator!=(const modint &a, const\
+    \ modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream\
+    \ &operator>>(istream &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x\
+    \ % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend\
+    \ ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n\
+    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
+    \ return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod>\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
+    \ res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
+    \n\n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\
+    \u3059\u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\
+    \u306E\u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\
+    \u3059\u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\
+    \u901F\u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M\
+    \ \u4E0A\u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192\
+    \ M: F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\
+    \u58EB\u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n\
+    * id: F \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
     \ M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\
     \u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\u5408\u6210\u306B\u9589\u3058\u3066\
     \u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E f,g in F \u306B\u5BFE\u3057\
@@ -313,7 +315,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-25 13:51:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':question:'
@@ -32,19 +32,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Modulo_Polynomial/Log.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Partition_P.hpp
     title: "\u5206\u5272\u6570 (P)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
@@ -93,30 +93,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
     title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
     title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
     title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Log.test.cpp
     title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
     title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\n#line\
@@ -237,9 +237,11 @@ data:
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
     \ get_bits(x, bit_length(x)); }\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
     \n\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int\
-    \ M>\nclass modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t\
-    \ x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n\
-    \    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\
+    \ M>\nclass modint {\n    public:\n    static constexpr int Mod = M; \n    uint64_t\
+    \ x;\n\n    public:\n    static modint raw(int v) {\n        modint a;\n     \
+    \   a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr\
+    \ modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % Mod;\n        if (w < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\
     \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
     \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
     \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
@@ -569,8 +571,8 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-10-25 13:51:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp

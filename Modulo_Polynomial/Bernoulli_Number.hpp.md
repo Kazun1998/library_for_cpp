@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Modulo_Polynomial/Log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':question:'
@@ -168,39 +168,41 @@ data:
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
     \ bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\
     \n\ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int Mod\
-    \ = M; \n    int64_t x;\n\n    public:\n    // \u521D\u671F\u5316\n    constexpr\
-    \ modint(): x(0) {}\n    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod)\
-    \ {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const {\
-    \ return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint\
-    \ &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\
-    \n    friend modint operator+(const modint &x, const modint &y) { return modint(x)\
-    \ += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n \
-    \       if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n        while (b\
-    \ > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a, b);\n\
-    \            s -= q * t; swap(s, t);\n        }\n\n        assert (a == 1);\n\n\
-    \        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const\
-    \ modint &a, const modint &b) { return (a.x == b.x); }\n    friend bool operator==(const\
-    \ modint &a, const int &b) { return a.x == safe_mod(b, Mod); }\n    friend bool\
-    \ operator!=(const modint &a, const modint &b) { return (a.x != b.x); }\n\n  \
-    \  // \u5165\u529B\n    friend istream &operator>>(istream &is, modint &a) {\n\
-    \        is >> a.x;\n        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n\
-    \    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
-    \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
-    \ }\n    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\
-    \ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod> x, long long n) {\n    if (n\
-    \ < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<Mod>(1);\n  \
-    \  for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n \
-    \   }\n\n    return res;\n}\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
+    \ = M; \n    uint64_t x;\n\n    public:\n    static modint raw(int v) {\n    \
+    \    modint a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\
+    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n \
+    \       int64_t w = (int64_t)(a) % Mod;\n        if (w < 0) { w += Mod; }\n  \
+    \      x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
+    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
+    \ modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n        return *this;\n\
+    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
+    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
+    \ &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n\
+    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
+    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
+    \ &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend\
+    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
+    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
+    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
+    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
+    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n      \
+    \  while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
+    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
+    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
+    \ Mod); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
+    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % Mod + Mod) % Mod;\n\
+    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
+    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod;\
+    \ }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod> x, long long n) {\n\
+    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<Mod>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
     \n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
     \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
     \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
@@ -489,7 +491,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Bernoulli_Number.hpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-25 13:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp

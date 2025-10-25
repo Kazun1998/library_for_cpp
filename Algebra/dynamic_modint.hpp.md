@@ -1,12 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Algebra/modint.hpp
-    title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: Segment_Tree/Dual_Segment_Tree.hpp
-    title: "\u53CC\u5BFE Segment Tree"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -28,23 +22,18 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
-    links:
-    - https://judge.yosupo.jp/problem/range_affine_point_get
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n\
-    \n#line 2 \"Algebra/modint.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
-    \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
-    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
-    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
-    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    links: []
+  bundledCode: "#line 2 \"Algebra/dynamic_modint.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
+    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
     #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
     #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
     \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
@@ -153,116 +142,109 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass\
-    \ modint {\n    public:\n    static constexpr int Mod = M; \n    uint64_t x;\n\
-    \n    public:\n    static modint raw(int v) {\n        modint a;\n        a.x\
-    \ = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % Mod;\n        if (w < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\
-    \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
-    \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
-    \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
-    \ operator+(const modint &x, const modint &y) { return modint(x) += y; }\n\n \
-    \   // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n        if ((x\
-    \ += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
-    \ modint operator-(const modint &x, const modint &y) { return modint(x) -= y;\
-    \ }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n       \
-    \ (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint operator*(const\
-    \ modint &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
-    \ int &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
-    \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
-    \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
-    \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
-    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
-    \     int64_t a = x, b = Mod;\n\n        while (b > 0) {\n            int64_t\
-    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
-    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
-    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
-    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
-    \ &a, const int &b) { return a.x == safe_mod(b, Mod); }\n    friend bool operator!=(const\
-    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
-    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
-    \        a.x = (a.x % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\
-    \u529B\n    friend ostream &operator<<(ostream &os, const modint &a) { return\
-    \ os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n    bool is_member(ll\
-    \ a) const { return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod>\
-    \ pow(modint<Mod> x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse();\
-    \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
-    \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"\
-    Segment_Tree/Dual_Segment_Tree.hpp\"\n\n#line 4 \"Segment_Tree/Dual_Segment_Tree.hpp\"\
-    \n\ntemplate <typename F>\nclass Dual_Segment_Tree {\n    private:\n    function<F(F,\
-    \ F)> comp;\n    F id;\n    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int\
-    \ m) {\n        if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] =\
-    \ comp(lazy[m], lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m],\
-    \ lazy[(m << 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
-    \ m) {\n        for (int h = bit_length(m) - 1; h > 0; --h) {\n            propagate_at(m\
-    \ >> h);\n        }\n    }\n\n    public:\n    Dual_Segment_Tree(int N, std::function<F(F,\
-    \ F)> comp, const F& id): N(N), comp(comp), id(id) {\n        int d = max(1, (int)bit_length(N\
-    \ - 1));\n        int k = 1 << d;\n\n        lazy.resize(2 * k, id);\n       \
-    \ size = k;\n    }\n\n    void action(int l, int r, const F &alpha, bool left_closed\
-    \ = true, bool right_closed = true) {\n        int L = l + size + (left_closed\
-    \ ? 0 : 1);\n        int R = r + size + (right_closed ? 1 : 0);\n\n        //\
-    \ \u8449\u30CE\u30FC\u30C9\u3088\u308A\u4E0A\u306E\u4F1D\u642C\u304C\u5FC5\u8981\
-    \u306A\u30CE\u30FC\u30C9\u306E\u6700\u5927\u756A\u53F7\u3092\u6C42\u3081\u308B\
-    \u51E6\u7406\n        int L0 = -1, R0 = -1;\n        int X = L, Y = R - 1; //\
-    \ R\u306F\u958B\u533A\u9593\u306A\u306E\u3067 R-1\n        \n        while (X\
-    \ < Y) {\n            if (X & 1) {\n                L0 = max(L0, X);\n       \
-    \         X++;\n            }\n\n            if ((Y & 1) == 0) {\n           \
-    \     R0 = max(R0, Y);\n                Y--;\n            }\n\n            X >>=\
-    \ 1;\n            Y >>= 1;\n        }\n\n        L0 = max(L0, X);\n        R0\
-    \ = max(R0, Y);\n\n        if (L0 != -1) { propagate_above(L0); }\n        if\
-    \ (R0 != -1) { propagate_above(R0); }\n\n        while (L < R) {\n           \
-    \ if (L & 1) {\n                lazy[L] = comp(alpha, lazy[L]);\n            \
-    \    L++;\n            }\n\n            if (R & 1) {\n                R--;\n \
-    \               lazy[R] = comp(alpha, lazy[R]);\n            }\n\n           \
-    \ L >>= 1;\n            R >>= 1;\n        }\n    }\n\n    inline void refresh()\
-    \ {\n        for (int m = 1; m < size; ++m) { propagate_at(m); }\n    }\n\n  \
-    \  inline F get(int k) {\n        int m = k + size;\n        propagate_above(m);\n\
-    \        return lazy[m];\n    }\n\n    inline const F operator[](const int index)\
-    \ { return get(index); }\n};\n#line 5 \"verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\nusing F = pair<mint, mint>;\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> a(N);\n\n    for (int i =\
-    \ 0; i < N; i++) {\n        int _a; scanf(\"%d\", &_a);\n        a[i] = _a;\n\
-    \    }\n\n    auto comp = [](const F &f, const F &g) -> F {\n        return {\
-    \ f.first * g.first, f.second + f.first * g.second };\n    };\n\n    Dual_Segment_Tree<F>\
-    \ D(N, comp, {1, 0});\n    for (int q = 0; q < Q; ++q) {\n        int t; scanf(\"\
-    %d\", &t);\n\n        if (t == 0) {\n            int l, r, _b, _c; scanf(\"%d%d%d%d\"\
-    , &l, &r, &_b, &_c);\n            mint b(_b), c(_c);\n            D.action(l,\
-    \ r - 1, {b, c});\n        } else if (t == 1) {\n            int i; scanf(\"%d\"\
-    , &i);\n            auto &[b, c] = D[i];\n            cout << b * a[i] + c <<\
-    \ \"\\n\";\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
-    \n\n#include\"../../../Algebra/modint.hpp\"\n#include\"../../../Segment_Tree/Dual_Segment_Tree.hpp\"\
-    \n\nusing mint = modint<998244353>;\nusing F = pair<mint, mint>;\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> a(N);\n\n    for (int i =\
-    \ 0; i < N; i++) {\n        int _a; scanf(\"%d\", &_a);\n        a[i] = _a;\n\
-    \    }\n\n    auto comp = [](const F &f, const F &g) -> F {\n        return {\
-    \ f.first * g.first, f.second + f.first * g.second };\n    };\n\n    Dual_Segment_Tree<F>\
-    \ D(N, comp, {1, 0});\n    for (int q = 0; q < Q; ++q) {\n        int t; scanf(\"\
-    %d\", &t);\n\n        if (t == 0) {\n            int l, r, _b, _c; scanf(\"%d%d%d%d\"\
-    , &l, &r, &_b, &_c);\n            mint b(_b), c(_c);\n            D.action(l,\
-    \ r - 1, {b, c});\n        } else if (t == 1) {\n            int i; scanf(\"%d\"\
-    , &i);\n            auto &[b, c] = D[i];\n            cout << b * a[i] + c <<\
-    \ \"\\n\";\n        }\n    }\n}\n"
+    \ bit_length(x)); }\n#line 4 \"Algebra/dynamic_modint.hpp\"\n\ntemplate<int id>\n\
+    class dynamic_modint {\n    public:\n    uint64_t x;\n    static int _mod;\n\n\
+    \    static void set_mod(const int m) { _mod = m; } \n    static int mod() { return\
+    \ _mod; }\n\n    public:\n    static dynamic_modint raw(int v) {\n        dynamic_modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n\
+    \    constexpr dynamic_modint(): x(0) {}\n    constexpr dynamic_modint(int64_t\
+    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
+    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint\
+    \ operator-() const { return dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n  \
+    \  dynamic_modint& operator+=(const dynamic_modint &b){\n        if ((x += b.x)\
+    \ >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend dynamic_modint\
+    \ operator+(const dynamic_modint &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ += y; }\n\n    // \u6E1B\u6CD5\n    dynamic_modint& operator-=(const dynamic_modint\
+    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
+    \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
+    \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
+    \ dynamic_modint operator*(const int &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ *= y; }\n    friend dynamic_modint operator*(const ll &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) *= y; }\n\n    // \u9664\u6CD5\n    dynamic_modint&\
+    \ operator/=(const dynamic_modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend dynamic_modint operator/(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) /= y; }\n\n    dynamic_modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return dynamic_modint(s);\n    }\n\n    // \u6BD4\u8F03\
+    \n    friend bool operator==(const dynamic_modint &a, const dynamic_modint &b)\
+    \ { return (a.x == b.x); }\n    friend bool operator==(const dynamic_modint &a,\
+    \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
+    \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
+    \ &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n  \
+    \      return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const dynamic_modint &a) { return os << a.x; }\n\n    bool is_zero() const\
+    \ { return x == 0; }\n    bool is_member(ll a) const { return x == (a % mod()\
+    \ + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod =\
+    \ 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long long\
+    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = dynamic_modint<id>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<int id>\n\
+    class dynamic_modint {\n    public:\n    uint64_t x;\n    static int _mod;\n\n\
+    \    static void set_mod(const int m) { _mod = m; } \n    static int mod() { return\
+    \ _mod; }\n\n    public:\n    static dynamic_modint raw(int v) {\n        dynamic_modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n\
+    \    constexpr dynamic_modint(): x(0) {}\n    constexpr dynamic_modint(int64_t\
+    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
+    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint\
+    \ operator-() const { return dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n  \
+    \  dynamic_modint& operator+=(const dynamic_modint &b){\n        if ((x += b.x)\
+    \ >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend dynamic_modint\
+    \ operator+(const dynamic_modint &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ += y; }\n\n    // \u6E1B\u6CD5\n    dynamic_modint& operator-=(const dynamic_modint\
+    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
+    \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
+    \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
+    \ dynamic_modint operator*(const int &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ *= y; }\n    friend dynamic_modint operator*(const ll &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) *= y; }\n\n    // \u9664\u6CD5\n    dynamic_modint&\
+    \ operator/=(const dynamic_modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend dynamic_modint operator/(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) /= y; }\n\n    dynamic_modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return dynamic_modint(s);\n    }\n\n    // \u6BD4\u8F03\
+    \n    friend bool operator==(const dynamic_modint &a, const dynamic_modint &b)\
+    \ { return (a.x == b.x); }\n    friend bool operator==(const dynamic_modint &a,\
+    \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
+    \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
+    \ &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n  \
+    \      return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const dynamic_modint &a) { return os << a.x; }\n\n    bool is_zero() const\
+    \ { return x == 0; }\n    bool is_member(ll a) const { return x == (a % mod()\
+    \ + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod =\
+    \ 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long long\
+    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = dynamic_modint<id>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n\n"
   dependsOn:
-  - Algebra/modint.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Segment_Tree/Dual_Segment_Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  isVerificationFile: false
+  path: Algebra/dynamic_modint.hpp
   requiredBy: []
-  timestamp: '2025-10-25 13:51:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-10-25 23:27:54+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+documentation_of: Algebra/dynamic_modint.hpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+- /library/Algebra/dynamic_modint.hpp
+- /library/Algebra/dynamic_modint.hpp.html
+title: Algebra/dynamic_modint.hpp
 ---

@@ -26,34 +26,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: Modulo_Polynomial/Calculus.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Modulo_Polynomial/Log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Partition_P.hpp
     title: "\u5206\u5272\u6570 (P)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
@@ -120,33 +120,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
     title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
     title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
     title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Log.test.cpp
     title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
     title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Algebra/modint.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -266,20 +266,22 @@ data:
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
     \ bit_length(x)); }\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass\
-    \ modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t x;\n\n\
-    \    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n   \
-    \ constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\
-    \u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\n  \
-    \  // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x +=\
-    \ b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint operator+(const\
-    \ modint &x, const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\
-    \n    modint& operator-=(const modint &b){\n        if ((x += Mod - b.x) >= Mod)\
-    \ x -= Mod;\n        return *this;\n    }\n\n    friend modint operator-(const\
-    \ modint &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\
-    \n    modint& operator*=(const modint &b){\n        (x *= b.x) %= Mod;\n     \
-    \   return *this;\n    }\n\n    friend modint operator*(const modint &x, const\
-    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const int\
-    \ &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ modint {\n    public:\n    static constexpr int Mod = M; \n    uint64_t x;\n\
+    \n    public:\n    static modint raw(int v) {\n        modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
+    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % Mod;\n        if (w < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\
+    \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
+    \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
+    \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
+    \ operator+(const modint &x, const modint &y) { return modint(x) += y; }\n\n \
+    \   // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n        if ((x\
+    \ += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
+    \ modint operator-(const modint &x, const modint &y) { return modint(x) -= y;\
+    \ }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n       \
+    \ (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint operator*(const\
+    \ modint &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ int &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
     \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
     \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
     \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
@@ -300,20 +302,22 @@ data:
     \ }\n\n    auto res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n\
     \ & 1) { res *= x; }\n        x *= x;\n    }\n\n    return res;\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<int M>\n\
-    class modint {\n    public:\n    static constexpr int Mod = M; \n    int64_t x;\n\
-    \n    public:\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n  \
-    \  constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}\n\n    // \u30DE\u30A4\
-    \u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\n  \
-    \  // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x +=\
-    \ b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint operator+(const\
-    \ modint &x, const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\
-    \n    modint& operator-=(const modint &b){\n        if ((x += Mod - b.x) >= Mod)\
-    \ x -= Mod;\n        return *this;\n    }\n\n    friend modint operator-(const\
-    \ modint &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\
-    \n    modint& operator*=(const modint &b){\n        (x *= b.x) %= Mod;\n     \
-    \   return *this;\n    }\n\n    friend modint operator*(const modint &x, const\
-    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const int\
-    \ &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    class modint {\n    public:\n    static constexpr int Mod = M; \n    uint64_t\
+    \ x;\n\n    public:\n    static modint raw(int v) {\n        modint a;\n     \
+    \   a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr\
+    \ modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % Mod;\n        if (w < 0) { w += Mod; }\n        x = w;\n    }\n\n    // \u30DE\
+    \u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\
+    \n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x\
+    \ += b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend modint\
+    \ operator+(const modint &x, const modint &y) { return modint(x) += y; }\n\n \
+    \   // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n        if ((x\
+    \ += Mod - b.x) >= Mod) x -= Mod;\n        return *this;\n    }\n\n    friend\
+    \ modint operator-(const modint &x, const modint &y) { return modint(x) -= y;\
+    \ }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n       \
+    \ (x *= b.x) %= Mod;\n        return *this;\n    }\n\n    friend modint operator*(const\
+    \ modint &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ int &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
     \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
     \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
     \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
@@ -359,8 +363,8 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-10-25 13:51:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
