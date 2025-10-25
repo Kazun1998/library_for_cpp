@@ -70,4 +70,10 @@ class Combination_Calculator {
         resize(n);
         return fact(n) * fact_inv(n - r);
     }
+
+    mint nHr(const int n, const int r) {
+        if (n == 0 && r == 0) { return 1; }
+
+        return nCr(n + r - 1, r);
+    }
 };
