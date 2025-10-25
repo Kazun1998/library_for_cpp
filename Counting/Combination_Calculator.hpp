@@ -58,4 +58,10 @@ class Combination_Calculator {
         resize(k);
         return _inv[k];
     }
+
+    mint nCr(const int n, const int r) {
+        if (!(0 <= r && r <= n)) { return 0; }
+        resize(n);
+        return fact(n) * fact_inv(r) * fact_inv(n - r);
+    }
 };
