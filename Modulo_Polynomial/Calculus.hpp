@@ -19,7 +19,7 @@ Fast_Power_Series<mint> Integrate(const Fast_Power_Series<mint> &A, const mint C
     inv[1] = mint(1);
     for (int k = 2; k <= A.precision; k++) {
         ll q, r;
-        tie (q, r) = divmod(mint::Mod, k);
+        tie (q, r) = divmod(mint::mod(), k);
         inv[k] = -q * inv[r];
     }
 
