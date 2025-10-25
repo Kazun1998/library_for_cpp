@@ -6,12 +6,22 @@ template<int M>
 class modint {
     public:
     static constexpr int Mod = M; 
-    int64_t x;
+    uint64_t x;
 
     public:
+    static modint raw(int v) {
+        modint a;
+        a.x = v;
+        return a;
+    }
+
     // 初期化
     constexpr modint(): x(0) {}
-    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}
+    constexpr modint(int64_t a) {
+        int64_t w = (int64_t)(a) % Mod;
+        if (w < 0) { w += Mod; }
+        x = w;
+    }
 
     // マイナス元
     modint operator-() const { return modint(-x); }
