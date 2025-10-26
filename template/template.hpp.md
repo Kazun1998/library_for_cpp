@@ -262,6 +262,9 @@ data:
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
   - icon: ':heavy_check_mark:'
+    path: Tree/Subtree_Monoid_Vertex_Query.hpp
+    title: "\u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B."
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   - icon: ':heavy_check_mark:'
@@ -460,6 +463,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
+    title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
@@ -753,6 +759,7 @@ data:
   - Tree/Tree.hpp
   - Tree/Rerooting.hpp
   - Tree/Tree_DP.hpp
+  - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
   - Graph/Graph/Connected_Components.hpp
@@ -847,6 +854,7 @@ data:
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp

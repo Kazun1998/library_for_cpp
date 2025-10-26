@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Tree/Subtree_Monoid_Vertex_Query.hpp
+    title: "\u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B."
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
+    title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -54,11 +60,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Segment_Tree/Segment_Tree.hpp
-  requiredBy: []
+  requiredBy:
+  - Tree/Subtree_Monoid_Vertex_Query.hpp
   timestamp: '2025-08-13 01:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
 documentation_of: Segment_Tree/Segment_Tree.hpp
 layout: document
 title: Segment Tree

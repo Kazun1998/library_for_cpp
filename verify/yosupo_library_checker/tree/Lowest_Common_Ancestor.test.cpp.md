@@ -150,31 +150,32 @@ data:
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
     \ get_bits(x, bit_length(x)); }\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n \
-    \   private:\n    int N, offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
+    \   private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
     \ children;\n\n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N,\
-    \ int offset = 0): N(N), offset(offset), N_bit(0) {\n        parent.assign(N +\
-    \ offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked\
+    \ int _offset = 0): N(N), _offset(_offset), N_bit(0) {\n        parent.assign(N\
+    \ + _offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked\
     \ = false;\n    }\n\n    bool is_locked() const { return locked; }\n\n    public:\n\
     \    inline void set_root(const int &x) {\n        assert (!is_locked());\n  \
-    \      root = x;\n    }\n\n    inline int vector_size() const { return N + offset;\
-    \ }\n\n    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset, vector<int>());\n\
-    \        for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
-    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
-    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
-    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \      root = x;\n    }\n\n    inline int vector_size() const { return order()\
+    \ + offset(); }\n\n    inline int get_root() const { return root; }\n    inline\
+    \ int get_parent(const int &x) const { return parent[x]; }\n    inline vector<int>\
+    \ get_children(const int &x) const { return children[x]; }\n\n    public:\n  \
+    \  // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\
+    \u308B.\n    inline void set_parent(const int &x, const int &y) {\n        assert\
+    \ (!is_locked());\n        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\
+    \u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n\
+    \    inline void set_child(const int &x, const int &y) { set_parent(y, x); }\n\
+    \n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal() {\n     \
+    \   assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
+    \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
+    \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
+    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
+    \ + offset(), -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root\
+    \ };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n            int\
+    \ x = Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n  \
+    \              depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
     \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
     \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
     \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
@@ -201,11 +202,11 @@ data:
     \n    private:\n    bool has_upper_list = false;\n    vector<vector<int>> upper_list;\n\
     \n    void build_upper_list() {\n        assert(is_locked());\n\n        if (has_upper_list)\
     \ { return; }\n\n        has_upper_list = true;\n\n        upper_list.assign(N_bit,\
-    \ vector<int>(N + offset, -1));\n\n        // Step I\n        for (int i = offset;\
-    \ i < N + offset; i++) {\n            if (is_root(i)) { upper_list[0][i] = i;\
+    \ vector<int>(N + offset(), -1));\n\n        // Step I\n        for (int i = offset();\
+    \ i < N + offset(); i++) {\n            if (is_root(i)) { upper_list[0][i] = i;\
     \ }\n            else { upper_list[0][i] = parent[i]; }\n        }\n\n       \
     \ // Step II\n        for (int k = 1; k < N_bit; k++) {\n            for (int\
-    \ i = offset; i < N + offset; i++) {\n                upper_list[k][i] = upper_list[k\
+    \ i = offset(); i < N + offset(); i++) {\n                upper_list[k][i] = upper_list[k\
     \ - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n    public:\n\
     \    // \u9802\u70B9 x \u304B\u3089\u898B\u3066 k \u4EE3\u524D\u306E\u9802\u70B9\
     \u3092\u6C42\u3081\u308B.\n    // vertex_depth(x) < k \u306E\u3068\u304D\u8FD4\
@@ -234,7 +235,7 @@ data:
     \    vector<tuple<int, int, int>> euler_tour_edge;\n\n    // Euler Tour \u306B\
     \u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n    void calculate_euler_tour_vertex()\
     \ {\n        if(has_euler_tour_vertex) { return; }\n\n        euler_tour_vertex.clear();\n\
-    \        in_time.assign(N + offset, -1);\n        out_time.assign(N + offset,\
+    \        in_time.assign(N + offset(), -1);\n        out_time.assign(N + offset(),\
     \ -1);\n\n        auto dfs = [&](auto self, int x) -> void {\n            in_time[x]\
     \ = (int)euler_tour_vertex.size();\n            euler_tour_vertex.emplace_back(x);\n\
     \n            for (int y: children[x]) {\n                self(self, y);\n   \
@@ -263,9 +264,10 @@ data:
     \       path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
     \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
     \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n};\n\nTree Construct_Tree(int N, vector<pair<int,\
-    \ int>> edges, int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset,\
-    \ vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
+    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
+    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
+    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
+    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
     \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
     \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
     \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
@@ -295,7 +297,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-26 19:46:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp

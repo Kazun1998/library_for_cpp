@@ -333,6 +333,9 @@ data:
       path: Tree/Rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
     - icon: ':heavy_check_mark:'
+      path: Tree/Subtree_Monoid_Vertex_Query.hpp
+      title: "\u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B."
+    - icon: ':heavy_check_mark:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
     - icon: ':heavy_check_mark:'
@@ -604,6 +607,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
       title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
+      title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - name: verify/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
