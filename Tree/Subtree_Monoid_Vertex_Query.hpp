@@ -14,6 +14,8 @@ class Subtree_Monoid_Vertex_Query {
     Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree) {
         T.calculate_euler_tour_vertex();
 
+        // NEXT: 遅延セグメント木に対応 + Segment Tree のベクトルのサイズを下げる.
+
         int n = T.order();
         vector<M> first(2 * n);
         for (int v = T.offset(); v < T.vector_size(); v++) {
