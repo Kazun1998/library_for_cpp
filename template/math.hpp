@@ -12,7 +12,7 @@ T div_ceil(T x, U y){ return (x > 0 ? (x + y - 1) / y: x / y) ;}
 
 // x を y で割った余りを求める.
 template<typename T, typename U>
-T mod(T x, U y){
+T safe_mod(T x, U y){
     T q = div_floor(x, y);
     return x - q * y ;
 }
@@ -90,7 +90,7 @@ tuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {
     ll s = 1, t = 0, u = 0, v = 1;
     while (b) {
         ll q;
-        tie(q, a, b) = make_tuple(div_floor(a, b), b, mod(a, b));
+        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));
         tie(s, t) = make_pair(t, s - q * t);
         tie(u, v) = make_pair(v, u - q * v);
     }

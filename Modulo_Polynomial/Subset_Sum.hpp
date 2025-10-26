@@ -14,7 +14,7 @@ vector<mint> Subset_Sum(vector<int> A, int K) {
 
     vector<mint> inv(K + 1); inv[1] = 1;
     for (int x = 2; x <= K; x++) {
-        auto [q, r] = divmod(mint::Mod, x);
+        auto [q, r] = divmod(mint::mod(), x);
         inv[x] = -q * inv[r];
     }
 

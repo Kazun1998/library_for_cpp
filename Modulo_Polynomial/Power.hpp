@@ -22,7 +22,7 @@ Fast_Power_Series<mint> pow(Fast_Power_Series<mint> &A, ll M) {
     mint content_inv = content.inverse();
     mint content_m = pow(content, M);
 
-    M %= mint::Mod;
+    M %= mint::mod();
 
     vector<mint> b(A.precision - ord);
     for (int d = ord; d < A.precision; d++) { b[d - ord] = A[d] * content_inv; }

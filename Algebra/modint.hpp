@@ -5,20 +5,32 @@
 template<int M>
 class modint {
     public:
-    static constexpr int Mod = M; 
-    int64_t x;
+    static constexpr int _mod = M; 
+    uint64_t x;
 
     public:
+    static int mod() { return _mod; }
+
+    static modint raw(int v) {
+        modint a;
+        a.x = v;
+        return a;
+    }
+
     // 初期化
     constexpr modint(): x(0) {}
-    constexpr modint(int64_t a): x((a % Mod + Mod) % Mod) {}
+    constexpr modint(int64_t a) {
+        int64_t w = (int64_t)(a) % mod();
+        if (w < 0) { w += mod(); }
+        x = w;
+    }
 
     // マイナス元
     modint operator-() const { return modint(-x); }
 
     // 加法
     modint& operator+=(const modint &b){
-        if ((x += b.x) >= Mod) x -= Mod;
+        if ((x += b.x) >= mod()) x -= mod();
         return *this;
     }
 
@@ -26,7 +38,7 @@ class modint {
 
     // 減法
     modint& operator-=(const modint &b){
-        if ((x += Mod - b.x) >= Mod) x -= Mod;
+        if ((x += mod() - b.x) >= mod()) x -= mod();
         return *this;
     }
 
@@ -34,7 +46,7 @@ class modint {
 
     // 乗法
     modint& operator*=(const modint &b){
-        (x *= b.x) %= Mod;
+        (x *= b.x) %= mod();
         return *this;
     }
 
@@ -49,7 +61,7 @@ class modint {
 
     modint inverse() const {
         int64_t s = 1, t = 0;
-        int64_t a = x, b = Mod;
+        int64_t a = x, b = mod();
 
         while (b > 0) {
             int64_t q = a / b;
@@ -65,13 +77,13 @@ class modint {
 
     // 比較
     friend bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }
-    friend bool operator==(const modint &a, const int &b) { return a.x == mod(b, Mod); }
+    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod()); }
     friend bool operator!=(const modint &a, const modint &b) { return (a.x != b.x); }
 
     // 入力
     friend istream &operator>>(istream &is, modint &a) {
         is >> a.x;
-        a.x = (a.x % Mod + Mod) % Mod;
+        a.x = (a.x % mod() + mod()) % mod();
         return is;
     }
 
@@ -79,14 +91,14 @@ class modint {
     friend ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }
 
     bool is_zero() const { return x == 0; }
-    bool is_member(ll a) const { return x == (a % Mod + Mod) % Mod; }
+    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod(); }
 };
 
-template<int Mod>
-modint<Mod> pow(modint<Mod> x, long long n) {
+template<int mod>
+modint<mod> pow(modint<mod> x, long long n) {
     if (n < 0) { return pow(x, -n).inverse(); }
 
-    auto res = modint<Mod>(1);
+    auto res = modint<mod>(1);
     for (; n; n >>= 1) {
         if (n & 1) { res *= x; }
         x *= x;
