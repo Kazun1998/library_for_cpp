@@ -149,11 +149,13 @@ class Functional_Graph {
     }
 
     public:
+    inline int root(int x) const { return tree_vertices[tree_ids[x]][0]; }
+
     int calculate(int x, ll k) {
         if ( k < tree_depth[x]) { return upper(x, k); }
 
         k -= tree_depth[x];
-        x = tree_vertices[tree_ids[x]][0];
+        x = root(x);
 
         int cycle_id = cycle_ids[x];
         int vertex_id = cycle_vertex_ids[x];
