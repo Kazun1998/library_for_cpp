@@ -4,7 +4,7 @@
 
 class Tree {
     private:
-    int N, offset, root;
+    int N, _offset, root;
     vector<int> parent;
     vector<vector<int>> children;
 
@@ -12,8 +12,8 @@ class Tree {
     bool locked;
 
     public:
-    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {
-        parent.assign(N + offset, -1);
+    Tree(int N, int _offset = 0): N(N), _offset(_offset), N_bit(0) {
+        parent.assign(N + _offset, -1);
         for (; (1 << N_bit) <= N; N_bit++) {}
         locked = false;
     }
@@ -26,7 +26,7 @@ class Tree {
         root = x;
     }
 
-    inline int vector_size() const { return N + offset; }
+    inline int vector_size() const { return order() + offset(); }
 
     inline int get_root() const { return root; }
     inline int get_parent(const int &x) const { return parent[x]; }
@@ -47,8 +47,8 @@ class Tree {
         assert(!is_locked());
 
         parent[root] = -1;
-        children.assign(N + offset, vector<int>());
-        for (int v = offset; v < N + offset; v++) {
+        children.assign(N + offset(), vector<int>());
+        for (int v = offset(); v < N + offset(); v++) {
             unless(is_root(v)) { children[parent[v]].emplace_back(v); }
         }
 
@@ -63,7 +63,7 @@ class Tree {
         assert(is_locked());
 
         tower.assign(N, {});
-        depth.assign(N + offset, -1);
+        depth.assign(N + offset(), -1);
 
         deque<int> Q{ root };
         tower[0] = { root };
@@ -152,17 +152,17 @@ class Tree {
 
         has_upper_list = true;
 
-        upper_list.assign(N_bit, vector<int>(N + offset, -1));
+        upper_list.assign(N_bit, vector<int>(N + offset(), -1));
 
         // Step I
-        for (int i = offset; i < N + offset; i++) {
+        for (int i = offset(); i < N + offset(); i++) {
             if (is_root(i)) { upper_list[0][i] = i; }
             else { upper_list[0][i] = parent[i]; }
         }
 
         // Step II
         for (int k = 1; k < N_bit; k++) {
-            for (int i = offset; i < N + offset; i++) {
+            for (int i = offset(); i < N + offset(); i++) {
                 upper_list[k][i] = upper_list[k - 1][upper_list[k - 1][i]];
             }
         }
@@ -237,8 +237,8 @@ class Tree {
         if(has_euler_tour_vertex) { return; }
 
         euler_tour_vertex.clear();
-        in_time.assign(N + offset, -1);
-        out_time.assign(N + offset, -1);
+        in_time.assign(N + offset(), -1);
+        out_time.assign(N + offset(), -1);
 
         auto dfs = [&](auto self, int x) -> void {
             in_time[x] = (int)euler_tour_vertex.size();
@@ -312,6 +312,9 @@ class Tree {
 
         return path_first;
     }
+
+    inline int order() const { return N; }
+    inline int offset() const { return _offset; }
 };
 
 Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
