@@ -65,7 +65,7 @@ class Combination_Calculator {
         if (k <= 0) { return 0; }
 
         resize(k);
-        return fact_inv[k] * fact[k - 1];
+        return _fact_inv[k] * _fact[k - 1];
     }
 
     /**
