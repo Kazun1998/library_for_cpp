@@ -144,7 +144,7 @@ class Functional_Graph {
     int jump_on_cycle(int cycle_id, int vertex_id, ll k) {
         auto &cycle = cycles[cycle_id];
         int m = cycle.size();
-        k = mod(k, m);
+        k = safe_mod(k, m);
         return cycle[(vertex_id + k) % m];
     }
 
@@ -160,7 +160,5 @@ class Functional_Graph {
         return jump_on_cycle(cycle_id, vertex_id, k);
     }
 
-    vector<vector<int>> &get_cycles() {
-        return cycles;
-    }
+    vector<vector<int>> &get_cycles() { return cycles; }
 };
