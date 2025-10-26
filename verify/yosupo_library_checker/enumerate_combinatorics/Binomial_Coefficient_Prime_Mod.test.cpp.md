@@ -2,11 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Montmort_Number.hpp
-    title: "Montmort \u6570"
+    path: Algebra/dynamic_modint.hpp
+    title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Modulo/Modulo.hpp
-    title: Modulo/Modulo.hpp
+    path: Counting/Combination_Calculator.hpp
+    title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
+      \u7684\u306A\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -32,13 +33,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
+    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
     links:
-    - https://judge.yosupo.jp/problem/montmort_number_mod
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\n\
-    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -152,102 +153,121 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\
-    \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
-    \  public: // public\u306B\u6307\u5B9A\n      const char* what() const noexcept\
-    \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
-    \u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\
-    \n        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
-    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
-    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
-    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
-    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
-    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
-    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
-    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
-    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
-    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
-    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
-    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
-    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
-    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
-    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
-    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
-    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
-    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
-    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
-    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
-    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
-    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
-    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
-    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
-    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
-    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
-    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
-    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
-    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
-    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
-    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
-    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
-    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) { return\
-    \ safe_mod(x - a, n) == 0; }\n\n        bool is_zero() { return is_member(0);\
-    \ }\n        \n\n        // \u6BD4\u8F03\n        friend bool operator==(const\
-    \ Modulo &x, const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
-    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
-    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
-    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
-    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
-    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
-    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
-    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
-    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
-    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
-    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
-    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
-    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
-    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
-    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 3 \"Math/Montmort_Number.hpp\"\n\nusing namespace modulo;\n\nvector<Modulo>Montmort_Number(int\
-    \ N, const ll M) {\n    if (N == 0) { return vector<Modulo>({{1, M}}); }\n\n \
-    \   vector<Modulo> montmort(N + 1);\n    montmort[0] = Modulo(1, M); montmort[1]\
-    \ = Modulo(0, M);\n\n    for (int k = 2; k <= N; k++) {\n        montmort[k] =\
-    \ k * montmort[k - 1] + (k % 2 == 0 ? 1 : -1);\n    }\n\n    return montmort;\n\
-    }\n#line 4 \"verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp\"\
-    \n\nint main() {\n    int N, M; cin >> N >> M;\n    auto b = Montmort_Number(N,\
-    \ M);\n    for (int k = 1; k <= N; k++) { cout << b[k].a << (k < N ? \" \" : \"\
-    \"); }\n    cout << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
-    \n#include\"../../../Math/Montmort_Number.hpp\"\n\nint main() {\n    int N, M;\
-    \ cin >> N >> M;\n    auto b = Montmort_Number(N, M);\n    for (int k = 1; k <=\
-    \ N; k++) { cout << b[k].a << (k < N ? \" \" : \"\"); }\n    cout << endl;\n}\n"
+    \ get_bits(x, bit_length(x)); }\n#line 2 \"Algebra/dynamic_modint.hpp\"\n\n#line\
+    \ 4 \"Algebra/dynamic_modint.hpp\"\n\ntemplate<int id>\nclass dynamic_modint {\n\
+    \    public:\n    uint64_t x;\n    static int _mod;\n\n    static void set_mod(const\
+    \ int m) { _mod = m; } \n    static int mod() { return _mod; }\n\n    public:\n\
+    \    static dynamic_modint raw(int v) {\n        dynamic_modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr dynamic_modint():\
+    \ x(0) {}\n    constexpr dynamic_modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint operator-() const { return\
+    \ dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n    dynamic_modint& operator+=(const\
+    \ dynamic_modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return\
+    \ *this;\n    }\n\n    friend dynamic_modint operator+(const dynamic_modint &x,\
+    \ const dynamic_modint &y) { return dynamic_modint(x) += y; }\n\n    // \u6E1B\
+    \u6CD5\n    dynamic_modint& operator-=(const dynamic_modint &b){\n        if ((x\
+    \ += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint &y) {\
+    \ return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
+    \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
+    \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
+    \ dynamic_modint operator*(const int &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ *= y; }\n    friend dynamic_modint operator*(const ll &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) *= y; }\n\n    // \u9664\u6CD5\n    dynamic_modint&\
+    \ operator/=(const dynamic_modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend dynamic_modint operator/(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) /= y; }\n\n    dynamic_modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return dynamic_modint(s);\n    }\n\n    // \u6BD4\u8F03\
+    \n    friend bool operator==(const dynamic_modint &a, const dynamic_modint &b)\
+    \ { return (a.x == b.x); }\n    friend bool operator==(const dynamic_modint &a,\
+    \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
+    \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
+    \ &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n  \
+    \      return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const dynamic_modint &a) { return os << a.x; }\n\n    bool is_zero() const\
+    \ { return x == 0; }\n    bool is_member(ll a) const { return x == (a % mod()\
+    \ + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod =\
+    \ 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long long\
+    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = dynamic_modint<id>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n\n#line 2 \"Counting/Combination_Calculator.hpp\"\
+    \n\n#line 4 \"Counting/Combination_Calculator.hpp\"\n\ntemplate<typename mint>\n\
+    class Combination_Calculator {\n    private:\n    vector<mint> _fact, _fact_inv;\n\
+    \n    void resize(const int m) {\n        if (m < _fact.size()) { return; }\n\n\
+    \        int current_size = _fact.size();\n        int next_size = min(max(2 *\
+    \ current_size, m), mint::mod());\n\n        _fact.resize(next_size);\n      \
+    \  _fact_inv.resize(next_size);\n\n        for (int k = current_size; k < next_size;\
+    \ k++) {\n            _fact[k] = k * _fact[k - 1];\n        }\n\n        _fact_inv.back()\
+    \ = _fact.back().inverse();\n\n        for (int k = next_size - 2; k >= current_size;\
+    \ --k) {\n            _fact_inv[k] = (k + 1) * _fact_inv[k + 1];\n        }\n\
+    \    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF: \u521D\u671F\u30B5\u30A4\u30BAn\u307E\u3067\u968E\u4E57\u30FB\u9006\u968E\
+    \u4E57\u3092\u8A08\u7B97\u3059\u308B\n     * @param n \u521D\u671F\u8A08\u7B97\
+    \u306E\u4E0A\u9650\n     */\n    Combination_Calculator(const int n) {\n     \
+    \   _fact.emplace_back(1); _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\
+    \ _fact_inv.emplace_back(1);\n\n        resize(n);\n    }\n\n    Combination_Calculator():\
+    \ Combination_Calculator(0) {}\n\n    /**\n     * @brief k! \u3092\u53D6\u5F97\
+    \n     */\n    mint fact(const int k) {\n        resize(k);\n        return _fact[k];\n\
+    \    }\n\n    /**\n     * @brief (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint\
+    \ fact_inv(const int k) {\n        resize(k);\n        return _fact_inv[k];\n\
+    \    }\n\n    /**\n     * @brief k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\
+    \u308B\n     * @param k \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n   \
+    \  */\n    mint inv(const int k) {\n        if (k <= 0) { return 0; }\n\n    \
+    \    resize(k);\n        return _fact_inv[k] * _fact[k - 1];\n    }\n\n    /**\n\
+    \     * @brief \u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\
+    \n     */\n    mint nCr(const int n, const int r) {\n        if (!(0 <= r && r\
+    \ <= n)) { return 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[r]\
+    \ * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u9806\u5217 nPk \u3092\
+    \u8A08\u7B97\u3059\u308B\n     */\n    mint nPr(const int n, const int r) {\n\
+    \        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n        return\
+    \ _fact[n] * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u91CD\u8907\u7D44\
+    \u5408\u305B nHk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nHr(const int\
+    \ n, const int r) {\n        if (n == 0 && r == 0) { return 1; }\n\n        return\
+    \ nCr(n + r - 1, r);\n    }\n\n    /**\n     * @brief \u591A\u9805\u4FC2\u6570\
+    \ (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
+    \ multinomial_coefficient(const vector<int> &ks) {\n        int k_sum = 0;\n \
+    \       mint lower = 1;\n        for (int k: ks) {\n            k_sum += k;\n\
+    \            lower *= _fact_inv[k];\n        }\n\n        resize(k_sum);\n\n \
+    \       mint upper = _fact[k_sum];\n\n        return upper * lower;\n    }\n\n\
+    \    mint catalan(const int n) {\n        if (n < 0) { return 0; }\n        resize(2\
+    \ * n);\n        return _fact[2 * n] * _fact_inv[n + 1] * _fact_inv[n];\n    }\n\
+    };\n#line 6 \"verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \n\nusing mint = dynamic_modint<0>;\n\nint main() {\n    int T, m; cin >> T >>\
+    \ m;\n    mint::set_mod(m);\n\n    Combination_Calculator<mint> calc(min(m, 10000000));\n\
+    \n    for (int t = 0; t < T; t++) {\n        int n, k; scanf(\"%d%d\", &n, &k);\n\
+    \        cout << calc.nCr(n, k) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/dynamic_modint.hpp\"\
+    \n#include\"../../../Counting/Combination_Calculator.hpp\"\n\nusing mint = dynamic_modint<0>;\n\
+    \nint main() {\n    int T, m; cin >> T >> m;\n    mint::set_mod(m);\n\n    Combination_Calculator<mint>\
+    \ calc(min(m, 10000000));\n\n    for (int t = 0; t < T; t++) {\n        int n,\
+    \ k; scanf(\"%d%d\", &n, &k);\n        cout << calc.nCr(n, k) << \"\\n\";\n  \
+    \  }\n}\n"
   dependsOn:
-  - Math/Montmort_Number.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Modulo/Modulo.hpp
+  - Algebra/dynamic_modint.hpp
+  - Counting/Combination_Calculator.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+  path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-26 10:26:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp.html
-title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp.html
+title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
 ---

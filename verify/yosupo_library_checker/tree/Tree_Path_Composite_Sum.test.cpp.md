@@ -4,34 +4,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -163,67 +163,67 @@ data:
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
     \ get_bits(x, bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"\
     Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n    static\
-    \ constexpr int Mod = M; \n    uint64_t x;\n\n    public:\n    static modint raw(int\
-    \ v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\n    //\
-    \ \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
-    \ a) {\n        int64_t w = (int64_t)(a) % Mod;\n        if (w < 0) { w += Mod;\
-    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
-    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
-    \ operator+=(const modint &b){\n        if ((x += b.x) >= Mod) x -= Mod;\n   \
-    \     return *this;\n    }\n\n    friend modint operator+(const modint &x, const\
-    \ modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const\
-    \ modint &b){\n        if ((x += Mod - b.x) >= Mod) x -= Mod;\n        return\
-    \ *this;\n    }\n\n    friend modint operator-(const modint &x, const modint &y)\
-    \ { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const\
-    \ modint &b){\n        (x *= b.x) %= Mod;\n        return *this;\n    }\n\n  \
-    \  friend modint operator*(const modint &x, const modint &y) { return modint(x)\
-    \ *= y; }\n    friend modint operator*(const int &x, const modint &y) { return\
-    \ modint(x) *= y; }\n    friend modint operator*(const ll &x, const modint &y)\
-    \ { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const\
-    \ modint &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const\
-    \ modint &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse()\
-    \ const {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = Mod;\n\n\
-    \        while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q\
-    \ * b; swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n       \
-    \ assert (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n\
-    \    friend bool operator==(const modint &a, const modint &b) { return (a.x ==\
-    \ b.x); }\n    friend bool operator==(const modint &a, const int &b) { return\
-    \ a.x == safe_mod(b, Mod); }\n    friend bool operator!=(const modint &a, const\
-    \ modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream\
-    \ &operator>>(istream &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x\
-    \ % Mod + Mod) % Mod;\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend\
-    \ ostream &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n\
-    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
-    \ return x == (a % Mod + Mod) % Mod; }\n};\n\ntemplate<int Mod>\nmodint<Mod> pow(modint<Mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<Mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Tree/Tree.hpp\"\
-    \n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, offset,\
-    \ root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\n    int\
-    \ N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int offset = 0): N(N),\
-    \ offset(offset), N_bit(0) {\n        parent.assign(N + offset, -1);\n       \
-    \ for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n    }\n\n  \
-    \  bool is_locked() const { return locked; }\n\n    public:\n    inline void set_root(const\
-    \ int &x) {\n        assert (!is_locked());\n        root = x;\n    }\n\n    inline\
-    \ int vector_size() const { return N + offset; }\n\n    inline int get_root()\
-    \ const { return root; }\n    inline int get_parent(const int &x) const { return\
-    \ parent[x]; }\n    inline vector<int> get_children(const int &x) const { return\
-    \ children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\
-    \u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int\
-    \ &x, const int &y) {\n        assert (!is_locked());\n        parent[x] = y;\n\
-    \    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9\
-    \ y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const\
-    \ int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\
-    \u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
-    \ = -1;\n        children.assign(N + offset, vector<int>());\n        for (int\
-    \ v = offset; v < N + offset; v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
-    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
-    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
-    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
-    \ + offset, -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root };\n\
-    \        depth[root] = 0;\n\n        while (!Q.empty()){\n            int x =\
-    \ Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n      \
-    \          depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \ constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static int mod()\
+    \ { return _mod; }\n\n    static modint raw(int v) {\n        modint a;\n    \
+    \    a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr\
+    \ modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
+    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
+    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
+    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
+    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
+    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
+    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
+    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
+    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
+    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
+    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
+    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
+    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
+    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
+    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
+    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
+    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
+    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
+    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
+    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
+    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
+    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
+    \ modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n\
+    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
+    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
+    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % mod() + mod())\
+    \ % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long\
+    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
+    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
+    \    }\n\n    return res;\n}\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\
+    \n\nclass Tree {\n    private:\n    int N, offset, root;\n    vector<int> parent;\n\
+    \    vector<vector<int>> children;\n\n    int N_bit;\n    bool locked;\n\n   \
+    \ public:\n    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {\n\
+    \        parent.assign(N + offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++)\
+    \ {}\n        locked = false;\n    }\n\n    bool is_locked() const { return locked;\
+    \ }\n\n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
+    \        root = x;\n    }\n\n    inline int vector_size() const { return N + offset;\
+    \ }\n\n    inline int get_root() const { return root; }\n    inline int get_parent(const\
+    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
+    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
+    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
+    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
+    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
+    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
+    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
+    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
+    \   parent[root] = -1;\n        children.assign(N + offset, vector<int>());\n\
+    \        for (int v = offset; v < N + offset; v++) {\n            unless(is_root(v))\
+    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
+    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
+    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
+    \ {});\n        depth.assign(N + offset, -1);\n\n        deque<int> Q{ root };\n\
+    \        tower[0] = { root };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n\
+    \            int x = Q.front(); Q.pop_front();\n\n            for (int y: children[x])\
+    \ {\n                depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
     \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
     \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
     \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
@@ -418,7 +418,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:51:56+09:00'
+  timestamp: '2025-10-26 00:25:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp

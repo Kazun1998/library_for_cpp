@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
@@ -71,7 +71,7 @@ data:
   requiredBy:
   - Modulo/Order.hpp
   timestamp: '2025-08-16 18:00:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp

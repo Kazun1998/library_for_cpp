@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -44,6 +44,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/Gcd_Convolution.hpp
     title: Convolution/Gcd_Convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: Counting/Combination_Calculator.hpp
+    title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
+      \u7684\u306A\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
@@ -146,7 +150,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -173,16 +177,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':warning:'
@@ -248,16 +252,16 @@ data:
   - icon: ':warning:'
     path: Sequence/Run_Length_Encoding.hpp
     title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   _extendedVerifiedWith:
@@ -339,6 +343,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
@@ -447,18 +454,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
@@ -797,11 +804,12 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Counting/Combination_Calculator.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
@@ -813,6 +821,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp

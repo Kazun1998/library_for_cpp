@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Polygon.hpp
-    title: Geometry/object/Polygon.hpp
-  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -29,17 +20,19 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
-  bundledCode: "#line 1 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n#line 2 \"template/template.hpp\"\
+    document_title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\
+      \u30A4\u30BAn\u307E\u3067\u968E\u4E57\u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\
+      \u3059\u308B"
+    links: []
+  bundledCode: "#line 2 \"Counting/Combination_Calculator.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -155,85 +148,88 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Geometry/object/Polygon.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
-    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
-    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
-    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
-    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
-    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
-    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
-    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
-    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
-    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
-    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
-    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
-    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
-    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
-    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
-    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
-    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
-    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
-    \            return *this;\n        }\n\n        friend Point operator/(const\
-    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
-    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
-    \            x = x1;\n            y = y1;\n            return *this;\n       \
-    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
-    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
-    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
-    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
-    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
-    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
-    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
-    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
-    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
-    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
-    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
-    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
-    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
-    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
-    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
-    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
-    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
-    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
-    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
-    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
-    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
-    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
-    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
-    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
-    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/object/Polygon.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    struct Polygon {\n   \
-    \     vector<Point<R>> vertices;\n        int n;\n\n        Polygon() = default;\n\
-    \        Polygon(const vector<Point<R>> &_vertices): vertices(_vertices), n(_vertices.size())\
-    \ {}\n    };\n\n    template<typename R>\n    R Area(const Polygon<R> &X) {\n\
-    \        R area = cross(X.vertices[X.n - 1], X.vertices[0]);\n        for (int\
-    \ i = 0; i < X.n - 1; i++) {\n            area += cross(X.vertices[i], X.vertices[i\
-    \ + 1]);\n        }\n\n        return abs(area) / 2;\n    }\n}\n#line 5 \"verify/aizu_online_judge/cgl/3A.test.cpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Geometry/object/Polygon.hpp\"\
-    \n\nusing namespace geometry;\n\nint main() {\n    using namespace geometry;\n\
-    \n    int n; cin >> n;\n    vector<Point<Real>> vertices;\n    for (int i = 1;\
-    \ i <= n; i++) {\n        Point<Real> P; cin >> P;\n        vertices.emplace_back(P);\n\
-    \    }\n\n    Polygon<Real> X(vertices);\n\n    cout << fixed << setprecision(1)\
-    \ << Area(X) << endl;\n}\n"
+    \ bit_length(x)); }\n#line 4 \"Counting/Combination_Calculator.hpp\"\n\ntemplate<typename\
+    \ mint>\nclass Combination_Calculator {\n    private:\n    vector<mint> _fact,\
+    \ _fact_inv;\n\n    void resize(const int m) {\n        if (m < _fact.size())\
+    \ { return; }\n\n        int current_size = _fact.size();\n        int next_size\
+    \ = min(max(2 * current_size, m), mint::mod());\n\n        _fact.resize(next_size);\n\
+    \        _fact_inv.resize(next_size);\n\n        for (int k = current_size; k\
+    \ < next_size; k++) {\n            _fact[k] = k * _fact[k - 1];\n        }\n\n\
+    \        _fact_inv.back() = _fact.back().inverse();\n\n        for (int k = next_size\
+    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = (k + 1) * _fact_inv[k\
+    \ + 1];\n        }\n    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\u30BAn\u307E\u3067\u968E\u4E57\
+    \u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\u308B\n     * @param n \u521D\
+    \u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n    Combination_Calculator(const\
+    \ int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\
+    \ _fact_inv.emplace_back(1);\n\n        resize(n);\n    }\n\n    Combination_Calculator():\
+    \ Combination_Calculator(0) {}\n\n    /**\n     * @brief k! \u3092\u53D6\u5F97\
+    \n     */\n    mint fact(const int k) {\n        resize(k);\n        return _fact[k];\n\
+    \    }\n\n    /**\n     * @brief (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint\
+    \ fact_inv(const int k) {\n        resize(k);\n        return _fact_inv[k];\n\
+    \    }\n\n    /**\n     * @brief k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\
+    \u308B\n     * @param k \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n   \
+    \  */\n    mint inv(const int k) {\n        if (k <= 0) { return 0; }\n\n    \
+    \    resize(k);\n        return _fact_inv[k] * _fact[k - 1];\n    }\n\n    /**\n\
+    \     * @brief \u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\
+    \n     */\n    mint nCr(const int n, const int r) {\n        if (!(0 <= r && r\
+    \ <= n)) { return 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[r]\
+    \ * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u9806\u5217 nPk \u3092\
+    \u8A08\u7B97\u3059\u308B\n     */\n    mint nPr(const int n, const int r) {\n\
+    \        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n        return\
+    \ _fact[n] * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u91CD\u8907\u7D44\
+    \u5408\u305B nHk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nHr(const int\
+    \ n, const int r) {\n        if (n == 0 && r == 0) { return 1; }\n\n        return\
+    \ nCr(n + r - 1, r);\n    }\n\n    /**\n     * @brief \u591A\u9805\u4FC2\u6570\
+    \ (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
+    \ multinomial_coefficient(const vector<int> &ks) {\n        int k_sum = 0;\n \
+    \       mint lower = 1;\n        for (int k: ks) {\n            k_sum += k;\n\
+    \            lower *= _fact_inv[k];\n        }\n\n        resize(k_sum);\n\n \
+    \       mint upper = _fact[k_sum];\n\n        return upper * lower;\n    }\n\n\
+    \    mint catalan(const int n) {\n        if (n < 0) { return 0; }\n        resize(2\
+    \ * n);\n        return _fact[2 * n] * _fact_inv[n + 1] * _fact_inv[n];\n    }\n\
+    };\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
+    \ mint>\nclass Combination_Calculator {\n    private:\n    vector<mint> _fact,\
+    \ _fact_inv;\n\n    void resize(const int m) {\n        if (m < _fact.size())\
+    \ { return; }\n\n        int current_size = _fact.size();\n        int next_size\
+    \ = min(max(2 * current_size, m), mint::mod());\n\n        _fact.resize(next_size);\n\
+    \        _fact_inv.resize(next_size);\n\n        for (int k = current_size; k\
+    \ < next_size; k++) {\n            _fact[k] = k * _fact[k - 1];\n        }\n\n\
+    \        _fact_inv.back() = _fact.back().inverse();\n\n        for (int k = next_size\
+    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = (k + 1) * _fact_inv[k\
+    \ + 1];\n        }\n    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\u30BAn\u307E\u3067\u968E\u4E57\
+    \u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\u308B\n     * @param n \u521D\
+    \u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n    Combination_Calculator(const\
+    \ int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\
+    \ _fact_inv.emplace_back(1);\n\n        resize(n);\n    }\n\n    Combination_Calculator():\
+    \ Combination_Calculator(0) {}\n\n    /**\n     * @brief k! \u3092\u53D6\u5F97\
+    \n     */\n    mint fact(const int k) {\n        resize(k);\n        return _fact[k];\n\
+    \    }\n\n    /**\n     * @brief (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint\
+    \ fact_inv(const int k) {\n        resize(k);\n        return _fact_inv[k];\n\
+    \    }\n\n    /**\n     * @brief k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\
+    \u308B\n     * @param k \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n   \
+    \  */\n    mint inv(const int k) {\n        if (k <= 0) { return 0; }\n\n    \
+    \    resize(k);\n        return _fact_inv[k] * _fact[k - 1];\n    }\n\n    /**\n\
+    \     * @brief \u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\
+    \n     */\n    mint nCr(const int n, const int r) {\n        if (!(0 <= r && r\
+    \ <= n)) { return 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[r]\
+    \ * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u9806\u5217 nPk \u3092\
+    \u8A08\u7B97\u3059\u308B\n     */\n    mint nPr(const int n, const int r) {\n\
+    \        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n        return\
+    \ _fact[n] * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u91CD\u8907\u7D44\
+    \u5408\u305B nHk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nHr(const int\
+    \ n, const int r) {\n        if (n == 0 && r == 0) { return 1; }\n\n        return\
+    \ nCr(n + r - 1, r);\n    }\n\n    /**\n     * @brief \u591A\u9805\u4FC2\u6570\
+    \ (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
+    \ multinomial_coefficient(const vector<int> &ks) {\n        int k_sum = 0;\n \
+    \       mint lower = 1;\n        for (int k: ks) {\n            k_sum += k;\n\
+    \            lower *= _fact_inv[k];\n        }\n\n        resize(k_sum);\n\n \
+    \       mint upper = _fact[k_sum];\n\n        return upper * lower;\n    }\n\n\
+    \    mint catalan(const int n) {\n        if (n < 0) { return 0; }\n        resize(2\
+    \ * n);\n        return _fact[2 * n] * _fact_inv[n + 1] * _fact_inv[n];\n    }\n\
+    };\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -241,19 +237,118 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Geometry/object/Polygon.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/cgl/3A.test.cpp
+  isVerificationFile: false
+  path: Counting/Combination_Calculator.hpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/cgl/3A.test.cpp
+  timestamp: '2025-10-26 10:26:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+documentation_of: Counting/Combination_Calculator.hpp
 layout: document
-redirect_from:
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp
-- /verify/verify/aizu_online_judge/cgl/3A.test.cpp.html
-title: verify/aizu_online_judge/cgl/3A.test.cpp
+title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\u7684\
+  \u306A\u8A08\u7B97"
 ---
+
+## Outline
+
+組み合わせ論に関する基本的な計算を行う.
+
+## Theory
+
+### 組み合わせを表す関数
+
+(人は互いに区別がつき, ものは互いに区別がつかないとする.)
+
+||意味合い|計算方法|
+|:--:|:--:|:--:|
+|$N!$|$N$ 人を1列に並べる方法|$N!=1 \times 2 \times \dots \times N$|
+|$\dbinom{N}{r}$|$N$ 人から $r$ 人を選び出す方法 |$\dbinom{N}{r}=\dfrac{N!}{r!(N-r)!}$|
+|${}_N \mathrm{P}_r$|$N$ 人から $r$ 人を選び出し, その $r$ 人を一列に並べる方法|${}_N \mathrm{P}_r=\dfrac{N!}{(N-r)!}$|
+|${}_N \mathrm{H}_r$|$N$ 個のものを $r$ 人に配る方法|${}_N \mathrm{H}_r=\dbinom{N+r-1}{r}$ <br> (ただし, $_0\mathrm{H}_0=1$ とする.)|
+|$\dbinom{N}{r_1, r_2, \dots, r_m}$ <br> $(N=r_1+\dots+r_m)$|$N$ 人を $r_1$ 人の $1$ 班, $\cdots$, $r_m$ 人の $m$ 班に分ける方法|$\dbinom{N}{r_1,r_2, \dots, r_m}=\dfrac{N!}{r_1!r_2! \dots r_m!}$|
+|$C_n$<br>(カタラン数)|$N$ 個の `(` と $N$ 個の `)` からなる文字列が正しい文字列になる文字列の数 (など) |$C_N=\dfrac{(2N)!}{(N+1)!N!}$|
+
+## Contents
+
+### Constructer
+
+```cpp
+Combination_Calculator(const int n)
+```
+
+* サイズが $n$ の組み合わせ論に関する基本的な計算を行う計算機を作成する.
+* **計算量** : $O(n)$ 時間.
+
+### fact
+
+```cpp
+calc.fact(const int k)
+```
+
+* $k!$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### fact_inv
+
+```cpp
+calc.fact_inv(const int k)
+```
+
+* $(k!)^{-1}$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### inv
+
+```cpp
+calc.inv(const int k)
+```
+
+* $k^{-1}$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### nCr
+
+```cpp
+calc.nCr(const int n, const int r)
+```
+
+* 二項係数 $_n\mathrm{C}_r$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### nPr
+
+```cpp
+calc.nPr(const int n, const int r)
+```
+
+* 順列の数 $_n\mathrm{P}_r$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### nHr
+
+```cpp
+calc.nHr(const int n, const int r)
+```
+
+* 重複組合せ $_n\mathrm{H}_r$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+
+### multinomial_coefficient
+
+```cpp
+calc.multinomial_coefficient(const vector<int> &ks)
+```
+
+* 多項係数 $\dbinom{k_1+\dots+k_m}{k_1, \dots, k_m}$ を計算する.
+* **計算量** : ならし $O(m)$ 時間.
+
+### catalan
+
+```cpp
+calc.catalan(const int n)
+```
+
+* Catalan 数 $C_n := \dfrac{1}{n+1} \dbinom{2n}{n}$ を計算する.
+* **計算量** : ならし $O(1)$ 時間.
+

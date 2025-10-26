@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Algebra/dynamic_modint.hpp
       title: Algebra/dynamic_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -39,6 +39,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/Gcd_Convolution.hpp
       title: Convolution/Gcd_Convolution.hpp
+  - name: Counting
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Counting/Combination_Calculator.hpp
+      title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
+        \u7684\u306A\u8A08\u7B97"
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -186,16 +192,16 @@ data:
       title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   - name: Integer
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Divisors.hpp
       title: Integer/Divisors.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Euler_Totient.hpp
       title: "Euler's Totient \u95A2\u6570"
     - icon: ':heavy_check_mark:'
       path: Integer/Miller_Rabin_Primality_Test.hpp
       title: Integer/Miller_Rabin_Primality_Test.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
     - icon: ':heavy_check_mark:'
@@ -225,16 +231,16 @@ data:
       title: Math/Two_SAT.hpp
   - name: Modulo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Modulo/Composite.hpp
       title: Modulo/Composite.hpp
     - icon: ':heavy_check_mark:'
       path: Modulo/Discrete_Log.hpp
       title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Modulo/Order.hpp
       title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
     - icon: ':warning:'
@@ -315,16 +321,16 @@ data:
       title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - name: Tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'
       path: Tree/Rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Tree/Tree_DP.hpp
       title: "\u6728 DP"
   - name: Union_Find
@@ -334,22 +340,22 @@ data:
       title: Union Find
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
@@ -452,6 +458,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+      title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
@@ -587,13 +596,13 @@ data:
       title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - name: verify/yukicoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yukicoder/2558.test.cpp
       title: verify/yukicoder/2558.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yukicoder/763.test.cpp
       title: verify/yukicoder/763.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yukicoder/Modulo_Order.test.cpp
       title: verify/yukicoder/Modulo_Order.test.cpp
 layout: toppage
