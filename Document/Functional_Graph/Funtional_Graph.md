@@ -47,3 +47,17 @@ $D$ におけるそれぞれの弱連結成分 $\Gamma_i$ は次のようにし�
 ```cpp
 Functional_Graph(const vector<int> &f)
 ```
+
+* 写像 $f$ による Functional Graph を生成する.
+* **計算量** : $O(N \log N)$ 時間.
+
+### calculate
+
+```cpp
+F.calculate(int x, ll k)
+```
+
+* $f^k(x)$ を求める.
+* **計算量** : $O(\log N)$ 時間.
+  * 厳密には, $f^k(x)$ がサイクル上の頂点ならば $O(1)$ 時間, サイクル上の頂点でなければ $O(\log k)$ 時間.
+
