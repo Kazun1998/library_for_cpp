@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
+  - icon: ':x:'
+    path: Functional_Graph/Functional_Graph.hpp
+    title: Functional Graph
   - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
@@ -322,6 +325,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1E.test.cpp
     title: verify/aizu_online_judge/ntl/1E.test.cpp
+  - icon: ':x:'
+    path: verify/atcoder/167_D.test.cpp
+    title: verify/atcoder/167_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
@@ -463,9 +469,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
@@ -739,6 +745,7 @@ data:
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
   - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Functional_Graph/Functional_Graph.hpp
   - Algebra/dynamic_modint.hpp
   - Algebra/Gaussian_Integer.hpp
   - Algebra/modint.hpp
@@ -809,7 +816,7 @@ data:
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-10-25 13:41:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
@@ -855,6 +862,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/atcoder/167_D.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp
   - verify/aizu_online_judge/cgl/1A.test.cpp
   - verify/aizu_online_judge/cgl/7C.test.cpp
