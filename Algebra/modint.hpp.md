@@ -79,6 +79,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,6 +375,7 @@ data:
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp

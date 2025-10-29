@@ -284,37 +284,38 @@ data:
     \ m = 1;\n        while (m < size) { m *= 2; }\n\n        n = m;\n        data.assign(2\
     \ * n, unit);\n    }\n\n    Segment_Tree(const vector<M> &vec, const function<M(M,\
     \ M)> op, const M unit): \n        Segment_Tree(vec.size(), op, unit) {\n    \
-    \        for (int k = 0; k < n; k++) { data[k + n] = vec[k]; }\n            for\
-    \ (int k = n - 1; k > 0; k--) { recalc(k); }\n        }\n\n    private:\n    void\
-    \ recalc(int k) { data[k] = op(data[k << 1], data[k << 1 | 1]); }\n\n    public:\n\
-    \    // \u7B2C k \u8981\u7D20\u3092 x \u306B\u66F4\u65B0\u3059\u308B\n    void\
-    \ update(int k, M x) {\n        k += n;\n        data[k] = x;\n\n        for (k\
-    \ >>= 1; k; k >>= 1) { recalc(k); }\n    }\n\n    // \u7B2C l \u8981\u7D20\u304B\
-    \u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\
-    \n    M product(int l, int r){\n        l += n; r += n + 1;\n        M vl = unit,\
-    \ vr = unit;\n        while (l < r){\n            if (l & 1){\n              \
-    \  vl = op(vl, data[l]);\n                l++;\n            }\n\n            if\
-    \ (r & 1){\n                r--;\n                vr = op(data[r], vr);\n    \
-    \        }\n\n            l >>= 1; r >>= 1;\n        }\n\n        return op(vl,\
-    \ vr);\n    }\n};\n#line 6 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\n\ntemplate<typename\
-    \ M>\nclass Subtree_Monoid_Vertex_Query {\n    private:\n    Tree T;\n    unique_ptr<Segment_Tree<M>>\
-    \ S;\n\n    public:\n    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M>\
-    \ &data, const function<M(M, M)> op, const M unit): T(tree) {\n        T.calculate_euler_tour_vertex();\n\
-    \n        // NEXT: \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306B\u5BFE\
-    \u5FDC + Segment Tree \u306E\u30D9\u30AF\u30C8\u30EB\u306E\u30B5\u30A4\u30BA\u3092\
-    \u4E0B\u3052\u308B.\n\n        int n = T.order();\n        vector<M> first(2 *\
-    \ n);\n        for (int v = T.offset(); v < T.vector_size(); v++) {\n        \
-    \    first[T.in_time[v]] = data[v];\n        }\n\n        S = make_unique<Segment_Tree<M>>(first,\
-    \ op, unit);\n    }\n\n    /*\n    @brief \u9802\u70B9 `v` \u3092 `x` \u306B\u5909\
-    \u66F4\u3059\u308B.\n    @param v \u9802\u70B9\n    @param x \u5909\u66F4\u5F8C\
-    \u306E `M` \u306E\u9802\u70B9 `v` \u306B\u304A\u3051\u308B\u5024\n    */\n   \
-    \ void update(const int &v, const M &x) {\n        S->update(T.in_time[v], x);\n\
-    \    }\n\n    /*\n    @brief \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\
-    \u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\u7A4D\u3092\u6C42\u3081\u308B.\n  \
-    \  @param v \u90E8\u5206\u6728\u306E\u9802\u70B9\n    @returns \u9802\u70B9 `v`\
-    \ \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\
-    \u7A4D\n    */\n    M query(const int &v) {\n        return S->product(T.in_time[v],\
-    \ T.out_time[v]);\n    }\n};\n"
+    \        for (int k = 0; k < vec.size(); k++) { data[k + n] = vec[k]; }\n    \
+    \        for (int k = n - 1; k > 0; k--) { recalc(k); }\n        }\n\n    private:\n\
+    \    void recalc(int k) { data[k] = op(data[k << 1], data[k << 1 | 1]); }\n\n\
+    \    public:\n    // \u7B2C k \u8981\u7D20\u3092 x \u306B\u66F4\u65B0\u3059\u308B\
+    \n    void update(int k, M x) {\n        k += n;\n        data[k] = x;\n\n   \
+    \     for (k >>= 1; k; k >>= 1) { recalc(k); }\n    }\n\n    // \u7B2C l \u8981\
+    \u7D20\u304B\u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\u7DCF\u7A4D\u3092\u6C42\
+    \u3081\u308B\n    M product(int l, int r){\n        l += n; r += n + 1;\n    \
+    \    M vl = unit, vr = unit;\n        while (l < r){\n            if (l & 1){\n\
+    \                vl = op(vl, data[l]);\n                l++;\n            }\n\n\
+    \            if (r & 1){\n                r--;\n                vr = op(data[r],\
+    \ vr);\n            }\n\n            l >>= 1; r >>= 1;\n        }\n\n        return\
+    \ op(vl, vr);\n    }\n};\n#line 6 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\n\n\
+    template<typename M>\nclass Subtree_Monoid_Vertex_Query {\n    private:\n    Tree\
+    \ T;\n    unique_ptr<Segment_Tree<M>> S;\n\n    public:\n    Subtree_Monoid_Vertex_Query(Tree\
+    \ &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree)\
+    \ {\n        T.calculate_euler_tour_vertex();\n\n        // NEXT: \u9045\u5EF6\
+    \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306B\u5BFE\u5FDC + Segment Tree \u306E\u30D9\
+    \u30AF\u30C8\u30EB\u306E\u30B5\u30A4\u30BA\u3092\u4E0B\u3052\u308B.\n\n      \
+    \  int n = T.order();\n        vector<M> first(2 * n);\n        for (int v = T.offset();\
+    \ v < T.vector_size(); v++) {\n            first[T.in_time[v]] = data[v];\n  \
+    \      }\n\n        S = make_unique<Segment_Tree<M>>(first, op, unit);\n    }\n\
+    \n    /*\n    @brief \u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B\
+    .\n    @param v \u9802\u70B9\n    @param x \u5909\u66F4\u5F8C\u306E `M` \u306E\
+    \u9802\u70B9 `v` \u306B\u304A\u3051\u308B\u5024\n    */\n    void update(const\
+    \ int &v, const M &x) {\n        S->update(T.in_time[v], x);\n    }\n\n    /*\n\
+    \    @brief \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\
+    \u95A2\u3059\u308B\u7DCF\u7A4D\u3092\u6C42\u3081\u308B.\n    @param v \u90E8\u5206\
+    \u6728\u306E\u9802\u70B9\n    @returns \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\
+    \u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\u7A4D\n    */\n    M query(const\
+    \ int &v) {\n        return S->product(T.in_time[v], T.out_time[v]);\n    }\n\
+    };\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Tree.hpp\"\
     \n#include\"../Segment_Tree/Segment_Tree.hpp\"\n\ntemplate<typename M>\nclass\
     \ Subtree_Monoid_Vertex_Query {\n    private:\n    Tree T;\n    unique_ptr<Segment_Tree<M>>\
@@ -347,7 +348,7 @@ data:
   isVerificationFile: false
   path: Tree/Subtree_Monoid_Vertex_Query.hpp
   requiredBy: []
-  timestamp: '2025-10-26 20:34:17+09:00'
+  timestamp: '2025-10-30 00:10:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
