@@ -19,7 +19,7 @@ class Segment_Tree{
 
     Segment_Tree(const vector<M> &vec, const function<M(M, M)> op, const M unit): 
         Segment_Tree(vec.size(), op, unit) {
-            for (int k = 0; k < n; k++) { data[k + n] = vec[k]; }
+            for (int k = 0; k < vec.size(); k++) { data[k + n] = vec[k]; }
             for (int k = n - 1; k > 0; k--) { recalc(k); }
         }
 
