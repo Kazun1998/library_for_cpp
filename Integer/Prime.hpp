@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Prime {
+namespace prime {
   class Pseudo_Prime_Generator {
     private:
     long long prime = 1, step = 0;
