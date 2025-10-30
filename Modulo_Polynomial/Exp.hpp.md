@@ -6,13 +6,13 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
-    title: Modulo_Polynomial/Calculus.hpp
+    title: "\u5FAE\u7A4D\u5206"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
-    title: Modulo_Polynomial/Log.hpp
+    title: Log
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp

@@ -261,7 +261,7 @@ data:
       title: "Bernoulli \u6570"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Calculus.hpp
-      title: Modulo_Polynomial/Calculus.hpp
+      title: "\u5FAE\u7A4D\u5206"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Exp.hpp
       title: Modulo_Polynomial/Exp.hpp
@@ -273,7 +273,7 @@ data:
       title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Log.hpp
-      title: Modulo_Polynomial/Log.hpp
+      title: Log
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Modulo_Polynomial.hpp
       title: Modulo_Polynomial/Modulo_Polynomial.hpp
