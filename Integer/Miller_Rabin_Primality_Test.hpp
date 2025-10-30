@@ -9,7 +9,7 @@ bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {
     if (N == 1 || N % 2 == 0) { return false; }
 
     ll q; int k;
-    tie (k, q) = Prime::exponents(N - 1, 2);
+    tie (k, q) = prime::exponents(N - 1, 2);
 
     random_device device;
     mt19937_64 gen(device());
