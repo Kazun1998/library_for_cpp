@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/enumerate_primes
   bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace Prime {\n\
+    \nusing namespace std;\n\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace prime {\n\
     \  class Pseudo_Prime_Generator {\n    private:\n    long long prime = 1, step\
     \ = 0;\n\n    public:\n    long long get() {\n      if (step) {\n        prime\
     \ += step;\n        step = 6 - step;\n      }\n      else if (prime == 1) { prime\
@@ -50,13 +50,13 @@ data:
     \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
     \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
     \    }\n\n    return primes;\n  }\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp\"\
-    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = Prime::prime_list(N);\n\
+    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = prime::prime_list(N);\n\
     \n  int X = (primes.size() - B - 1) / A + 1;\n  cout << primes.size() << \" \"\
     \ << X << endl;\n  for (int i = 0; i < X; i++) { cout << primes[A * i + B] <<\
     \ (i < X - 1 ? \" \": \"\") ; }\n  cout << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n\
     #include<bits/stdc++.h>\n\nusing namespace std;\n\n#include\"../../../Integer/Prime.hpp\"\
-    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = Prime::prime_list(N);\n\
+    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = prime::prime_list(N);\n\
     \n  int X = (primes.size() - B - 1) / A + 1;\n  cout << primes.size() << \" \"\
     \ << X << endl;\n  for (int i = 0; i < X; i++) { cout << primes[A * i + B] <<\
     \ (i < X - 1 ? \" \": \"\") ; }\n  cout << \"\\n\";\n}\n"
@@ -65,7 +65,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   requiredBy: []
-  timestamp: '2025-08-17 00:13:14+09:00'
+  timestamp: '2025-10-30 23:38:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp

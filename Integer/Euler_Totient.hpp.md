@@ -21,7 +21,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
-    \n\nnamespace Prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
+    \n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
     \ long prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
     \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
     \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
@@ -56,12 +56,12 @@ data:
     \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
     \ primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\n\nlong long Euler_Totient(long\
     \ long N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n  \
-    \  long long phi = 1;\n    for (auto &&[p, e]: Prime::prime_factorization(N))\
+    \  long long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N))\
     \ {\n        phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p;\
     \ }\n    }\n\n    return phi;\n}\n"
   code: "#pragma once\n\n#include\"Prime.hpp\"\n\nlong long Euler_Totient(long long\
     \ N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n    long\
-    \ long phi = 1;\n    for (auto &&[p, e]: Prime::prime_factorization(N)) {\n  \
+    \ long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N)) {\n  \
     \      phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p; }\n\
     \    }\n\n    return phi;\n}\n"
   dependsOn:
@@ -70,7 +70,7 @@ data:
   path: Integer/Euler_Totient.hpp
   requiredBy:
   - Modulo/Order.hpp
-  timestamp: '2025-08-16 18:00:11+09:00'
+  timestamp: '2025-10-30 23:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/ntl/1D.test.cpp

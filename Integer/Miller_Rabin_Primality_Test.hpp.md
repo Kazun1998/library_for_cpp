@@ -148,7 +148,7 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace Prime {\n  class\
+    \ bit_length(x)); }\n#line 2 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class\
     \ Pseudo_Prime_Generator {\n    private:\n    long long prime = 1, step = 0;\n\
     \n    public:\n    long long get() {\n      if (step) {\n        prime += step;\n\
     \        step = 6 - step;\n      }\n      else if (prime == 1) { prime = 2; }\n\
@@ -185,7 +185,7 @@ data:
     \n\n// N \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
     .\nbool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) {\
     \ return true; }\n    if (N == 1 || N % 2 == 0) { return false; }\n\n    ll q;\
-    \ int k;\n    tie (k, q) = Prime::exponents(N - 1, 2);\n\n    random_device device;\n\
+    \ int k;\n    tie (k, q) = prime::exponents(N - 1, 2);\n\n    random_device device;\n\
     \    mt19937_64 gen(device());\n    uniform_int_distribution<ll> distribute(2,\
     \ N - 1);\n\n    auto challenge = [&]() -> bool {\n        __int128_t m = distribute(gen);\n\
     \        auto y = modpow(m, q, (__int128_t)N);\n\n        if (y == 1) { return\
@@ -197,7 +197,7 @@ data:
     \n\n// N \u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
     .\nbool Miller_Rabin_Primality_Test(ll N, int trial = 30) {\n    if (N == 2) {\
     \ return true; }\n    if (N == 1 || N % 2 == 0) { return false; }\n\n    ll q;\
-    \ int k;\n    tie (k, q) = Prime::exponents(N - 1, 2);\n\n    random_device device;\n\
+    \ int k;\n    tie (k, q) = prime::exponents(N - 1, 2);\n\n    random_device device;\n\
     \    mt19937_64 gen(device());\n    uniform_int_distribution<ll> distribute(2,\
     \ N - 1);\n\n    auto challenge = [&]() -> bool {\n        __int128_t m = distribute(gen);\n\
     \        auto y = modpow(m, q, (__int128_t)N);\n\n        if (y == 1) { return\
@@ -216,7 +216,7 @@ data:
   isVerificationFile: false
   path: Integer/Miller_Rabin_Primality_Test.hpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-30 23:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

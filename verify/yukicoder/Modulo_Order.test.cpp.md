@@ -226,7 +226,7 @@ data:
     \ }\n\n        auto res = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n    \
     \        if (n & 1) { res *= x; }\n            x *= x;\n        }\n\n        return\
     \ res;\n    }\n}\n#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
-    \n\nnamespace Prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
+    \n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
     \ long prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
     \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
     \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
@@ -261,7 +261,7 @@ data:
     \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
     \ primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\n\nlong long Euler_Totient(long\
     \ long N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n  \
-    \  long long phi = 1;\n    for (auto &&[p, e]: Prime::prime_factorization(N))\
+    \  long long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N))\
     \ {\n        phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p;\
     \ }\n    }\n\n    return phi;\n}\n#line 2 \"Integer/Divisors.hpp\"\n\n#line 4\
     \ \"Integer/Divisors.hpp\"\n\n// N \u4EE5\u4E0B\u306E\u7D04\u6570\u3092\u5217\u6319\
@@ -298,7 +298,7 @@ data:
   isVerificationFile: true
   path: verify/yukicoder/Modulo_Order.test.cpp
   requiredBy: []
-  timestamp: '2025-10-25 13:41:40+09:00'
+  timestamp: '2025-10-30 23:38:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yukicoder/Modulo_Order.test.cpp

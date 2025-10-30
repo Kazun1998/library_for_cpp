@@ -29,7 +29,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Integer/Prime.hpp\"\n\nnamespace Prime {\n  class Pseudo_Prime_Generator\
+  bundledCode: "#line 2 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
     \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
     \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
     \ step;\n      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime\
@@ -63,7 +63,7 @@ data:
     \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
     \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
     \    }\n\n    return primes;\n  }\n}\n"
-  code: "#pragma once\n\nnamespace Prime {\n  class Pseudo_Prime_Generator {\n   \
+  code: "#pragma once\n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n   \
     \ private:\n    long long prime = 1, step = 0;\n\n    public:\n    long long get()\
     \ {\n      if (step) {\n        prime += step;\n        step = 6 - step;\n   \
     \   }\n      else if (prime == 1) { prime = 2; }\n      else if (prime == 2) {\
@@ -104,7 +104,7 @@ data:
   - Modulo/Order.hpp
   - Integer/Euler_Totient.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
-  timestamp: '2025-08-15 01:10:34+09:00'
+  timestamp: '2025-10-30 23:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
