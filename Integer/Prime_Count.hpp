@@ -5,6 +5,9 @@
 #include"Quotients.hpp"
 
 namespace prime {
+    /// @brief `N` 以下の素数の数を求める.
+    /// @param N 
+    /// @return `N` 以下の素数の数
     ll Prime_Pi(const ll &N) {
         if (N <= 0) { return 0; }
 
