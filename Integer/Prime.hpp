@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../template/template.hpp"
+
 namespace prime {
   class Pseudo_Prime_Generator {
     private:
