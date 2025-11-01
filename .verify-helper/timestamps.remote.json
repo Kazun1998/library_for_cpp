@@ -66,6 +66,7 @@
 "verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp": "2025-10-26 00:25:53 +0900",
 "verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp": "2025-10-26 00:25:53 +0900",
 "verify/yosupo_library_checker/sample/a_plus_b.test.cpp": "2025-08-16 18:30:36 +0900",
+"verify/yosupo_library_checker/string/Z_Algorithm.test.cpp": "2025-11-01 23:27:45 +0900",
 "verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2025-10-26 19:46:32 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2025-10-26 19:46:32 +0900",
 "verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp": "2025-10-26 19:46:32 +0900",
