@@ -6,6 +6,8 @@
 
 namespace prime {
     ll Prime_Pi(const ll &N) {
+        if (N <= 0) { return 0; }
+
         vector<ll> quotients;
         for (auto &[q, l, r]: Quotients(N)) {
             quotients.emplace_back(q);
