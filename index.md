@@ -327,6 +327,9 @@ data:
     - icon: ':warning:'
       path: Sequence/Run_Length_Encoding.hpp
       title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
+    - icon: ':heavy_check_mark:'
+      path: Sequence/Z_Algorithm.hpp
+      title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -602,6 +605,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
       title: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
+  - name: verify/yosupo_library_checker/string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
+      title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - name: verify/yosupo_library_checker/tree
     pages:
     - icon: ':heavy_check_mark:'

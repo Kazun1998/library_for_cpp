@@ -250,6 +250,9 @@ data:
     path: Sequence/Run_Length_Encoding.hpp
     title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - icon: ':heavy_check_mark:'
+    path: Sequence/Z_Algorithm.hpp
+    title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
@@ -458,6 +461,9 @@ data:
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
+    title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -538,6 +544,7 @@ data:
   - Integer/Euler_Totient.hpp
   - Integer/Prime.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
+  - Sequence/Z_Algorithm.hpp
   - Sequence/Run_Length_Encoding.hpp
   - Sequence/Hamming_Distance.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
@@ -596,6 +603,7 @@ data:
   timestamp: '2025-08-17 13:03:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
