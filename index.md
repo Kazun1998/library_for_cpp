@@ -210,6 +210,9 @@ data:
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
     - icon: ':heavy_check_mark:'
+      path: Integer/Prime_Pi.hpp
+      title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
+    - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - name: Linear_Algebra
@@ -533,6 +536,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
       title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
       title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

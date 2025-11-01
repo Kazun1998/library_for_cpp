@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Quotients.hpp
+    title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -23,21 +26,31 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
-    links:
-    - https://judge.yosupo.jp/problem/enumerate_primes
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#line 29\
-    \ \"template/template.hpp\"\n#include <initializer_list>\n#line 50 \"template/template.hpp\"\
-    \n#include <type_traits>\n#line 56 \"template/template.hpp\"\n\n// utility\n#line\
+    document_title: "`N` \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u6570\u3092\u6C42\u3081\
+      \u308B."
+    links: []
+  bundledCode: "#line 2 \"Integer/Prime_Pi.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
+    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
+    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
+    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
+    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
+    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
+    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
     \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
     \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
     , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
@@ -140,68 +153,98 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class\
-    \ Pseudo_Prime_Generator {\n    private:\n    long long prime = 1, step = 0;\n\
-    \n    public:\n    long long get() {\n      if (step) {\n        prime += step;\n\
-    \        step = 6 - step;\n      }\n      else if (prime == 1) { prime = 2; }\n\
-    \      else if (prime == 2) { prime = 3; }\n      else if (prime == 3) { prime\
-    \ = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570\
-    ?\n  bool is_prime(long long n) {\n    if (n <= 3) { return n >= 2; }\n    else\
-    \ if (n == 5) { return true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n\
-    \ % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator generator;\n    for\
-    \ (long long p = generator.get(); p * p <= n; p = generator.get()) {\n      if\
-    \ (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\n  pair<long\
-    \ long, long long> exponents(long long n, long long p) {\n    long long e = 0;\n\
-    \    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n  }\n\n  // \u7D20\
-    \u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>> prime_factorization\
-    \ (long long n) {\n    if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long\
-    \ long, long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
-    \ 1));\n      n = abs(n);\n    }\n\n    Pseudo_Prime_Generator generator;\n  \
-    \  for (long long p =generator.get(); p * p <= n; p = generator.get()) {\n   \
-    \   long long e;\n      tie(e, n) = exponents(n, p); \n      if (e) { factors.emplace_back(make_pair(p,\
-    \ e)); }\n    }\n\n    if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n\
-    \  \n    return factors;\n  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\
-    \u30B9\u30C8\u3092\u4F5C\u6210\u3059\u308B.\n  vector<long long> prime_list(long\
-    \ long n) {\n    if (n == 0 || n == 1) { return {}; }\n    else if (n == 2) {\
-    \ return {2}; }\n\n    if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) /\
-    \ 2;\n\n    // prime_flag[k] := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool>\
-    \ prime_flag(m, true);\n    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E\
-    \ 3 \u306E\u500D\u6570\u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x\
-    \ += 3) { prime_flag[x] = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n\
-    \    for (auto p = generator.get(); p * p <= n; p = generator.get()) {\n     \
-    \ if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue;\
-    \ }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false;\
-    \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
-    \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
-    \    }\n\n    return primes;\n  }\n}\n#line 8 \"verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp\"\
-    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = prime::prime_list(N);\n\
-    \n  int X = (primes.size() - B - 1) / A + 1;\n  cout << primes.size() << \" \"\
-    \ << X << endl;\n  for (int i = 0; i < X; i++) { cout << primes[A * i + B] <<\
-    \ (i < X - 1 ? \" \": \"\") ; }\n  cout << \"\\n\";\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n\
-    #include<bits/stdc++.h>\n\nusing namespace std;\n\n#include\"../../../Integer/Prime.hpp\"\
-    \n\nint main(){\n  int N, A, B; cin >> N >> A >> B;\n  auto primes = prime::prime_list(N);\n\
-    \n  int X = (primes.size() - B - 1) / A + 1;\n  cout << primes.size() << \" \"\
-    \ << X << endl;\n  for (int i = 0; i < X; i++) { cout << primes[A * i + B] <<\
-    \ (i < X - 1 ? \" \": \"\") ; }\n  cout << \"\\n\";\n}\n"
+    \ bit_length(x)); }\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\
+    \n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
+    \ long prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
+    \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
+    \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
+    \   else if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n   \
+    \ }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if\
+    \ (n <= 3) { return n >= 2; }\n    else if (n == 5) { return true; }\n    else\
+    \ if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
+    \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
+    \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
+    \n  pair<long long, long long> exponents(long long n, long long p) {\n    long\
+    \ long e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n \
+    \ }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>>\
+    \ prime_factorization (long long n) {\n    if (n == 0) { return { make_pair(0,\
+    \ 0) }; } \n\n    vector<pair<long long, long long>> factors;\n    if (n < 0)\
+    \ {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n    }\n\
+    \n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
+    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
+    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
+    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
+    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
+    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
+    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
+    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
+    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
+    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
+    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
+    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
+    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
+    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
+    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
+    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
+    \ primes;\n  }\n}\n#line 2 \"Integer/Quotients.hpp\"\n\n#line 4 \"Integer/Quotients.hpp\"\
+    \n\nvector<tuple<ll, ll, ll>> Quotients(ll N) {\n    auto quotients = vector<tuple<ll,\
+    \ ll, ll>>();\n\n    ll l = 1;\n    while (l <= N) {\n        ll q = N / l;\n\
+    \        ll r = N / q;\n        quotients.emplace_back(q, l, r);\n        l =\
+    \ r + 1;\n    }\n\n    return quotients;\n}\n#line 6 \"Integer/Prime_Pi.hpp\"\n\
+    \nnamespace prime {\n    /// @brief `N` \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u6570\
+    \u3092\u6C42\u3081\u308B.\n    /// @param N \n    /// @return `N` \u4EE5\u4E0B\
+    \u306E\u7D20\u6570\u306E\u6570\n    ll Prime_Pi(const ll N) {\n        if (N <=\
+    \ 0) { return 0; }\n\n        vector<ll> quotients;\n        for (auto &[q, l,\
+    \ r]: Quotients(N)) {\n            quotients.emplace_back(q);\n        }\n\n \
+    \       unordered_map<ll, ll> S;\n        for (ll q: quotients) { S[q] = q - 1;\
+    \ }\n\n        ll N_sqrt = isqrt(N);\n        for (ll x = 2; x <= N_sqrt; x++)\
+    \ {\n            if (S[x] <= S[x - 1]) { continue; }\n\n            for (ll n:\
+    \ quotients) {\n                if (n < x * x) { break; }\n\n                S[n]\
+    \ -= S[n / x] - S[x - 1];\n            }\n        }\n\n        return S[N];\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Prime.hpp\"\
+    \n#include\"Quotients.hpp\"\n\nnamespace prime {\n    /// @brief `N` \u4EE5\u4E0B\
+    \u306E\u7D20\u6570\u306E\u6570\u3092\u6C42\u3081\u308B.\n    /// @param N \n \
+    \   /// @return `N` \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u6570\n    ll Prime_Pi(const\
+    \ ll N) {\n        if (N <= 0) { return 0; }\n\n        vector<ll> quotients;\n\
+    \        for (auto &[q, l, r]: Quotients(N)) {\n            quotients.emplace_back(q);\n\
+    \        }\n\n        unordered_map<ll, ll> S;\n        for (ll q: quotients)\
+    \ { S[q] = q - 1; }\n\n        ll N_sqrt = isqrt(N);\n        for (ll x = 2; x\
+    \ <= N_sqrt; x++) {\n            if (S[x] <= S[x - 1]) { continue; }\n\n     \
+    \       for (ll n: quotients) {\n                if (n < x * x) { break; }\n\n\
+    \                S[n] -= S[n / x] - S[x - 1];\n            }\n        }\n\n  \
+    \      return S[N];\n    }\n};\n"
   dependsOn:
-  - Integer/Prime.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - Integer/Prime.hpp
+  - Integer/Quotients.hpp
+  isVerificationFile: false
+  path: Integer/Prime_Pi.hpp
   requiredBy: []
-  timestamp: '2025-11-01 19:45:52+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  timestamp: '2025-11-01 20:43:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+documentation_of: Integer/Prime_Pi.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-- /verify/verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp.html
-title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
 ---
+
+## Outline
+
+正の整数 $N$ に対して, $N$ 以下の素数の数 $\pi(N)$ を $O\left( \dfrac{N^{3/4}}{\log N} \right)$ 時間で求める.
+
+## Contents
+
+```cpp
+ll Prime_Pi(const ll N)
+```
+
+* $N$ 以下の素数の数 $\pi(N)$ を求める.
+* **計算量** : $O \left(\dfrac{N^{3/4}}{\log N} \right)$ 時間

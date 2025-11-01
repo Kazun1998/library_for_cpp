@@ -157,8 +157,17 @@ data:
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
   - icon: ':heavy_check_mark:'
+    path: Integer/Euler_Totient.hpp
+    title: "Euler's Totient \u95A2\u6570"
+  - icon: ':heavy_check_mark:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: Integer/Miller_Rabin_Primality_Test.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime.hpp
+    title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime_Pi.hpp
+    title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: "\u5546\u306E\u5217\u6319 (Quotients)"
@@ -404,8 +413,14 @@ data:
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
@@ -769,6 +784,9 @@ data:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
+  - Integer/Prime_Pi.hpp
+  - Integer/Euler_Totient.hpp
+  - Integer/Prime.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Sequence/Run_Length_Encoding.hpp
   - Sequence/Hamming_Distance.hpp
@@ -846,10 +864,12 @@ data:
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp

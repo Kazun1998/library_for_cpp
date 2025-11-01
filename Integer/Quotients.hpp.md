@@ -19,8 +19,14 @@ data:
   - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime_Pi.hpp
+    title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
@@ -164,10 +170,12 @@ data:
   - template/bitop.hpp
   isVerificationFile: false
   path: Integer/Quotients.hpp
-  requiredBy: []
+  requiredBy:
+  - Integer/Prime_Pi.hpp
   timestamp: '2025-10-25 13:41:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
 documentation_of: Integer/Quotients.hpp
 layout: document
