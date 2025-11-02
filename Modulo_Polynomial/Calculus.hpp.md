@@ -45,12 +45,18 @@ data:
     path: Modulo_Polynomial/Log.hpp
     title: Log
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_Q.hpp
+    title: "\u5206\u5272\u6570 (Q)"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Partition_Q.test.cpp
+    title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
@@ -506,6 +512,7 @@ data:
   - Modulo_Polynomial/Exp.hpp
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2025-10-26 00:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -516,6 +523,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Calculus.hpp
 layout: document
 title: "\u5FAE\u7A4D\u5206"

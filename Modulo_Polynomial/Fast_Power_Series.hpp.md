@@ -51,6 +51,9 @@ data:
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_Q.hpp
+    title: "\u5206\u5272\u6570 (Q)"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Partition_Q.test.cpp
+    title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
@@ -564,6 +570,7 @@ data:
   - Modulo_Polynomial/Stirling_1st.hpp
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2025-10-26 00:25:53+09:00'
@@ -579,6 +586,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Fast_Power_Series.hpp
 layout: document
 redirect_from:

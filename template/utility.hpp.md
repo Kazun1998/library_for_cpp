@@ -223,6 +223,9 @@ data:
     path: Modulo_Polynomial/Partition_P.hpp
     title: "\u5206\u5272\u6570 (P)"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_Q.hpp
+    title: "\u5206\u5272\u6570 (Q)"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -331,6 +334,9 @@ data:
   - icon: ':x:'
     path: verify/atcoder/167_D.test.cpp
     title: verify/atcoder/167_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Partition_Q.test.cpp
+    title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
@@ -593,6 +599,7 @@ data:
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
@@ -672,6 +679,7 @@ data:
   - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/original/Partition_Q.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp

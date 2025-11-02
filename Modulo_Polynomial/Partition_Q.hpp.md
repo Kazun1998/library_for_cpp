@@ -8,14 +8,23 @@ data:
     path: Modulo_Polynomial/Calculus.hpp
     title: "\u5FAE\u7A4D\u5206"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Exp.hpp
+    title: Modulo_Polynomial/Exp.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Log.hpp
+    title: Log
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Subset_Sum.hpp
+    title: "Subset Sum (\u591A\u9805\u5F0F)"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -34,54 +43,20 @@ data:
   - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bell_Number.hpp
-    title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Bernoulli_Number.hpp
-    title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Exp.hpp
-    title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Partition_Q.hpp
-    title: "\u5206\u5272\u6570 (Q)"
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Power.hpp
-    title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Subset_Sum.hpp
-    title: "Subset Sum (\u591A\u9805\u5F0F)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/original/Partition_Q.test.cpp
     title: verify/original/Partition_Q.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-    title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Log.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    title: verify/yosupo_library_checker/polynomial/Power.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "n = 0, 1, ..., N \u306B\u5BFE\u3057\u3066, n \u3092\u7570\u306A\
+      \u308B\u6574\u6570\u3067\u5206\u5272\u3059\u308B\u65B9\u6CD5 (\u9806\u5E8F\u9055\
+      \u3044\u306F\u540C\u4E00\u8996) \u306E\u6570\u3092\u6C42\u3081\u308B"
     links: []
-  bundledCode: "#line 2 \"Modulo_Polynomial/Log.hpp\"\n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\
-    \n\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+  bundledCode: "#line 2 \"Modulo_Polynomial/Partition_Q.hpp\"\n\n#line 2 \"Algebra/modint.hpp\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -197,101 +172,102 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"\
-    Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n    static\
-    \ constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static int mod()\
-    \ { return _mod; }\n\n    static modint raw(int v) {\n        modint a;\n    \
-    \    a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr\
-    \ modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
-    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
-    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
-    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
-    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
-    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
-    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
-    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n\
-    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
-    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % mod() + mod())\
-    \ % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long\
-    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
+    \ get_bits(x, bit_length(x)); }\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int\
+    \ M>\nclass modint {\n    public:\n    static constexpr int _mod = M; \n    uint64_t\
+    \ x;\n\n    public:\n    static int mod() { return _mod; }\n\n    static modint\
+    \ raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\
+    \n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
+    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
+    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
+    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
+    \ operator+=(const modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n\
+    \        return *this;\n    }\n\n    friend modint operator+(const modint &x,\
+    \ const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint&\
+    \ operator-=(const modint &b){\n        if ((x += mod() - b.x) >= mod()) x -=\
+    \ mod();\n        return *this;\n    }\n\n    friend modint operator-(const modint\
+    \ &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n   \
+    \ modint& operator*=(const modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend modint operator*(const modint &x, const modint\
+    \ &y) { return modint(x) *= y; }\n    friend modint operator*(const int &x, const\
+    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const ll\
+    \ &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n   \
+    \ modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
+    \     int64_t a = x, b = mod();\n\n        while (b > 0) {\n            int64_t\
+    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
+    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
+    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
+    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
+    \ &a, const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
+    \        a.x = (a.x % mod() + mod()) % mod();\n        return is;\n    }\n\n \
+    \   // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const modint\
+    \ &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n \
+    \   bool is_member(ll a) const { return x == (a % mod() + mod()) % mod(); }\n\
+    };\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n    if\
+    \ (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
     \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
-    \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
-    \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
-    \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
-    \ { _poly.resize(precision); }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial()\
-    \ = default;\n    Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly,\
-    \ poly.size()) {}\n    Modulo_Polynomial(int precision) : Modulo_Polynomial({},\
-    \ precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\u7FA9\n    public:\n\
-    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial operator-() const\
-    \ {\n        Modulo_Polynomial res(*this);\n        for (auto &a : res.poly) {\
-    \ a = -a; }\n        return res;\n    }\n\n    // \u52A0\u6CD5\n    Modulo_Polynomial&\
-    \ operator+=(const Modulo_Polynomial &P){\n        if (size() < P.size()) { resize(P.size());\
-    \ }\n\n        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] += P[i];\
-    \ }\n        reduce();\n\n        return *this;\n    }\n\n    Modulo_Polynomial&\
-    \ operator+=(const mint &a){\n        if (poly.empty()) { resize(1); }\n     \
-    \   poly[0] += a;\n        reduce();\n\n        return *this;\n    }\n\n    friend\
-    \ Modulo_Polynomial operator+(const Modulo_Polynomial &lhs, const Modulo_Polynomial\
-    \ &rhs) { return Modulo_Polynomial(lhs) += rhs; }\n    Modulo_Polynomial operator+(const\
-    \ mint &a) const { return Modulo_Polynomial(*this) += a; }\n\n    // \u6E1B\u6CD5\
-    \n    Modulo_Polynomial& operator-=(const Modulo_Polynomial &P){\n        if (size()\
+    \    }\n\n    return res;\n}\n#line 2 \"Modulo_Polynomial/Subset_Sum.hpp\"\n\n\
+    #line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \n\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\ntemplate<typename mint>\n\
+    class Modulo_Polynomial {\n    public:\n    int precision = 0;\n\n    public:\n\
+    \    vector<mint> poly;\n    Modulo_Polynomial(vector<mint> _poly, int precision):\
+    \ precision(precision) {\n        if (_poly.size() > precision) { _poly.resize(precision);\
+    \ }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial() = default;\n    Modulo_Polynomial(vector<mint>\
+    \ poly) : Modulo_Polynomial(poly, poly.size()) {}\n    Modulo_Polynomial(int precision)\
+    \ : Modulo_Polynomial({}, precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\
+    \u7FA9\n    public:\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial\
+    \ operator-() const {\n        Modulo_Polynomial res(*this);\n        for (auto\
+    \ &a : res.poly) { a = -a; }\n        return res;\n    }\n\n    // \u52A0\u6CD5\
+    \n    Modulo_Polynomial& operator+=(const Modulo_Polynomial &P){\n        if (size()\
     \ < P.size()) { resize(P.size()); }\n\n        for (int i = 0; i < (int) P.poly.size();\
-    \ i++) { poly[i] -= P[i]; }\n        reduce();\n\n        return *this;\n    }\n\
-    \n    Modulo_Polynomial& operator-=(const mint &a){\n        if (poly.empty())\
-    \ { resize(1); }\n        poly[0] -= a;\n        reduce();\n\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator-(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) -= rhs; }\n  \
-    \  Modulo_Polynomial operator-(const mint &a) const { return Modulo_Polynomial(*this)\
-    \ -= a; }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    Modulo_Polynomial& operator*=(const\
-    \ mint &a){\n        for (int i = 0; i < size(); i++) { poly[i] *= a; }\n    \
-    \    reduce();\n        return *this;\n    }\n\n    Modulo_Polynomial operator*(const\
-    \ mint &a) const {return Modulo_Polynomial(*this) *= a;}\n\n    friend Modulo_Polynomial\
-    \ operator*(const mint &a, const Modulo_Polynomial &P) {\n        Modulo_Polynomial\
-    \ res(P);\n        res *= a;\n        return res;\n    }\n\n    // \u7A4D\n  \
-    \  Modulo_Polynomial& operator*=(const Modulo_Polynomial &P) {\n        int r\
-    \ = min({(int) (poly.size() + P.poly.size()) - 1, precision, P.precision});\n\
-    \        vector<mint> A(r);\n        for (int i = 0; i < size(); i++) {\n    \
-    \        for (int j = 0; j < P.size(); j++) {\n                if (i + j < r)\
-    \ { A[i + j] += poly[i] * P.poly[j]; }\n            }\n        }\n\n        poly\
-    \ = A;\n        precision = min(precision, P.precision);\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator*(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) *= rhs; }\n\n\
-    \    // \u30B9\u30AB\u30E9\u30FC\u9664\u7B97\n    Modulo_Polynomial& operator/=(const\
-    \ mint &a) {\n        mint a_inv = a.inverse();\n        for (int i = 0; i < size();\
-    \ i++) { poly[i] *= a_inv; }\n        return *this;\n    }\n\n    Modulo_Polynomial\
-    \ operator/(const mint &a) const { return Modulo_Polynomial(*this) /= a; }\n\n\
-    \    // index\n    mint operator[] (int k) const { return (k < poly.size()) ?\
-    \ poly[k] : 0; }\n\n    // istream\n    friend istream &operator>>(istream &is,\
-    \ Modulo_Polynomial &P) {\n        P.poly.resize(P.precision);\n        for (int\
-    \ i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }\n        return (is);\n\
-    \    }\n\n    // ostream\n    friend ostream &operator<<(ostream &os, const Modulo_Polynomial\
-    \ &P){\n        for (int i = 0; i < (int)P.poly.size(); i++){\n            os\
-    \ << (i ? \" \" : \"\") << P[i];\n        }\n        return os;\n    }\n\n   \
-    \ // poly \u3067\u4FDD\u6301\u3057\u3066\u3044\u308B\u30D9\u30AF\u30C8\u30EB\u306E\
-    \u9577\u3055\u3092 size \u306B\u3059\u308B.\n    // size = -1 \u306E\u3068\u304D\
-    \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
-    \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
-    \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
-    \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
+    \ i++) { poly[i] += P[i]; }\n        reduce();\n\n        return *this;\n    }\n\
+    \n    Modulo_Polynomial& operator+=(const mint &a){\n        if (poly.empty())\
+    \ { resize(1); }\n        poly[0] += a;\n        reduce();\n\n        return *this;\n\
+    \    }\n\n    friend Modulo_Polynomial operator+(const Modulo_Polynomial &lhs,\
+    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) += rhs; }\n  \
+    \  Modulo_Polynomial operator+(const mint &a) const { return Modulo_Polynomial(*this)\
+    \ += a; }\n\n    // \u6E1B\u6CD5\n    Modulo_Polynomial& operator-=(const Modulo_Polynomial\
+    \ &P){\n        if (size() < P.size()) { resize(P.size()); }\n\n        for (int\
+    \ i = 0; i < (int) P.poly.size(); i++) { poly[i] -= P[i]; }\n        reduce();\n\
+    \n        return *this;\n    }\n\n    Modulo_Polynomial& operator-=(const mint\
+    \ &a){\n        if (poly.empty()) { resize(1); }\n        poly[0] -= a;\n    \
+    \    reduce();\n\n        return *this;\n    }\n\n    friend Modulo_Polynomial\
+    \ operator-(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return\
+    \ Modulo_Polynomial(lhs) -= rhs; }\n    Modulo_Polynomial operator-(const mint\
+    \ &a) const { return Modulo_Polynomial(*this) -= a; }\n\n    // \u30B9\u30AB\u30E9\
+    \u30FC\u500D\n    Modulo_Polynomial& operator*=(const mint &a){\n        for (int\
+    \ i = 0; i < size(); i++) { poly[i] *= a; }\n        reduce();\n        return\
+    \ *this;\n    }\n\n    Modulo_Polynomial operator*(const mint &a) const {return\
+    \ Modulo_Polynomial(*this) *= a;}\n\n    friend Modulo_Polynomial operator*(const\
+    \ mint &a, const Modulo_Polynomial &P) {\n        Modulo_Polynomial res(P);\n\
+    \        res *= a;\n        return res;\n    }\n\n    // \u7A4D\n    Modulo_Polynomial&\
+    \ operator*=(const Modulo_Polynomial &P) {\n        int r = min({(int) (poly.size()\
+    \ + P.poly.size()) - 1, precision, P.precision});\n        vector<mint> A(r);\n\
+    \        for (int i = 0; i < size(); i++) {\n            for (int j = 0; j < P.size();\
+    \ j++) {\n                if (i + j < r) { A[i + j] += poly[i] * P.poly[j]; }\n\
+    \            }\n        }\n\n        poly = A;\n        precision = min(precision,\
+    \ P.precision);\n        return *this;\n    }\n\n    friend Modulo_Polynomial\
+    \ operator*(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return\
+    \ Modulo_Polynomial(lhs) *= rhs; }\n\n    // \u30B9\u30AB\u30E9\u30FC\u9664\u7B97\
+    \n    Modulo_Polynomial& operator/=(const mint &a) {\n        mint a_inv = a.inverse();\n\
+    \        for (int i = 0; i < size(); i++) { poly[i] *= a_inv; }\n        return\
+    \ *this;\n    }\n\n    Modulo_Polynomial operator/(const mint &a) const { return\
+    \ Modulo_Polynomial(*this) /= a; }\n\n    // index\n    mint operator[] (int k)\
+    \ const { return (k < poly.size()) ? poly[k] : 0; }\n\n    // istream\n    friend\
+    \ istream &operator>>(istream &is, Modulo_Polynomial &P) {\n        P.poly.resize(P.precision);\n\
+    \        for (int i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }\n   \
+    \     return (is);\n    }\n\n    // ostream\n    friend ostream &operator<<(ostream\
+    \ &os, const Modulo_Polynomial &P){\n        for (int i = 0; i < (int)P.poly.size();\
+    \ i++){\n            os << (i ? \" \" : \"\") << P[i];\n        }\n        return\
+    \ os;\n    }\n\n    // poly \u3067\u4FDD\u6301\u3057\u3066\u3044\u308B\u30D9\u30AF\
+    \u30C8\u30EB\u306E\u9577\u3055\u3092 size \u306B\u3059\u308B.\n    // size = -1\
+    \ \u306E\u3068\u304D\u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B\
+    .\n    void resize(int size = -1) {\n        if (size == -1) { size = this ->\
+    \ precision; }\n        size = min(size, this -> precision);\n        poly.resize(size);\n\
+    \    }\n\n    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
     \ (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }\n    }\n\n   \
@@ -465,99 +441,107 @@ data:
     \ntemplate<typename mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
     \ divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {\n    Fast_Power_Series\
     \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n\
-    #line 4 \"Modulo_Polynomial/Calculus.hpp\"\n\n// A \u306E\u5F62\u5F0F\u7684\u5FAE\
-    \u5206\u3092\u6C42\u3081\u308B\ntemplate<typename mint>\nFast_Power_Series<mint>\
-    \ Differential(const Fast_Power_Series<mint> &A) {\n    vector<mint> b(A.precision);\n\
-    \    for (int k = 1; k < A.precision; k++) { b[k - 1] = k * A[k]; }\n    return\
-    \ Fast_Power_Series<mint>(b, A.precision);\n}\n\n// A \u306E\u4E0D\u5B9A\u7A4D\
-    \u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u5B9A\u6570\u9805\u306F C\
-    \ (default 0) \u3092\u4F7F\u3046.\ntemplate<typename mint>\nFast_Power_Series<mint>\
-    \ Integrate(const Fast_Power_Series<mint> &A, const mint C = 0) {\n    if (A.is_zero())\
-    \ { return Fast_Power_Series<mint>({0}, A.precision); }\n\n    vector<mint> inv(A.precision\
-    \ + 1);\n    inv[1] = mint(1);\n    for (int k = 2; k <= A.precision; k++) {\n\
-    \        ll q, r;\n        tie (q, r) = divmod(mint::mod(), k);\n        inv[k]\
-    \ = -q * inv[r];\n    }\n\n    vector<mint> b(A.precision + 1);\n    b[0] = C;\n\
-    \    for (int k = 0; k < A.precision; k++) { b[k + 1] = inv[k + 1] * A[k]; }\n\
-    \    return Fast_Power_Series<mint>(b, A.precision);\n}\n#line 4 \"Modulo_Polynomial/Log.hpp\"\
-    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Log(const Fast_Power_Series<mint>\
-    \ &A) {\n    return Integrate(Differential(A) / A);\n}\n"
-  code: "#pragma once\n\n#include\"Calculus.hpp\"\n\ntemplate<typename mint>\nFast_Power_Series<mint>\
+    #line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\
+    \n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\
+    \n\n// A \u306E\u5F62\u5F0F\u7684\u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<typename\
+    \ mint>\nFast_Power_Series<mint> Differential(const Fast_Power_Series<mint> &A)\
+    \ {\n    vector<mint> b(A.precision);\n    for (int k = 1; k < A.precision; k++)\
+    \ { b[k - 1] = k * A[k]; }\n    return Fast_Power_Series<mint>(b, A.precision);\n\
+    }\n\n// A \u306E\u4E0D\u5B9A\u7A4D\u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\
+    \u3057, \u5B9A\u6570\u9805\u306F C (default 0) \u3092\u4F7F\u3046.\ntemplate<typename\
+    \ mint>\nFast_Power_Series<mint> Integrate(const Fast_Power_Series<mint> &A, const\
+    \ mint C = 0) {\n    if (A.is_zero()) { return Fast_Power_Series<mint>({0}, A.precision);\
+    \ }\n\n    vector<mint> inv(A.precision + 1);\n    inv[1] = mint(1);\n    for\
+    \ (int k = 2; k <= A.precision; k++) {\n        ll q, r;\n        tie (q, r) =\
+    \ divmod(mint::mod(), k);\n        inv[k] = -q * inv[r];\n    }\n\n    vector<mint>\
+    \ b(A.precision + 1);\n    b[0] = C;\n    for (int k = 0; k < A.precision; k++)\
+    \ { b[k + 1] = inv[k + 1] * A[k]; }\n    return Fast_Power_Series<mint>(b, A.precision);\n\
+    }\n#line 4 \"Modulo_Polynomial/Log.hpp\"\n\ntemplate<typename mint>\nFast_Power_Series<mint>\
     \ Log(const Fast_Power_Series<mint> &A) {\n    return Integrate(Differential(A)\
-    \ / A);\n}"
+    \ / A);\n}\n#line 5 \"Modulo_Polynomial/Exp.hpp\"\n\ntemplate<typename mint>\n\
+    Fast_Power_Series<mint> Exp(const Fast_Power_Series<mint> &A) {\n    assert(A[0].is_zero());\n\
+    \n    int n = A.precision;\n\n    Fast_Power_Series<mint> G({1}, 1), one({1},\
+    \ n);\n    for (; G.precision < n;) {\n        G.precision *= 2;\n        G =\
+    \ G * (one - Log(G) + A);\n    }\n\n    return G;\n}\n#line 6 \"Modulo_Polynomial/Subset_Sum.hpp\"\
+    \n\n// A \u306E (\u9023\u7D9A\u3068\u306F\u9650\u3089\u306A\u3044) \u90E8\u5206\
+    \u5217\u306E\u3046\u3061, \u548C\u304C k=0,1,...,K \u306B\u306A\u308B\u7D44\u307F\
+    \u5408\u308F\u305B\u306E\u7DCF\u6570\u3092 Mod \u3067\u5272\u3063\u305F\u4F59\u308A\
+    \u3092\u6C42\u3081\u308B.\ntemplate<typename mint>\nvector<mint> Subset_Sum(vector<int>\
+    \ A, int K) {\n    vector<ll> chi(K + 1);\n    for (ll a: A) {\n        if (a\
+    \ <= K) { chi[a] += 1; }\n    }\n\n    vector<mint> inv(K + 1); inv[1] = 1;\n\
+    \    for (int x = 2; x <= K; x++) {\n        auto [q, r] = divmod(mint::mod(),\
+    \ x);\n        inv[x] = -q * inv[r];\n    }\n\n    vector<mint> f(K + 1);\n  \
+    \  for (int x = 1; x <= K; x++) {\n        if (chi[x] == 0) { continue; }\n\n\
+    \        for (int k = 1, c = 1; k * x <= K; k++) {\n            f[k * x] += c\
+    \ * inv[k] * chi[x];\n            c *= -1;\n        }\n    }\n\n    auto g = Exp(Fast_Power_Series<mint>(f)).poly;\n\
+    \    g.resize(K + 1);\n    return g;\n}\n#line 5 \"Modulo_Polynomial/Partition_Q.hpp\"\
+    \n\n/// @brief n = 0, 1, ..., N \u306B\u5BFE\u3057\u3066, n \u3092\u7570\u306A\
+    \u308B\u6574\u6570\u3067\u5206\u5272\u3059\u308B\u65B9\u6CD5 (\u9806\u5E8F\u9055\
+    \u3044\u306F\u540C\u4E00\u8996) \u306E\u6570\u3092\u6C42\u3081\u308B\n/// @tparam\
+    \ mint \n/// @param N \n/// @return \u9577\u3055 (N + 1) \u306E vector \u578B\
+    . \u7B2C i \u8981\u7D20\u306F i \u3092\u7570\u306A\u308B\u6574\u6570\u3067\u5206\
+    \u5272\u3059\u308B\u65B9\u6CD5 (\u9806\u5E8F\u9055\u3044\u306F\u540C\u4E00\u8996\
+    ) \u306E\u6570\ntemplate<typename mint>\nvector<mint> Partition_Q(int N) {\n \
+    \   vector<int> A(N);\n    iota(A.begin(), A.end(), 1);\n    return Subset_Sum<mint>(A,\
+    \ N);\n}\n"
+  code: "#pragma once\n\n#include\"../Algebra/modint.hpp\"\n#include\"Subset_Sum.hpp\"\
+    \n\n/// @brief n = 0, 1, ..., N \u306B\u5BFE\u3057\u3066, n \u3092\u7570\u306A\
+    \u308B\u6574\u6570\u3067\u5206\u5272\u3059\u308B\u65B9\u6CD5 (\u9806\u5E8F\u9055\
+    \u3044\u306F\u540C\u4E00\u8996) \u306E\u6570\u3092\u6C42\u3081\u308B\n/// @tparam\
+    \ mint \n/// @param N \n/// @return \u9577\u3055 (N + 1) \u306E vector \u578B\
+    . \u7B2C i \u8981\u7D20\u306F i \u3092\u7570\u306A\u308B\u6574\u6570\u3067\u5206\
+    \u5272\u3059\u308B\u65B9\u6CD5 (\u9806\u5E8F\u9055\u3044\u306F\u540C\u4E00\u8996\
+    ) \u306E\u6570\ntemplate<typename mint>\nvector<mint> Partition_Q(int N) {\n \
+    \   vector<int> A(N);\n    iota(A.begin(), A.end(), 1);\n    return Subset_Sum<mint>(A,\
+    \ N);\n}\n"
   dependsOn:
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Algebra/modint.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
-  - Algebra/modint.hpp
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  isVerificationFile: false
-  path: Modulo_Polynomial/Log.hpp
-  requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
   - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Partition_Q.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-26 00:25:53+09:00'
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  isVerificationFile: false
+  path: Modulo_Polynomial/Partition_Q.hpp
+  requiredBy: []
+  timestamp: '2025-11-02 09:45:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/original/Partition_Q.test.cpp
-documentation_of: Modulo_Polynomial/Log.hpp
+documentation_of: Modulo_Polynomial/Partition_Q.hpp
 layout: document
-title: Log
+title: "\u5206\u5272\u6570 (Q)"
 ---
 
 ## Outline
 
-形式的ベキ級数 $P$ に対して, $\log P$ を求める.
+$n = 0, 1, 2, \dots, N$ それぞれに対して, $n$ を相異なる正の整数で分割する方法 (順序違いは同一視) の数 $q_n$ を求める.
 
-## Define
+## Definition
 
-$[X^0] P = 1$ である形式的ベキ級数 $P$ に対して, $P$ の対数 $\log P$ を
+以下を満たす正の整数列 $(a_i)$ の数を $q_n$ とする.
 
-$$ \log P := -\sum_{n=1}^\infty \dfrac{(1-P)^n}{n} $$
-
-で定義する.
+* $(a_i)$ は狭義単調増加である.
+* 総和が $n$ である.
 
 ## Theory
 
-対数に関する微分について, 以下の式が従う.
-
-$$\begin{align*}
-    (\log P)'
-    &= \left(- \sum_{n=1}^\infty \dfrac{(1-P)^n}{n} \right)' \\
-    &= P' \sum_{n=1}^\infty (1-P)^n \\
-    &= \dfrac{P'}{1-(1-P)} \\
-    &= \dfrac{P'}{P}
-\end{align*}$$
-
-つまり, $(\log P)' = \dfrac{P'}{P}$ であるので,
-
-$$ \log P = \int \dfrac{P'}{P}~dX $$
-
-となる.
-
-この式を利用すると, $\log P$ は $P$ の微分と除算で求められるため, $N$ 次まで求めるとすると, 計算量は $O(N \log N)$ 時間になる.
+これは [Subset Sum (多項式)](Subset_sum.hpp) における $A = (1, 2, \dots, N)$ の場合である特殊パターンである.
 
 ## Contents
 
 ```cpp
-Fast_Power_Series<mint> Log(const Fast_Power_Series<mint> &A)
+template<typename mint>
+vector<mint> Partition_Q(int N)
 ```
 
-* $\log A$ を求める.
-* **制約** : $[X^0] A = 1$.
-* **計算量** : $N$ 次まで求めるとして, $O(N \log N)$ 時間.
+* $n = 0, 1, 2, \dots, N$ に対して, $n$ を相異なる正の整数で分割する方法 (順序違いは同一視) の数 $q_n$ を求める.
+* **計算量** : $O(N \log N)$ 時間

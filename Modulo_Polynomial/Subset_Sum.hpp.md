@@ -40,8 +40,14 @@ data:
   - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_Q.hpp
+    title: "\u5206\u5272\u6570 (Q)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Partition_Q.test.cpp
+    title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
@@ -499,11 +505,13 @@ data:
   - Modulo_Polynomial/Calculus.hpp
   isVerificationFile: false
   path: Modulo_Polynomial/Subset_Sum.hpp
-  requiredBy: []
+  requiredBy:
+  - Modulo_Polynomial/Partition_Q.hpp
   timestamp: '2025-10-26 00:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Subset_Sum.hpp
 layout: document
 title: "Subset Sum (\u591A\u9805\u5F0F)"

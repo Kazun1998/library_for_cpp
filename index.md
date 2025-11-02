@@ -291,6 +291,9 @@ data:
       path: Modulo_Polynomial/Partition_P.hpp
       title: "\u5206\u5272\u6570 (P)"
     - icon: ':heavy_check_mark:'
+      path: Modulo_Polynomial/Partition_Q.hpp
+      title: "\u5206\u5272\u6570 (Q)"
+    - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Power.hpp
       title: Modulo_Polynomial/Power.hpp
     - icon: ':heavy_check_mark:'
@@ -441,6 +444,11 @@ data:
     - icon: ':x:'
       path: verify/atcoder/167_D.test.cpp
       title: verify/atcoder/167_D.test.cpp
+  - name: verify/original
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Partition_Q.test.cpp
+      title: verify/original/Partition_Q.test.cpp
   - name: verify/yosupo_library_checker/convolution
     pages:
     - icon: ':heavy_check_mark:'

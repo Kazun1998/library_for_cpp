@@ -54,6 +54,9 @@ data:
     path: Modulo_Polynomial/Partition_P.hpp
     title: "\u5206\u5272\u6570 (P)"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Partition_Q.hpp
+    title: "\u5206\u5272\u6570 (Q)"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -69,6 +72,9 @@ data:
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Partition_Q.test.cpp
+    title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
@@ -570,6 +576,7 @@ data:
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
   - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
@@ -591,6 +598,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Numeric_Theory_Translation.hpp
 layout: document
 title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
