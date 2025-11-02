@@ -55,7 +55,7 @@ data:
       title: Dual Heap
   - name: Functional_Graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Functional_Graph/Functional_Graph.hpp
       title: Functional Graph
   - name: Geometry
@@ -357,22 +357,22 @@ data:
       title: Union Find
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
@@ -439,13 +439,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/ntl/1E.test.cpp
       title: verify/aizu_online_judge/ntl/1E.test.cpp
-  - name: verify/atcoder
-    pages:
-    - icon: ':x:'
-      path: verify/atcoder/167_D.test.cpp
-      title: verify/atcoder/167_D.test.cpp
   - name: verify/original
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Functional_Graph.test.cpp
+      title: verify/original/Functional_Graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/Partition_Q.test.cpp
       title: verify/original/Partition_Q.test.cpp

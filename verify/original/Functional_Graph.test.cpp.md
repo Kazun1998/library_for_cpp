@@ -1,61 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Functional_Graph/Functional_Graph.hpp
     title: Functional Graph
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    IGNORE: ''
-    IGNORE_IF_CLANG: ''
-    IGNORE_IF_GCC: ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
     links:
-    - https://atcoder.jp/contests/abc167/tasks/abc167_d
-  bundledCode: "#line 1 \"verify/atcoder/167_D.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc167/tasks/abc167_d\"\
-    \n#define IGNORE\n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\
-    \n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+  bundledCode: "#line 1 \"verify/original/Functional_Graph.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
     \n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x / y) \u3092\
     \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T x, U y){\
     \ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\u6C42\u3081\
@@ -208,16 +207,37 @@ data:
     \ k); }\n\n        k -= tree_depth[x];\n        x = root(x);\n\n        int cycle_id\
     \ = cycle_ids[x];\n        int vertex_id = cycle_vertex_ids[x];\n        return\
     \ jump_on_cycle(cycle_id, vertex_id, k);\n    }\n\n    vector<vector<int>> &get_cycles()\
-    \ { return cycles; }\n};\n#line 6 \"verify/atcoder/167_D.test.cpp\"\n\nint main()\
-    \ {\n    int N; ll K;\n    cin >> N >> K;\n    vector<int> a(N + 1, 0);\n    for\
-    \ (int i = 1; i <= N; i++) { scanf(\"%d\", &a[i]); }\n\n    Functional_Graph F(a);\n\
-    \    cout << F.calculate(1, K) << endl;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc167/tasks/abc167_d\"\n#define\
-    \ IGNORE\n\n#include\"../../../library_for_cpp/template/template.hpp\"\n#include\"\
-    ../../../library_for_cpp/Functional_Graph/Functional_Graph.hpp\"\n\nint main()\
-    \ {\n    int N; ll K;\n    cin >> N >> K;\n    vector<int> a(N + 1, 0);\n    for\
-    \ (int i = 1; i <= N; i++) { scanf(\"%d\", &a[i]); }\n\n    Functional_Graph F(a);\n\
-    \    cout << F.calculate(1, K) << endl;\n}\n"
+    \ { return cycles; }\n};\n#line 5 \"verify/original/Functional_Graph.test.cpp\"\
+    \n\nvoid verify() {\n    vector<int> f = {77, 0, 39, 33, 1, 87, 20, 88, 75, 49,\
+    \ 58, 48, 78, 24, 60, 90, 26, 55, 31, 7, 18, 14, 77, 25, 75, 89, 99, 44, 72, 92,\
+    \ 64, 33, 91, 64, 19, 14, 37, 7, 0, 26, 35, 0, 45, 3, 89, 29, 16, 12, 53, 17,\
+    \ 8, 91, 97, 60, 65, 42, 3, 4, 48, 72, 57, 61, 74, 75, 2, 76, 67, 21, 91, 15,\
+    \ 52, 97, 13, 12, 60, 41, 81, 79, 41, 12, 64, 65, 48, 14, 82, 45, 85, 87, 7, 59,\
+    \ 27, 15, 0, 37, 15, 36, 38, 11, 51, 16};\n\n    Functional_Graph F(f);\n\n  \
+    \  int n = 100, k_max = 100000;\n    for (int v = 0; v < n; v++) {\n        int\
+    \ w = v;\n        for (int k = 0; k <= k_max; k++) {\n            if (F.calculate(v,\
+    \ k) == w) {\n                w = f[w];\n                continue;\n         \
+    \   } \n\n            cerr << \"Error\" << endl;\n            cerr << \"v = \"\
+    \ << v << \", k = \" << k << endl;\n            cerr << \"expect: \" << w << endl;\n\
+    \            cerr << \"returns: \" << F.calculate(v, k) << endl;\n           \
+    \ assert(false);\n        }\n    }\n}\n\nint main() {\n    verify();\n    cout\
+    \ << \"Hello World\" << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include\"../../../library_for_cpp/template/template.hpp\"\n#include\"../../../library_for_cpp/Functional_Graph/Functional_Graph.hpp\"\
+    \n\nvoid verify() {\n    vector<int> f = {77, 0, 39, 33, 1, 87, 20, 88, 75, 49,\
+    \ 58, 48, 78, 24, 60, 90, 26, 55, 31, 7, 18, 14, 77, 25, 75, 89, 99, 44, 72, 92,\
+    \ 64, 33, 91, 64, 19, 14, 37, 7, 0, 26, 35, 0, 45, 3, 89, 29, 16, 12, 53, 17,\
+    \ 8, 91, 97, 60, 65, 42, 3, 4, 48, 72, 57, 61, 74, 75, 2, 76, 67, 21, 91, 15,\
+    \ 52, 97, 13, 12, 60, 41, 81, 79, 41, 12, 64, 65, 48, 14, 82, 45, 85, 87, 7, 59,\
+    \ 27, 15, 0, 37, 15, 36, 38, 11, 51, 16};\n\n    Functional_Graph F(f);\n\n  \
+    \  int n = 100, k_max = 100000;\n    for (int v = 0; v < n; v++) {\n        int\
+    \ w = v;\n        for (int k = 0; k <= k_max; k++) {\n            if (F.calculate(v,\
+    \ k) == w) {\n                w = f[w];\n                continue;\n         \
+    \   } \n\n            cerr << \"Error\" << endl;\n            cerr << \"v = \"\
+    \ << v << \", k = \" << k << endl;\n            cerr << \"expect: \" << w << endl;\n\
+    \            cerr << \"returns: \" << F.calculate(v, k) << endl;\n           \
+    \ assert(false);\n        }\n    }\n}\n\nint main() {\n    verify();\n    cout\
+    \ << \"Hello World\" << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -227,15 +247,15 @@ data:
   - template/bitop.hpp
   - Functional_Graph/Functional_Graph.hpp
   isVerificationFile: true
-  path: verify/atcoder/167_D.test.cpp
+  path: verify/original/Functional_Graph.test.cpp
   requiredBy: []
-  timestamp: '2025-10-26 11:56:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-11-02 10:43:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/atcoder/167_D.test.cpp
+documentation_of: verify/original/Functional_Graph.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/atcoder/167_D.test.cpp
-- /verify/verify/atcoder/167_D.test.cpp.html
-title: verify/atcoder/167_D.test.cpp
+- /verify/verify/original/Functional_Graph.test.cpp
+- /verify/verify/original/Functional_Graph.test.cpp.html
+title: verify/original/Functional_Graph.test.cpp
 ---

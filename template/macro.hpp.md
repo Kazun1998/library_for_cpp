@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Functional_Graph/Functional_Graph.hpp
     title: Functional Graph
   - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -331,9 +331,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1E.test.cpp
     title: verify/aizu_online_judge/ntl/1E.test.cpp
-  - icon: ':x:'
-    path: verify/atcoder/167_D.test.cpp
-    title: verify/atcoder/167_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Functional_Graph.test.cpp
+    title: verify/original/Functional_Graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/original/Partition_Q.test.cpp
     title: verify/original/Partition_Q.test.cpp
@@ -493,9 +493,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
@@ -622,7 +622,7 @@ data:
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-09-27 09:56:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
@@ -673,7 +673,6 @@ data:
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
-  - verify/atcoder/167_D.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp
   - verify/aizu_online_judge/cgl/1A.test.cpp
   - verify/aizu_online_judge/cgl/7C.test.cpp
@@ -694,6 +693,7 @@ data:
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/original/Partition_Q.test.cpp
+  - verify/original/Functional_Graph.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
