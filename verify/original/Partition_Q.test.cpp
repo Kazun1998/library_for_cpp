@@ -5,9 +5,8 @@
 #include"../../Modulo_Polynomial/Partition_Q.hpp"
 
 using mint = modint<998244353>;
-int main() {
-    cout << "Hello World" << endl;
 
+void verify() {
     vector<mint> Q = Partition_Q<mint>(500000);
     assert(Q[0].is_member(1));
     assert(Q[1].is_member(1));
@@ -24,4 +23,9 @@ int main() {
     assert(Q[300000].is_member(54117395));
     assert(Q[400000].is_member(806940804));
     assert(Q[500000].is_member(680639926));
+}
+
+int main() {
+    verify();
+    cout << "Hello World" << endl;
 }
