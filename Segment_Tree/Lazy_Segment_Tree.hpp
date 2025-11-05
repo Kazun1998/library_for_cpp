@@ -96,7 +96,9 @@ class Lazy_Segment_Tree {
     }
 
     public:
-    // 第 k 項を取得する.
+    /// @brief 第 k 項を取得する.
+    /// @param k 
+    /// @return 第 k 項
     inline M operator[](int k){
         int m = k + n;
         propagate_above(m);
@@ -104,8 +106,10 @@ class Lazy_Segment_Tree {
         return data[m] = evaluate_at(m);
     }
 
-    // i = l, l + 1, ..., r に対して, alpha を作用させる.
-    // 作用の範囲が閉区間であることに注意.
+    /// @brief i = l, l + 1, ..., r に対して, 第 i 項に対して alpha を作用させる.
+    /// @param l 区間の左端
+    /// @param r 区間の右端
+    /// @param alpha 作用
     void action(int l, int r, F alpha){
         int L0, R0;
         tie(L0, R0) = range_propagate(l, r + 1);
@@ -128,7 +132,9 @@ class Lazy_Segment_Tree {
         recalc_above(L0); recalc_above(R0);
     }
 
-    // 第 k 項を x に更新する.
+    /// @brief 第 k 項を x に更新する.
+    /// @param k 更新場所
+    /// @param x 更新後の要素
     inline void update(int k, M x){
         int m = k + n;
         propagate_above(m);
@@ -136,8 +142,11 @@ class Lazy_Segment_Tree {
         recalc_above(m);
     }
 
-    // 積 x[l] * x[l + 1] * ... * x[r] を求める.
-    // 積を取る範囲が閉区間であることに注意.
+
+    /// @brief 積 x[l] * x[l + 1] * ... * x[r] を求める.
+    /// @param l 区間の左端
+    /// @param r 区間の右端
+    /// @return 積
     M product(int l, int r){
         int L0, R0;
         tie(L0, R0) = range_propagate(l, r + 1);
@@ -154,7 +163,8 @@ class Lazy_Segment_Tree {
         return op(vL, vR);
     }
 
-    // 全要素の積を求める.
+    /// @brief 全要素における区間積を求める.
+    /// @return 残要素における区間積
     inline M all_product() {return product(0, n);}
 
     void refresh() {
