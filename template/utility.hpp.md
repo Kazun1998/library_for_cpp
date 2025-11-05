@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
   - icon: ':heavy_check_mark:'
@@ -278,6 +278,9 @@ data:
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/alds1/11D.test.cpp
+    title: verify/aizu_online_judge/alds1/11D.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/1A.test.cpp
     title: verify/aizu_online_judge/cgl/1A.test.cpp
@@ -664,6 +667,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/aizu_online_judge/alds1/11D.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp
   - verify/aizu_online_judge/cgl/1A.test.cpp
   - verify/aizu_online_judge/cgl/7C.test.cpp

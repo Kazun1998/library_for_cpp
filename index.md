@@ -175,7 +175,7 @@ data:
       title: Graph/Digraph/Strongly_Connected_Components.hpp
   - name: Graph/Graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Connected_Components.hpp
       title: Graph/Graph/Connected_Components.hpp
     - icon: ':heavy_check_mark:'
@@ -380,6 +380,11 @@ data:
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
+  - name: verify/aizu_online_judge/alds1
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/alds1/11D.test.cpp
+      title: verify/aizu_online_judge/alds1/11D.test.cpp
   - name: verify/aizu_online_judge/cgl
     pages:
     - icon: ':heavy_check_mark:'
