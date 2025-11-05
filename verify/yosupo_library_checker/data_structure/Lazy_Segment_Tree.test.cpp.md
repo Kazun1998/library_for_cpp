@@ -224,52 +224,65 @@ data:
     \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
     \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
     \ M evaluate_at(int m){ return lazy[m] == id ? data[m] : act(lazy[m], data[m]);\
-    \ }\n\n    void propagate_at(int m){\n        data[m] = evaluate_at(m);\n\n  \
-    \      if ((m < n) && (lazy[m] != id)){\n            int left = m << 1;\n    \
-    \        lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m], lazy[left]);\n\
-    \n            int right = m << 1 | 1;\n            lazy[right] = (lazy[right]\
-    \ == id) ? lazy[m] : comp(lazy[m], lazy[right]); \n        }\n\n        lazy[m]\
-    \ = id;\n    }\n\n    inline void propagate_above(int m){\n        int h = 0,\
-    \ mm = m;\n        for (mm; mm; mm >>= 1, h++){}\n\n        for (h--; h >= 0;\
-    \ h--) { propagate_at(m>>h); }\n    }\n\n    inline void recalc_above(int m){\n\
-    \        while (m > 1){\n            m >>= 1;\n            data[m] = op(evaluate_at(m\
+    \ }\n\n    /// @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C\
+    \ m \u8981\u7D20\u3092\u66F4\u65B0\u3057, \u9045\u5EF6\u3057\u3066\u3044\u305F\
+    \u4F5C\u7528\u3092\u5B50\u306B\u4F1D\u642C\u3055\u305B\u308B.\n    /// @param\
+    \ m \n    void push(int m){\n        data[m] = evaluate_at(m);\n\n        if ((m\
+    \ < n) && (lazy[m] != id)){\n            int left = m << 1;\n            lazy[left]\
+    \ = (lazy[left] == id) ? lazy[m] : comp(lazy[m], lazy[left]);\n\n            int\
+    \ right = m << 1 | 1;\n            lazy[right] = (lazy[right] == id) ? lazy[m]\
+    \ : comp(lazy[m], lazy[right]); \n        }\n\n        lazy[m] = id;\n    }\n\n\
+    \    /// @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C m\
+    \ \u8981\u7D20\u3092\u542B\u3080\u533A\u9593\u306B\u3064\u3044\u3066\u306E lazy\
+    \ \u306E\u8981\u7D20\u306B\u3064\u3044\u3066, \u5B50\u3078\u306E\u66F4\u65B0\u3092\
+    \u884C\u3046.\n    /// @param m \n    inline void propagate_above(int m){\n  \
+    \      int h = 0, mm = m;\n        for (mm; mm; mm >>= 1, h++){}\n\n        for\
+    \ (h--; h >= 0; h--) { push(m >> h); }\n    }\n\n    /// @brief \u30BB\u30B0\u30E1\
+    \u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C m \u8981\u7D20\u3092\u542B\u3080\u533A\
+    \u9593\u306B\u3064\u3044\u3066\u306E data \u306E\u8981\u7D20\u3092\u66F4\u65B0\
+    \u3059\u308B.\n    /// @param m \n    inline void recalc_above(int m){\n     \
+    \   while (m > 1){\n            m >>= 1;\n            data[m] = op(evaluate_at(m\
     \ << 1), evaluate_at(m << 1 | 1));\n        }\n    }\n\n    pair<int, int> range_propagate(int\
     \ l, int r){\n        int X = l + n, Y = r + n - 1, L0 = -1, R0 = -1;\n    \n\
     \        while (X < Y){\n            if (X & 1) { L0 = max(L0, X++); }\n     \
     \       if ((Y & 1) ==0 ) { R0 = max(R0, Y--); }\n\n            X >>= 1; Y >>=\
     \ 1;\n        }\n\n        L0 = max(L0, X); R0 = max(R0, Y);\n        propagate_above(L0);\
     \ propagate_above(R0);\n        return make_pair(L0, R0);\n    }\n\n    public:\n\
-    \    // \u7B2C k \u9805\u3092\u53D6\u5F97\u3059\u308B.\n    inline M operator[](int\
-    \ k){\n        int m = k + n;\n        propagate_above(m);\n        lazy[m] =\
-    \ id;\n        return data[m] = evaluate_at(m);\n    }\n\n    // i = l, l + 1,\
-    \ ..., r \u306B\u5BFE\u3057\u3066, alpha \u3092\u4F5C\u7528\u3055\u305B\u308B\
-    .\n    // \u4F5C\u7528\u306E\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\u308B\
-    \u3053\u3068\u306B\u6CE8\u610F.\n    void action(int l, int r, F alpha){\n   \
-    \     int L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n      \
-    \  int L = l + n, R = r + n + 1;\n        while (L < R){\n            if (L &\
-    \ 1){\n                lazy[L] = (alpha == id) ? id : comp(alpha, lazy[L]); \n\
-    \                L++;\n            }\n\n            if (R & 1){\n            \
-    \    R--;\n                lazy[R] = (alpha == id) ? id : comp(alpha, lazy[R]);\n\
-    \            }\n\n            L >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0);\
-    \ recalc_above(R0);\n    }\n\n    // \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\
-    \u3059\u308B.\n    inline void update(int k, M x){\n        int m = k + n;\n \
-    \       propagate_above(m);\n        data[m] = x; lazy[m] = id;\n        recalc_above(m);\n\
-    \    }\n\n    // \u7A4D x[l] * x[l + 1] * ... * x[r] \u3092\u6C42\u3081\u308B\
-    .\n    // \u7A4D\u3092\u53D6\u308B\u7BC4\u56F2\u304C\u9589\u533A\u9593\u3067\u3042\
-    \u308B\u3053\u3068\u306B\u6CE8\u610F.\n    M product(int l, int r){\n        int\
-    \ L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L =\
-    \ l + n, R = r + n + 1;\n        M vL = unit, vR = unit;\n        while (L < R){\n\
-    \            if (L & 1) { vL = op(vL, evaluate_at(L)); L++; }\n            if\
-    \ (R & 1) { R--; vR=op(evaluate_at(R), vR); }\n\n            L >>= 1; R >>= 1;\n\
-    \        }\n\n        return op(vL, vR);\n    }\n\n    // \u5168\u8981\u7D20\u306E\
-    \u7A4D\u3092\u6C42\u3081\u308B.\n    inline M all_product() {return product(0,\
-    \ n);}\n\n    void refresh() {\n        for (int m = 1; m < 2 * n; m++){\n   \
-    \         data[m] = evaluate_at(m);\n            if ((m < n) && (lazy[m] != id)){\n\
-    \                int left = m << 1;\n                lazy[left] = (lazy[left]\
-    \ == id) ? lazy[m] : comp(lazy[m], lazy[left]);\n\n                int right =\
-    \ m << 1 | 1;\n                lazy[right] = (lazy[right] == id) ? lazy[m] : comp(lazy[m],\
-    \ lazy[m << 1 | 1]);\n            }\n            lazy[m] = id;\n        }\n  \
-    \  }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
+    \    /// @brief \u7B2C k \u9805\u3092\u53D6\u5F97\u3059\u308B.\n    /// @param\
+    \ k \n    /// @return \u7B2C k \u9805\n    inline M operator[](int k){\n     \
+    \   int m = k + n;\n        propagate_above(m);\n        lazy[m] = id;\n     \
+    \   return data[m] = evaluate_at(m);\n    }\n\n    /// @brief i = l, l + 1, ...,\
+    \ r \u306B\u5BFE\u3057\u3066, \u7B2C i \u9805\u306B\u5BFE\u3057\u3066 alpha \u3092\
+    \u4F5C\u7528\u3055\u305B\u308B.\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\
+    \n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n    /// @param alpha \u4F5C\
+    \u7528\n    void action(int l, int r, F alpha){\n        int L0, R0;\n       \
+    \ tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L = l + n, R = r + n\
+    \ + 1;\n        while (L < R){\n            if (L & 1){\n                lazy[L]\
+    \ = (alpha == id) ? id : comp(alpha, lazy[L]); \n                L++;\n      \
+    \      }\n\n            if (R & 1){\n                R--;\n                lazy[R]\
+    \ = (alpha == id) ? id : comp(alpha, lazy[R]);\n            }\n\n            L\
+    \ >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0); recalc_above(R0);\n\
+    \    }\n\n    /// @brief \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\u3059\u308B\
+    .\n    /// @param k \u66F4\u65B0\u5834\u6240\n    /// @param x \u66F4\u65B0\u5F8C\
+    \u306E\u8981\u7D20\n    inline void update(int k, M x){\n        int m = k + n;\n\
+    \        propagate_above(m);\n        data[m] = x; lazy[m] = id;\n        recalc_above(m);\n\
+    \    }\n\n\n    /// @brief \u7A4D x[l] * x[l + 1] * ... * x[r] \u3092\u6C42\u3081\
+    \u308B.\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param r \u533A\
+    \u9593\u306E\u53F3\u7AEF\n    /// @return \u7A4D\n    M product(int l, int r){\n\
+    \        int L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n   \
+    \     int L = l + n, R = r + n + 1;\n        M vL = unit, vR = unit;\n       \
+    \ while (L < R){\n            if (L & 1) { vL = op(vL, evaluate_at(L)); L++; }\n\
+    \            if (R & 1) { R--; vR=op(evaluate_at(R), vR); }\n\n            L >>=\
+    \ 1; R >>= 1;\n        }\n\n        return op(vL, vR);\n    }\n\n    /// @brief\
+    \ \u5168\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\u7A4D\u3092\u6C42\u3081\
+    \u308B.\n    /// @return \u6B8B\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\
+    \u7A4D\n    inline M all_product() {return product(0, n);}\n\n    void refresh()\
+    \ {\n        for (int m = 1; m < 2 * n; m++){\n            data[m] = evaluate_at(m);\n\
+    \            if ((m < n) && (lazy[m] != id)){\n                int left = m <<\
+    \ 1;\n                lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m],\
+    \ lazy[left]);\n\n                int right = m << 1 | 1;\n                lazy[right]\
+    \ = (lazy[right] == id) ? lazy[m] : comp(lazy[m], lazy[m << 1 | 1]);\n       \
+    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
     \n\nusing L = modint<998244353>;\nusing M = pair<L, int>;\nusing F = pair<L, L>;\n\
     \nauto op = [](M x, M y) -> M {\n    auto first  = x.first  + y.first;\n    auto\
     \ second = x.second + y.second;\n    return { first, second };\n};\n\nauto act\
@@ -316,7 +329,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-10-26 00:25:53+09:00'
+  timestamp: '2025-11-06 00:16:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
