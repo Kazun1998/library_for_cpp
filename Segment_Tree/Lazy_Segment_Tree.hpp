@@ -68,6 +68,8 @@ class Lazy_Segment_Tree {
         lazy[m] = id;
     }
 
+    /// @brief セグメントツリーの第 m 要素を含む区間についての lazy の要素について, 子への更新を行う.
+    /// @param m 
     inline void propagate_above(int m){
         int h = 0, mm = m;
         for (mm; mm; mm >>= 1, h++){}
@@ -75,6 +77,8 @@ class Lazy_Segment_Tree {
         for (h--; h >= 0; h--) { push(m >> h); }
     }
 
+    /// @brief セグメントツリーの第 m 要素を含む区間についての data の要素を更新する.
+    /// @param m 
     inline void recalc_above(int m){
         while (m > 1){
             m >>= 1;
