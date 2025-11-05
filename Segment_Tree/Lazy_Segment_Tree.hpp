@@ -52,7 +52,9 @@ class Lazy_Segment_Tree {
     private:
     inline M evaluate_at(int m){ return lazy[m] == id ? data[m] : act(lazy[m], data[m]); }
 
-    void propagate_at(int m){
+    /// @brief セグメントツリーの第 m 要素を更新し, 遅延していた作用を子に伝搬させる.
+    /// @param m 
+    void push(int m){
         data[m] = evaluate_at(m);
 
         if ((m < n) && (lazy[m] != id)){
@@ -70,7 +72,7 @@ class Lazy_Segment_Tree {
         int h = 0, mm = m;
         for (mm; mm; mm >>= 1, h++){}
 
-        for (h--; h >= 0; h--) { propagate_at(m>>h); }
+        for (h--; h >= 0; h--) { push(m >> h); }
     }
 
     inline void recalc_above(int m){
