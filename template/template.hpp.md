@@ -194,6 +194,9 @@ data:
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
   - icon: ':heavy_check_mark:'
+    path: Max_Flow/Max_Flow.hpp
+    title: "\u6700\u5927\u6D41"
+  - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
   - icon: ':heavy_check_mark:'
@@ -344,6 +347,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/6A.test.cpp
+    title: verify/aizu_online_judge/grl/6A.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
@@ -808,6 +814,7 @@ data:
   - Integer/Prime.hpp
   - Integer/Digit.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
+  - Max_Flow/Max_Flow.hpp
   - Sequence/Z_Algorithm.hpp
   - Sequence/Run_Length_Encoding.hpp
   - Sequence/Hamming_Distance.hpp
@@ -935,6 +942,7 @@ data:
   - verify/aizu_online_judge/cgl/2B.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp
+  - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/original/Partition_Q.test.cpp

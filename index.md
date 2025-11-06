@@ -241,6 +241,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Two_SAT.hpp
       title: Math/Two_SAT.hpp
+  - name: Max_Flow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Max_Flow/Max_Flow.hpp
+      title: "\u6700\u5927\u6D41"
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -440,6 +445,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/3B.test.cpp
       title: verify/aizu_online_judge/grl/3B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/6A.test.cpp
+      title: verify/aizu_online_judge/grl/6A.test.cpp
   - name: verify/aizu_online_judge/ntl
     pages:
     - icon: ':heavy_check_mark:'
