@@ -154,7 +154,7 @@ namespace max_flow {
         }
 
         vector<bool> min_cut(const int s) {
-            vector<bool> group(order(), false); group[s] = true;
+            vector<bool> group(order(), true); group[s] = false;
 
             deque<V> Q{s};
 
@@ -163,9 +163,9 @@ namespace max_flow {
 
                 for (Arc<Cap>* arc: adj_out[x]) {
                     V y = arc->target;
-                    unless(arc->is_flowable() && !group[y]) { continue; }
+                    unless(arc->is_flowable() && group[y]) { continue; }
 
-                    group[y] = true;
+                    group[y] = false;
                     Q.emplace_back(y);
                 }
             }
