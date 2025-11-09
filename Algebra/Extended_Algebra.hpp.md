@@ -19,11 +19,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Max_Flow/Project_Selection_Problem.hpp
+    title: Max_Flow/Project_Selection_Problem.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/1984.test.cpp
+    title: verify/yukicoder/1984.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Algebra/Extended_Algebra.hpp\"\n#pragma\n\n#line 2 \"template/template.hpp\"\
@@ -329,10 +335,12 @@ data:
   - template/bitop.hpp
   isVerificationFile: false
   path: Algebra/Extended_Algebra.hpp
-  requiredBy: []
+  requiredBy:
+  - Max_Flow/Project_Selection_Problem.hpp
   timestamp: '2025-11-09 01:33:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/1984.test.cpp
 documentation_of: Algebra/Extended_Algebra.hpp
 layout: document
 redirect_from:

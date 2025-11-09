@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: Algebra
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Algebra/Extended_Algebra.hpp
       title: Algebra/Extended_Algebra.hpp
     - icon: ':heavy_check_mark:'
@@ -249,6 +249,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Max_Flow/Max_Flow.hpp
       title: "\u6700\u5927\u6D41"
+    - icon: ':heavy_check_mark:'
+      path: Max_Flow/Project_Selection_Problem.hpp
+      title: Max_Flow/Project_Selection_Problem.hpp
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -655,6 +658,9 @@ data:
       title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - name: verify/yukicoder
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yukicoder/1984.test.cpp
+      title: verify/yukicoder/1984.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yukicoder/2558.test.cpp
       title: verify/yukicoder/2558.test.cpp

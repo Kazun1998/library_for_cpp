@@ -19,11 +19,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Max_Flow/Project_Selection_Problem.hpp
+    title: Max_Flow/Project_Selection_Problem.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/6A.test.cpp
     title: verify/aizu_online_judge/grl/6A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/1984.test.cpp
+    title: verify/yukicoder/1984.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -200,11 +206,11 @@ data:
     \        arc->id,\n                    arc->target,\n                    arc->flow\n\
     \                );\n            }\n\n            return flow;\n        }\n\n\
     \        vector<bool> min_cut(const int s) {\n            vector<bool> group(order(),\
-    \ false); group[s] = true;\n\n            deque<V> Q{s};\n\n            while\
+    \ true); group[s] = false;\n\n            deque<V> Q{s};\n\n            while\
     \ (!Q.empty()) {\n                V x = Q.front(); Q.pop_front();\n\n        \
     \        for (Arc<Cap>* arc: adj_out[x]) {\n                    V y = arc->target;\n\
-    \                    unless(arc->is_flowable() && !group[y]) { continue; }\n\n\
-    \                    group[y] = true;\n                    Q.emplace_back(y);\n\
+    \                    unless(arc->is_flowable() && group[y]) { continue; }\n\n\
+    \                    group[y] = false;\n                    Q.emplace_back(y);\n\
     \                }\n            }\n\n            return group;\n        }\n  \
     \  };\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace max_flow\
@@ -262,11 +268,11 @@ data:
     \        arc->id,\n                    arc->target,\n                    arc->flow\n\
     \                );\n            }\n\n            return flow;\n        }\n\n\
     \        vector<bool> min_cut(const int s) {\n            vector<bool> group(order(),\
-    \ false); group[s] = true;\n\n            deque<V> Q{s};\n\n            while\
+    \ true); group[s] = false;\n\n            deque<V> Q{s};\n\n            while\
     \ (!Q.empty()) {\n                V x = Q.front(); Q.pop_front();\n\n        \
     \        for (Arc<Cap>* arc: adj_out[x]) {\n                    V y = arc->target;\n\
-    \                    unless(arc->is_flowable() && !group[y]) { continue; }\n\n\
-    \                    group[y] = true;\n                    Q.emplace_back(y);\n\
+    \                    unless(arc->is_flowable() && group[y]) { continue; }\n\n\
+    \                    group[y] = false;\n                    Q.emplace_back(y);\n\
     \                }\n            }\n\n            return group;\n        }\n  \
     \  };\n}\n"
   dependsOn:
@@ -278,11 +284,13 @@ data:
   - template/bitop.hpp
   isVerificationFile: false
   path: Max_Flow/Max_Flow.hpp
-  requiredBy: []
-  timestamp: '2025-11-06 23:38:29+09:00'
+  requiredBy:
+  - Max_Flow/Project_Selection_Problem.hpp
+  timestamp: '2025-11-09 22:21:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/grl/6A.test.cpp
+  - verify/yukicoder/1984.test.cpp
 documentation_of: Max_Flow/Max_Flow.hpp
 layout: document
 title: "\u6700\u5927\u6D41"
