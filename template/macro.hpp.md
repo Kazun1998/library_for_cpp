@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Algebra/Extended_Algebra.hpp
+    title: Algebra/Extended_Algebra.hpp
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
@@ -561,6 +564,7 @@ data:
   - Functional_Graph/Functional_Graph.hpp
   - Algebra/dynamic_modint.hpp
   - Algebra/Gaussian_Integer.hpp
+  - Algebra/Extended_Algebra.hpp
   - Algebra/modint.hpp
   - Tree/Generator.hpp
   - Tree/Tree.hpp

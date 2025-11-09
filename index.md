@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: Algebra
     pages:
+    - icon: ':warning:'
+      path: Algebra/Extended_Algebra.hpp
+      title: Algebra/Extended_Algebra.hpp
     - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
