@@ -51,6 +51,9 @@ data:
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
+      path: Data_Structure/Binary_Trie.hpp
+      title: "Binary Trie \u6728"
+    - icon: ':heavy_check_mark:'
       path: Data_Structure/Disjoint_Sparse_Table.hpp
       title: Disjoint Sparse Table
     - icon: ':heavy_check_mark:'
@@ -498,6 +501,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp

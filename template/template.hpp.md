@@ -52,6 +52,9 @@ data:
     title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
       \u7684\u306A\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/Binary_Trie.hpp
+    title: "Binary Trie \u6728"
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
   - icon: ':heavy_check_mark:'
@@ -386,6 +389,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
@@ -799,6 +805,7 @@ data:
   - Linear_Algebra/Field_Matrix.hpp
   - Linear_Algebra/Reduction.hpp
   - Data_Structure/Dual_Heap.hpp
+  - Data_Structure/Binary_Trie.hpp
   - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -888,6 +895,7 @@ data:
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
