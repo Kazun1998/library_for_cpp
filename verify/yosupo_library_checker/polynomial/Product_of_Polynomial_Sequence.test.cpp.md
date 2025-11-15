@@ -186,8 +186,8 @@ data:
     \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
     \ mod()); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
     \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) %\
-    \ mod();\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &is, modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
     \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
@@ -392,7 +392,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-10-26 00:25:53+09:00'
+  timestamp: '2025-11-15 17:27:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp

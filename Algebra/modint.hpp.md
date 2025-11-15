@@ -303,13 +303,13 @@ data:
     \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
     \ &a, const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
     \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
-    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
-    \        a.x = (a.x % mod() + mod()) % mod();\n        return is;\n    }\n\n \
-    \   // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const modint\
-    \ &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n \
-    \   bool is_member(ll a) const { return x == (a % mod() + mod()) % mod(); }\n\
-    };\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n    if\
-    \ (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        int64_t x;\n\
+    \        is >> x;\n        a.x = safe_mod(x, mod());\n        return is;\n   \
+    \ }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
+    \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
+    \ }\n    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod();\
+    \ }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n\
+    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
     \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
     \    }\n\n    return res;\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<int M>\n\
@@ -341,13 +341,13 @@ data:
     \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
     \ &a, const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
     \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
-    \    friend istream &operator>>(istream &is, modint &a) {\n        is >> a.x;\n\
-    \        a.x = (a.x % mod() + mod()) % mod();\n        return is;\n    }\n\n \
-    \   // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const modint\
-    \ &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0; }\n \
-    \   bool is_member(ll a) const { return x == (a % mod() + mod()) % mod(); }\n\
-    };\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n    if\
-    \ (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        int64_t x;\n\
+    \        is >> x;\n        a.x = safe_mod(x, mod());\n        return is;\n   \
+    \ }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
+    \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
+    \ }\n    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod();\
+    \ }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n\
+    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
     \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
     \    }\n\n    return res;\n}\n"
   dependsOn:
@@ -377,7 +377,7 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-10-26 00:25:53+09:00'
+  timestamp: '2025-11-15 17:27:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp

@@ -182,23 +182,23 @@ data:
     \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
     \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
     \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n\
-    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
-    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % mod() + mod())\
-    \ % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long\
-    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\
-    \n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\
-    \u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\
-    \u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\
-    \u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\
-    \u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M \u4E0A\
-    \u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192 M:\
-    \ F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\
-    \u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F\
-    \ \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
+    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
+    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
+    \n\n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\
+    \u3059\u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\
+    \u306E\u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\
+    \u3059\u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\
+    \u901F\u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M\
+    \ \u4E0A\u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192\
+    \ M: F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\
+    \u58EB\u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n\
+    * id: F \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
     \ M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\
     \u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\u5408\u6210\u306B\u9589\u3058\u3066\
     \u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E f,g in F \u306B\u5BFE\u3057\
@@ -329,7 +329,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-11-06 00:16:29+09:00'
+  timestamp: '2025-11-15 17:27:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp

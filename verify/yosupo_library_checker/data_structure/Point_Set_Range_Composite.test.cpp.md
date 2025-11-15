@@ -182,20 +182,20 @@ data:
     \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
     \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
     \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n\
-    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const modint &a) { return os << a.x; }\n\n    bool is_zero() const { return\
-    \ x == 0; }\n    bool is_member(ll a) const { return x == (a % mod() + mod())\
-    \ % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long\
-    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\n\ntemplate<typename\
-    \ M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M> data;\n   \
-    \ const function<M(M, M)> op;\n    const M unit;\n\n    public:\n    Segment_Tree(int\
-    \ size, const function<M(M, M)> op, const M unit): n(), op(op), unit(unit) {\n\
-    \        int m = 1;\n        while (m < size) { m *= 2; }\n\n        n = m;\n\
-    \        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const vector<M>\
-    \ &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
+    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
+    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\
+    \n\ntemplate<typename M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M>\
+    \ data;\n    const function<M(M, M)> op;\n    const M unit;\n\n    public:\n \
+    \   Segment_Tree(int size, const function<M(M, M)> op, const M unit): n(), op(op),\
+    \ unit(unit) {\n        int m = 1;\n        while (m < size) { m *= 2; }\n\n \
+    \       n = m;\n        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const\
+    \ vector<M> &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
     \ op, unit) {\n            for (int k = 0; k < vec.size(); k++) { data[k + n]\
     \ = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { recalc(k); }\n  \
     \      }\n\n    private:\n    void recalc(int k) { data[k] = op(data[k << 1],\
@@ -247,7 +247,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   requiredBy: []
-  timestamp: '2025-10-30 00:11:22+09:00'
+  timestamp: '2025-11-15 17:27:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
