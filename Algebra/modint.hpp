@@ -82,8 +82,9 @@ class modint {
 
     // 入力
     friend istream &operator>>(istream &is, modint &a) {
-        is >> a.x;
-        a.x = (a.x % mod() + mod()) % mod();
+        int64_t x;
+        is >> x;
+        a.x = safe_mod(x, mod());
         return is;
     }
 
