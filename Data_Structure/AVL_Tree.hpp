@@ -248,16 +248,25 @@ class Adelson_Velsky_and_Landis_Tree {
     Adelson_Velsky_and_Landis_Tree(): root(nullptr) {}
     ~Adelson_Velsky_and_Landis_Tree() { clear(root); }
 
+    /// @brief AVL 木に保存されているキーの数を求める.
     inline int size() const { return Node::size_of(root); }
 
+    /// @brief AVL 木に `key` に対応するノードを追加する.
+    /// @param key キー
     inline void insert(const K &key) { insert(key, V()); }
 
+    /// @brief AVL 木に `key`, `value` に対応するノードを追加する.
+    /// @param key キー
+    /// @param value バリュー
     inline void insert(const K &key, const V &value) {
         root = insert_inner(root, key, value);
     }
 
     inline void discard(const K &key) { root = delete_inner(root, key); }
 
+    /// @brief AVL 木に保存されている `key` より大きいキーのうちの最小のキーを求める.
+    /// @param key 閾値
+    /// @param equal `true` にすると, 「`key` より大きい」が「`key` 以上」になる.
     K next(const K &key, bool equal = true) const {
         const Node *successor = next_inner(key, equal);
 
@@ -266,12 +275,19 @@ class Adelson_Velsky_and_Landis_Tree {
         return successor->key;
     }
 
+    /// @brief AVL 木に保存されている `key` より大きいキーのうちの最小のキーを求める.
+    /// @param key 閾値
+    /// @param default_value `key` より大きいキーが存在しない場合の返り値
+    /// @param equal `true` にすると, 「`key` より大きい」が「`key` 以上」になる.
     K next(const K &key, const K &default_value, bool equal = true) const {
         const Node *successor = next_inner(key, equal);
 
         return (successor != nullptr) ? successor->key : default_value;
     }
 
+    /// @brief AVL 木に保存されている `key` 未満のキーのうちの最大のキーを求める.
+    /// @param key 閾値
+    /// @param equal `true` にすると, 「`key` 未満」が「`key` 以下」になる.
     K previous(const K &key, bool equal = true) const {
         const Node *predecessor = previous_inner(key, equal);
 
@@ -280,6 +296,10 @@ class Adelson_Velsky_and_Landis_Tree {
         return predecessor->key;
     }
 
+    /// @brief AVL 木に保存されている `key` 未満のキーうちの最大のキーを求める.
+    /// @param key 閾値
+    /// @param default_value `key` より大きいキーが存在しない場合の返り値
+    /// @param equal `true` にすると, 「`key` 未満」が「`key` 以下」になる.
     K previous(const K &key, const K &default_value, bool equal = true) const {
         const Node *predecessor = previous_inner(key, equal);
 
@@ -291,16 +311,23 @@ class Adelson_Velsky_and_Landis_Tree {
         return find_inner(key)->value;
     }
 
+    /// @brief AVL 木における `key` に対応すバリューを求める.
+    /// @param key 検索キー
     inline V* find(const K &key) {
         Node *node = find_inner(key);
         return (node == nullptr) ? nullptr : &(node->value);
     }
 
+    
+    /// @brief AVL 木における `key` に対応すバリューを求める.
+    /// @param key 検索キー
     inline const V* find(const K &key) const {
         const Node *node = find_inner(key);
         return (node == nullptr) ? nullptr : &(node->value);
     }
 
+    /// @brief AVL 木に保存されている昇順 `k` (0-indexed) 番目のキーを求める.
+    /// @param k 番号 (`k` < 0 にすると, 降順 |`k`| (1-indexed) 番目になる).
     const K& kth_key(int k) const {
         if (k < 0) { k += size(); }
 
@@ -319,10 +346,16 @@ class Adelson_Velsky_and_Landis_Tree {
         }
     }
 
+    /// @brief AVL 木に保存されている `key` 未満のノードの数を求める.
+    /// @param key 閾値
+    /// @param equal `true` にすると, 「`key` 未満」が「`key` 以下」になる.
     int less_count(const K &key, bool equal = false) const {
         return less_count_inner(root, key, equal);
     }
 
+    /// @brief AVL 木に保存されている `key` より大きいノードの数を求める.
+    /// @param key 閾値
+    /// @param equal `true` にすると, 「`key` より大きい」が「`key` 以上」になる.
     inline int more_count(const K &key, bool equal = false) const {
         return size() - less_count(key, !equal);
     }
