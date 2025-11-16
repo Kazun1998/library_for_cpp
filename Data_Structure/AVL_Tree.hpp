@@ -24,6 +24,40 @@ class Adelson_Velsky_and_Landis_Tree {
         static inline int height_of(Node *node)  { return (node == nullptr) ? 0 : node->height; }
 
         static inline int size_of(Node *node) { return (node == nullptr) ? 0 : node->size; }
+
+        Node* left_rotation() {
+            Node *x = this;
+            Node *y = x->right;
+            Node *z = y->left;
+
+            y->left = x;
+            x->right = z;
+
+            x->set_height();
+            y->set_height();
+
+            x->set_size();
+            y->set_size();
+
+            return y;
+        }
+
+        Node* right_rotation() {
+            Node *x = this;
+            Node *y = x->left;
+            Node *z = y->right;
+
+            y->right = x;
+            x->left = z;
+
+            x->set_height();
+            y->set_height();
+
+            x->set_size();
+            y->set_size();
+
+            return y;
+        }
     };
 
     private:
@@ -48,24 +82,24 @@ class Adelson_Velsky_and_Landis_Tree {
 
         // Case I: Left Left
         if (bias > 1 && key < node->left->key) {
-            return right_rotation(node);
+            return node->right_rotation();
         }
 
         // Case II: Right Right
         if (bias < -1 && key > node->right->key) {
-            return left_rotation(node);
+            return node->left_rotation();
         }
 
         // Case III: Left Right
         if (bias > 1 && key > node->left->key) {
-            node->left = left_rotation(node->left);
-            return right_rotation(node);
+            node->left = node->left->left_rotation();
+            return node->right_rotation();
         }
 
         // Case IV: Right Left
         if (bias < -1 && key < node->right->key) {
-            node->right = right_rotation(node->right);
-            return left_rotation(node);
+            node->right = node->right->right_rotation();
+            return node->left_rotation();
         }
 
         return node;
@@ -107,59 +141,27 @@ class Adelson_Velsky_and_Landis_Tree {
 
         // Case I: Left Left
         if (bias > 1 && node->left->get_bias() >= 0) {
-            return right_rotation(node);
+            return node->right_rotation();
         }
 
         // Case II: Right Right
         if (bias < -1 && node->right->get_bias() <= 0) {
-            return left_rotation(node);
+            return node->left_rotation();
         }
 
         // Case III: Left Right
         if (bias > 1 && node->left->get_bias() < 0) {
-            node->left = left_rotation(node->left);
-            return right_rotation(node);
+            node->left = node->left->left_rotation();
+            return node->right_rotation();
         }
 
         // Case IV: Right Left
         if (bias < -1 && node->right->get_bias() > 0) {
-            node->right = right_rotation(node->right);
-            return left_rotation(node);
+            node->right = node->right->right_rotation();
+            return node->left_rotation();
         }
 
         return node;
-    }
-
-    Node* left_rotation(Node* x) {
-        Node *y = x->right;
-        Node *z = y->left;
-
-        y->left = x;
-        x->right = z;
-
-        x->set_height();
-        y->set_height();
-
-        x->set_size();
-        y->set_size();
-
-        return y;
-    }
-
-    Node* right_rotation(Node *x) {
-        Node *y = x->left;
-        Node *z = y->right;
-
-        y->right = x;
-        x->left = z;
-
-        x->set_height();
-        y->set_height();
-
-        x->set_size();
-        y->set_size();
-
-        return y;
     }
 
     const Node* next_inner(const K &key, bool equal) const {
