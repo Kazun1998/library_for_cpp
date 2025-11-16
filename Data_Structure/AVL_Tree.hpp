@@ -13,25 +13,17 @@ class Adelson_Velsky_and_Landis_Tree {
 
         Node(K key, V value): key(key), value(value), left(nullptr), right(nullptr), height(1), size(1) {}
 
-        int set_height() {
-            return height = 1 + std::max(height_of(left), height_of(right));
-        }
+        inline int set_height() { return height = 1 + std::max(height_of(left), height_of(right)); }
 
-        int set_size() {
-            return size = 1 + size_of(left) + size_of(right);
-        }
+        inline int set_size() { return size = 1 + size_of(left) + size_of(right); }
 
-        int get_height() { return height; }
+        inline int get_height() { return height; }
 
-        int get_bias() { return height_of(left) - height_of(right); }
+        inline int get_bias() { return height_of(left) - height_of(right); }
 
-        static int height_of(Node *node) {
-            return (node == nullptr) ? 0 : node->height;
-        }
+        static inline int height_of(Node *node)  { return (node == nullptr) ? 0 : node->height; }
 
-        static int size_of(Node *node) {
-            return (node == nullptr) ? 0 : node->size;
-        }
+        static inline int size_of(Node *node) { return (node == nullptr) ? 0 : node->size; }
     };
 
     private:
