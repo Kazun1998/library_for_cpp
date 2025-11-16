@@ -169,7 +169,7 @@ class Adelson_Velsky_and_Landis_Tree {
         return y;
     }
 
-    Node* next_inner(const K &key, bool equal) const {
+    const Node* next_inner(const K &key, bool equal) const {
         Node *successor = nullptr;
         Node *node = root;
 
@@ -187,7 +187,7 @@ class Adelson_Velsky_and_Landis_Tree {
         return successor;
     }
 
-    Node* previous_inner(const K &key, bool equal) const {
+    const Node* previous_inner(const K &key, bool equal) const {
         Node *predecessor = nullptr;
         Node *node = root;
 
@@ -263,7 +263,7 @@ class Adelson_Velsky_and_Landis_Tree {
     inline void discard(const K &key) { root = delete_inner(root, key); }
 
     K next(const K &key, bool equal = true) const {
-        Node *successor = next_inner(key, equal);
+        const Node *successor = next_inner(key, equal);
 
         if (successor == nullptr) { throw std::out_of_range(""); }
 
@@ -271,13 +271,13 @@ class Adelson_Velsky_and_Landis_Tree {
     }
 
     K next(const K &key, const K &default_value, bool equal = true) const {
-        Node *successor = next_inner(key, equal);
+        const Node *successor = next_inner(key, equal);
 
         return (successor != nullptr) ? successor->key : default_value;
     }
 
     K previous(const K &key, bool equal = true) const {
-        Node *predecessor = previous_inner(key, equal);
+        const Node *predecessor = previous_inner(key, equal);
 
         if (predecessor == nullptr) { throw std::out_of_range(""); }
 
@@ -285,7 +285,7 @@ class Adelson_Velsky_and_Landis_Tree {
     }
 
     K previous(const K &key, const K &default_value, bool equal = true) const {
-        Node *predecessor = previous_inner(key, equal);
+        const Node *predecessor = previous_inner(key, equal);
 
         return (predecessor != nullptr) ? predecessor->key : default_value;
     }
