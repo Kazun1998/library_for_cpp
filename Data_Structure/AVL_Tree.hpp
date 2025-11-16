@@ -254,7 +254,7 @@ class Adelson_Velsky_and_Landis_Tree {
     Adelson_Velsky_and_Landis_Tree(): root(nullptr) {}
     ~Adelson_Velsky_and_Landis_Tree() { clear(root); }
 
-    inline int size() const { return root == nullptr ? 0 : root->size; }
+    inline int size() const { return Node::size_of(root); }
 
     inline void insert(const K &key) { insert(key, V()); }
 
