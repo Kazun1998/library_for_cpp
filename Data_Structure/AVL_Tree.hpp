@@ -18,10 +18,7 @@ class Adelson_Velsky_and_Landis_Tree {
         }
 
         int set_size() {
-            int left_size = (left == nullptr) ? 0 : left->size;
-            int right_size = (right == nullptr) ? 0 : right->size;
-
-            return size = 1 + left_size + right_size;
+            return size = 1 + size_of(left) + size_of(right);
         }
 
         int get_height() { return height; }
@@ -30,6 +27,10 @@ class Adelson_Velsky_and_Landis_Tree {
 
         static int height_of(Node *node) {
             return (node == nullptr) ? 0 : node->height;
+        }
+
+        static int size_of(Node *node) {
+            return (node == nullptr) ? 0 : node->size;
         }
     };
 
