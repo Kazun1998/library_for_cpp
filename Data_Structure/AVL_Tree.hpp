@@ -241,8 +241,8 @@ class Adelson_Velsky_and_Landis_Tree {
         bool condition = equal ? (node->key <= key) : (node->key < key);
 
         if (condition) {
-            int left_size = (node->left == nullptr) ? 0 : node->left->size;
-                        return 1 + left_size + less_count_inner(node->right, key, equal);
+            int left_size = Node::size_of(node->left);
+            return 1 + left_size + less_count_inner(node->right, key, equal);
         } else {
             return less_count_inner(node->left, key, equal);
         }
