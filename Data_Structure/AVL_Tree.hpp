@@ -322,4 +322,8 @@ class Adelson_Velsky_and_Landis_Tree {
     int less_count(const K &key, bool equal = false) const {
         return less_count_inner(root, key, equal);
     }
+
+    inline int more_count(const K &key, bool equal = false) const {
+        return size() - less_count(key, !equal);
+    }
 };
