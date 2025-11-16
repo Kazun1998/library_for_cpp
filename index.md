@@ -51,6 +51,9 @@ data:
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
+      path: Data_Structure/AVL_Tree.hpp
+      title: "Adelson-Velskii-Landis \u6728"
+    - icon: ':heavy_check_mark:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
     - icon: ':heavy_check_mark:'
@@ -492,6 +495,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp

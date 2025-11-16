@@ -37,6 +37,9 @@ data:
     title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
       \u7684\u306A\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/AVL_Tree.hpp
+    title: "Adelson-Velskii-Landis \u6728"
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
   - icon: ':heavy_check_mark:'
@@ -372,6 +375,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -556,6 +562,7 @@ data:
   - template/template.hpp
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
+  - Data_Structure/AVL_Tree.hpp
   - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -649,6 +656,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
