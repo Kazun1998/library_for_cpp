@@ -171,8 +171,8 @@ class Adelson_Velsky_and_Landis_Tree {
     }
 
     const Node* next_inner(const K &key, bool equal) const {
-        Node *successor = nullptr;
-        Node *node = root;
+        const Node *successor = nullptr;
+        const Node *node = root;
 
         while (node != nullptr) {
             bool condition = equal ? (key <= node->key) : (key < node->key);
@@ -189,8 +189,8 @@ class Adelson_Velsky_and_Landis_Tree {
     }
 
     const Node* previous_inner(const K &key, bool equal) const {
-        Node *predecessor = nullptr;
-        Node *node = root;
+        const Node *predecessor = nullptr;
+        const Node *node = root;
 
         while (node != nullptr) {
             bool condition = equal ? (key >= node->key) : (key > node->key);
