@@ -248,8 +248,9 @@ class Adelson_Velsky_and_Landis_Tree {
         }
     }
 
-    public:
     Node *root;
+
+    public:
     Adelson_Velsky_and_Landis_Tree(): root(nullptr) {}
     ~Adelson_Velsky_and_Landis_Tree() { clear(root); }
 
