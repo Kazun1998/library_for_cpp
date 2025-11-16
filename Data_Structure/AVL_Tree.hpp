@@ -240,12 +240,14 @@ class Adelson_Velsky_and_Landis_Tree {
     int less_count_inner(Node *node, const K &key, bool equal) const {
         if (node == nullptr) { return 0; }
 
-        bool cond = equal ? (key < node->key) : (key <= node->key);
+        bool condition = equal ? (node->key <= key) : (node->key < key);
 
-        if (cond) { return less_count_inner(node->left, key, equal); }
-
-        int left_size = (node->left == nullptr) ? 0 : node->left->size;
-        return 1 + left_size + less_count_inner(node->right, key, equal);
+        if (condition) {
+            int left_size = (node->left == nullptr) ? 0 : node->left->size;
+                        return 1 + left_size + less_count_inner(node->right, key, equal);
+        } else {
+            return less_count_inner(node->left, key, equal);
+        }
     }
 
     public:
