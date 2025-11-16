@@ -58,6 +58,14 @@ class Adelson_Velsky_and_Landis_Tree {
 
             return y;
         }
+
+        static const Node* find_dig(const Node* node, const K &key) {
+            if (node == nullptr) { return nullptr; }
+
+            if (key == node->key) { return node; }
+
+            return key < node->key ? find_dig(node->left, key) : find_dig(node->right, key);
+        }
     };
 
     private:
@@ -199,16 +207,8 @@ class Adelson_Velsky_and_Landis_Tree {
         return predecessor;
     }
 
-    Node* find_inner(const K &key) {
-        Node *node = root;
-
-        while (node != nullptr) {
-            if (key == node->key) { return node; }
-
-            node = (key < node->key) ? node->left : node->right;
-        }
-
-        return nullptr;
+    inline const Node* find_inner(const K &key) {
+        return Node::find_dig(root, key);
     }
 
     const Node* find_inner(const K &key) const {
