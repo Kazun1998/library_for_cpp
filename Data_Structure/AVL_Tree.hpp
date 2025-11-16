@@ -37,7 +37,7 @@ class Adelson_Velsky_and_Landis_Tree {
     };
 
     private:
-    Node* insert_inner(Node *node, K &key, V &value) {
+    Node* insert_inner(Node *node, const K &key, const V &value) {
         if (node == nullptr) { return new Node(key, value); }
 
         if (key == node->key) {
@@ -81,7 +81,7 @@ class Adelson_Velsky_and_Landis_Tree {
         return node;
     }
 
-    Node* delete_inner(Node *node, K &key) {
+    Node* delete_inner(Node *node, const K &key) {
         if (node == nullptr) { return node; }
         else if (key < node->key) {
             node->left = delete_inner(node->left, key);
@@ -257,13 +257,13 @@ class Adelson_Velsky_and_Landis_Tree {
 
     inline int size() const { return root == nullptr ? 0 : root->size; }
 
-    inline void insert(K key) { insert(key, V()); }
+    inline void insert(const K &key) { insert(key, V()); }
 
-    inline void insert(K key, V value) {
+    inline void insert(const K &key, const V &value) {
         root = insert_inner(root, key, value);
     }
 
-    inline void discard(K key) { root = delete_inner(root, key); }
+    inline void discard(const K &key) { root = delete_inner(root, key); }
 
     K next(const K &key, bool equal = true) const {
         Node *successor = next_inner(key, equal);
