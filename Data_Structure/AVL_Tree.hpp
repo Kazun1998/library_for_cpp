@@ -311,7 +311,7 @@ class Adelson_Velsky_and_Landis_Tree {
     const K& kth_key(int k) {
         if (k < 0) { k += size(); }
 
-        if(!(0 <= k && k < size())) { throw out_of_range(""); }
+        if(!(0 <= k && k < size())) { throw std::out_of_range(""); }
 
         Node *node = root;
         while (true) {
