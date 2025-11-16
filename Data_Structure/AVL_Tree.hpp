@@ -237,6 +237,17 @@ class Adelson_Velsky_and_Landis_Tree {
         delete node;
     }
 
+    int less_count_inner(Node *node, const K &key, bool equal) const {
+        if (node == nullptr) { return 0; }
+
+        bool cond = equal ? (key < node->key) : (key <= node->key);
+
+        if (cond) { return less_count_inner(node->left, key, equal); }
+
+        int left_size = (node->left == nullptr) ? 0 : node->left->size;
+        return 1 + left_size + less_count_inner(node->right, key, equal);
+    }
+
     public:
     Node *root;
     Adelson_Velsky_and_Landis_Tree(): root(nullptr) {}
@@ -311,17 +322,6 @@ class Adelson_Velsky_and_Landis_Tree {
                 node = node->right;
             }
         }
-    }
-
-    int less_count_inner(Node *node, const K &key, bool equal) const {
-        if (node == nullptr) { return 0; }
-
-        bool cond = equal ? (key < node->key) : (key <= node->key);
-
-        if (cond) { return less_count_inner(node->left, key, equal); }
-
-        int left_size = (node->left == nullptr) ? 0 : node->left->size;
-        return 1 + left_size + less_count_inner(node->right, key, equal);
     }
 
     int less_count(const K &key, bool equal = false) const {
