@@ -266,7 +266,7 @@ class Adelson_Velsky_and_Landis_Tree {
     K next(const K &key, bool equal = true) const {
         const Node *successor = next_inner(key, equal);
 
-        if (successor == nullptr) { throw std::out_of_range(""); }
+        if (successor == nullptr) { throw std::out_of_range("Successor key not found (out of range)."); }
 
         return successor->key;
     }
@@ -280,7 +280,7 @@ class Adelson_Velsky_and_Landis_Tree {
     K previous(const K &key, bool equal = true) const {
         const Node *predecessor = previous_inner(key, equal);
 
-        if (predecessor == nullptr) { throw std::out_of_range(""); }
+        if (predecessor == nullptr) { throw std::out_of_range("Predecessor key not found (out of range)."); }
 
         return predecessor->key;
     }
@@ -309,7 +309,7 @@ class Adelson_Velsky_and_Landis_Tree {
     const K& kth_key(int k) const {
         if (k < 0) { k += size(); }
 
-        if(!(0 <= k && k < size())) { throw std::out_of_range(""); }
+        if(!(0 <= k && k < size())) { throw std::out_of_range("Index k is out of bounds."); }
 
         const Node *node = root;
         while (true) {
