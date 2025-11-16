@@ -306,10 +306,10 @@ class Adelson_Velsky_and_Landis_Tree {
         return (node == nullptr) ? nullptr : &(node->value);
     }
 
-    K& kth_key(int k) {
+    const K& kth_key(int k) {
         if (k < 0) { k += size(); }
 
-        unless(0 <= k && k < size()) { throw out_of_range(""); }
+        if(!(0 <= k && k < size())) { throw out_of_range(""); }
 
         Node *node = root;
         while (true) {
