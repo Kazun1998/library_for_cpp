@@ -11,6 +11,8 @@ class Binary_Indexed_Tree{
 
     // 初期化
     public:
+    Binary_Indexed_Tree() = default;
+
     Binary_Indexed_Tree(int n, const function<G(G, G)> op, const G zero, const function<G(G)> neg): n(n), op(op), zero(zero), neg(neg) {
         data.assign(n + 1, zero);
     }
