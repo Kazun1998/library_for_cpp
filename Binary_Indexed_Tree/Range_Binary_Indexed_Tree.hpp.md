@@ -206,7 +206,8 @@ data:
     \u7D20\u304B\u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\u7DCF\u548C\u3092\u6C42\
     \u3081\u308B.\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n\
     \    G sum(int l, int r) const {\n        return l > 0 ? op(sum(r), neg(sum(l\
-    \ - 1))) : sum(r);\n    }\n};\n"
+    \ - 1))) : sum(r);\n    }\n\n    inline G operator[](const int k) const { return\
+    \ sum(k, k); }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Binary_Indexed_Tree.hpp\"\
     \n\ntemplate<typename G>\nclass Range_Binary_Indexed_Tree {\n    private:\n  \
     \  const int n;\n    const function<G(G, G)> op;\n    const G zero;\n    const\
@@ -236,7 +237,8 @@ data:
     \u7D20\u304B\u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\u7DCF\u548C\u3092\u6C42\
     \u3081\u308B.\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n\
     \    G sum(int l, int r) const {\n        return l > 0 ? op(sum(r), neg(sum(l\
-    \ - 1))) : sum(r);\n    }\n};"
+    \ - 1))) : sum(r);\n    }\n\n    inline G operator[](const int k) const { return\
+    \ sum(k, k); }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -248,7 +250,7 @@ data:
   isVerificationFile: false
   path: Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:49:33+09:00'
+  timestamp: '2025-11-18 00:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/dsl/2G.test.cpp
