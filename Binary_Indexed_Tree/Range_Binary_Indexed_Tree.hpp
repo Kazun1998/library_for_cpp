@@ -57,4 +57,6 @@ class Range_Binary_Indexed_Tree {
     G sum(int l, int r) const {
         return l > 0 ? op(sum(r), neg(sum(l - 1))) : sum(r);
     }
+
+    inline G operator[](const int k) const { return sum(k, k); }
 };
