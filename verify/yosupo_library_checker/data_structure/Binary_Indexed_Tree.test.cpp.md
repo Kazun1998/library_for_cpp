@@ -41,7 +41,7 @@ data:
     \      if (l > r) { return zero; }\n        else if (l == 0) { return sum(r);\
     \ }\n        else { return op(sum(r), neg(sum(l - 1))); }\n    }\n\n    // \u7B2C\
     \ k \u8981\u7D20\u3092\u53D6\u5F97\u3059\u308B.\n    inline G operator[](int k)\
-    \ const { return sum(k, k + 1); }\n};\n\ntemplate<typename G>\nBinary_Indexed_Tree<G>\
+    \ const { return sum(k, k); }\n};\n\ntemplate<typename G>\nBinary_Indexed_Tree<G>\
     \ Group_Binary_Indexed_Tree(const vector<G> &vec, G zero){\n    auto add = [](G\
     \ x, G y) -> G { return x + y; };\n    auto inv = [](G x) -> G { return -x; };\n\
     \    return Binary_Indexed_Tree<G>(vec, add, zero, inv);\n}\n#line 8 \"verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp\"\
@@ -66,7 +66,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-11-17 22:53:46+09:00'
+  timestamp: '2025-11-18 00:49:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
