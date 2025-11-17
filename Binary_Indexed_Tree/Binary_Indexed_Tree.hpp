@@ -56,7 +56,7 @@ class Binary_Indexed_Tree{
     }
 
     // 第 k 要素を取得する.
-    inline G operator[](int k) const { return sum(k, k + 1); }
+    inline G operator[](int k) const { return sum(k, k); }
 };
 
 template<typename G>
