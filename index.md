@@ -20,6 +20,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
       title: Binary Indexed Tree (Fenwick Tree)
+    - icon: ':heavy_check_mark:'
+      path: Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
+      title: "\u533A\u9593\u52A0\u7B97 Binary Indexed Tree"
   - name: Binary_Search
     pages:
     - icon: ':warning:'
@@ -449,6 +452,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/cgl/7G.test.cpp
       title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - name: verify/aizu_online_judge/dsl
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/2G.test.cpp
+      title: verify/aizu_online_judge/dsl/2G.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
     - icon: ':heavy_check_mark:'

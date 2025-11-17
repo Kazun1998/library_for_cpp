@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
+    title: "\u533A\u9593\u52A0\u7B97 Binary Indexed Tree"
   - icon: ':warning:'
     path: Binary_Search/General_Integer.hpp
     title: Binary_Search/General_Integer.hpp
@@ -353,6 +356,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dsl/2G.test.cpp
+    title: verify/aizu_online_judge/dsl/2G.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
@@ -893,6 +899,7 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Counting/Combination_Calculator.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
@@ -972,6 +979,7 @@ data:
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/aizu_online_judge/dsl/2G.test.cpp
   - verify/original/Partition_Q.test.cpp
   - verify/original/Functional_Graph.test.cpp
   - verify/yukicoder/2558.test.cpp
