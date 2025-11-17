@@ -20,10 +20,20 @@ class Range_Binary_Indexed_Tree {
         bit1 = Binary_Indexed_Tree<G>(vector<G>(n, zero), op, zero, neg);
     }
 
+    /// @brief 第 k 要素を x に更新する.
+    /// @param k 更新箇所
+    /// @param x 更新後の値
     inline void update(int k, G x) { bit0.add(k, op(neg(get(k)), x)); }
 
-    inline void add(int l, G x) { bit0.add(l, x); }
+    /// @brief 第 k 要素に x を加算する.
+    /// @param k 加算箇所
+    /// @param x 加算要素
+    inline void add(int k, G x) { bit0.add(k, x); }
 
+    /// @brief 第 l 要素から第 r 要素の全てに対して x を加算する.
+    /// @param l 左端
+    /// @param r 右端
+    /// @param x 加算要素
     void add(int l, int r, G x) {
         bit0.add(l, neg(mul(l, x)));
         bit1.add(l, x);
@@ -33,15 +43,18 @@ class Range_Binary_Indexed_Tree {
         }
     }
 
+    /// @brief 第 k 要素を取得する.
+    /// @param k 取得箇所
     inline G get(int k) const { return sum(k, k); }
 
+    /// @brief 第 0 要素から第 r 要素までの総和を求める.
+    /// @param r 右端
     inline G sum(int r) const { return op(bit0.sum(r), mul(r + 1, bit1.sum(r))); }
 
+    /// @brief 第 l 要素から第 r 要素までの総和を求める.
+    /// @param l 左端
+    /// @param r 右端
     G sum(int l, int r) const {
-        if (l > 0) {
-            return op(sum(r), neg(sum(l - 1)));
-        } else {
-            return sum(r);
-        }
+        return l > 0 ? op(sum(r), neg(sum(l - 1))) : sum(r);
     }
 };
