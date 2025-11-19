@@ -4,7 +4,7 @@
 
 class Tree {
     private:
-    int N, offset, root;
+    int N, _offset, root;
     vector<int> parent;
     vector<vector<int>> children;
 
@@ -12,8 +12,8 @@ class Tree {
     bool locked;
 
     public:
-    Tree(int N, int offset = 0): N(N), offset(offset), N_bit(0) {
-        parent.assign(N + offset, -1);
+    Tree(int N, int _offset = 0): N(N), _offset(_offset), N_bit(0) {
+        parent.assign(N + _offset, -1);
         for (; (1 << N_bit) <= N; N_bit++) {}
         locked = false;
     }
@@ -25,6 +25,12 @@ class Tree {
         assert (!is_locked());
         root = x;
     }
+
+    inline int vector_size() const { return order() + offset(); }
+
+    inline int get_root() const { return root; }
+    inline int get_parent(const int &x) const { return parent[x]; }
+    inline vector<int> get_children(const int &x) const { return children[x]; }
 
     public:
     // 頂点 x の親を頂点 y に設定する.
@@ -41,8 +47,8 @@ class Tree {
         assert(!is_locked());
 
         parent[root] = -1;
-        children.assign(N + offset, vector<int>());
-        for (int v = offset; v < N + offset; v++) {
+        children.assign(N + offset(), vector<int>());
+        for (int v = offset(); v < N + offset(); v++) {
             unless(is_root(v)) { children[parent[v]].emplace_back(v); }
         }
 
@@ -57,7 +63,7 @@ class Tree {
         assert(is_locked());
 
         tower.assign(N, {});
-        depth.assign(N + offset, -1);
+        depth.assign(N + offset(), -1);
 
         deque<int> Q{ root };
         tower[0] = { root };
@@ -72,6 +78,27 @@ class Tree {
                 Q.push_back(y);
             }
         }
+    }
+
+    public:
+    vector<int> top_down() const {
+        vector<int> res;
+        for (auto layer: tower) {
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
+    }
+
+    public:
+    vector<int> bottom_up() const {
+        vector<int> res;
+        for (auto it = tower.rbegin(); it != tower.rend(); ++it) {
+            const auto &layer = *it;
+            res.insert(res.end(), layer.begin(), layer.end());
+        }
+
+        return res;
     }
 
     // 1 頂点に関する情報
@@ -125,17 +152,17 @@ class Tree {
 
         has_upper_list = true;
 
-        upper_list.assign(N_bit, vector<int>(N + offset, -1));
+        upper_list.assign(N_bit, vector<int>(N + offset(), -1));
 
         // Step I
-        for (int i = offset; i < N + offset; i++) {
+        for (int i = offset(); i < N + offset(); i++) {
             if (is_root(i)) { upper_list[0][i] = i; }
             else { upper_list[0][i] = parent[i]; }
         }
 
         // Step II
         for (int k = 1; k < N_bit; k++) {
-            for (int i = offset; i < N + offset; i++) {
+            for (int i = offset(); i < N + offset(); i++) {
                 upper_list[k][i] = upper_list[k - 1][upper_list[k - 1][i]];
             }
         }
@@ -175,6 +202,23 @@ class Tree {
         return is_root(x) ? root : parent[x];
     }
 
+    int lowest_common_ancestor_greedy(int x, int y) {
+        assert(is_locked());
+
+        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
+
+        while (vertex_depth(x) < vertex_depth(y)) {
+            y = parent[y];
+        }
+
+        while (x != y) {
+            x = get_parent(x);
+            y = get_parent(y);
+        }
+
+        return x;
+    }
+
     // 2 頂点 x, y 間の距離を求める.
     int distance(int x, int y) {
         return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
@@ -193,8 +237,8 @@ class Tree {
         if(has_euler_tour_vertex) { return; }
 
         euler_tour_vertex.clear();
-        in_time.assign(N + offset, -1);
-        out_time.assign(N + offset, -1);
+        in_time.assign(N + offset(), -1);
+        out_time.assign(N + offset(), -1);
 
         auto dfs = [&](auto self, int x) -> void {
             in_time[x] = (int)euler_tour_vertex.size();
@@ -245,6 +289,32 @@ class Tree {
             return upper(v, dist_uv - k);
         }
     }
+
+    vector<int> path(int u, int v) {
+        int w = lowest_common_ancestor_greedy(u, v);
+
+        vector<int> path_first{u}, path_second{v};
+
+        while (u != w) {
+            u = get_parent(u);
+            path_first.emplace_back(u);
+        }
+
+        while (v != w) {
+            v = get_parent(v);
+            path_second.emplace_back(v);
+        }
+
+        path_second.pop_back();
+        reverse(path_second.begin(), path_second.end());
+
+        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));
+
+        return path_first;
+    }
+
+    inline int order() const { return N; }
+    inline int offset() const { return _offset; }
 };
 
 Tree Construct_Tree(int N, vector<pair<int, int>> edges, int root, int offset = 0) {
