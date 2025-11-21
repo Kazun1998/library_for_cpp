@@ -8,6 +8,7 @@ class Field_Vector {
     vector<F> vec;
 
     public:
+    Field_Vector() = default;
     Field_Vector(const vector<F> &_vec): vec(_vec) {};
     Field_Vector(const int n): vec(vector<F>(n, F(0))) {};
 
