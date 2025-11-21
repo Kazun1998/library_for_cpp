@@ -15,6 +15,8 @@ class Field_Matrix{
     int row, col;
 
     public:
+    Field_Matrix() = default;
+
     Field_Matrix(int row, int col): row(row), col(col){
         mat.assign(row, vector<F>(col, F()));
     }
