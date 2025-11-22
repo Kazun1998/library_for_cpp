@@ -7,11 +7,7 @@ int main() {
     int N, Q; cin >> N >> Q;
     vector<ll> a(N); cin >> a;
 
-    auto add = [](const ll &x, const ll &y) -> ll {
-        return x + y;
-    };
-
-    Disjoint_Sparse_Table<ll> S(a, add, 0);
+    Disjoint_Sparse_Table<ll> S(a, add<ll>, 0);
 
     for (int q = 1; q <= Q; q++) {
         int l, r; scanf("%d%d", &l, &r);
