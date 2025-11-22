@@ -42,6 +42,11 @@ struct Stern_Brocot_Tree {
         return path;
     }
 
+    /// @brief SB 木における 1/1 から code に沿って, 到達の可能性がある有理数の集合は有理数開区間になる. この有理数開区間の下限と上限を求める.
+    /// @param code pair<Direction, ll> 型の (d, k) からなるリスト. (d, k) は d の向きへ k 回連続で進むことを表す.
+    /// @param left 左 (0/1 への向き) を表す値
+    /// @param right 右 (1/0 への向き) を表す値
+    /// @return `pair<Fraction, Fraction>` {{下限分子, 下限分母}, {上限分子, 上限分母}}
     template<typename Direction>
     static pair<Fraction, Fraction> decode_interval(Path<Direction> &code, Direction left, Direction right) {
         ll p = 0, q = 1, r = 1, s = 0;
@@ -63,7 +68,6 @@ struct Stern_Brocot_Tree {
     /// @param code pair<Direction, ll> 型の (d, k) からなるリスト. (d, k) は d の向きへ k 回連続で進むことを表す.
     /// @param left 左 (0/1 への向き) を表す値
     /// @param right 右 (1/0 への向き) を表す値
-    /// @return 
     template<typename Direction>
     static Fraction decode(Path<Direction> &code, Direction left, Direction right) {
         auto &&[x, y] = decode_interval(code, left, right);
