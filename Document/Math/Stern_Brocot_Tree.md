@@ -9,7 +9,7 @@ Stern Brocot 木に関する計算を行うメソッドをまとめたクラス.
 
 ## Define
 
-$\widehat{\mathbb{Q}_{+0}} := \\\\{x \geq 0 \mid x \in \mathbb{Q} \\\\} \cup \\\\{ \infty \\\\}$ とする. 次のようにして, 根付き木である Stern Brocot 木 $T = (V, E)$ を次のようにして形式的に定義する. なお, 形式的に $\frac{1}{0} := \infty$ とする.
+$\widehat{\mathbb{Q}_{+0}} := \\\{x \geq 0 \mid x \in \mathbb{Q} \\\} \cup \\\{ \infty \\\}$ とする. 次のようにして, 根付き木である Stern Brocot 木 $T = (V, E)$ を次のようにして形式的に定義する. なお, 形式的に $\frac{1}{0} := \infty$ とする.
 
 $\widehat{\mathbb{Q}_{+0}}$ の開区間 $v := \left(\frac{a}{b}, \frac{c}{d} \right)$ に対して, $v$ のメジアン $\varphi(v)$ を
 
@@ -65,7 +65,7 @@ pair<Fraction, Fraction> decode_interval(Path<Direction> &code, Direction left, 
 ```
 
 * $T$ において, `code` の順番で辿った時に到達する $\widehat{\mathbb{Q}_{+0}}$ 上の開区間の端点を求める.
-* **入力**
+* **引数**
   * `code`: 以下の要件を満たす各要素が `pair<Direction, ll>` であるリスト.
     * リストの中の要素 $(d, k)$ について, $d = $`left` ならば, $k$ 回連続で左の子に進むことを, $d=$`right` ならば, $k$ 回連続で右の子に進むことを表す. 
 * **返り値**
@@ -88,7 +88,6 @@ Fraction decode(Path<Direction> &code, Direction left, Direction right)
 ### lowest_common_ancestor
 
 ```cpp
-template<typename Direction>
 Fraction lowest_common_ancestor(ll a, ll b, ll c, ll d)
 ```
 
@@ -98,7 +97,6 @@ Fraction lowest_common_ancestor(ll a, ll b, ll c, ll d)
 ### ancestor
 
 ```cpp
-template<typename Direction>
 Fraction ancestor(ll a, ll b, ll k, Fraction default_value = {-1, -1})
 ```
 
@@ -108,7 +106,6 @@ Fraction ancestor(ll a, ll b, ll k, Fraction default_value = {-1, -1})
 ### range
 
 ```cpp
-template<typename Direction>
 pair<Fraction, Fraction> range(ll a, ll b)
 ```
 
@@ -117,5 +114,16 @@ pair<Fraction, Fraction> range(ll a, ll b)
   * 第 $1$ 要素が開区間の下限, 第 $2$ 要素が開区間の上限になる.
 * **計算量** : $O(\log(a+b))$ 時間.
 
+### binary_search_range_increase
 
+```cpp
+pair<Fraction, Fraction> binary_search_range_increase(ll N, function<bool(ll, ll)> cond)
+```
 
+* 単調増加な条件 $\textrm{cond}$ において, $\textrm{cond}(x) = \mathbb{T}$ となる最小の $x$ を挟む分子と分母が $N$ 以下の有理数を求める.
+* **引数**
+  * $\textrm{cond}$: $\mathbb{Q}_+$ 上の単調増加な関数. ただし, 実装上は $2$ 変数関数とし, $\textrm{cond}(a, b) = \textrm{cond}(a/b)$ を意味する.
+* **返り値**
+  * $Q_N$ を分子と分母が共に $N$ 以下である正の有理数全体の集合とする.
+  * 第 $1$ 要素は $\sup \\\{x \in Q_N \mid \lnot \mathrm{cond}(x) \\\}$ である有理数である. 要するに, $\mathrm{cond}(x)$ を満たさない $Q_N$ の最大の要素である.
+  * 第 $2$ 要素は $\inf \\\{y \in Q_N \mid \mathrm{cond}(y) \\\}$ である有理数である. 要するに, $\mathrm{cond}(y)$ を満たす $Q_N$ の最小の要素である.
