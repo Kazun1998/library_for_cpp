@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
+  - icon: ':warning:'
+    path: Data_Structure/Doubly_Linked_List.hpp
+    title: "\u53CC\u65B9\u5411\u9023\u7D50\u30EA\u30B9\u30C8"
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
@@ -596,6 +599,7 @@ data:
   - Linear_Algebra/Field_Matrix.hpp
   - Linear_Algebra/Reduction.hpp
   - template/template.hpp
+  - Data_Structure/Doubly_Linked_List.hpp
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
   - Data_Structure/AVL_Tree.hpp
