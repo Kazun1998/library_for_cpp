@@ -1,5 +1,27 @@
 #pragma once
 
+// 演算子
+template<typename T>
+T add(const T &x, const T &y) { return x + y; }
+
+template<typename T>
+T sub(const T &x, const T &y) { return x - y; }
+
+template<typename T>
+T mul(const T &x, const T &y) { return x * y; }
+
+template<typename T>
+T neg(const T &x) { return -x; }
+
+template<typename T>
+T bitwise_and(const T &x, const T &y) { return x & y; }
+
+template<typename T>
+T bitwise_or(const T &x, const T &y) { return x | y; }
+
+template<typename T>
+T bitwise_xor(const T &x, const T &y) { return x ^ y; }
+
 // 除算に関する関数
 
 // floor(x / y) を求める.
