@@ -141,4 +141,57 @@ struct Stern_Brocot_Tree {
         auto code = encode(a, b, true, false);
         return decode_interval(code, true, false);
     }
+
+    /// @brief 単調増加な check において, cond(x) = T となる最小の x を挟む分子と分母が N 以下の有理数を求める.
+    /// @param N 分子と分母の上限
+    /// @param cond 2 変数関数で, cond(a, b) は cond(a / b) を意味する.
+    /// @return 
+    static pair<Fraction, Fraction> binary_search_range_increase(ll N, function<bool(ll, ll)> cond) {
+        // x + d * y <= N ?
+        auto is_valid = [&N](const ll x, const ll y, const ll d) -> bool {
+            if (y == 0) { return x <= N; }
+
+            return d <= (N - x) / y;
+        };
+
+        auto right_search = [&N, &cond, &is_valid](const ll p, const ll q, const ll r, const ll s) -> ll {
+            ll lower = 0, upper = (N - p) / r + 1;
+            while (upper - lower > 1) {
+                ll d = (lower + upper) / 2;
+                if (is_valid(p, r, d) && is_valid(q, s, d) && !cond(p + d * r, q + d * s)) {
+                    lower = d;
+                } else {
+                    upper = d;
+                }
+            }
+
+            return lower;
+        };
+
+        auto left_search = [&N, &cond, &is_valid](const ll p, const ll q, const ll r, const ll s) -> ll {
+            ll lower = 0, upper = (N - p) / r + 1;
+            while (upper - lower > 1) {
+                ll d = (lower + upper) / 2;
+                if (is_valid(r, p, d) && is_valid(s, q, d) && cond(r + d * p, s + d * q)) {
+                    lower = d;
+                } else {
+                    upper = d;
+                }
+            }
+
+            return lower;
+        };
+
+        ll p = 0, q = 1, r = 1, s = 0;
+        while (p + r <= N && q + s <= N) {
+            ll d;
+            d = right_search(p, q, r, s);
+            p += d * r; q += d * s;
+
+            d = left_search(p, q, r, s);
+            r += d * p; s += d * q;
+        }
+
+        return {{p, q}, {r, s}};
+    }
 };
