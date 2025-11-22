@@ -10,22 +10,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []

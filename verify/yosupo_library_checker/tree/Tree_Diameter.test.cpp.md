@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -355,7 +355,7 @@ data:
   path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
   timestamp: '2025-11-22 15:43:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
 layout: document

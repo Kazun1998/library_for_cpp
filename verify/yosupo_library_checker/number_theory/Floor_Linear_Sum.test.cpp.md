@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -191,7 +191,7 @@ data:
   path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   requiredBy: []
   timestamp: '2025-11-22 15:43:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
 layout: document

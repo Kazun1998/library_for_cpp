@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Quotients.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -180,7 +180,7 @@ data:
   requiredBy:
   - Integer/Prime_Pi.hpp
   timestamp: '2025-11-22 15:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
