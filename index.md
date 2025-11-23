@@ -383,6 +383,9 @@ data:
   - name: Union_Find
     pages:
     - icon: ':heavy_check_mark:'
+      path: Union_Find/Potentilized_Union_Find.hpp
+      title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
+    - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
       title: Union Find
   - name: template
@@ -530,6 +533,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - name: verify/yosupo_library_checker/enumerate_combinatorics
     pages:
     - icon: ':heavy_check_mark:'

@@ -313,6 +313,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
+  - icon: ':heavy_check_mark:'
+    path: Union_Find/Potentilized_Union_Find.hpp
+    title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
@@ -413,6 +416,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
@@ -870,6 +876,7 @@ data:
   - Sequence/Run_Length_Encoding.hpp
   - Sequence/Hamming_Distance.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
+  - Union_Find/Potentilized_Union_Find.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Stern_Brocot_Tree.hpp
   - Math/Montmort_Number.hpp
@@ -932,6 +939,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp

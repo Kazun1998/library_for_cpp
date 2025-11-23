@@ -91,6 +91,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -388,6 +391,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
