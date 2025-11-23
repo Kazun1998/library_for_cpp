@@ -9,15 +9,15 @@ class Potentilized_Union_Find {
     vector<Pot> pot; // P(x) = pot[x] P(par[x])
     vector<bool> valid;
 
-    Pot zero;
+    Pot unit;
     function<Pot(const Pot&, const Pot&)> add;
     function<Pot(const Pot&, const Pot&)> diff;
     function<Pot(const Pot&)> neg;
 
     public:
-    Potentilized_Union_Find(int n, function<Pot(const Pot&, const Pot&)> add, const Pot &zero, const function<Pot(const Pot &)> neg):
-        n(n), par(vector<int>(n, -1)), rank(vector<int>(n, 0)), pot(vector<Pot>(n, zero)), valid(vector<bool>(n, true)), _group_number(n),
-        zero(zero), add(add), neg(neg) {
+    Potentilized_Union_Find(int n, function<Pot(const Pot&, const Pot&)> add, const Pot &unit, const function<Pot(const Pot &)> neg):
+        n(n), par(vector<int>(n, -1)), rank(vector<int>(n, 0)), pot(vector<Pot>(n, unit)), valid(vector<bool>(n, true)), _group_number(n),
+        unit(unit), add(add), neg(neg) {
             diff = [&add, &neg](const Pot& a, const Pot& b) { return add(neg(a), b); };
         }
 
@@ -53,7 +53,7 @@ class Potentilized_Union_Find {
         x = find(x), y = find(y);
 
         if (x == y) {
-            valid[x] = valid[x] && (a == zero);
+            valid[x] = valid[x] && (a == unit);
             return valid[x];
         }
 
