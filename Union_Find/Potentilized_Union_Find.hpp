@@ -6,7 +6,7 @@ template<typename Pot>
 class Potentilized_Union_Find {
     int n, _group_number;
     vector<int> par, rank;
-    vector<Pot> pot; // P(x) = P(par[x]) + diff[x]
+    vector<Pot> pot; // P(x) = pot[x] P(par[x])
     vector<bool> valid;
 
     Pot zero;
@@ -28,8 +28,7 @@ class Potentilized_Union_Find {
         if (par[x] < 0) { return x; }
 
         int r = find(par[x]);
-        pot[x] = add(pot[par[x]], pot[x]);
-
+        pot[x] = add(pot[x], pot[par[x]]);
         return par[x] = r;
     }
 
@@ -42,35 +41,35 @@ class Potentilized_Union_Find {
     /// @param x 
     inline int size(int x) { return -par[find(x)]; }
 
-    /// @brief P(x) = P(y) + a という情報を加える.
+    /// @brief P(x) = a P(y) という情報を加える.
     /// @param x 
     /// @param y 
     /// @param a 
     /// @return x, y の間が無矛盾ならば true, 矛盾があれば false.
     bool unite(int x, int y, Pot a) {
-        a = add(potential(x), a);
-        a = add(a, neg(potential(y)));
+        a = add(a, potential(y));
+        a = add(neg(potential(x)), a);
 
         x = find(x), y = find(y);
 
         if (x == y) {
-            valid[x] = valid[x] && (diff(pot[x], pot[y]) == a);
+            valid[x] = valid[x] && (a == zero);
             return valid[x];
         }
 
-        if (rank[x] < rank[y]) {
+        if (rank[x] > rank[y]) {
             swap(x, y);
             a = neg(a);
         }
 
         if (rank[x] == rank[y]) { rank[x]++; }
 
-        valid[x] = valid[x] && valid[y];
-    
-        par[x] += par[y];
-        par[y] = x;
+        valid[y] = valid[x] && valid[y];
 
-        pot[y] = a;
+        par[y] += par[x];
+
+        par[x] = y;
+        pot[x] = a;
 
         _group_number--;
 
@@ -85,7 +84,7 @@ class Potentilized_Union_Find {
     /// @brief x から見た y のポテンシャルを求める. つまり, -P(y) + P(x) を求める.
     /// @param x 基準
     /// @param y ポテンシャルを求める点
-    Pot potential(int x, int y) { return add(neg(potential(x)), potential(y)); }
+    Pot potential(int x, int y) { return add(potential(x), neg(potential(y))); }
 
     bool is_valid(int x) { return valid[x]; }
 
