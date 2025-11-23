@@ -32,11 +32,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
     links:
-    - https://judge.yosupo.jp/problem/unionfind_with_potential
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
+    - https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -242,32 +242,57 @@ data:
     \ @param x \n    /// @param y \n    /// @param a \n    /// @return \n    bool\
     \ is_possible(int x, int y, Pot a) { return !same(x, y) || potential(x, y) ==\
     \ a; }\n\n    /// @brief \u9023\u7D50\u6210\u5206\u306E\u6570\n    int group_count()\
-    \ const { return _group_number; }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    int N, Q; cin >> N >>\
-    \ Q;\n    Potentilized_Union_Find<mint> U(N, add<mint>, mint(0), neg<mint>);\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int t; scanf(\"%d\", &t);\n     \
-    \   if (t == 0) {\n            int u, v, _x; scanf(\"%d%d%d\", &u, &v, &_x);\n\
-    \            mint x = mint::raw(_x);\n\n            if (U.is_possible(u, v, x))\
-    \ { \n                U.unite(u, v, x);\n                cout << 1 << \"\\n\"\
-    ;\n            } else {\n                cout << 0 << \"\\n\";\n            }\n\
-    \        } else if (t == 1) {\n            int u, v; scanf(\"%d%d\", &u, &v);\n\
-    \            if (U.is_well_defined(u, v)) {\n                cout << U.potential(u,\
-    \ v) << \"\\n\";\n            } else {\n                cout << -1 << \"\\n\"\
+    \ const { return _group_number; }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nstruct Mat2 {\n    mint p, q, r, s;\n\n\
+    \    Mat2() = default;\n    Mat2(const mint p, const mint q, const mint r, const\
+    \ mint s): p(p), q(q), r(r), s(s) {}\n\n    friend Mat2 operator*(const Mat2 &x,\
+    \ const Mat2 &y) {\n        Mat2 z;\n\n        z.p = x.p * y.p + x.q * y.r;\n\
+    \        z.q = x.p * y.q + x.q * y.s;\n        z.r = x.r * y.p + x.s * y.r;\n\
+    \        z.s = x.r * y.q + x.s * y.s;\n\n        return z;\n    }\n\n    friend\
+    \ bool operator==(const Mat2 &x, const Mat2 &y) {\n        return (x.p == y.p)\
+    \ && (x.q == y.q) && (x.r == y.r) && (x.s == y.s);\n    }\n\n    Mat2 inverse()\
+    \ const { return Mat2(s, -q, -r, p); }\n};\n\nint main() {\n    int N, Q; cin\
+    \ >> N >> Q;\n    Potentilized_Union_Find<Mat2> U(N, mul<Mat2>, Mat2(1, 0, 0,\
+    \ 1), [](const Mat2 &a) -> Mat2 { return a.inverse(); } );\n\n    for (int q0\
+    \ = 0; q0 < Q; q0++) {\n        int t; scanf(\"%d\", &t);\n        if (t == 0)\
+    \ {\n            int u, v, _p, _q, _r, _s;\n            scanf(\"%d%d%d%d%d%d\"\
+    , &u, &v, &_p, &_q, &_r, &_s);\n            mint p = mint::raw(_p);\n        \
+    \    mint q = mint::raw(_q);\n            mint r = mint::raw(_r);\n          \
+    \  mint s = mint::raw(_s);\n            Mat2 x(p, q, r, s);\n            Mat2\
+    \ x_inv = x.inverse();\n\n            if (U.is_possible(u, v, x_inv)) { \n   \
+    \             U.unite(u, v, x_inv);\n                cout << 1 << \"\\n\";\n \
+    \           } else {\n                cout << 0 << \"\\n\";\n            }\n \
+    \       } else if (t == 1) {\n            int u, v; scanf(\"%d%d\", &u, &v);\n\
+    \            if (U.is_well_defined(u, v)) {\n                Mat2 y_inv = U.potential(u,\
+    \ v); \n                Mat2 y = y_inv.inverse();\n                print(y.p,\
+    \ y.q, y.r, y.s);\n            } else {\n                cout << -1 << \"\\n\"\
     ;\n            }\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
     \n#include\"../../../Union_Find/Potentilized_Union_Find.hpp\"\n\nusing mint =\
-    \ modint<998244353>;\n\nint main() {\n    int N, Q; cin >> N >> Q;\n    Potentilized_Union_Find<mint>\
-    \ U(N, add<mint>, mint(0), neg<mint>);\n\n    for (int q = 0; q < Q; q++) {\n\
-    \        int t; scanf(\"%d\", &t);\n        if (t == 0) {\n            int u,\
-    \ v, _x; scanf(\"%d%d%d\", &u, &v, &_x);\n            mint x = mint::raw(_x);\n\
-    \n            if (U.is_possible(u, v, x)) { \n                U.unite(u, v, x);\n\
-    \                cout << 1 << \"\\n\";\n            } else {\n               \
-    \ cout << 0 << \"\\n\";\n            }\n        } else if (t == 1) {\n       \
-    \     int u, v; scanf(\"%d%d\", &u, &v);\n            if (U.is_well_defined(u,\
-    \ v)) {\n                cout << U.potential(u, v) << \"\\n\";\n            }\
-    \ else {\n                cout << -1 << \"\\n\";\n            }\n        }\n \
-    \   }\n}\n"
+    \ modint<998244353>;\n\nstruct Mat2 {\n    mint p, q, r, s;\n\n    Mat2() = default;\n\
+    \    Mat2(const mint p, const mint q, const mint r, const mint s): p(p), q(q),\
+    \ r(r), s(s) {}\n\n    friend Mat2 operator*(const Mat2 &x, const Mat2 &y) {\n\
+    \        Mat2 z;\n\n        z.p = x.p * y.p + x.q * y.r;\n        z.q = x.p *\
+    \ y.q + x.q * y.s;\n        z.r = x.r * y.p + x.s * y.r;\n        z.s = x.r *\
+    \ y.q + x.s * y.s;\n\n        return z;\n    }\n\n    friend bool operator==(const\
+    \ Mat2 &x, const Mat2 &y) {\n        return (x.p == y.p) && (x.q == y.q) && (x.r\
+    \ == y.r) && (x.s == y.s);\n    }\n\n    Mat2 inverse() const { return Mat2(s,\
+    \ -q, -r, p); }\n};\n\nint main() {\n    int N, Q; cin >> N >> Q;\n    Potentilized_Union_Find<Mat2>\
+    \ U(N, mul<Mat2>, Mat2(1, 0, 0, 1), [](const Mat2 &a) -> Mat2 { return a.inverse();\
+    \ } );\n\n    for (int q0 = 0; q0 < Q; q0++) {\n        int t; scanf(\"%d\", &t);\n\
+    \        if (t == 0) {\n            int u, v, _p, _q, _r, _s;\n            scanf(\"\
+    %d%d%d%d%d%d\", &u, &v, &_p, &_q, &_r, &_s);\n            mint p = mint::raw(_p);\n\
+    \            mint q = mint::raw(_q);\n            mint r = mint::raw(_r);\n  \
+    \          mint s = mint::raw(_s);\n            Mat2 x(p, q, r, s);\n        \
+    \    Mat2 x_inv = x.inverse();\n\n            if (U.is_possible(u, v, x_inv))\
+    \ { \n                U.unite(u, v, x_inv);\n                cout << 1 << \"\\\
+    n\";\n            } else {\n                cout << 0 << \"\\n\";\n          \
+    \  }\n        } else if (t == 1) {\n            int u, v; scanf(\"%d%d\", &u,\
+    \ &v);\n            if (U.is_well_defined(u, v)) {\n                Mat2 y_inv\
+    \ = U.potential(u, v); \n                Mat2 y = y_inv.inverse();\n         \
+    \       print(y.p, y.q, y.r, y.s);\n            } else {\n                cout\
+    \ << -1 << \"\\n\";\n            }\n        }\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -278,15 +303,15 @@ data:
   - Algebra/modint.hpp
   - Union_Find/Potentilized_Union_Find.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   requiredBy: []
   timestamp: '2025-11-24 00:16:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+documentation_of: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp.html
+title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
 ---

@@ -22,6 +22,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   _isVerificationFailed: false
@@ -156,92 +159,92 @@ data:
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
     \ bit_length(x)); }\n#line 4 \"Union_Find/Potentilized_Union_Find.hpp\"\n\ntemplate<typename\
     \ Pot>\nclass Potentilized_Union_Find {\n    int n, _group_number;\n    vector<int>\
-    \ par, rank;\n    vector<Pot> pot; // P(x) = P(par[x]) + diff[x]\n    vector<bool>\
-    \ valid;\n\n    Pot zero;\n    function<Pot(const Pot&, const Pot&)> add;\n  \
+    \ par, rank;\n    vector<Pot> pot; // P(x) = pot[x] P(par[x])\n    vector<bool>\
+    \ valid;\n\n    Pot unit;\n    function<Pot(const Pot&, const Pot&)> add;\n  \
     \  function<Pot(const Pot&, const Pot&)> diff;\n    function<Pot(const Pot&)>\
     \ neg;\n\n    public:\n    Potentilized_Union_Find(int n, function<Pot(const Pot&,\
-    \ const Pot&)> add, const Pot &zero, const function<Pot(const Pot &)> neg):\n\
+    \ const Pot&)> add, const Pot &unit, const function<Pot(const Pot &)> neg):\n\
     \        n(n), par(vector<int>(n, -1)), rank(vector<int>(n, 0)), pot(vector<Pot>(n,\
-    \ zero)), valid(vector<bool>(n, true)), _group_number(n),\n        zero(zero),\
+    \ unit)), valid(vector<bool>(n, true)), _group_number(n),\n        unit(unit),\
     \ add(add), neg(neg) {\n            diff = [&add, &neg](const Pot& a, const Pot&\
     \ b) { return add(neg(a), b); };\n        }\n\n    /// @brief \u9802\u70B9 x \u304C\
     \u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306E\u4EE3\u8868\u5143\u3092\u6C42\
     \u3081\u308B.\n    /// @param x \n    int find(int x) {\n        // x \u81EA\u8EAB\
     \u304C\u4EE3\u8868\u5143\u306A\u3089\u3070, x \u3067\u6C7A\u5B9A\n        if (par[x]\
-    \ < 0) { return x; }\n\n        int r = find(par[x]);\n        pot[x] = add(pot[par[x]],\
-    \ pot[x]);\n\n        return par[x] = r;\n    }\n\n    /// @brief \u9802\u70B9\
+    \ < 0) { return x; }\n\n        int r = find(par[x]);\n        pot[x] = add(pot[x],\
+    \ pot[par[x]]);\n        return par[x] = r;\n    }\n\n    /// @brief \u9802\u70B9\
     \ x, y \u306F\u9023\u7D50\u304B?\n    /// @param x \n    /// @param y \n    inline\
     \ bool same(int x, int y) { return find(x) == find(y); }\n\n    /// @brief \u9802\
     \u70B9 x \u304C\u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306B\u304A\u3051\u308B\
     \u9802\u70B9\u6570\u3092\u6C42\u3081\u308B.\n    /// @param x \n    inline int\
-    \ size(int x) { return -par[find(x)]; }\n\n    /// @brief P(x) = P(y) + a \u3068\
+    \ size(int x) { return -par[find(x)]; }\n\n    /// @brief P(x) = a P(y) \u3068\
     \u3044\u3046\u60C5\u5831\u3092\u52A0\u3048\u308B.\n    /// @param x \n    ///\
     \ @param y \n    /// @param a \n    /// @return x, y \u306E\u9593\u304C\u7121\u77DB\
     \u76FE\u306A\u3089\u3070 true, \u77DB\u76FE\u304C\u3042\u308C\u3070 false.\n \
-    \   bool unite(int x, int y, Pot a) {\n        a = add(potential(x), a);\n   \
-    \     a = add(a, neg(potential(y)));\n\n        x = find(x), y = find(y);\n\n\
-    \        if (x == y) {\n            valid[x] = valid[x] && (diff(pot[x], pot[y])\
-    \ == a);\n            return valid[x];\n        }\n\n        if (rank[x] < rank[y])\
-    \ {\n            swap(x, y);\n            a = neg(a);\n        }\n\n        if\
-    \ (rank[x] == rank[y]) { rank[x]++; }\n\n        valid[x] = valid[x] && valid[y];\n\
-    \    \n        par[x] += par[y];\n        par[y] = x;\n\n        pot[y] = a;\n\
-    \n        _group_number--;\n\n        return true;\n    }\n\n    Pot potential(int\
+    \   bool unite(int x, int y, Pot a) {\n        a = add(a, potential(y));\n   \
+    \     a = add(neg(potential(x)), a);\n\n        x = find(x), y = find(y);\n\n\
+    \        if (x == y) {\n            valid[x] = valid[x] && (a == unit);\n    \
+    \        return valid[x];\n        }\n\n        if (rank[x] > rank[y]) {\n   \
+    \         swap(x, y);\n            a = neg(a);\n        }\n\n        if (rank[x]\
+    \ == rank[y]) { rank[x]++; }\n\n        valid[y] = valid[x] && valid[y];\n\n \
+    \       par[y] += par[x];\n\n        par[x] = y;\n        pot[x] = a;\n\n    \
+    \    _group_number--;\n\n        return true;\n    }\n\n    Pot potential(int\
     \ x) {\n        find(x);\n        return pot[x];\n    }\n\n    /// @brief x \u304B\
     \u3089\u898B\u305F y \u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u6C42\u3081\
     \u308B. \u3064\u307E\u308A, -P(y) + P(x) \u3092\u6C42\u3081\u308B.\n    /// @param\
     \ x \u57FA\u6E96\n    /// @param y \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u6C42\
-    \u3081\u308B\u70B9\n    Pot potential(int x, int y) { return add(neg(potential(x)),\
-    \ potential(y)); }\n\n    bool is_valid(int x) { return valid[x]; }\n\n    ///\
-    \ @brief x - y \u9593\u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u4F4D\u7F6E\
-    \u306B\u5B9A\u307E\u308B\u304B?\n    /// @param x \n    /// @param y \n    ///\
-    \ @return \n    inline bool is_well_defined(int x, int y) { return same(x, y)\
-    \ && is_valid(x); }\n\n    /// @brief P(x) = P(y) + a \u3068\u306A\u308A\u5F97\
+    \u3081\u308B\u70B9\n    Pot potential(int x, int y) { return add(potential(x),\
+    \ neg(potential(y))); }\n\n    bool is_valid(int x) { return valid[x]; }\n\n \
+    \   /// @brief x - y \u9593\u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u4F4D\
+    \u7F6E\u306B\u5B9A\u307E\u308B\u304B?\n    /// @param x \n    /// @param y \n\
+    \    /// @return \n    inline bool is_well_defined(int x, int y) { return same(x,\
+    \ y) && is_valid(x); }\n\n    /// @brief P(x) = P(y) + a \u3068\u306A\u308A\u5F97\
     \u308B\u304B?\n    /// @param x \n    /// @param y \n    /// @param a \n    ///\
     \ @return \n    bool is_possible(int x, int y, Pot a) { return !same(x, y) ||\
     \ potential(x, y) == a; }\n\n    /// @brief \u9023\u7D50\u6210\u5206\u306E\u6570\
     \n    int group_count() const { return _group_number; }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
     \ Pot>\nclass Potentilized_Union_Find {\n    int n, _group_number;\n    vector<int>\
-    \ par, rank;\n    vector<Pot> pot; // P(x) = P(par[x]) + diff[x]\n    vector<bool>\
-    \ valid;\n\n    Pot zero;\n    function<Pot(const Pot&, const Pot&)> add;\n  \
+    \ par, rank;\n    vector<Pot> pot; // P(x) = pot[x] P(par[x])\n    vector<bool>\
+    \ valid;\n\n    Pot unit;\n    function<Pot(const Pot&, const Pot&)> add;\n  \
     \  function<Pot(const Pot&, const Pot&)> diff;\n    function<Pot(const Pot&)>\
     \ neg;\n\n    public:\n    Potentilized_Union_Find(int n, function<Pot(const Pot&,\
-    \ const Pot&)> add, const Pot &zero, const function<Pot(const Pot &)> neg):\n\
+    \ const Pot&)> add, const Pot &unit, const function<Pot(const Pot &)> neg):\n\
     \        n(n), par(vector<int>(n, -1)), rank(vector<int>(n, 0)), pot(vector<Pot>(n,\
-    \ zero)), valid(vector<bool>(n, true)), _group_number(n),\n        zero(zero),\
+    \ unit)), valid(vector<bool>(n, true)), _group_number(n),\n        unit(unit),\
     \ add(add), neg(neg) {\n            diff = [&add, &neg](const Pot& a, const Pot&\
     \ b) { return add(neg(a), b); };\n        }\n\n    /// @brief \u9802\u70B9 x \u304C\
     \u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306E\u4EE3\u8868\u5143\u3092\u6C42\
     \u3081\u308B.\n    /// @param x \n    int find(int x) {\n        // x \u81EA\u8EAB\
     \u304C\u4EE3\u8868\u5143\u306A\u3089\u3070, x \u3067\u6C7A\u5B9A\n        if (par[x]\
-    \ < 0) { return x; }\n\n        int r = find(par[x]);\n        pot[x] = add(pot[par[x]],\
-    \ pot[x]);\n\n        return par[x] = r;\n    }\n\n    /// @brief \u9802\u70B9\
+    \ < 0) { return x; }\n\n        int r = find(par[x]);\n        pot[x] = add(pot[x],\
+    \ pot[par[x]]);\n        return par[x] = r;\n    }\n\n    /// @brief \u9802\u70B9\
     \ x, y \u306F\u9023\u7D50\u304B?\n    /// @param x \n    /// @param y \n    inline\
     \ bool same(int x, int y) { return find(x) == find(y); }\n\n    /// @brief \u9802\
     \u70B9 x \u304C\u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306B\u304A\u3051\u308B\
     \u9802\u70B9\u6570\u3092\u6C42\u3081\u308B.\n    /// @param x \n    inline int\
-    \ size(int x) { return -par[find(x)]; }\n\n    /// @brief P(x) = P(y) + a \u3068\
+    \ size(int x) { return -par[find(x)]; }\n\n    /// @brief P(x) = a P(y) \u3068\
     \u3044\u3046\u60C5\u5831\u3092\u52A0\u3048\u308B.\n    /// @param x \n    ///\
     \ @param y \n    /// @param a \n    /// @return x, y \u306E\u9593\u304C\u7121\u77DB\
     \u76FE\u306A\u3089\u3070 true, \u77DB\u76FE\u304C\u3042\u308C\u3070 false.\n \
-    \   bool unite(int x, int y, Pot a) {\n        a = add(potential(x), a);\n   \
-    \     a = add(a, neg(potential(y)));\n\n        x = find(x), y = find(y);\n\n\
-    \        if (x == y) {\n            valid[x] = valid[x] && (diff(pot[x], pot[y])\
-    \ == a);\n            return valid[x];\n        }\n\n        if (rank[x] < rank[y])\
-    \ {\n            swap(x, y);\n            a = neg(a);\n        }\n\n        if\
-    \ (rank[x] == rank[y]) { rank[x]++; }\n\n        valid[x] = valid[x] && valid[y];\n\
-    \    \n        par[x] += par[y];\n        par[y] = x;\n\n        pot[y] = a;\n\
-    \n        _group_number--;\n\n        return true;\n    }\n\n    Pot potential(int\
+    \   bool unite(int x, int y, Pot a) {\n        a = add(a, potential(y));\n   \
+    \     a = add(neg(potential(x)), a);\n\n        x = find(x), y = find(y);\n\n\
+    \        if (x == y) {\n            valid[x] = valid[x] && (a == unit);\n    \
+    \        return valid[x];\n        }\n\n        if (rank[x] > rank[y]) {\n   \
+    \         swap(x, y);\n            a = neg(a);\n        }\n\n        if (rank[x]\
+    \ == rank[y]) { rank[x]++; }\n\n        valid[y] = valid[x] && valid[y];\n\n \
+    \       par[y] += par[x];\n\n        par[x] = y;\n        pot[x] = a;\n\n    \
+    \    _group_number--;\n\n        return true;\n    }\n\n    Pot potential(int\
     \ x) {\n        find(x);\n        return pot[x];\n    }\n\n    /// @brief x \u304B\
     \u3089\u898B\u305F y \u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u6C42\u3081\
     \u308B. \u3064\u307E\u308A, -P(y) + P(x) \u3092\u6C42\u3081\u308B.\n    /// @param\
     \ x \u57FA\u6E96\n    /// @param y \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u6C42\
-    \u3081\u308B\u70B9\n    Pot potential(int x, int y) { return add(neg(potential(x)),\
-    \ potential(y)); }\n\n    bool is_valid(int x) { return valid[x]; }\n\n    ///\
-    \ @brief x - y \u9593\u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u4F4D\u7F6E\
-    \u306B\u5B9A\u307E\u308B\u304B?\n    /// @param x \n    /// @param y \n    ///\
-    \ @return \n    inline bool is_well_defined(int x, int y) { return same(x, y)\
-    \ && is_valid(x); }\n\n    /// @brief P(x) = P(y) + a \u3068\u306A\u308A\u5F97\
+    \u3081\u308B\u70B9\n    Pot potential(int x, int y) { return add(potential(x),\
+    \ neg(potential(y))); }\n\n    bool is_valid(int x) { return valid[x]; }\n\n \
+    \   /// @brief x - y \u9593\u306E\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u4F4D\
+    \u7F6E\u306B\u5B9A\u307E\u308B\u304B?\n    /// @param x \n    /// @param y \n\
+    \    /// @return \n    inline bool is_well_defined(int x, int y) { return same(x,\
+    \ y) && is_valid(x); }\n\n    /// @brief P(x) = P(y) + a \u3068\u306A\u308A\u5F97\
     \u308B\u304B?\n    /// @param x \n    /// @param y \n    /// @param a \n    ///\
     \ @return \n    bool is_possible(int x, int y, Pot a) { return !same(x, y) ||\
     \ potential(x, y) == a; }\n\n    /// @brief \u9023\u7D50\u6210\u5206\u306E\u6570\
@@ -256,10 +259,11 @@ data:
   isVerificationFile: false
   path: Union_Find/Potentilized_Union_Find.hpp
   requiredBy: []
-  timestamp: '2025-11-23 12:29:53+09:00'
+  timestamp: '2025-11-24 00:16:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
 documentation_of: Union_Find/Potentilized_Union_Find.hpp
 layout: document
 title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
@@ -311,3 +315,117 @@ $$ R := \{(u, v) \in V^2 \mid v \text{ is reachable from } u \text{ on } D. \}$$
 
 * (a) $D$ はポテンシャルを持つ.
 * (b) 任意の $D$ 上のサイクルに対するポテンシャルエネルギーは単位元である.
+
+## Remark
+
+このライブラリで対応しているのは $P(x) = a P(y)$ の形である, 左作用である. もし, 右作用「のみ」を要求されている場合は, 次のようにして対応させることができる.
+
+* $P(x) = P(y) a$ を変形させると, $P(x)^{-1} = a^{-1} P(y)^{-1}$ となる. $P$ がポテンシャルであるとき, $P(\bullet)^{-1}$ もポテンシャルになる. よって, $P(\bullet)^{-1}$ の問題に帰着させることができる. なお, 関係式を定義する際に, 全て逆元を取ることを忘れないこと.
+
+## Contents
+
+### Constructor
+
+```cpp
+template<typename Pot>
+Potentilized_Union_Find(int n, function<Pot(const Pot&, const Pot&)> add, const Pot &zero, const function<Pot(const Pot &)> neg)
+```
+
+* $n$ 頂点からなる, 各弧に重みづけられる群 $G$ が以下のようにして表される対称的な有向グラフの場を生成する.
+  * $G$ の集合は `Pot`, 演算は `add`, 単位元は `unit`, 逆元関数は `neg`
+
+### find
+
+```cpp
+int find(int x)
+```
+
+* 頂点 $x$ が属する連結成分の代表元を求める.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### same
+
+```cpp
+bool same(int x, int y)
+```
+
+* 頂点 $x, y$ は連結かどうかを求める.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### size
+
+```cpp
+int size(int x)
+```
+
+* 頂点 $x$ が属する連結成分の頂点数を求める.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### unite
+
+```cpp
+bool unite(int x, int y, Pot a)
+```
+
+* Potential について,$P(x) = a P(y)$ という関係性を加え, 矛盾性を返す.
+* **返り値** : $P(x), P(y)$ の間について, 矛盾がなければ `true`, 矛盾があれば (元々矛盾していた場合も含む) `false`.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### potential
+
+```cpp
+Pot potential(int x)
+```
+
+* $r$ を $x$ が属する連結成分の代表元 (つまり, $\textrm{find}(x)$) とする.  このとき, $r$ を基準とする $x$ のポテンシャル $P(r)^{-1}P(x)$ を求める.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+```cpp
+Pot potential(int x, int y)
+```
+
+* $y$ を基準とする $x$ のポテンシャル $P(x)P(y)^{-1}$ を求める.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### is_valid
+
+```cpp
+bool is_valid(int x)
+```
+
+* $x$ を含む連結成分におけるポテンシャルが整合性を持つかどうかを判定する.
+* **計算量** : $O(1)$ 時間.
+
+### is_well_defined
+
+```cpp
+bool is_well_defined(int x, int y)
+```
+
+* $y$ を基準とする $x$ のポテンシャルが「矛盾なく」「一意的」に定義できるかどうかを判定する.
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### is_possible
+
+```cpp
+bool is_possible(int x, int y, Pot a)
+```
+
+* $y$ を基準とする $x$ のポテンシャルについて, $P(x)P(y)^{-1}=a$ となる可能性はあるか?
+* **計算量** : ならし $O(\alpha(N))$ 時間.
+
+### group_count
+
+```cpp
+int group_count()
+```
+
+* 有向グラフにおける連結成分の数を求める.
+* **計算量** : $O(1)$ 時間
+
+## History 
+
+|日付|内容|
+|:---:|:---:|
+|2025/11/24| ポテンシャルの群が非可換群である場合にも対応|
+|2025/11/23| ポテンシャル付き Union Find を実装|

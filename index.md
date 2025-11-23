@@ -534,6 +534,9 @@ data:
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - name: verify/yosupo_library_checker/enumerate_combinatorics
