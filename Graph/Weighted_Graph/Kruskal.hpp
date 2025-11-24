@@ -11,20 +11,21 @@ namespace weighted_graph {
         using Edge = Weighted_Edge<W>;
 
         Union_Find U(G.order());
-        vector<Edge> edges(G.size());
-        for (int j = 0; j < G.size(); j++) {
-            edges[j] = G.get_edge(j);
+        vector<Edge*> edges;
+        for (Edge* edge: G.edges) {
+            if (edge != nullptr) { edges.emplace_back(edge); }
         }
 
-        vector<Edge> tree_edges;
+        vector<Edge*> tree_edges;
         W tree_weight = 0;
 
-        sort(edges.begin(), edges.end(), [](const Weighted_Edge<W> &e, const Weighted_Edge<W> &f) { return e.weight < f.weight; } );
-        for (Weighted_Edge<W> edge: edges) {
-            if (!U.unite(edge.source, edge.target)) { continue; }
+        sort(edges.begin(), edges.end(), [](const Edge* e, const Edge* f) { return e->weight < f->weight; } );
+
+        for (auto edge: edges) {
+            if (!U.unite(edge->source, edge->target)) { continue; }
 
             tree_edges.emplace_back(edge);
-            tree_weight += edge.weight;
+            tree_weight += edge->weight;
         }
 
         return Minimum_Spanning_Tree<W> { tree_edges, tree_weight };
