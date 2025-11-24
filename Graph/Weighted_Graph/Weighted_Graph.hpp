@@ -16,11 +16,12 @@ namespace weighted_graph {
         using Edge = Weighted_Edge<W>;
 
         private:
-        int edge_id_offset;
         vector<vector<Edge*>> incidences;
-        vector<Edge*> edges, rev_edges;
 
         public:
+        int edge_id_offset;
+        vector<Edge*> edges, rev_edges;
+
         Weighted_Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), incidences(n), edges(edge_id_offset), rev_edges(edge_id_offset) {}
 
         ~Weighted_Graph() {
