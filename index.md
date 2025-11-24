@@ -214,8 +214,7 @@ data:
     pages:
     - icon: ':warning:'
       path: Graph/Weighted_Graph/Weighted_Graph.hpp
-      title: "\u8FBA ID \u304C id \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\
-        \u308B."
+      title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
   - name: Integer
     pages:
     - icon: ':warning:'
