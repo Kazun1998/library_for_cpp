@@ -19,7 +19,7 @@ int main() {
 
     cout << T.weight << endl;
     for (int k = 0; k < T.edges.size(); k++) {
-        cout << (k ? " " : "") << T.edges[k].id;
+        cout << (k ? " " : "") << T.edges[k]->id;
     }
 
     cout << "\n";
