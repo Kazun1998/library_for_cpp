@@ -16,11 +16,12 @@ namespace weighted_graph {
         using Edge = Weighted_Edge<W>;
 
         private:
-        int edge_id_offset;
         vector<vector<Edge*>> incidences;
-        vector<Edge*> edges, rev_edges;
 
         public:
+        int edge_id_offset;
+        vector<Edge*> edges, rev_edges;
+
         /// @brief 位数が n の重み付き無向グラフを生成する.
         /// @param n 位数
         /// @param edge_id_offset 辺の ID のオフセット
