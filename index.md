@@ -210,6 +210,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
       title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+  - name: Graph/Weighted_Graph
+    pages:
+    - icon: ':warning:'
+      path: Graph/Weighted_Graph/Weighted_Graph.hpp
+      title: "\u8FBA ID \u304C id \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\
+        \u308B."
   - name: Integer
     pages:
     - icon: ':warning:'
