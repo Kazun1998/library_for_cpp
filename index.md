@@ -212,7 +212,13 @@ data:
       title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   - name: Graph/Weighted_Graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Graph/Weighted_Graph/Kruskal.hpp
+      title: "Kruskal \u6CD5"
+    - icon: ':heavy_check_mark:'
+      path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+      title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+    - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Graph/Weighted_Graph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
   - name: Integer
@@ -579,6 +585,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
       title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+      title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
       title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp

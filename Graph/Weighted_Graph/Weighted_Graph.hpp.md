@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Kruskal.hpp
+    title: "Kruskal \u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+    title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+    title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\u304D\u7121\u5411\
       \u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B."
@@ -16,9 +25,9 @@ data:
     \ = default;\n        Weighted_Edge (int id, int source, int target, W weight):\
     \ id(id), source(source), target(target), weight(weight) {}\n    };\n    \n  \
     \  template<typename W>\n    class Weighted_Graph {\n        using Edge = Weighted_Edge<W>;\n\
-    \n        private:\n        int edge_id_offset;\n        vector<vector<Edge*>>\
-    \ incidences;\n        vector<Edge*> edges, rev_edges;\n\n        public:\n  \
-    \      /// @brief \u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\u304D\u7121\u5411\
+    \n        private:\n        vector<vector<Edge*>> incidences;\n\n        public:\n\
+    \        int edge_id_offset;\n        vector<Edge*> edges, rev_edges;\n\n    \
+    \    /// @brief \u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\u304D\u7121\u5411\
     \u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B.\n        /// @param n \u4F4D\
     \u6570\n        /// @param edge_id_offset \u8FBA\u306E ID \u306E\u30AA\u30D5\u30BB\
     \u30C3\u30C8\n        Weighted_Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset),\
@@ -54,12 +63,12 @@ data:
     \        Weighted_Edge *rev;\n\n        Weighted_Edge() = default;\n        Weighted_Edge\
     \ (int id, int source, int target, W weight): id(id), source(source), target(target),\
     \ weight(weight) {}\n    };\n    \n    template<typename W>\n    class Weighted_Graph\
-    \ {\n        using Edge = Weighted_Edge<W>;\n\n        private:\n        int edge_id_offset;\n\
-    \        vector<vector<Edge*>> incidences;\n        vector<Edge*> edges, rev_edges;\n\
-    \n        public:\n        /// @brief \u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\
-    \u304D\u7121\u5411\u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B.\n        ///\
-    \ @param n \u4F4D\u6570\n        /// @param edge_id_offset \u8FBA\u306E ID \u306E\
-    \u30AA\u30D5\u30BB\u30C3\u30C8\n        Weighted_Graph(int n, int edge_id_offset\
+    \ {\n        using Edge = Weighted_Edge<W>;\n\n        private:\n        vector<vector<Edge*>>\
+    \ incidences;\n\n        public:\n        int edge_id_offset;\n        vector<Edge*>\
+    \ edges, rev_edges;\n\n        /// @brief \u4F4D\u6570\u304C n \u306E\u91CD\u307F\
+    \u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B.\n  \
+    \      /// @param n \u4F4D\u6570\n        /// @param edge_id_offset \u8FBA\u306E\
+    \ ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n        Weighted_Graph(int n, int edge_id_offset\
     \ = 0): edge_id_offset(edge_id_offset), incidences(n), edges(edge_id_offset),\
     \ rev_edges(edge_id_offset) {}\n\n        ~Weighted_Graph() {\n            for\
     \ (Edge* edge: edges) {\n                if (edge != nullptr) { delete edge; }\n\
@@ -90,10 +99,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Graph/Weighted_Graph/Weighted_Graph.hpp
-  requiredBy: []
-  timestamp: '2025-11-24 16:28:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Graph/Weighted_Graph/Kruskal.hpp
+  - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+  timestamp: '2025-11-24 23:47:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
 documentation_of: Graph/Weighted_Graph/Weighted_Graph.hpp
 layout: document
 title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
