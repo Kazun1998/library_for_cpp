@@ -21,6 +21,9 @@ namespace weighted_graph {
         vector<Edge*> edges, rev_edges;
 
         public:
+        /// @brief 位数が n の重み付き無向グラフを生成する.
+        /// @param n 位数
+        /// @param edge_id_offset 辺の ID のオフセット
         Weighted_Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), incidences(n), edges(edge_id_offset), rev_edges(edge_id_offset) {}
 
         ~Weighted_Graph() {
@@ -33,11 +36,18 @@ namespace weighted_graph {
             }
         }
 
+        /// @brief 位数 (頂点の数) を求める
         inline int order() const { return int(incidences.size()); }
 
+        /// @brief サイズ (辺の数) を求める
         inline int size() const { return int(edges.size()) - edge_id_offset; }
 
-        // 頂点 u から頂点 v への重み w の弧を追加する.
+
+        /// @brief 頂点 u から頂点 v への重み w の弧を追加する.
+        /// @param u 頂点 1
+        /// @param v 頂点 2
+        /// @param w 重み
+        /// @return 追加した辺の ID
         int add_edge(int u, int v, W w){
             int id = int(edges.size());
 
@@ -56,6 +66,8 @@ namespace weighted_graph {
             return id;
         }
 
+        /// @brief 頂点 u に接続する辺 (アドレス) のリストを求める.
+        /// @param u 
         inline const vector<Edge*>& incidence (int u) const { return incidences[u]; }
 
         /// @brief 辺 ID が id である辺を取得する.
