@@ -158,8 +158,7 @@ data:
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - icon: ':warning:'
     path: Integer/Digit.hpp
-    title: "\u4E0D\u6B63\u306A\u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\
-      \u306B\u30B9\u30ED\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916"
+    title: "\u6574\u6570\u306E\u6841"
   - icon: ':heavy_check_mark:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp

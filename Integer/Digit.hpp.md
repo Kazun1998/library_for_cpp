@@ -152,112 +152,106 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Integer/Digit.hpp\"\n\n/**\n * @brief \u4E0D\u6B63\
-    \u306A\u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\u306B\u30B9\u30ED\
-    \u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916\n */\nclass BaseException\
+    \ bit_length(x)); }\n#line 4 \"Integer/Digit.hpp\"\n\n/// @brief \u4E0D\u6B63\u306A\
+    \u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\u306B\u30B9\u30ED\u30FC\
+    \u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916\nclass BaseException :\
+    \ public runtime_error {\n    private:\n    ll error_base;\n\n    public:\n  \
+    \  /**\n     * @brief BaseException\u3092\u69CB\u7BC9\u3057\u307E\u3059\u3002\n\
+    \     * * @param base \u4E0D\u6B63\u306A\u5E95\u306E\u5024\n     */\n    BaseException(ll\
+    \ base) :\n        runtime_error(\"\u6307\u5B9A\u3057\u305F\u5E95 \" + to_string(base)\
+    \ + \" \u306F\u4E0D\u6B63\u306A\u5E95\u3067\u3059.\"), \n        error_base(base)\
+    \ {}\n};\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\u305F\u5834\
+    \u5408\u306E\u8868\u73FE\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\u306F\
+    \u7121\u8996\u3055\u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\n\
+    /// @param l \u9577\u3055\u304C 0 \u306B\u306A\u308B\u3088\u3046\u306B\u5DE6\u5074\
+    \u306B 0 \u3092\u57CB\u3081\u305F\u308A, \u53F3\u304B\u3089 l \u8981\u7D20\u3092\
+    \u53D6\u5F97\u3059\u308B. -1 \u306F\u7121\u6307\u5B9A.\n/// @return vector<ll>\
+    \ \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\
+    \u4F4D\u6841\u306E\u9806).\nvector<ll> Integer_Digits(ll N, ll b = 10, int l =\
+    \ -1) {\n    if (b < 2) { throw BaseException(b); }\n\n    N = abs(N);\n    vector<ll>\
+    \ digits;\n\n    if (l == -1) {\n        if (N == 0) {\n            digits.push_back(0);\n\
+    \            return digits;\n        }\n\n        while (N > 0) {\n          \
+    \  digits.push_back(N % b);\n            N /= b;\n        }\n    } else {\n  \
+    \      for (int i = 0; i < l; ++i) {\n            digits.push_back(N % b);\n \
+    \           N /= b;\n        }\n    }\n\n    reverse(digits.begin(), digits.end());\n\
+    \    return digits;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\
+    \u3057\u305F\u5834\u5408\u306E\u6841\u6570\u3092\u6C42\u3081\u308B (0 \u306F 0\
+    \ \u6841\u3068\u3059\u308B).\n/// @param N \u7B26\u53F7\u306F\u7121\u8996\u3055\
+    \u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\nint Integer_Length(ll\
+    \ N, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n    \n    N = abs(N);\n\
+    \    \n    int length = 0;\n    for (; N > 0; length++) { N /= b; }\n\n    return\
+    \ length;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\u305F\
+    \u5834\u5408\u306E\u6841\u548C\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\
+    \u306F\u7121\u8996\u3055\u308C\u308B\n/// @param b \u5E95 (b >= 2). \u30C7\u30D5\
+    \u30A9\u30EB\u30C8\u306F 10.\nll Digit_Sum(ll N, ll b = 10) {\n    if (b < 2)\
+    \ { throw BaseException(b); }\n    \n    N = abs(N);\n    \n    ll sum = 0;\n\
+    \        \n    while (N > 0) {\n        sum += N % b;\n        N /= b;\n    }\n\
+    \    return sum;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\
+    \u305F\u5834\u5408\u306B\u304A\u3051\u308B\u5404\u6570\u306E\u51FA\u73FE\u56DE\
+    \u6570\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\u306F\u7121\u8996\u3055\
+    \u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\n/// @return \u9577\
+    \u3055 b \u306E\u914D\u5217. \u7B2C k \u8981\u7D20\u306F k \u306E\u51FA\u73FE\u56DE\
+    \u6570.\nvector<ll> Digit_Count(ll N, ll b = 10) {\n    if (b < 2) { throw BaseException(b);\
+    \ }\n\n    N = abs(N);\n\n    vector<ll> count(b, 0);    \n    for (ll d : Integer_Digits(N,\
+    \ b)) {\n        count[d]++;\n    }\n    return count;\n}\n\n/// @brief \u5E95\
+    \u3092 b \u3068\u3057\u305F\u5834\u5408\u306B digit \u304C\u306A\u3059\u6574\u6570\
+    \u3092\u8FD4\u3059 (Integer_Digit \u306E\u9006\u95A2\u6570)\n/// @param digits\
+    \ \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\
+    \u4F4D\u6841\u306E\u9806)\n/// @param b \u5E95 (b >= 2). Default to 10.\n/// @return\
+    \ \u6574\u6570 (\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u306E\u53EF\u80FD\u6027\
+    \u304C\u3042\u308B\u305F\u3081\u6CE8\u610F)\nll From_Digits(const vector<ll> &digits,\
+    \ ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n\n    ll res = 0;\n\
+    \    for (ll x : digits) {  res = b * res + x; }\n    return res;\n}\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\n/// @brief \u4E0D\
+    \u6B63\u306A\u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\u306B\u30B9\
+    \u30ED\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916\nclass BaseException\
     \ : public runtime_error {\n    private:\n    ll error_base;\n\n    public:\n\
     \    /**\n     * @brief BaseException\u3092\u69CB\u7BC9\u3057\u307E\u3059\u3002\
     \n     * * @param base \u4E0D\u6B63\u306A\u5E95\u306E\u5024\n     */\n    BaseException(ll\
     \ base) :\n        runtime_error(\"\u6307\u5B9A\u3057\u305F\u5E95 \" + to_string(base)\
     \ + \" \u306F\u4E0D\u6B63\u306A\u5E95\u3067\u3059.\"), \n        error_base(base)\
-    \ {}\n};\n\n/**\n * @brief \u6574\u6570 n \u306E\u5E95\u3092 b \u3068\u3057\u305F\
-    \u5834\u5408\u306E\u8868\u73FE\u3092\u6C42\u3081\u308B.\n *\n * @param n \u7B26\
-    \u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n * @param b \u5E95 (b >= 2). Default\
-    \ to 10.\n * @param l \u9577\u3055\u304C 0 \u306B\u306A\u308B\u3088\u3046\u306B\
-    \u5DE6\u5074\u306B 0 \u3092\u57CB\u3081\u305F\u308A, \u53F3\u304B\u3089 l \u8981\
-    \u7D20\u3092\u53D6\u5F97\u3059\u308B. -1 \u306F\u7121\u6307\u5B9A.\n * @return\
-    \ vector<ll> \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\
-    \u6700\u4E0B\u4F4D\u6841\u306E\u9806).\n */\nvector<ll> Integer_Digits(ll n, ll\
-    \ b = 10, int l = -1) {\n    if (b < 2) { throw BaseException(b); }\n\n    n =\
-    \ abs(n);\n    vector<ll> digits;\n\n    if (l == -1) {\n        if (n == 0) {\n\
-    \            digits.push_back(0);\n            return digits;\n        }\n\n \
-    \       while (n > 0) {\n            digits.push_back(n % b);\n            n /=\
-    \ b;\n        }\n    } else {\n        for (int i = 0; i < l; ++i) {\n       \
-    \     digits.push_back(n % b);\n            n /= b;\n        }\n    }\n\n    reverse(digits.begin(),\
-    \ digits.end());\n    return digits;\n}\n\n/**\n * @brief \u6574\u6570 n \u306E\
-    \u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\u306E\u6841\u6570\u3092\u6C42\u3081\
-    \u308B (0 \u306F 0 \u6841\u3068\u3059\u308B).\n *\n * @param n \u7B26\u53F7\u306F\
-    \u7121\u8996\u3055\u308C\u308B\n * @param b \u5E95 (b >= 2). Default to 10.\n\
-    \ * @return int \u6841\u6570\n */\nint Integer_Length(ll n, ll b = 10) {\n   \
-    \ if (b < 2) { throw BaseException(b); }\n    \n    n = abs(n);\n    \n    int\
-    \ length = 0;\n    for (; n > 0; length++) { n /= b; }\n\n    return length;\n\
-    }\n\n/**\n * @brief \u6574\u6570 n \u306E\u5E95\u3092 b \u3068\u3057\u305F\u5834\
-    \u5408\u306E\u6841\u548C\u3092\u6C42\u3081\u308B.\n *\n * @param n \u7B26\u53F7\
-    \u306F\u7121\u8996\u3055\u308C\u308B\n * @param b \u5E95 (b >= 2). \u30C7\u30D5\
-    \u30A9\u30EB\u30C8\u306F 10.\n * @return ll \u6841\u548C\n */\nll Digit_Sum(ll\
-    \ n, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n    \n    n = abs(n);\n\
-    \    \n    ll sum = 0;\n        \n    while (n > 0) {\n        sum += n % b;\n\
-    \        n /= b;\n    }\n    return sum;\n}\n\n/**\n * @brief \u6574\u6570 n \u306E\
-    \u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\u306B\u304A\u3051\u308B\u5404\u6570\
-    \u306E\u51FA\u73FE\u56DE\u6570\u3092\u6C42\u3081\u308B.\n *\n * @param n \u7B26\
-    \u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n * @param b \u5E95 (b >= 2). Default\
-    \ to 10.\n * @return vector<ll> \u9577\u3055 b \u306E\u914D\u5217. \u7B2C k \u8981\
-    \u7D20\u306F k \u306E\u51FA\u73FE\u56DE\u6570.\n */\nvector<ll> Digit_Count(ll\
-    \ n, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n\n    n = abs(n);\n\
-    \n    vector<ll> count(b, 0);    \n    for (ll d : Integer_Digits(n, b)) {\n \
-    \       count[d]++;\n    }\n    return count;\n}\n\n/**\n * @brief \u5E95\u3092\
-    \ b \u3068\u3057\u305F\u5834\u5408\u306B digit \u304C\u306A\u3059\u6574\u6570\u3092\
-    \u8FD4\u3059 (Integer_Digit \u306E\u9006\u95A2\u6570)\n *\n * @param digits \u6570\
-    \u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\u4F4D\
-    \u6841\u306E\u9806)\n * @param b \u5E95 (b >= 2). Default to 10.\n * @return ll\
+    \ {}\n};\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\u305F\u5834\
+    \u5408\u306E\u8868\u73FE\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\u306F\
+    \u7121\u8996\u3055\u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\n\
+    /// @param l \u9577\u3055\u304C 0 \u306B\u306A\u308B\u3088\u3046\u306B\u5DE6\u5074\
+    \u306B 0 \u3092\u57CB\u3081\u305F\u308A, \u53F3\u304B\u3089 l \u8981\u7D20\u3092\
+    \u53D6\u5F97\u3059\u308B. -1 \u306F\u7121\u6307\u5B9A.\n/// @return vector<ll>\
+    \ \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\
+    \u4F4D\u6841\u306E\u9806).\nvector<ll> Integer_Digits(ll N, ll b = 10, int l =\
+    \ -1) {\n    if (b < 2) { throw BaseException(b); }\n\n    N = abs(N);\n    vector<ll>\
+    \ digits;\n\n    if (l == -1) {\n        if (N == 0) {\n            digits.push_back(0);\n\
+    \            return digits;\n        }\n\n        while (N > 0) {\n          \
+    \  digits.push_back(N % b);\n            N /= b;\n        }\n    } else {\n  \
+    \      for (int i = 0; i < l; ++i) {\n            digits.push_back(N % b);\n \
+    \           N /= b;\n        }\n    }\n\n    reverse(digits.begin(), digits.end());\n\
+    \    return digits;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\
+    \u3057\u305F\u5834\u5408\u306E\u6841\u6570\u3092\u6C42\u3081\u308B (0 \u306F 0\
+    \ \u6841\u3068\u3059\u308B).\n/// @param N \u7B26\u53F7\u306F\u7121\u8996\u3055\
+    \u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\nint Integer_Length(ll\
+    \ N, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n    \n    N = abs(N);\n\
+    \    \n    int length = 0;\n    for (; N > 0; length++) { N /= b; }\n\n    return\
+    \ length;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\u305F\
+    \u5834\u5408\u306E\u6841\u548C\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\
+    \u306F\u7121\u8996\u3055\u308C\u308B\n/// @param b \u5E95 (b >= 2). \u30C7\u30D5\
+    \u30A9\u30EB\u30C8\u306F 10.\nll Digit_Sum(ll N, ll b = 10) {\n    if (b < 2)\
+    \ { throw BaseException(b); }\n    \n    N = abs(N);\n    \n    ll sum = 0;\n\
+    \        \n    while (N > 0) {\n        sum += N % b;\n        N /= b;\n    }\n\
+    \    return sum;\n}\n\n/// @brief \u6574\u6570 N \u306E\u5E95\u3092 b \u3068\u3057\
+    \u305F\u5834\u5408\u306B\u304A\u3051\u308B\u5404\u6570\u306E\u51FA\u73FE\u56DE\
+    \u6570\u3092\u6C42\u3081\u308B.\n/// @param N \u7B26\u53F7\u306F\u7121\u8996\u3055\
+    \u308C\u308B\n/// @param b \u5E95 (b >= 2). Default to 10.\n/// @return \u9577\
+    \u3055 b \u306E\u914D\u5217. \u7B2C k \u8981\u7D20\u306F k \u306E\u51FA\u73FE\u56DE\
+    \u6570.\nvector<ll> Digit_Count(ll N, ll b = 10) {\n    if (b < 2) { throw BaseException(b);\
+    \ }\n\n    N = abs(N);\n\n    vector<ll> count(b, 0);    \n    for (ll d : Integer_Digits(N,\
+    \ b)) {\n        count[d]++;\n    }\n    return count;\n}\n\n/// @brief \u5E95\
+    \u3092 b \u3068\u3057\u305F\u5834\u5408\u306B digit \u304C\u306A\u3059\u6574\u6570\
+    \u3092\u8FD4\u3059 (Integer_Digit \u306E\u9006\u95A2\u6570)\n/// @param digits\
+    \ \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\
+    \u4F4D\u6841\u306E\u9806)\n/// @param b \u5E95 (b >= 2). Default to 10.\n/// @return\
     \ \u6574\u6570 (\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u306E\u53EF\u80FD\u6027\
-    \u304C\u3042\u308B\u305F\u3081\u6CE8\u610F)\n */\nll From_Digits(const vector<ll>\
-    \ &digits, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n\n    ll\
-    \ res = 0;\n    for (ll x : digits) {  res = b * res + x; }\n    return res;\n\
-    }\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\n/**\n * @brief \u4E0D\
-    \u6B63\u306A\u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\u306B\u30B9\
-    \u30ED\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916\n */\nclass\
-    \ BaseException : public runtime_error {\n    private:\n    ll error_base;\n\n\
-    \    public:\n    /**\n     * @brief BaseException\u3092\u69CB\u7BC9\u3057\u307E\
-    \u3059\u3002\n     * * @param base \u4E0D\u6B63\u306A\u5E95\u306E\u5024\n    \
-    \ */\n    BaseException(ll base) :\n        runtime_error(\"\u6307\u5B9A\u3057\
-    \u305F\u5E95 \" + to_string(base) + \" \u306F\u4E0D\u6B63\u306A\u5E95\u3067\u3059\
-    .\"), \n        error_base(base) {}\n};\n\n/**\n * @brief \u6574\u6570 n \u306E\
-    \u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\u306E\u8868\u73FE\u3092\u6C42\u3081\
-    \u308B.\n *\n * @param n \u7B26\u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n *\
-    \ @param b \u5E95 (b >= 2). Default to 10.\n * @param l \u9577\u3055\u304C 0 \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u5DE6\u5074\u306B 0 \u3092\u57CB\u3081\u305F\u308A\
-    , \u53F3\u304B\u3089 l \u8981\u7D20\u3092\u53D6\u5F97\u3059\u308B. -1 \u306F\u7121\
-    \u6307\u5B9A.\n * @return vector<ll> \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\u4E0A\
-    \u4F4D\u6841\u304B\u3089\u6700\u4E0B\u4F4D\u6841\u306E\u9806).\n */\nvector<ll>\
-    \ Integer_Digits(ll n, ll b = 10, int l = -1) {\n    if (b < 2) { throw BaseException(b);\
-    \ }\n\n    n = abs(n);\n    vector<ll> digits;\n\n    if (l == -1) {\n       \
-    \ if (n == 0) {\n            digits.push_back(0);\n            return digits;\n\
-    \        }\n\n        while (n > 0) {\n            digits.push_back(n % b);\n\
-    \            n /= b;\n        }\n    } else {\n        for (int i = 0; i < l;\
-    \ ++i) {\n            digits.push_back(n % b);\n            n /= b;\n        }\n\
-    \    }\n\n    reverse(digits.begin(), digits.end());\n    return digits;\n}\n\n\
-    /**\n * @brief \u6574\u6570 n \u306E\u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\
-    \u306E\u6841\u6570\u3092\u6C42\u3081\u308B (0 \u306F 0 \u6841\u3068\u3059\u308B\
-    ).\n *\n * @param n \u7B26\u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n * @param\
-    \ b \u5E95 (b >= 2). Default to 10.\n * @return int \u6841\u6570\n */\nint Integer_Length(ll\
-    \ n, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n    \n    n = abs(n);\n\
-    \    \n    int length = 0;\n    for (; n > 0; length++) { n /= b; }\n\n    return\
-    \ length;\n}\n\n/**\n * @brief \u6574\u6570 n \u306E\u5E95\u3092 b \u3068\u3057\
-    \u305F\u5834\u5408\u306E\u6841\u548C\u3092\u6C42\u3081\u308B.\n *\n * @param n\
-    \ \u7B26\u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n * @param b \u5E95 (b >= 2).\
-    \ \u30C7\u30D5\u30A9\u30EB\u30C8\u306F 10.\n * @return ll \u6841\u548C\n */\n\
-    ll Digit_Sum(ll n, ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n\
-    \    \n    n = abs(n);\n    \n    ll sum = 0;\n        \n    while (n > 0) {\n\
-    \        sum += n % b;\n        n /= b;\n    }\n    return sum;\n}\n\n/**\n *\
-    \ @brief \u6574\u6570 n \u306E\u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\u306B\
-    \u304A\u3051\u308B\u5404\u6570\u306E\u51FA\u73FE\u56DE\u6570\u3092\u6C42\u3081\
-    \u308B.\n *\n * @param n \u7B26\u53F7\u306F\u7121\u8996\u3055\u308C\u308B\n *\
-    \ @param b \u5E95 (b >= 2). Default to 10.\n * @return vector<ll> \u9577\u3055\
-    \ b \u306E\u914D\u5217. \u7B2C k \u8981\u7D20\u306F k \u306E\u51FA\u73FE\u56DE\
-    \u6570.\n */\nvector<ll> Digit_Count(ll n, ll b = 10) {\n    if (b < 2) { throw\
-    \ BaseException(b); }\n\n    n = abs(n);\n\n    vector<ll> count(b, 0);    \n\
-    \    for (ll d : Integer_Digits(n, b)) {\n        count[d]++;\n    }\n    return\
-    \ count;\n}\n\n/**\n * @brief \u5E95\u3092 b \u3068\u3057\u305F\u5834\u5408\u306B\
-    \ digit \u304C\u306A\u3059\u6574\u6570\u3092\u8FD4\u3059 (Integer_Digit \u306E\
-    \u9006\u95A2\u6570)\n *\n * @param digits \u6570\u306E\u30EA\u30B9\u30C8 (\u6700\
-    \u4E0A\u4F4D\u6841\u304B\u3089\u6700\u4E0B\u4F4D\u6841\u306E\u9806)\n * @param\
-    \ b \u5E95 (b >= 2). Default to 10.\n * @return ll \u6574\u6570 (\u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u306E\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
-    \u6CE8\u610F)\n */\nll From_Digits(const vector<ll> &digits, ll b = 10) {\n  \
-    \  if (b < 2) { throw BaseException(b); }\n\n    ll res = 0;\n    for (ll x :\
-    \ digits) {  res = b * res + x; }\n    return res;\n}\n"
+    \u304C\u3042\u308B\u305F\u3081\u6CE8\u610F)\nll From_Digits(const vector<ll> &digits,\
+    \ ll b = 10) {\n    if (b < 2) { throw BaseException(b); }\n\n    ll res = 0;\n\
+    \    for (ll x : digits) {  res = b * res + x; }\n    return res;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -268,14 +262,107 @@ data:
   isVerificationFile: false
   path: Integer/Digit.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2025-11-24 12:45:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Integer/Digit.hpp
 layout: document
-redirect_from:
-- /library/Integer/Digit.hpp
-- /library/Integer/Digit.hpp.html
-title: "\u4E0D\u6B63\u306A\u5E95\u304C\u6307\u5B9A\u3055\u308C\u305F\u3068\u304D\u306B\
-  \u30B9\u30ED\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u4F8B\u5916"
+title: "\u6574\u6570\u306E\u6841"
 ---
+
+## Outline
+
+整数の表示や桁に関する計算を行う.
+
+## Definition
+
+$b$ を $2$ 以上の整数とする. このとき, 任意の正の整数 $N$ に対して, 以下をみたす整数の列 $a = (a_0, a_1, \dots, a_{d-1})$ がただ一つ存在する.
+* $0 \leq i < d$ に対して, $0 \leq a_i < b$ である.
+* $a_{d-1} \neq 0$.
+* $N = a_{d-1} b^{d-1} + \dots + a_1 b + a_0$.
+
+このとき, 以下を定義する.
+
+* $b$ を底や基数という.
+* $a$ を $N$ の $b$ 進表記という.
+* $d$ を $N$ の $b$ 進表記における桁数という.
+* $a_i$ を $N$ の $b$ 進表記における $b^i$ の位という.
+  * 特に, $N$ の $b^{d-1}$ の位のことを $N$ の $b$ 進表記における最高位という.
+* 和 $\displaystyle \sum_{i=0}^{d-1} a_i$ を $N$ の $b$ 進表記における桁和という.
+
+## Remark
+
+このライブラリにおいて, $b$ 進表記は $(a_{d-1}, a_{d-2}, \dots, a_1, a_0)$ のように, 逆順で扱うことに注意せよ.
+
+## Contents
+
+### Integer_Digits
+
+```cpp
+vector<ll> Integer_Digits(ll n, ll b = 10, int l = -1)
+```
+
+* $N$ の $b$ 進表記における表示を求める.
+* **入力**
+  * $b$ : 基数. デフォルトは $b = 10$.
+  * $l$ : 出力される長さ付いて制御する.
+    * $l = -1$ のときは, 厳密な意味での $b$ 進表記が返される.
+    * $l \geq 0$ のときは, 長さが $l$ になるように調整される. 具体的には, $N$ の $b$ 進表記での表示を $a = (a_{d-1}, \dots, a_1, a_0)$ とするとき, それぞれ以下のようになる.
+      * $l \gt d$ のとき: 返り値は $(\underbrace{0, \dots, 0}\_{l-d}, a_{d-1}, \dots, a_1, a_0)$ となる.
+      * $l \leq d$ のとき: 返り値は $(a_{l-1}, \dots, a_1, a_0)$ となる.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
+
+### Integer_Digits
+
+```cpp
+int Integer_Length(ll n, ll b = 10)
+```
+
+* $N$ の $b$ 進表記における桁数を求める.
+* **入力**
+  * $b$ : 基数. デフォルトは $b = 10$.
+* **注意** : $0$ の桁数は $0$ とする.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
+
+### Digit_Sum
+
+```cpp
+ll Digit_Sum(ll n, ll b = 10)
+```
+
+* $N$ の $b$ 進表記における桁和を求める.
+* **入力**
+  * $b$ : 基数. デフォルトは $b = 10$.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
+
+### Digit_Count
+
+```cpp
+vector<ll> Digit_Count(ll n, ll b = 10)
+```
+
+* 整数 $N$ の $b$ 進表記における各数の出現回数を求める
+* **入力**
+  * $b$ : 基数. デフォルトは $b = 10$.
+* **出力**
+  * 長さ $b$ のリスト. 第 $j$ 要素では, $N$ の $b$ 進む表記における $j$ の登場回数が格納されている.
+* **計算量** : $O \left( b + \log_b N \right)$ 時間.
+
+### From_Digits
+
+```cpp
+ll From_Digits(const vector<ll> &digits, ll b = 10)
+```
+
+* $b$ 進表記が `digits` となる整数を求める.
+* **入力**
+  * $b$ : 基数. デフォルトは $b = 10$.
+* **注意**
+  * オーバーフローに注意.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2025/11/24|引数の変更 & ドキュメントの追加|
