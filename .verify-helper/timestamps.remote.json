@@ -44,6 +44,7 @@
 "verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp": "2025-11-22 15:43:56 +0900",
+"verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp": "2025-12-04 23:39:23 +0900",
 "verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp": "2025-08-29 00:06:23 +0900",
