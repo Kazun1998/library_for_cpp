@@ -2,7 +2,7 @@
 
 #include"../../../template/template.hpp"
 #include"../../../Algebra/dynamic_modint.hpp"
-#include"../../../Counting/Q_Analog.hpp"
+#include"../../../Counting/Q_Analog_Combination_Calculator.hpp"
 
 using mint = dynamic_modint<0>;
 
