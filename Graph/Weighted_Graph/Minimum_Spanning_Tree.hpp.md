@@ -8,10 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Prim.hpp
+    title: "Prim \u6CD5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+    title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -68,9 +74,11 @@ data:
   path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   requiredBy:
   - Graph/Weighted_Graph/Kruskal.hpp
+  - Graph/Weighted_Graph/Prim.hpp
   timestamp: '2025-11-24 23:47:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
 documentation_of: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
 layout: document

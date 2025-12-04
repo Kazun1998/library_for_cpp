@@ -160,6 +160,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Prim.hpp
+    title: "Prim \u6CD5"
   - icon: ':warning:'
     path: Integer/Digit.hpp
     title: "\u6574\u6570\u306E\u6841"
@@ -450,6 +453,9 @@ data:
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+    title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -636,6 +642,7 @@ data:
   - Graph/Graph/Connected_Components.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
+  - Graph/Weighted_Graph/Prim.hpp
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
   - Integer/Prime_Pi.hpp
@@ -727,6 +734,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
