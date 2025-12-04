@@ -37,6 +37,12 @@ $$ \dbinom{n}{r}_q := \dfrac{[n]_q!}{[r]_q! [n-r]_q!} $$
 
 で定義する.
 
+同様にして, 非負整数 $r_1, r_2, \dots, r_m$ に対して,
+
+$$ \dbinom{k_1 + k_2 + \dots + k_m}{k_1, \dots, k_m}_q := \dfrac{[k_1 + k_2 + \dots + k_m]_q!}{[k_1]_q! [k_2]_q! \dots [k_m]_q!} $$
+
+と定義する.
+
 ## Theory
 
 ## Contents
@@ -44,7 +50,7 @@ $$ \dbinom{n}{r}_q := \dfrac{[n]_q!}{[r]_q! [n-r]_q!} $$
 ### Constructer
 
 ```cpp
-Q_Analog_Calculator(const mint q, const int n)
+Q_Analog_Combination_Calculator(const mint q, const int n)
 ```
 
 * 固定されるパラメータ $q$ に関するサイズが $n$ の組み合わせ論に関する基本的な計算を行う計算機を作成する.
