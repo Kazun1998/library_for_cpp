@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -186,15 +189,15 @@ data:
     \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
     \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
     \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
-    \ &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n  \
-    \      return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const dynamic_modint &a) { return os << a.x; }\n\n    bool is_zero() const\
-    \ { return x == 0; }\n    bool is_member(ll a) const { return x == (a % mod()\
-    \ + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod =\
-    \ 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long long\
-    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = dynamic_modint<id>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n\n"
+    \ &a) {\n        int64_t x;\n        is >> x;\n        a.x = (x % mod() + mod())\
+    \ % mod();\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const dynamic_modint &a) { return os << a.x; }\n\n\
+    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
+    \ return x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod\
+    \ = 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long\
+    \ long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res =\
+    \ dynamic_modint<id>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<int id>\n\
     class dynamic_modint {\n    public:\n    uint64_t x;\n    static int _mod;\n\n\
     \    static void set_mod(const int m) { _mod = m; } \n    static int mod() { return\
@@ -229,15 +232,15 @@ data:
     \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
     \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
     \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
-    \ &a) {\n        is >> a.x;\n        a.x = (a.x % mod() + mod()) % mod();\n  \
-    \      return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const dynamic_modint &a) { return os << a.x; }\n\n    bool is_zero() const\
-    \ { return x == 0; }\n    bool is_member(ll a) const { return x == (a % mod()\
-    \ + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod =\
-    \ 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long long\
-    \ n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = dynamic_modint<id>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n\n"
+    \ &a) {\n        int64_t x;\n        is >> x;\n        a.x = (x % mod() + mod())\
+    \ % mod();\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const dynamic_modint &a) { return os << a.x; }\n\n\
+    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
+    \ return x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod\
+    \ = 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long\
+    \ long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res =\
+    \ dynamic_modint<id>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -248,9 +251,10 @@ data:
   isVerificationFile: false
   path: Algebra/dynamic_modint.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2025-12-02 23:04:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
 documentation_of: Algebra/dynamic_modint.hpp
 layout: document

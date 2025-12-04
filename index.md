@@ -51,6 +51,10 @@ data:
       path: Counting/Combination_Calculator.hpp
       title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
         \u7684\u306A\u8A08\u7B97"
+    - icon: ':heavy_check_mark:'
+      path: Counting/Q_Analog_Combination_Calculator.hpp
+      title: "$q$ -\u6570\u306B\u3088\u308B\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\
+        \u95A2\u3059\u308B\u57FA\u672C\u7684\u306A\u8A08\u7B97"
   - name: Data_Structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -572,6 +576,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
       title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+      title: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - name: verify/yosupo_library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'

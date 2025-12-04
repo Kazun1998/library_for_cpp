@@ -9,6 +9,10 @@ data:
     title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
       \u7684\u306A\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
+    path: Counting/Q_Analog_Combination_Calculator.hpp
+    title: "$q$ -\u6570\u306B\u3088\u308B\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\
+      \u95A2\u3059\u308B\u57FA\u672C\u7684\u306A\u8A08\u7B97"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -33,11 +37,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+    PROBLEM: https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod
     links:
-    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    - https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -203,59 +207,110 @@ data:
     \ = 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long\
     \ long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res =\
     \ dynamic_modint<id>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n#line 2 \"Counting/Combination_Calculator.hpp\"\
-    \n\n#line 4 \"Counting/Combination_Calculator.hpp\"\n\ntemplate<typename mint>\n\
-    class Combination_Calculator {\n    private:\n    vector<mint> _fact, _fact_inv;\n\
-    \n    void resize(const int m) {\n        if (m < _fact.size()) { return; }\n\n\
-    \        int current_size = _fact.size();\n        int next_size = min(max(2 *\
-    \ current_size, m + 1), mint::mod());\n\n        _fact.resize(next_size);\n  \
-    \      _fact_inv.resize(next_size);\n\n        for (int k = current_size; k <\
-    \ next_size; k++) {\n            _fact[k] = k * _fact[k - 1];\n        }\n\n \
-    \       _fact_inv.back() = _fact.back().inverse();\n\n        for (int k = next_size\
-    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = (k + 1) * _fact_inv[k\
-    \ + 1];\n        }\n    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\
-    \u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\u30BAn\u307E\u3067\u968E\u4E57\
-    \u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\u308B\n     * @param n \u521D\
-    \u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n    Combination_Calculator(const\
-    \ int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\
-    \ _fact_inv.emplace_back(1);\n\n        resize(n);\n    }\n\n    Combination_Calculator():\
-    \ Combination_Calculator(0) {}\n\n    /**\n     * @brief k! \u3092\u53D6\u5F97\
-    \n     */\n    mint fact(const int k) {\n        resize(k);\n        return _fact[k];\n\
-    \    }\n\n    /**\n     * @brief (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint\
-    \ fact_inv(const int k) {\n        resize(k);\n        return _fact_inv[k];\n\
-    \    }\n\n    /**\n     * @brief k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\
-    \u308B\n     * @param k \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n   \
-    \  */\n    mint inv(const int k) {\n        if (k <= 0) { return 0; }\n\n    \
-    \    resize(k);\n        return _fact_inv[k] * _fact[k - 1];\n    }\n\n    /**\n\
-    \     * @brief \u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\
-    \n     */\n    mint nCr(const int n, const int r) {\n        if (!(0 <= r && r\
-    \ <= n)) { return 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[r]\
-    \ * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u9806\u5217 nPk \u3092\
-    \u8A08\u7B97\u3059\u308B\n     */\n    mint nPr(const int n, const int r) {\n\
-    \        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n        return\
-    \ _fact[n] * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u91CD\u8907\u7D44\
-    \u5408\u305B nHk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nHr(const int\
-    \ n, const int r) {\n        if (n == 0 && r == 0) { return 1; }\n\n        return\
-    \ nCr(n + r - 1, r);\n    }\n\n    /**\n     * @brief \u591A\u9805\u4FC2\u6570\
-    \ (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
-    \ multinomial_coefficient(const vector<int> &ks) {\n        int k_sum = 0;\n \
-    \       mint lower = 1;\n        for (int k: ks) {\n            k_sum += k;\n\
-    \            lower *= _fact_inv[k];\n        }\n\n        resize(k_sum);\n\n \
-    \       mint upper = _fact[k_sum];\n\n        return upper * lower;\n    }\n\n\
-    \    mint catalan(const int n) {\n        if (n < 0) { return 0; }\n        resize(2\
-    \ * n);\n        return _fact[2 * n] * _fact_inv[n + 1] * _fact_inv[n];\n    }\n\
-    };\n#line 6 \"verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n#line 2 \"Counting/Q_Analog_Combination_Calculator.hpp\"\
+    \n\n#line 2 \"Counting/Combination_Calculator.hpp\"\n\n#line 4 \"Counting/Combination_Calculator.hpp\"\
+    \n\ntemplate<typename mint>\nclass Combination_Calculator {\n    private:\n  \
+    \  vector<mint> _fact, _fact_inv;\n\n    void resize(const int m) {\n        if\
+    \ (m < _fact.size()) { return; }\n\n        int current_size = _fact.size();\n\
+    \        int next_size = min(max(2 * current_size, m + 1), mint::mod());\n\n \
+    \       _fact.resize(next_size);\n        _fact_inv.resize(next_size);\n\n   \
+    \     for (int k = current_size; k < next_size; k++) {\n            _fact[k] =\
+    \ k * _fact[k - 1];\n        }\n\n        _fact_inv.back() = _fact.back().inverse();\n\
+    \n        for (int k = next_size - 2; k >= current_size; --k) {\n            _fact_inv[k]\
+    \ = (k + 1) * _fact_inv[k + 1];\n        }\n    }\n\n    public:\n    /**\n  \
+    \   * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\
+    \u30BAn\u307E\u3067\u968E\u4E57\u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\
+    \u308B\n     * @param n \u521D\u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n\
+    \    Combination_Calculator(const int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n\
+    \        _fact_inv.emplace_back(1); _fact_inv.emplace_back(1);\n\n        resize(n);\n\
+    \    }\n\n    Combination_Calculator(): Combination_Calculator(0) {}\n\n    /**\n\
+    \     * @brief k! \u3092\u53D6\u5F97\n     */\n    mint fact(const int k) {\n\
+    \        resize(k);\n        return _fact[k];\n    }\n\n    /**\n     * @brief\
+    \ (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint fact_inv(const int k) {\n  \
+    \      resize(k);\n        return _fact_inv[k];\n    }\n\n    /**\n     * @brief\
+    \ k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\u308B\n     * @param k \u9006\
+    \u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n     */\n    mint inv(const int k)\
+    \ {\n        if (k <= 0) { return 0; }\n\n        resize(k);\n        return _fact_inv[k]\
+    \ * _fact[k - 1];\n    }\n\n    /**\n     * @brief \u7D44\u307F\u5408\u308F\u305B\
+    \ nCk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nCr(const int n, const\
+    \ int r) {\n        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n\
+    \        return _fact[n] * _fact_inv[r] * _fact_inv[n - r];\n    }\n\n    /**\n\
+    \     * @brief \u9806\u5217 nPk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
+    \ nPr(const int n, const int r) {\n        if (!(0 <= r && r <= n)) { return 0;\
+    \ }\n        resize(n);\n        return _fact[n] * _fact_inv[n - r];\n    }\n\n\
+    \    /**\n     * @brief \u91CD\u8907\u7D44\u5408\u305B nHk \u3092\u8A08\u7B97\u3059\
+    \u308B\n     */\n    mint nHr(const int n, const int r) {\n        if (n == 0\
+    \ && r == 0) { return 1; }\n\n        return nCr(n + r - 1, r);\n    }\n\n   \
+    \ /**\n     * @brief \u591A\u9805\u4FC2\u6570 (k_sum)! / (k1! * k2! * ...) \u3092\
+    \u8A08\u7B97\u3059\u308B\n     */\n    mint multinomial_coefficient(const vector<int>\
+    \ &ks) {\n        int k_sum = 0;\n        mint lower = 1;\n        for (int k:\
+    \ ks) {\n            k_sum += k;\n            lower *= _fact_inv[k];\n       \
+    \ }\n\n        resize(k_sum);\n\n        mint upper = _fact[k_sum];\n\n      \
+    \  return upper * lower;\n    }\n\n    mint catalan(const int n) {\n        if\
+    \ (n < 0) { return 0; }\n        resize(2 * n);\n        return _fact[2 * n] *\
+    \ _fact_inv[n + 1] * _fact_inv[n];\n    }\n};\n#line 5 \"Counting/Q_Analog_Combination_Calculator.hpp\"\
+    \n\ntemplate<typename mint>\nclass Q_Analog_Calculator {\n    private:\n    Combination_Calculator<mint>\
+    \ calc;\n\n    mint q;\n    int order;\n    vector<mint> _power;    // q^k\n \
+    \   vector<mint> _bracket;  // q-\u6570 [n]_q\n    vector<mint> _fact;     //\
+    \ q-\u968E\u4E57 [n]_q !\n    vector<mint> _fact_inv; // q-\u968E\u4E57\u306E\u9006\
+    \u6570 ([n]_q !)^(-1)\n\n    void resize(const int m) {\n        if (order !=\
+    \ -1) { return; }\n\n        int current_size = _fact.size();\n        if (m <\
+    \ current_size) { return; }\n\n        int next_size = min(max(2 * current_size,\
+    \ m), mint::mod());\n\n        _power.resize(next_size);\n        for (int k =\
+    \ current_size; k < next_size; k++) {\n            _power[k] = q * _power[k -\
+    \ 1];\n\n            if(_power[k] == 1) {\n                order = k;\n      \
+    \          next_size = k;\n                _power.resize(k);\n               \
+    \ break;\n            }\n        }\n\n        _bracket.resize(next_size);\n  \
+    \      _fact.resize(next_size);\n        for (int k = current_size; k < next_size;\
+    \ k++) {\n            _bracket[k] = _bracket[k - 1] + _power[k - 1];\n       \
+    \     _fact[k] = _bracket[k] * _fact[k - 1];\n        }\n\n        _fact_inv.resize(next_size);\n\
+    \        _fact_inv.back() = _fact.back().inverse();\n        for (int k = next_size\
+    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = _bracket[k + 1] *\
+    \ _fact_inv[k + 1];\n        }\n    }\n\n    mint query(const int n, const int\
+    \ r) const {\n        return _fact[n] * _fact_inv[r] * _fact_inv[n - r];\n   \
+    \ }\n\n    public:\n    /// @brief \n    /// @param  \n    /// @return \n    Q_Analog_Calculator(const\
+    \ mint q, const int n): q(q), order(-1), calc() {\n        _power.emplace_back(1);\n\
+    \        _bracket.emplace_back(0); \n        _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\n\
+    \n        resize(n);\n    }\n\n    Q_Analog_Calculator(const mint q): Q_Analog_Calculator(q,\
+    \ 0) {}\n\n    /// @brief q^k \u3092\u6C42\u3081\u308B.\n    mint q_power(const\
+    \ int k) {\n        resize(k);\n        return _power[k];\n    }\n\n    /// @brief\
+    \ [n]_q = 1 + q + ... + q^(n-1) \u3092\u6C42\u3081\u308B.\n    mint q_bracket(const\
+    \ int n) {\n        resize(n);\n        return _bracket[n];\n    }\n\n    ///\
+    \ @brief [n]_q ! = [1]_q * [2]_q * ... * [n]_q \u3092\u6C42\u3081\u308B.\n   \
+    \ mint q_fact(const int n) {\n        resize(n);\n        return _fact[n];\n \
+    \   }\n\n    /// @brief ([n]_q !)^(-1) \u3092\u6C42\u3081\u308B.\n    mint q_fact_inv(const\
+    \ int n) {\n        resize(n);\n        return _fact_inv[n];\n    }\n\n    ///\
+    \ @brief ([n]_q)^(-1) \u3092\u6C42\u3081\u308B.\n    mint q_inv(const int n) {\n\
+    \        resize(n);\n        return _fact_inv[n] * _fact[n];\n    }\n\n    ///\
+    \ @brief q-\u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\n\
+    \    mint q_nCr(const int n, const int r) {\n        if (!(0 <= r && r <= n))\
+    \ { return 0; }\n        resize(n);\n\n        if (order == -1) { return query(n,\
+    \ r); }\n        if (n < order && r < order) { return query(n, r); }\n\n     \
+    \   return calc.nCr(n / order, r / order) * q_nCr(n % order, r % order);\n   \
+    \ }\n\n    /// @brief q-\u9806\u5217 nPk \u3092\u8A08\u7B97\u3059\u308B\n    mint\
+    \ q_nPr(const int n, const int r) {\n        if (!(0 <= r && r <= n)) { return\
+    \ 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[n - r];\n    }\n\
+    \n    /// @brief q-\u91CD\u8907\u7D44\u5408\u305B nHk \u3092\u8A08\u7B97\u3059\
+    \u308B\n    mint q_nHr(const int n, const int r) {\n        if (n == 0 && r ==\
+    \ 0) { return 1; }\n\n        return q_nCr(n + r - 1, r);\n    }\n\n\n    ///\
+    \ @brief q-\u591A\u9805\u4FC2\u6570 (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\
+    \u3059\u308B\n    mint q_multinomial_coefficient(const vector<int> &ks) {\n  \
+    \      int k_sum = 0;\n        mint lower = 1;\n        for (int k: ks) {\n  \
+    \          k_sum += k;\n            lower *= _fact_inv[k];\n        }\n\n    \
+    \    resize(k_sum);\n\n        mint upper = _fact[k_sum];\n\n        return upper\
+    \ * lower;\n    }\n};\n#line 6 \"verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp\"\
     \n\nusing mint = dynamic_modint<0>;\n\nint main() {\n    int T, m; cin >> T >>\
-    \ m;\n    mint::set_mod(m);\n\n    Combination_Calculator<mint> calc(min(m, 10000000));\n\
-    \n    for (int t = 0; t < T; t++) {\n        int n, k; scanf(\"%d%d\", &n, &k);\n\
-    \        cout << calc.nCr(n, k) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \ m;\n    mint::set_mod(m);\n    mint q; cin >> q;\n\n    Q_Analog_Calculator<mint>\
+    \ calc(q, min(m, 10000000));\n\n    for (int t = 0; t < T; t++) {\n        int\
+    \ n, k; scanf(\"%d%d\", &n, &k);\n        cout << calc.q_nCr(n, k) << \"\\n\"\
+    ;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/dynamic_modint.hpp\"\
-    \n#include\"../../../Counting/Combination_Calculator.hpp\"\n\nusing mint = dynamic_modint<0>;\n\
-    \nint main() {\n    int T, m; cin >> T >> m;\n    mint::set_mod(m);\n\n    Combination_Calculator<mint>\
-    \ calc(min(m, 10000000));\n\n    for (int t = 0; t < T; t++) {\n        int n,\
-    \ k; scanf(\"%d%d\", &n, &k);\n        cout << calc.nCr(n, k) << \"\\n\";\n  \
-    \  }\n}\n"
+    \n#include\"../../../Counting/Q_Analog_Combination_Calculator.hpp\"\n\nusing mint\
+    \ = dynamic_modint<0>;\n\nint main() {\n    int T, m; cin >> T >> m;\n    mint::set_mod(m);\n\
+    \    mint q; cin >> q;\n\n    Q_Analog_Calculator<mint> calc(q, min(m, 10000000));\n\
+    \n    for (int t = 0; t < T; t++) {\n        int n, k; scanf(\"%d%d\", &n, &k);\n\
+    \        cout << calc.q_nCr(n, k) << \"\\n\";\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -264,17 +319,18 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - Algebra/dynamic_modint.hpp
+  - Counting/Q_Analog_Combination_Calculator.hpp
   - Counting/Combination_Calculator.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  path: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2025-12-04 00:53:26+09:00'
+  timestamp: '2025-12-04 23:39:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp.html
-title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp.html
+title: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
 ---
