@@ -44,7 +44,7 @@ $$ \dbinom{n}{r}_q := \dfrac{[n]_q!}{[r]_q! [n-r]_q!} $$
 ### Constructer
 
 ```cpp
-Q_Analog_Calculator(const mint q, const int n)
+Q_Analog_Combination_Calculator(const mint q, const int n)
 ```
 
 * 固定されるパラメータ $q$ に関するサイズが $n$ の組み合わせ論に関する基本的な計算を行う計算機を作成する.
