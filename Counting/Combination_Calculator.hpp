@@ -11,7 +11,7 @@ class Combination_Calculator {
         if (m < _fact.size()) { return; }
 
         int current_size = _fact.size();
-        int next_size = min(max(2 * current_size, m), mint::mod());
+        int next_size = min(max(2 * current_size, m + 1), mint::mod());
 
         _fact.resize(next_size);
         _fact_inv.resize(next_size);
