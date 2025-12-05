@@ -4,23 +4,24 @@
 
 namespace graph {
     struct Edge {
-        int id, u, v;
+        int id, source, target;
+        Edge *rev;
 
         Edge() = default;
-        Edge(int id, int u, int v): id(id), u(u), v(v) {}
+        Edge(int id, int source, int target): id(id), source(source), target(target), rev(nullptr) {}
     };
 
     class Graph {
         private:
-        vector<vector<pair<int, int>>> incidences; // { edge_id, neighbor_vertex }
-        vector<Edge> edges;
+        vector<vector<Edge*>> incidences;
+        vector<Edge> edges, rev_edges;
         vector<int> deg;
 
         public:
         int edge_id_offset;
 
         public:
-        Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset) {
+        Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), deg(n, 0) {
             incidences.assign(n, {});
             edges.resize(edge_id_offset, Edge());
         }
@@ -33,9 +34,15 @@ namespace graph {
         int add_edge(int u, int v) {
             int id = int(edges.size());
 
-            incidences[u].emplace_back(id, v);
-            incidences[v].emplace_back(id, u);
-            edges.emplace_back(Edge(id, u, v));
+            Edge* edge = new Edge(id, u, v);
+            Edge* rev_edge = new Edge(id, v, u);
+
+            edge->rev = rev_edge;
+            rev_edge->rev = edge;
+
+            incidences[u].emplace_back(edge);
+            incidences[v].emplace_back(rev_edge);
+            edges.emplace_back(*edge);
 
             deg[u]++;
             deg[v]++;
@@ -43,8 +50,7 @@ namespace graph {
             return id;
         }
 
-        // 頂点 u に接続する辺 ID と隣接頂点 v のペア { ID, v } のリストを取得
-        inline const vector<pair<int, int>>& incidence (int u) const { return incidences[u]; }
+        vector<Edge*> incidence (int u) const { return incidences[u]; }
 
         // 辺 ID が id であり, source が u である辺を取得する.
         inline const Edge& get_edge(int id) const { return edges[id]; }
