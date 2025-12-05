@@ -14,6 +14,7 @@ namespace graph {
         private:
         vector<vector<pair<int, int>>> incidences; // { edge_id, neighbor_vertex }
         vector<Edge> edges;
+        vector<int> deg;
 
         public:
         int edge_id_offset;
@@ -36,6 +37,9 @@ namespace graph {
             incidences[v].emplace_back(id, u);
             edges.emplace_back(Edge(id, u, v));
 
+            deg[u]++;
+            deg[v]++;
+
             return id;
         }
 
@@ -47,5 +51,8 @@ namespace graph {
 
         // 辺 ID が id であり, source が u である辺を取得する.
         inline Edge& get_edge(int id) { return edges[id]; }
+
+        /// @brief 頂点 v の次数を求める
+        inline int degree(const int v) const { return deg[v]; }
     };
 }
