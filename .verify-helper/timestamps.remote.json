@@ -49,6 +49,7 @@
 "verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp": "2025-08-29 00:06:23 +0900",
 "verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp": "2025-12-06 16:35:05 +0900",
+"verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp": "2025-12-06 18:05:28 +0900",
 "verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp": "2025-11-24 23:47:22 +0900",
 "verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp": "2025-11-25 00:28:32 +0900",
 "verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp": "2025-11-22 15:43:56 +0900",
