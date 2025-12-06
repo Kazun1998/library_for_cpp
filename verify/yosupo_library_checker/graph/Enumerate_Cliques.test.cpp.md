@@ -5,8 +5,11 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Segment_Tree/Lazy_Segment_Tree.hpp
-    title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
+    path: Graph/Graph/Cliques.hpp
+    title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -32,13 +35,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
     links:
-    - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\
-    \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/enumerate_cliques
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
@@ -196,134 +199,101 @@ data:
     \ }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n\
     \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
     \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\
-    \n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\
-    \u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\
-    \u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\
-    \u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\
-    \u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M \u4E0A\
-    \u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192 M:\
-    \ F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\
-    \u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F\
-    \ \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
-    \ M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\
-    \u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\u5408\u6210\u306B\u9589\u3058\u3066\
-    \u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E f,g in F \u306B\u5BFE\u3057\
-    \u3066, comp(f,g) in F\n* F \u306F M \u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
-    \u308A, \u4EE5\u4E0B\u304C\u6210\u308A\u7ACB\u3064.\n    * F \u306E\u5358\u4F4D\
-    \u5143 id \u306F\u6052\u7B49\u7684\u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
-    \u308A, \u4EFB\u610F\u306E x in M \u306B\u5BFE\u3057\u3066 id(x) = x \u3068\u306A\
-    \u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in M \u306B\u5BFE\u3057\u3066, f(xy)\
-    \ = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\u610F)\n\u4F5C\u7528\u7D20\u306F\
-    \u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\u3082\u5DE6\u304B\u3089\u884C\
-    \u3046.\n*/\n\ntemplate<typename M, typename F>\nclass Lazy_Segment_Tree {\n \
-    \   public:\n    int n, depth;\n    const function<M(M, M)> op;\n    const function<M(F,\
-    \ M)> act;\n    const function<F(F, F)> comp;\n    vector<M> data; const M unit;\n\
-    \    vector<F> lazy; const F id;\n\n    public:\n    Lazy_Segment_Tree(int size,\
-    \ const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const\
-    \ function<F(F, F)> comp, const F id):\n        n(), op(op), unit(unit), act(act),\
-    \ comp(comp), id(id), depth(0) {\n            int m = 1;\n            while (size\
-    \ > m) { depth++, m *= 2; }\n            n = m;\n            data.assign(2 * m,\
-    \ unit);\n            lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const\
-    \ vector<M> &vec, const function<M(M, M)> op, const M unit, const function<M(F,\
-    \ M)> act, const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
-    \ op, unit, act, comp, id){\n            for (int k = 0; k < vec.size(); k++)\
-    \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
-    \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
-    \ M evaluate_at(int m){ return lazy[m] == id ? data[m] : act(lazy[m], data[m]);\
-    \ }\n\n    /// @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C\
-    \ m \u8981\u7D20\u3092\u66F4\u65B0\u3057, \u9045\u5EF6\u3057\u3066\u3044\u305F\
-    \u4F5C\u7528\u3092\u5B50\u306B\u4F1D\u642C\u3055\u305B\u308B.\n    /// @param\
-    \ m \n    void push(int m){\n        data[m] = evaluate_at(m);\n\n        if ((m\
-    \ < n) && (lazy[m] != id)){\n            int left = m << 1;\n            lazy[left]\
-    \ = (lazy[left] == id) ? lazy[m] : comp(lazy[m], lazy[left]);\n\n            int\
-    \ right = m << 1 | 1;\n            lazy[right] = (lazy[right] == id) ? lazy[m]\
-    \ : comp(lazy[m], lazy[right]); \n        }\n\n        lazy[m] = id;\n    }\n\n\
-    \    /// @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C m\
-    \ \u8981\u7D20\u3092\u542B\u3080\u533A\u9593\u306B\u3064\u3044\u3066\u306E lazy\
-    \ \u306E\u8981\u7D20\u306B\u3064\u3044\u3066, \u5B50\u3078\u306E\u66F4\u65B0\u3092\
-    \u884C\u3046.\n    /// @param m \n    inline void propagate_above(int m){\n  \
-    \      int h = 0, mm = m;\n        for (mm; mm; mm >>= 1, h++){}\n\n        for\
-    \ (h--; h >= 0; h--) { push(m >> h); }\n    }\n\n    /// @brief \u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u30C4\u30EA\u30FC\u306E\u7B2C m \u8981\u7D20\u3092\u542B\u3080\u533A\
-    \u9593\u306B\u3064\u3044\u3066\u306E data \u306E\u8981\u7D20\u3092\u66F4\u65B0\
-    \u3059\u308B.\n    /// @param m \n    inline void recalc_above(int m){\n     \
-    \   while (m > 1){\n            m >>= 1;\n            data[m] = op(evaluate_at(m\
-    \ << 1), evaluate_at(m << 1 | 1));\n        }\n    }\n\n    pair<int, int> range_propagate(int\
-    \ l, int r){\n        int X = l + n, Y = r + n - 1, L0 = -1, R0 = -1;\n    \n\
-    \        while (X < Y){\n            if (X & 1) { L0 = max(L0, X++); }\n     \
-    \       if ((Y & 1) ==0 ) { R0 = max(R0, Y--); }\n\n            X >>= 1; Y >>=\
-    \ 1;\n        }\n\n        L0 = max(L0, X); R0 = max(R0, Y);\n        propagate_above(L0);\
-    \ propagate_above(R0);\n        return make_pair(L0, R0);\n    }\n\n    public:\n\
-    \    /// @brief \u7B2C k \u9805\u3092\u53D6\u5F97\u3059\u308B.\n    /// @param\
-    \ k \n    /// @return \u7B2C k \u9805\n    inline M operator[](int k){\n     \
-    \   int m = k + n;\n        propagate_above(m);\n        lazy[m] = id;\n     \
-    \   return data[m] = evaluate_at(m);\n    }\n\n    /// @brief i = l, l + 1, ...,\
-    \ r \u306B\u5BFE\u3057\u3066, \u7B2C i \u9805\u306B\u5BFE\u3057\u3066 alpha \u3092\
-    \u4F5C\u7528\u3055\u305B\u308B.\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\
-    \n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n    /// @param alpha \u4F5C\
-    \u7528\n    void action(int l, int r, F alpha){\n        int L0, R0;\n       \
-    \ tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L = l + n, R = r + n\
-    \ + 1;\n        while (L < R){\n            if (L & 1){\n                lazy[L]\
-    \ = (alpha == id) ? id : comp(alpha, lazy[L]); \n                L++;\n      \
-    \      }\n\n            if (R & 1){\n                R--;\n                lazy[R]\
-    \ = (alpha == id) ? id : comp(alpha, lazy[R]);\n            }\n\n            L\
-    \ >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0); recalc_above(R0);\n\
-    \    }\n\n    /// @brief \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\u3059\u308B\
-    .\n    /// @param k \u66F4\u65B0\u5834\u6240\n    /// @param x \u66F4\u65B0\u5F8C\
-    \u306E\u8981\u7D20\n    inline void update(int k, M x){\n        int m = k + n;\n\
-    \        propagate_above(m);\n        data[m] = x; lazy[m] = id;\n        recalc_above(m);\n\
-    \    }\n\n\n    /// @brief \u7A4D x[l] * x[l + 1] * ... * x[r] \u3092\u6C42\u3081\
-    \u308B.\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param r \u533A\
-    \u9593\u306E\u53F3\u7AEF\n    /// @return \u7A4D\n    M product(int l, int r){\n\
-    \        int L0, R0;\n        tie(L0, R0) = range_propagate(l, r + 1);\n\n   \
-    \     int L = l + n, R = r + n + 1;\n        M vL = unit, vR = unit;\n       \
-    \ while (L < R){\n            if (L & 1) { vL = op(vL, evaluate_at(L)); L++; }\n\
-    \            if (R & 1) { R--; vR=op(evaluate_at(R), vR); }\n\n            L >>=\
-    \ 1; R >>= 1;\n        }\n\n        return op(vL, vR);\n    }\n\n    /// @brief\
-    \ \u5168\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\u7A4D\u3092\u6C42\u3081\
-    \u308B.\n    /// @return \u6B8B\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\
-    \u7A4D\n    inline M all_product() {return product(0, n);}\n\n    void refresh()\
-    \ {\n        for (int m = 1; m < 2 * n; m++){\n            data[m] = evaluate_at(m);\n\
-    \            if ((m < n) && (lazy[m] != id)){\n                int left = m <<\
-    \ 1;\n                lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m],\
-    \ lazy[left]);\n\n                int right = m << 1 | 1;\n                lazy[right]\
-    \ = (lazy[right] == id) ? lazy[m] : comp(lazy[m], lazy[m << 1 | 1]);\n       \
-    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
-    \n\nusing L = modint<998244353>;\nusing M = pair<L, int>;\nusing F = pair<L, L>;\n\
-    \nauto op = [](M x, M y) -> M {\n    auto first  = x.first  + y.first;\n    auto\
-    \ second = x.second + y.second;\n    return { first, second };\n};\n\nauto act\
-    \ = [](F a, M x) -> M {\n    auto first  = a.first * x.first + a.second * x.second;\n\
-    \    auto second = x.second;\n    return { first, second };\n};\n\nauto comp =\
-    \ [](F a, F b) -> F {\n    auto first  = a.first * b.first;\n    auto second =\
-    \ a.first * b.second + a.second;\n    return { first, second };\n};\n\nM unit\
-    \ = make_pair(0, 0);\nF id = make_pair(1, 0);\n\nint main(){\n    int N, Q; cin\
-    \ >> N >> Q;\n\n    vector<M> a(N);\n    for (int i = 0; i < N; i++){\n      \
-    \  int x; scanf(\"%d\", &x);\n        a[i] = {x, 1};\n    }\n\n    Lazy_Segment_Tree<M,\
-    \ F> S(a, op, unit, act, comp, id);\n\n    for (int q = 0; q < Q; q++){\n    \
-    \    int t, l, r;\n        scanf(\"%d\", &t);\n\n        if (t == 0){\n      \
-    \      int b, c;\n            scanf(\"%d%d%d%d\", &l, &r, &b, &c);\n         \
-    \   S.action(l, r - 1, {b, c});\n        } elif (t == 1) {\n            scanf(\"\
-    %d%d\", &l, &r);\n            cout << S.product(l, r - 1).first << \"\\n\";\n\
-    \        }\n    }\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
-    \n#include\"../../../Segment_Tree/Lazy_Segment_Tree.hpp\"\n\nusing L = modint<998244353>;\n\
-    using M = pair<L, int>;\nusing F = pair<L, L>;\n\nauto op = [](M x, M y) -> M\
-    \ {\n    auto first  = x.first  + y.first;\n    auto second = x.second + y.second;\n\
-    \    return { first, second };\n};\n\nauto act = [](F a, M x) -> M {\n    auto\
-    \ first  = a.first * x.first + a.second * x.second;\n    auto second = x.second;\n\
-    \    return { first, second };\n};\n\nauto comp = [](F a, F b) -> F {\n    auto\
-    \ first  = a.first * b.first;\n    auto second = a.first * b.second + a.second;\n\
-    \    return { first, second };\n};\n\nM unit = make_pair(0, 0);\nF id = make_pair(1,\
-    \ 0);\n\nint main(){\n    int N, Q; cin >> N >> Q;\n\n    vector<M> a(N);\n  \
-    \  for (int i = 0; i < N; i++){\n        int x; scanf(\"%d\", &x);\n        a[i]\
-    \ = {x, 1};\n    }\n\n    Lazy_Segment_Tree<M, F> S(a, op, unit, act, comp, id);\n\
-    \n    for (int q = 0; q < Q; q++){\n        int t, l, r;\n        scanf(\"%d\"\
-    , &t);\n\n        if (t == 0){\n            int b, c;\n            scanf(\"%d%d%d%d\"\
-    , &l, &r, &b, &c);\n            S.action(l, r - 1, {b, c});\n        } elif (t\
-    \ == 1) {\n            scanf(\"%d%d\", &l, &r);\n            cout << S.product(l,\
-    \ r - 1).first << \"\\n\";\n        }\n    }\n}\n\n"
+    \    }\n\n    return res;\n}\n#line 2 \"Graph/Graph/Cliques.hpp\"\n\n#line 2 \"\
+    Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph\
+    \ {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\n\
+    \        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
+    \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
+    \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
+    \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
+    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
+    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
+    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
+    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
+    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
+    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
+    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
+    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
+    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
+    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
+    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
+    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
+    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
+    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
+    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
+    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
+    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
+    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Cliques.hpp\"\
+    \n\nnamespace graph {\n    template<typename X>\n    X Cliques(\n            const\
+    \ Graph &G,\n            const function<X(const vector<int>)> &calc,\n       \
+    \     const function<X(X, X)> &merge,\n            const X unit,\n           \
+    \ bool empty = false) {\n\n        int N = G.order(), M = G.size();\n        int\
+    \ M_sqrt = ceil_sqrt(M);\n\n        vector<int> deg(N, 0);\n        for (int v\
+    \ = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n        vector<bool> alive(N,\
+    \ true);\n        vector<vector<bool>> E(N, vector<bool>(N, false));\n       \
+    \ for (int u = 0; u < N; u++) {\n            for (auto edge: G.incidence(u)) {\n\
+    \                int v = edge->target;\n                E[u][v] = true;\n    \
+    \            E[v][u] = true;\n            }\n        }\n\n        auto generate_bits_table\
+    \ = [&](const vector<int> &A) -> vector<ll> {\n            int K = A.size();\n\
+    \            vector<ll> bits(K, 0);\n\n            for (int i = 0; i < K; i++)\
+    \ {\n                for (int j = 0; j < i; j++) {\n                    unless(E[A[i]][A[j]])\
+    \ {\n                        bits[i] |= 1 << j;\n                        bits[j]\
+    \ |= 1 << i;\n                    }\n                }\n            }\n\n    \
+    \        return bits;\n        };\n\n        auto is_clique = [&](const vector<int>\
+    \ &A, const vector<ll> &bits, int S) -> bool {\n            for (int i = 0; i\
+    \ < A.size(); i++) {\n                if (get_bit(S, i) && (S & bits[i])) { return\
+    \ false; }\n            }\n\n            return true;\n        };\n\n        auto\
+    \ subcalc = [&](const vector<int> &A, const int leader = -1) -> X {\n        \
+    \    X res = unit;\n            bool empty_accept = (leader != -1) || empty;\n\
+    \n            int K = A.size();\n            auto bits = generate_bits_table(A);\n\
+    \n            for (int S = 0; S < (1 << K); S++) {\n                unless(is_clique(A,\
+    \ bits, S)) { continue; }\n\n                vector<int> C;\n                if\
+    \ (leader != -1) { C.emplace_back(leader); }\n\n                for (int i = 0;\
+    \ i < K; i++) {\n                    if (get_bit(S, i)) {\n                  \
+    \      C.emplace_back(A[i]);\n                    }\n                }\n\n   \
+    \             if(S > 0 || empty_accept) {\n                    res = merge(res,\
+    \ calc(C));\n                }\n            }\n\n            return res;\n   \
+    \     };\n\n        X res(unit);\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\
+    \u6E80\u306E\u9802\u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\
+    \u7B97\u3059\u308B\n        loop {\n            vector<int> A;\n\n           \
+    \ int leader = -1;\n            for (int u = 0; u < N; u++) {\n              \
+    \  unless (alive[u] && deg[u] < M_sqrt) { continue; }\n\n                for (int\
+    \ v = 0; v < N; v++) {\n                    if (u != v && alive[v] && E[u][v])\
+    \ {\n                        A.emplace_back(v);\n                    }\n     \
+    \           }\n\n                leader = u;\n                break;\n       \
+    \     }\n\n            if (leader == -1) { break; }\n\n            int K = A.size();\n\
+    \            res = merge(res, subcalc(A, leader));\n\n            alive[leader]\
+    \ = false;\n            deg[leader] = 0;\n\n            for (int v = 0; v < N;\
+    \ v++) {\n                if (leader != v && alive[v] && E[leader][v]) {\n   \
+    \                 deg[v]--;\n                }\n            }\n        }\n\n \
+    \       // \u6B8B\u3063\u305F\u9802\u70B9 M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\
+    \u308B \u2192 \u5168\u63A2\u7D22\n        vector<int> A;\n        for (int u =\
+    \ 0; u < N; u++) {\n            if(alive[u]) { A.emplace_back(u); }\n        }\n\
+    \n        res = merge(res, subcalc(A, -1));\n\n        return res;\n    };\n}\n\
+    #line 6 \"verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp\"\n\n\
+    using namespace graph;\nusing mint = modint<998244353>;\n\nint main() {\n    int\
+    \ N, M; cin >> N >> M;\n    Graph G(N);\n\n    vector<mint> x(N); cin >> x;\n\n\
+    \    for (int j = 0; j < M; j++) {\n        int u, v; cin >> u >> v;\n       \
+    \ G.add_edge(u, v);\n    }\n\n    auto product = [&x](const vector<int> &C) ->\
+    \ mint {\n        mint res = 1;\n        for (int v: C) {\n            res *=\
+    \ x[v];\n        }\n\n        return res;\n    };\n\n    cout << Cliques<mint>(G,\
+    \ product, add<mint>, 0)<< endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n\n\
+    #include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
+    \n#include\"../../../Graph/Graph/Cliques.hpp\"\n\nusing namespace graph;\nusing\
+    \ mint = modint<998244353>;\n\nint main() {\n    int N, M; cin >> N >> M;\n  \
+    \  Graph G(N);\n\n    vector<mint> x(N); cin >> x;\n\n    for (int j = 0; j <\
+    \ M; j++) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v);\n   \
+    \ }\n\n    auto product = [&x](const vector<int> &C) -> mint {\n        mint res\
+    \ = 1;\n        for (int v: C) {\n            res *= x[v];\n        }\n\n    \
+    \    return res;\n    };\n\n    cout << Cliques<mint>(G, product, add<mint>, 0)<<\
+    \ endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -332,17 +302,18 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - Algebra/modint.hpp
-  - Segment_Tree/Lazy_Segment_Tree.hpp
+  - Graph/Graph/Cliques.hpp
+  - Graph/Graph/Graph.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2025-12-06 16:35:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+documentation_of: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp.html
+title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
 ---

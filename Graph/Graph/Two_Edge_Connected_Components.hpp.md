@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
     title: Graph/Graph/Lowlink.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\n\n#line\
@@ -200,16 +200,17 @@ data:
     \        private:\n        int dfs(const Graph &G, int v, int k, int parent) {\n\
     \            used[v] = true;\n            ord[v] = k++;\n            low[v] =\
     \ ord[v];\n\n            bool is_articulation = false;\n            int children_number\
-    \ = 0;\n\n            for (auto [edge_id, target]: G.incidence(v)) {\n       \
-    \         if (used[target]) {\n                    unless (target == parent) {\n\
-    \                        low[v] = min(low[v], ord[target]);\n                \
-    \    }\n                    continue;\n                }\n\n                children_number++;\n\
-    \                k = dfs(G, target, k, v);\n                low[v] = min(low[v],\
-    \ low[target]);\n\n                if (parent != -1 && ord[v] <= low[target])\
-    \ { is_articulation = true; }\n                if (ord[v] < low[target]) { bridge[edge_id]\
-    \ = true; }\n            }\n\n            if (parent == -1 && children_number\
-    \ >= 2) { is_articulation = true; }\n            if (is_articulation) { articulation[v]\
-    \ = true; }\n\n            return k;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
+    \ = 0;\n\n            for (auto edge: G.incidence(v)) {\n                int target\
+    \ = edge->target;\n                if (used[target]) {\n                    unless\
+    \ (target == parent) {\n                        low[v] = min(low[v], ord[target]);\n\
+    \                    }\n                    continue;\n                }\n\n \
+    \               children_number++;\n                k = dfs(G, target, k, v);\n\
+    \                low[v] = min(low[v], low[target]);\n\n                if (parent\
+    \ != -1 && ord[v] <= low[target]) { is_articulation = true; }\n              \
+    \  if (ord[v] < low[target]) { bridge[edge->id] = true; }\n            }\n\n \
+    \           if (parent == -1 && children_number >= 2) { is_articulation = true;\
+    \ }\n            if (is_articulation) { articulation[v] = true; }\n\n        \
+    \    return k;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
     \n\nnamespace graph {\n    class Two_Edge_Connected_Components {\n        public:\n\
     \        vector<vector<int>> components;\n        vector<int> component_ids;\n\
     \n        Two_Edge_Connected_Components(const Graph &G) {\n            calculate(G);\n\
@@ -222,12 +223,12 @@ data:
     \            components.emplace_back();\n            component_ids[start] = component_id;\n\
     \n            stack<int> st;\n            st.emplace(start);\n            components[component_id].emplace_back(start);\n\
     \n            while(!st.empty()) {\n                int x = st.top(); st.pop();\n\
-    \                for (auto [edge_id, y]: G.incidence(x)) {\n                 \
-    \   if (bridges[edge_id]) { continue; }\n                    unless (component_ids[y]\
-    \ == -1) { continue; }\n\n                    component_ids[y] = component_id;\n\
-    \                    components[component_id].emplace_back(y);\n             \
-    \       st.emplace(y);\n                }\n            }\n        }\n    };\n\
-    }\n"
+    \                for (auto edge: G.incidence(x)) {\n                    int y\
+    \ = edge->target;\n                    if (bridges[edge->id]) { continue; }\n\
+    \                    unless (component_ids[y] == -1) { continue; }\n\n       \
+    \             component_ids[y] = component_id;\n                    components[component_id].emplace_back(y);\n\
+    \                    st.emplace(y);\n                }\n            }\n      \
+    \  }\n    };\n}\n"
   code: "#pragma once\n\n#include\"Lowlink.hpp\"\n\nnamespace graph {\n    class Two_Edge_Connected_Components\
     \ {\n        public:\n        vector<vector<int>> components;\n        vector<int>\
     \ component_ids;\n\n        Two_Edge_Connected_Components(const Graph &G) {\n\
@@ -241,12 +242,12 @@ data:
     \ component_ids[start] = component_id;\n\n            stack<int> st;\n       \
     \     st.emplace(start);\n            components[component_id].emplace_back(start);\n\
     \n            while(!st.empty()) {\n                int x = st.top(); st.pop();\n\
-    \                for (auto [edge_id, y]: G.incidence(x)) {\n                 \
-    \   if (bridges[edge_id]) { continue; }\n                    unless (component_ids[y]\
-    \ == -1) { continue; }\n\n                    component_ids[y] = component_id;\n\
-    \                    components[component_id].emplace_back(y);\n             \
-    \       st.emplace(y);\n                }\n            }\n        }\n    };\n\
-    }\n"
+    \                for (auto edge: G.incidence(x)) {\n                    int y\
+    \ = edge->target;\n                    if (bridges[edge->id]) { continue; }\n\
+    \                    unless (component_ids[y] == -1) { continue; }\n\n       \
+    \             component_ids[y] = component_id;\n                    components[component_id].emplace_back(y);\n\
+    \                    st.emplace(y);\n                }\n            }\n      \
+    \  }\n    };\n}\n"
   dependsOn:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
@@ -259,8 +260,8 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Two_Edge_Connected_Components.hpp
   requiredBy: []
-  timestamp: '2025-12-06 16:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-12-06 17:15:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
 documentation_of: Graph/Graph/Two_Edge_Connected_Components.hpp

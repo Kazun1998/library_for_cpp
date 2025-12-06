@@ -194,16 +194,19 @@ data:
       title: Graph/Digraph/Strongly_Connected_Components.hpp
   - name: Graph/Graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Cliques.hpp
+      title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Connected_Components.hpp
       title: Graph/Graph/Connected_Components.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Graph.hpp
       title: "\u7121\u5411 Graph"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Lowlink.hpp
       title: Graph/Graph/Lowlink.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Two_Edge_Connected_Components.hpp
       title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - name: Graph/Weighted_Digraph
@@ -407,28 +410,28 @@ data:
       title: Union Find
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
   - name: verify/aizu_online_judge/alds1
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/alds1/11D.test.cpp
       title: verify/aizu_online_judge/alds1/11D.test.cpp
   - name: verify/aizu_online_judge/cgl
@@ -485,10 +488,10 @@ data:
       title: verify/aizu_online_judge/dsl/2G.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/3A.test.cpp
       title: verify/aizu_online_judge/grl/3A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/3B.test.cpp
       title: verify/aizu_online_judge/grl/3B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -596,6 +599,9 @@ data:
       path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
       title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+      title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
       title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -604,7 +610,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
       title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
       title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - name: verify/yosupo_library_checker/linear_algebra

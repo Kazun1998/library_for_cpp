@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
     title: verify/aizu_online_judge/alds1/11D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/Graph/Connected_Components.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
@@ -195,13 +195,14 @@ data:
     \ components.size();\n\n            components.emplace_back();\n            component_ids[start]\
     \ = component_id;\n\n            stack<int> st;\n            st.emplace(start);\n\
     \            components[component_id].emplace_back(start);\n\n            while(!st.empty())\
-    \ {\n                int x = st.top(); st.pop();\n                for (auto [_,\
-    \ y]: G.incidence(x)) {\n                    unless (component_ids[y] == -1) {\
-    \ continue; }\n\n                    component_ids[y] = component_id;\n      \
-    \              components[component_id].emplace_back(y);\n                   \
-    \ st.emplace(y);\n                }\n            }\n        }\n    };\n\n    bool\
-    \ is_Connected(const Graph &G) {\n        auto connected_components = Connected_Components(G);\n\
-    \        return connected_components.components.size() == 1;\n    }\n}\n"
+    \ {\n                int x = st.top(); st.pop();\n                for (auto edge:\
+    \ G.incidence(x)) {\n                    int y = edge->target;\n             \
+    \       unless (component_ids[y] == -1) { continue; }\n\n                    component_ids[y]\
+    \ = component_id;\n                    components[component_id].emplace_back(y);\n\
+    \                    st.emplace(y);\n                }\n            }\n      \
+    \  }\n    };\n\n    bool is_Connected(const Graph &G) {\n        auto connected_components\
+    \ = Connected_Components(G);\n        return connected_components.components.size()\
+    \ == 1;\n    }\n}\n"
   code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    class Connected_Components\
     \ {\n        public:\n        vector<vector<int>> components;\n        vector<int>\
     \ component_ids;\n\n        Connected_Components(const Graph &G) {\n         \
@@ -213,13 +214,13 @@ data:
     \            component_ids[start] = component_id;\n\n            stack<int> st;\n\
     \            st.emplace(start);\n            components[component_id].emplace_back(start);\n\
     \n            while(!st.empty()) {\n                int x = st.top(); st.pop();\n\
-    \                for (auto [_, y]: G.incidence(x)) {\n                    unless\
-    \ (component_ids[y] == -1) { continue; }\n\n                    component_ids[y]\
-    \ = component_id;\n                    components[component_id].emplace_back(y);\n\
-    \                    st.emplace(y);\n                }\n            }\n      \
-    \  }\n    };\n\n    bool is_Connected(const Graph &G) {\n        auto connected_components\
-    \ = Connected_Components(G);\n        return connected_components.components.size()\
-    \ == 1;\n    }\n}\n"
+    \                for (auto edge: G.incidence(x)) {\n                    int y\
+    \ = edge->target;\n                    unless (component_ids[y] == -1) { continue;\
+    \ }\n\n                    component_ids[y] = component_id;\n                \
+    \    components[component_id].emplace_back(y);\n                    st.emplace(y);\n\
+    \                }\n            }\n        }\n    };\n\n    bool is_Connected(const\
+    \ Graph &G) {\n        auto connected_components = Connected_Components(G);\n\
+    \        return connected_components.components.size() == 1;\n    }\n}\n"
   dependsOn:
   - Graph/Graph/Graph.hpp
   - template/template.hpp
@@ -231,8 +232,8 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Connected_Components.hpp
   requiredBy: []
-  timestamp: '2025-12-06 16:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-12-06 17:20:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/alds1/11D.test.cpp
 documentation_of: Graph/Graph/Connected_Components.hpp

@@ -22,26 +22,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Two_Edge_Connected_Components.hpp
-    title: Graph/Graph/Two_Edge_Connected_Components.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3A.test.cpp
-    title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3B.test.cpp
-    title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+    path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+    title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Graph/Graph/Lowlink.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+  bundledCode: "#line 2 \"Graph/Graph/Cliques.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -193,51 +184,100 @@ data:
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
     \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\
-    \n\nnamespace graph {\n    class Lowlink {\n        private:\n        vector<bool>\
-    \ used;\n\n        public:\n        vector<bool> bridge, articulation;\n     \
-    \   vector<int> ord, low;\n\n        Lowlink(const Graph &G) {\n            int\
-    \ N = G.order(), M = G.size();\n            used.assign(N, false);\n         \
-    \   ord.assign(N, -1);\n            low.assign(N, -1);\n\n            bridge.assign(M\
-    \ + G.edge_id_offset, false);\n            articulation.assign(N, false);\n\n\
-    \            int k = 0;\n            for (int i = 0; i < N; i++) {\n         \
-    \       unless(used[i]) { k = dfs(G, i, k, -1); }\n            }\n        }\n\n\
-    \        private:\n        int dfs(const Graph &G, int v, int k, int parent) {\n\
-    \            used[v] = true;\n            ord[v] = k++;\n            low[v] =\
-    \ ord[v];\n\n            bool is_articulation = false;\n            int children_number\
-    \ = 0;\n\n            for (auto edge: G.incidence(v)) {\n                int target\
-    \ = edge->target;\n                if (used[target]) {\n                    unless\
-    \ (target == parent) {\n                        low[v] = min(low[v], ord[target]);\n\
-    \                    }\n                    continue;\n                }\n\n \
-    \               children_number++;\n                k = dfs(G, target, k, v);\n\
-    \                low[v] = min(low[v], low[target]);\n\n                if (parent\
-    \ != -1 && ord[v] <= low[target]) { is_articulation = true; }\n              \
-    \  if (ord[v] < low[target]) { bridge[edge->id] = true; }\n            }\n\n \
-    \           if (parent == -1 && children_number >= 2) { is_articulation = true;\
-    \ }\n            if (is_articulation) { articulation[v] = true; }\n\n        \
-    \    return k;\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    class Lowlink\
-    \ {\n        private:\n        vector<bool> used;\n\n        public:\n       \
-    \ vector<bool> bridge, articulation;\n        vector<int> ord, low;\n\n      \
-    \  Lowlink(const Graph &G) {\n            int N = G.order(), M = G.size();\n \
-    \           used.assign(N, false);\n            ord.assign(N, -1);\n         \
-    \   low.assign(N, -1);\n\n            bridge.assign(M + G.edge_id_offset, false);\n\
-    \            articulation.assign(N, false);\n\n            int k = 0;\n      \
-    \      for (int i = 0; i < N; i++) {\n                unless(used[i]) { k = dfs(G,\
-    \ i, k, -1); }\n            }\n        }\n\n        private:\n        int dfs(const\
-    \ Graph &G, int v, int k, int parent) {\n            used[v] = true;\n       \
-    \     ord[v] = k++;\n            low[v] = ord[v];\n\n            bool is_articulation\
-    \ = false;\n            int children_number = 0;\n\n            for (auto edge:\
-    \ G.incidence(v)) {\n                int target = edge->target;\n            \
-    \    if (used[target]) {\n                    unless (target == parent) {\n  \
-    \                      low[v] = min(low[v], ord[target]);\n                  \
-    \  }\n                    continue;\n                }\n\n                children_number++;\n\
-    \                k = dfs(G, target, k, v);\n                low[v] = min(low[v],\
-    \ low[target]);\n\n                if (parent != -1 && ord[v] <= low[target])\
-    \ { is_articulation = true; }\n                if (ord[v] < low[target]) { bridge[edge->id]\
-    \ = true; }\n            }\n\n            if (parent == -1 && children_number\
-    \ >= 2) { is_articulation = true; }\n            if (is_articulation) { articulation[v]\
-    \ = true; }\n\n            return k;\n        }\n    };\n}\n"
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Cliques.hpp\"\
+    \n\nnamespace graph {\n    template<typename X>\n    X Cliques(\n            const\
+    \ Graph &G,\n            const function<X(const vector<int>)> &calc,\n       \
+    \     const function<X(X, X)> &merge,\n            const X unit,\n           \
+    \ bool empty = false) {\n\n        int N = G.order(), M = G.size();\n        int\
+    \ M_sqrt = ceil_sqrt(M);\n\n        vector<int> deg(N, 0);\n        for (int v\
+    \ = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n        vector<bool> alive(N,\
+    \ true);\n        vector<vector<bool>> E(N, vector<bool>(N, false));\n       \
+    \ for (int u = 0; u < N; u++) {\n            for (auto edge: G.incidence(u)) {\n\
+    \                int v = edge->target;\n                E[u][v] = true;\n    \
+    \            E[v][u] = true;\n            }\n        }\n\n        auto generate_bits_table\
+    \ = [&](const vector<int> &A) -> vector<ll> {\n            int K = A.size();\n\
+    \            vector<ll> bits(K, 0);\n\n            for (int i = 0; i < K; i++)\
+    \ {\n                for (int j = 0; j < i; j++) {\n                    unless(E[A[i]][A[j]])\
+    \ {\n                        bits[i] |= 1 << j;\n                        bits[j]\
+    \ |= 1 << i;\n                    }\n                }\n            }\n\n    \
+    \        return bits;\n        };\n\n        auto is_clique = [&](const vector<int>\
+    \ &A, const vector<ll> &bits, int S) -> bool {\n            for (int i = 0; i\
+    \ < A.size(); i++) {\n                if (get_bit(S, i) && (S & bits[i])) { return\
+    \ false; }\n            }\n\n            return true;\n        };\n\n        auto\
+    \ subcalc = [&](const vector<int> &A, const int leader = -1) -> X {\n        \
+    \    X res = unit;\n            bool empty_accept = (leader != -1) || empty;\n\
+    \n            int K = A.size();\n            auto bits = generate_bits_table(A);\n\
+    \n            for (int S = 0; S < (1 << K); S++) {\n                unless(is_clique(A,\
+    \ bits, S)) { continue; }\n\n                vector<int> C;\n                if\
+    \ (leader != -1) { C.emplace_back(leader); }\n\n                for (int i = 0;\
+    \ i < K; i++) {\n                    if (get_bit(S, i)) {\n                  \
+    \      C.emplace_back(A[i]);\n                    }\n                }\n\n   \
+    \             if(S > 0 || empty_accept) {\n                    res = merge(res,\
+    \ calc(C));\n                }\n            }\n\n            return res;\n   \
+    \     };\n\n        X res(unit);\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\
+    \u6E80\u306E\u9802\u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\
+    \u7B97\u3059\u308B\n        loop {\n            vector<int> A;\n\n           \
+    \ int leader = -1;\n            for (int u = 0; u < N; u++) {\n              \
+    \  unless (alive[u] && deg[u] < M_sqrt) { continue; }\n\n                for (int\
+    \ v = 0; v < N; v++) {\n                    if (u != v && alive[v] && E[u][v])\
+    \ {\n                        A.emplace_back(v);\n                    }\n     \
+    \           }\n\n                leader = u;\n                break;\n       \
+    \     }\n\n            if (leader == -1) { break; }\n\n            int K = A.size();\n\
+    \            res = merge(res, subcalc(A, leader));\n\n            alive[leader]\
+    \ = false;\n            deg[leader] = 0;\n\n            for (int v = 0; v < N;\
+    \ v++) {\n                if (leader != v && alive[v] && E[leader][v]) {\n   \
+    \                 deg[v]--;\n                }\n            }\n        }\n\n \
+    \       // \u6B8B\u3063\u305F\u9802\u70B9 M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\
+    \u308B \u2192 \u5168\u63A2\u7D22\n        vector<int> A;\n        for (int u =\
+    \ 0; u < N; u++) {\n            if(alive[u]) { A.emplace_back(u); }\n        }\n\
+    \n        res = merge(res, subcalc(A, -1));\n\n        return res;\n    };\n}\n"
+  code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    template<typename\
+    \ X>\n    X Cliques(\n            const Graph &G,\n            const function<X(const\
+    \ vector<int>)> &calc,\n            const function<X(X, X)> &merge,\n        \
+    \    const X unit,\n            bool empty = false) {\n\n        int N = G.order(),\
+    \ M = G.size();\n        int M_sqrt = ceil_sqrt(M);\n\n        vector<int> deg(N,\
+    \ 0);\n        for (int v = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n     \
+    \   vector<bool> alive(N, true);\n        vector<vector<bool>> E(N, vector<bool>(N,\
+    \ false));\n        for (int u = 0; u < N; u++) {\n            for (auto edge:\
+    \ G.incidence(u)) {\n                int v = edge->target;\n                E[u][v]\
+    \ = true;\n                E[v][u] = true;\n            }\n        }\n\n     \
+    \   auto generate_bits_table = [&](const vector<int> &A) -> vector<ll> {\n   \
+    \         int K = A.size();\n            vector<ll> bits(K, 0);\n\n          \
+    \  for (int i = 0; i < K; i++) {\n                for (int j = 0; j < i; j++)\
+    \ {\n                    unless(E[A[i]][A[j]]) {\n                        bits[i]\
+    \ |= 1 << j;\n                        bits[j] |= 1 << i;\n                   \
+    \ }\n                }\n            }\n\n            return bits;\n        };\n\
+    \n        auto is_clique = [&](const vector<int> &A, const vector<ll> &bits, int\
+    \ S) -> bool {\n            for (int i = 0; i < A.size(); i++) {\n           \
+    \     if (get_bit(S, i) && (S & bits[i])) { return false; }\n            }\n\n\
+    \            return true;\n        };\n\n        auto subcalc = [&](const vector<int>\
+    \ &A, const int leader = -1) -> X {\n            X res = unit;\n            bool\
+    \ empty_accept = (leader != -1) || empty;\n\n            int K = A.size();\n \
+    \           auto bits = generate_bits_table(A);\n\n            for (int S = 0;\
+    \ S < (1 << K); S++) {\n                unless(is_clique(A, bits, S)) { continue;\
+    \ }\n\n                vector<int> C;\n                if (leader != -1) { C.emplace_back(leader);\
+    \ }\n\n                for (int i = 0; i < K; i++) {\n                    if (get_bit(S,\
+    \ i)) {\n                        C.emplace_back(A[i]);\n                    }\n\
+    \                }\n\n                if(S > 0 || empty_accept) {\n          \
+    \          res = merge(res, calc(C));\n                }\n            }\n\n  \
+    \          return res;\n        };\n\n        X res(unit);\n\n        // \u6B21\
+    \u6570\u304C M_sqrt \u672A\u6E80\u306E\u9802\u70B9\u3092\u542B\u3080\u30AF\u30EA\
+    \u30FC\u30AF\u3092\u8A08\u7B97\u3059\u308B\n        loop {\n            vector<int>\
+    \ A;\n\n            int leader = -1;\n            for (int u = 0; u < N; u++)\
+    \ {\n                unless (alive[u] && deg[u] < M_sqrt) { continue; }\n\n  \
+    \              for (int v = 0; v < N; v++) {\n                    if (u != v &&\
+    \ alive[v] && E[u][v]) {\n                        A.emplace_back(v);\n       \
+    \             }\n                }\n\n                leader = u;\n          \
+    \      break;\n            }\n\n            if (leader == -1) { break; }\n\n \
+    \           int K = A.size();\n            res = merge(res, subcalc(A, leader));\n\
+    \n            alive[leader] = false;\n            deg[leader] = 0;\n\n       \
+    \     for (int v = 0; v < N; v++) {\n                if (leader != v && alive[v]\
+    \ && E[leader][v]) {\n                    deg[v]--;\n                }\n     \
+    \       }\n        }\n\n        // \u6B8B\u3063\u305F\u9802\u70B9 M_sqrt \u500B\
+    \u4EE5\u4E0B\u3067\u3042\u308B \u2192 \u5168\u63A2\u7D22\n        vector<int>\
+    \ A;\n        for (int u = 0; u < N; u++) {\n            if(alive[u]) { A.emplace_back(u);\
+    \ }\n        }\n\n        res = merge(res, subcalc(A, -1));\n\n        return\
+    \ res;\n    };\n}"
   dependsOn:
   - Graph/Graph/Graph.hpp
   - template/template.hpp
@@ -247,19 +287,81 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   isVerificationFile: false
-  path: Graph/Graph/Lowlink.hpp
-  requiredBy:
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2025-12-06 17:15:49+09:00'
+  path: Graph/Graph/Cliques.hpp
+  requiredBy: []
+  timestamp: '2025-12-06 16:35:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-documentation_of: Graph/Graph/Lowlink.hpp
+  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+documentation_of: Graph/Graph/Cliques.hpp
 layout: document
-redirect_from:
-- /library/Graph/Graph/Lowlink.hpp
-- /library/Graph/Graph/Lowlink.hpp.html
-title: Graph/Graph/Lowlink.hpp
+title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
 ---
+
+## Outline
+
+無向グラフ $G$ の Clique に関する計算を行う.
+
+$X$ を $\mathrm{unit}$ を単位元とするモノイドとする.
+
+無向グラフ $G = (V, E)$ における頂点の部分集合に定義される関数 $\mathrm{calc}: \mathcal{P}(V) \to X$ が与えられている.
+
+このとき, $G$ における Clique の集合を $\mathcal{C}$ としたとき,
+
+$$ \prod_{C \in \mathcal{C}} \mathrm{calc}(C) $$
+
+を求める.
+
+## Definition
+
+無向グラフ $G = (V, E)$ における頂点の部分集合 $C \subset V$ が Clique であるとは, 任意の $u, v \in V$ に対して, $uv \in E$ となることである. つまり, 誘導グラフ $G[C]$ が完全グラフになることと同値である.
+
+## Theory
+
+単純グラフ $G$ の位数とサイズを $N, M$ とする. このとき, 以下が成り立つ.
+
+* (a) Clique の大きさ (頂点数) は $\sqrt{2M}$ 以下である.
+* (b) 次数が $\sqrt{2M}$ 以上の頂点は $\sqrt{2M}$ 個以下である.
+
+以下の手順をできるだけ繰り返す.
+
+* $G$ から次数が $\sqrt{2M}$ 以下の頂点 $u$ を $1$ 個見つける.
+  * もし, 見つからなかったら繰り返しを終了する.
+* $u$ と隣接している頂点を $v_1, \dots, v_k$ とする.
+* $\{v_1, \dots, v_k\}$ の部分集合 $A$ 全てに対して, 以下を行う.
+  * $\{v_1, \dots, v_k\}$ の部分集合 $A$ に対して,
+    * $A$ は Clique になる.
+    * $A \cup \{ v \}$ は Clique になる.
+  * $\{v_1, \dots, v_k\}$ の部分集合で Clique になる $A$ に対して, $\mathrm{calc}(A \cup \{v\})$ を計算して, 結果に加算する.
+* これにより, $v$ を含む Clique の列挙が完了した. そのため, $G$ から頂点 $v$ と $v$ に接続する辺を除く.
+
+この繰り返しが終了した時点で, 残っている頂点の数は $\sqrt{2M}$ 個以下である. そのため, 残りの頂点達に対して, 全列挙で可能性を試すことよって, Clique の列挙を行うことができる.
+
+計算量はそれぞれの全列挙パートに対して, 対象となる頂点数が $\sqrt{2M}$ 個以下
+である. この全列挙パートが高々 $(N+1)$ 回起こる.
+
+そのため, 合計で $O \left(2^{\sqrt{2M}} N \right)$ 時間になる.
+
+
+## Contents
+
+
+```cpp
+template<typename X>
+X Cliques(const Graph &G, const function<X(const vector<int>)> &calc, const function<X(X, X)> &merge, const X unit, bool empty = false)
+```
+
+* 無向グラフ $G = (V, E)$ における頂点の部分集合に定義される関数 $\mathrm{calc}: \mathcal{P}(V) \to X$ がある. Clique の集合を $\mathcal{C}$ としたとき, $\displaystyle \prod_{C \in \mathcal{C}} \mathrm{calc}(C) $ を求める.
+* **引数**
+  * $G$ : 無向グラフ
+  * $\mathrm{calc}: \mathrm{calc}: \mathcal{P}(V) \to X$ : 頂点の部分集合に定義される関数 .
+  * $\mathrm{merge} : X \times X \to X$ : 結果を統合する方法.
+  * $\mathrm{unit}$ : $X$ の単位元.
+  * $\mathrm{empty}$ : `true` にすると, Clique の定義に $C = \emptyset$ を含む.
+* **計算量** : $G$ の位数とサイズを $N, M$ とすると, $O \left(2^{\sqrt{2M}} N \right)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2025/12/06|Clieques メソッド実装|
