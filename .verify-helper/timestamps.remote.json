@@ -82,6 +82,7 @@
 "verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/sample/a_plus_b.test.cpp": "2025-08-16 18:30:36 +0900",
 "verify/yosupo_library_checker/string/Z_Algorithm.test.cpp": "2025-11-22 15:43:56 +0900",
+"verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp": "2025-12-07 00:24:02 +0900",
 "verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2025-11-22 15:43:56 +0900",
 "verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp": "2025-11-22 15:43:56 +0900",
