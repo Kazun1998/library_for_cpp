@@ -148,16 +148,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Graph.hpp
-    title: Graph/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+    title: "\u7121\u5411 Graph"
+  - icon: ':x:'
     path: Graph/Graph/Lowlink.hpp
     title: Graph/Graph/Lowlink.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - icon: ':heavy_check_mark:'
@@ -313,11 +313,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
     title: verify/aizu_online_judge/alds1/11D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -368,10 +368,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dsl/2G.test.cpp
     title: verify/aizu_online_judge/dsl/2G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -461,7 +461,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -575,9 +575,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E\
@@ -720,7 +720,7 @@ data:
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-09-07 16:29:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp

@@ -1,51 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Lowlink.hpp
     title: Graph/Graph/Lowlink.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
     title: verify/aizu_online_judge/alds1/11D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    document_title: "\u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\
+      \u6570) \u3092\u6C42\u3081\u308B."
     links: []
   bundledCode: "#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
@@ -171,51 +173,65 @@ data:
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
     \ bit_length(x)); }\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n\
-    \    struct Edge {\n        int id, u, v;\n\n        Edge() = default;\n     \
-    \   Edge(int id, int u, int v): id(id), u(u), v(v) {}\n    };\n\n    class Graph\
-    \ {\n        private:\n        vector<vector<pair<int, int>>> incidences; // {\
-    \ edge_id, neighbor_vertex }\n        vector<Edge> edges;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset) {\n            incidences.assign(n, {});\n\
-    \            edges.resize(edge_id_offset, Edge());\n        }\n        \n    \
-    \    inline int order() const { return int(incidences.size()); }\n\n        inline\
-    \ int size() const { return int(edges.size()) - edge_id_offset; }\n\n        //\
-    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u8FBA\u3092\u8FFD\u52A0\
-    \u3059\u308B.\n        int add_edge(int u, int v) {\n            int id = int(edges.size());\n\
-    \n            incidences[u].emplace_back(id, v);\n            incidences[v].emplace_back(id,\
-    \ u);\n            edges.emplace_back(Edge(id, u, v));\n\n            return id;\n\
-    \        }\n\n        // \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA ID\
-    \ \u3068\u96A3\u63A5\u9802\u70B9 v \u306E\u30DA\u30A2 { ID, v } \u306E\u30EA\u30B9\
-    \u30C8\u3092\u53D6\u5F97\n        inline const vector<pair<int, int>>& incidence\
-    \ (int u) const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\
-    \u3042\u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\
-    \u308B.\n        inline const Edge& get_edge(int id) const { return edges[id];\
-    \ }\n\n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\
-    \u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
-    \ id) { return edges[id]; }\n    };\n}\n"
+    \    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\n  \
+    \      Edge() = default;\n        Edge(int id, int source, int target): id(id),\
+    \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
+    \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
+    \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
+    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
+    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
+    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
+    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
+    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
+    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
+    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
+    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
+    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
+    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
+    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
+    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
+    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
+    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
+    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
+    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
+    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
+    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n"
   code: "#pragma once\n\n#include\"../../template/template.hpp\"\n\nnamespace graph\
-    \ {\n    struct Edge {\n        int id, u, v;\n\n        Edge() = default;\n \
-    \       Edge(int id, int u, int v): id(id), u(u), v(v) {}\n    };\n\n    class\
-    \ Graph {\n        private:\n        vector<vector<pair<int, int>>> incidences;\
-    \ // { edge_id, neighbor_vertex }\n        vector<Edge> edges;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset) {\n            incidences.assign(n, {});\n\
-    \            edges.resize(edge_id_offset, Edge());\n        }\n        \n    \
-    \    inline int order() const { return int(incidences.size()); }\n\n        inline\
-    \ int size() const { return int(edges.size()) - edge_id_offset; }\n\n        //\
-    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u8FBA\u3092\u8FFD\u52A0\
-    \u3059\u308B.\n        int add_edge(int u, int v) {\n            int id = int(edges.size());\n\
-    \n            incidences[u].emplace_back(id, v);\n            incidences[v].emplace_back(id,\
-    \ u);\n            edges.emplace_back(Edge(id, u, v));\n\n            return id;\n\
-    \        }\n\n        // \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA ID\
-    \ \u3068\u96A3\u63A5\u9802\u70B9 v \u306E\u30DA\u30A2 { ID, v } \u306E\u30EA\u30B9\
-    \u30C8\u3092\u53D6\u5F97\n        inline const vector<pair<int, int>>& incidence\
-    \ (int u) const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\
-    \u3042\u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\
-    \u308B.\n        inline const Edge& get_edge(int id) const { return edges[id];\
-    \ }\n\n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\
-    \u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
-    \ id) { return edges[id]; }\n    };\n}\n"
+    \ {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\n\
+    \        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
+    \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
+    \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
+    \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
+    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
+    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
+    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
+    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
+    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
+    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
+    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
+    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
+    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
+    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
+    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
+    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
+    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
+    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
+    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
+    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
+    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
+    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -229,8 +245,8 @@ data:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Connected_Components.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2025-11-22 15:43:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-12-06 16:30:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/aizu_online_judge/alds1/11D.test.cpp
@@ -238,8 +254,15 @@ data:
   - verify/aizu_online_judge/grl/3A.test.cpp
 documentation_of: Graph/Graph/Graph.hpp
 layout: document
-redirect_from:
-- /library/Graph/Graph/Graph.hpp
-- /library/Graph/Graph/Graph.hpp.html
-title: Graph/Graph/Graph.hpp
+title: "\u7121\u5411 Graph"
 ---
+
+## Outline
+
+無向 Graph $G$ を保存するクラスを提供する.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2025/12/06|無向 Graph のドキュメントの作成|
