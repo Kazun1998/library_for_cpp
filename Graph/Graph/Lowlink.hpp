@@ -35,7 +35,8 @@ namespace graph {
             bool is_articulation = false;
             int children_number = 0;
 
-            for (auto [edge_id, target]: G.incidence(v)) {
+            for (auto edge: G.incidence(v)) {
+                int target = edge->target;
                 if (used[target]) {
                     unless (target == parent) {
                         low[v] = min(low[v], ord[target]);
@@ -48,7 +49,7 @@ namespace graph {
                 low[v] = min(low[v], low[target]);
 
                 if (parent != -1 && ord[v] <= low[target]) { is_articulation = true; }
-                if (ord[v] < low[target]) { bridge[edge_id] = true; }
+                if (ord[v] < low[target]) { bridge[edge->id] = true; }
             }
 
             if (parent == -1 && children_number >= 2) { is_articulation = true; }
