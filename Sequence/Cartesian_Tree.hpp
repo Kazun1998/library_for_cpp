@@ -5,11 +5,12 @@
 template<typename O>
 class Cartesian_Tree {
     public:
+    bool reversal;
     int root;
     vector<int> left, right, parent;
 
     Cartesian_Tree() = default;
-    Cartesian_Tree(const vector<O> &data): left(data.size(), -1), right(data.size(), -1), parent(data.size(), -1), root(-1) {
+    Cartesian_Tree(const vector<O> &data, bool reversal = false): left(data.size(), -1), right(data.size(), -1), parent(data.size(), -1), root(-1), reversal(reversal) {
         build_up(data);
     }
 
@@ -38,6 +39,11 @@ class Cartesian_Tree {
         root = i;
     }
 
+    bool should_pop(const vector<O> &data, const int x, const int y) {
+        if (reversal) { return data[x] <= data[y]; }
+        else { return data[x] >= data[y]; }
+    }
+
     void build_up(const vector<O> &data) {
         vector<int> stack;
 
@@ -49,7 +55,7 @@ class Cartesian_Tree {
             }
 
             int last_pop = -1;
-            while (!stack.empty() && data[stack.back()] >= data[i]) {
+            while (!stack.empty() && should_pop(data, stack.back(), i)) {
                 last_pop = stack.back();
                 stack.pop_back();
             }
