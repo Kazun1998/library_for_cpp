@@ -371,6 +371,10 @@ data:
       title: Segment Tree
   - name: Sequence
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Sequence/Cartesian_Tree.hpp
+      title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
+        \u308B"
     - icon: ':warning:'
       path: Sequence/Hamming_Distance.hpp
       title: "Hamming \u8DDD\u96E2"
@@ -714,6 +718,9 @@ data:
       title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - name: verify/yosupo_library_checker/tree
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
+      title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
       title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
