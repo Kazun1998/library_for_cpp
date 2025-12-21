@@ -15,10 +15,14 @@ class Trie {
         constexpr bool contains(const T &x) const { return next.find(x) != next.end(); }
     };
 
-    Node *root;
-
     public:
-    Trie() { root = new Node(); }
+    Node *root;
+    vector<Node*> nodes;
+
+    Trie() {
+        root = new Node();
+        nodes.emplace_back(root);
+    }
 
     // insert
 
@@ -30,6 +34,7 @@ class Trie {
         for (T x: vec) {
             if (!node->contains(x)) {
                 node->next[x] = new Node(x);
+                nodes.emplace_back(node->next[x]);
             }
 
             node = node->next[x];
