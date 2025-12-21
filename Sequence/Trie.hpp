@@ -8,9 +8,10 @@ class Trie {
         T item;
         unordered_map<T, Node*> next;
         size_t terminal_count, prefix_count;
+        bool is_root;
 
         Node(): Node(T()) {}
-        Node(const T &item): item(item), terminal_count(0), prefix_count(0) {}
+        Node(const T &item, const bool is_root = false): item(item), terminal_count(0), prefix_count(0), is_root(is_root) {}
 
         constexpr bool contains(const T &x) const { return next.find(x) != next.end(); }
     };
@@ -20,7 +21,7 @@ class Trie {
     vector<Node*> nodes;
 
     Trie() {
-        root = new Node();
+        root = new Node(T(), true);
         nodes.emplace_back(root);
     }
 
