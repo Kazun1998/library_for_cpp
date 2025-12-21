@@ -111,4 +111,32 @@ class Trie {
 
     // size
     constexpr const size_t size() const { return root->prefix_count; }
+
+    // for string
+    constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(), str.end()), node); }
+    constexpr void insert(const string &str) { insert(str, root); }
+
+    constexpr size_t count(const string &str, Node *node) { return count(vector<char>(str.begin(), str.end()), node); }
+    constexpr size_t count(const string &str) { return count(str, root); }
+
+    constexpr size_t count_prefixing(const string &str, Node *node) { return count_prefixing(vector<char>(str.begin(), str.end()), node); }
+    constexpr size_t count_prefixing(const string &str) { return count_prefixing(str, root); }
+
+    constexpr size_t count_prefixed(const string &str, Node *node) { return count_prefixed(vector<char>(str.begin(), str.end()), node); }
+    constexpr size_t count_prefixed(const string &str) { return count_prefixed(str, root); }
+
+    constexpr bool contains(const string &str, Node *node) { return contains(vector<char>(str.begin(), str.end()), node); }
+    constexpr bool contains(const string &str) { return contains(str, root); }
+
+    constexpr bool search(const string &str, Node *node) { return search(vector<char>(str.begin(), str.end()), node); }
+    constexpr bool search(const string &str) { return search(str, root); }
+
+    constexpr bool search_prefixing(const string &str, Node *node) { return search_prefixing(vector<char>(str.begin(), str.end()), node); }
+    constexpr bool search_prefixing(const string &str) { return search_prefixing(str, root); }
+
+    constexpr bool search_prefixed(const string &str, Node *node) { return search_prefixed(vector<char>(str.begin(), str.end()), node); }
+    constexpr bool search_prefixed(const string &str) { return search_prefixed(str, root); }
+
+    constexpr Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(), str.end())); }
+    constexpr Node* get(const string &str) { return get(str, root); }
 };
