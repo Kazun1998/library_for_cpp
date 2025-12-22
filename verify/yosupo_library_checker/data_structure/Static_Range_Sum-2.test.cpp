@@ -5,7 +5,8 @@
 
 int main() {
     int N, Q; cin >> N >> Q;
-    vector<ll> a(N); cin >> a;
+    vector<ll> a(N);
+    for (int i = 0; i < N; i++) scanf("%lld", &a[i]);
 
     interval_sum::Interval_Sum<ll, add<ll>, neg<ll>, 0LL> I(a);
 
