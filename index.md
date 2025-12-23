@@ -271,6 +271,9 @@ data:
       path: Math/Floor_Linear_Sum.hpp
       title: Floor Linear Sum
     - icon: ':heavy_check_mark:'
+      path: Math/Interval_Product.hpp
+      title: "\u533A\u9593\u7A4D"
+    - icon: ':heavy_check_mark:'
       path: Math/Montmort_Number.hpp
       title: "Montmort \u6570"
     - icon: ':heavy_check_mark:'
@@ -551,6 +554,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp

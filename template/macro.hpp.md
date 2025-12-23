@@ -200,6 +200,9 @@ data:
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
   - icon: ':heavy_check_mark:'
+    path: Math/Interval_Product.hpp
+    title: "\u533A\u9593\u7A4D"
+  - icon: ':heavy_check_mark:'
     path: Math/Montmort_Number.hpp
     title: "Montmort \u6570"
   - icon: ':heavy_check_mark:'
@@ -417,6 +420,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
@@ -676,6 +682,7 @@ data:
   - Math/Stern_Brocot_Tree.hpp
   - Math/Montmort_Number.hpp
   - Math/Two_SAT.hpp
+  - Math/Interval_Product.hpp
   - Geometry/reflection/Reflection_Point_Line.hpp
   - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
@@ -738,6 +745,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
