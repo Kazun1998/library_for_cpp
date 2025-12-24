@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/concepts.hpp
+    title: template/concepts.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -153,48 +156,50 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Math/Interval_Product.hpp\"\n\nnamespace interval_product\
-    \ {\n    template <typename F, typename G>\n    concept Binary_Operator = requires(F\
-    \ f, G g) {\n        { f(g, g) } -> std::convertible_to<G>;\n    };\n\n    template\
-    \ <typename F, typename G>\n    concept Unary_Operator = requires(F f, G g) {\n\
-    \        { f(g) } -> std::convertible_to<G>;\n    };\n\n    template<class G,\
-    \ auto op, auto inv, auto identity>\n    requires Binary_Operator<decltype(op),\
-    \ G> &&  Unary_Operator<decltype(inv), G> && convertible_to<decltype(identity),\
-    \ G>\n    class Interval_Product {\n        vector<G> prefix_prod;\n\n       \
-    \ public:\n        Interval_Product(const vector<G> &data) {\n            prefix_prod.reserve(data.size()\
-    \ + 1);\n\n            // \u7D2F\u7A4D\u548C\u306F exclusive \u3067\u3068\u308B\
-    . \u3064\u307E\u308A, prefix_prod[i] = data[0] * data[1] * ... * data[i - 1] \u306B\
-    \u306A\u308B.\n            prefix_prod.push_back(identity);\n            for (const\
-    \ G &x : data) {\n                prefix_prod.push_back(op(prefix_prod.back(),\
-    \ x));\n            }\n        }\n\n        /// @brief \u9589\u533A\u9593 [0,\
-    \ r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D\n        /// @param r \u533A\u9593\u306E\
-    \u53F3\u7AEF\n        /// @return \n        inline G query(const int r) const\
-    \ { return prefix_prod[r + 1]; }\n\n        /// @brief \u9589\u533A\u9593 [l,\
-    \ r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D\n        /// @param l \u533A\u9593\u306E\
-    \u5DE6\u7AEF\n        /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n        inline\
-    \ G query(int l, int r) const {\n            if (l == 0) return query(r);\n  \
-    \          return op(inv(query(l - 1)), query(r));\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace interval_product\
-    \ {\n    template <typename F, typename G>\n    concept Binary_Operator = requires(F\
-    \ f, G g) {\n        { f(g, g) } -> std::convertible_to<G>;\n    };\n\n    template\
-    \ <typename F, typename G>\n    concept Unary_Operator = requires(F f, G g) {\n\
-    \        { f(g) } -> std::convertible_to<G>;\n    };\n\n    template<class G,\
-    \ auto op, auto inv, auto identity>\n    requires Binary_Operator<decltype(op),\
-    \ G> &&  Unary_Operator<decltype(inv), G> && convertible_to<decltype(identity),\
-    \ G>\n    class Interval_Product {\n        vector<G> prefix_prod;\n\n       \
-    \ public:\n        Interval_Product(const vector<G> &data) {\n            prefix_prod.reserve(data.size()\
-    \ + 1);\n\n            // \u7D2F\u7A4D\u548C\u306F exclusive \u3067\u3068\u308B\
-    . \u3064\u307E\u308A, prefix_prod[i] = data[0] * data[1] * ... * data[i - 1] \u306B\
-    \u306A\u308B.\n            prefix_prod.push_back(identity);\n            for (const\
-    \ G &x : data) {\n                prefix_prod.push_back(op(prefix_prod.back(),\
-    \ x));\n            }\n        }\n\n        /// @brief \u9589\u533A\u9593 [0,\
-    \ r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D\n        /// @param r \u533A\u9593\u306E\
-    \u53F3\u7AEF\n        /// @return \n        inline G query(const int r) const\
-    \ { return prefix_prod[r + 1]; }\n\n        /// @brief \u9589\u533A\u9593 [l,\
-    \ r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D\n        /// @param l \u533A\u9593\u306E\
-    \u5DE6\u7AEF\n        /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n        inline\
-    \ G query(int l, int r) const {\n            if (l == 0) return query(r);\n  \
-    \          return op(inv(query(l - 1)), query(r));\n        }\n    };\n}\n"
+    \ bit_length(x)); }\n#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\
+    \u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\n\
+    concept Unary_Operator_Concept = requires(Op op, const X &x) {\n    { op(x) }\
+    \ -> std::convertible_to<X>;\n};\n\n// \u4E8C\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\
+    \u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept Binary_Operator_Concept\
+    \ = requires(Op op,const X &x, const X &y) {\n    { op(x, y) } -> std::convertible_to<X>;\n\
+    };\n\n// \u30E2\u30CE\u30A4\u30C9\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u4E8C\u9805\
+    \u6F14\u7B97 + \u5358\u4F4D\u5143\ntemplate <typename M, auto op, auto identity>\n\
+    concept Monoid_Concept = \n    Binary_Operator_Concept<decltype(op), M>\n    &&\
+    \ std::convertible_to<decltype(identity), M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\
+    \u30C8\n// \u30E2\u30CE\u30A4\u30C9 + \u9006\u5143\ntemplate <typename G, auto\
+    \ op, auto inv, auto identity>\nconcept Group_Concept = \n    Monoid_Concept<G,\
+    \ op, identity>\n    && Unary_Operator_Concept<decltype(inv), G>;\n#line 5 \"\
+    Math/Interval_Product.hpp\"\n\ntemplate<class G, auto op, auto inv, auto identity>\n\
+    requires Group_Concept<G, op, inv, identity>\nclass Interval_Product {\n    vector<G>\
+    \ prefix_prod;\n\n    public:\n    explicit Interval_Product(const vector<G> &data)\
+    \ {\n        prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\
+    \u306F exclusive \u3067\u3068\u308B. \u3064\u307E\u308A, prefix_prod[i] = data[0]\
+    \ * data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n        prefix_prod.push_back(identity);\n\
+    \        for (const G &x : data) {\n            prefix_prod.push_back(op(prefix_prod.back(),\
+    \ x));\n        }\n    }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\
+    \u3051\u308B\u7D2F\u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n  \
+    \  /// @return \n    inline G query(const int r) const { return prefix_prod[r\
+    \ + 1]; }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\
+    \u7D2F\u7A4D\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param\
+    \ r \u533A\u9593\u306E\u53F3\u7AEF\n    inline G query(int l, int r) const {\n\
+    \        if (l == 0) return query(r);\n        return op(inv(query(l - 1)), query(r));\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"../template/concepts.hpp\"\
+    \n\ntemplate<class G, auto op, auto inv, auto identity>\nrequires Group_Concept<G,\
+    \ op, inv, identity>\nclass Interval_Product {\n    vector<G> prefix_prod;\n\n\
+    \    public:\n    explicit Interval_Product(const vector<G> &data) {\n       \
+    \ prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\u306F\
+    \ exclusive \u3067\u3068\u308B. \u3064\u307E\u308A, prefix_prod[i] = data[0] *\
+    \ data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n        prefix_prod.push_back(identity);\n\
+    \        for (const G &x : data) {\n            prefix_prod.push_back(op(prefix_prod.back(),\
+    \ x));\n        }\n    }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\
+    \u3051\u308B\u7D2F\u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n  \
+    \  /// @return \n    inline G query(const int r) const { return prefix_prod[r\
+    \ + 1]; }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\
+    \u7D2F\u7A4D\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param\
+    \ r \u533A\u9593\u306E\u53F3\u7AEF\n    inline G query(int l, int r) const {\n\
+    \        if (l == 0) return query(r);\n        return op(inv(query(l - 1)), query(r));\n\
+    \    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -202,10 +207,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/concepts.hpp
   isVerificationFile: false
   path: Math/Interval_Product.hpp
   requiredBy: []
-  timestamp: '2025-12-24 00:41:54+09:00'
+  timestamp: '2025-12-25 00:31:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

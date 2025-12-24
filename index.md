@@ -421,6 +421,9 @@ data:
       path: template/bitop.hpp
       title: template/bitop.hpp
     - icon: ':heavy_check_mark:'
+      path: template/concepts.hpp
+      title: template/concepts.hpp
+    - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
     - icon: ':heavy_check_mark:'
