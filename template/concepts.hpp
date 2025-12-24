@@ -25,3 +25,9 @@ template <typename G, auto op, auto inv, auto identity>
 concept Group_Concept = 
     Monoid_Concept<G, op, identity>
     && Unary_Operator_Concept<decltype(inv), G>;
+
+// ハッシュ可能コンセプト
+template<typename T>
+concept Hashable = requires(T x) {
+    { hash<T>{}(x) } -> convertible_to<size_t>;
+};
