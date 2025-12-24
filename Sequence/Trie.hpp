@@ -1,8 +1,9 @@
 #pragma one
 
 #include"../template/template.hpp"
+#include"../template/concepts.hpp"
 
-template<typename T>
+template<Hashable T>
 class Trie {
     struct Node {
         T item;
