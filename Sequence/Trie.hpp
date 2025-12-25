@@ -15,6 +15,8 @@ class Trie {
         Node(const T &item, const bool is_root = false): item(item), terminal_count(0), prefix_count(0), is_root(is_root) {}
 
         constexpr bool contains(const T &x) const { return next.find(x) != next.end(); }
+
+        inline Node* dig(const T x) { return contains(x) ? next[x] : nullptr; }
     };
 
     public:
