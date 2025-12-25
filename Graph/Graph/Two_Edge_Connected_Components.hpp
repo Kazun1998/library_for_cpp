@@ -38,8 +38,9 @@ namespace graph {
 
             while(!st.empty()) {
                 int x = st.top(); st.pop();
-                for (auto [edge_id, y]: G.incidence(x)) {
-                    if (bridges[edge_id]) { continue; }
+                for (auto edge: G.incidence(x)) {
+                    int y = edge->target;
+                    if (bridges[edge->id]) { continue; }
                     unless (component_ids[y] == -1) { continue; }
 
                     component_ids[y] = component_id;
