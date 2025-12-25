@@ -108,9 +108,8 @@ class Trie {
     constexpr Node* get_root() { return root; }
     Node* get(const vector<T> &vec, Node *node) {
         for (T x: vec) {
-            if (!node->contains(x)) { return nullptr; }
-
-            node = node->next[x];
+            node = node->dig(x);
+            if (node == nullptr) { break; }
         }
 
         return node;
