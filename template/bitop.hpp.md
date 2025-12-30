@@ -214,6 +214,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
+  - icon: ':warning:'
+    path: Math/XOR_Vector_Space.hpp
+    title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - icon: ':heavy_check_mark:'
     path: Max_Flow/Max_Flow.hpp
     title: "\u6700\u5927\u6D41"
@@ -685,6 +688,7 @@ data:
   - Sequence/Cartesian_Tree.hpp
   - Union_Find/Potentilized_Union_Find.hpp
   - Math/Floor_Linear_Sum.hpp
+  - Math/XOR_Vector_Space.hpp
   - Math/Stern_Brocot_Tree.hpp
   - Math/Montmort_Number.hpp
   - Math/Two_SAT.hpp
