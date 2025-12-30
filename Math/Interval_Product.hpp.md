@@ -168,22 +168,24 @@ data:
     \ std::convertible_to<decltype(identity), M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\
     \u30C8\n// \u30E2\u30CE\u30A4\u30C9 + \u9006\u5143\ntemplate <typename G, auto\
     \ op, auto inv, auto identity>\nconcept Group_Concept = \n    Monoid_Concept<G,\
-    \ op, identity>\n    && Unary_Operator_Concept<decltype(inv), G>;\n#line 5 \"\
-    Math/Interval_Product.hpp\"\n\ntemplate<class G, auto op, auto inv, auto identity>\n\
-    requires Group_Concept<G, op, inv, identity>\nclass Interval_Product {\n    vector<G>\
-    \ prefix_prod;\n\n    public:\n    explicit Interval_Product(const vector<G> &data)\
-    \ {\n        prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\
-    \u306F exclusive \u3067\u3068\u308B. \u3064\u307E\u308A, prefix_prod[i] = data[0]\
-    \ * data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n        prefix_prod.push_back(identity);\n\
-    \        for (const G &x : data) {\n            prefix_prod.push_back(op(prefix_prod.back(),\
-    \ x));\n        }\n    }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\
-    \u3051\u308B\u7D2F\u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n  \
-    \  /// @return \n    inline G query(const int r) const { return prefix_prod[r\
-    \ + 1]; }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\
-    \u7D2F\u7A4D\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param\
-    \ r \u533A\u9593\u306E\u53F3\u7AEF\n    inline G query(int l, int r) const {\n\
-    \        if (l == 0) return query(r);\n        return op(inv(query(l - 1)), query(r));\n\
-    \    }\n};\n"
+    \ op, identity>\n    && Unary_Operator_Concept<decltype(inv), G>;\n\n// \u30CF\
+    \u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate<typename\
+    \ T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x) } -> convertible_to<size_t>;\n\
+    };\n#line 5 \"Math/Interval_Product.hpp\"\n\ntemplate<class G, auto op, auto inv,\
+    \ auto identity>\nrequires Group_Concept<G, op, inv, identity>\nclass Interval_Product\
+    \ {\n    vector<G> prefix_prod;\n\n    public:\n    explicit Interval_Product(const\
+    \ vector<G> &data) {\n        prefix_prod.reserve(data.size() + 1);\n\n      \
+    \  // \u7D2F\u7A4D\u548C\u306F exclusive \u3067\u3068\u308B. \u3064\u307E\u308A\
+    , prefix_prod[i] = data[0] * data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n\
+    \        prefix_prod.push_back(identity);\n        for (const G &x : data) {\n\
+    \            prefix_prod.push_back(op(prefix_prod.back(), x));\n        }\n  \
+    \  }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\u3051\u308B\u7D2F\
+    \u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n    /// @return \n  \
+    \  inline G query(const int r) const { return prefix_prod[r + 1]; }\n\n    ///\
+    \ @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D\n    ///\
+    \ @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param r \u533A\u9593\u306E\
+    \u53F3\u7AEF\n    inline G query(int l, int r) const {\n        if (l == 0) return\
+    \ query(r);\n        return op(inv(query(l - 1)), query(r));\n    }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"../template/concepts.hpp\"\
     \n\ntemplate<class G, auto op, auto inv, auto identity>\nrequires Group_Concept<G,\
     \ op, inv, identity>\nclass Interval_Product {\n    vector<G> prefix_prod;\n\n\
@@ -211,7 +213,7 @@ data:
   isVerificationFile: false
   path: Math/Interval_Product.hpp
   requiredBy: []
-  timestamp: '2025-12-25 00:31:52+09:00'
+  timestamp: '2025-12-25 00:44:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

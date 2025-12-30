@@ -302,6 +302,9 @@ data:
   - icon: ':warning:'
     path: Sequence/Run_Length_Encoding.hpp
     title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
+  - icon: ':warning:'
+    path: Sequence/Trie.hpp
+    title: "Trie \u6728"
   - icon: ':heavy_check_mark:'
     path: Sequence/Z_Algorithm.hpp
     title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
@@ -663,6 +666,7 @@ data:
   - Max_Flow/Max_Flow.hpp
   - Sequence/Z_Algorithm.hpp
   - Sequence/Run_Length_Encoding.hpp
+  - Sequence/Trie.hpp
   - Sequence/Hamming_Distance.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
   - Sequence/Cartesian_Tree.hpp
