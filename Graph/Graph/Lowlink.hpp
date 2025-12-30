@@ -35,7 +35,7 @@ namespace graph {
             bool is_articulation = false;
             int children_number = 0;
 
-            for (Edge *edge: G.incidence(v)) {
+            for (auto edge: G.incidence(v)) {
                 int target = edge->target;
                 if (used[target]) {
                     unless (target == parent) {

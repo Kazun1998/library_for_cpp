@@ -25,12 +25,14 @@ namespace graph {
             incidences.assign(n, {});
             edges.resize(edge_id_offset, Edge());
         }
-        
+
+        /// @brief このグラフの位数 (頂点数) を求める.
         inline int order() const { return int(incidences.size()); }
 
+        /// @brief このグラフのサイズ (辺数) を求める.
         inline int size() const { return int(edges.size()) - edge_id_offset; }
 
-        // 頂点 u から頂点 v への辺を追加する.
+        /// @brief 辺 uv を加える.
         int add_edge(int u, int v) {
             int id = int(edges.size());
 
@@ -50,6 +52,7 @@ namespace graph {
             return id;
         }
 
+        /// @brief 頂点 u に接続する辺のアドレス一覧を取得する.
         vector<Edge*> incidence (int u) const { return incidences[u]; }
 
         // 辺 ID が id であり, source が u である辺を取得する.
