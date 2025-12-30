@@ -260,17 +260,16 @@ data:
     \ const R &a) {\n            Gcd_Convolution temp(lhs);\n            temp *= a;\n\
     \            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
     \ &f) const override {\n            size_t n = f.size() - 1;\n            vector<bool>\
-    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n + 1; p++) {\n \
-    \               if (!is_prime[p]) { continue; }\n\n                for (size_t\
-    \ k = n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n   \
-    \                 f[k] += f[k * p];\n                }\n            }\n      \
-    \  }\n\n        void mobius_transform(std::vector<R> &g) const override {\n  \
-    \          size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1,\
-    \ true);\n\n            for (int p = 2; p <= n + 1; p++) {\n                if\
-    \ (!is_prime[p]) { continue; }\n\n                for (size_t k = 1; k <= n /\
-    \ p; k++) {\n                    is_prime[k * p] = false;\n                  \
-    \  g[k] -= g[k * p];\n                }\n            }\n        }\n    };\n}\n\
-    #line 6 \"verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp\"\
+    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n; p++) {\n     \
+    \           if (!is_prime[p]) { continue; }\n\n                for (size_t k =\
+    \ n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n       \
+    \             f[k] += f[k * p];\n                }\n            }\n        }\n\
+    \n        void mobius_transform(std::vector<R> &g) const override {\n        \
+    \    size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1, true);\n\
+    \n            for (int p = 2; p <= n; p++) {\n                if (!is_prime[p])\
+    \ { continue; }\n\n                for (size_t k = 1; k <= n / p; k++) {\n   \
+    \                 is_prime[k * p] = false;\n                    g[k] -= g[k *\
+    \ p];\n                }\n            }\n        }\n    };\n}\n#line 6 \"verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp\"\
     \n\nusing mint = modint<998244353>;\n\nint main() {\n    int N; cin >> N;\n  \
     \  vector<mint> a(N + 1), b(N + 1);\n    for (int i = 1; i <= N; i++) {\n    \
     \    int x; scanf(\"%d\", &x);\n        a[i] = mint(x);\n    }\n\n    for (int\
@@ -301,7 +300,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2025-12-31 00:40:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp

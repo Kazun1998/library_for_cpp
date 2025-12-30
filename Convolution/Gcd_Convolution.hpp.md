@@ -216,16 +216,16 @@ data:
     \ const R &a) {\n            Gcd_Convolution temp(lhs);\n            temp *= a;\n\
     \            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
     \ &f) const override {\n            size_t n = f.size() - 1;\n            vector<bool>\
-    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n + 1; p++) {\n \
-    \               if (!is_prime[p]) { continue; }\n\n                for (size_t\
-    \ k = n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n   \
-    \                 f[k] += f[k * p];\n                }\n            }\n      \
-    \  }\n\n        void mobius_transform(std::vector<R> &g) const override {\n  \
-    \          size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1,\
-    \ true);\n\n            for (int p = 2; p <= n + 1; p++) {\n                if\
-    \ (!is_prime[p]) { continue; }\n\n                for (size_t k = 1; k <= n /\
-    \ p; k++) {\n                    is_prime[k * p] = false;\n                  \
-    \  g[k] -= g[k * p];\n                }\n            }\n        }\n    };\n}\n"
+    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n; p++) {\n     \
+    \           if (!is_prime[p]) { continue; }\n\n                for (size_t k =\
+    \ n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n       \
+    \             f[k] += f[k * p];\n                }\n            }\n        }\n\
+    \n        void mobius_transform(std::vector<R> &g) const override {\n        \
+    \    size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1, true);\n\
+    \n            for (int p = 2; p <= n; p++) {\n                if (!is_prime[p])\
+    \ { continue; }\n\n                for (size_t k = 1; k <= n / p; k++) {\n   \
+    \                 is_prime[k * p] = false;\n                    g[k] -= g[k *\
+    \ p];\n                }\n            }\n        }\n    };\n}\n"
   code: "#include\"Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\n\nnamespace\
     \ convolution {\n    template<typename R>\n    class Gcd_Convolution: public Commutative_Idempotent_Monoid_Convolution_Base<R>\
     \ {\n        using Base = Convolution_Base<R>;\n        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
@@ -246,16 +246,16 @@ data:
     \ const R &a) {\n            Gcd_Convolution temp(lhs);\n            temp *= a;\n\
     \            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
     \ &f) const override {\n            size_t n = f.size() - 1;\n            vector<bool>\
-    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n + 1; p++) {\n \
-    \               if (!is_prime[p]) { continue; }\n\n                for (size_t\
-    \ k = n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n   \
-    \                 f[k] += f[k * p];\n                }\n            }\n      \
-    \  }\n\n        void mobius_transform(std::vector<R> &g) const override {\n  \
-    \          size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1,\
-    \ true);\n\n            for (int p = 2; p <= n + 1; p++) {\n                if\
-    \ (!is_prime[p]) { continue; }\n\n                for (size_t k = 1; k <= n /\
-    \ p; k++) {\n                    is_prime[k * p] = false;\n                  \
-    \  g[k] -= g[k * p];\n                }\n            }\n        }\n    };\n}\n"
+    \ is_prime(n + 1, true);\n\n            for (int p = 2; p <= n; p++) {\n     \
+    \           if (!is_prime[p]) { continue; }\n\n                for (size_t k =\
+    \ n / p; k > 0; k--) {\n                    is_prime[k * p] = false;\n       \
+    \             f[k] += f[k * p];\n                }\n            }\n        }\n\
+    \n        void mobius_transform(std::vector<R> &g) const override {\n        \
+    \    size_t n = g.size() - 1;\n            vector<bool> is_prime(n + 1, true);\n\
+    \n            for (int p = 2; p <= n; p++) {\n                if (!is_prime[p])\
+    \ { continue; }\n\n                for (size_t k = 1; k <= n / p; k++) {\n   \
+    \                 is_prime[k * p] = false;\n                    g[k] -= g[k *\
+    \ p];\n                }\n            }\n        }\n    };\n}\n"
   dependsOn:
   - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
   - Convolution/Convolution_Base.hpp
@@ -268,7 +268,7 @@ data:
   isVerificationFile: false
   path: Convolution/Gcd_Convolution.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2025-12-31 00:40:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
