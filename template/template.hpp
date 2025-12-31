@@ -68,3 +68,6 @@ using namespace std;
 
 // bitop
 #include"bitop.hpp"
+
+// exception
+#include"exception.hpp"
