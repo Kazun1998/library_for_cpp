@@ -7,7 +7,7 @@ namespace modulo {
     /// @param A
     /// @return A = 0 ならば 0, A が平方剰余ならば 1, A が平方非剰余ならば -1.
     int Legendre(const Modulo &A) {
-        if (A.is_zero()) { return 0; }
+        if (A.is_zero()) return 0;
 
         return pow(A, (A.n - 1) / 2).is_member(1) ? 1 : -1;
     }
@@ -34,7 +34,7 @@ namespace modulo {
         Modulo z;
         while (true) {
             z = Modulo(device(), p);
-            if (Legendre(z) == -1) { break; }
+            if (Legendre(z) == -1) break;
         }
 
         int m = s;
