@@ -11,6 +11,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -159,16 +162,21 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\n\n#line\
-    \ 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime\
-    \ {\n  class Pseudo_Prime_Generator {\n    private:\n    long long prime = 1,\
-    \ step = 0;\n\n    public:\n    long long get() {\n      if (step) {\n       \
-    \ prime += step;\n        step = 6 - step;\n      }\n      else if (prime == 1)\
-    \ { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n      else if (prime\
-    \ == 3) { prime = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\n  // n\
-    \ \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if (n <= 3) { return\
-    \ n >= 2; }\n    else if (n == 5) { return true; }\n    else if ((n % 2 == 0)\
-    \ || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\
+    \n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace\
+    \ prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long long prime\
+    \ = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step) {\n  \
+    \      prime += step;\n        step = 6 - step;\n      }\n      else if (prime\
+    \ == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n      else\
+    \ if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\
+    \n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if (n <= 3)\
+    \ { return n >= 2; }\n    else if (n == 5) { return true; }\n    else if ((n %\
+    \ 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
     \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
     \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
     \n  pair<long long, long long> exponents(long long n, long long p) {\n    long\
@@ -221,12 +229,13 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Prime.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

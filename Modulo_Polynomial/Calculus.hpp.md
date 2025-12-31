@@ -17,6 +17,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -204,44 +207,49 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\
-    \n\ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
-    \ = M; \n    uint64_t x;\n\n    public:\n    static int mod() { return _mod; }\n\
-    \n    static modint raw(int v) {\n        modint a;\n        a.x = v;\n      \
-    \  return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0)\
-    \ {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a) % mod();\n\
-    \        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    // \u30DE\u30A4\
-    \u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x); }\n\n  \
-    \  // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n        if ((x +=\
-    \ b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator+(const modint &x, const modint &y) { return modint(x) += y; }\n\n \
-    \   // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n        if ((x\
-    \ += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator-(const modint &x, const modint &y) { return modint(x) -= y;\
-    \ }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n       \
-    \ (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint operator*(const\
-    \ modint &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
-    \ int &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
-    \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
-    \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
-    \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
-    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
-    \     int64_t a = x, b = mod();\n\n        while (b > 0) {\n            int64_t\
-    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
-    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
-    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
-    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
-    \ &a, const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
-    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
-    \    friend istream &operator>>(istream &is, modint &a) {\n        int64_t x;\n\
-    \        is >> x;\n        a.x = safe_mod(x, mod());\n        return is;\n   \
-    \ }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
-    \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
-    \ }\n    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod();\
-    \ }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n\
-    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line\
+    \ 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n \
+    \   static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
+    \ int mod() { return _mod; }\n\n    static modint raw(int v) {\n        modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n\
+    \    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t\
+    \ w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n\
+    \    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const\
+    \ { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
+    \ modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
+    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
+    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
+    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
+    \ &b){\n        (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
+    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
+    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
+    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
+    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
+    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
+    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
+    \ mod()); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
+    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
+    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
     \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
     \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
     \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
@@ -509,6 +517,7 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Algebra/modint.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   isVerificationFile: false
@@ -521,7 +530,7 @@ data:
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp

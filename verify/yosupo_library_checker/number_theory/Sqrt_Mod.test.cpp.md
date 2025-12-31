@@ -2,20 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
+    path: Modulo/Modulo.hpp
+    title: Modulo/Modulo.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Line.hpp
-    title: Geometry/object/Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Counter_Clockwise.hpp
-    title: Geometry/utility/Counter_Clockwise.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Division_Point.hpp
-    title: Geometry/utility/Division_Point.hpp
+    path: Modulo/Sqrt.hpp
+    title: "\u5E73\u65B9\u6839 mod"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -37,32 +28,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7C.test.cpp
-    title: verify/aizu_online_judge/cgl/7C.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Geometry/utility/Perpendicular_Bisector.hpp\"\n\n#line 2\
-    \ \"Geometry/object/Line.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line\
-    \ 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing namespace\
-    \ std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n#include\
-    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n#include\
-    \ <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include\
-    \ <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n#include\
-    \ <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
+    links:
+    - https://judge.yosupo.jp/problem/sqrt_mod
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
+    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
+    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
+    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
     #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
     #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
     \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
@@ -183,111 +167,105 @@ data:
     \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
     \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
     \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
-    \    return message.c_str();\n    }\n};\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
-    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
-    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
-    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
-    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
-    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
-    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
-    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
-    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
-    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
-    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
-    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
-    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
-    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
-    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
-    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
-    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
-    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
-    \            return *this;\n        }\n\n        friend Point operator/(const\
-    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
-    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
-    \            x = x1;\n            y = y1;\n            return *this;\n       \
-    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
-    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
-    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
-    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
-    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
-    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
-    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
-    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
-    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
-    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
-    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
-    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
-    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
-    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
-    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
-    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
-    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
-    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
-    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
-    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
-    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
-    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
-    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
-    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
-    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\
-    \n\n#line 4 \"Geometry/utility/Counter_Clockwise.hpp\"\n\nnamespace geometry {\n\
-    \    constexpr int COUNTER_CLOCKWISE = +1;\n    constexpr int CLOCKWISE = -1;\n\
-    \    constexpr int ONLINE_BACK = -2;   // c-a-b\n    constexpr int ONLINE_FRONT\
-    \ = +2;  // a-b-c\n    constexpr int ON_SEGMENT = 0;     // a-c-b\n\n    // A\
-    \ -> B -> C \u3068\u9032\u3093\u3060\u6642\u306E\u9032\u884C\u65B9\u5411\u3092\
-    \u8ABF\u3079\u308B (B \u8996\u70B9)\n    // Input\n    // A: \u59CB\u70B9\n  \
-    \  // B: \u4E2D\u7D99\u5730\u70B9\n    // C: \u7D42\u70B9\n    template<typename\
-    \ R>\n    int Counter_Clockwise(const Point<R> &A, Point<R> B, Point<R> C) {\n\
-    \        B = B - A; C = C - A;\n        if (sign(cross(B, C)) == +1) { return\
-    \ COUNTER_CLOCKWISE; }\n        if (sign(cross(B, C)) == -1) { return CLOCKWISE;\
-    \ }\n        if (sign(dot(B, C)) == -1) { return ONLINE_BACK; }\n        if (norm_2(B)\
-    \ < norm_2(C)) { return ONLINE_FRONT; }\n        return ON_SEGMENT;\n    }\n}\n\
-    #line 5 \"Geometry/object/Line.hpp\"\n\nnamespace geometry {\n    template<typename\
-    \ R>\n    struct Line {\n        Point<R> A, B;\n\n        Line() = default;\n\
-    \        Line(const Point<R> &A, const Point<R> &B): A(A), B(B) {}\n\n       \
-    \ inline Point<R> vectorize() const { return B - A; }\n        inline Point<R>\
-    \ counter_vectorize() const { return A - B; }\n\n        Inclusion include(const\
-    \ Point<R> &P) {\n            int m = Counter_Clockwise(A, B, P);\n          \
-    \  return (m == ON_SEGMENT || m == ONLINE_BACK || m == ONLINE_FRONT) ? Inclusion::ON\
-    \ : Inclusion::OUT;\n        }\n    };\n}\n#line 2 \"Geometry/utility/Division_Point.hpp\"\
-    \n\n#line 4 \"Geometry/utility/Division_Point.hpp\"\n\nnamespace geometry {\n\
-    \    // \u7DDA\u5206 AB \u3092 p:q \u306B\u5185\u5206\u3059\u308B\u70B9\u3092\u6C42\
-    \u3081\u308B.\n    template<typename R>\n    Point<R> Internal_Division(const\
-    \ Point<R> &A, const Point<R> &B, const R &p, const R &q) {\n        return (q\
-    \ * A + p * B) / (p + q);\n    }\n\n    // \u7DDA\u5206 AB \u306E\u4E2D\u70B9\n\
-    \    template<typename R>\n    Point<R> MidPoint(const Point<R> &A, const Point<R>\
-    \ &B) { return (A + B) / 2; }\n\n    // \u7DDA\u5206 AB \u3092 p:q \u306B\u5916\
-    \u5206\u3059\u308B\u70B9\u3092\u6C42\u3081\u308B.\n    template<typename R>\n\
-    \    Point<R> External_Division(const Point<R> &A, const Point<R> &B, const R\
-    \ &p, const R &q) {\n        return (-q * A + p * B) / (p - q);\n    }\n}\n#line\
-    \ 5 \"Geometry/utility/Perpendicular_Bisector.hpp\"\n\nnamespace geometry {\n\
-    \    // 2 \u70B9 A, B \u306B\u95A2\u3059\u308B\u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\
-    \u3092\u6C42\u3081\u308B.\n    template<typename R>\n    Line<R> Perpendicular_Bisector(const\
-    \ Point<R> &A, const Point<R> &B) {\n        auto M = MidPoint(A, B);\n      \
-    \  auto d = B - A;\n        Point<R> n(-d.y, d.x);\n\n        return Line<R>(M,\
-    \ M + n);\n    }\n}\n"
-  code: "#pragma once\n\n#include\"../object/Line.hpp\"\n#include\"../utility/Division_Point.hpp\"\
-    \n\nnamespace geometry {\n    // 2 \u70B9 A, B \u306B\u95A2\u3059\u308B\u5782\u76F4\
-    \u4E8C\u7B49\u5206\u7DDA\u3092\u6C42\u3081\u308B.\n    template<typename R>\n\
-    \    Line<R> Perpendicular_Bisector(const Point<R> &A, const Point<R> &B) {\n\
-    \        auto M = MidPoint(A, B);\n        auto d = B - A;\n        Point<R> n(-d.y,\
-    \ d.x);\n\n        return Line<R>(M, M + n);\n    }\n}\n"
+    \    return message.c_str();\n    }\n};\n#line 2 \"Modulo/Sqrt.hpp\"\n\n#line\
+    \ 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace modulo\
+    \ {\n    class DifferentModulus : public exception {\n        public: // public\u306B\
+    \u6307\u5B9A\n        const char* what() const noexcept override { return \"\u7570\
+    \u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n\
+    \    };\n\n    struct Modulo {\n        long long a, n;\n\n        public:\n \
+    \       // \u521D\u671F\u5316\n        Modulo(): a(0), n(1) {}\n        Modulo(long\
+    \ long a, long long n): a((a % n + n) % n), n(n) {}\n\n        // \u30DE\u30A4\
+    \u30CA\u30B9\u5143\n        Modulo operator-() const { return Modulo(-a, n); }\n\
+    \n        // \u52A0\u6CD5\n        Modulo& operator+=(const Modulo &y) {\n   \
+    \         if (n != y.n) { throw DifferentModulus(); }\n    \n            if ((a\
+    \ += y.a) >= n) a -= n;\n            return *this;\n        }\n\n        Modulo&\
+    \ operator+=(const long long &y) { return (*this) += Modulo(y, n); }\n\n     \
+    \   friend Modulo operator+(const Modulo &x, const Modulo &y) { return Modulo(x)\
+    \ += y ; }\n        friend Modulo operator+(const Modulo &x, const long long &a)\
+    \ { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const long long\
+    \ &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        // \u6E1B\u6CD5\
+    \n        Modulo& operator-=(const Modulo &y) {\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n            if ((a += (n - y.a)) >= n) a -= n;\n    \
+    \        return *this;\n        }\n\n        Modulo& operator-=(const long long\
+    \ &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
+    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
+    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
+    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
+    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
+    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
+    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
+    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
+    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
+    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
+    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
+    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
+    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
+    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
+    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
+    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
+    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
+    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
+    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
+    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
+    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
+    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
+    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
+    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
+    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
+    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
+    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
+    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
+    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
+    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
+    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
+    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
+    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
+    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
+    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
+    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
+    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
+    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
+    \ 4 \"Modulo/Sqrt.hpp\"\n\nnamespace modulo {\n    /// @brief Legendre \u8A18\u53F7\
+    \ (A/p) \u3092\u6C42\u3081\u308B.\n    /// @param A\n    /// @return A = 0 \u306A\
+    \u3089\u3070 0, A \u304C\u5E73\u65B9\u5270\u4F59\u306A\u3089\u3070 1, A \u304C\
+    \u5E73\u65B9\u975E\u5270\u4F59\u306A\u3089\u3070 -1.\n    int Legendre(const Modulo\
+    \ &A) {\n        if (A.is_zero()) return 0;\n\n        return pow(A, (A.n - 1)\
+    \ / 2).is_member(1) ? 1 : -1;\n    }\n\n    /// @brief X * X = A \u3092\u6E80\u305F\
+    \u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B. \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408\u306F NotExist \u4F8B\u5916\u3092 raise.\n    /// @param A\n    /// @return\
+    \ X * X = A \u3092\u6E80\u305F\u3059 Y \u306E\u3069\u308C\u304B 1 \u3064\n   \
+    \ Modulo Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) throw NotExist();\n\
+    \n        ll p = A.n;\n        if (A.is_zero()) return A;\n        else if (p\
+    \ == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p + 1) / 4);\n\
+    \        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
+    \ return pow(A, (p + 3) / 8);\n            else return pow(Modulo(2, p), (p -\
+    \ 1) / 4) * pow(A, (p + 3) / 8);\n        }\n\n        ll q = p - 1, s = 0;\n\
+    \        while (safe_mod(q, 2) == 0) { q >>= 1; s++; }\n\n        random_device\
+    \ device;\n        Modulo z;\n        while (true) {\n            z = Modulo(device(),\
+    \ p);\n            if (Legendre(z) == -1) break;\n        }\n\n        int m =\
+    \ s;\n        Modulo c = pow(z, q), t = pow(A, q), x = pow(A, (q + 1) / 2);\n\
+    \        while (m > 1) {\n            unless (pow(t, intpow(2, m - 2)).is_member(1))\
+    \ {\n                tie (t, x) = make_pair(c * c * t, c * x);\n            }\n\
+    \n            c *= c;\n            m --;\n        }\n\n        return x;\n   \
+    \ }\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp\"\
+    \n\nint main() {\n    using namespace modulo;\n    int T; cin >> T;\n    for (int\
+    \ t = 0; t < T; t++) {\n        Modulo Y; scanf(\"%lld%lld\", &Y.a, &Y.n);\n\n\
+    \        try {\n            cout << Sqrt(Y).a << \"\\n\";\n        } catch (const\
+    \ NotExist &e) {\n            cout << -1 << \"\\n\";\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Modulo/Sqrt.hpp\"\n\nint\
+    \ main() {\n    using namespace modulo;\n    int T; cin >> T;\n    for (int t\
+    \ = 0; t < T; t++) {\n        Modulo Y; scanf(\"%lld%lld\", &Y.a, &Y.n);\n\n \
+    \       try {\n            cout << Sqrt(Y).a << \"\\n\";\n        } catch (const\
+    \ NotExist &e) {\n            cout << -1 << \"\\n\";\n        }\n    }\n}\n"
   dependsOn:
-  - Geometry/object/Line.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -295,21 +273,18 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
-  - Geometry/utility/Division_Point.hpp
-  isVerificationFile: false
-  path: Geometry/utility/Perpendicular_Bisector.hpp
-  requiredBy:
-  - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Circumcenter.hpp
-  timestamp: '2026-01-01 02:18:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-documentation_of: Geometry/utility/Perpendicular_Bisector.hpp
+  - Modulo/Sqrt.hpp
+  - Modulo/Modulo.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+  requiredBy: []
+  timestamp: '2026-01-01 03:38:29+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
 layout: document
 redirect_from:
-- /library/Geometry/utility/Perpendicular_Bisector.hpp
-- /library/Geometry/utility/Perpendicular_Bisector.hpp.html
-title: Geometry/utility/Perpendicular_Bisector.hpp
+- /verify/verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
 ---

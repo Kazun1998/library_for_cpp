@@ -8,6 +8,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -156,52 +159,57 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Data_Structure/Binary_Trie.hpp\"\n\n#line 4 \"\
-    Data_Structure/Binary_Trie.hpp\"\n\ntemplate<typename T>\nclass Binary_Trie {\n\
-    \    struct Binary_Trie_Node {\n        int terminal = 0, subtree_size = 0;\n\
-    \        Binary_Trie_Node *zero_child = nullptr, *one_child = nullptr;\n\n   \
-    \     Binary_Trie_Node() = default;\n    };\n\n    int bit_size;\n    bool allow_multiple;\n\
-    \    T _lazy_xor = 0, max_value;\n    Binary_Trie_Node *root;\n\n    Binary_Trie_Node*\
-    \ find_node(T x) {\n        Binary_Trie_Node *node = root;\n        for (int k\
-    \ = bit_size - 1; k >= 0; k--) {\n            node = get_bit(x, k) ? node->one_child\
-    \ : node->zero_child;\n            if (node == nullptr) { break; }\n        }\n\
-    \n        return node;\n    }\n\n    public:\n    Binary_Trie() = default;\n\n\
-    \    Binary_Trie(const int bit_size, bool allow_multiple = false):\n        bit_size(bit_size),\
-    \ allow_multiple(allow_multiple), max_value(T(1) << bit_size) {\n            root\
-    \ = new Binary_Trie_Node();\n        }\n\n    inline T lazy_xor() const { return\
-    \ _lazy_xor; }\n    inline void act_xor(T x) { _lazy_xor ^= x; }\n\n    // \u8981\
-    \u7D20\u306E\u8FFD\u52A0\n\n    /// @brief x \u3092\u633F\u5165\u3059\u308B.\n\
-    \    /// @param x \u633F\u5165\u3059\u308B\u5024\n    /// @return Trie \u6728\u306B\
-    \u5909\u5316\u304C\u3042\u308C\u3070 true, \u306A\u3051\u308C\u3070 false.\n \
-    \   bool insert(T x) {\n        Binary_Trie_Node *node = root;\n        vector<Binary_Trie_Node*>\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Data_Structure/Binary_Trie.hpp\"\
+    \n\n#line 4 \"Data_Structure/Binary_Trie.hpp\"\n\ntemplate<typename T>\nclass\
+    \ Binary_Trie {\n    struct Binary_Trie_Node {\n        int terminal = 0, subtree_size\
+    \ = 0;\n        Binary_Trie_Node *zero_child = nullptr, *one_child = nullptr;\n\
+    \n        Binary_Trie_Node() = default;\n    };\n\n    int bit_size;\n    bool\
+    \ allow_multiple;\n    T _lazy_xor = 0, max_value;\n    Binary_Trie_Node *root;\n\
+    \n    Binary_Trie_Node* find_node(T x) {\n        Binary_Trie_Node *node = root;\n\
+    \        for (int k = bit_size - 1; k >= 0; k--) {\n            node = get_bit(x,\
+    \ k) ? node->one_child : node->zero_child;\n            if (node == nullptr) {\
+    \ break; }\n        }\n\n        return node;\n    }\n\n    public:\n    Binary_Trie()\
+    \ = default;\n\n    Binary_Trie(const int bit_size, bool allow_multiple = false):\n\
+    \        bit_size(bit_size), allow_multiple(allow_multiple), max_value(T(1) <<\
+    \ bit_size) {\n            root = new Binary_Trie_Node();\n        }\n\n    inline\
+    \ T lazy_xor() const { return _lazy_xor; }\n    inline void act_xor(T x) { _lazy_xor\
+    \ ^= x; }\n\n    // \u8981\u7D20\u306E\u8FFD\u52A0\n\n    /// @brief x \u3092\u633F\
+    \u5165\u3059\u308B.\n    /// @param x \u633F\u5165\u3059\u308B\u5024\n    ///\
+    \ @return Trie \u6728\u306B\u5909\u5316\u304C\u3042\u308C\u3070 true, \u306A\u3051\
+    \u308C\u3070 false.\n    bool insert(T x) {\n        Binary_Trie_Node *node =\
+    \ root;\n        vector<Binary_Trie_Node*> path(bit_size + 1);\n        path[0]\
+    \ = root;\n\n        x ^= lazy_xor();\n\n        for (int k = 0; k < bit_size;\
+    \ k++) {\n            bool bit = get_bit(x, bit_size - (k + 1));\n           \
+    \ Binary_Trie_Node **child_ptr = bit ? &node->one_child : &node->zero_child;\n\
+    \n            if (*child_ptr == nullptr) {\n                *child_ptr = new Binary_Trie_Node();\n\
+    \            }\n\n            node = *child_ptr;\n            path[k + 1] = node;\n\
+    \        }\n\n        if (node->terminal > 0 && !allow_multiple) { return false;\
+    \ }\n        \n        node->terminal++;\n        for (auto node: path) {\n  \
+    \          node->subtree_size++;\n        }\n\n        return true;\n    }\n\n\
+    \    // \u8981\u7D20\u306E\u524A\u9664\n\n    /// @brief `x` \u304C\u5B58\u5728\
+    \u3059\u308B\u5834\u5408\u306B `x` \u3092 1 \u500B\u524A\u9664\u3059\u308B.\n\
+    \    /// @param x \u524A\u9664\u3059\u308B\u8981\u7D20\n    /// @return Trie \u6728\
+    \u306B\u5909\u5316\u304C\u3042\u308C\u3070 true, \u306A\u3051\u308C\u3070 false.\n\
+    \    bool discard(T x) {\n        unless(0 <= x && x < max_value) { return 0;\
+    \ }\n\n        Binary_Trie_Node *node = root;\n\n        vector<Binary_Trie_Node*>\
     \ path(bit_size + 1);\n        path[0] = root;\n\n        x ^= lazy_xor();\n\n\
-    \        for (int k = 0; k < bit_size; k++) {\n            bool bit = get_bit(x,\
-    \ bit_size - (k + 1));\n            Binary_Trie_Node **child_ptr = bit ? &node->one_child\
-    \ : &node->zero_child;\n\n            if (*child_ptr == nullptr) {\n         \
-    \       *child_ptr = new Binary_Trie_Node();\n            }\n\n            node\
-    \ = *child_ptr;\n            path[k + 1] = node;\n        }\n\n        if (node->terminal\
-    \ > 0 && !allow_multiple) { return false; }\n        \n        node->terminal++;\n\
-    \        for (auto node: path) {\n            node->subtree_size++;\n        }\n\
-    \n        return true;\n    }\n\n    // \u8981\u7D20\u306E\u524A\u9664\n\n   \
-    \ /// @brief `x` \u304C\u5B58\u5728\u3059\u308B\u5834\u5408\u306B `x` \u3092 1\
-    \ \u500B\u524A\u9664\u3059\u308B.\n    /// @param x \u524A\u9664\u3059\u308B\u8981\
-    \u7D20\n    /// @return Trie \u6728\u306B\u5909\u5316\u304C\u3042\u308C\u3070\
-    \ true, \u306A\u3051\u308C\u3070 false.\n    bool discard(T x) {\n        unless(0\
-    \ <= x && x < max_value) { return 0; }\n\n        Binary_Trie_Node *node = root;\n\
-    \n        vector<Binary_Trie_Node*> path(bit_size + 1);\n        path[0] = root;\n\
-    \n        x ^= lazy_xor();\n\n        for (int d = 0; d < bit_size; d++) {\n \
-    \           bool bit = get_bit(x, bit_size - (d + 1));\n\n            Binary_Trie_Node\
-    \ **child_ptr = bit ? &node->one_child : &node->zero_child;\n\n            if\
-    \ (*child_ptr == nullptr) { return false; }\n\n            node = *child_ptr;\n\
-    \            path[d + 1] = node;\n        }\n\n        if (!node->terminal) {\
-    \ return false; }\n\n        node->terminal--;\n        for (auto node: path)\
-    \ { node->subtree_size--; }\n\n        return true;\n    }\n\n    /// @brief `x`\
-    \ \u3092\u9AD8\u3005 `k` \u56DE\u524A\u9664\u3059\u308B.\n    /// @param x \u524A\
-    \u9664\u3059\u308B\u8981\u7D20\n    /// @param k \u524A\u9664\u3059\u308B\u500B\
-    \u6570 (k = -1 \u3068\u3059\u308B\u3068, \u7121\u9650\u56DE\u306B\u306A\u308B\
-    )\n    /// @return `x` \u3092\u524A\u9664\u3057\u305F\u56DE\u6570\n    int erase(T\
-    \ x, int k = -1) {\n        unless(0 <= x && x < max_value) { return 0; }\n  \
-    \  \n        Binary_Trie_Node *node = root;\n\n        vector<Binary_Trie_Node*>\
+    \        for (int d = 0; d < bit_size; d++) {\n            bool bit = get_bit(x,\
+    \ bit_size - (d + 1));\n\n            Binary_Trie_Node **child_ptr = bit ? &node->one_child\
+    \ : &node->zero_child;\n\n            if (*child_ptr == nullptr) { return false;\
+    \ }\n\n            node = *child_ptr;\n            path[d + 1] = node;\n     \
+    \   }\n\n        if (!node->terminal) { return false; }\n\n        node->terminal--;\n\
+    \        for (auto node: path) { node->subtree_size--; }\n\n        return true;\n\
+    \    }\n\n    /// @brief `x` \u3092\u9AD8\u3005 `k` \u56DE\u524A\u9664\u3059\u308B\
+    .\n    /// @param x \u524A\u9664\u3059\u308B\u8981\u7D20\n    /// @param k \u524A\
+    \u9664\u3059\u308B\u500B\u6570 (k = -1 \u3068\u3059\u308B\u3068, \u7121\u9650\u56DE\
+    \u306B\u306A\u308B)\n    /// @return `x` \u3092\u524A\u9664\u3057\u305F\u56DE\u6570\
+    \n    int erase(T x, int k = -1) {\n        unless(0 <= x && x < max_value) {\
+    \ return 0; }\n    \n        Binary_Trie_Node *node = root;\n\n        vector<Binary_Trie_Node*>\
     \ path(bit_size + 1);\n        path[0] = root;\n\n        x ^= lazy_xor();\n\n\
     \        for (int d = 0; d < bit_size; d++) {\n            bool bit = get_bit(x,\
     \ bit_size - (d + 1));\n\n            Binary_Trie_Node **child_ptr = bit ? &node->one_child\
@@ -314,11 +322,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Data_Structure/Binary_Trie.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp

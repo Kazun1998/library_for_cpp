@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -149,14 +152,19 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Sequence/Run_Length_Encoding.hpp\"\n\ntemplate<typename\
-    \ S>\nstd::vector<pair<S, size_t>> Run_Length_Encoding(const std::vector<S> &x)\
-    \ {\n    std::vector<pair<S, size_t>> res;\n\n    if (x.empty()) { return res;\
-    \ }\n\n    res.emplace_back(x[0], 1);\n    for (size_t i = 1; i < x.size(); ++i)\
-    \ {\n        auto &last = res.back();\n\n        if(last.first == x[i]) { last.second++;\
-    \ }\n        else { res.emplace_back(x[i], 1); }\n    }\n\n    return res;\n}\n\
-    \nstd::vector<std::pair<char, size_t>> Run_Length_Encoding(const std::string &S)\
-    \ {\n    if (S.empty()) { return {}; }\n    \n    std::vector<std::pair<char,\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Sequence/Run_Length_Encoding.hpp\"\
+    \n\ntemplate<typename S>\nstd::vector<pair<S, size_t>> Run_Length_Encoding(const\
+    \ std::vector<S> &x) {\n    std::vector<pair<S, size_t>> res;\n\n    if (x.empty())\
+    \ { return res; }\n\n    res.emplace_back(x[0], 1);\n    for (size_t i = 1; i\
+    \ < x.size(); ++i) {\n        auto &last = res.back();\n\n        if(last.first\
+    \ == x[i]) { last.second++; }\n        else { res.emplace_back(x[i], 1); }\n \
+    \   }\n\n    return res;\n}\n\nstd::vector<std::pair<char, size_t>> Run_Length_Encoding(const\
+    \ std::string &S) {\n    if (S.empty()) { return {}; }\n    \n    std::vector<std::pair<char,\
     \ size_t>> res;\n    res.emplace_back(S[0], 1);\n    \n    for (size_t i = 1;\
     \ i < S.size(); ++i) {\n        auto &last = res.back();\n\n        if (last.first\
     \ == S[i]) { \n            last.second++; \n        } else {\n            res.emplace_back(S[i],\
@@ -180,10 +188,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Sequence/Run_Length_Encoding.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Sequence/Run_Length_Encoding.hpp

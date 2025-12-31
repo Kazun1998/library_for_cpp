@@ -14,6 +14,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -162,7 +165,12 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
     \n\n#line 2 \"Graph/Graph/Lowlink.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\
     \n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct Edge {\n\
     \        int id, source, target;\n        Edge *rev;\n\n        Edge() = default;\n\
@@ -254,13 +262,14 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2025-12-06 17:15:49+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

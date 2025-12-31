@@ -313,6 +313,9 @@ data:
     - icon: ':warning:'
       path: Modulo/Solve.hpp
       title: Modulo/Solve.hpp
+    - icon: ':heavy_check_mark:'
+      path: Modulo/Sqrt.hpp
+      title: "\u5E73\u65B9\u6839 mod"
   - name: Modulo_Polynomial
     pages:
     - icon: ':heavy_check_mark:'
@@ -424,6 +427,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
       title: Union Find
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: jam.cpp
+      title: jam.cpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
@@ -432,6 +440,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/concepts.hpp
       title: template/concepts.hpp
+    - icon: ':heavy_check_mark:'
+      path: template/exception.hpp
+      title: template/exception.hpp
     - icon: ':heavy_check_mark:'
       path: template/inout.hpp
       title: template/inout.hpp
@@ -684,6 +695,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
       title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
       title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp

@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -260,6 +263,9 @@ data:
     path: Modulo/Solve.hpp
     title: Modulo/Solve.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo/Sqrt.hpp
+    title: "\u5E73\u65B9\u6839 mod"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
   - icon: ':heavy_check_mark:'
@@ -350,6 +356,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
+  - icon: ':warning:'
+    path: jam.cpp
+    title: jam.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
@@ -550,6 +559,9 @@ data:
     path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
     title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
     title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -745,7 +757,12 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n"
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 74 \"template/template.hpp\"\n"
   code: '#pragma once
 
 
@@ -878,6 +895,11 @@ data:
 
     #include"bitop.hpp"
 
+
+    // exception
+
+    #include"exception.hpp"
+
     '
   dependsOn:
   - template/utility.hpp
@@ -885,9 +907,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: template/template.hpp
   requiredBy:
+  - Modulo/Sqrt.hpp
   - Modulo/Order.hpp
   - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
@@ -997,8 +1021,9 @@ data:
   - Counting/Combination_Calculator.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
+  - jam.cpp
   - Segment_Tree/Dual_Segment_Tree.hpp
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
@@ -1034,6 +1059,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
+  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp

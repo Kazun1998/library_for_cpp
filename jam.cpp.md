@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':warning:'
+    path: Integer/Smallest_Prime_Factor.hpp
+    title: Integer/Smallest_Prime_Factor.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -23,41 +26,37 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
-    title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Sequence/Z_Algorithm.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
-    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
-    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
-    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
-    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
-    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
-    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
-    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
-    , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
-    \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
-    \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
-    \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
-    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n#line 59\
-    \ \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n// \u6F14\
-    \u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) { return x +\
-    \ y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return x - y;\
-    \ }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x * y; }\n\
-    \ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
+  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n#line 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y)\
+    \ { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
+    \ x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x *\
+    \ y; }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<typename\
     \ T>\nT bitwise_or(const T &x, const T &y) { return x | y; }\n\ntemplate<typename\
     \ T>\nT bitwise_xor(const T &x, const T &y) { return x ^ y; }\n\n// \u9664\u7B97\
@@ -160,26 +159,35 @@ data:
     \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
     \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
     \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
-    \    return message.c_str();\n    }\n};\n#line 4 \"Sequence/Z_Algorithm.hpp\"\n\
-    \ntemplate<typename T>\nvector<int> Z_Algorithm(const vector<T> &data) {\n   \
-    \ int n = data.size();\n    vector<int> Z(n, 0);\n    Z[0] = n;\n\n    for (int\
-    \ i = 1, j = 0, k = 0; i < n; ) {\n        while (i + j < n && data[j] == data[i\
-    \ + j]) {\n            j++;\n        }\n\n        if (j == 0) {\n            i++;\n\
-    \            continue;\n        }\n\n        Z[i] = j;\n        k = 1;\n     \
-    \   while ((k < n - i) && (k < j - Z[k])) {\n            Z[i + k] = Z[k];\n  \
-    \          k++;\n        }\n\n        i += k;\n        j -= k;\n    }\n\n    return\
-    \ Z;\n};\n\nvector<int> Z_Algorithm(const string &str) {\n    return Z_Algorithm(vector<char>(str.begin(),\
-    \ str.end()));\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
-    \ T>\nvector<int> Z_Algorithm(const vector<T> &data) {\n    int n = data.size();\n\
-    \    vector<int> Z(n, 0);\n    Z[0] = n;\n\n    for (int i = 1, j = 0, k = 0;\
-    \ i < n; ) {\n        while (i + j < n && data[j] == data[i + j]) {\n        \
-    \    j++;\n        }\n\n        if (j == 0) {\n            i++;\n            continue;\n\
-    \        }\n\n        Z[i] = j;\n        k = 1;\n        while ((k < n - i) &&\
-    \ (k < j - Z[k])) {\n            Z[i + k] = Z[k];\n            k++;\n        }\n\
-    \n        i += k;\n        j -= k;\n    }\n\n    return Z;\n};\n\nvector<int>\
-    \ Z_Algorithm(const string &str) {\n    return Z_Algorithm(vector<char>(str.begin(),\
-    \ str.end()));\n}\n"
+    \    return message.c_str();\n    }\n};\n#line 2 \"Integer/Smallest_Prime_Factor.hpp\"\
+    \n\n#line 4 \"Integer/Smallest_Prime_Factor.hpp\"\n\nnamespace prime {\n    class\
+    \ Smallest_Prime_Factor {\n        private:\n        vector<ll> spf; // smallest\
+    \ prime factor\n\n        public:\n        Smallest_Prime_Factor(int N): spf(N\
+    \ + 1, 1) {\n            if (N <= 1) return;\n\n            for (int x = 2; x\
+    \ <= N; x += 2) spf[x] = 2;\n            for (int x = 3; x <= N; x += 6) spf[x]\
+    \ = 3;\n\n            vector<int> primes{2, 3};\n            bool parity = 0;\n\
+    \            for (int x = 5; x <= N; x += parity ? 4 : 2, parity ^= true) {\n\
+    \                if (spf[x] == 1) {\n                    spf[x] = x;\n       \
+    \             primes.emplace_back(x);\n                }\n\n                for\
+    \ (int p: primes) {\n                    unless (x <= N / p) break;\n\n      \
+    \              spf[x * p] = p;\n                    if (p == spf[x]) break;\n\
+    \                }\n            }\n        }\n\n        constexpr inline int smallest_prime_factor(int\
+    \ x) const { return spf[x]; }\n\n        vector<pair<long long, long long>> prime_factorization(int\
+    \ n) {\n            if (n == 0)  { return vector<pair<long long, long long>>{\
+    \ make_pair(0, 1) }; }\n\n            vector<pair<long long, long long>> factors;\n\
+    \            if (n < 0) {\n                factors.emplace_back(-1, 1);\n    \
+    \            n = -n;\n            }\n\n            while (n > 1) {\n         \
+    \       int p = spf[n];\n                int e = 0;\n                while (spf[n]\
+    \ == p) {\n                    e ++;\n                    n /= p;\n          \
+    \      }\n\n                factors.emplace_back(p, e);\n            }\n\n   \
+    \         return factors;\n        }\n    };\n}\n#line 3 \"jam.cpp\"\n\nint main()\
+    \ {\n    int n = 100;\n    prime::Smallest_Prime_Factor S(n);\n\n    for (int\
+    \ x = 1; x <= n; x++) {\n        cout << x << \" \" << S.prime_factorization(x)\
+    \ << endl;\n    }\n}\n"
+  code: "#include\"template/template.hpp\"\n#include\"Integer/Smallest_Prime_Factor.hpp\"\
+    \n\nint main() {\n    int n = 100;\n    prime::Smallest_Prime_Factor S(n);\n\n\
+    \    for (int x = 1; x <= n; x++) {\n        cout << x << \" \" << S.prime_factorization(x)\
+    \ << endl;\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -188,51 +196,17 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Integer/Smallest_Prime_Factor.hpp
   isVerificationFile: false
-  path: Sequence/Z_Algorithm.hpp
+  path: jam.cpp
   requiredBy: []
   timestamp: '2026-01-01 02:18:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
-documentation_of: Sequence/Z_Algorithm.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: jam.cpp
 layout: document
-title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
+redirect_from:
+- /library/jam.cpp
+- /library/jam.cpp.html
+title: jam.cpp
 ---
-
-## Outline
-
-Z Algorithm を用いて, $i = 1, 2, \dots, \lvert S \rvert$ に対する以下を合計で $O\left(\lvert S \rvert \right)$ 時間で求める.
-
-* $S$ と $S[i:]$ の最長共通接頭辞の長さ
-
-## Define
-
-* 列 $T$ が列 $S$ の接頭辞であるとは, 以下を満たすことである.
-  * $\lvert T \rvert \leq \lvert S \rvert$.
-  * $S_i = T_i \quad (i = 1, 2, \dots, \lvert T \rvert)$.
-* 列 $U$ が列 $S, T$ の接頭辞であるとき, $U$ は $S, T$ の共通接頭辞であるという.
-* 列 $S, T$ の接頭辞のうち, 長さが最大である列がただ一つ存在する. その列を $S, T$ の最長共通接頭辞という.
-
-## Contents
-
-```cpp
-template<typename T>
-vector<int> Z_Algorithm(const vector<T> &data)
-```
-
-* $T$ 上の列 `data` に関して, 以下を計算する.
-  * $i = 0, 1, \dots, (n-1)$ に対して, `data` と `data` の 第 $i$ 要素目以降における最長接頭辞の長さを求める.
-* 長さ $n$ からなる `vector<int>` 型の列. 第 $i$ 要素目は以下を表す.
-  * `data` と `data` の第 $i$ 要素目以降における最長接頭辞の長さ
-* **計算量**: $O(n)$ 時間.
-
-```cpp
-vector<int> Z_Algorithm(const string &str)
-```
-
-* 文字列 $S$ に対して, 以下を計算する.
-  * $i = 0, 1, \dots, (n-1)$ に対して, $S$ と $S$ の $i$ 文字目以降における最長接頭辞の長さを求める.
-* 長さ $n$ からなる `vector<int>` 型の列. 第 $i$ 要素目は以下を表す.
-  * $S$ と $S$ の $i$ 文字目以降における最長接頭辞の長さ
-* **計算量**: $O(\lvert S \rvert)$ 時間.

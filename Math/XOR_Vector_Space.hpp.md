@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -151,35 +154,40 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Math/XOR_Vector_Space.hpp\"\n\ntemplate<integral\
-    \ T>\nclass Xor_Vector_Space {\n    vector<T> basis;\n\n    public:\n    Xor_Vector_Space():\
-    \ Xor_Vector_Space(vector<T>{}) {}\n\n    /// @brief vectors \u304B\u3089\u751F\
-    \u6210\u3055\u308C\u308B\u90E8\u5206\u7A7A\u9593\u3092\u751F\u6210\u3059\u308B\
-    .\n    /// @param vectors \u751F\u6210\u5143\u306E\u96C6\u5408\n    Xor_Vector_Space(const\
-    \ vector<T> &vectors) {\n        for (T x: vectors) {\n            add_vector(x);\n\
-    \        }\n    }\n\n    /// @brief x \u3092\u8FFD\u52A0\u3059\u308B.\n    ///\
-    \ @param x \n    /// @return \u6B21\u5143\u304C\u5897\u3048\u305F\u3089 True.\
-    \ \u305D\u3046\u3067\u306A\u3051\u308C\u3070 False.\n    bool add_vector(T x)\
-    \ {\n        T y = projection(x);\n        if (y == 0) return false;\n\n     \
-    \   basis.emplace_back(y);\n\n        return true;\n    }\n\n    /// @brief x\
-    \ \u3092\u3053\u306E\u7A7A\u9593\u3078\u5C04\u5F71\u3057\u305F\u6642\u306E\u6B8B\
-    \u308A\u3092\u6C42\u3081\u308B.\n    /// @param x \n    /// @return x = a + b\
-    \ (b in X) \u3068\u306A\u308B a.\n    T projection(T x) const {\n        for (T\
-    \ v: basis) {\n            x = min<T>(x, x ^ v);\n        }\n\n        return\
-    \ x;\n    }\n\n    /// @brief x \u306F\u3053\u306E\u7A7A\u9593\u306B\u542B\u307E\
-    \u308C\u308B\u304B?\n    /// @param x \n    constexpr inline bool contains(const\
-    \ T x) const { return projection(x) == 0; }\n\n    /// @brief \u3053\u306E\u7A7A\
-    \u9593\u306E\u6B21\u5143\u3092\u6C42\u3081\u308B.\n    constexpr inline size_t\
-    \ dimension() const { return basis.size(); }\n\n    constexpr bool operator<=(const\
-    \ Xor_Vector_Space &W) const {\n        for (T x: basis) {\n            if (!W.contains(x))\
-    \ return false;\n        }\n\n        return true;\n    }\n\n    constexpr bool\
-    \ operator>=(const Xor_Vector_Space &W) const { return W <= *this; }\n    constexpr\
-    \ bool operator<(const Xor_Vector_Space &W) const { return (*this <= W) && (this->dimension()\
-    \ < W.dimension()); }\n    constexpr bool operator>(const Xor_Vector_Space &W)\
-    \ const { return W < *this; }\n    constexpr bool operator==(const Xor_Vector_Space\
-    \ &W) const {  return (*this <= W) && (this->dimension() == W.dimension()); }\n\
-    \    constexpr bool operator!=(const Xor_Vector_Space &W) const { return !(*this\
-    \ == W); }\n};\n"
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Math/XOR_Vector_Space.hpp\"\
+    \n\ntemplate<integral T>\nclass Xor_Vector_Space {\n    vector<T> basis;\n\n \
+    \   public:\n    Xor_Vector_Space(): Xor_Vector_Space(vector<T>{}) {}\n\n    ///\
+    \ @brief vectors \u304B\u3089\u751F\u6210\u3055\u308C\u308B\u90E8\u5206\u7A7A\u9593\
+    \u3092\u751F\u6210\u3059\u308B.\n    /// @param vectors \u751F\u6210\u5143\u306E\
+    \u96C6\u5408\n    Xor_Vector_Space(const vector<T> &vectors) {\n        for (T\
+    \ x: vectors) {\n            add_vector(x);\n        }\n    }\n\n    /// @brief\
+    \ x \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param x \n    /// @return \u6B21\
+    \u5143\u304C\u5897\u3048\u305F\u3089 True. \u305D\u3046\u3067\u306A\u3051\u308C\
+    \u3070 False.\n    bool add_vector(T x) {\n        T y = projection(x);\n    \
+    \    if (y == 0) return false;\n\n        basis.emplace_back(y);\n\n        return\
+    \ true;\n    }\n\n    /// @brief x \u3092\u3053\u306E\u7A7A\u9593\u3078\u5C04\u5F71\
+    \u3057\u305F\u6642\u306E\u6B8B\u308A\u3092\u6C42\u3081\u308B.\n    /// @param\
+    \ x \n    /// @return x = a + b (b in X) \u3068\u306A\u308B a.\n    T projection(T\
+    \ x) const {\n        for (T v: basis) {\n            x = min<T>(x, x ^ v);\n\
+    \        }\n\n        return x;\n    }\n\n    /// @brief x \u306F\u3053\u306E\u7A7A\
+    \u9593\u306B\u542B\u307E\u308C\u308B\u304B?\n    /// @param x \n    constexpr\
+    \ inline bool contains(const T x) const { return projection(x) == 0; }\n\n   \
+    \ /// @brief \u3053\u306E\u7A7A\u9593\u306E\u6B21\u5143\u3092\u6C42\u3081\u308B\
+    .\n    constexpr inline size_t dimension() const { return basis.size(); }\n\n\
+    \    constexpr bool operator<=(const Xor_Vector_Space &W) const {\n        for\
+    \ (T x: basis) {\n            if (!W.contains(x)) return false;\n        }\n\n\
+    \        return true;\n    }\n\n    constexpr bool operator>=(const Xor_Vector_Space\
+    \ &W) const { return W <= *this; }\n    constexpr bool operator<(const Xor_Vector_Space\
+    \ &W) const { return (*this <= W) && (this->dimension() < W.dimension()); }\n\
+    \    constexpr bool operator>(const Xor_Vector_Space &W) const { return W < *this;\
+    \ }\n    constexpr bool operator==(const Xor_Vector_Space &W) const {  return\
+    \ (*this <= W) && (this->dimension() == W.dimension()); }\n    constexpr bool\
+    \ operator!=(const Xor_Vector_Space &W) const { return !(*this == W); }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<integral\
     \ T>\nclass Xor_Vector_Space {\n    vector<T> basis;\n\n    public:\n    Xor_Vector_Space():\
     \ Xor_Vector_Space(vector<T>{}) {}\n\n    /// @brief vectors \u304B\u3089\u751F\
@@ -216,10 +224,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Math/XOR_Vector_Space.hpp
   requiredBy: []
-  timestamp: '2025-12-30 23:21:44+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/XOR_Vector_Space.hpp

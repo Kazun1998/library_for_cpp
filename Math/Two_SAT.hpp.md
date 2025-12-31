@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -151,14 +154,19 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Math/Two_SAT.hpp\"\n\nclass Two_SAT{\n    public:\n\
-    \    vector<vector<int>> arc,rev;\n    bool satisfiable;\n    vector<bool> answer;\n\
-    \n    private:\n    int N;\n\n    public:\n    Two_SAT(int N): N(N) {\n      \
-    \  arc.resize(2 * N);\n        rev.resize(2 * N);\n    }\n\n    public:\n    //\
-    \ \u9802\u70B9\u3092 1 \u500B\u8FFD\u52A0\u3059\u308B.\n    int add_variable()\
-    \ {\n        int id = N;\n        arc.emplace_back(vector<int>()); arc.emplace_back(vector<int>());\n\
-    \        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n \
-    \       N++;\n\n        return id;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Math/Two_SAT.hpp\"\n\nclass\
+    \ Two_SAT{\n    public:\n    vector<vector<int>> arc,rev;\n    bool satisfiable;\n\
+    \    vector<bool> answer;\n\n    private:\n    int N;\n\n    public:\n    Two_SAT(int\
+    \ N): N(N) {\n        arc.resize(2 * N);\n        rev.resize(2 * N);\n    }\n\n\
+    \    public:\n    // \u9802\u70B9\u3092 1 \u500B\u8FFD\u52A0\u3059\u308B.\n  \
+    \  int add_variable() {\n        int id = N;\n        arc.emplace_back(vector<int>());\
+    \ arc.emplace_back(vector<int>());\n        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n\
+    \        N++;\n\n        return id;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\
     \u8FFD\u52A0\u3059\u308B.\n    vector<int> add_variables(int k = 1) {\n      \
     \  vector<int> I;\n        for (; k > 0; k--){ I.emplace_back(add_variable());\
     \ }\n        return I;\n    }\n\n    public:\n    inline int variable_number()\
@@ -258,10 +266,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Math/Two_SAT.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/two_sat.test.cpp

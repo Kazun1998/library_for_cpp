@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -155,29 +158,35 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Graph/Digraph/Digraph.hpp\"\n\nnamespace Digraph\
-    \ {\n    struct Arc {\n        int id, source, target;\n\n        Arc() = default;\n\
-    \        Arc(int id, int source, int target): id(id), source(source), target(target)\
-    \ {}\n    };\n\n    class Digraph {\n        private:\n        int arc_id_offset;\n\
-    \        vector<vector<Arc*>> adjacent_out, adjacent_in;\n        vector<Arc>\
-    \ arcs;\n\n        public:\n        Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset)\
-    \ {\n            adjacent_out.assign(n, {});\n            adjacent_in.assign(n,\
-    \ {});\n            arcs.resize(arc_id_offset);\n        }\n        \n       \
-    \ inline int order() const { return int(adjacent_in.size()); }\n\n        inline\
-    \ int size() const { return int(arcs.size()) - arc_id_offset; }\n\n        //\
-    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\
-    \u3092\u8FFD\u52A0\u3059\u308B.\n        Arc* add_arc(int u, int v) {\n      \
-    \      int id = int(arcs.size());\n\n            Arc* arc_ptr = new Arc(id, u,\
-    \ v);\n            arcs.emplace_back(*arc_ptr);\n            \n            adjacent_out[u].emplace_back(arc_ptr);\n\
-    \            adjacent_in[v].emplace_back(arc_ptr);\n\n            return arc_ptr;\n\
-    \        }\n\n        // \u9802\u70B9 u \u304B\u3089\u51FA\u308B\u5F27\u306E ID\
-    \ \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n        inline const vector<Arc*>&\
-    \ successors(int u) const { return adjacent_out[u]; }\n\n        // \u9802\u70B9\
-    \ u \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\
-    \n        inline const vector<Arc*>& predecessors(int u) const { return adjacent_in[u];\
-    \ }\n\n        // \u5F27 ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\
-    \u3059\u308B.\n        inline const Arc get_arc(int id) const { return arcs[id];\
-    \ }\n        inline Arc get_arc(int id) { return arcs[id]; }\n    };\n}\n"
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Graph/Digraph/Digraph.hpp\"\
+    \n\nnamespace Digraph {\n    struct Arc {\n        int id, source, target;\n\n\
+    \        Arc() = default;\n        Arc(int id, int source, int target): id(id),\
+    \ source(source), target(target) {}\n    };\n\n    class Digraph {\n        private:\n\
+    \        int arc_id_offset;\n        vector<vector<Arc*>> adjacent_out, adjacent_in;\n\
+    \        vector<Arc> arcs;\n\n        public:\n        Digraph(int n, int arc_id_offset\
+    \ = 0): arc_id_offset(arc_id_offset) {\n            adjacent_out.assign(n, {});\n\
+    \            adjacent_in.assign(n, {});\n            arcs.resize(arc_id_offset);\n\
+    \        }\n        \n        inline int order() const { return int(adjacent_in.size());\
+    \ }\n\n        inline int size() const { return int(arcs.size()) - arc_id_offset;\
+    \ }\n\n        // \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\
+    \u307F w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B.\n        Arc* add_arc(int\
+    \ u, int v) {\n            int id = int(arcs.size());\n\n            Arc* arc_ptr\
+    \ = new Arc(id, u, v);\n            arcs.emplace_back(*arc_ptr);\n           \
+    \ \n            adjacent_out[u].emplace_back(arc_ptr);\n            adjacent_in[v].emplace_back(arc_ptr);\n\
+    \n            return arc_ptr;\n        }\n\n        // \u9802\u70B9 u \u304B\u3089\
+    \u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n     \
+    \   inline const vector<Arc*>& successors(int u) const { return adjacent_out[u];\
+    \ }\n\n        // \u9802\u70B9 u \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\
+    \u30B9\u30C8\u3092\u53D6\u5F97\n        inline const vector<Arc*>& predecessors(int\
+    \ u) const { return adjacent_in[u]; }\n\n        // \u5F27 ID \u304C id \u3067\
+    \u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Arc get_arc(int\
+    \ id) const { return arcs[id]; }\n        inline Arc get_arc(int id) { return\
+    \ arcs[id]; }\n    };\n}\n"
   code: "#pragma once\n\n#include\"../../template/template.hpp\"\n\nnamespace Digraph\
     \ {\n    struct Arc {\n        int id, source, target;\n\n        Arc() = default;\n\
     \        Arc(int id, int source, int target): id(id), source(source), target(target)\
@@ -208,11 +217,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Graph/Digraph/Digraph.hpp
   requiredBy:
   - Graph/Digraph/Strongly_Connected_Components.hpp
-  timestamp: '2026-01-01 04:19:30+09:00'
+  timestamp: '2026-01-01 04:24:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp

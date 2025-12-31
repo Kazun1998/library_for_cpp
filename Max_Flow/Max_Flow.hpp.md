@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -158,28 +161,33 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Max_Flow/Max_Flow.hpp\"\n\nnamespace max_flow {\n\
-    \    template<typename Cap>\n    struct Arc {\n        int id, source, target;\n\
-    \        Cap cap, flow;\n        bool direction;\n        Arc* rev;\n\n      \
-    \  Arc(int id, int source, int target, Cap cap, Cap flow, bool direction):\n \
-    \           id(id), source(source), target(target), cap(cap), flow(flow), direction(direction),\
-    \ rev(nullptr) {}\n\n        inline bool is_flowable() const { return flow < cap;\
-    \ }\n        inline Cap remain() const { return cap - flow; }\n\n        void\
-    \ push(Cap d) {\n            flow += d;\n            rev->flow -= d;\n       \
-    \ }\n    };\n\n    template<typename Cap>\n    struct Max_Flow {\n        private:\n\
-    \        using V = int;\n        vector<vector<Arc<Cap>*>> adj_out;\n        vector<Arc<Cap>*>\
-    \ arcs;\n        vector<int> level, iter;\n\n        bool bfs(const V s, const\
-    \ V t) {\n            level.assign(order(), -1);\n            queue<V> Q;\n\n\
-    \            Q.push(s);\n            level[s] = 0;\n\n            while (!Q.empty())\
-    \ {\n                V v = Q.front(); Q.pop();\n\n                for (Arc<Cap>*\
-    \ arc: adj_out[v]) {\n                    unless(arc->is_flowable() && level[arc->target]\
-    \ == -1) { continue; }\n\n                    level[arc->target] = level[v] +\
-    \ 1;\n                    if (arc->target == t) { return true; }\n\n         \
-    \           Q.push(arc->target);\n                }\n            }\n\n       \
-    \     return false;\n        }\n\n        Cap dfs(const V v, const V t, const\
-    \ Cap f) {\n            if (v == t) { return f; }\n\n            for (int i =\
-    \ iter[v]; i < adj_out[v].size(); ++i) {\n                Arc<Cap>* arc = adj_out[v][i];\n\
-    \n                unless(arc->is_flowable() && level[v] < level[arc->target])\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Max_Flow/Max_Flow.hpp\"\n\n\
+    namespace max_flow {\n    template<typename Cap>\n    struct Arc {\n        int\
+    \ id, source, target;\n        Cap cap, flow;\n        bool direction;\n     \
+    \   Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap flow,\
+    \ bool direction):\n            id(id), source(source), target(target), cap(cap),\
+    \ flow(flow), direction(direction), rev(nullptr) {}\n\n        inline bool is_flowable()\
+    \ const { return flow < cap; }\n        inline Cap remain() const { return cap\
+    \ - flow; }\n\n        void push(Cap d) {\n            flow += d;\n          \
+    \  rev->flow -= d;\n        }\n    };\n\n    template<typename Cap>\n    struct\
+    \ Max_Flow {\n        private:\n        using V = int;\n        vector<vector<Arc<Cap>*>>\
+    \ adj_out;\n        vector<Arc<Cap>*> arcs;\n        vector<int> level, iter;\n\
+    \n        bool bfs(const V s, const V t) {\n            level.assign(order(),\
+    \ -1);\n            queue<V> Q;\n\n            Q.push(s);\n            level[s]\
+    \ = 0;\n\n            while (!Q.empty()) {\n                V v = Q.front(); Q.pop();\n\
+    \n                for (Arc<Cap>* arc: adj_out[v]) {\n                    unless(arc->is_flowable()\
+    \ && level[arc->target] == -1) { continue; }\n\n                    level[arc->target]\
+    \ = level[v] + 1;\n                    if (arc->target == t) { return true; }\n\
+    \n                    Q.push(arc->target);\n                }\n            }\n\
+    \n            return false;\n        }\n\n        Cap dfs(const V v, const V t,\
+    \ const Cap f) {\n            if (v == t) { return f; }\n\n            for (int\
+    \ i = iter[v]; i < adj_out[v].size(); ++i) {\n                Arc<Cap>* arc =\
+    \ adj_out[v][i];\n\n                unless(arc->is_flowable() && level[v] < level[arc->target])\
     \ { continue; }\n\n                Cap d = (f == -1) ? dfs(arc->target, t, arc->remain())\
     \ : dfs(arc->target, t, min(f, arc->remain()));\n\n                unless(d >\
     \ 0) { continue; }\n\n                arc->push(d);\n                return d;\n\
@@ -289,11 +297,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Max_Flow/Max_Flow.hpp
   requiredBy:
   - Max_Flow/Project_Selection_Problem.hpp
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/grl/6A.test.cpp

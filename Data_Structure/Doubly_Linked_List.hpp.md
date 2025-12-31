@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -149,26 +152,31 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Data_Structure/Doubly_Linked_List.hpp\"\n\nclass\
-    \ Doubly_Linked_List {\n    private:\n    vector<int> front, back;\n\n    public:\n\
-    \    Doubly_Linked_List(int N): front(N, -1), back(N, -1) {}\n\n    // x \u306E\
-    \u524D\u306F\u5B58\u5728\u3059\u308B\u304B ?\n    inline bool has_front(int x)\
-    \ const { return front[x] != -1; }\n\n    // x \u306E\u5F8C\u306F\u5B58\u5728\u3059\
-    \u308B\u304B ?\n    inline bool has_back(int x) const { return back[x] != -1;\
-    \ }\n\n    // x \u306E\u76F4\u524D\u306E\u9805 (\u5B58\u5728\u3057\u306A\u3044\
-    \u5834\u5408\u306F first \u306E\u5024\u304C\u8FD4\u3063\u3066\u304F\u308B)\n \
-    \   inline int previous(int x, int first = -1) const { return has_front(x) ? front[x]\
-    \ : first; }\n\n    // x \u306E\u76F4\u5F8C\u306E\u9805 (\u5B58\u5728\u3057\u306A\
-    \u3044\u5834\u5408\u306F last \u306E\u5024\u304C\u8FD4\u3063\u3066\u304F\u308B\
-    )\n    inline int next(int x, int last = -1) const {  return has_back(x) ? back[x]\
-    \ : last; }\n\n    // x \u304B\u3089\u524D\u306B\u4F38\u3073\u308B\u30EA\u30F3\
-    \u30AF\u3092\u524A\u9664\u3059\u308B.\n    void disconnect_front(int x) {\n  \
-    \      unless(has_front(x)) { return; }\n\n        int y = front[x];\n       \
-    \ front[x] = -1;\n        back[y] = -1;\n    }\n\n    // x \u304B\u3089\u5F8C\u308D\
-    \u306B\u4F38\u3073\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\u3059\u308B.\n  \
-    \  void disconnect_back(int x) {\n        unless(has_back(x)) { return; }\n\n\
-    \        int y = back[x];\n        back[x] = -1;\n        front[y] = -1;\n   \
-    \ }\n\n    // x \u306B\u63A5\u7D9A\u3059\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Data_Structure/Doubly_Linked_List.hpp\"\
+    \n\nclass Doubly_Linked_List {\n    private:\n    vector<int> front, back;\n\n\
+    \    public:\n    Doubly_Linked_List(int N): front(N, -1), back(N, -1) {}\n\n\
+    \    // x \u306E\u524D\u306F\u5B58\u5728\u3059\u308B\u304B ?\n    inline bool\
+    \ has_front(int x) const { return front[x] != -1; }\n\n    // x \u306E\u5F8C\u306F\
+    \u5B58\u5728\u3059\u308B\u304B ?\n    inline bool has_back(int x) const { return\
+    \ back[x] != -1; }\n\n    // x \u306E\u76F4\u524D\u306E\u9805 (\u5B58\u5728\u3057\
+    \u306A\u3044\u5834\u5408\u306F first \u306E\u5024\u304C\u8FD4\u3063\u3066\u304F\
+    \u308B)\n    inline int previous(int x, int first = -1) const { return has_front(x)\
+    \ ? front[x] : first; }\n\n    // x \u306E\u76F4\u5F8C\u306E\u9805 (\u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408\u306F last \u306E\u5024\u304C\u8FD4\u3063\u3066\
+    \u304F\u308B)\n    inline int next(int x, int last = -1) const {  return has_back(x)\
+    \ ? back[x] : last; }\n\n    // x \u304B\u3089\u524D\u306B\u4F38\u3073\u308B\u30EA\
+    \u30F3\u30AF\u3092\u524A\u9664\u3059\u308B.\n    void disconnect_front(int x)\
+    \ {\n        unless(has_front(x)) { return; }\n\n        int y = front[x];\n \
+    \       front[x] = -1;\n        back[y] = -1;\n    }\n\n    // x \u304B\u3089\u5F8C\
+    \u308D\u306B\u4F38\u3073\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\u3059\u308B\
+    .\n    void disconnect_back(int x) {\n        unless(has_back(x)) { return; }\n\
+    \n        int y = back[x];\n        back[x] = -1;\n        front[y] = -1;\n  \
+    \  }\n\n    // x \u306B\u63A5\u7D9A\u3059\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\
     \u3057, x \u306E\u524D\u5F8C\u304C\u5B58\u5728\u3059\u308B\u306A\u3089\u3070,\
     \ \u305D\u308C\u3089\u3092\u7E4B\u3050.\n    void extract(int x) {\n        int\
     \ a = front[x], b = back[x];\n        disconnect_front(x);\n        disconnect_back(x);\n\
@@ -241,10 +249,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Data_Structure/Doubly_Linked_List.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Data_Structure/Doubly_Linked_List.hpp

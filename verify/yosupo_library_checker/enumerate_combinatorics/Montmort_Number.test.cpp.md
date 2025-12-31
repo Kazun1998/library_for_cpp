@@ -11,6 +11,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -159,76 +162,81 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\
-    \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
-    \  public: // public\u306B\u6307\u5B9A\n      const char* what() const noexcept\
-    \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
-    \u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\
-    \n        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
-    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
-    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
-    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
-    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
-    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
-    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
-    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
-    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
-    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
-    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
-    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
-    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line\
+    \ 4 \"Modulo/Modulo.hpp\"\n\nnamespace modulo {\n    class DifferentModulus :\
+    \ public exception {\n        public: // public\u306B\u6307\u5B9A\n        const\
+    \ char* what() const noexcept override { return \"\u7570\u306A\u308B\u6CD5\u540C\
+    \u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo\
+    \ {\n        long long a, n;\n\n        public:\n        // \u521D\u671F\u5316\
+    \n        Modulo(): a(0), n(1) {}\n        Modulo(long long a, long long n): a((a\
+    \ % n + n) % n), n(n) {}\n\n        // \u30DE\u30A4\u30CA\u30B9\u5143\n      \
+    \  Modulo operator-() const { return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\
+    \n        Modulo& operator+=(const Modulo &y) {\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n    \n            if ((a += y.a) >= n) a -= n;\n    \
+    \        return *this;\n        }\n\n        Modulo& operator+=(const long long\
+    \ &y) { return (*this) += Modulo(y, n); }\n\n        friend Modulo operator+(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) += y ; }\n        friend Modulo\
+    \ operator+(const Modulo &x, const long long &a) { return x + Modulo(a, x.n);\
+    \ }\n        friend Modulo operator+(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) + x; }\n\n        // \u6E1B\u6CD5\n        Modulo& operator-=(const\
     \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
-    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
-    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
-    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
-    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
-    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
-    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
-    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
-    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
-    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
-    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
-    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
-    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
-    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
-    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
-    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
-    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
-    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
-    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
-    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
-    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) { return\
-    \ safe_mod(x - a, n) == 0; }\n\n        bool is_zero() { return is_member(0);\
-    \ }\n        \n\n        // \u6BD4\u8F03\n        friend bool operator==(const\
-    \ Modulo &x, const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
-    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
-    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
-    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
-    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
-    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
-    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
-    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
-    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
-    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
-    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
-    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
-    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
-    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
-    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 3 \"Math/Montmort_Number.hpp\"\n\nusing namespace modulo;\n\nvector<Modulo>Montmort_Number(int\
-    \ N, const ll M) {\n    if (N == 0) { return vector<Modulo>({{1, M}}); }\n\n \
-    \   vector<Modulo> montmort(N + 1);\n    montmort[0] = Modulo(1, M); montmort[1]\
-    \ = Modulo(0, M);\n\n    for (int k = 2; k <= N; k++) {\n        montmort[k] =\
-    \ k * montmort[k - 1] + (k % 2 == 0 ? 1 : -1);\n    }\n\n    return montmort;\n\
-    }\n#line 4 \"verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp\"\
+    \        if ((a += (n - y.a)) >= n) a -= n;\n            return *this;\n     \
+    \   }\n\n        Modulo& operator-=(const long long &y) { return (*this) -= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator-(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) -= y; }\n        friend Modulo operator-(const Modulo &x, const\
+    \ long long &a) { return x - Modulo(a, x.n); }\n        friend Modulo operator-(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) - x; }\n\n        //\
+    \ \u4E57\u6CD5\n        Modulo& operator*=(const Modulo &y) {\n            if\
+    \ (n != y.n) { throw DifferentModulus(); }\n            (a *= y.a) %= n;\n   \
+    \         return *this;\n        }\n\n        Modulo& operator*=(const long long\
+    \ &y){return (*this) *= Modulo(y, n); }\n\n        friend Modulo operator*(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) *= y; }\n        friend Modulo\
+    \ operator*(const Modulo &x, const long long &a) { return x * Modulo(a,x.n); }\n\
+    \        friend Modulo operator*(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\n        Modulo& operator/=(const\
+    \ Modulo &y){\n            if (n != y.n) { throw DifferentModulus(); }\n     \
+    \       return (*this) *= y.inverse();\n        }\n\n        Modulo& operator/=(const\
+    \ long long &y) {return (*this ) /= Modulo(y, n); }\n\n        friend Modulo operator/(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) /= y; }\n        friend Modulo\
+    \ operator/(const Modulo &x, const long long &a) { return x / Modulo(a, x.n);\
+    \ }\n        friend Modulo operator/(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) / x; }\n\n        // \u9000\u5316\n        Modulo& degenerate(const\
+    \ int m){\n            a %= m; n = m;\n            return *this;\n        }\n\n\
+    \        // \u30E2\u30B8\u30E5\u30E9\u30FC\u9006\u5143\n        bool invertible()\
+    \ const {\n            long long x = a, y = n;\n            while (y) { swap(x\
+    \ = x % y, y); }\n            return x == 1;\n        }\n\n        Modulo inverse()\
+    \ const{\n            long long s = 1, t = 0;\n            long long x = a, y\
+    \ = n;\n            while (y){\n                auto q = x / y;\n            \
+    \    swap(x -= q * y, y);\n                swap(s -= q * t, t);\n            }\n\
+    \n            return Modulo(s, n);\n        }\n\n        // include?\n       \
+    \ bool is_member(ll x) const { return safe_mod(x - a, n) == 0; }\n\n        bool\
+    \ is_zero() const { return is_member(0); }\n\n        // \u6BD4\u8F03\n      \
+    \  friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a;\
+    \ }\n        friend bool operator==(const Modulo &x, const long long &a) { return\
+    \ (x.a - a) % x.n == 0; }\n        friend bool operator==(const long long &a,\
+    \ const Modulo &x) { return (a - x.a) % x.n == 0; }\n\n        friend bool operator!=(const\
+    \ Modulo &x, const Modulo &y) { return x.a != y.a; }\n        friend bool operator!=(const\
+    \ Modulo &x, const long long &a) { return (x.a - a)% x.n != 0; }\n        friend\
+    \ bool operator!=(const long long &a, const Modulo &x) { return (a - x.a)% x.n\
+    \ != 0; }\n\n        // \u5165\u529B\n        friend istream &operator>>(istream\
+    \ &is, Modulo &x) {\n            long long b, m;\n            is >> b >> m;\n\
+    \            x = Modulo(b, m);\n            return (is);\n        }\n\n      \
+    \  // \u51FA\u529B\n        friend ostream &operator<<(ostream &os, const Modulo\
+    \ &x) { return os << x.a << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo\
+    \ pow(Modulo x, long long n) {\n        if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n        auto res = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n    \
+    \        if (n & 1) { res *= x; }\n            x *= x;\n        }\n\n        return\
+    \ res;\n    }\n}\n#line 3 \"Math/Montmort_Number.hpp\"\n\nusing namespace modulo;\n\
+    \nvector<Modulo>Montmort_Number(int N, const ll M) {\n    if (N == 0) { return\
+    \ vector<Modulo>({{1, M}}); }\n\n    vector<Modulo> montmort(N + 1);\n    montmort[0]\
+    \ = Modulo(1, M); montmort[1] = Modulo(0, M);\n\n    for (int k = 2; k <= N; k++)\
+    \ {\n        montmort[k] = k * montmort[k - 1] + (k % 2 == 0 ? 1 : -1);\n    }\n\
+    \n    return montmort;\n}\n#line 4 \"verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp\"\
     \n\nint main() {\n    int N, M; cin >> N >> M;\n    auto b = Montmort_Number(N,\
     \ M);\n    for (int k = 1; k <= N; k++) { cout << b[k].a << (k < N ? \" \" : \"\
     \"); }\n    cout << endl;\n}\n"
@@ -244,11 +252,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Modulo/Modulo.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 03:20:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp

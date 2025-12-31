@@ -11,6 +11,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -158,30 +161,35 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Algebra/Extended_Algebra.hpp\"\n\nclass IndeterminateOperationError\
-    \ : public std::runtime_error {\n    public:\n    IndeterminateOperationError(const\
-    \ std::string& msg): std::runtime_error(msg) {}\n};\n\ntemplate<typename R>\n\
-    struct Extended_Algebra {\n    private:\n    R val;\n    signed char inf_flag;\
-    \ // 0: finite, 1: +inf, -1: -inf\n    Extended_Algebra(R val, signed char inf_flag):\
-    \ val(val), inf_flag(inf_flag) {}\n\n    public:\n    Extended_Algebra(): val(R()),\
-    \ inf_flag(0) {}\n    Extended_Algebra(R val): val(val), inf_flag(0) {}\n\n  \
-    \  Extended_Algebra operator-() const { return Extended_Algebra(-val, -inf_flag);\
-    \ }\n\n    static const Extended_Algebra inf;\n\n    bool is_finite() const {\
-    \ return inf_flag == 0; }\n    bool is_infinite() const { return !is_finite();\
-    \ }\n\n    bool is_positive(const bool zero = false) const {\n        if(is_infinite())\
-    \ { return inf_flag > 0; }\n\n        return zero ? val >= R() : val > R();\n\
-    \    }\n\n    bool is_negative(const bool zero = false) const {\n        if(is_infinite())\
-    \ { return inf_flag < 0; }\n\n        return zero ? val <= R() : val < R();\n\
-    \    }\n\n    bool is_positive_infinite() const { return inf_flag == 1; }\n  \
-    \  bool is_negative_infinite() const { return inf_flag == -1; }\n\n    inline\
-    \ bool is_zero() const { return inf_flag == 0 && val == R(); }\n\n    Extended_Algebra&\
-    \ operator+=(const Extended_Algebra &rhs) {\n        if (is_positive_infinite()\
-    \ && rhs.is_negative_infinite()) {\n            throw IndeterminateOperationError(\"\
-    Extended_Algebra: Indeterminate form (inf + (-inf))\");\n        }\n        if\
-    \ (is_negative_infinite() && rhs.is_positive_infinite()) {\n            throw\
-    \ IndeterminateOperationError(\"Extended_Algebra: Indeterminate form ((-inf) +\
-    \ inf)\");\n        }\n\n        if (is_finite() && rhs.is_finite()) { val +=\
-    \ rhs.val; }\n        else if (is_positive_infinite() || rhs.is_positive_infinite())\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Algebra/Extended_Algebra.hpp\"\
+    \n\nclass IndeterminateOperationError : public std::runtime_error {\n    public:\n\
+    \    IndeterminateOperationError(const std::string& msg): std::runtime_error(msg)\
+    \ {}\n};\n\ntemplate<typename R>\nstruct Extended_Algebra {\n    private:\n  \
+    \  R val;\n    signed char inf_flag; // 0: finite, 1: +inf, -1: -inf\n    Extended_Algebra(R\
+    \ val, signed char inf_flag): val(val), inf_flag(inf_flag) {}\n\n    public:\n\
+    \    Extended_Algebra(): val(R()), inf_flag(0) {}\n    Extended_Algebra(R val):\
+    \ val(val), inf_flag(0) {}\n\n    Extended_Algebra operator-() const { return\
+    \ Extended_Algebra(-val, -inf_flag); }\n\n    static const Extended_Algebra inf;\n\
+    \n    bool is_finite() const { return inf_flag == 0; }\n    bool is_infinite()\
+    \ const { return !is_finite(); }\n\n    bool is_positive(const bool zero = false)\
+    \ const {\n        if(is_infinite()) { return inf_flag > 0; }\n\n        return\
+    \ zero ? val >= R() : val > R();\n    }\n\n    bool is_negative(const bool zero\
+    \ = false) const {\n        if(is_infinite()) { return inf_flag < 0; }\n\n   \
+    \     return zero ? val <= R() : val < R();\n    }\n\n    bool is_positive_infinite()\
+    \ const { return inf_flag == 1; }\n    bool is_negative_infinite() const { return\
+    \ inf_flag == -1; }\n\n    inline bool is_zero() const { return inf_flag == 0\
+    \ && val == R(); }\n\n    Extended_Algebra& operator+=(const Extended_Algebra\
+    \ &rhs) {\n        if (is_positive_infinite() && rhs.is_negative_infinite()) {\n\
+    \            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
+    \ form (inf + (-inf))\");\n        }\n        if (is_negative_infinite() && rhs.is_positive_infinite())\
+    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
+    \ form ((-inf) + inf)\");\n        }\n\n        if (is_finite() && rhs.is_finite())\
+    \ { val += rhs.val; }\n        else if (is_positive_infinite() || rhs.is_positive_infinite())\
     \ { inf_flag = 1; }\n        else if (is_negative_infinite() || rhs.is_negative_infinite())\
     \ { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend Extended_Algebra\
     \ operator+(const Extended_Algebra &lhs, const Extended_Algebra &rhs) { return\
@@ -424,11 +432,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Max_Flow/Max_Flow.hpp
   isVerificationFile: false
   path: Max_Flow/Project_Selection_Problem.hpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/1984.test.cpp

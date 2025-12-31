@@ -14,6 +14,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -161,11 +164,16 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Graph/Weighted_Graph/Weighted_Graph.hpp\"\n\nnamespace\
-    \ weighted_graph {\n    template<typename W>\n    struct Weighted_Edge {\n   \
-    \     int id, source, target;\n        W weight;\n        Weighted_Edge *rev;\n\
-    \n        Weighted_Edge() = default;\n        Weighted_Edge (int id, int source,\
-    \ int target, W weight): id(id), source(source), target(target), weight(weight)\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Graph/Weighted_Graph/Weighted_Graph.hpp\"\
+    \n\nnamespace weighted_graph {\n    template<typename W>\n    struct Weighted_Edge\
+    \ {\n        int id, source, target;\n        W weight;\n        Weighted_Edge\
+    \ *rev;\n\n        Weighted_Edge() = default;\n        Weighted_Edge (int id,\
+    \ int source, int target, W weight): id(id), source(source), target(target), weight(weight)\
     \ {}\n    };\n    \n    template<typename W>\n    class Weighted_Graph {\n   \
     \     using Edge = Weighted_Edge<W>;\n\n        private:\n        vector<vector<Edge*>>\
     \ incidences;\n\n        public:\n        int edge_id_offset;\n        vector<Edge*>\
@@ -257,13 +265,14 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Graph/Weighted_Graph/Weighted_Graph.hpp
   - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - Union_Find/Union_Find.hpp
   isVerificationFile: false
   path: Graph/Weighted_Graph/Kruskal.hpp
   requiredBy: []
-  timestamp: '2025-11-24 23:47:22+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp

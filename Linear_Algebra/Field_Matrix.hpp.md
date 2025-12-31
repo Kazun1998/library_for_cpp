@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -170,20 +173,25 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
-    \ private exception{\n    const char* what() const throw() {\n        return \"\
-    \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
-    \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
-    \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
-    \   Field_Matrix(int row, int col): row(row), col(col){\n        mat.assign(row,\
-    \ vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row): Field_Matrix(row,\
-    \ row){}\n\n    Field_Matrix(vector<vector<F>> &ele): Field_Matrix(ele.size(),\
-    \ ele[0].size()){\n        for (int i = 0; i < row; i++){\n            copy(ele[i].begin(),\
-    \ ele[i].end(), mat[i].begin());\n        }\n    }\n\n    static Field_Matrix\
-    \ Zero_Matrix(int row, int col) { return Field_Matrix(row, col); }\n\n    static\
-    \ Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix A(size);\n  \
-    \      for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return A;\n  \
-    \  }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
+    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
+    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
+    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
+    \ col;\n\n    public:\n    Field_Matrix(int row, int col): row(row), col(col){\n\
+    \        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
     \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
     \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
     \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
@@ -381,12 +389,13 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Linear_Algebra/Field_Matrix.hpp
   requiredBy:
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Reduction.hpp
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp

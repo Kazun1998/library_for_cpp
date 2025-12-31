@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -157,23 +160,28 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Math/Stern_Brocot_Tree.hpp\"\n\nstruct Stern_Brocot_Tree\
-    \ {\n    using Fraction = pair<ll, ll>;\n    template<typename Direction>\n  \
-    \  using Path = vector<pair<Direction, ll>>;\n\n    /// @brief SB \u6728\u306B\
-    \u304A\u3051\u308B 1/1 \u304B\u3089 a/b \u3078\u306E\u30D1\u30B9\u3092\u6C42\u3081\
-    \u308B.\n    /// @tparam Direction \u5411\u304D\u3092\u8868\u3059\u5024\u3092\u683C\
-    \u7D0D\u3059\u308B\u30AF\u30E9\u30B9\n    /// @param a \u5206\u5B50\n    /// @param\
-    \ b \u5206\u6BCD\n    /// @param left \u5DE6 (0/1 \u3078\u306E\u5411\u304D) \u3092\
-    \u8868\u3059\u5024\n    /// @param right \u53F3 (1/0 \u3078\u306E\u5411\u304D\
-    ) \u3092\u8868\u3059\u5024\n    /// @return pair<Direction, ll> \u578B\u306E (d,\
-    \ k) \u304B\u3089\u306A\u308B\u30EA\u30B9\u30C8. (d, k) \u306F d \u306E\u5411\u304D\
-    \u3078 k \u56DE\u9023\u7D9A\u3067\u9032\u3080\u3053\u3068\u3092\u8868\u3059.\n\
-    \    template<typename Direction>\n    static Path<Direction> encode(ll a, ll\
-    \ b, Direction left, Direction right) {\n        Path<Direction> path;\n     \
-    \   ll q, r;\n        tie (q, r) = divmod(a, b);\n        if (q > 0) { path.emplace_back(right,\
-    \ q); }\n\n        a = b;\n        b = r;\n        bool parity = true;\n     \
-    \   while (b > 0) {\n            tie (q, r) = divmod(a, b);\n            Direction\
-    \ direction = parity ? left : right;\n            path.emplace_back(direction,\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Math/Stern_Brocot_Tree.hpp\"\
+    \n\nstruct Stern_Brocot_Tree {\n    using Fraction = pair<ll, ll>;\n    template<typename\
+    \ Direction>\n    using Path = vector<pair<Direction, ll>>;\n\n    /// @brief\
+    \ SB \u6728\u306B\u304A\u3051\u308B 1/1 \u304B\u3089 a/b \u3078\u306E\u30D1\u30B9\
+    \u3092\u6C42\u3081\u308B.\n    /// @tparam Direction \u5411\u304D\u3092\u8868\u3059\
+    \u5024\u3092\u683C\u7D0D\u3059\u308B\u30AF\u30E9\u30B9\n    /// @param a \u5206\
+    \u5B50\n    /// @param b \u5206\u6BCD\n    /// @param left \u5DE6 (0/1 \u3078\u306E\
+    \u5411\u304D) \u3092\u8868\u3059\u5024\n    /// @param right \u53F3 (1/0 \u3078\
+    \u306E\u5411\u304D) \u3092\u8868\u3059\u5024\n    /// @return pair<Direction,\
+    \ ll> \u578B\u306E (d, k) \u304B\u3089\u306A\u308B\u30EA\u30B9\u30C8. (d, k) \u306F\
+    \ d \u306E\u5411\u304D\u3078 k \u56DE\u9023\u7D9A\u3067\u9032\u3080\u3053\u3068\
+    \u3092\u8868\u3059.\n    template<typename Direction>\n    static Path<Direction>\
+    \ encode(ll a, ll b, Direction left, Direction right) {\n        Path<Direction>\
+    \ path;\n        ll q, r;\n        tie (q, r) = divmod(a, b);\n        if (q >\
+    \ 0) { path.emplace_back(right, q); }\n\n        a = b;\n        b = r;\n    \
+    \    bool parity = true;\n        while (b > 0) {\n            tie (q, r) = divmod(a,\
+    \ b);\n            Direction direction = parity ? left : right;\n            path.emplace_back(direction,\
     \ q);\n\n            tie (a, b) = make_tuple(b, r);\n            parity = !parity;\n\
     \        }\n\n        if (path.back().second > 1) {\n            path.back().second--;\n\
     \        } else {\n            path.pop_back();\n        }\n\n        return path;\n\
@@ -396,10 +404,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Math/Stern_Brocot_Tree.hpp
   requiredBy: []
-  timestamp: '2025-11-23 00:39:31+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp

@@ -49,9 +49,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
-  - icon: ':heavy_check_mark:'
-    path: Data_Structure/Disjoint_Sparse_Table.hpp
-    title: Disjoint Sparse Table
   - icon: ':warning:'
     path: Data_Structure/Doubly_Linked_List.hpp
     title: "\u53CC\u65B9\u5411\u9023\u7D50\u30EA\u30B9\u30C8"
@@ -623,40 +620,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E\
-    \ bit legnth \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0)\
-    \ { return 0; }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n\
-    }\n\n// \u975E\u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\n\
-    ll popcount(ll x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\
-    \u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\n\
-    ll floor_log2(ll x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570\
-    \ x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll\
-    \ x) { return bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\
-    \u53D6\u5F97\u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n\
-    // x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\
-    \u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll\
-    \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
-    \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
-    \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n"
-  code: "#pragma once\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth \u3092\u6C42\
-    \u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0; }\n    return\
-    \ (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\u8CA0\u6574\u6570\
-    \ x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll x) { return __builtin_popcountll(x);\
-    \ }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x))\
-    \ \u3092\u6C42\u3081\u308B.\nll floor_log2(ll x) { return bit_length(x) - 1; }\n\
-    \n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\
-    \u6C42\u3081\u308B.\nll ceil_log2(ll x) { return bit_length(x - 1); }\n\n// x\
-    \ \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\u3059\u308B\nint get_bit(ll\
-    \ x, int k) { return (x >> k) & 1; }\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\
-    \u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\
-    \u3068\u3059\u308B.\nvector<int> get_bits(ll x, int k) {\n    vector<int> bits(k);\n\
-    \    rep(i, k) {\n        bits[i] = x & 1;\n        x >>= 1;\n    }\n\n    return\
-    \ bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B\
-    .\nvector<int> get_bits(ll x) { return get_bits(x, bit_length(x)); }\n"
+  bundledCode: "#line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception\
+    \ {\n    private:\n    string message;\n\n    public:\n    NotExist() : message(\"\
+    \u6C42\u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\
+    \u5728\u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept\
+    \ override {\n        return message.c_str();\n    }\n};\n"
+  code: "#pragma once\n\nclass NotExist: public exception {\n    private:\n    string\
+    \ message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\
+    \u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\
+    \u3093.\") {}\n\n    const char* what() const noexcept override {\n        return\
+    \ message.c_str();\n    }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: template/bitop.hpp
+  path: template/exception.hpp
   requiredBy:
   - Modulo/Sqrt.hpp
   - Modulo/Order.hpp
@@ -671,7 +647,6 @@ data:
   - Data_Structure/Doubly_Linked_List.hpp
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
-  - Data_Structure/Disjoint_Sparse_Table.hpp
   - Data_Structure/AVL_Tree.hpp
   - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
@@ -772,7 +747,7 @@ data:
   - Binary_Search/Value.hpp
   - jam.cpp
   - Segment_Tree/Dual_Segment_Tree.hpp
-  timestamp: '2025-09-07 16:29:51+09:00'
+  timestamp: '2026-01-01 02:17:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
@@ -865,10 +840,10 @@ data:
   - verify/yukicoder/1984.test.cpp
   - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
-documentation_of: template/bitop.hpp
+documentation_of: template/exception.hpp
 layout: document
 redirect_from:
-- /library/template/bitop.hpp
-- /library/template/bitop.hpp.html
-title: template/bitop.hpp
+- /library/template/exception.hpp
+- /library/template/exception.hpp.html
+title: template/exception.hpp
 ---

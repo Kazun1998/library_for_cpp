@@ -9,6 +9,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -158,48 +161,53 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Counting/Combination_Calculator.hpp\"\n\ntemplate<typename\
-    \ mint>\nclass Combination_Calculator {\n    private:\n    vector<mint> _fact,\
-    \ _fact_inv;\n\n    void resize(const int m) {\n        if (m < _fact.size())\
-    \ { return; }\n\n        int current_size = _fact.size();\n        int next_size\
-    \ = min(max(2 * current_size, m + 1), mint::mod());\n\n        _fact.resize(next_size);\n\
-    \        _fact_inv.resize(next_size);\n\n        for (int k = current_size; k\
-    \ < next_size; k++) {\n            _fact[k] = k * _fact[k - 1];\n        }\n\n\
-    \        _fact_inv.back() = _fact.back().inverse();\n\n        for (int k = next_size\
-    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = (k + 1) * _fact_inv[k\
-    \ + 1];\n        }\n    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\
-    \u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\u30BAn\u307E\u3067\u968E\u4E57\
-    \u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\u308B\n     * @param n \u521D\
-    \u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n    Combination_Calculator(const\
-    \ int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\
-    \ _fact_inv.emplace_back(1);\n\n        resize(n);\n    }\n\n    Combination_Calculator():\
-    \ Combination_Calculator(0) {}\n\n    /**\n     * @brief k! \u3092\u53D6\u5F97\
-    \n     */\n    mint fact(const int k) {\n        resize(k);\n        return _fact[k];\n\
-    \    }\n\n    /**\n     * @brief (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint\
-    \ fact_inv(const int k) {\n        resize(k);\n        return _fact_inv[k];\n\
-    \    }\n\n    /**\n     * @brief k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\
-    \u308B\n     * @param k \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n   \
-    \  */\n    mint inv(const int k) {\n        if (k <= 0) { return 0; }\n\n    \
-    \    resize(k);\n        return _fact_inv[k] * _fact[k - 1];\n    }\n\n    /**\n\
-    \     * @brief \u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\
-    \n     */\n    mint nCr(const int n, const int r) {\n        if (!(0 <= r && r\
-    \ <= n)) { return 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[r]\
-    \ * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u9806\u5217 nPk \u3092\
-    \u8A08\u7B97\u3059\u308B\n     */\n    mint nPr(const int n, const int r) {\n\
-    \        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n        return\
-    \ _fact[n] * _fact_inv[n - r];\n    }\n\n    /**\n     * @brief \u91CD\u8907\u7D44\
-    \u5408\u305B nHk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nHr(const int\
-    \ n, const int r) {\n        if (n == 0 && r == 0) { return 1; }\n\n        return\
-    \ nCr(n + r - 1, r);\n    }\n\n    /**\n     * @brief \u591A\u9805\u4FC2\u6570\
-    \ (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
-    \ multinomial_coefficient(const vector<int> &ks) {\n        int k_sum = 0;\n \
-    \       mint lower = 1;\n        for (int k: ks) {\n            k_sum += k;\n\
-    \            lower *= _fact_inv[k];\n        }\n\n        resize(k_sum);\n\n \
-    \       mint upper = _fact[k_sum];\n\n        return upper * lower;\n    }\n\n\
-    \    mint catalan(const int n) {\n        if (n < 0) { return 0; }\n        resize(2\
-    \ * n);\n        return _fact[2 * n] * _fact_inv[n + 1] * _fact_inv[n];\n    }\n\
-    };\n#line 5 \"Counting/Q_Analog_Combination_Calculator.hpp\"\n\ntemplate<typename\
-    \ mint>\nclass Q_Analog_Calculator {\n    private:\n    Combination_Calculator<mint>\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Counting/Combination_Calculator.hpp\"\
+    \n\ntemplate<typename mint>\nclass Combination_Calculator {\n    private:\n  \
+    \  vector<mint> _fact, _fact_inv;\n\n    void resize(const int m) {\n        if\
+    \ (m < _fact.size()) { return; }\n\n        int current_size = _fact.size();\n\
+    \        int next_size = min(max(2 * current_size, m + 1), mint::mod());\n\n \
+    \       _fact.resize(next_size);\n        _fact_inv.resize(next_size);\n\n   \
+    \     for (int k = current_size; k < next_size; k++) {\n            _fact[k] =\
+    \ k * _fact[k - 1];\n        }\n\n        _fact_inv.back() = _fact.back().inverse();\n\
+    \n        for (int k = next_size - 2; k >= current_size; --k) {\n            _fact_inv[k]\
+    \ = (k + 1) * _fact_inv[k + 1];\n        }\n    }\n\n    public:\n    /**\n  \
+    \   * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\
+    \u30BAn\u307E\u3067\u968E\u4E57\u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\
+    \u308B\n     * @param n \u521D\u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n\
+    \    Combination_Calculator(const int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n\
+    \        _fact_inv.emplace_back(1); _fact_inv.emplace_back(1);\n\n        resize(n);\n\
+    \    }\n\n    Combination_Calculator(): Combination_Calculator(0) {}\n\n    /**\n\
+    \     * @brief k! \u3092\u53D6\u5F97\n     */\n    mint fact(const int k) {\n\
+    \        resize(k);\n        return _fact[k];\n    }\n\n    /**\n     * @brief\
+    \ (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint fact_inv(const int k) {\n  \
+    \      resize(k);\n        return _fact_inv[k];\n    }\n\n    /**\n     * @brief\
+    \ k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\u308B\n     * @param k \u9006\
+    \u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n     */\n    mint inv(const int k)\
+    \ {\n        if (k <= 0) { return 0; }\n\n        resize(k);\n        return _fact_inv[k]\
+    \ * _fact[k - 1];\n    }\n\n    /**\n     * @brief \u7D44\u307F\u5408\u308F\u305B\
+    \ nCk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nCr(const int n, const\
+    \ int r) {\n        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n\
+    \        return _fact[n] * _fact_inv[r] * _fact_inv[n - r];\n    }\n\n    /**\n\
+    \     * @brief \u9806\u5217 nPk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
+    \ nPr(const int n, const int r) {\n        if (!(0 <= r && r <= n)) { return 0;\
+    \ }\n        resize(n);\n        return _fact[n] * _fact_inv[n - r];\n    }\n\n\
+    \    /**\n     * @brief \u91CD\u8907\u7D44\u5408\u305B nHk \u3092\u8A08\u7B97\u3059\
+    \u308B\n     */\n    mint nHr(const int n, const int r) {\n        if (n == 0\
+    \ && r == 0) { return 1; }\n\n        return nCr(n + r - 1, r);\n    }\n\n   \
+    \ /**\n     * @brief \u591A\u9805\u4FC2\u6570 (k_sum)! / (k1! * k2! * ...) \u3092\
+    \u8A08\u7B97\u3059\u308B\n     */\n    mint multinomial_coefficient(const vector<int>\
+    \ &ks) {\n        int k_sum = 0;\n        mint lower = 1;\n        for (int k:\
+    \ ks) {\n            k_sum += k;\n            lower *= _fact_inv[k];\n       \
+    \ }\n\n        resize(k_sum);\n\n        mint upper = _fact[k_sum];\n\n      \
+    \  return upper * lower;\n    }\n\n    mint catalan(const int n) {\n        if\
+    \ (n < 0) { return 0; }\n        resize(2 * n);\n        return _fact[2 * n] *\
+    \ _fact_inv[n + 1] * _fact_inv[n];\n    }\n};\n#line 5 \"Counting/Q_Analog_Combination_Calculator.hpp\"\
+    \n\ntemplate<typename mint>\nclass Q_Analog_Calculator {\n    private:\n    Combination_Calculator<mint>\
     \ calc;\n\n    mint q;\n    int order;\n    vector<mint> _power;    // q^k\n \
     \   vector<mint> _bracket;  // q-\u6570 [n]_q\n    vector<mint> _fact;     //\
     \ q-\u968E\u4E57 [n]_q !\n    vector<mint> _fact_inv; // q-\u968E\u4E57\u306E\u9006\
@@ -308,10 +316,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Counting/Q_Analog_Combination_Calculator.hpp
   requiredBy: []
-  timestamp: '2025-12-04 00:54:23+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp

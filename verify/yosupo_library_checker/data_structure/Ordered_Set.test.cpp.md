@@ -8,6 +8,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -156,38 +159,44 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 2 \"Data_Structure/AVL_Tree.hpp\"\n\n#line 4 \"Data_Structure/AVL_Tree.hpp\"\
-    \n\ntemplate<typename K, typename V>\nclass Adelson_Velsky_and_Landis_Tree {\n\
-    \    class Node {\n        public:\n        K key;\n        V value;\n       \
-    \ Node *left, *right;\n        int height, size;\n\n        Node(K key, V value):\
-    \ key(key), value(value), left(nullptr), right(nullptr), height(1), size(1) {}\n\
-    \n        inline int set_height() { return height = 1 + std::max(height_of(left),\
-    \ height_of(right)); }\n\n        inline int set_size() { return size = 1 + size_of(left)\
-    \ + size_of(right); }\n\n        inline int get_height() { return height; }\n\n\
-    \        inline int get_bias() { return height_of(left) - height_of(right); }\n\
-    \n        static inline int height_of(Node *node)  { return (node == nullptr)\
-    \ ? 0 : node->height; }\n\n        static inline int size_of(Node *node) { return\
-    \ (node == nullptr) ? 0 : node->size; }\n\n        Node* left_rotation() {\n \
-    \           Node *x = this;\n            Node *y = x->right;\n            Node\
-    \ *z = y->left;\n\n            y->left = x;\n            x->right = z;\n\n   \
-    \         x->set_height();\n            y->set_height();\n\n            x->set_size();\n\
-    \            y->set_size();\n\n            return y;\n        }\n\n        Node*\
-    \ right_rotation() {\n            Node *x = this;\n            Node *y = x->left;\n\
-    \            Node *z = y->right;\n\n            y->right = x;\n            x->left\
-    \ = z;\n\n            x->set_height();\n            y->set_height();\n\n     \
-    \       x->set_size();\n            y->set_size();\n\n            return y;\n\
-    \        }\n\n        static const Node* find_dig(const Node* node, const K &key)\
-    \ {\n            if (node == nullptr) { return nullptr; }\n\n            if (key\
-    \ == node->key) { return node; }\n\n            return key < node->key ? find_dig(node->left,\
-    \ key) : find_dig(node->right, key);\n        }\n    };\n\n    private:\n    Node*\
-    \ insert_inner(Node *node, const K &key, const V &value) {\n        if (node ==\
-    \ nullptr) { return new Node(key, value); }\n\n        if (key == node->key) {\n\
-    \            node->value = value;\n            return node;\n        }\n\n   \
-    \     if (key < node->key) {\n            node->left = insert_inner(node->left,\
-    \ key, value);\n        } else {\n            node->right = insert_inner(node->right,\
-    \ key, value);\n        }\n\n        node->set_height();\n        node->set_size();\n\
-    \n        int bias = node->get_bias();\n\n        // Case I: Left Left\n     \
-    \   if (bias > 1 && key < node->left->key) {\n            return node->right_rotation();\n\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 2 \"Data_Structure/AVL_Tree.hpp\"\
+    \n\n#line 4 \"Data_Structure/AVL_Tree.hpp\"\n\ntemplate<typename K, typename V>\n\
+    class Adelson_Velsky_and_Landis_Tree {\n    class Node {\n        public:\n  \
+    \      K key;\n        V value;\n        Node *left, *right;\n        int height,\
+    \ size;\n\n        Node(K key, V value): key(key), value(value), left(nullptr),\
+    \ right(nullptr), height(1), size(1) {}\n\n        inline int set_height() { return\
+    \ height = 1 + std::max(height_of(left), height_of(right)); }\n\n        inline\
+    \ int set_size() { return size = 1 + size_of(left) + size_of(right); }\n\n   \
+    \     inline int get_height() { return height; }\n\n        inline int get_bias()\
+    \ { return height_of(left) - height_of(right); }\n\n        static inline int\
+    \ height_of(Node *node)  { return (node == nullptr) ? 0 : node->height; }\n\n\
+    \        static inline int size_of(Node *node) { return (node == nullptr) ? 0\
+    \ : node->size; }\n\n        Node* left_rotation() {\n            Node *x = this;\n\
+    \            Node *y = x->right;\n            Node *z = y->left;\n\n         \
+    \   y->left = x;\n            x->right = z;\n\n            x->set_height();\n\
+    \            y->set_height();\n\n            x->set_size();\n            y->set_size();\n\
+    \n            return y;\n        }\n\n        Node* right_rotation() {\n     \
+    \       Node *x = this;\n            Node *y = x->left;\n            Node *z =\
+    \ y->right;\n\n            y->right = x;\n            x->left = z;\n\n       \
+    \     x->set_height();\n            y->set_height();\n\n            x->set_size();\n\
+    \            y->set_size();\n\n            return y;\n        }\n\n        static\
+    \ const Node* find_dig(const Node* node, const K &key) {\n            if (node\
+    \ == nullptr) { return nullptr; }\n\n            if (key == node->key) { return\
+    \ node; }\n\n            return key < node->key ? find_dig(node->left, key) :\
+    \ find_dig(node->right, key);\n        }\n    };\n\n    private:\n    Node* insert_inner(Node\
+    \ *node, const K &key, const V &value) {\n        if (node == nullptr) { return\
+    \ new Node(key, value); }\n\n        if (key == node->key) {\n            node->value\
+    \ = value;\n            return node;\n        }\n\n        if (key < node->key)\
+    \ {\n            node->left = insert_inner(node->left, key, value);\n        }\
+    \ else {\n            node->right = insert_inner(node->right, key, value);\n \
+    \       }\n\n        node->set_height();\n        node->set_size();\n\n      \
+    \  int bias = node->get_bias();\n\n        // Case I: Left Left\n        if (bias\
+    \ > 1 && key < node->left->key) {\n            return node->right_rotation();\n\
     \        }\n\n        // Case II: Right Right\n        if (bias < -1 && key >\
     \ node->right->key) {\n            return node->left_rotation();\n        }\n\n\
     \        // Case III: Left Right\n        if (bias > 1 && key > node->left->key)\
@@ -351,11 +360,12 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   - Data_Structure/AVL_Tree.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   requiredBy: []
-  timestamp: '2025-11-22 15:43:56+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp

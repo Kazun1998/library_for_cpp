@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -155,22 +158,28 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Algebra/dynamic_modint.hpp\"\n\ntemplate<int id>\n\
-    class dynamic_modint {\n    public:\n    uint64_t x;\n    static int _mod;\n\n\
-    \    static void set_mod(const int m) { _mod = m; } \n    static int mod() { return\
-    \ _mod; }\n\n    public:\n    static dynamic_modint raw(int v) {\n        dynamic_modint\
-    \ a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n\
-    \    constexpr dynamic_modint(): x(0) {}\n    constexpr dynamic_modint(int64_t\
-    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
-    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint\
-    \ operator-() const { return dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n  \
-    \  dynamic_modint& operator+=(const dynamic_modint &b){\n        if ((x += b.x)\
-    \ >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend dynamic_modint\
-    \ operator+(const dynamic_modint &x, const dynamic_modint &y) { return dynamic_modint(x)\
-    \ += y; }\n\n    // \u6E1B\u6CD5\n    dynamic_modint& operator-=(const dynamic_modint\
-    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
-    \    }\n\n    friend dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint\
-    \ &y) { return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Algebra/dynamic_modint.hpp\"\
+    \n\ntemplate<int id>\nclass dynamic_modint {\n    public:\n    uint64_t x;\n \
+    \   static int _mod;\n\n    static void set_mod(const int m) { _mod = m; } \n\
+    \    static int mod() { return _mod; }\n\n    public:\n    static dynamic_modint\
+    \ raw(int v) {\n        dynamic_modint a;\n        a.x = v;\n        return a;\n\
+    \    }\n\n    // \u521D\u671F\u5316\n    constexpr dynamic_modint(): x(0) {}\n\
+    \    constexpr dynamic_modint(int64_t a) {\n        int64_t w = (int64_t)(a) %\
+    \ mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint operator-() const { return\
+    \ dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n    dynamic_modint& operator+=(const\
+    \ dynamic_modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return\
+    \ *this;\n    }\n\n    friend dynamic_modint operator+(const dynamic_modint &x,\
+    \ const dynamic_modint &y) { return dynamic_modint(x) += y; }\n\n    // \u6E1B\
+    \u6CD5\n    dynamic_modint& operator-=(const dynamic_modint &b){\n        if ((x\
+    \ += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint &y) {\
+    \ return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
     \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
     \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
     \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
@@ -248,10 +257,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Algebra/dynamic_modint.hpp
   requiredBy: []
-  timestamp: '2025-12-02 23:04:32+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp

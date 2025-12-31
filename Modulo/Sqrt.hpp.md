@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Connected_Components.hpp
-    title: Graph/Graph/Connected_Components.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Graph.hpp
-    title: "\u7121\u5411 Graph"
+    path: Modulo/Modulo.hpp
+    title: Modulo/Modulo.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -29,18 +26,18 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/11/ALDS1_11_D
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/11/ALDS1_11_D
-  bundledCode: "#line 1 \"verify/aizu_online_judge/alds1/11D.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/11/ALDS1_11_D\"\n\n\
-    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    document_title: "Legendre \u8A18\u53F7 (A/p) \u3092\u6C42\u3081\u308B."
+    links: []
+  bundledCode: "#line 2 \"Modulo/Sqrt.hpp\"\n\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -167,70 +164,118 @@ data:
     \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
     \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
     \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
-    \    return message.c_str();\n    }\n};\n#line 2 \"Graph/Graph/Connected_Components.hpp\"\
-    \n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\n\
-    namespace graph {\n    struct Edge {\n        int id, source, target;\n      \
-    \  Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source, int\
-    \ target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\n\
-    \    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
-    \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
-    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
-    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
-    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
-    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
-    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
-    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
-    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
-    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
-    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
-    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
-    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Connected_Components.hpp\"\
-    \n\nnamespace graph {\n    class Connected_Components {\n        public:\n   \
-    \     vector<vector<int>> components;\n        vector<int> component_ids;\n\n\
-    \        Connected_Components(const Graph &G) {\n            components.clear();\n\
-    \            component_ids.assign(G.order(), -1);\n\n            for (int x =\
-    \ 0; x < G.order(); x++) {\n                unless(component_ids[x] == -1) { continue;\
-    \ }\n                dfs(G, x);\n            }\n        };\n\n        private:\n\
-    \        void dfs(const Graph &G, int start) {\n            int component_id =\
-    \ components.size();\n\n            components.emplace_back();\n            component_ids[start]\
-    \ = component_id;\n\n            stack<int> st;\n            st.emplace(start);\n\
-    \            components[component_id].emplace_back(start);\n\n            while(!st.empty())\
-    \ {\n                int x = st.top(); st.pop();\n                for (auto edge:\
-    \ G.incidence(x)) {\n                    int y = edge->target;\n             \
-    \       unless (component_ids[y] == -1) { continue; }\n\n                    component_ids[y]\
-    \ = component_id;\n                    components[component_id].emplace_back(y);\n\
-    \                    st.emplace(y);\n                }\n            }\n      \
-    \  }\n    };\n\n    bool is_Connected(const Graph &G) {\n        auto connected_components\
-    \ = Connected_Components(G);\n        return connected_components.components.size()\
-    \ == 1;\n    }\n}\n#line 5 \"verify/aizu_online_judge/alds1/11D.test.cpp\"\n\n\
-    int main() {\n    using namespace graph;\n\n    int N, M; cin >> N >> M;\n   \
-    \ Graph G(N);\n    for (int j = 0; j < M; j++) {\n        int u, v; cin >> u >>\
-    \ v;\n        G.add_edge(u, v);\n    }\n\n    Connected_Components comp(G);\n\
-    \    int Q; cin >> Q;\n    for (int q = 1; q <= Q; q++) {\n        int s, t; cin\
-    \ >> s >> t;\n        cout << (comp.component_ids[s] == comp.component_ids[t]\
-    \ ? \"yes\" : \"no\") << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/11/ALDS1_11_D\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Graph/Graph/Connected_Components.hpp\"\
-    \n\nint main() {\n    using namespace graph;\n\n    int N, M; cin >> N >> M;\n\
-    \    Graph G(N);\n    for (int j = 0; j < M; j++) {\n        int u, v; cin >>\
-    \ u >> v;\n        G.add_edge(u, v);\n    }\n\n    Connected_Components comp(G);\n\
-    \    int Q; cin >> Q;\n    for (int q = 1; q <= Q; q++) {\n        int s, t; cin\
-    \ >> s >> t;\n        cout << (comp.component_ids[s] == comp.component_ids[t]\
-    \ ? \"yes\" : \"no\") << \"\\n\";\n    }\n}\n"
+    \    return message.c_str();\n    }\n};\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace\
+    \ modulo {\n    class DifferentModulus : public exception {\n        public: //\
+    \ public\u306B\u6307\u5B9A\n        const char* what() const noexcept override\
+    \ { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\
+    \u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n\
+    \        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
+    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
+    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
+    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
+    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
+    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
+    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
+    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
+    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
+    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
+    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
+    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
+    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
+    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
+    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
+    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
+    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
+    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
+    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
+    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
+    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
+    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
+    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
+    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
+    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
+    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
+    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
+    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
+    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
+    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
+    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
+    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
+    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
+    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
+    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
+    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
+    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
+    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
+    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
+    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
+    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
+    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
+    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
+    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
+    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
+    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
+    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
+    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
+    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
+    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
+    \ 4 \"Modulo/Sqrt.hpp\"\n\nnamespace modulo {\n    /// @brief Legendre \u8A18\u53F7\
+    \ (A/p) \u3092\u6C42\u3081\u308B.\n    /// @param A\n    /// @return A = 0 \u306A\
+    \u3089\u3070 0, A \u304C\u5E73\u65B9\u5270\u4F59\u306A\u3089\u3070 1, A \u304C\
+    \u5E73\u65B9\u975E\u5270\u4F59\u306A\u3089\u3070 -1.\n    int Legendre(const Modulo\
+    \ &A) {\n        if (A.is_zero()) return 0;\n\n        return pow(A, (A.n - 1)\
+    \ / 2).is_member(1) ? 1 : -1;\n    }\n\n    /// @brief X * X = A \u3092\u6E80\u305F\
+    \u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B. \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408\u306F NotExist \u4F8B\u5916\u3092 raise.\n    /// @param A\n    /// @return\
+    \ X * X = A \u3092\u6E80\u305F\u3059 Y \u306E\u3069\u308C\u304B 1 \u3064\n   \
+    \ Modulo Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) throw NotExist();\n\
+    \n        ll p = A.n;\n        if (A.is_zero()) return A;\n        else if (p\
+    \ == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p + 1) / 4);\n\
+    \        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
+    \ return pow(A, (p + 3) / 8);\n            else return pow(Modulo(2, p), (p -\
+    \ 1) / 4) * pow(A, (p + 3) / 8);\n        }\n\n        ll q = p - 1, s = 0;\n\
+    \        while (safe_mod(q, 2) == 0) { q >>= 1; s++; }\n\n        random_device\
+    \ device;\n        Modulo z;\n        while (true) {\n            z = Modulo(device(),\
+    \ p);\n            if (Legendre(z) == -1) break;\n        }\n\n        int m =\
+    \ s;\n        Modulo c = pow(z, q), t = pow(A, q), x = pow(A, (q + 1) / 2);\n\
+    \        while (m > 1) {\n            unless (pow(t, intpow(2, m - 2)).is_member(1))\
+    \ {\n                tie (t, x) = make_pair(c * c * t, c * x);\n            }\n\
+    \n            c *= c;\n            m --;\n        }\n\n        return x;\n   \
+    \ }\n}\n"
+  code: "#pragma once\n\n#include\"Modulo.hpp\"\n\nnamespace modulo {\n    /// @brief\
+    \ Legendre \u8A18\u53F7 (A/p) \u3092\u6C42\u3081\u308B.\n    /// @param A\n  \
+    \  /// @return A = 0 \u306A\u3089\u3070 0, A \u304C\u5E73\u65B9\u5270\u4F59\u306A\
+    \u3089\u3070 1, A \u304C\u5E73\u65B9\u975E\u5270\u4F59\u306A\u3089\u3070 -1.\n\
+    \    int Legendre(const Modulo &A) {\n        if (A.is_zero()) return 0;\n\n \
+    \       return pow(A, (A.n - 1) / 2).is_member(1) ? 1 : -1;\n    }\n\n    ///\
+    \ @brief X * X = A \u3092\u6E80\u305F\u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B\
+    . \u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F NotExist \u4F8B\u5916\u3092\
+    \ raise.\n    /// @param A\n    /// @return X * X = A \u3092\u6E80\u305F\u3059\
+    \ Y \u306E\u3069\u308C\u304B 1 \u3064\n    Modulo Sqrt(const Modulo &A) {\n  \
+    \      if (Legendre(A) == -1) throw NotExist();\n\n        ll p = A.n;\n     \
+    \   if (A.is_zero()) return A;\n        else if (p == 2) return A;\n        else\
+    \ if (p % 4 == 3) return pow(A, (p + 1) / 4);\n        else if (p % 8 == 5) {\n\
+    \            if (pow(A, (p - 1) / 4).is_member(1)) return pow(A, (p + 3) / 8);\n\
+    \            else return pow(Modulo(2, p), (p - 1) / 4) * pow(A, (p + 3) / 8);\n\
+    \        }\n\n        ll q = p - 1, s = 0;\n        while (safe_mod(q, 2) == 0)\
+    \ { q >>= 1; s++; }\n\n        random_device device;\n        Modulo z;\n    \
+    \    while (true) {\n            z = Modulo(device(), p);\n            if (Legendre(z)\
+    \ == -1) break;\n        }\n\n        int m = s;\n        Modulo c = pow(z, q),\
+    \ t = pow(A, q), x = pow(A, (q + 1) / 2);\n        while (m > 1) {\n         \
+    \   unless (pow(t, intpow(2, m - 2)).is_member(1)) {\n                tie (t,\
+    \ x) = make_pair(c * c * t, c * x);\n            }\n\n            c *= c;\n  \
+    \          m --;\n        }\n\n        return x;\n    }\n}\n"
   dependsOn:
+  - Modulo/Modulo.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -238,18 +283,40 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Graph/Graph/Connected_Components.hpp
-  - Graph/Graph/Graph.hpp
-  isVerificationFile: true
-  path: verify/aizu_online_judge/alds1/11D.test.cpp
+  isVerificationFile: false
+  path: Modulo/Sqrt.hpp
   requiredBy: []
-  timestamp: '2026-01-01 02:18:00+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/aizu_online_judge/alds1/11D.test.cpp
+  timestamp: '2026-01-01 03:38:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+documentation_of: Modulo/Sqrt.hpp
 layout: document
-redirect_from:
-- /verify/verify/aizu_online_judge/alds1/11D.test.cpp
-- /verify/verify/aizu_online_judge/alds1/11D.test.cpp.html
-title: verify/aizu_online_judge/alds1/11D.test.cpp
+title: "\u5E73\u65B9\u6839 mod"
 ---
+
+## Outline
+
+$P$ を素数とする.
+
+$A \in \mathbb{Z}/P \mathbb{Z}$ に対して, $X$ に関する 二次方程式 $X^2 = A$ の解の存在判定と, 解の発見を行うアルゴリズムを提供する.
+
+## Contents
+
+### Legendre
+
+```cpp
+int Legendre(const Modulo &A)
+```
+
+* $A = a + P \mathbb{Z}$ としたとき, Legendre 記号 $\left(\frac{a}{P}\right)$ を求める.
+* **返り値**
+    * $A = 0$ のときは $\left(\frac{a}{P}\right) = 0$.
+    * $A \neq 0$ かつ, $A$ が平方剰余のときは $\left(\frac{a}{P}\right) = 1$.
+    * $A$ が平方非剰余のときは $\left(\frac{a}{P}\right) = -1$.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/01/01|Sqrt 関連メソッド実装|

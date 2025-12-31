@@ -5,6 +5,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
+    path: template/exception.hpp
+    title: template/exception.hpp
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
   - icon: ':heavy_check_mark:'
@@ -154,34 +157,40 @@ data:
     \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
     \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
     \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 4 \"Sequence/Cartesian_Tree.hpp\"\n\ntemplate<typename\
-    \ O>\nclass Cartesian_Tree {\n    public:\n    bool reversal;\n    int root;\n\
-    \    vector<int> left, right, parent;\n\n    Cartesian_Tree() = default;\n   \
-    \ Cartesian_Tree(const vector<O> &data, bool reversal = false): left(data.size(),\
-    \ -1), right(data.size(), -1), parent(data.size(), -1), root(-1), reversal(reversal)\
-    \ {\n        build_up(data);\n    }\n\n    inline bool is_root(const int i) const\
-    \ { return root == i; }\n\n    private:\n    /// @brief i \u306E\u5DE6\u306E\u5B50\
-    \u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\u308B\n    /// @param i \u89AA\n\
-    \    /// @param j \u5DE6\u306E\u5B50\n    void set_left(const int i, const int\
-    \ j) {\n        left[i] = j;\n        parent[j] = i;\n    }\n\n    /// @brief\
-    \ i \u306E\u53F3\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\u308B\
-    \n    /// @param i \u89AA\n    /// @param j \u53F3\u306E\u5B50\n    void set_right(const\
-    \ int i, const int j) {\n        right[i] = j;\n        parent[j] = i;\n    }\n\
-    \n    /// @brief \u9802\u70B9 i \u3092\u6839\u306B\u8A2D\u5B9A\u3059\u308B\n \
-    \   /// @param i \u6839\n    void set_root(const int i) {\n        root = i;\n\
-    \    }\n\n    bool should_pop(const vector<O> &data, const int x, const int y)\
-    \ {\n        if (reversal) { return data[x] <= data[y]; }\n        else { return\
-    \ data[x] >= data[y]; }\n    }\n\n    void build_up(const vector<O> &data) {\n\
-    \        vector<int> stack;\n\n        for (int i = 0; i < data.size(); i++) {\n\
-    \            if (i == 0) {\n                stack.emplace_back(0);\n         \
-    \       set_root(0);\n                continue;\n            }\n\n           \
-    \ int last_pop = -1;\n            while (!stack.empty() && should_pop(data, stack.back(),\
-    \ i)) {\n                last_pop = stack.back();\n                stack.pop_back();\n\
-    \            }\n\n            // \u5DE6\u306E\u5B50\u306B\u95A2\u3059\u308B\u8A2D\
-    \u5B9A\n            if (last_pop != -1) {\n                set_left(i, last_pop);\n\
-    \            }\n\n            if (stack.empty()) {\n                set_root(i);\n\
-    \            } else {\n                set_right(stack.back(), i);\n         \
-    \   }\n\n            stack.emplace_back(i);\n        }\n    }\n};\n"
+    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
+    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
+    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
+    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
+    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
+    \    return message.c_str();\n    }\n};\n#line 4 \"Sequence/Cartesian_Tree.hpp\"\
+    \n\ntemplate<typename O>\nclass Cartesian_Tree {\n    public:\n    bool reversal;\n\
+    \    int root;\n    vector<int> left, right, parent;\n\n    Cartesian_Tree() =\
+    \ default;\n    Cartesian_Tree(const vector<O> &data, bool reversal = false):\
+    \ left(data.size(), -1), right(data.size(), -1), parent(data.size(), -1), root(-1),\
+    \ reversal(reversal) {\n        build_up(data);\n    }\n\n    inline bool is_root(const\
+    \ int i) const { return root == i; }\n\n    private:\n    /// @brief i \u306E\u5DE6\
+    \u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\u308B\n    /// @param\
+    \ i \u89AA\n    /// @param j \u5DE6\u306E\u5B50\n    void set_left(const int i,\
+    \ const int j) {\n        left[i] = j;\n        parent[j] = i;\n    }\n\n    ///\
+    \ @brief i \u306E\u53F3\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
+    \u308B\n    /// @param i \u89AA\n    /// @param j \u53F3\u306E\u5B50\n    void\
+    \ set_right(const int i, const int j) {\n        right[i] = j;\n        parent[j]\
+    \ = i;\n    }\n\n    /// @brief \u9802\u70B9 i \u3092\u6839\u306B\u8A2D\u5B9A\u3059\
+    \u308B\n    /// @param i \u6839\n    void set_root(const int i) {\n        root\
+    \ = i;\n    }\n\n    bool should_pop(const vector<O> &data, const int x, const\
+    \ int y) {\n        if (reversal) { return data[x] <= data[y]; }\n        else\
+    \ { return data[x] >= data[y]; }\n    }\n\n    void build_up(const vector<O> &data)\
+    \ {\n        vector<int> stack;\n\n        for (int i = 0; i < data.size(); i++)\
+    \ {\n            if (i == 0) {\n                stack.emplace_back(0);\n     \
+    \           set_root(0);\n                continue;\n            }\n\n       \
+    \     int last_pop = -1;\n            while (!stack.empty() && should_pop(data,\
+    \ stack.back(), i)) {\n                last_pop = stack.back();\n            \
+    \    stack.pop_back();\n            }\n\n            // \u5DE6\u306E\u5B50\u306B\
+    \u95A2\u3059\u308B\u8A2D\u5B9A\n            if (last_pop != -1) {\n          \
+    \      set_left(i, last_pop);\n            }\n\n            if (stack.empty())\
+    \ {\n                set_root(i);\n            } else {\n                set_right(stack.back(),\
+    \ i);\n            }\n\n            stack.emplace_back(i);\n        }\n    }\n\
+    };\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
     \ O>\nclass Cartesian_Tree {\n    public:\n    bool reversal;\n    int root;\n\
     \    vector<int> left, right, parent;\n\n    Cartesian_Tree() = default;\n   \
@@ -217,10 +226,11 @@ data:
   - template/inout.hpp
   - template/macro.hpp
   - template/bitop.hpp
+  - template/exception.hpp
   isVerificationFile: false
   path: Sequence/Cartesian_Tree.hpp
   requiredBy: []
-  timestamp: '2025-12-07 00:24:02+09:00'
+  timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
