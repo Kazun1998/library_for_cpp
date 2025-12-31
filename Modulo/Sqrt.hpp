@@ -3,28 +3,28 @@
 #include"Modulo.hpp"
 
 namespace modulo {
-    /// @brief Legendre 記号 (X/p) を求める.
-    /// @param X
-    /// @return X = 0 ならば 0, X が平方剰余ならば 1, X が平方非剰余ならば -1.
-    int Legendre(const Modulo &X) {
-        if (X.is_zero()) { return 0; }
+    /// @brief Legendre 記号 (A/p) を求める.
+    /// @param A
+    /// @return A = 0 ならば 0, A が平方剰余ならば 1, A が平方非剰余ならば -1.
+    int Legendre(const Modulo &A) {
+        if (A.is_zero()) { return 0; }
 
-        return pow(X, (X.n - 1) / 2).is_member(1) ? 1 : -1;
+        return pow(A, (A.n - 1) / 2).is_member(1) ? 1 : -1;
     }
 
-    /// @brief Y * Y = X を満たす Y を 1 つ求める. 存在しない場合は NotExist 例外を raise.
-    /// @param X
-    /// @return Y * Y = X を満たす Y のどれか 1 つ
-    Modulo Sqrt(const Modulo &X) {
-        if (Legendre(X) == -1) throw NotExist();
+    /// @brief X * X = A を満たす Y を 1 つ求める. 存在しない場合は NotExist 例外を raise.
+    /// @param A
+    /// @return X * X = A を満たす Y のどれか 1 つ
+    Modulo Sqrt(const Modulo &A) {
+        if (Legendre(A) == -1) throw NotExist();
 
-        ll p = X.n;
-        if (X.is_zero()) return X;
-        else if (p == 2) return X;
-        else if (p % 4 == 3) return pow(X, (p + 1) / 4);
+        ll p = A.n;
+        if (A.is_zero()) return A;
+        else if (p == 2) return A;
+        else if (p % 4 == 3) return pow(A, (p + 1) / 4);
         else if (p % 8 == 5) {
-            if (pow(X, (p - 1) / 4).is_member(1)) pow(X, (p + 3) / 8);
-            else pow(Modulo(2, p), (p - 1) / 4) * pow(X, (p + 3) / 8);
+            if (pow(A, (p - 1) / 4).is_member(1)) pow(A, (p + 3) / 8);
+            else pow(Modulo(2, p), (p - 1) / 4) * pow(A, (p + 3) / 8);
         }
 
         ll q = p - 1, s = 0;
@@ -38,16 +38,16 @@ namespace modulo {
         }
 
         int m = s;
-        Modulo c = pow(z, q), t = pow(X, q), y = pow(X, (q + 1) / 2);
+        Modulo c = pow(z, q), t = pow(A, q), x = pow(A, (q + 1) / 2);
         while (m > 1) {
             unless (pow(t, intpow(2, m - 2)).is_member(1)) {
-                tie (t, y) = make_pair(c * c * t, c * y);
+                tie (t, x) = make_pair(c * c * t, c * x);
             }
 
             c *= c;
             m --;
         }
 
-        return y;
+        return x;
     }
 }
