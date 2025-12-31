@@ -52,6 +52,7 @@
 "verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp": "2026-01-01 02:18:00 +0900",
 "verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp": "2026-01-01 02:18:00 +0900",
 "verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp": "2026-01-01 02:18:00 +0900",
+"verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp": "2026-01-01 04:24:49 +0900",
 "verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp": "2026-01-01 02:18:00 +0900",
 "verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp": "2026-01-01 02:18:00 +0900",
 "verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp": "2026-01-01 02:18:00 +0900",
