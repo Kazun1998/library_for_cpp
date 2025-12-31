@@ -23,8 +23,8 @@ namespace modulo {
         else if (p == 2) return A;
         else if (p % 4 == 3) return pow(A, (p + 1) / 4);
         else if (p % 8 == 5) {
-            if (pow(A, (p - 1) / 4).is_member(1)) pow(A, (p + 3) / 8);
-            else pow(Modulo(2, p), (p - 1) / 4) * pow(A, (p + 3) / 8);
+            if (pow(A, (p - 1) / 4).is_member(1)) return pow(A, (p + 3) / 8);
+            else return pow(Modulo(2, p), (p - 1) / 4) * pow(A, (p + 3) / 8);
         }
 
         ll q = p - 1, s = 0;
