@@ -187,6 +187,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: "\u5546\u306E\u5217\u6319 (Quotients)"
+  - icon: ':warning:'
+    path: Integer/Smallest_Prime_Factor.hpp
+    title: Integer/Smallest_Prime_Factor.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
@@ -738,6 +741,7 @@ data:
   - Graph/Weighted_Graph/Prim.hpp
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
+  - Integer/Smallest_Prime_Factor.hpp
   - Integer/Prime_Pi.hpp
   - Integer/Euler_Totient.hpp
   - Integer/Prime.hpp

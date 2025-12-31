@@ -254,6 +254,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
+    - icon: ':warning:'
+      path: Integer/Smallest_Prime_Factor.hpp
+      title: Integer/Smallest_Prime_Factor.hpp
   - name: Linear_Algebra
     pages:
     - icon: ':heavy_check_mark:'
