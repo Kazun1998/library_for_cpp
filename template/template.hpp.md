@@ -161,6 +161,12 @@ data:
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Digraph.hpp
+    title: Graph/Digraph/Digraph.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Strongly_Connected_Components.hpp
+    title: Graph/Digraph/Strongly_Connected_Components.hpp
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Cliques.hpp
     title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
   - icon: ':heavy_check_mark:'
@@ -915,6 +921,8 @@ data:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
   - Graph/Weighted_Graph/Prim.hpp
+  - Graph/Digraph/Strongly_Connected_Components.hpp
+  - Graph/Digraph/Digraph.hpp
   - Integer/Quotients.hpp
   - Integer/Divisors.hpp
   - Integer/Smallest_Prime_Factor.hpp
