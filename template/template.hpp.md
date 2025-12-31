@@ -356,9 +356,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':warning:'
-    path: jam.cpp
-    title: jam.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
@@ -1021,7 +1018,6 @@ data:
   - Counting/Combination_Calculator.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
-  - jam.cpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC

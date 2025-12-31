@@ -338,9 +338,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':warning:'
-    path: jam.cpp
-    title: jam.cpp
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
@@ -780,7 +777,6 @@ data:
   - Counting/Combination_Calculator.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
-  - jam.cpp
   - Segment_Tree/Dual_Segment_Tree.hpp
   timestamp: '2025-08-17 13:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -427,11 +427,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Union_Find/Union_Find.hpp
       title: Union Find
-  - name: .
-    pages:
-    - icon: ':warning:'
-      path: jam.cpp
-      title: jam.cpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'

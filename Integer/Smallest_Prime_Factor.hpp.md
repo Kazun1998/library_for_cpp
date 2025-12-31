@@ -22,10 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: jam.cpp
-    title: jam.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -212,8 +209,7 @@ data:
   - template/exception.hpp
   isVerificationFile: false
   path: Integer/Smallest_Prime_Factor.hpp
-  requiredBy:
-  - jam.cpp
+  requiredBy: []
   timestamp: '2026-01-01 02:18:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
