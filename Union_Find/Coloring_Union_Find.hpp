@@ -1,15 +1,18 @@
 #pragma once
 
-template<typename Color>
+#include"../template/template.hpp"
+#include"../template/concepts.hpp"
+
+template<class Color, auto merge, auto unit>
+requires Monoid_Concept<Color, merge, unit>
 class Coloring_Union_Find {
     int n, _group_number;
     vector<int> parents, rank;
     vector<Color> data;
-    function<Color(const Color&, const Color&)> merge;
 
     public:
-    Coloring_Union_Find(int n, function<Color(const Color&, const Color&)> merge, const Color& unit):
-        n(n), parents(vector<int>(n, -1)), data(vector<Color>(n, unit)), rank(vector<int>(n, 0)), merge(merge), _group_number(n) {}
+    Coloring_Union_Find(int n):
+        n(n), parents(vector<int>(n, -1)), data(vector<Color>(n, unit)), rank(vector<int>(n, 0)), _group_number(n) {}
 
     int find(int x) {
         return parents[x] < 0 ? x : parents[x] = find(parents[x]);
