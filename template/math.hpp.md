@@ -335,6 +335,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
+  - icon: ':warning:'
+    path: Union_Find/Coloring_Union_Find.hpp
+    title: "\u8FBA xy \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\u3088\u3063\u3066\
+      \ x, y \u304C\u9023\u7D50\u306B\u306A\u3063\u305F\u5834\u5408, \u9023\u7D50\u6210\
+      \u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
@@ -771,6 +776,7 @@ data:
   - Sequence/Longest_Increasing_Subsequence.hpp
   - Sequence/Cartesian_Tree.hpp
   - Union_Find/Potentilized_Union_Find.hpp
+  - Union_Find/Coloring_Union_Find.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/XOR_Vector_Space.hpp
   - Math/Stern_Brocot_Tree.hpp
