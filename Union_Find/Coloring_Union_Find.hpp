@@ -12,6 +12,8 @@ class Coloring_Union_Find {
 
     public:
     explicit Coloring_Union_Find(int n): n(n), parents(n, -1), data(n, unit), rank(n, 0), _group_number(n) {}
+    explicit Coloring_Union_Find(vector<Color> &colors):
+        n(colors.size()), parents(n, -1), data(move(colors)), rank(n, 0), _group_number(n) {}
 
     int find(int x) {
         return parents[x] < 0 ? x : parents[x] = find(parents[x]);
