@@ -57,4 +57,25 @@ class Coloring_Union_Find {
     inline void set(int x, Color c) { data[find(x)] = c; }
 
     inline int group_count() const { return _group_number; }
+
+    vector<vector<int>> groups() {
+        unordered_map<int, vector<int>> current_groups;
+        for (int i = 0; i < parents.size(); i++) {
+            current_groups[find(i)].emplace_back(i);
+        }
+
+        vector<vector<int>> res;
+        for (auto group: current_groups) res.emplace_back(group.second);
+
+        return res;
+    }
+
+    vector<pair<vector<int>, Color>> group_colors() {
+        vector<pair<vector<int>, Color>> res;
+        for (auto group: groups()) {
+            res.emplace_back(group, get(group[0]));
+        }
+
+        return res;
+    }
 };
