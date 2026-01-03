@@ -8,6 +8,9 @@ namespace knapsack_problem {
         using Item_List = vector<Item<I, V, W>>;
 
         public:
+        /// @brief 各アイテムの重さが軽い場合の 0-1 Knapsack 問題を解く.
+        /// @param items 詰め込むアイテムのリスト
+        /// @param capacity ナップサックの容量
         static Solution<I, V, W> solve_by_weight(const Item_List &items, const W capacity) {
             int n = items.size();
             vector<vector<V>> dp(n + 1, vector<V>(capacity + 1, 0));
