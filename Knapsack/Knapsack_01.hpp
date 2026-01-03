@@ -48,5 +48,46 @@ namespace knapsack_problem {
 
             return Solution<I, V, W>(packed_items, packed_value);
         }
+
+        static Solution<I, V, W> solve_by_value(const Item_List &items, const W capacity) {
+            int n = items.size();
+            V value_sum = 0;
+            for (const auto &item: items) value_sum += item.value;
+
+            vector<vector<W>> dp(n + 1, vector<W>(value_sum + 1, capacity + 1));
+            dp[0][0] = 0;
+
+            for (int i = 1; i <= n; ++i) {
+                const Item<I, V, W> &item = items[i - 1];
+
+                for (int v = 0; v < item.value; ++v) {
+                    dp[i][v] = dp[i - 1][v];
+                }
+
+                for (int v = item.value; v <= value_sum; ++v) {
+                    dp[i][v] = min(dp[i - 1][v], dp[i - 1][v - item.value] + item.weight);
+                }
+            }
+
+            V packed_value, current_value;
+            for (int v = value_sum; v >= 0; --v) {
+                if (dp[n][v] <= capacity) {
+                    current_value = packed_value = v;
+                    break;
+                }
+            }
+
+            Item_List packed_items;
+            for (int i = n; i >= 1; --i) {
+                const auto &item = items[i - 1];
+
+                if (dp[i][current_value] == dp[i - 1][current_value - item.value] + item.weight) {
+                    current_value -= item.value;
+                    packed_items.emplace_back(item);
+                }
+            }
+
+            return Solution<I, V, W>(packed_items, packed_value);
+        }
     };
 }
