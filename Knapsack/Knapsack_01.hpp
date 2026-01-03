@@ -18,6 +18,11 @@ namespace knapsack_problem {
             for (int i = 1; i <= n; i++) {
                 const auto &item = items[i - 1];
 
+                if (item.weight > capacity) {
+                    for (int w = 0; w <= capacity; ++w) dp[i][w] = dp[i - 1][w];
+                    break;
+                }
+
                 for (int w = 0; w < item.weight; ++w) {
                     dp[i][w] = dp[i - 1][w];
                 }
