@@ -71,12 +71,26 @@ data:
     \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
     \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
     \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
-    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n#line 59\
-    \ \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n// \u6F14\
-    \u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) { return x +\
-    \ y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return x - y;\
-    \ }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x * y; }\n\
-    \ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
+    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\
+    \u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
+    \ T max(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector\
+    \ is empty.\");\n\n    return *max_element(a.begin(), a.end());\n}\n\n// vector<T>\
+    \ a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename\
+    \ T>\ninline T min(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
+    vector is empty.\");\n\n    return *min_element(a.begin(), a.end());\n}\n\n//\
+    \ vector<T> a \u306E\u6700\u5927\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmax(const\
+    \ vector<T> &a){\n    if (a.empty()) throw std::invalid_argument(\"vector is empty.\"\
+    );\n\n    return distance(a.begin(), max_element(a.begin(), a.end()));\n}\n\n\
+    // vector<T> a \u306E\u6700\u5C0F\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmin(const\
+    \ vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector is empty.\"\
+    );\n\n    return distance(a.begin(), min_element(a.begin(), a.end()));\n}\n#line\
+    \ 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n//\
+    \ \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) { return\
+    \ x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return x -\
+    \ y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x * y;\
+    \ }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<typename\
     \ T>\nT bitwise_or(const T &x, const T &y) { return x | y; }\n\ntemplate<typename\
     \ T>\nT bitwise_xor(const T &x, const T &y) { return x ^ y; }\n\n// \u9664\u7B97\
@@ -495,7 +509,7 @@ data:
   path: Modulo_Polynomial/Taylor_Shift.hpp
   requiredBy:
   - Modulo_Polynomial/Stirling_1st.hpp
-  timestamp: '2026-01-01 02:18:00+09:00'
+  timestamp: '2026-01-03 18:42:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp

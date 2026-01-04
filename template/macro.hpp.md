@@ -197,6 +197,12 @@ data:
     path: Integer/Smallest_Prime_Factor.hpp
     title: Integer/Smallest_Prime_Factor.hpp
   - icon: ':heavy_check_mark:'
+    path: Knapsack/Base.hpp
+    title: Knapsack/Base.hpp
+  - icon: ':heavy_check_mark:'
+    path: Knapsack/Knapsack_01.hpp
+    title: "0-1 Knapsack \u554F\u984C"
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -395,6 +401,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1B.test.cpp
+    title: verify/aizu_online_judge/dpl1/1B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1F.test.cpp
+    title: verify/aizu_online_judge/dpl1/1F.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dsl/2G.test.cpp
     title: verify/aizu_online_judge/dsl/2G.test.cpp
@@ -669,6 +681,8 @@ data:
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
   - Data_Structure/AVL_Tree.hpp
+  - Knapsack/Base.hpp
+  - Knapsack/Knapsack_01.hpp
   - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -851,6 +865,8 @@ data:
   - verify/aizu_online_judge/cgl/2B.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp
+  - verify/aizu_online_judge/dpl1/1F.test.cpp
+  - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp

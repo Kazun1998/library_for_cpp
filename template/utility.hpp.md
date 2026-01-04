@@ -197,6 +197,12 @@ data:
     path: Integer/Smallest_Prime_Factor.hpp
     title: Integer/Smallest_Prime_Factor.hpp
   - icon: ':heavy_check_mark:'
+    path: Knapsack/Base.hpp
+    title: Knapsack/Base.hpp
+  - icon: ':heavy_check_mark:'
+    path: Knapsack/Knapsack_01.hpp
+    title: "0-1 Knapsack \u554F\u984C"
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -395,6 +401,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1B.test.cpp
+    title: verify/aizu_online_judge/dpl1/1B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1F.test.cpp
+    title: verify/aizu_online_judge/dpl1/1F.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dsl/2G.test.cpp
     title: verify/aizu_online_judge/dsl/2G.test.cpp
@@ -629,14 +641,41 @@ data:
     // a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
     \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
     \ U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n\
-    }\n"
+    }\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename\
+    \ T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
+    vector is empty.\");\n\n    return *max_element(a.begin(), a.end());\n}\n\n//\
+    \ vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename\
+    \ T>\ninline T min(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
+    vector is empty.\");\n\n    return *min_element(a.begin(), a.end());\n}\n\n//\
+    \ vector<T> a \u306E\u6700\u5927\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmax(const\
+    \ vector<T> &a){\n    if (a.empty()) throw std::invalid_argument(\"vector is empty.\"\
+    );\n\n    return distance(a.begin(), max_element(a.begin(), a.end()));\n}\n\n\
+    // vector<T> a \u306E\u6700\u5C0F\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmin(const\
+    \ vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector is empty.\"\
+    );\n\n    return distance(a.begin(), min_element(a.begin(), a.end()));\n}\n"
   code: "#pragma once\n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\
     \u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\
     \u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool chmax(T &a,\
     \ const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\
     \u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\
     \u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool chmin(T\
-    \ &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n"
+    \ &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\
+    \u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline T max(const\
+    \ vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector is empty.\"\
+    );\n\n    return *max_element(a.begin(), a.end());\n}\n\n// vector<T> a \u306E\
+    \u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
+    \ T min(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector\
+    \ is empty.\");\n\n    return *min_element(a.begin(), a.end());\n}\n\n// vector<T>\
+    \ a \u306E\u6700\u5927\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u53D6\
+    \u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmax(const vector<T>\
+    \ &a){\n    if (a.empty()) throw std::invalid_argument(\"vector is empty.\");\n\
+    \n    return distance(a.begin(), max_element(a.begin(), a.end()));\n}\n\n// vector<T>\
+    \ a \u306E\u6700\u5C0F\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u53D6\
+    \u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmin(const vector<T>\
+    \ &a){\n    if (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n \
+    \   return distance(a.begin(), min_element(a.begin(), a.end()));\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/utility.hpp
@@ -655,6 +694,8 @@ data:
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
   - Data_Structure/AVL_Tree.hpp
+  - Knapsack/Base.hpp
+  - Knapsack/Knapsack_01.hpp
   - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -754,7 +795,7 @@ data:
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
-  timestamp: '2025-08-17 13:03:30+09:00'
+  timestamp: '2026-01-03 18:42:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
@@ -837,6 +878,8 @@ data:
   - verify/aizu_online_judge/cgl/2B.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp
+  - verify/aizu_online_judge/dpl1/1F.test.cpp
+  - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
