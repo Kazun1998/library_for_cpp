@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
     path: template/concepts.hpp
     title: template/concepts.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -141,90 +141,98 @@ data:
     \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
     \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
     \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n#line 65 \"template/template.hpp\"\
-    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
-    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
-    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
-    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
-    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
-    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
-    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
-    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
-    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
-    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
-    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
-    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\n\n// bitop\n\
-    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
-    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
-    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
-    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
-    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
-    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
-    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
-    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
-    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
-    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
-    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
-    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
-    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
-    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
-    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n#line\
-    \ 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n    private:\n\
-    \    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\
-    \u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\
-    \u305B\u3093.\") {}\n\n    const char* what() const noexcept override {\n    \
-    \    return message.c_str();\n    }\n};\n#line 2 \"template/concepts.hpp\"\n\n\
-    // \u5358\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename\
-    \ Op, typename X>\nconcept Unary_Operator_Concept = requires(Op op, const X &x)\
-    \ {\n    { op(x) } -> std::convertible_to<X>;\n};\n\n// \u4E8C\u9805\u6F14\u7B97\
-    \u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept\
-    \ Binary_Operator_Concept = requires(Op op,const X &x, const X &y) {\n    { op(x,\
-    \ y) } -> std::convertible_to<X>;\n};\n\n// \u30E2\u30CE\u30A4\u30C9\u30B3\u30F3\
-    \u30BB\u30D7\u30C8\n// \u4E8C\u9805\u6F14\u7B97 + \u5358\u4F4D\u5143\ntemplate\
-    \ <typename M, auto op, auto identity>\nconcept Monoid_Concept = \n    Binary_Operator_Concept<decltype(op),\
-    \ M>\n    && std::convertible_to<decltype(identity), M>;\n\n// \u7FA4\u30B3\u30F3\
-    \u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9 + \u9006\u5143\ntemplate <typename\
-    \ G, auto op, auto inv, auto identity>\nconcept Group_Concept = \n    Monoid_Concept<G,\
-    \ op, identity>\n    && Unary_Operator_Concept<decltype(inv), G>;\n\n// \u30CF\
-    \u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate<typename\
-    \ T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x) } -> convertible_to<size_t>;\n\
-    };\n#line 5 \"Union_Find/Coloring_Union_Find.hpp\"\n\ntemplate<class Color, auto\
-    \ merge, auto unit>\nrequires Monoid_Concept<Color, merge, unit>\nclass Coloring_Union_Find\
-    \ {\n    int n, _group_number;\n    vector<int> parents, rank;\n    vector<Color>\
-    \ data;\n\n    public:\n    explicit Coloring_Union_Find(int n): n(n), parents(n,\
-    \ -1), data(n, unit), rank(n, 0), _group_number(n) {}\n    explicit Coloring_Union_Find(vector<Color>\
-    \ &colors):\n        n(colors.size()), parents(n, -1), data(move(colors)), rank(n,\
-    \ 0), _group_number(n) {}\n\n    int find(int x) {\n        return parents[x]\
-    \ < 0 ? x : parents[x] = find(parents[x]);\n    }\n\n    /// @brief \u8FBA xy\
-    \ \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\u3088\u3063\u3066 x, y \u304C\u9023\
-    \u7D50\u306B\u306A\u3063\u305F\u5834\u5408, \u9023\u7D50\u6210\u5206\u306E\u8272\
-    \u306E\u66F4\u65B0\u3092\u884C\u3046.\n    /// @param x \u9802\u70B9 1\n    ///\
-    \ @param y \u9802\u70B9 2\n    /// @return \u9023\u7D50\u6210\u5206\u306E\u6570\
-    \u304C\u6E1B\u3063\u305F\u3089 true.\n    bool unite(int x, int y) {\n       \
-    \ x = find(x);\n        y = find(y);\n\n        if (x == y) { return false; }\n\
-    \n        if (rank[x] < rank[y]) { swap(x, y); }\n\n        data[x] = merge(data[x],\
-    \ data[y]);\n\n        parents[x] += parents[y];\n        parents[y] = x;\n\n\
-    \        _group_number--;\n\n        if (rank[x] == rank[y]) { rank[x]++; }\n\n\
-    \        return true;\n    }\n\n    inline int size(int x) { return -parents[find(x)];\
-    \ }\n\n    inline bool same(int x, int y) { return find(x) == find(y); }\n\n \
-    \   /// @brief x \u304C\u5C5E\u3059\u308B\u9802\u70B9\u306E\u8272\u3092\u6C42\u3081\
-    \u308B.\n    /// @param x \u9802\u70B9\n    inline Color get(int x) { return data[find(x)];\
-    \ }\n\n    /// @brief x \u304C\u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306E\
-    \u8272\u3092 c \u306B\u5909\u66F4\u3059\u308B.\n    /// @param x \u8272\u3092\u5909\
-    \u66F4\u3059\u308B\u9802\u70B9\n    /// @param c \u5909\u66F4\u5F8C\u306E\u8272\
-    \n    inline void set(int x, Color c) { data[find(x)] = c; }\n\n    inline int\
-    \ group_count() const { return _group_number; }\n\n    vector<vector<int>> groups()\
-    \ {\n        unordered_map<int, vector<int>> current_groups;\n        for (int\
-    \ i = 0; i < parents.size(); i++) {\n            current_groups[find(i)].emplace_back(i);\n\
-    \        }\n\n        vector<vector<int>> res;\n        for (auto group: current_groups)\
-    \ res.emplace_back(group.second);\n\n        return res;\n    }\n\n    vector<pair<vector<int>,\
-    \ Color>> group_colors() {\n        vector<pair<vector<int>, Color>> res;\n  \
-    \      for (auto group: groups()) {\n            res.emplace_back(group, get(group[0]));\n\
-    \        }\n\n        return res;\n    }\n};\n"
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nstd::vector<T>\
+    \ input_vector(size_t n, size_t offset = 0) {\n    std::vector<T> res;\n    //\
+    \ \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\u4FDD\uFF08\
+    \u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n   \
+    \ // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
+    \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\
+    \    \n    for (size_t i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin\
+    \ >> el)) break;\n        res.push_back(std::move(el));\n    }\n    return res;\n\
+    }\n#line 65 \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\
+    \n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
+    #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
+    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
+    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
+    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
+    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
+    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
+    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
+    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
+    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
+    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\
+    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x\
+    \ \u306E bit legnth \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x\
+    \ == 0) { return 0; }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n\
+    }\n\n// \u975E\u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\n\
+    ll popcount(ll x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\
+    \u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\n\
+    ll floor_log2(ll x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570\
+    \ x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll\
+    \ x) { return bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\
+    \u53D6\u5F97\u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n\
+    // x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\
+    \u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll\
+    \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
+    \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
+    \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
+    \ get_bits(x, bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n\
+    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
+    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
+    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
+    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"template/concepts.hpp\"\
+    \n\n// \u5358\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate\
+    \ <typename Op, typename X>\nconcept Unary_Operator_Concept = requires(Op op,\
+    \ const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n};\n\n// \u4E8C\u9805\
+    \u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename\
+    \ X>\nconcept Binary_Operator_Concept = requires(Op op,const X &x, const X &y)\
+    \ {\n    { op(x, y) } -> std::convertible_to<X>;\n};\n\n// \u30E2\u30CE\u30A4\u30C9\
+    \u30B3\u30F3\u30BB\u30D7\u30C8\n// \u4E8C\u9805\u6F14\u7B97 + \u5358\u4F4D\u5143\
+    \ntemplate <typename M, auto op, auto identity>\nconcept Monoid_Concept = \n \
+    \   Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
+    \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
+    \ + \u9006\u5143\ntemplate <typename G, auto op, auto inv, auto identity>\nconcept\
+    \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
+    \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
+    \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
+    \ } -> convertible_to<size_t>;\n};\n#line 5 \"Union_Find/Coloring_Union_Find.hpp\"\
+    \n\ntemplate<class Color, auto merge, auto unit>\nrequires Monoid_Concept<Color,\
+    \ merge, unit>\nclass Coloring_Union_Find {\n    int n, _group_number;\n    vector<int>\
+    \ parents, rank;\n    vector<Color> data;\n\n    public:\n    explicit Coloring_Union_Find(int\
+    \ n): n(n), parents(n, -1), data(n, unit), rank(n, 0), _group_number(n) {}\n \
+    \   explicit Coloring_Union_Find(vector<Color> &colors):\n        n(colors.size()),\
+    \ parents(n, -1), data(move(colors)), rank(n, 0), _group_number(n) {}\n\n    int\
+    \ find(int x) {\n        return parents[x] < 0 ? x : parents[x] = find(parents[x]);\n\
+    \    }\n\n    /// @brief \u8FBA xy \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\
+    \u3088\u3063\u3066 x, y \u304C\u9023\u7D50\u306B\u306A\u3063\u305F\u5834\u5408\
+    , \u9023\u7D50\u6210\u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046.\n\
+    \    /// @param x \u9802\u70B9 1\n    /// @param y \u9802\u70B9 2\n    /// @return\
+    \ \u9023\u7D50\u6210\u5206\u306E\u6570\u304C\u6E1B\u3063\u305F\u3089 true.\n \
+    \   bool unite(int x, int y) {\n        x = find(x);\n        y = find(y);\n\n\
+    \        if (x == y) { return false; }\n\n        if (rank[x] < rank[y]) { swap(x,\
+    \ y); }\n\n        data[x] = merge(data[x], data[y]);\n\n        parents[x] +=\
+    \ parents[y];\n        parents[y] = x;\n\n        _group_number--;\n\n       \
+    \ if (rank[x] == rank[y]) { rank[x]++; }\n\n        return true;\n    }\n\n  \
+    \  inline int size(int x) { return -parents[find(x)]; }\n\n    inline bool same(int\
+    \ x, int y) { return find(x) == find(y); }\n\n    /// @brief x \u304C\u5C5E\u3059\
+    \u308B\u9802\u70B9\u306E\u8272\u3092\u6C42\u3081\u308B.\n    /// @param x \u9802\
+    \u70B9\n    inline Color get(int x) { return data[find(x)]; }\n\n    /// @brief\
+    \ x \u304C\u5C5E\u3059\u308B\u9023\u7D50\u6210\u5206\u306E\u8272\u3092 c \u306B\
+    \u5909\u66F4\u3059\u308B.\n    /// @param x \u8272\u3092\u5909\u66F4\u3059\u308B\
+    \u9802\u70B9\n    /// @param c \u5909\u66F4\u5F8C\u306E\u8272\n    inline void\
+    \ set(int x, Color c) { data[find(x)] = c; }\n\n    inline int group_count() const\
+    \ { return _group_number; }\n\n    vector<vector<int>> groups() {\n        unordered_map<int,\
+    \ vector<int>> current_groups;\n        for (int i = 0; i < parents.size(); i++)\
+    \ {\n            current_groups[find(i)].emplace_back(i);\n        }\n\n     \
+    \   vector<vector<int>> res;\n        for (auto group: current_groups) res.emplace_back(group.second);\n\
+    \n        return res;\n    }\n\n    vector<pair<vector<int>, Color>> group_colors()\
+    \ {\n        vector<pair<vector<int>, Color>> res;\n        for (auto group: groups())\
+    \ {\n            res.emplace_back(group, get(group[0]));\n        }\n\n      \
+    \  return res;\n    }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"../template/concepts.hpp\"\
     \n\ntemplate<class Color, auto merge, auto unit>\nrequires Monoid_Concept<Color,\
     \ merge, unit>\nclass Coloring_Union_Find {\n    int n, _group_number;\n    vector<int>\
@@ -271,7 +279,7 @@ data:
   isVerificationFile: false
   path: Union_Find/Coloring_Union_Find.hpp
   requiredBy: []
-  timestamp: '2026-01-03 18:42:01+09:00'
+  timestamp: '2026-01-04 22:16:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Union_Find/Coloring_Union_Find.hpp
