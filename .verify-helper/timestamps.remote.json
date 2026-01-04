@@ -86,5 +86,14 @@
 "verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp": "2026-01-03 18:42:01 +0900",
 "verify/yosupo_library_checker/sample/a_plus_b.test.cpp": "2025-08-16 18:30:36 +0900",
 "verify/yosupo_library_checker/string/Z_Algorithm.test.cpp": "2026-01-03 18:42:01 +0900",
-"verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp": "2026-01-03 18:42:01 +0900"
+"verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yukicoder/1984.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yukicoder/2558.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yukicoder/763.test.cpp": "2026-01-03 18:42:01 +0900",
+"verify/yukicoder/Modulo_Order.test.cpp": "2026-01-03 18:42:01 +0900"
 }
