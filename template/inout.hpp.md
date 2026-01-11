@@ -18,6 +18,9 @@ data:
     path: Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
     title: "\u533A\u9593\u52A0\u7B97 Binary Indexed Tree"
   - icon: ':warning:'
+    path: Binary_Search/Count.hpp
+    title: Binary_Search/Count.hpp
+  - icon: ':warning:'
     path: Binary_Search/General_Integer.hpp
     title: Binary_Search/General_Integer.hpp
   - icon: ':warning:'
@@ -811,6 +814,7 @@ data:
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Counting/Q_Analog_Combination_Calculator.hpp
   - Counting/Combination_Calculator.hpp
+  - Binary_Search/Count.hpp
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp

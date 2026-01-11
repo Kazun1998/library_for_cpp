@@ -26,6 +26,9 @@ data:
   - name: Binary_Search
     pages:
     - icon: ':warning:'
+      path: Binary_Search/Count.hpp
+      title: Binary_Search/Count.hpp
+    - icon: ':warning:'
       path: Binary_Search/General_Integer.hpp
       title: Binary_Search/General_Integer.hpp
     - icon: ':warning:'
