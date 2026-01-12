@@ -108,7 +108,8 @@ T sum(vector<T> &X){
 }
 
 // a x + b y = gcd(a, b) を満たす整数の組 (a, b) に対して, (x, y, gcd(a, b)) を求める.
-tuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {
+template<integral T>
+tuple<T, T, T> Extended_Euclid(T a, T b) {
     ll s = 1, t = 0, u = 0, v = 1;
     while (b) {
         ll q;
