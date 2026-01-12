@@ -35,7 +35,25 @@ data:
     \            if (l & 1){\n                vl = op(vl, data[l]);\n            \
     \    l++;\n            }\n\n            if (r & 1){\n                r--;\n  \
     \              vr = op(data[r], vr);\n            }\n\n            l >>= 1; r\
-    \ >>= 1;\n        }\n\n        return op(vl, vr);\n    }\n};\n#line 8 \"verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp\"\
+    \ >>= 1;\n        }\n\n        return op(vl, vr);\n    }\n\n    template<typename\
+    \ Func>\n    int max_right(int l, const Func &cond) {\n        assert(cond(unit));\n\
+    \        if (l == n) return n;\n\n        l += n;\n        M sm = unit;\n    \
+    \    do {\n            while (l % 2 == 0) l >>= 1;\n\n            if (cond(op(sm,\
+    \ data[l]))) {\n                sm = op(sm ,data[l]);\n                ++l;\n\
+    \                continue;\n            }\n\n            while (l < n) {\n   \
+    \             l = l << 1;\n                if (cond(op(sm, data[l]))) {\n    \
+    \                sm = op(sm, data[l]);\n                    ++l;\n           \
+    \     }\n            }\n            return l - n;\n        } while ((l & -l) !=\
+    \ l);\n        return n;\n    }\n\n    template<typename Func>\n    int min_left(int\
+    \ r, const Func &cond) {\n        assert(cond(unit));\n        if (r == 0) return\
+    \ 0;\n\n        r += n;\n        M sm = unit;\n        do {\n            r--;\n\
+    \            while (r > 1 && (r % 2)) r >>= 1;\n\n            if (cond(op(data[r],\
+    \ sm))) {\n                sm = op(data[r], sm);\n                continue;\n\
+    \            }\n\n            while (r < n) {\n                r = (r << 1) |\
+    \ 1;\n                if (cond(op(data[r], sm))) {\n                    sm = op(data[r],\
+    \ sm);\n                    r--;\n                }\n            }\n         \
+    \   return r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n#line 8 \"verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp\"\
     \n\nint main(){\n    int N, Q; cin >> N >> Q;\n    vector<int> a(N);\n    for\
     \ (int i = 0; i < N; i++) { cin >> a[i]; }\n\n    auto op = [](int x, int y) ->\
     \ int { return min(x, y); };\n    int unit = numeric_limits<int>::max();\n\n \
@@ -54,7 +72,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-10-30 00:10:59+09:00'
+  timestamp: '2026-01-12 13:35:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp

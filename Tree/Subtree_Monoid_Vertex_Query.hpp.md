@@ -332,26 +332,43 @@ data:
     \                vl = op(vl, data[l]);\n                l++;\n            }\n\n\
     \            if (r & 1){\n                r--;\n                vr = op(data[r],\
     \ vr);\n            }\n\n            l >>= 1; r >>= 1;\n        }\n\n        return\
-    \ op(vl, vr);\n    }\n};\n#line 6 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\n\n\
-    template<typename M>\nclass Subtree_Monoid_Vertex_Query {\n    private:\n    Tree\
-    \ T;\n    unique_ptr<Segment_Tree<M>> S;\n\n    public:\n    Subtree_Monoid_Vertex_Query(Tree\
-    \ &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree)\
-    \ {\n        T.calculate_euler_tour_vertex();\n\n        // NEXT: \u9045\u5EF6\
-    \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306B\u5BFE\u5FDC + Segment Tree \u306E\u30D9\
-    \u30AF\u30C8\u30EB\u306E\u30B5\u30A4\u30BA\u3092\u4E0B\u3052\u308B.\n\n      \
-    \  int n = T.order();\n        vector<M> first(2 * n);\n        for (int v = T.offset();\
-    \ v < T.vector_size(); v++) {\n            first[T.in_time[v]] = data[v];\n  \
-    \      }\n\n        S = make_unique<Segment_Tree<M>>(first, op, unit);\n    }\n\
-    \n    /*\n    @brief \u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B\
-    .\n    @param v \u9802\u70B9\n    @param x \u5909\u66F4\u5F8C\u306E `M` \u306E\
-    \u9802\u70B9 `v` \u306B\u304A\u3051\u308B\u5024\n    */\n    void update(const\
-    \ int &v, const M &x) {\n        S->update(T.in_time[v], x);\n    }\n\n    /*\n\
-    \    @brief \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\
-    \u95A2\u3059\u308B\u7DCF\u7A4D\u3092\u6C42\u3081\u308B.\n    @param v \u90E8\u5206\
-    \u6728\u306E\u9802\u70B9\n    @returns \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\
-    \u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\u7A4D\n    */\n    M query(const\
-    \ int &v) {\n        return S->product(T.in_time[v], T.out_time[v]);\n    }\n\
-    };\n"
+    \ op(vl, vr);\n    }\n\n    template<typename Func>\n    int max_right(int l,\
+    \ const Func &cond) {\n        assert(cond(unit));\n        if (l == n) return\
+    \ n;\n\n        l += n;\n        M sm = unit;\n        do {\n            while\
+    \ (l % 2 == 0) l >>= 1;\n\n            if (cond(op(sm, data[l]))) {\n        \
+    \        sm = op(sm ,data[l]);\n                ++l;\n                continue;\n\
+    \            }\n\n            while (l < n) {\n                l = l << 1;\n \
+    \               if (cond(op(sm, data[l]))) {\n                    sm = op(sm,\
+    \ data[l]);\n                    ++l;\n                }\n            }\n    \
+    \        return l - n;\n        } while ((l & -l) != l);\n        return n;\n\
+    \    }\n\n    template<typename Func>\n    int min_left(int r, const Func &cond)\
+    \ {\n        assert(cond(unit));\n        if (r == 0) return 0;\n\n        r +=\
+    \ n;\n        M sm = unit;\n        do {\n            r--;\n            while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n\n            if (cond(op(data[r], sm))) {\n  \
+    \              sm = op(data[r], sm);\n                continue;\n            }\n\
+    \n            while (r < n) {\n                r = (r << 1) | 1;\n           \
+    \     if (cond(op(data[r], sm))) {\n                    sm = op(data[r], sm);\n\
+    \                    r--;\n                }\n            }\n            return\
+    \ r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\
+    #line 6 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\n\ntemplate<typename M>\nclass\
+    \ Subtree_Monoid_Vertex_Query {\n    private:\n    Tree T;\n    unique_ptr<Segment_Tree<M>>\
+    \ S;\n\n    public:\n    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M>\
+    \ &data, const function<M(M, M)> op, const M unit): T(tree) {\n        T.calculate_euler_tour_vertex();\n\
+    \n        // NEXT: \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306B\u5BFE\
+    \u5FDC + Segment Tree \u306E\u30D9\u30AF\u30C8\u30EB\u306E\u30B5\u30A4\u30BA\u3092\
+    \u4E0B\u3052\u308B.\n\n        int n = T.order();\n        vector<M> first(2 *\
+    \ n);\n        for (int v = T.offset(); v < T.vector_size(); v++) {\n        \
+    \    first[T.in_time[v]] = data[v];\n        }\n\n        S = make_unique<Segment_Tree<M>>(first,\
+    \ op, unit);\n    }\n\n    /*\n    @brief \u9802\u70B9 `v` \u3092 `x` \u306B\u5909\
+    \u66F4\u3059\u308B.\n    @param v \u9802\u70B9\n    @param x \u5909\u66F4\u5F8C\
+    \u306E `M` \u306E\u9802\u70B9 `v` \u306B\u304A\u3051\u308B\u5024\n    */\n   \
+    \ void update(const int &v, const M &x) {\n        S->update(T.in_time[v], x);\n\
+    \    }\n\n    /*\n    @brief \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\
+    \u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\u7A4D\u3092\u6C42\u3081\u308B.\n  \
+    \  @param v \u90E8\u5206\u6728\u306E\u9802\u70B9\n    @returns \u9802\u70B9 `v`\
+    \ \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\
+    \u7A4D\n    */\n    M query(const int &v) {\n        return S->product(T.in_time[v],\
+    \ T.out_time[v]);\n    }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include\"Tree.hpp\"\
     \n#include\"../Segment_Tree/Segment_Tree.hpp\"\n\ntemplate<typename M>\nclass\
     \ Subtree_Monoid_Vertex_Query {\n    private:\n    Tree T;\n    unique_ptr<Segment_Tree<M>>\
@@ -385,7 +402,7 @@ data:
   isVerificationFile: false
   path: Tree/Subtree_Monoid_Vertex_Query.hpp
   requiredBy: []
-  timestamp: '2026-01-04 22:16:12+09:00'
+  timestamp: '2026-01-12 13:35:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
