@@ -65,18 +65,21 @@ class Segment_Tree{
         M sm = unit;
         do {
             while (l % 2 == 0) l >>= 1;
-            if (!cond(op(sm, data[l]))) {
-                while (l < n) {
-                    l = l << 1;
-                    if (cond(op(sm, data[l]))) {
-                        sm = op(sm, data[l]);
-                        l++;
-                    }
-                }
-                return l - n;
+
+            if (cond(op(sm, data[l]))) {
+                sm = op(sm ,data[l]);
+                ++l;
+                continue;
             }
-            sm = op(sm, data[l]);
-            l++;
+
+            while (l < n) {
+                l = l << 1;
+                if (cond(op(sm, data[l]))) {
+                    sm = op(sm, data[l]);
+                    ++l;
+                }
+            }
+            return l - n;
         } while ((l & -l) != l);
         return n;
     }
@@ -91,17 +94,21 @@ class Segment_Tree{
         do {
             r--;
             while (r > 1 && (r % 2)) r >>= 1;
-            if (!cond(op(data[r], sm))) {
-                while (r < n) {
-                    r = (r << 1) | 1;
-                    if (cond(op(data[r], sm))) {
-                        sm = op(data[r], sm);
-                        r--;
-                    }
-                }
-                return r + 1 - n;
+
+            if (cond(op(data[r], sm))) {
+                sm = op(data[r], sm);
+                continue;
             }
-            sm = op(data[r], sm);
+
+            while (r < n) {
+                r = (r << 1) | 1;
+                if (cond(op(data[r], sm))) {
+                    sm = op(data[r], sm);
+                    r--;
+                }
+            }
+            return r + 1 - n;
+
         } while ((r & -r) != r);
         return 0;
     }
