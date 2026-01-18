@@ -173,7 +173,7 @@ class Lazy_Segment_Tree {
 
     /// @brief 全要素における区間積を求める.
     /// @return 残要素における区間積
-    inline M all_product() {return product(0, n);}
+    inline M all_product() {return product(0, n - 1);}
 
     void refresh() {
         for (int m = 1; m < 2 * n; m++){
