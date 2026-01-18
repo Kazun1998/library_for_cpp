@@ -311,6 +311,9 @@ data:
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
   - icon: ':heavy_check_mark:'
+    path: Segment_Tree/Lazy_Segment_Tree.hpp
+    title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
+  - icon: ':heavy_check_mark:'
     path: Sequence/Cartesian_Tree.hpp
     title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
       \u308B"
@@ -853,6 +856,7 @@ data:
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
+  - Segment_Tree/Lazy_Segment_Tree.hpp
   timestamp: '2025-11-22 15:43:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

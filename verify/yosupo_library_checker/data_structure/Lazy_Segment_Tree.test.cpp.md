@@ -245,17 +245,18 @@ data:
     \u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in M \u306B\u5BFE\u3057\u3066, f(xy)\
     \ = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\u610F)\n\u4F5C\u7528\u7D20\u306F\
     \u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\u3082\u5DE6\u304B\u3089\u884C\
-    \u3046.\n*/\n\ntemplate<typename M, typename F>\nclass Lazy_Segment_Tree {\n \
-    \   public:\n    int n, depth;\n    const function<M(M, M)> op;\n    const function<M(F,\
-    \ M)> act;\n    const function<F(F, F)> comp;\n    vector<M> data; const M unit;\n\
-    \    vector<F> lazy; const F id;\n\n    public:\n    Lazy_Segment_Tree(int size,\
-    \ const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const\
-    \ function<F(F, F)> comp, const F id):\n        n(), op(op), unit(unit), act(act),\
-    \ comp(comp), id(id), depth(0) {\n            int m = 1;\n            while (size\
-    \ > m) { depth++, m *= 2; }\n            n = m;\n            data.assign(2 * m,\
-    \ unit);\n            lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const\
-    \ vector<M> &vec, const function<M(M, M)> op, const M unit, const function<M(F,\
-    \ M)> act, const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
+    \u3046.\n*/\n\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\ntemplate<typename\
+    \ M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n    int n, depth;\n\
+    \    const function<M(M, M)> op;\n    const function<M(F, M)> act;\n    const\
+    \ function<F(F, F)> comp;\n    vector<M> data; const M unit;\n    vector<F> lazy;\
+    \ const F id;\n\n    public:\n    Lazy_Segment_Tree(int size, const function<M(M,\
+    \ M)> op, const M unit, const function<M(F, M)> act, const function<F(F, F)> comp,\
+    \ const F id):\n        n(), op(op), unit(unit), act(act), comp(comp), id(id),\
+    \ depth(0) {\n            int m = 1;\n            while (size > m) { depth++,\
+    \ m *= 2; }\n            n = m;\n            data.assign(2 * m, unit);\n     \
+    \       lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const vector<M>\
+    \ &vec, const function<M(M, M)> op, const M unit, const function<M(F, M)> act,\
+    \ const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
     \ op, unit, act, comp, id){\n            for (int k = 0; k < vec.size(); k++)\
     \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
     \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
@@ -294,10 +295,10 @@ data:
     \u7528\n    void action(int l, int r, F alpha){\n        int L0, R0;\n       \
     \ tie(L0, R0) = range_propagate(l, r + 1);\n\n        int L = l + n, R = r + n\
     \ + 1;\n        while (L < R){\n            if (L & 1){\n                lazy[L]\
-    \ = (alpha == id) ? id : comp(alpha, lazy[L]); \n                L++;\n      \
-    \      }\n\n            if (R & 1){\n                R--;\n                lazy[R]\
-    \ = (alpha == id) ? id : comp(alpha, lazy[R]);\n            }\n\n            L\
-    \ >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0); recalc_above(R0);\n\
+    \ = (lazy[L] == id) ? alpha : comp(alpha, lazy[L]); \n                L++;\n \
+    \           }\n\n            if (R & 1){\n                R--;\n             \
+    \   lazy[R] = (lazy[R] == id) ? alpha : comp(alpha, lazy[R]);\n            }\n\
+    \n            L >>= 1; R >>= 1;\n        }\n\n        recalc_above(L0); recalc_above(R0);\n\
     \    }\n\n    /// @brief \u7B2C k \u9805\u3092 x \u306B\u66F4\u65B0\u3059\u308B\
     .\n    /// @param k \u66F4\u65B0\u5834\u6240\n    /// @param x \u66F4\u65B0\u5F8C\
     \u306E\u8981\u7D20\n    inline void update(int k, M x){\n        int m = k + n;\n\
@@ -312,7 +313,7 @@ data:
     \ 1; R >>= 1;\n        }\n\n        return op(vL, vR);\n    }\n\n    /// @brief\
     \ \u5168\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\u7A4D\u3092\u6C42\u3081\
     \u308B.\n    /// @return \u6B8B\u8981\u7D20\u306B\u304A\u3051\u308B\u533A\u9593\
-    \u7A4D\n    inline M all_product() {return product(0, n);}\n\n    void refresh()\
+    \u7A4D\n    inline M all_product() {return product(0, n - 1);}\n\n    void refresh()\
     \ {\n        for (int m = 1; m < 2 * n; m++){\n            data[m] = evaluate_at(m);\n\
     \            if ((m < n) && (lazy[m] != id)){\n                int left = m <<\
     \ 1;\n                lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m],\
@@ -366,7 +367,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2026-01-04 22:16:12+09:00'
+  timestamp: '2026-01-18 12:56:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
