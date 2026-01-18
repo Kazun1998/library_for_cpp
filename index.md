@@ -392,6 +392,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment Tree
+  - name: Segment_Tree/preset
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Segment_Tree/preset/Range_Add_Range_Min.hpp
+      title: Segment_Tree/preset/Range_Add_Range_Min.hpp
+    - icon: ':heavy_check_mark:'
+      path: Segment_Tree/preset/Range_Add_Range_Sum.hpp
+      title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - name: Sequence
     pages:
     - icon: ':heavy_check_mark:'
@@ -535,6 +543,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/dsl/2G.test.cpp
       title: verify/aizu_online_judge/dsl/2G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/2G_2.test.cpp
+      title: verify/aizu_online_judge/dsl/2G_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/2H.test.cpp
+      title: verify/aizu_online_judge/dsl/2H.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
     - icon: ':heavy_check_mark:'

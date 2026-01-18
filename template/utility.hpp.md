@@ -314,6 +314,12 @@ data:
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
   - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Add_Range_Min.hpp
+    title: Segment_Tree/preset/Range_Add_Range_Min.hpp
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Add_Range_Sum.hpp
+    title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
+  - icon: ':heavy_check_mark:'
     path: Sequence/Cartesian_Tree.hpp
     title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
       \u308B"
@@ -416,6 +422,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dsl/2G.test.cpp
     title: verify/aizu_online_judge/dsl/2G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dsl/2G_2.test.cpp
+    title: verify/aizu_online_judge/dsl/2G_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dsl/2H.test.cpp
+    title: verify/aizu_online_judge/dsl/2H.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
@@ -802,6 +814,8 @@ data:
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Value.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
+  - Segment_Tree/preset/Range_Add_Range_Min.hpp
+  - Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - Segment_Tree/Lazy_Segment_Tree.hpp
   timestamp: '2026-01-03 18:42:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -891,6 +905,8 @@ data:
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/aizu_online_judge/dsl/2G_2.test.cpp
+  - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/aizu_online_judge/dsl/2G.test.cpp
   - verify/original/Partition_Q.test.cpp
   - verify/original/Functional_Graph.test.cpp
