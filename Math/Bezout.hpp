@@ -33,6 +33,8 @@ namespace bezout {
         return Find_Particular_Solution<T>(a, b, c, {p, q});
     }
 
+    /// @brief 1次不定方程式 a x + b y = c の解 (x, y) で, lx <= x <= rx, ly <= y <= ry を満たすもののパラメータを求める.
+    /// @return {x0, dx, y0, dy, kl, kr}. 解は x = x0 + k * dx, y = y0 + k * dy (kl <= k <= kr) と表される. 解が存在しない場合は std::nullopt.
     template<integral T>
     optional<tuple<T, T, T, T, T, T>> Solve(T a, T b, T c, const T lx, const T rx, const T ly, const T ry, const pair<T, T> &hint) {
         T p, q;
@@ -43,7 +45,7 @@ namespace bezout {
 
         a /= g; b /= g; c /= g;
 
-        int tmp_l, tmp_r;
+        T tmp_l, tmp_r;
         if (b > 0) {
             tmp_l = lx - c * p;
             tmp_r = rx - c * p;
@@ -78,4 +80,23 @@ namespace bezout {
         auto [p, q, g] = Extended_Euclid<T>(a, b);
         return Solve<T>(a, b, c, lx, rx, ly, ry, make_pair(p, q));
     };
+
+    /// @brief 1次不定方程式 a x + b y = c の非負整数解 (x, y) を 1 組見つける.
+    /// @return 解 (x, y). 解が存在しない場合は std::nullopt.
+    template<integral T>
+    optional<pair<T, T>> Find_Non_Negative_Solution(const T a, const T b, const T c, const pair<T, T> &hint) {
+        auto res = Solve<T>(a, b, c, 0, numeric_limits<T>::max(), 0, numeric_limits<T>::max(), hint);
+        if (!res) { return nullopt; }
+
+        auto [x0, dx, y0, dy, kl, kr] = res.value();
+        return pair<T, T>(x0 + kl * dx, y0 + kl * dy);
+    }
+
+    /// @brief 1次不定方程式 a x + b y = c の非負整数解 (x, y) を 1 組見つける.
+    /// @return 解 (x, y). 解が存在しない場合は std::nullopt.
+    template<integral T>
+    optional<pair<T, T>> Find_Non_Negative_Solution(const T a, const T b, const T c) {
+        auto [p, q, g] = Extended_Euclid<T>(a, b);
+        return Find_Non_Negative_Solution<T>(a, b, c, {p, q});
+    }
 }
