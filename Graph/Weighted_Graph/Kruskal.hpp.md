@@ -10,25 +10,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Union_Find.hpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -45,42 +45,42 @@ data:
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <cstdarg>\n\
-    #include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include <cstdlib>\n\
-    #include <cstring>\n#include <deque>\n#include <fstream>\n#include <functional>\n\
-    #include <initializer_list>\n#include <iomanip>\n#include <ios>\n#include <iostream>\n\
-    #include <istream>\n#include <iterator>\n#include <limits>\n#include <list>\n\
-    #include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n#include\
-    \ <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n\
-    #include <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n\
-    #include <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include\
-    \ <unordered_set>\n#include <utility>\n#include <vector>\n\n// utility\n#line\
-    \ 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n// a \u2190 max(a, b)\
-    \ \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089\
-    , \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline bool\
-    \ chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n}\n\n// a \u2190\
-    \ min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\u308C\u305F\
-    \u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename U>\ninline\
-    \ bool chmin(T &a, const U b){\n    return (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\
-    \u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
-    \ T max(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector\
-    \ is empty.\");\n\n    return *max_element(a.begin(), a.end());\n}\n\n// vector<T>\
-    \ a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename\
-    \ T>\ninline T min(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
-    vector is empty.\");\n\n    return *min_element(a.begin(), a.end());\n}\n\n//\
-    \ vector<T> a \u306E\u6700\u5927\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmax(const\
-    \ vector<T> &a){\n    if (a.empty()) throw std::invalid_argument(\"vector is empty.\"\
-    );\n\n    return distance(a.begin(), max_element(a.begin(), a.end()));\n}\n\n\
-    // vector<T> a \u306E\u6700\u5C0F\u5024\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline size_t argmin(const\
-    \ vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"vector is empty.\"\
-    );\n\n    return distance(a.begin(), min_element(a.begin(), a.end()));\n}\n#line\
-    \ 59 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\n\n//\
-    \ \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) { return\
-    \ x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return x -\
-    \ y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x * y;\
-    \ }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
+    \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
+    \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5927\u5024\u306E\u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
+    \ size_t argmax(const vector<T> &a){\n    if (a.empty()) throw std::invalid_argument(\"\
+    vector is empty.\");\n\n    return distance(a.begin(), max_element(a.begin(),\
+    \ a.end()));\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u306E\u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
+    \ size_t argmin(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
+    vector is empty.\");\n\n    return distance(a.begin(), min_element(a.begin(),\
+    \ a.end()));\n}\n#line 61 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y)\
+    \ { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
+    \ x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x *\
+    \ y; }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<typename\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<typename\
     \ T>\nT bitwise_or(const T &x, const T &y) { return x | y; }\n\ntemplate<typename\
     \ T>\nT bitwise_xor(const T &x, const T &y) { return x ^ y; }\n\n// \u9664\u7B97\
@@ -112,20 +112,20 @@ data:
     .\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto\
     \ &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\
     \u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a,\
-    \ b)) \u3092\u6C42\u3081\u308B.\ntuple<ll, ll, ll> Extended_Euclid(ll a, ll b)\
-    \ {\n    ll s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        ll q;\n    \
-    \    tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n        tie(s,\
-    \ t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u - q * v);\n\
-    \    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\
-    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll isqrt(const\
-    \ ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n    while ((x\
-    \ + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\n    return\
-    \ x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
-    \u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return isqrt(N);\
-    \ }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F\
-    , 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x = isqrt(N);\n\
-    \    return x * x == N ? x : x + 1;\n}\n#line 62 \"template/template.hpp\"\n\n\
-    // inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
+    \ b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T\
+    \ a, T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n\
+    \        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n    \
+    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
+    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
+    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 64 \"template/template.hpp\"\
+    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
     \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
     n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
     \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
@@ -155,7 +155,7 @@ data:
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\
     \    \n    for (size_t i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin\
     \ >> el)) break;\n        res.push_back(std::move(el));\n    }\n    return res;\n\
-    }\n#line 65 \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\
+    }\n#line 67 \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\
     \n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
     #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
     #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
@@ -169,7 +169,7 @@ data:
     \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
     \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
     \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 68 \"template/template.hpp\"\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\
     \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x\
     \ \u306E bit legnth \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x\
     \ == 0) { return 0; }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n\
@@ -185,7 +185,7 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 71 \"template/template.hpp\"\n\n// exception\n\
+    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
     #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
@@ -293,7 +293,7 @@ data:
   isVerificationFile: false
   path: Graph/Weighted_Graph/Kruskal.hpp
   requiredBy: []
-  timestamp: '2026-01-04 22:16:12+09:00'
+  timestamp: '2026-01-24 19:02:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
