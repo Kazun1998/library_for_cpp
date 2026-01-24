@@ -7,6 +7,9 @@ data:
       path: Algebra/Extended_Algebra.hpp
       title: Algebra/Extended_Algebra.hpp
     - icon: ':heavy_check_mark:'
+      path: Algebra/Fraction.hpp
+      title: Algebra/Fraction.hpp
+    - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
     - icon: ':heavy_check_mark:'
@@ -581,6 +584,9 @@ data:
       title: verify/aizu_online_judge/ntl/1E.test.cpp
   - name: verify/original
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Fraction.test.cpp
+      title: verify/original/Fraction.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/Functional_Graph.test.cpp
       title: verify/original/Functional_Graph.test.cpp

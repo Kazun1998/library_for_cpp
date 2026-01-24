@@ -450,6 +450,9 @@ data:
     path: verify/aizu_online_judge/ntl/1E.test.cpp
     title: verify/aizu_online_judge/ntl/1E.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/original/Fraction.test.cpp
+    title: verify/original/Fraction.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/original/Functional_Graph.test.cpp
     title: verify/original/Functional_Graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -912,6 +915,7 @@ data:
   - verify/original/Partition_Q.test.cpp
   - verify/original/enumerable.test.cpp
   - verify/original/Functional_Graph.test.cpp
+  - verify/original/Fraction.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/1358.test.cpp
   - verify/yukicoder/1984.test.cpp
