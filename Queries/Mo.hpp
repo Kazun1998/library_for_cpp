@@ -6,17 +6,7 @@ class Mo {
     private:
     int N;
     int query_count;
-    int l, r;
     vector<int> left, right;
-
-    template<typename ADD, typename DEL>
-    void move(const int tl, const int tr, const ADD &add, const DEL &del) {
-        while (tl < l) add(--l);
-        while (r < tr) add(r++);
-
-        while(l < tl) del(l++);
-        while(tr < r) del(--r);
-    }
 
     public:
     Mo(const int N): N(N), query_count(0), left(0), right(0) {}
@@ -41,7 +31,7 @@ class Mo {
             buckets[bucket_id].emplace_back(q);
         }
 
-        l = 0, r = 0;
+        int l = 0, r = 0;
         for (int bucket_id = 0; bucket_id < bucket_count; bucket_id++) {
             auto &bucket = buckets[bucket_id];
             if (bucket_id % 2 == 0) {
@@ -51,7 +41,12 @@ class Mo {
             }
 
             for (const int q: bucket) {
-                move(left[q], right[q], add, del);
+                while (left[q] < l) add(--l);
+                while (r < right[q]) add(r++);
+
+                while(l < left[q]) del(l++);
+                while(right[q] < r) del(--r);
+
                 rem(q);
             }
         }
