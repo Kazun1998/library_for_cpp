@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Calculus.hpp
     title: "\u5FAE\u7A4D\u5206"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Log
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Partition_Q.hpp
     title: "\u5206\u5272\u6570 (Q)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -69,15 +69,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
     title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\
@@ -547,7 +547,7 @@ data:
   - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp

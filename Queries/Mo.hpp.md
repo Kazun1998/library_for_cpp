@@ -23,39 +23,38 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\
+      \u30EA\u3092\u8FFD\u52A0\u3059\u308B"
     links: []
-  bundledCode: "#line 2 \"Algebra/Gaussian_Integer.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Queries/Mo.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
+    using namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
+    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
+    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -181,77 +180,72 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/Gaussian_Integer.hpp\"\
-    \n\ntemplate<typename R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\
-    \n    constexpr Gaussian_Integer(R re, R im): re(re), im(im) {}\n    constexpr\
-    \ Gaussian_Integer(R re): re(re), im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
-    \n    Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im);\
-    \ }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer& operator+=(const Gaussian_Integer\
-    \ &b){\n        re += b.re;\n        im += b.im;\n        return *this;\n    }\n\
-    \n    friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) += y; }\n\n    // \u6E1B\u6CD5\n    Gaussian_Integer&\
-    \ operator-=(const Gaussian_Integer &b){\n        re -= b.re;\n        im -= b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator-(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }\n\n    //\
-    \ \u4E57\u6CD5\n    Gaussian_Integer& operator*=(const Gaussian_Integer &b){\n\
-    \        tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im * b.re);\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator*(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }\n\n    //\
-    \ \u9664\u6CD5\n    Gaussian_Integer& operator/=(const Gaussian_Integer &b){\n\
-    \        R n = b.norm();\n        R x = round(re * b.re + im * b.im, n);\n   \
-    \     R y = round(im * b.re - re * b.im, n);\n        re = x;\n        im = y;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator/(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) /= y; }\n\n    //\
-    \ \u5270\u4F59\n    Gaussian_Integer& operator%=(const Gaussian_Integer &b){\n\
-    \        Gaussian_Integer a(re, im);\n        auto q = a / b;\n        auto r\
-    \ = a - b * q;\n        re = r.re;\n        im = r.im;\n        return *this;\n\
-    \    }\n\n    friend Gaussian_Integer operator%(const Gaussian_Integer &x, const\
-    \ Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }\n\n    // \u5171\u5F79\
-    \n    Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }\n\
-    \n    // \u30CE\u30EB\u30E0\n    R norm() const { return re * re + im * im; }\n\
-    \n    // \u5165\u529B\n    friend istream &operator>>(istream &is, Gaussian_Integer\
-    \ &a) {\n        is >> a.re >> a.im;\n        return is;\n    }\n\n    // \u51FA\
-    \u529B\n    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x)\
-    \ { return os << x.re << \"+\" << x.im << \"i\"; }\n\n    // \u30BC\u30ED?\n \
-    \   bool is_zero() const { return re == 0 && im == 0; }\n};\n\ntemplate<typename\
-    \ R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R> beta)\
-    \ {\n    while(!beta.is_zero()) {\n        tie(alpha, beta) = make_pair(beta,\
-    \ alpha % beta);\n    }\n\n    return alpha;\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
-    \ R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\n    constexpr Gaussian_Integer(R\
-    \ re, R im): re(re), im(im) {}\n    constexpr Gaussian_Integer(R re): re(re),\
-    \ im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Gaussian_Integer operator-()\
-    \ const { return Gaussian_Integer(-re, -im); }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer&\
-    \ operator+=(const Gaussian_Integer &b){\n        re += b.re;\n        im += b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator+(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }\n\n    //\
-    \ \u6E1B\u6CD5\n    Gaussian_Integer& operator-=(const Gaussian_Integer &b){\n\
-    \        re -= b.re;\n        im -= b.im;\n        return *this;\n    }\n\n  \
-    \  friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) -= y; }\n\n    // \u4E57\u6CD5\n    Gaussian_Integer&\
-    \ operator*=(const Gaussian_Integer &b){\n        tie (re, im) = make_pair(re\
-    \ * b.re - im * b.im, re * b.im + im * b.re);\n        return *this;\n    }\n\n\
-    \    friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) *= y; }\n\n    // \u9664\u6CD5\n    Gaussian_Integer&\
-    \ operator/=(const Gaussian_Integer &b){\n        R n = b.norm();\n        R x\
-    \ = round(re * b.re + im * b.im, n);\n        R y = round(im * b.re - re * b.im,\
-    \ n);\n        re = x;\n        im = y;\n        return *this;\n    }\n\n    friend\
-    \ Gaussian_Integer operator/(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) /= y; }\n\n    // \u5270\u4F59\n    Gaussian_Integer&\
-    \ operator%=(const Gaussian_Integer &b){\n        Gaussian_Integer a(re, im);\n\
-    \        auto q = a / b;\n        auto r = a - b * q;\n        re = r.re;\n  \
-    \      im = r.im;\n        return *this;\n    }\n\n    friend Gaussian_Integer\
-    \ operator%(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
-    \ %= y; }\n\n    // \u5171\u5F79\n    Gaussian_Integer conjugate() const { return\
-    \ Gaussian_Integer(re, -im); }\n\n    // \u30CE\u30EB\u30E0\n    R norm() const\
-    \ { return re * re + im * im; }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, Gaussian_Integer &a) {\n        is >> a.re >> a.im;\n        return is;\n\
-    \    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
-    \ Gaussian_Integer &x) { return os << x.re << \"+\" << x.im << \"i\"; }\n\n  \
-    \  // \u30BC\u30ED?\n    bool is_zero() const { return re == 0 && im == 0; }\n\
-    };\n\ntemplate<typename R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha,\
-    \ Gaussian_Integer<R> beta) {\n    while(!beta.is_zero()) {\n        tie(alpha,\
-    \ beta) = make_pair(beta, alpha % beta);\n    }\n\n    return alpha;\n}"
+    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Queries/Mo.hpp\"\n\n\
+    class Mo {\n    private:\n    int N;\n    int query_count;\n    vector<int> left,\
+    \ right;\n\n    public:\n    Mo(const int N): N(N), query_count(0), left(0), right(0)\
+    \ {}\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\
+    \u30A8\u30EA\u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF\n  \
+    \  /// @param r \u53F3\u7AEF\n    void add_query(const int l, const int r) {\n\
+    \        left.emplace_back(l);\n        right.emplace_back(r + 1);\n        query_count++;\n\
+    \    }\n\n    /// @brief Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    ///\
+    \ @tparam ADD \u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\
+    \n    /// @tparam DEL \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\
+    \u578B\n    /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\
+    \u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\
+    \u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\
+    \u30B9)\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\
+    \ (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem\
+    \ \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570\
+    \ (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename\
+    \ DEL, typename REM>\n    void run(const ADD &add, const DEL &del, const REM &rem)\
+    \ {\n        int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count\
+    \ * 2.0 / 3.0)));\n        int bucket_count = div_ceil(N, bucket_size);\n    \
+    \    vector<vector<int>> buckets(bucket_count, vector<int>(0));\n\n        for\
+    \ (int q = 0; q < query_count; q++) {\n            int bucket_id = div_floor(left[q],\
+    \ bucket_size);\n            buckets[bucket_id].emplace_back(q);\n        }\n\n\
+    \        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id < bucket_count;\
+    \ bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n           \
+    \ if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
+    \ [&](const int p, const int q) -> bool { return right[p] < right[q]; });\n  \
+    \          } else {\n                sort(bucket.rbegin(), bucket.rend(), [&](const\
+    \ int p, const int q) -> bool { return right[p] < right[q]; });\n            }\n\
+    \n            for (const int q: bucket) {\n                while (left[q] < l)\
+    \ add(--l);\n                while (r < right[q]) add(r++);\n\n              \
+    \  while(l < left[q]) del(l++);\n                while(right[q] < r) del(--r);\n\
+    \n                rem(q);\n            }\n        }\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nclass Mo {\n   \
+    \ private:\n    int N;\n    int query_count;\n    vector<int> left, right;\n\n\
+    \    public:\n    Mo(const int N): N(N), query_count(0), left(0), right(0) {}\n\
+    \n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\
+    \u30EA\u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF\n    /// @param\
+    \ r \u53F3\u7AEF\n    void add_query(const int l, const int r) {\n        left.emplace_back(l);\n\
+    \        right.emplace_back(r + 1);\n        query_count++;\n    }\n\n    ///\
+    \ @brief Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    /// @tparam ADD \u8981\
+    \u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam\
+    \ DEL \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\u578B\n   \
+    \ /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\
+    \u308B\u95A2\u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\u52A0\
+    \u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    )\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570 (\u5F15\
+    \u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem \u30AF\u30A8\
+    \u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570 (\u5F15\u6570\
+    \u306F\u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename DEL, typename\
+    \ REM>\n    void run(const ADD &add, const DEL &del, const REM &rem) {\n     \
+    \   int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count\
+    \ * 2.0 / 3.0)));\n        int bucket_count = div_ceil(N, bucket_size);\n    \
+    \    vector<vector<int>> buckets(bucket_count, vector<int>(0));\n\n        for\
+    \ (int q = 0; q < query_count; q++) {\n            int bucket_id = div_floor(left[q],\
+    \ bucket_size);\n            buckets[bucket_id].emplace_back(q);\n        }\n\n\
+    \        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id < bucket_count;\
+    \ bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n           \
+    \ if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
+    \ [&](const int p, const int q) -> bool { return right[p] < right[q]; });\n  \
+    \          } else {\n                sort(bucket.rbegin(), bucket.rend(), [&](const\
+    \ int p, const int q) -> bool { return right[p] < right[q]; });\n            }\n\
+    \n            for (const int q: bucket) {\n                while (left[q] < l)\
+    \ add(--l);\n                while (r < right[q]) add(r++);\n\n              \
+    \  while(l < left[q]) del(l++);\n                while(right[q] < r) del(--r);\n\
+    \n                rem(q);\n            }\n        }\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -261,16 +255,70 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Algebra/Gaussian_Integer.hpp
+  path: Queries/Mo.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-documentation_of: Algebra/Gaussian_Integer.hpp
+  timestamp: '2026-01-25 00:14:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Queries/Mo.hpp
 layout: document
-redirect_from:
-- /library/Algebra/Gaussian_Integer.hpp
-- /library/Algebra/Gaussian_Integer.hpp.html
-title: Algebra/Gaussian_Integer.hpp
+title: Mo
 ---
+
+## Outline
+
+Mo アルゴリズムに関する計算を行う.
+
+## Theory
+
+長さ $N$ の列 $A=(A_0, A_1, \dots, A_{N-1})$ と以下の形式の $Q$ 個のクエリがある.
+
+> 部分列 $(A_L, A_{L+1}, \dots, A_{R-1})$ における, とある値を $F(L,R)$ と書くことにする.
+>
+> このとき, $Q$ 個の整数の組 $(L_1, R_1), \dots, (L_Q, R_Q)$ が与えられるので, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を求めよ.
+
+ここで, 以下の条件をみたしているとする.
+
+- $A$ は $Q$ 個のクエリにおいて固定である.
+- $Q$ 個のクエリが先読みできる.
+- $F(L, R)$ が求まっているとき, そこから $F(L \pm 1, R), F(L, R \pm 1)$ が高速に ($O(\alpha)$ 時間で) 求める.
+
+このとき, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を全て合計でで $O(\alpha N \sqrt{Q})$ Time で求めることが出来る.
+
+## Contents
+
+### constructor
+
+```cpp
+Mo(const int N)
+```
+
+* 数列のインデックスが $0, 1, \dots, N-1$ であるような場を作成する.
+
+### add_query
+
+```cpp
+void add_query(const int l, const int r)
+```
+
+* **閉区間** $[l, r]$ に対するクエリを追加する.
+
+### run
+
+```cpp
+template<typename ADD, typename DEL, typename REM>
+void run(const ADD &add, const DEL &del, const REM &rem)
+```
+
+* 予約された閉区間に対する Mo アルゴリズムを実行する.
+* **引数**
+    * `add`: 要素が追加される時の処理 (引数は数列のインデックス).
+    * `del`: 要素が削除される時の処理 (引数は数列のインデックス).
+    * `rem`: 結果を保存するときの処理 (引数はクエリのインデックス).
+* **計算量**: クエリの数を $Q$ 個, `add`, `del` の計算量を $O(\alpha)$ 時間として, 合計 $O(\alpha N \sqrt{Q})$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/01/25| Mo クラスの実装 |
