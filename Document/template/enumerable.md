@@ -7,7 +7,7 @@ documentation_of: //template/enumerable.hpp
 
 Ruby における Enumerable に関するメソッドの中で, 特に有用であるものを C++ に移植したもの.
 
-参考: https://docs.ruby-lang.org/ja/latest/class/Enumerable.html
+参考: [Ruby 公式ドキュメントにおける Enumerable モジュールページ](https://docs.ruby-lang.org/ja/latest/class/Enumerable.html)
 
 ## History
 
