@@ -112,7 +112,7 @@ template<integral T>
 tuple<T, T, T> Extended_Euclid(T a, T b) {
     T s = 1, t = 0, u = 0, v = 1;
     while (b) {
-        ll q;
+        T q;
         tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));
         tie(s, t) = make_pair(t, s - q * t);
         tie(u, v) = make_pair(v, u - q * v);
