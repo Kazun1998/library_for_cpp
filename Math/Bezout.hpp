@@ -80,6 +80,24 @@ namespace bezout {
         return Solve<T>(a, b, c, lx, rx, ly, ry, make_pair(p, q));
     };
 
+    /// @brief 1次不定方程式 a x + b y = c の解 (x, y) で, lx <= x <= rx, ly <= y <= ry を満たすものの個数を求める.
+    /// @return 解の個数.
+    template<integral T>
+    T Count_Solutions(const T a, const T b, const T c, const T lx, const T rx, const T ly, const T ry, const pair<T, T> &hint) {
+        auto res = Solve<T>(a, b, c, lx, rx, ly, ry, hint);
+        if (!res) return 0;
+        auto [x0, dx, y0, dy, kl, kr] = res.value();
+        return kr - kl + 1;
+    }
+
+    /// @brief 1次不定方程式 a x + b y = c の解 (x, y) で, lx <= x <= rx, ly <= y <= ry を満たすものの個数を求める.
+    /// @return 解の個数.
+    template<integral T>
+    T Count_Solutions(const T a, const T b, const T c, const T lx, const T rx, const T ly, const T ry) {
+        auto [p, q, g] = Extended_Euclid<T>(a, b);
+        return Count_Solutions<T>(a, b, c, lx, rx, ly, ry, {p, q});
+    }
+
     /// @brief 1次不定方程式 a x + b y = c の非負整数解 (x, y) を 1 組見つける.
     /// @return 解 (x, y). 解が存在しない場合は std::nullopt.
     template<integral T>
