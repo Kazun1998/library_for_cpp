@@ -468,6 +468,9 @@ data:
       path: template/concepts.hpp
       title: template/concepts.hpp
     - icon: ':heavy_check_mark:'
+      path: template/enumerable.hpp
+      title: enumerable
+    - icon: ':heavy_check_mark:'
       path: template/exception.hpp
       title: template/exception.hpp
     - icon: ':heavy_check_mark:'
@@ -584,6 +587,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/original/Partition_Q.test.cpp
       title: verify/original/Partition_Q.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/original/enumerable.test.cpp
+      title: verify/original/enumerable.test.cpp
   - name: verify/yosupo_library_checker/convolution
     pages:
     - icon: ':heavy_check_mark:'

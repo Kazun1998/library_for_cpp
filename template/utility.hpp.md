@@ -456,6 +456,9 @@ data:
     path: verify/original/Partition_Q.test.cpp
     title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/original/enumerable.test.cpp
+    title: verify/original/enumerable.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -920,6 +923,7 @@ data:
   - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/aizu_online_judge/dsl/2G.test.cpp
   - verify/original/Partition_Q.test.cpp
+  - verify/original/enumerable.test.cpp
   - verify/original/Functional_Graph.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/1358.test.cpp
