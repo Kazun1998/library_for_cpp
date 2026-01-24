@@ -1,7 +1,6 @@
 #pragma once
 
 #include"../template/template.hpp"
-#include"../template/exception.hpp"
 
 namespace bezout {
     /// @brief 1次不定方程式 a x + b y = c の解 (x, y) を 1 組見つける.
@@ -85,6 +84,19 @@ namespace bezout {
     /// @return 解 (x, y). 解が存在しない場合は std::nullopt.
     template<integral T>
     optional<pair<T, T>> Find_Non_Negative_Solution(const T a, const T b, const T c, const pair<T, T> &hint) {
+        if (a == 0 && b == 0) {
+            if (c == 0) return pair<T, T>(0, 0);
+            return nullopt;
+        }
+        if (a == 0) {
+            if (safe_mod(c, b) == 0 && c / b >= 0) return pair<T, T>(0, c / b);
+            return nullopt;
+        }
+        if (b == 0) {
+            if (safe_mod(c, a) == 0 && c / a >= 0) return pair<T, T>(c / a, 0);
+            return nullopt;
+        }
+
         auto res = Solve<T>(a, b, c, 0, numeric_limits<T>::max(), 0, numeric_limits<T>::max(), hint);
         if (!res) { return nullopt; }
 
