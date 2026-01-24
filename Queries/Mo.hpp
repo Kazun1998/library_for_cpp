@@ -20,6 +20,13 @@ class Mo {
         query_count++;
     }
 
+    /// @brief Mo's algorithm を実行する
+    /// @tparam ADD 要素を追加する関数の型
+    /// @tparam DEL 要素を削除する関数の型
+    /// @tparam REM クエリの回答を処理する関数の型
+    /// @param add 要素を追加する関数 (引数はインデックス)
+    /// @param del 要素を削除する関数 (引数はインデックス)
+    /// @param rem クエリの回答を処理する関数 (引数はクエリ ID)
     template<typename ADD, typename DEL, typename REM>
     void run(const ADD &add, const DEL &del, const REM &rem) {
         int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count * 2.0 / 3.0)));
