@@ -54,6 +54,38 @@ T round(T x, U y){
     return (r >= div_ceil(y, 2)) ? q + 1 : q;
 }
 
+// 奇数かどうか判定する.
+template<typename T>
+bool is_odd(const T &x) { return x % 2 != 0; }
+
+// 偶数かどうか判定する.
+template<typename T>
+bool is_even(const T &x) { return x % 2 == 0; }
+
+// m の倍数かどうか判定する.
+template<typename T, typename U>
+bool is_multiple(const T &x, const U &m) { return x % m == 0; }
+
+// 正かどうか判定する.
+template<typename T>
+bool is_positive(const T &x) { return x > 0; }
+
+// 負かどうか判定する.
+template<typename T>
+bool is_negative(const T &x) { return x < 0; }
+
+// ゼロかどうか判定する.
+template<typename T>
+bool is_zero(const T &x) { return x == 0; }
+
+// 非負かどうか判定する.
+template<typename T>
+bool is_non_negative(const T &x) { return x >= 0; }
+
+// 非正かどうか判定する.
+template<typename T>
+bool is_non_positive(const T &x) { return x <= 0; }
+
 // 指数に関する関数
 
 // x の y 乗を求める.
