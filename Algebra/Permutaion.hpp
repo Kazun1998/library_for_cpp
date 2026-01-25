@@ -64,7 +64,7 @@ class Permutation {
 
     /// @brief 互換の最小回数を求める.
     /// @return 
-    int minimum_transposition() {
+    int minimum_transposition() const {
         return perm.size() - cycle_division().size();
     }
 
@@ -81,6 +81,11 @@ class Permutation {
             for (int x = perm[i] + 1; x <= n; x += x & -x) bit[x]++;
         }
         return ans;
+    }
+
+    /// @brief 置換の符号（偶置換なら 1、奇置換なら -1）を返す.
+    int sign() const {
+        return (minimum_transposition() & 1) ? -1 : 1;
     }
 
     constexpr Permutation operator*(const Permutation &rhs) const {
