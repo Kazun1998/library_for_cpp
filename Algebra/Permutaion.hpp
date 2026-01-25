@@ -107,6 +107,11 @@ class Permutation {
     constexpr Permutation inverse() const {
         return Permutation(ind);
     }
+
+    /// @brief i 番目の要素を取得する.
+    constexpr int operator[](int i) const {
+        return perm[i];
+    }
 };
 
 long long permutation_inversion(const Permutation &P, const Permutation &Q) {
