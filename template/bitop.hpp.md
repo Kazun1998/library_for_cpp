@@ -9,6 +9,9 @@ data:
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
   - icon: ':heavy_check_mark:'
+    path: Algebra/Permutaion.hpp
+    title: "\u7F6E\u63DB"
+  - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -462,6 +465,9 @@ data:
     path: verify/original/Partition_Q.test.cpp
     title: verify/original/Partition_Q.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/original/Permutation.test.cpp
+    title: verify/original/Permutation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/original/enumerable.test.cpp
     title: verify/original/enumerable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -731,6 +737,7 @@ data:
   - Algebra/dynamic_modint.hpp
   - Algebra/Gaussian_Integer.hpp
   - Algebra/Extended_Algebra.hpp
+  - Algebra/Permutaion.hpp
   - Algebra/modint.hpp
   - Tree/Generator.hpp
   - Tree/Tree.hpp
@@ -919,6 +926,7 @@ data:
   - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/aizu_online_judge/dsl/2G.test.cpp
   - verify/original/Partition_Q.test.cpp
+  - verify/original/Permutation.test.cpp
   - verify/original/enumerable.test.cpp
   - verify/original/Functional_Graph.test.cpp
   - verify/original/Fraction.test.cpp
