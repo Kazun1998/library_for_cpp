@@ -32,7 +32,7 @@ data:
     \ + \u5358\u4F4D\u5143\ntemplate <typename M, auto op, auto identity>\nconcept\
     \ Monoid_Concept = \n    Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
-    \ + \u9006\u5143\ntemplate <typename G, auto op, auto inv, auto identity>\nconcept\
+    \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
     \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
     \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
@@ -47,7 +47,7 @@ data:
     \u5143\ntemplate <typename M, auto op, auto identity>\nconcept Monoid_Concept\
     \ = \n    Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
-    \ + \u9006\u5143\ntemplate <typename G, auto op, auto inv, auto identity>\nconcept\
+    \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
     \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
     \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
@@ -59,7 +59,7 @@ data:
   - Sequence/Trie.hpp
   - Union_Find/Coloring_Union_Find.hpp
   - Math/Interval_Product.hpp
-  timestamp: '2025-12-25 00:44:57+09:00'
+  timestamp: '2026-01-28 23:22:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

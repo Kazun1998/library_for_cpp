@@ -194,7 +194,7 @@ data:
     \ntemplate <typename M, auto op, auto identity>\nconcept Monoid_Concept = \n \
     \   Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
-    \ + \u9006\u5143\ntemplate <typename G, auto op, auto inv, auto identity>\nconcept\
+    \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
     \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
     \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
@@ -364,7 +364,7 @@ data:
   isVerificationFile: false
   path: Sequence/Trie.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-01-28 23:22:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Sequence/Trie.hpp
