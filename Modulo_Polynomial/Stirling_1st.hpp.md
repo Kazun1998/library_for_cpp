@@ -200,12 +200,12 @@ data:
     \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Algebra/modint.hpp\"\
     \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
     \    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
-    \ int mod() { return _mod; }\n\n    static modint raw(int v) {\n        modint\
-    \ a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n\
-    \    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t\
-    \ w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n\
-    \    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const\
-    \ { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
+    \ constexpr int mod() { return _mod; }\n\n    static modint raw(int v) {\n   \
+    \     modint a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\
+    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n \
+    \       int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n\
+    \        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
+    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
     \ modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n\
     \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
     \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
@@ -516,7 +516,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Stirling_1st.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-01-29 01:07:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp

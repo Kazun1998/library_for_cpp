@@ -204,25 +204,25 @@ data:
     \n\n#line 2 \"Modulo_Polynomial/Fast_Power_Series.hpp\"\n\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
     \n\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int\
     \ M>\nclass modint {\n    public:\n    static constexpr int _mod = M; \n    uint64_t\
-    \ x;\n\n    public:\n    static int mod() { return _mod; }\n\n    static modint\
-    \ raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\
-    \n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
-    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
-    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
-    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
-    \ operator+=(const modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n\
-    \        return *this;\n    }\n\n    friend modint operator+(const modint &x,\
-    \ const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint&\
-    \ operator-=(const modint &b){\n        if ((x += mod() - b.x) >= mod()) x -=\
-    \ mod();\n        return *this;\n    }\n\n    friend modint operator-(const modint\
-    \ &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n   \
-    \ modint& operator*=(const modint &b){\n        (x *= b.x) %= mod();\n       \
-    \ return *this;\n    }\n\n    friend modint operator*(const modint &x, const modint\
-    \ &y) { return modint(x) *= y; }\n    friend modint operator*(const int &x, const\
-    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const ll\
-    \ &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n   \
-    \ modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n  \
-    \  friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ x;\n\n    public:\n    static constexpr int mod() { return _mod; }\n\n    static\
+    \ modint raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n\
+    \    }\n\n    // \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr\
+    \ modint(int64_t a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w\
+    \ < 0) { w += mod(); }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\
+    \u5143\n    modint operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\
+    \n    modint& operator+=(const modint &b){\n        if ((x += b.x) >= mod()) x\
+    \ -= mod();\n        return *this;\n    }\n\n    friend modint operator+(const\
+    \ modint &x, const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\
+    \n    modint& operator-=(const modint &b){\n        if ((x += mod() - b.x) >=\
+    \ mod()) x -= mod();\n        return *this;\n    }\n\n    friend modint operator-(const\
+    \ modint &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\
+    \n    modint& operator*=(const modint &b){\n        (x *= b.x) %= mod();\n   \
+    \     return *this;\n    }\n\n    friend modint operator*(const modint &x, const\
+    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const int\
+    \ &x, const modint &y) { return modint(x) *= y; }\n    friend modint operator*(const\
+    \ ll &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n\
+    \    modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n\
+    \    friend modint operator/(const modint &x, const modint &y) { return modint(x)\
     \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
     \     int64_t a = x, b = mod();\n\n        while (b > 0) {\n            int64_t\
     \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
@@ -518,7 +518,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-01-29 01:07:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
