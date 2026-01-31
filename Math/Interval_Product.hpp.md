@@ -198,10 +198,13 @@ data:
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
     \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
-    \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
-    \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
-    \ } -> convertible_to<size_t>;\n};\n#line 5 \"Math/Interval_Product.hpp\"\n\n\
-    template<class G, auto op, auto identity, auto inv>\nrequires Group_Concept<G,\
+    \ G>;\n\n// \u9806\u5E8F\u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u7FA4 + \u5168\
+    \u9806\u5E8F\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
+    \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
+    \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
+    \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
+    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Math/Interval_Product.hpp\"\
+    \n\ntemplate<class G, auto op, auto identity, auto inv>\nrequires Group_Concept<G,\
     \ op, identity, inv>\nclass Interval_Product {\n    vector<G> prefix_prod;\n\n\
     \    public:\n    explicit Interval_Product(const vector<G> &data) {\n       \
     \ prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\u306F\
@@ -244,7 +247,7 @@ data:
   isVerificationFile: false
   path: Math/Interval_Product.hpp
   requiredBy: []
-  timestamp: '2026-01-28 23:22:08+09:00'
+  timestamp: '2026-02-01 00:05:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

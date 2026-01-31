@@ -52,6 +52,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/AVL_Tree.hpp
     title: "Adelson-Velskii-Landis \u6728"
+  - icon: ':warning:'
+    path: Data_Structure/Best_Sum.hpp
+    title: Best Sum
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
@@ -732,6 +735,7 @@ data:
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Binary_Trie.hpp
   - Data_Structure/Disjoint_Sparse_Table.hpp
+  - Data_Structure/Best_Sum.hpp
   - Data_Structure/AVL_Tree.hpp
   - Knapsack/Base.hpp
   - Knapsack/Knapsack_01.hpp

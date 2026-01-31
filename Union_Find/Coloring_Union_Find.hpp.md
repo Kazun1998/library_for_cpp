@@ -197,9 +197,12 @@ data:
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
     \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
-    \ G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\u30BB\u30D7\u30C8\
-    \ntemplate<typename T>\nconcept Hashable = requires(T x) {\n    { hash<T>{}(x)\
-    \ } -> convertible_to<size_t>;\n};\n#line 5 \"Union_Find/Coloring_Union_Find.hpp\"\
+    \ G>;\n\n// \u9806\u5E8F\u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u7FA4 + \u5168\
+    \u9806\u5E8F\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
+    \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
+    \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
+    \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
+    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Union_Find/Coloring_Union_Find.hpp\"\
     \n\ntemplate<class Color, auto merge, auto unit>\nrequires Monoid_Concept<Color,\
     \ merge, unit>\nclass Coloring_Union_Find {\n    int n, _group_number;\n    vector<int>\
     \ parents, rank;\n    vector<Color> data;\n\n    public:\n    explicit Coloring_Union_Find(int\
@@ -279,7 +282,7 @@ data:
   isVerificationFile: false
   path: Union_Find/Coloring_Union_Find.hpp
   requiredBy: []
-  timestamp: '2026-01-28 23:22:08+09:00'
+  timestamp: '2026-02-01 00:05:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Union_Find/Coloring_Union_Find.hpp

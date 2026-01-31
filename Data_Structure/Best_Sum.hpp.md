@@ -31,10 +31,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "Trie \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\
-      \u3057, \u633F\u5165\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089."
+    document_title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF."
     links: []
-  bundledCode: "#line 1 \"Sequence/Trie.hpp\"\n#pragma one\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Data_Structure/Best_Sum.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -201,160 +200,136 @@ data:
     \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
     \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
     \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
-    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Sequence/Trie.hpp\"\
-    \n\ntemplate<Hashable T>\nclass Trie {\n    struct Node {\n        T item;\n \
-    \       unordered_map<T, Node*> next;\n        size_t terminal_count, prefix_count;\n\
-    \        bool is_root;\n\n        Node(): Node(T()) {}\n        Node(const T &item,\
-    \ const bool is_root = false): item(item), terminal_count(0), prefix_count(0),\
-    \ is_root(is_root) {}\n\n        constexpr bool contains(const T &x) const { return\
-    \ next.find(x) != next.end(); }\n\n        inline Node* dig(const T x) { return\
-    \ contains(x) ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\
-    \    vector<Node*> nodes;\n\n    Trie() {\n        root = new Node(T(), true);\n\
-    \        nodes.emplace_back(root);\n    }\n\n    // insert\n\n    /// @brief Trie\
-    \ \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\u5165\
-    \u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n\
-    \    /// @param node \n    void insert(const vector<T> &vec, Node *node) {\n \
-    \       node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
-    \ {\n                node->next[x] = new Node(x);\n                nodes.emplace_back(node->next[x]);\n\
-    \            }\n\n            node = node->next[x];\n            node->prefix_count++;\n\
-    \        }\n\n        node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\
-    \u306B vec \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    constexpr\
-    \ void insert(const vector<T> &vec) { insert(vec, root); }\n\n    // count\n\n\
-    \    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec\
-    \ \u306E\u6570\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u691C\u7D22\u306E\
-    \u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n    ///\
-    \ @param node \n    size_t count(const vector<T> &vec, Node *node) {\n       \
-    \ Node *final_node = get(vec, node);\n        return final_node != nullptr ? final_node->terminal_count\
-    \ : 0;\n    }\n\n    constexpr size_t count(const vector<T> &vec) { return count(vec,\
-    \ root); }\n\n    // count_prefixing\n    size_t count_prefixing(const vector<T>\
-    \ &vec, Node *node, bool equal = true) {\n        Node *final_node = get(vec,\
-    \ node);\n        if (final_node == nullptr) { return 0; }\n\n        return equal\
-    \ ? node->prefix_count : node->prefix_count - node->terminal_count;\n    }\n\n\
-    \    constexpr size_t count_prefixing(const vector<T> &vec, bool equal = true)\
-    \ { return count_prefixing(vec, root, equal); }\n\n    // count_prefixed\n   \
-    \ size_t count_prefixed(const vector<T> &vec, Node *node, bool equal = true) {\n\
-    \        size_t res = node->terminal_count;\n        for (T x: vec) {\n      \
-    \      if(!node->contains(x)) { return res; }\n\n            node = node->next[x];\n\
-    \            res += node->terminal_count;\n        }\n\n        return equal ?\
-    \ res : res - node->terminal_count;\n    }\n\n    constexpr size_t count_prefixed(const\
-    \ vector<T> &vec, bool equal = true) { return count_prefixed(vec, root, equal);\
-    \ }\n\n    // contains\n    constexpr bool contains(const vector<T> &vec, Node\
-    \ *node) { return count(vec, node) > 0; }\n    constexpr bool contains(const vector<T>\
-    \ &vec) { return contains(vec, root); }\n\n    // search\n    constexpr bool search(const\
-    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    constexpr bool\
-    \ search(const vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n\
-    \    constexpr bool search_prefixing(const vector<T> &vec, Node *node) { return\
-    \ count_prefixing(vec, node) > 0; }\n    constexpr bool search_prefixing(const\
-    \ vector<T> &vec) { return search_prefixing(vec, root); }\n\n    // search_prefixed\n\
-    \    constexpr bool search_prefixed(const vector<T> &vec, Node *node) { return\
-    \ count_prefixed(vec, node) > 0; }\n    constexpr bool search_prefixed(const vector<T>\
-    \ &vec) { return search_prefixed(vec, root); }\n\n    constexpr Node* get_root()\
-    \ { return root; }\n    Node* get(const vector<T> &vec, Node *node) {\n      \
-    \  for (T x: vec) {\n            node = node->dig(x);\n            if (node ==\
-    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    constexpr\
-    \ Node* get(const vector<T> &vec) { return get(vec, root); }\n\n    // size\n\
-    \    constexpr const size_t size() const { return root->prefix_count; }\n\n  \
-    \  // for string\n    constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr void insert(const string &str) { insert(str,\
-    \ root); }\n\n    constexpr size_t count(const string &str, Node *node) { return\
-    \ count(vector<char>(str.begin(), str.end()), node); }\n    constexpr size_t count(const\
-    \ string &str) { return count(str, root); }\n\n    constexpr size_t count_prefixing(const\
-    \ string &str, Node *node) { return count_prefixing(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr size_t count_prefixing(const string &str)\
-    \ { return count_prefixing(str, root); }\n\n    constexpr size_t count_prefixed(const\
-    \ string &str, Node *node) { return count_prefixed(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr size_t count_prefixed(const string &str) { return count_prefixed(str,\
-    \ root); }\n\n    constexpr bool contains(const string &str, Node *node) { return\
-    \ contains(vector<char>(str.begin(), str.end()), node); }\n    constexpr bool\
-    \ contains(const string &str) { return contains(str, root); }\n\n    constexpr\
-    \ bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr bool search(const string &str) { return\
-    \ search(str, root); }\n\n    constexpr bool search_prefixing(const string &str,\
-    \ Node *node) { return search_prefixing(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr bool search_prefixing(const string &str) { return search_prefixing(str,\
-    \ root); }\n\n    constexpr bool search_prefixed(const string &str, Node *node)\
-    \ { return search_prefixed(vector<char>(str.begin(), str.end()), node); }\n  \
-    \  constexpr bool search_prefixed(const string &str) { return search_prefixed(str,\
-    \ root); }\n\n    constexpr Node* get(const string &str, Node *node) { return\
-    \ get(vector<char>(str.begin(), str.end())); }\n    constexpr Node* get(const\
-    \ string &str) { return get(str, root); }\n};\n"
-  code: "#pragma one\n\n#include\"../template/template.hpp\"\n#include\"../template/concepts.hpp\"\
-    \n\ntemplate<Hashable T>\nclass Trie {\n    struct Node {\n        T item;\n \
-    \       unordered_map<T, Node*> next;\n        size_t terminal_count, prefix_count;\n\
-    \        bool is_root;\n\n        Node(): Node(T()) {}\n        Node(const T &item,\
-    \ const bool is_root = false): item(item), terminal_count(0), prefix_count(0),\
-    \ is_root(is_root) {}\n\n        constexpr bool contains(const T &x) const { return\
-    \ next.find(x) != next.end(); }\n\n        inline Node* dig(const T x) { return\
-    \ contains(x) ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\
-    \    vector<Node*> nodes;\n\n    Trie() {\n        root = new Node(T(), true);\n\
-    \        nodes.emplace_back(root);\n    }\n\n    // insert\n\n    /// @brief Trie\
-    \ \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\u5165\
-    \u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n\
-    \    /// @param node \n    void insert(const vector<T> &vec, Node *node) {\n \
-    \       node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
-    \ {\n                node->next[x] = new Node(x);\n                nodes.emplace_back(node->next[x]);\n\
-    \            }\n\n            node = node->next[x];\n            node->prefix_count++;\n\
-    \        }\n\n        node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\
-    \u306B vec \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    constexpr\
-    \ void insert(const vector<T> &vec) { insert(vec, root); }\n\n    // count\n\n\
-    \    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec\
-    \ \u306E\u6570\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u691C\u7D22\u306E\
-    \u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n    ///\
-    \ @param node \n    size_t count(const vector<T> &vec, Node *node) {\n       \
-    \ Node *final_node = get(vec, node);\n        return final_node != nullptr ? final_node->terminal_count\
-    \ : 0;\n    }\n\n    constexpr size_t count(const vector<T> &vec) { return count(vec,\
-    \ root); }\n\n    // count_prefixing\n    size_t count_prefixing(const vector<T>\
-    \ &vec, Node *node, bool equal = true) {\n        Node *final_node = get(vec,\
-    \ node);\n        if (final_node == nullptr) { return 0; }\n\n        return equal\
-    \ ? node->prefix_count : node->prefix_count - node->terminal_count;\n    }\n\n\
-    \    constexpr size_t count_prefixing(const vector<T> &vec, bool equal = true)\
-    \ { return count_prefixing(vec, root, equal); }\n\n    // count_prefixed\n   \
-    \ size_t count_prefixed(const vector<T> &vec, Node *node, bool equal = true) {\n\
-    \        size_t res = node->terminal_count;\n        for (T x: vec) {\n      \
-    \      if(!node->contains(x)) { return res; }\n\n            node = node->next[x];\n\
-    \            res += node->terminal_count;\n        }\n\n        return equal ?\
-    \ res : res - node->terminal_count;\n    }\n\n    constexpr size_t count_prefixed(const\
-    \ vector<T> &vec, bool equal = true) { return count_prefixed(vec, root, equal);\
-    \ }\n\n    // contains\n    constexpr bool contains(const vector<T> &vec, Node\
-    \ *node) { return count(vec, node) > 0; }\n    constexpr bool contains(const vector<T>\
-    \ &vec) { return contains(vec, root); }\n\n    // search\n    constexpr bool search(const\
-    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    constexpr bool\
-    \ search(const vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n\
-    \    constexpr bool search_prefixing(const vector<T> &vec, Node *node) { return\
-    \ count_prefixing(vec, node) > 0; }\n    constexpr bool search_prefixing(const\
-    \ vector<T> &vec) { return search_prefixing(vec, root); }\n\n    // search_prefixed\n\
-    \    constexpr bool search_prefixed(const vector<T> &vec, Node *node) { return\
-    \ count_prefixed(vec, node) > 0; }\n    constexpr bool search_prefixed(const vector<T>\
-    \ &vec) { return search_prefixed(vec, root); }\n\n    constexpr Node* get_root()\
-    \ { return root; }\n    Node* get(const vector<T> &vec, Node *node) {\n      \
-    \  for (T x: vec) {\n            node = node->dig(x);\n            if (node ==\
-    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    constexpr\
-    \ Node* get(const vector<T> &vec) { return get(vec, root); }\n\n    // size\n\
-    \    constexpr const size_t size() const { return root->prefix_count; }\n\n  \
-    \  // for string\n    constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr void insert(const string &str) { insert(str,\
-    \ root); }\n\n    constexpr size_t count(const string &str, Node *node) { return\
-    \ count(vector<char>(str.begin(), str.end()), node); }\n    constexpr size_t count(const\
-    \ string &str) { return count(str, root); }\n\n    constexpr size_t count_prefixing(const\
-    \ string &str, Node *node) { return count_prefixing(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr size_t count_prefixing(const string &str)\
-    \ { return count_prefixing(str, root); }\n\n    constexpr size_t count_prefixed(const\
-    \ string &str, Node *node) { return count_prefixed(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr size_t count_prefixed(const string &str) { return count_prefixed(str,\
-    \ root); }\n\n    constexpr bool contains(const string &str, Node *node) { return\
-    \ contains(vector<char>(str.begin(), str.end()), node); }\n    constexpr bool\
-    \ contains(const string &str) { return contains(str, root); }\n\n    constexpr\
-    \ bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr bool search(const string &str) { return\
-    \ search(str, root); }\n\n    constexpr bool search_prefixing(const string &str,\
-    \ Node *node) { return search_prefixing(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr bool search_prefixing(const string &str) { return search_prefixing(str,\
-    \ root); }\n\n    constexpr bool search_prefixed(const string &str, Node *node)\
-    \ { return search_prefixed(vector<char>(str.begin(), str.end()), node); }\n  \
-    \  constexpr bool search_prefixed(const string &str) { return search_prefixed(str,\
-    \ root); }\n\n    constexpr Node* get(const string &str, Node *node) { return\
-    \ get(vector<char>(str.begin(), str.end())); }\n    constexpr Node* get(const\
-    \ string &str) { return get(str, root); }\n};\n"
+    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Data_Structure/Best_Sum.hpp\"\
+    \n\ntemplate <class G, auto add, auto zero, auto neg>\nrequires Totally_Ordered_Group_Concept<G,\
+    \ add, zero, neg>\nclass Best_Sum {\n    protected:\n    G more_sum, less_sum;\n\
+    \    multiset<G> more, less;\n\n    int K;\n    bool reversal;\n\n    G sub(G\
+    \ x, G y) const { return add(x, neg(y)); }\n\n    void more_insert(G x) {\n  \
+    \      more_sum = add(more_sum, x);\n        more.insert(x);\n    }\n\n    void\
+    \ less_insert(G x) {\n        less_sum = add(less_sum, x);\n        less.insert(x);\n\
+    \    }\n\n    void more_to_less() {\n        auto node = more.extract(more.begin());\n\
+    \        G x = node.value();\n        more_sum = sub(more_sum, x);\n        less_sum\
+    \ = add(less_sum, x);\n        less.insert(std::move(node));\n    }\n\n    void\
+    \ less_to_more() {\n        auto node = less.extract(prev(less.end()));\n    \
+    \    G x = node.value();\n        less_sum = sub(less_sum, x);\n        more_sum\
+    \ = add(more_sum, x);\n        more.insert(std::move(node));\n    }\n\n    void\
+    \ validation() {\n        while ((int)more.size() > K) more_to_less();\n     \
+    \   while (!less.empty() && (int)more.size() < K) less_to_more();\n    }\n\n \
+    \   protected:\n    Best_Sum(int K, const vector<G> &vec, bool reversal) : K(max(0,\
+    \ K)), reversal(reversal), more_sum(zero), less_sum(zero) {\n        for (const\
+    \ auto &x : vec) insert(x);\n    }\n\n    public:\n    /// @brief \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K \u4E0A\u4F4D K \u500B\u306E\u548C\
+    \u3092\u7BA1\u7406\u3059\u308B.\n    /// @param vec \u521D\u671F\u30C7\u30FC\u30BF\
+    .\n    Best_Sum(int K, const vector<G> &vec) : Best_Sum(K, vec, false) {}\n\n\
+    \    /// @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K\
+    \ \u4E0A\u4F4D K \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n    Best_Sum(int\
+    \ K) : Best_Sum(K, {}, false) {}\n\n    /// @brief \u8981\u7D20 x \u3092\u8FFD\
+    \u52A0\u3059\u308B.\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n\
+    \    void insert(G x) {\n        if (reversal) x = neg(x);\n        more_insert(x);\n\
+    \        validation();\n    }\n\n    /// @brief \u8981\u7D20 x \u3092 1 \u3064\
+    \u524A\u9664\u3059\u308B.\n    /// @param x \u524A\u9664\u3059\u308B\u8981\u7D20\
+    .\n    void discard(G x) {\n        if (reversal) x = neg(x);\n        \n    \
+    \    auto it = more.find(x);\n        if (it != more.end()) {\n            more_sum\
+    \ = sub(more_sum, x);\n            more.erase(it);\n        } else {\n       \
+    \     it = less.find(x);\n            if (it == less.end()) return;\n\n      \
+    \      less_sum = sub(less_sum, x);\n            less.erase(it);\n        }\n\
+    \        validation();\n    }\n\n    /// @brief \u8981\u7D20 from \u3092\u524A\
+    \u9664\u3057, to \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param from \u524A\u9664\
+    \u3059\u308B\u8981\u7D20.\n    /// @param to \u8FFD\u52A0\u3059\u308B\u8981\u7D20\
+    .\n    void change(G from, G to) {\n        discard(from);\n        insert(to);\n\
+    \    }\n\n    /// @brief \u4E0A\u4F4D K \u500B\u306E\u548C\u3092\u53D6\u5F97\u3059\
+    \u308B.\n    /// @return \u4E0A\u4F4D K \u500B\u306E\u548C.\n    G best_sum()\
+    \ const { return more_sum; }\n\n    /// @brief \u5168\u8981\u7D20\u306E\u548C\u3092\
+    \u53D6\u5F97\u3059\u308B.\n    /// @return \u5168\u8981\u7D20\u306E\u548C.\n \
+    \   G all_sum() const {\n        G total = add(more_sum, less_sum);\n        return\
+    \ reversal ? neg(total) : total;\n    }\n\n    /// @brief \u7BA1\u7406\u3059\u308B\
+    \u500B\u6570 K \u3092\u5909\u66F4\u3059\u308B.\n    /// @param new_K \u65B0\u3057\
+    \u3044 K.\n    void change_K(int new_K) {\n        K = max(0, new_K);\n      \
+    \  validation();\n    }\n\n    /// @brief \u8981\u7D20 x \u304C\u542B\u307E\u308C\
+    \u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B.\n    /// @param x \u5224\u5B9A\
+    \u3059\u308B\u8981\u7D20.\n    /// @return \u542B\u307E\u308C\u3066\u3044\u308B\
+    \u306A\u3089 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089 false.\n    bool\
+    \ contains(G x) const {\n        return more.find(x) != more.end() || less.find(x)\
+    \ != less.end();\n    }\n\n    /// @brief \u7BA1\u7406\u3057\u3066\u3044\u308B\
+    \u8981\u7D20\u6570\u3092\u53D6\u5F97\u3059\u308B.\n    /// @return \u8981\u7D20\
+    \u6570.\n    inline int size() const { return more.size() + less.size(); }\n};\n\
+    \ntemplate <class G, auto add, auto zero, auto neg>\nrequires Totally_Ordered_Group_Concept<G,\
+    \ add, zero, neg>\nclass Worst_Sum : public Best_Sum<G, add, zero, neg> {\n  \
+    \  public:\n    /// @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    ///\
+    \ @param K \u4E0B\u4F4D K \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n\
+    \    /// @param vec \u521D\u671F\u30C7\u30FC\u30BF.\n    Worst_Sum(int K, const\
+    \ vector<G> &vec) : Best_Sum<G, add, zero, neg>(K, vec, true) {}\n\n    /// @brief\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K \u4E0B\u4F4D K\
+    \ \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n    Worst_Sum(int K) : Best_Sum<G,\
+    \ add, zero, neg>(K, {}, true) {}\n\n    /// @brief \u4E0B\u4F4D K \u500B\u306E\
+    \u548C\u3092\u53D6\u5F97\u3059\u308B.\n    /// @return \u4E0B\u4F4D K \u500B\u306E\
+    \u548C.\n    G worst_sum() const { return neg(this->more_sum); }\n\n    private:\n\
+    \    using Best_Sum<G, add, zero, neg>::best_sum;\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../template/concepts.hpp\"\
+    \n\ntemplate <class G, auto add, auto zero, auto neg>\nrequires Totally_Ordered_Group_Concept<G,\
+    \ add, zero, neg>\nclass Best_Sum {\n    protected:\n    G more_sum, less_sum;\n\
+    \    multiset<G> more, less;\n\n    int K;\n    bool reversal;\n\n    G sub(G\
+    \ x, G y) const { return add(x, neg(y)); }\n\n    void more_insert(G x) {\n  \
+    \      more_sum = add(more_sum, x);\n        more.insert(x);\n    }\n\n    void\
+    \ less_insert(G x) {\n        less_sum = add(less_sum, x);\n        less.insert(x);\n\
+    \    }\n\n    void more_to_less() {\n        auto node = more.extract(more.begin());\n\
+    \        G x = node.value();\n        more_sum = sub(more_sum, x);\n        less_sum\
+    \ = add(less_sum, x);\n        less.insert(std::move(node));\n    }\n\n    void\
+    \ less_to_more() {\n        auto node = less.extract(prev(less.end()));\n    \
+    \    G x = node.value();\n        less_sum = sub(less_sum, x);\n        more_sum\
+    \ = add(more_sum, x);\n        more.insert(std::move(node));\n    }\n\n    void\
+    \ validation() {\n        while ((int)more.size() > K) more_to_less();\n     \
+    \   while (!less.empty() && (int)more.size() < K) less_to_more();\n    }\n\n \
+    \   protected:\n    Best_Sum(int K, const vector<G> &vec, bool reversal) : K(max(0,\
+    \ K)), reversal(reversal), more_sum(zero), less_sum(zero) {\n        for (const\
+    \ auto &x : vec) insert(x);\n    }\n\n    public:\n    /// @brief \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K \u4E0A\u4F4D K \u500B\u306E\u548C\
+    \u3092\u7BA1\u7406\u3059\u308B.\n    /// @param vec \u521D\u671F\u30C7\u30FC\u30BF\
+    .\n    Best_Sum(int K, const vector<G> &vec) : Best_Sum(K, vec, false) {}\n\n\
+    \    /// @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K\
+    \ \u4E0A\u4F4D K \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n    Best_Sum(int\
+    \ K) : Best_Sum(K, {}, false) {}\n\n    /// @brief \u8981\u7D20 x \u3092\u8FFD\
+    \u52A0\u3059\u308B.\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n\
+    \    void insert(G x) {\n        if (reversal) x = neg(x);\n        more_insert(x);\n\
+    \        validation();\n    }\n\n    /// @brief \u8981\u7D20 x \u3092 1 \u3064\
+    \u524A\u9664\u3059\u308B.\n    /// @param x \u524A\u9664\u3059\u308B\u8981\u7D20\
+    .\n    void discard(G x) {\n        if (reversal) x = neg(x);\n        \n    \
+    \    auto it = more.find(x);\n        if (it != more.end()) {\n            more_sum\
+    \ = sub(more_sum, x);\n            more.erase(it);\n        } else {\n       \
+    \     it = less.find(x);\n            if (it == less.end()) return;\n\n      \
+    \      less_sum = sub(less_sum, x);\n            less.erase(it);\n        }\n\
+    \        validation();\n    }\n\n    /// @brief \u8981\u7D20 from \u3092\u524A\
+    \u9664\u3057, to \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param from \u524A\u9664\
+    \u3059\u308B\u8981\u7D20.\n    /// @param to \u8FFD\u52A0\u3059\u308B\u8981\u7D20\
+    .\n    void change(G from, G to) {\n        discard(from);\n        insert(to);\n\
+    \    }\n\n    /// @brief \u4E0A\u4F4D K \u500B\u306E\u548C\u3092\u53D6\u5F97\u3059\
+    \u308B.\n    /// @return \u4E0A\u4F4D K \u500B\u306E\u548C.\n    G best_sum()\
+    \ const { return more_sum; }\n\n    /// @brief \u5168\u8981\u7D20\u306E\u548C\u3092\
+    \u53D6\u5F97\u3059\u308B.\n    /// @return \u5168\u8981\u7D20\u306E\u548C.\n \
+    \   G all_sum() const {\n        G total = add(more_sum, less_sum);\n        return\
+    \ reversal ? neg(total) : total;\n    }\n\n    /// @brief \u7BA1\u7406\u3059\u308B\
+    \u500B\u6570 K \u3092\u5909\u66F4\u3059\u308B.\n    /// @param new_K \u65B0\u3057\
+    \u3044 K.\n    void change_K(int new_K) {\n        K = max(0, new_K);\n      \
+    \  validation();\n    }\n\n    /// @brief \u8981\u7D20 x \u304C\u542B\u307E\u308C\
+    \u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B.\n    /// @param x \u5224\u5B9A\
+    \u3059\u308B\u8981\u7D20.\n    /// @return \u542B\u307E\u308C\u3066\u3044\u308B\
+    \u306A\u3089 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089 false.\n    bool\
+    \ contains(G x) const {\n        return more.find(x) != more.end() || less.find(x)\
+    \ != less.end();\n    }\n\n    /// @brief \u7BA1\u7406\u3057\u3066\u3044\u308B\
+    \u8981\u7D20\u6570\u3092\u53D6\u5F97\u3059\u308B.\n    /// @return \u8981\u7D20\
+    \u6570.\n    inline int size() const { return more.size() + less.size(); }\n};\n\
+    \ntemplate <class G, auto add, auto zero, auto neg>\nrequires Totally_Ordered_Group_Concept<G,\
+    \ add, zero, neg>\nclass Worst_Sum : public Best_Sum<G, add, zero, neg> {\n  \
+    \  public:\n    /// @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    ///\
+    \ @param K \u4E0B\u4F4D K \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n\
+    \    /// @param vec \u521D\u671F\u30C7\u30FC\u30BF.\n    Worst_Sum(int K, const\
+    \ vector<G> &vec) : Best_Sum<G, add, zero, neg>(K, vec, true) {}\n\n    /// @brief\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    /// @param K \u4E0B\u4F4D K\
+    \ \u500B\u306E\u548C\u3092\u7BA1\u7406\u3059\u308B.\n    Worst_Sum(int K) : Best_Sum<G,\
+    \ add, zero, neg>(K, {}, true) {}\n\n    /// @brief \u4E0B\u4F4D K \u500B\u306E\
+    \u548C\u3092\u53D6\u5F97\u3059\u308B.\n    /// @return \u4E0B\u4F4D K \u500B\u306E\
+    \u548C.\n    G worst_sum() const { return neg(this->more_sum); }\n\n    private:\n\
+    \    using Best_Sum<G, add, zero, neg>::best_sum;\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -365,35 +340,12 @@ data:
   - template/exception.hpp
   - template/concepts.hpp
   isVerificationFile: false
-  path: Sequence/Trie.hpp
+  path: Data_Structure/Best_Sum.hpp
   requiredBy: []
   timestamp: '2026-02-01 00:05:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Sequence/Trie.hpp
+documentation_of: Data_Structure/Best_Sum.hpp
 layout: document
-title: "Trie \u6728"
+title: Best Sum
 ---
-
-## Outline
-
-列の接頭辞に関する検索を高速に行うことができる Trie 木を提供する.
-
-## Define
-
-$\mathcal{A}$ をアルファベットとする.
-
-$W_1, W_2, \dots, W_n$ に関する Trie 木とは, 以下で定義される根付き木 $(T, r)~(T = (V, E))$ である.
-
-* $V$ は $W_1, \dots, W_n$ の接頭辞全体 (空文字列も含む) である. つまり,
-
-$$ V = \{ \emptyset \} ~\cup~ \bigcup_{i=1}^n \{ v_{i,j} := w_{i,1} \dots w_{i,j} \mid 1 \leq j \leq \lvert w_i \rvert \} $$
-
-である.
-* 根 $r$ は空文字列 $\emptyset$ である.
-* $T$ における辺は, 長さがちょうど $1$ だけ異なり, 一方が他方の接頭辞になっているとき, そしてそのときに限って結ばれる. つまり,
-
-$$ E := \bigcup_{i=1}^n \{ v_{i,j-1} v_{i,j} \mid 1 \leq j \leq \lvert w_i \rvert \} $$
-
-である.
-

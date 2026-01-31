@@ -69,6 +69,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Data_Structure/AVL_Tree.hpp
       title: "Adelson-Velskii-Landis \u6728"
+    - icon: ':warning:'
+      path: Data_Structure/Best_Sum.hpp
+      title: Best Sum
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
