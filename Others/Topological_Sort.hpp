@@ -22,42 +22,33 @@ class Topological_Sort {
         return arcs.size() - 1;
     }
 
-    optional<vector<int>> sort() {
+    optional<vector<int>> sort() const {
         const int n = arcs.size();
-        vector<int> in_deg(n, 0);
-
-        for (int x = 0; x < n; ++x) {
-            for (const int y : arcs[x]) {
-                in_deg[y]++;
-            }
-        }
-
-        vector<int> stack;
-        for (int x = 0; x < n; ++x) {
-            if (in_deg[x] == 0) stack.emplace_back(x);
-        }
-
+        vector<bool> marked(n, false), use(n, false);
         vector<int> order;
-        while (!stack.empty()) {
-            int x = stack.back();
-            stack.pop_back();
-            order.emplace_back(x);
 
-            for (const int y: arcs[x]) {
-                in_deg[y]--;
-                if (in_deg[y] == 0) stack.emplace_back(y);
+        auto visit = [&](auto func, const int x) -> bool {
+            if (use[x]) return false;
+            if (marked[x]) return true;
+
+            use[x] = true;
+            for (const int &y : arcs[x]) {
+                if (!func(func, y)) return false;
             }
+
+            marked[x] = true;
+            order.push_back(x);
+            use[x] = false;
+            return true;
+        };
+
+        for (int x = 0; x < n; ++x) {
+            if (!visit(visit, x)) return nullopt;
         }
 
-        if (order.size() == n) {
-            _is_DAG = true;
-            return order;
-        } else {
-            _is_DAG = false;
-            return nullopt;
-        }
-
+        reverse(order.begin(), order.end());
+        return order;
     }
 
-    bool is_DAG() const { return _is_DAG; }
+    bool is_DAG() const { return sort() != nullopt; }
 };
