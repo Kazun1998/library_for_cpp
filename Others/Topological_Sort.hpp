@@ -16,6 +16,15 @@ class Topological_Sort {
         arcs[source].emplace_back(target);
     }
 
+    int add_arc_multiple(const vector<int> sources, const vector<int> targets) {
+        const int x = add_vertex();
+
+        for (const int s: sources) add_arc(s, x);
+        for (const int t: targets) add_arc(x, t);
+
+        return x;
+    }
+
     int add_vertex() {
         arcs.emplace_back(vector<int>{});
 
