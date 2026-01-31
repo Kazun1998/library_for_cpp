@@ -313,6 +313,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
+  - icon: ':heavy_check_mark:'
+    path: Others/Topological_Sort.hpp
+    title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
   - icon: ':warning:'
     path: Queries/Mo.hpp
     title: Mo
@@ -443,6 +446,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/4B.test.cpp
+    title: verify/aizu_online_judge/grl/4B.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/6A.test.cpp
     title: verify/aizu_online_judge/grl/6A.test.cpp
@@ -797,6 +803,7 @@ data:
   - Sequence/Cartesian_Tree.hpp
   - Union_Find/Potentilized_Union_Find.hpp
   - Union_Find/Coloring_Union_Find.hpp
+  - Others/Topological_Sort.hpp
   - Math/Floor_Linear_Sum.hpp
   - Math/Bezout.hpp
   - Math/XOR_Vector_Space.hpp
@@ -945,6 +952,7 @@ data:
   - verify/aizu_online_judge/ntl/1E.test.cpp
   - verify/aizu_online_judge/dpl1/1F.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
+  - verify/aizu_online_judge/grl/4B.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
