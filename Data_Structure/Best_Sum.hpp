@@ -4,7 +4,7 @@
 #include "../template/concepts.hpp"
 
 template <class G, auto add, auto zero, auto neg>
-requires Ordered_Group_Concept<G, add, zero, neg>
+requires Totally_Ordered_Group_Concept<G, add, zero, neg>
 class Best_Sum {
     protected:
     G more_sum, less_sum;
@@ -127,7 +127,7 @@ class Best_Sum {
 };
 
 template <class G, auto add, auto zero, auto neg>
-requires Ordered_Group_Concept<G, add, zero, neg>
+requires Totally_Ordered_Group_Concept<G, add, zero, neg>
 class Worst_Sum : public Best_Sum<G, add, zero, neg> {
     public:
     /// @brief コンストラクタ.

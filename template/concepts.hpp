@@ -29,7 +29,7 @@ concept Group_Concept =
 // 順序群コンセプト
 // 群 + 全順序
 template <typename G, auto op, auto identity, auto inv>
-concept Ordered_Group_Concept = 
+concept Totally_Ordered_Group_Concept = 
     Group_Concept<G, op, identity, inv>
     && totally_ordered<G>;
 
