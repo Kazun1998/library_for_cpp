@@ -315,26 +315,28 @@ data:
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
     \ T;\n}\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
     \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
-    \n    data[T.get_root()] = alpha;\n\n    for (int x: T.top_down()) {\n       \
-    \ for (int y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n\
-    \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
-    vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
-    \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
-    \  vector<X> data(T.vector_size());\n\n    for (V v: T.bottom_up()) {\n      \
-    \  M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp = merge(tmp,\
-    \ f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n    }\n\n    return\
-    \ data;\n}\n#line 5 \"Tree/Rerooting.hpp\"\n\ntemplate<typename X, typename M>\n\
-    class Rerooting_DP {\n    public:\n    vector<X> lower, upper, result;\n\n   \
-    \ public:\n    Rerooting_DP(Tree &T, function<M(X, int, int)> f, function<X(M,\
-    \ int)> g, function<X(M, int)> h, function<M(M, M)> merge, const M unit) {\n \
-    \       using V = int;\n\n        // T \u306E\u9802\u70B9 v \u3092\u6839\u3068\
-    \u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u5024\n        lower =\
-    \ Tree_DP_from_Leaf(T, f, g, merge, unit);\n        upper.resize(T.vector_size());\n\
-    \n        for (V v: T.top_down()) {\n            const auto &children_v = T.get_children(v);\n\
-    \    \n            vector<M> left{unit}, right{unit};\n            for (V c: children_v)\
-    \ {\n                left.emplace_back(merge(left.back(), f(lower[c], v, c)));\n\
-    \            }\n\n            for (auto it = children_v.rbegin(); it != children_v.rend();\
-    \ ++it) {\n                V c = *it;\n                right.emplace_back(merge(right.back(),\
+    \n    data[T.get_root()] = alpha;\n\n    auto dfs = [&](auto self, int x) -> void\
+    \ {\n        for (int y: T.get_children(x)) {\n            data[y] = f(data[x],\
+    \ x, y);\n            self(self, y);\n        }\n    };\n\n    dfs(dfs, T.get_root());\n\
+    \    return data;\n}\n\ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree\
+    \ &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge,\
+    \ const M unit) {\n    vector<X> data(T.vector_size());\n\n    auto dfs = [&](auto\
+    \ self, int v) -> void {\n        M children_product = unit;\n        for (int\
+    \ w: T.get_children(v)) {\n            self(self, w);\n            children_product\
+    \ = merge(children_product, f(data[w], v, w));\n        }\n        data[v] = g(children_product,\
+    \ v);\n    };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n#line 5 \"\
+    Tree/Rerooting.hpp\"\n\ntemplate<typename X, typename M>\nclass Rerooting_DP {\n\
+    \    public:\n    vector<X> lower, upper, result;\n\n    public:\n    Rerooting_DP(Tree\
+    \ &T, function<M(X, int, int)> f, function<X(M, int)> g, function<X(M, int)> h,\
+    \ function<M(M, M)> merge, const M unit) {\n        using V = int;\n\n       \
+    \ // T \u306E\u9802\u70B9 v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\
+    \u95A2\u3059\u308B\u5024\n        lower = Tree_DP_from_Leaf(T, f, g, merge, unit);\n\
+    \        upper.resize(T.vector_size());\n\n        for (V v: T.top_down()) {\n\
+    \            const auto &children_v = T.get_children(v);\n    \n            vector<M>\
+    \ left{unit}, right{unit};\n            for (V c: children_v) {\n            \
+    \    left.emplace_back(merge(left.back(), f(lower[c], v, c)));\n            }\n\
+    \n            for (auto it = children_v.rbegin(); it != children_v.rend(); ++it)\
+    \ {\n                V c = *it;\n                right.emplace_back(merge(right.back(),\
     \ f(lower[c], v, c)));\n            }\n\n            reverse(right.begin(), right.end());\n\
     \            for (int i = 0; i < children_v.size(); i++) {\n                V\
     \ c = children_v[i];\n                M a = merge(left[i], right[i + 1]);\n  \
@@ -382,7 +384,7 @@ data:
   isVerificationFile: false
   path: Tree/Rerooting.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-06 01:08:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp

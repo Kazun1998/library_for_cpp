@@ -320,26 +320,29 @@ data:
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
     \ T;\n}\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
     \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
-    \n    data[T.get_root()] = alpha;\n\n    for (int x: T.top_down()) {\n       \
-    \ for (int y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n\
-    \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
-    vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
-    \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
-    \  vector<X> data(T.vector_size());\n\n    for (V v: T.bottom_up()) {\n      \
-    \  M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp = merge(tmp,\
-    \ f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n    }\n\n    return\
-    \ data;\n}\n"
+    \n    data[T.get_root()] = alpha;\n\n    auto dfs = [&](auto self, int x) -> void\
+    \ {\n        for (int y: T.get_children(x)) {\n            data[y] = f(data[x],\
+    \ x, y);\n            self(self, y);\n        }\n    };\n\n    dfs(dfs, T.get_root());\n\
+    \    return data;\n}\n\ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree\
+    \ &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge,\
+    \ const M unit) {\n    vector<X> data(T.vector_size());\n\n    auto dfs = [&](auto\
+    \ self, int v) -> void {\n        M children_product = unit;\n        for (int\
+    \ w: T.get_children(v)) {\n            self(self, w);\n            children_product\
+    \ = merge(children_product, f(data[w], v, w));\n        }\n        data[v] = g(children_product,\
+    \ v);\n    };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n"
   code: "#pragma once\n\n#include \"Tree.hpp\"\n\ntemplate<typename X>\nvector<X>\
     \ Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) {\n  \
     \  vector<X> data(T.vector_size());\n\n    data[T.get_root()] = alpha;\n\n   \
-    \ for (int x: T.top_down()) {\n        for (int y: T.get_children(x)) {\n    \
-    \        data[y] = f(data[x], x, y);\n        }\n    }\n\n    return data;\n}\n\
-    \ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree &T, function<M(X,\
-    \ int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit)\
-    \ {\n    using V = int;\n\n    vector<X> data(T.vector_size());\n\n    for (V\
-    \ v: T.bottom_up()) {\n        M tmp = unit;\n        for (V w: T.get_children(v))\
-    \ {\n            tmp = merge(tmp, f(data[w], v, w));\n        }\n        data[v]\
-    \ = g(tmp, v);\n    }\n\n    return data;\n}\n"
+    \ auto dfs = [&](auto self, int x) -> void {\n        for (int y: T.get_children(x))\
+    \ {\n            data[y] = f(data[x], x, y);\n            self(self, y);\n   \
+    \     }\n    };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n\ntemplate<typename\
+    \ X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)>\
+    \ f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {\n    vector<X>\
+    \ data(T.vector_size());\n\n    auto dfs = [&](auto self, int v) -> void {\n \
+    \       M children_product = unit;\n        for (int w: T.get_children(v)) {\n\
+    \            self(self, w);\n            children_product = merge(children_product,\
+    \ f(data[w], v, w));\n        }\n        data[v] = g(children_product, v);\n \
+    \   };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n"
   dependsOn:
   - Tree/Tree.hpp
   - template/template.hpp
@@ -353,7 +356,7 @@ data:
   path: Tree/Tree_DP.hpp
   requiredBy:
   - Tree/Rerooting.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-06 01:08:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp

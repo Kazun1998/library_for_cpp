@@ -329,22 +329,24 @@ data:
     \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n#line 2 \"Tree/Tree_DP.hpp\"\
     \n\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
     \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
-    \n    data[T.get_root()] = alpha;\n\n    for (int x: T.top_down()) {\n       \
-    \ for (int y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n\
-    \        }\n    }\n\n    return data;\n}\n\ntemplate<typename X, typename M>\n\
-    vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M,\
-    \ int)> g, function<M(M, M)> merge, const M unit) {\n    using V = int;\n\n  \
-    \  vector<X> data(T.vector_size());\n\n    for (V v: T.bottom_up()) {\n      \
-    \  M tmp = unit;\n        for (V w: T.get_children(v)) {\n            tmp = merge(tmp,\
-    \ f(data[w], v, w));\n        }\n        data[v] = g(tmp, v);\n    }\n\n    return\
-    \ data;\n}\n#line 6 \"verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\
-    \n\nint main() {\n    int N; cin >> N;\n\n    vector<pair<int, int>> edges(N -\
-    \ 1);\n    map<pair<int, int>, ll> edge_weight;\n    for (int j = 0; j < N - 1;\
-    \ j++) {\n        int a, b; ll c; scanf(\"%d%d%lld\", &a, &b, &c);\n        edges[j]\
-    \ = {a, b};\n        edge_weight[{a, b}] = c;\n        edge_weight[{b, a}] = c;\n\
-    \    }\n\n    function<ll(ll, int, int)> f = [&edge_weight](const ll w, const\
-    \ int x, const int y) -> ll {\n        return w + edge_weight[{x, y}];\n    };\n\
-    \n    Tree T1 = Generate_Tree(N, edges, 0);\n    vector<ll> dist_1 = Tree_DP_from_Root(T1,\
+    \n    data[T.get_root()] = alpha;\n\n    auto dfs = [&](auto self, int x) -> void\
+    \ {\n        for (int y: T.get_children(x)) {\n            data[y] = f(data[x],\
+    \ x, y);\n            self(self, y);\n        }\n    };\n\n    dfs(dfs, T.get_root());\n\
+    \    return data;\n}\n\ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree\
+    \ &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge,\
+    \ const M unit) {\n    vector<X> data(T.vector_size());\n\n    auto dfs = [&](auto\
+    \ self, int v) -> void {\n        M children_product = unit;\n        for (int\
+    \ w: T.get_children(v)) {\n            self(self, w);\n            children_product\
+    \ = merge(children_product, f(data[w], v, w));\n        }\n        data[v] = g(children_product,\
+    \ v);\n    };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n#line 6 \"\
+    verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp\"\n\nint main() {\n\
+    \    int N; cin >> N;\n\n    vector<pair<int, int>> edges(N - 1);\n    map<pair<int,\
+    \ int>, ll> edge_weight;\n    for (int j = 0; j < N - 1; j++) {\n        int a,\
+    \ b; ll c; scanf(\"%d%d%lld\", &a, &b, &c);\n        edges[j] = {a, b};\n    \
+    \    edge_weight[{a, b}] = c;\n        edge_weight[{b, a}] = c;\n    }\n\n   \
+    \ function<ll(ll, int, int)> f = [&edge_weight](const ll w, const int x, const\
+    \ int y) -> ll {\n        return w + edge_weight[{x, y}];\n    };\n\n    Tree\
+    \ T1 = Generate_Tree(N, edges, 0);\n    vector<ll> dist_1 = Tree_DP_from_Root(T1,\
     \ f, 0LL);\n\n    int s = 0;\n    for (int v = 0; v < N; v++) {\n        if (dist_1[s]\
     \ < dist_1[v]) { s = v; }\n    }\n\n    Tree T2 = Generate_Tree(N, edges, s);\n\
     \    vector<ll> dist_2 = Tree_DP_from_Root(T2, f, 0LL);\n\n    int t = 0;\n  \
@@ -384,7 +386,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-06 01:08:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
