@@ -8,12 +8,14 @@ vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) 
 
     data[T.get_root()] = alpha;
 
-    for (int x: T.top_down()) {
+    auto dfs = [&](auto self, int x) -> void {
         for (int y: T.get_children(x)) {
             data[y] = f(data[x], x, y);
+            self(self, y);
         }
-    }
+    };
 
+    dfs(dfs, T.get_root());
     return data;
 }
 
