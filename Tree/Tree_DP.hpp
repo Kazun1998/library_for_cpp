@@ -24,12 +24,12 @@ vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, i
     vector<X> data(T.vector_size());
 
     auto dfs = [&](auto self, int v) -> void {
-        M monoid_prod = unit;
+        M children_product = unit;
         for (int w: T.get_children(v)) {
             self(self, w);
-            tmp = merge(tmp, f(data[w], v, w));
+            children_product = merge(children_product, f(data[w], v, w));
         }
-        data[v] = g(tmp, v);
+        data[v] = g(children_product, v);
     };
 
     dfs(dfs, T.get_root());
