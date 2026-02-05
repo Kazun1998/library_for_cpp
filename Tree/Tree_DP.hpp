@@ -21,17 +21,17 @@ vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) 
 
 template<typename X, typename M>
 vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {
-    using V = int;
-
     vector<X> data(T.vector_size());
 
-    for (V v: T.bottom_up()) {
-        M tmp = unit;
-        for (V w: T.get_children(v)) {
+    auto dfs = [&](auto self, int v) -> void {
+        M monoid_prod = unit;
+        for (int w: T.get_children(v)) {
+            self(self, w);
             tmp = merge(tmp, f(data[w], v, w));
         }
         data[v] = g(tmp, v);
-    }
+    };
 
+    dfs(dfs, T.get_root());
     return data;
 }
