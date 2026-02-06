@@ -3,7 +3,7 @@
 #include"Graph.hpp"
 
 namespace graph {
-    vector<tuple<int, int, int>> Triangle(const Graph &G) {
+    vector<tuple<int, int, int>> Enumerate_Triangles(const Graph &G) {
         int N = G.order();
         vector<vector<int>> A(N);
 

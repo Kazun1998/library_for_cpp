@@ -19,7 +19,7 @@ int main() {
     }
 
     mint ans = 0;
-    for (auto &[u, v, w]: Triangle(G)) {
+    for (auto &[u, v, w]: Enumerate_Triangles(G)) {
         ans += x[u] * x[v] * x[w];
     }
 
