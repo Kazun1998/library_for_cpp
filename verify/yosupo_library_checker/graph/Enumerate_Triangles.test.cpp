@@ -2,7 +2,7 @@
 
 #include"../../../template/template.hpp"
 #include"../../../Algebra/modint.hpp"
-#include"../../../Graph/Graph/Triangle.hpp"
+#include"../../../Graph/Graph/Enumerate_Triangles.hpp"
 
 using namespace graph;
 using mint = modint<998244353>;
