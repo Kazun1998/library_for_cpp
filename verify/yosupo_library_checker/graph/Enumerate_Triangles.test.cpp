@@ -18,9 +18,10 @@ int main() {
         G.add_edge(u, v);
     }
 
-    auto product = [&x](const int u, const int v, const int w) -> mint {
-        return x[u] * x[v] * x[w];
-    };
+    mint ans = 0;
+    for (auto &[u, v, w]: Triangle(G)) {
+        ans += x[u] * x[v] * x[w];
+    }
 
-    cout << Triangle<mint>(G, product, add<mint>, 0)<< endl;
+    cout << ans << endl;
 }
