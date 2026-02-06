@@ -55,4 +55,61 @@ class Segment_Tree{
 
         return op(vl, vr);
     }
+
+    template<typename Func>
+    int max_right(int l, const Func &cond) {
+        assert(cond(unit));
+        if (l == n) return n;
+
+        l += n;
+        M sm = unit;
+        do {
+            while (l % 2 == 0) l >>= 1;
+
+            if (cond(op(sm, data[l]))) {
+                sm = op(sm ,data[l]);
+                ++l;
+                continue;
+            }
+
+            while (l < n) {
+                l = l << 1;
+                if (cond(op(sm, data[l]))) {
+                    sm = op(sm, data[l]);
+                    ++l;
+                }
+            }
+            return l - n;
+        } while ((l & -l) != l);
+        return n;
+    }
+
+    template<typename Func>
+    int min_left(int r, const Func &cond) {
+        assert(cond(unit));
+        if (r == 0) return 0;
+
+        r += n;
+        M sm = unit;
+        do {
+            r--;
+            while (r > 1 && (r % 2)) r >>= 1;
+
+            if (cond(op(data[r], sm))) {
+                sm = op(data[r], sm);
+                continue;
+            }
+
+            while (r < n) {
+                r = (r << 1) | 1;
+                if (cond(op(data[r], sm))) {
+                    sm = op(data[r], sm);
+                    r--;
+                }
+            }
+            return r + 1 - n;
+
+        } while ((r & -r) != r);
+        return 0;
+    }
 };
