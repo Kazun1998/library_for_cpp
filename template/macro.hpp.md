@@ -167,6 +167,9 @@ data:
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Enumerate_Triangles.hpp
+    title: Graph/Graph/Enumerate_Triangles.hpp
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
   - icon: ':heavy_check_mark:'
@@ -546,6 +549,9 @@ data:
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+    title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -748,6 +754,7 @@ data:
   - Tree/Rerooting.hpp
   - Tree/Tree_DP.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
+  - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Cliques.hpp
   - Graph/Graph/Graph.hpp
@@ -861,6 +868,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp

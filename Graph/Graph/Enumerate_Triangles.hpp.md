@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,72 +25,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Cliques.hpp
-    title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Connected_Components.hpp
-    title: Graph/Graph/Connected_Components.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Enumerate_Triangles.hpp
-    title: Graph/Graph/Enumerate_Triangles.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Lowlink.hpp
-    title: Graph/Graph/Lowlink.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Two_Edge_Connected_Components.hpp
-    title: Graph/Graph/Two_Edge_Connected_Components.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/alds1/11D.test.cpp
-    title: verify/aizu_online_judge/alds1/11D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3A.test.cpp
-    title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3B.test.cpp
-    title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-    title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\
-      \u6570) \u3092\u6C42\u3081\u308B."
     links: []
-  bundledCode: "#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Graph/Graph/Enumerate_Triangles.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -242,38 +213,33 @@ data:
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
     \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"../../template/template.hpp\"\n\nnamespace graph\
-    \ {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\n\
-    \        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
-    \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
-    \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
-    \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
-    \ edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
-    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
-    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
-    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
-    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
-    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
-    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
-    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
-    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
-    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
-    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
-    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n"
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Enumerate_Triangles.hpp\"\
+    \n\nnamespace graph {\n    vector<tuple<int, int, int>> Enumerate_Triangles(const\
+    \ Graph &G) {\n        int N = G.order();\n        vector<vector<int>> A(N);\n\
+    \n        for (int u = 0; u < N; u++) {\n            for (auto edge: G.incidence(u))\
+    \ {\n                int v = edge->target;\n                if (G.degree(u) >\
+    \ G.degree(v) || (G.degree(u) == G.degree(v) && u > v)) {\n                  \
+    \  A[u].emplace_back(v);\n                }\n            }\n        }\n\n    \
+    \    vector<bool> used(N, false);\n        vector<tuple<int, int, int>> triangles;\n\
+    \        for (int u = 0; u < N; u++) {\n            for (int w: A[u]) { used[w]\
+    \ = true; }\n\n            for (int v: A[u]) {\n                for (int w: A[v])\
+    \ {\n                    if (used[w]) triangles.emplace_back(u, v, w);\n     \
+    \           }\n            }\n\n            for (int w: A[u]) { used[w] = false;\
+    \ }\n        }\n\n        return triangles;\n    }\n}\n"
+  code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    vector<tuple<int,\
+    \ int, int>> Enumerate_Triangles(const Graph &G) {\n        int N = G.order();\n\
+    \        vector<vector<int>> A(N);\n\n        for (int u = 0; u < N; u++) {\n\
+    \            for (auto edge: G.incidence(u)) {\n                int v = edge->target;\n\
+    \                if (G.degree(u) > G.degree(v) || (G.degree(u) == G.degree(v)\
+    \ && u > v)) {\n                    A[u].emplace_back(v);\n                }\n\
+    \            }\n        }\n\n        vector<bool> used(N, false);\n        vector<tuple<int,\
+    \ int, int>> triangles;\n        for (int u = 0; u < N; u++) {\n            for\
+    \ (int w: A[u]) { used[w] = true; }\n\n            for (int v: A[u]) {\n     \
+    \           for (int w: A[v]) {\n                    if (used[w]) triangles.emplace_back(u,\
+    \ v, w);\n                }\n            }\n\n            for (int w: A[u]) {\
+    \ used[w] = false; }\n        }\n\n        return triangles;\n    }\n}\n"
   dependsOn:
+  - Graph/Graph/Graph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -282,33 +248,16 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Graph/Graph/Graph.hpp
-  requiredBy:
-  - Graph/Graph/Enumerate_Triangles.hpp
-  - Graph/Graph/Lowlink.hpp
-  - Graph/Graph/Cliques.hpp
-  - Graph/Graph/Connected_Components.hpp
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
+  path: Graph/Graph/Enumerate_Triangles.hpp
+  requiredBy: []
+  timestamp: '2026-02-07 00:27:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - verify/aizu_online_judge/alds1/11D.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-documentation_of: Graph/Graph/Graph.hpp
+documentation_of: Graph/Graph/Enumerate_Triangles.hpp
 layout: document
-title: "\u7121\u5411 Graph"
+redirect_from:
+- /library/Graph/Graph/Enumerate_Triangles.hpp
+- /library/Graph/Graph/Enumerate_Triangles.hpp.html
+title: Graph/Graph/Enumerate_Triangles.hpp
 ---
-
-## Outline
-
-無向 Graph $G$ を保存するクラスを提供する.
-
-## History
-
-|日付|内容|
-|:---:|:---|
-|2025/12/06|無向 Graph のドキュメントの作成|

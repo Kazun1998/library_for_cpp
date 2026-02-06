@@ -118,6 +118,9 @@ data:
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+    title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - icon: ':heavy_check_mark:'
@@ -439,6 +442,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
