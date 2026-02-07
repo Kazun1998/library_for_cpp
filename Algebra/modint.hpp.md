@@ -48,6 +48,9 @@ data:
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: Modulo_Polynomial/Modulo_Polynomial.hpp
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Multipoint_Evaluation.hpp
+    title: "\u591A\u70B9\u8A55\u4FA1"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
   - icon: ':heavy_check_mark:'
@@ -156,6 +159,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Log.test.cpp
     title: verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
+    title: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
@@ -428,6 +434,7 @@ data:
   - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Multipoint_Evaluation.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2026-01-29 01:07:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -456,6 +463,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
   - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
