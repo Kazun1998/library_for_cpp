@@ -3,8 +3,8 @@
 #include "Fast_Power_Series.hpp"
 
 template<typename mint>
-vector<mint> Multipoint_Evaluation(Fast_Power_Series<mint> P, const vector<mint> &Xs) {
-    int m = Xs.size();
+vector<mint> Multipoint_Evaluation(Fast_Power_Series<mint> P, const vector<mint> &X) {
+    int m = X.size();
     if (m == 0) { return {}; }
 
     using FPS = Fast_Power_Series<mint>;
@@ -16,7 +16,7 @@ vector<mint> Multipoint_Evaluation(Fast_Power_Series<mint> P, const vector<mint>
 
     auto build = [&](auto self, int l, int r, int k) -> void {
         if (r - l == 1) {
-            g[k] = FPS({-Xs[l], 1});
+            g[k] = FPS({-X[l], 1});
             return;
         }
         int mid = (l + r) / 2;
