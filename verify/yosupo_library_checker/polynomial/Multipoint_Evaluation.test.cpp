@@ -8,8 +8,8 @@ using mint = modint<Mod>;
 
 int main(){
     int N, M; cin >> N >> M;
-    vector<mint> c(N); cin >> c;
-    vector<mint> p(M); cin >> p;
+    vector<mint> c(N); for (int i = 0; i < N; ++i) { scanf("%d", &c[i]); }
+    vector<mint> p(M); for (int j = 0; j < M; ++j) { scanf("%d", &p[j]); }
 
     cout << Multipoint_Evaluation<mint>(Fast_Power_Series<mint>(c), p) << endl;
 }
