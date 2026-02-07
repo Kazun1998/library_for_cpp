@@ -477,44 +477,48 @@ data:
     \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
     \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
     \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
-    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ }\n\n    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n\n        Fast_Power_Series R(*this);\n\
+    \        if (R.poly.size() < product.size()) { R.poly.resize(product.size());\
+    \ }\n        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i];\
+    \ }\n        R.reduce();\n        return {Q, R};\n    }\n};\n\ntemplate<typename\
+    \ mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
     \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
     \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
-    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
-    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
-    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
-    }\n#line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\
-    \n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\
-    \n\n// A \u306E\u5F62\u5F0F\u7684\u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<typename\
-    \ mint>\nFast_Power_Series<mint> Differential(const Fast_Power_Series<mint> &A)\
-    \ {\n    vector<mint> b(A.precision);\n    for (int k = 1; k < A.precision; k++)\
-    \ { b[k - 1] = k * A[k]; }\n    return Fast_Power_Series<mint>(b, A.precision);\n\
-    }\n\n// A \u306E\u4E0D\u5B9A\u7A4D\u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\
-    \u3057, \u5B9A\u6570\u9805\u306F C (default 0) \u3092\u4F7F\u3046.\ntemplate<typename\
-    \ mint>\nFast_Power_Series<mint> Integrate(const Fast_Power_Series<mint> &A, const\
-    \ mint C = 0) {\n    if (A.is_zero()) { return Fast_Power_Series<mint>({0}, A.precision);\
-    \ }\n\n    vector<mint> inv(A.precision + 1);\n    inv[1] = mint(1);\n    for\
-    \ (int k = 2; k <= A.precision; k++) {\n        ll q, r;\n        tie (q, r) =\
-    \ divmod(mint::mod(), k);\n        inv[k] = -q * inv[r];\n    }\n\n    vector<mint>\
-    \ b(A.precision + 1);\n    b[0] = C;\n    for (int k = 0; k < A.precision; k++)\
-    \ { b[k + 1] = inv[k + 1] * A[k]; }\n    return Fast_Power_Series<mint>(b, A.precision);\n\
-    }\n#line 4 \"Modulo_Polynomial/Log.hpp\"\n\ntemplate<typename mint>\nFast_Power_Series<mint>\
-    \ Log(const Fast_Power_Series<mint> &A) {\n    return Integrate(Differential(A)\
-    \ / A);\n}\n#line 5 \"Modulo_Polynomial/Exp.hpp\"\n\ntemplate<typename mint>\n\
-    Fast_Power_Series<mint> Exp(const Fast_Power_Series<mint> &A) {\n    assert(A[0].is_zero());\n\
-    \n    int n = A.precision;\n\n    Fast_Power_Series<mint> G({1}, 1), one({1},\
-    \ n);\n    for (; G.precision < n;) {\n        G.precision *= 2;\n        G =\
-    \ G * (one - Log(G) + A);\n    }\n\n    return G;\n}\n#line 7 \"Modulo_Polynomial/Bernoulli_Number.hpp\"\
-    \n\ntemplate<typename mint>\nvector<mint> Bernoulli_Number(int N) {\n    vector<mint>\
-    \ fact(N + 2), fact_inv(N + 2);\n    fact[0] = 1;\n    for (int x = 1; x <= N\
-    \ + 1; x++) { fact[x] = x * fact[x - 1]; }\n    fact_inv[N + 1] = fact[N + 1].inverse();\n\
-    \    for (int x = N; x >= 0; x--) { fact_inv[x] = (x + 1) * fact_inv[x + 1]; }\n\
-    \n    vector<mint> g(N + 1);\n    for (int d = 0; d < N + 1; d++) { g[d] = fact_inv[d\
-    \ + 1]; }\n\n    Fast_Power_Series<mint> G(g, N + 1), P = Fast_Power_Series<mint>({1},\
-    \ N + 1) / G;\n    vector<mint> Bernoulli(N + 1);\n    for (int k = 0; k <= N;\
-    \ k++) { Bernoulli[k] = fact[k] * P.poly[k]; }\n\n    return Bernoulli;\n}\n#line\
-    \ 4 \"verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp\"\n\
-    \nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n    int\
+    \ &B) {\n    return A.divmod(B);\n}\n#line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n\
+    #line 2 \"Modulo_Polynomial/Log.hpp\"\n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\
+    \n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\n\n// A \u306E\u5F62\u5F0F\u7684\
+    \u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<typename mint>\nFast_Power_Series<mint>\
+    \ Differential(const Fast_Power_Series<mint> &A) {\n    vector<mint> b(A.precision);\n\
+    \    for (int k = 1; k < A.precision; k++) { b[k - 1] = k * A[k]; }\n    return\
+    \ Fast_Power_Series<mint>(b, A.precision);\n}\n\n// A \u306E\u4E0D\u5B9A\u7A4D\
+    \u5206\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u5B9A\u6570\u9805\u306F C\
+    \ (default 0) \u3092\u4F7F\u3046.\ntemplate<typename mint>\nFast_Power_Series<mint>\
+    \ Integrate(const Fast_Power_Series<mint> &A, const mint C = 0) {\n    if (A.is_zero())\
+    \ { return Fast_Power_Series<mint>({0}, A.precision); }\n\n    vector<mint> inv(A.precision\
+    \ + 1);\n    inv[1] = mint(1);\n    for (int k = 2; k <= A.precision; k++) {\n\
+    \        ll q, r;\n        tie (q, r) = divmod(mint::mod(), k);\n        inv[k]\
+    \ = -q * inv[r];\n    }\n\n    vector<mint> b(A.precision + 1);\n    b[0] = C;\n\
+    \    for (int k = 0; k < A.precision; k++) { b[k + 1] = inv[k + 1] * A[k]; }\n\
+    \    return Fast_Power_Series<mint>(b, A.precision);\n}\n#line 4 \"Modulo_Polynomial/Log.hpp\"\
+    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Log(const Fast_Power_Series<mint>\
+    \ &A) {\n    return Integrate(Differential(A) / A);\n}\n#line 5 \"Modulo_Polynomial/Exp.hpp\"\
+    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Exp(const Fast_Power_Series<mint>\
+    \ &A) {\n    assert(A[0].is_zero());\n\n    int n = A.precision;\n\n    Fast_Power_Series<mint>\
+    \ G({1}, 1), one({1}, n);\n    for (; G.precision < n;) {\n        G.precision\
+    \ *= 2;\n        G = G * (one - Log(G) + A);\n    }\n\n    return G;\n}\n#line\
+    \ 7 \"Modulo_Polynomial/Bernoulli_Number.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
+    \ Bernoulli_Number(int N) {\n    vector<mint> fact(N + 2), fact_inv(N + 2);\n\
+    \    fact[0] = 1;\n    for (int x = 1; x <= N + 1; x++) { fact[x] = x * fact[x\
+    \ - 1]; }\n    fact_inv[N + 1] = fact[N + 1].inverse();\n    for (int x = N; x\
+    \ >= 0; x--) { fact_inv[x] = (x + 1) * fact_inv[x + 1]; }\n\n    vector<mint>\
+    \ g(N + 1);\n    for (int d = 0; d < N + 1; d++) { g[d] = fact_inv[d + 1]; }\n\
+    \n    Fast_Power_Series<mint> G(g, N + 1), P = Fast_Power_Series<mint>({1}, N\
+    \ + 1) / G;\n    vector<mint> Bernoulli(N + 1);\n    for (int k = 0; k <= N; k++)\
+    \ { Bernoulli[k] = fact[k] * P.poly[k]; }\n\n    return Bernoulli;\n}\n#line 4\
+    \ \"verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp\"\n\n\
+    const ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n    int\
     \ N; cin >> N;\n    vector<mint> B = Bernoulli_Number<mint>(N);\n    cout << B\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
@@ -540,7 +544,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   requiredBy: []
-  timestamp: '2026-02-08 00:48:02+09:00'
+  timestamp: '2026-02-08 01:18:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp

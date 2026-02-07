@@ -467,26 +467,29 @@ data:
     \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
     \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
     \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
-    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ }\n\n    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n\n        Fast_Power_Series R(*this);\n\
+    \        if (R.poly.size() < product.size()) { R.poly.resize(product.size());\
+    \ }\n        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i];\
+    \ }\n        R.reduce();\n        return {Q, R};\n    }\n};\n\ntemplate<typename\
+    \ mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
     \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
     \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
-    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
-    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
-    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
-    }\n#line 2 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\n\n#line 5 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\
-    \n\ntemplate<typename mint>\nmint Fraction_Coefficient(const Fast_Power_Series<mint>\
-    \ &P, const Fast_Power_Series<mint> &Q, ll N) {\n    vector<mint> p(P.poly), q(Q.poly);\n\
-    \    int m = 1 << ceil_log2(q.size());\n\n    Numeric_Theory_Translation<mint>\
-    \ calc;\n\n    p.resize(2 * m);\n    q.resize(2 * m);\n\n    while (N > 0) {\n\
-    \        vector<mint> r(2 * m);\n        for (int i = 0; i < 2 * m; i++) { r[i]\
-    \ = (i % 2 == 0) ? q[i] : -q[i]; }\n\n        calc.ntt(p), calc.ntt(q), calc.ntt(r);\n\
-    \        for (int i = 0; i < 2 * m; i++) { p[i] *= r[i]; q[i] *= r[i]; }\n\n \
-    \       calc.inverse_ntt(p); calc.inverse_ntt(q);\n\n        if (N % 2 == 0) {\n\
-    \            for (int i = 0; i < m; i++) { p[i] = p[2 * i]; }\n        } else\
-    \ {\n            for (int i = 0; i < m; i++) { p[i] = p[2 * i + 1]; }\n      \
-    \  }\n\n        for (int i = 0; i < m; i++) { q[i] = q[2 * i]; }\n\n        for\
-    \ (int i = m; i < 2 * m; i++) { p[i] = q[i] = 0; }\n\n        N /= 2;\n    }\n\
-    \n    return p[0] / q[0];\n}\n#line 6 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
+    \ &B) {\n    return A.divmod(B);\n}\n#line 2 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\
+    \n\n#line 5 \"Modulo_Polynomial/Fraction_Coefficient.hpp\"\n\ntemplate<typename\
+    \ mint>\nmint Fraction_Coefficient(const Fast_Power_Series<mint> &P, const Fast_Power_Series<mint>\
+    \ &Q, ll N) {\n    vector<mint> p(P.poly), q(Q.poly);\n    int m = 1 << ceil_log2(q.size());\n\
+    \n    Numeric_Theory_Translation<mint> calc;\n\n    p.resize(2 * m);\n    q.resize(2\
+    \ * m);\n\n    while (N > 0) {\n        vector<mint> r(2 * m);\n        for (int\
+    \ i = 0; i < 2 * m; i++) { r[i] = (i % 2 == 0) ? q[i] : -q[i]; }\n\n        calc.ntt(p),\
+    \ calc.ntt(q), calc.ntt(r);\n        for (int i = 0; i < 2 * m; i++) { p[i] *=\
+    \ r[i]; q[i] *= r[i]; }\n\n        calc.inverse_ntt(p); calc.inverse_ntt(q);\n\
+    \n        if (N % 2 == 0) {\n            for (int i = 0; i < m; i++) { p[i] =\
+    \ p[2 * i]; }\n        } else {\n            for (int i = 0; i < m; i++) { p[i]\
+    \ = p[2 * i + 1]; }\n        }\n\n        for (int i = 0; i < m; i++) { q[i] =\
+    \ q[2 * i]; }\n\n        for (int i = m; i < 2 * m; i++) { p[i] = q[i] = 0; }\n\
+    \n        N /= 2;\n    }\n\n    return p[0] / q[0];\n}\n#line 6 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
     \n\ntemplate<typename mint>\nmint Nth_Term_of_Linearly_Recurrent_Sequence(const\
     \ vector<mint> &a, const vector<mint> &c, ll n, ll offset = 0) {\n    using FPS\
     \ = Fast_Power_Series<mint>;\n\n    ll d = a.size();\n    n -= offset;\n\n   \
@@ -518,7 +521,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   requiredBy: []
-  timestamp: '2026-02-08 00:48:02+09:00'
+  timestamp: '2026-02-08 01:18:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp

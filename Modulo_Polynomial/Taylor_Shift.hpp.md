@@ -469,16 +469,19 @@ data:
     \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
     \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
     \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
-    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ }\n\n    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n\n        Fast_Power_Series R(*this);\n\
+    \        if (R.poly.size() < product.size()) { R.poly.resize(product.size());\
+    \ }\n        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i];\
+    \ }\n        R.reduce();\n        return {Q, R};\n    }\n};\n\ntemplate<typename\
+    \ mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
     \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
     \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
-    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
-    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
-    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
-    }\n#line 4 \"Modulo_Polynomial/Taylor_Shift.hpp\"\n\ntemplate<typename mint>\n\
-    Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const mint\
-    \ &a) {\n    int n = P.precision;\n    vector<mint> fact(n), fact_inv(n);\n  \
-    \  fact[0] = 1;\n    for (int k = 1; k < n; k++) { fact[k] = k * fact[k - 1];\
+    \ &B) {\n    return A.divmod(B);\n}\n#line 4 \"Modulo_Polynomial/Taylor_Shift.hpp\"\
+    \n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
+    \ &P, const mint &a) {\n    int n = P.precision;\n    vector<mint> fact(n), fact_inv(n);\n\
+    \    fact[0] = 1;\n    for (int k = 1; k < n; k++) { fact[k] = k * fact[k - 1];\
     \ }\n\n    fact_inv[n - 1] = fact[n - 1].inverse();\n    for (int k = n - 2; k\
     \ >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1]; }\n\n    vector<mint>\
     \ f(n), g(n);\n    for (int i = 0; i < n; i++) { f[i] = P[i] * fact[i]; }\n  \
@@ -523,7 +526,7 @@ data:
   path: Modulo_Polynomial/Taylor_Shift.hpp
   requiredBy:
   - Modulo_Polynomial/Stirling_1st.hpp
-  timestamp: '2026-02-08 00:48:02+09:00'
+  timestamp: '2026-02-08 01:18:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp

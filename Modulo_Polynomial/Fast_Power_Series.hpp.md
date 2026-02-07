@@ -526,13 +526,16 @@ data:
     \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
     \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
     \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
-    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ }\n\n    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n\n        Fast_Power_Series R(*this);\n\
+    \        if (R.poly.size() < product.size()) { R.poly.resize(product.size());\
+    \ }\n        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i];\
+    \ }\n        R.reduce();\n        return {Q, R};\n    }\n};\n\ntemplate<typename\
+    \ mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
     \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
     \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
-    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
-    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
-    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
-    }\n"
+    \ &B) {\n    return A.divmod(B);\n}\n"
   code: "#pragma once\n\n#include\"Modulo_Polynomial.hpp\"\n#include\"Numeric_Theory_Translation.hpp\"\
     \n\ntemplate<typename mint>\nclass Fast_Power_Series : public Modulo_Polynomial<mint>\
     \ {\n    protected:\n    static Numeric_Theory_Translation<mint> calculator;\n\
@@ -593,13 +596,16 @@ data:
     \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
     \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
     \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
-    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ }\n\n    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n\n        Fast_Power_Series R(*this);\n\
+    \        if (R.poly.size() < product.size()) { R.poly.resize(product.size());\
+    \ }\n        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i];\
+    \ }\n        R.reduce();\n        return {Q, R};\n    }\n};\n\ntemplate<typename\
+    \ mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
     \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
     \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
-    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
-    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
-    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
-    }\n"
+    \ &B) {\n    return A.divmod(B);\n}\n"
   dependsOn:
   - Modulo_Polynomial/Modulo_Polynomial.hpp
   - template/template.hpp
@@ -626,7 +632,7 @@ data:
   - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2026-02-08 00:48:02+09:00'
+  timestamp: '2026-02-08 01:18:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
