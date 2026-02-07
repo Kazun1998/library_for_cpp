@@ -5,25 +5,50 @@
 template<typename mint>
 vector<mint> Multipoint_Evaluation(Fast_Power_Series<mint> P, const vector<mint> &Xs) {
     int m = Xs.size();
-    int size = 1 << ceil_log2(m);
+    if (m == 0) { return {}; }
 
     using FPS = Fast_Power_Series<mint>;
 
-    vector<FPS> g(2 * size);
-    for (int i = 0; i < size; ++i) {
-        g[i + size] = (i < m) ? FPS({-Xs[i], 1}, m + 1) : FPS({1}, m + 1);
-    }
+    // Subproduct Tree の構築
+    // インデックス k=1 が根。
+    int tree_size = 1; while (tree_size < m) { tree_size *= 2; }
+    vector<FPS> g(2 * tree_size);
 
-    for (int i = size - 1; i >= 0; --i) {
-        g[i] = g[2 * i] * g[2 * i + 1];
-    }
+    auto build = [&](auto self, int l, int r, int k) -> void {
+        if (r - l == 1) {
+            g[k] = FPS({-Xs[l], 1});
+            return;
+        }
+        int mid = (l + r) / 2;
+        self(self, l, mid, 2 * k);
+        self(self, mid, r, 2 * k + 1);
+        int len = g[2 * k].size() + g[2 * k + 1].size() - 1;
+        g[2 * k].precision = len;
+        g[2 * k + 1].precision = len;
+        g[k] = g[2 * k] * g[2 * k + 1];
+    };
 
-    for (int i = 1; i < 2 * size; ++i) {
-        g[i] = (i == 1 ? P : g[i >> 1]) % g[i];
-    }
+    build(build, 0, m, 1);
 
     vector<mint> Ys(m);
-    for (int i = 0; i < m; ++i) Ys[i] = g[i + size][0];
+
+    auto solve = [&](auto self, int l, int r, int k, const FPS &Q) -> void {
+        if (r - l == 1) {
+            if (Q.size() > 0) { Ys[l] = Q[0]; }
+            else { Ys[l] = 0; }
+            return;
+        }
+        
+        int mid = (l + r) / 2;
+        FPS Q_l = Q % g[2 * k];
+        self(self, l, mid, 2 * k, Q_l);
+        
+        FPS Q_r = Q % g[2 * k + 1];
+        self(self, mid, r, 2 * k + 1, Q_r);
+    };
+
+    FPS Q = P % g[1];
+    solve(solve, 0, m, 1, Q);
 
     return Ys;
 }
