@@ -462,22 +462,29 @@ data:
     \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
     \ operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
     \ Fast_Power_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\
-    \u306E\u9664\u7B97\n    Fast_Power_Series div(Fast_Power_Series &B) {\n      \
-    \  this->reduce(); B.reduce();\n\n        int n = this->poly.size(), m = B.poly.size();\n\
-    \n        if (n < m) { return Fast_Power_Series({0}); }\n\n        vector<mint>\
-    \ a_rev(this->poly), b_rev(B.poly);\n        reverse(a_rev.begin(), a_rev.end());\n\
-    \        reverse(b_rev.begin(), b_rev.end());\n\n        vector<mint> c = calculator.convolution(a_rev,\
-    \ calculator.inverse(b_rev, n));\n        c.resize(n - m + 1);\n        reverse(c.begin(),\
-    \ c.end());\n        return Fast_Power_Series(c, n);\n    }\n\n    Fast_Power_Series&\
-    \ operator%=(Fast_Power_Series &B) {\n        Fast_Power_Series Q = this->div(B);\n\
-    \        this->poly = ((*this) - B * Q).poly;\n        return *this;\n    }\n\n\
-    \    friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series\
-    \ &rhs) { return Fast_Power_Series(lhs) %= rhs; }\n};\n\ntemplate<typename mint>\n\
-    Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();\n\
-    \ntemplate<typename mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
-    \ divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {\n    Fast_Power_Series\
-    \ Q = A.div(B);\n    Fast_Power_Series R = A - B * Q;\n    return {Q, R};\n}\n\
-    #line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\
+    \u306E\u9664\u7B97\n    Fast_Power_Series div(const Fast_Power_Series &B) {\n\
+    \        this->reduce(); // B.reduce(); const \u306A\u306E\u3067\u5909\u66F4\u3057\
+    \u306A\u3044\n\n        int n = this->poly.size(), m = B.poly.size();\n\n    \
+    \    if (n < m) { return Fast_Power_Series({0}); }\n\n        vector<mint> a_rev(this->poly),\
+    \ b_rev(B.poly);\n        reverse(a_rev.begin(), a_rev.end());\n        reverse(b_rev.begin(),\
+    \ b_rev.end());\n\n        int k = n - m + 1;\n        if (a_rev.size() > k) {\
+    \ a_rev.resize(k); }\n        if (b_rev.size() > k) { b_rev.resize(k); }\n   \
+    \     vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev,\
+    \ k));\n        c.resize(k);\n        reverse(c.begin(), c.end());\n        return\
+    \ Fast_Power_Series(c, n);\n    }\n\n    Fast_Power_Series& operator%=(const Fast_Power_Series\
+    \ &B) {\n        Fast_Power_Series Q = this->div(B);\n        vector<mint> product\
+    \ = calculator.convolution(B.poly, Q.poly);\n        if (this->poly.size() < product.size())\
+    \ { this->poly.resize(product.size()); }\n        for (int i = 0; i < product.size();\
+    \ i++) { this->poly[i] -= product[i]; }\n        this->reduce();\n        return\
+    \ *this;\n    }\n\n    friend Fast_Power_Series operator%(const Fast_Power_Series\
+    \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs;\
+    \ }\n};\n\ntemplate<typename mint>\nNumeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator\
+    \ = Numeric_Theory_Translation<mint>();\n\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
+    \ Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint>\
+    \ &B) {\n    Fast_Power_Series Q = A.div(B);\n    Fast_Power_Series R = A;\n \
+    \   R %= B; // operator%= \u3092\u4F7F\u3063\u3066\u8A08\u7B97\u3059\u308B\u3053\
+    \u3068\u3067\u9AD8\u901F\u5316\u3068\u7CBE\u5EA6\u7DAD\u6301\n    return {Q, R};\n\
+    }\n#line 2 \"Modulo_Polynomial/Exp.hpp\"\n\n#line 2 \"Modulo_Polynomial/Log.hpp\"\
     \n\n#line 2 \"Modulo_Polynomial/Calculus.hpp\"\n\n#line 4 \"Modulo_Polynomial/Calculus.hpp\"\
     \n\n// A \u306E\u5F62\u5F0F\u7684\u5FAE\u5206\u3092\u6C42\u3081\u308B\ntemplate<typename\
     \ mint>\nFast_Power_Series<mint> Differential(const Fast_Power_Series<mint> &A)\
@@ -544,7 +551,7 @@ data:
   path: Modulo_Polynomial/Subset_Sum.hpp
   requiredBy:
   - Modulo_Polynomial/Partition_Q.hpp
-  timestamp: '2026-01-29 01:07:02+09:00'
+  timestamp: '2026-02-08 00:48:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
