@@ -102,19 +102,25 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         reverse(a_rev.begin(), a_rev.end());
         reverse(b_rev.begin(), b_rev.end());
 
-        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, n));
-        c.resize(n - m + 1);
+        int k = n - m + 1;
+        if (a_rev.size() > k) { a_rev.resize(k); }
+        if (b_rev.size() > k) { b_rev.resize(k); }
+        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, k));
+        c.resize(k);
         reverse(c.begin(), c.end());
         return Fast_Power_Series(c, n);
     }
 
     Fast_Power_Series& operator%=(Fast_Power_Series &B) {
         Fast_Power_Series Q = this->div(B);
-        this->poly = ((*this) - B * Q).poly;
+        vector<mint> product = calculator.convolution(B.poly, Q.poly);
+        if (this->poly.size() < product.size()) { this->poly.resize(product.size()); }
+        for (int i = 0; i < product.size(); i++) { this->poly[i] -= product[i]; }
+        this->reduce();
         return *this;
     }
 
-    friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
+    friend Fast_Power_Series operator%(const Fast_Power_Series &lhs, Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
 };
 
 template<typename mint>
