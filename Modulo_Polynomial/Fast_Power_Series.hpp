@@ -121,6 +121,17 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
     }
 
     friend Fast_Power_Series operator%(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
+
+    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series &B) {
+        Fast_Power_Series Q = this->div(B);
+        vector<mint> product = calculator.convolution(B.poly, Q.poly);
+
+        Fast_Power_Series R(*this);
+        if (R.poly.size() < product.size()) { R.poly.resize(product.size()); }
+        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i]; }
+        R.reduce();
+        return {Q, R};
+    }
 };
 
 template<typename mint>
@@ -128,8 +139,5 @@ Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_T
 
 template<typename mint>
 pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint> &B) {
-    Fast_Power_Series Q = A.div(B);
-    Fast_Power_Series R = A;
-    R %= B; // operator%= を使って計算することで高速化と精度維持
-    return {Q, R};
+    return A.divmod(B);
 }
