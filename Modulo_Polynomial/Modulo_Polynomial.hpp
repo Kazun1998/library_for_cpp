@@ -137,6 +137,8 @@ class Modulo_Polynomial {
         poly.resize(size);
     }
 
+    /// @brief poly のサイズが size より大きい場合のみ, size に切り詰める.
+    /// @param size 指定するサイズ. -1 の場合は precision を使用する.
     void weak_resize(int size = -1) {
         if (size == -1) { size = this->precision; }
 
