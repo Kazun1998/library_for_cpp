@@ -137,6 +137,14 @@ class Modulo_Polynomial {
         poly.resize(size);
     }
 
+    void weak_resize(int size = -1) {
+        if (size == -1) { size = this->precision; }
+
+        if (size >= this->poly.size()) return;
+
+        resize(size);
+    }
+
     bool is_zero() const {
         for (auto &a: poly) { unless(a.is_zero()) {return false;} }
         return true;

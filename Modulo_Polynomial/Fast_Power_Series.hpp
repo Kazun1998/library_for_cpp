@@ -22,6 +22,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
             this->poly[i] += B.poly[i];
         }
         this->precision = min(this->precision, B.precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
@@ -37,6 +38,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
             this->poly[i] -= B.poly[i];
         }
         this->precision = min(this->precision, B.precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
@@ -64,12 +66,19 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
 
         this->poly = tmp;
         this->precision = min(this->precision, P.precision);
-        this->resize(this->precision);
+
+        this->weak_resize();
         this->reduce();
         return *this;
     }
 
     friend Fast_Power_Series operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) *= rhs; }
+
+    // 多項式としての積. 精度は結果の次数に合わせて自動拡張される.
+    Fast_Power_Series mul_poly(const Fast_Power_Series &P) const {
+        auto tmp = calculator.convolution(this->poly, P.poly);
+        return Fast_Power_Series(tmp, tmp.size());
+    }
 
     // (mod X^d) における逆元を求める
     // d = -1 のときは, d = precision になる.
@@ -83,7 +92,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         vector<mint> inv = calculator.inverse(P.poly, P.precision);
         this->poly = calculator.convolution(this->poly, inv);
         this->precision = min(this->precision, P.precision);
-        this->resize(this->precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
