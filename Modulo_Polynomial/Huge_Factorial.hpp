@@ -3,6 +3,12 @@
 #include "../Algebra/modint.hpp"
 #include "Multipoint_Evaluation.hpp"
 
+/// @brief 階乗 N! mod P を計算する
+/// @tparam mint
+/// @param N
+/// @return N! mod P
+/// @note N >= P のときは 0 を返す.
+/// @note 計算量 O(√N (log N)^2)
 template<typename mint>
 mint Huge_Factorial(const ll N) {
     if (N == 0) return 1;
