@@ -21,10 +21,17 @@ concept Monoid_Concept =
 
 // 群コンセプト
 // モノイド + 逆元
-template <typename G, auto op, auto inv, auto identity>
+template <typename G, auto op, auto identity, auto inv>
 concept Group_Concept = 
     Monoid_Concept<G, op, identity>
     && Unary_Operator_Concept<decltype(inv), G>;
+
+// 順序群コンセプト
+// 群 + 全順序
+template <typename G, auto op, auto identity, auto inv>
+concept Totally_Ordered_Group_Concept = 
+    Group_Concept<G, op, identity, inv>
+    && totally_ordered<G>;
 
 // ハッシュ可能コンセプト
 template<typename T>
