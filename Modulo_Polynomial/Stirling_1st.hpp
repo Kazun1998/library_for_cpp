@@ -14,18 +14,18 @@ vector<mint> Stirling_1st(int N, bool sign = false) {
     using FPS = Fast_Power_Series<mint>;
     if (N == 0) { return {1}; }
 
-    auto g = [&N](auto self, int n) -> FPS {
-        if (n == 0) { return FPS({1}, N + 1); }
-        if (n == 1) { return FPS({0, 1}, N + 1); }
+    auto g = [](auto self, int n) -> FPS {
+        if (n == 0) { return FPS({1}); }
+        if (n == 1) { return FPS({0, 1}); }
 
         if (n % 2 == 1) {
             FPS P = self(self, n - 1);
-            return P * FPS({n - 1, 1}, N + 1);
+            return P.mul_poly(FPS({mint(n - 1), 1}));
         }
 
         FPS P = self(self, n / 2);
         FPS Q = Taylor_Shift(P, n / 2);
-        return P * Q;
+        return P.mul_poly(Q);
     };
     
     auto c = g(g, N).poly;
