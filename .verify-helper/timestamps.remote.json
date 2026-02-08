@@ -48,6 +48,7 @@
 "verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp": "2026-01-29 01:07:02 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp": "2026-02-08 11:05:57 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp": "2026-01-24 19:02:38 +0900",
+"verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp": "2026-02-08 17:31:06 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp": "2026-01-24 19:02:38 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp": "2026-02-08 11:05:57 +0900",
 "verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp": "2026-02-08 11:13:11 +0900",
