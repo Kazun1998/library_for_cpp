@@ -287,12 +287,15 @@ data:
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
   - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Huge_Factorial.hpp
+    title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Log
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
-      \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
+    title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
+      \u5F0F\u74B0"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Multipoint_Evaluation.hpp
     title: "\u591A\u70B9\u8A55\u4FA1"
@@ -525,6 +528,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
@@ -838,6 +844,7 @@ data:
   - Modulo_Polynomial/Stirling_1st.hpp
   - Modulo_Polynomial/Log.hpp
   - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Huge_Factorial.hpp
   - Modulo_Polynomial/Stirling_2nd.hpp
   - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
@@ -875,6 +882,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp

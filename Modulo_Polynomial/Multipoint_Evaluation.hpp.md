@@ -9,8 +9,8 @@ data:
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
-      \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
+    title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
+      \u5F0F\u74B0"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
@@ -35,8 +35,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Modulo_Polynomial/Huge_Factorial.hpp
+    title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
+    title: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
     title: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
@@ -538,10 +544,12 @@ data:
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
   isVerificationFile: false
   path: Modulo_Polynomial/Multipoint_Evaluation.hpp
-  requiredBy: []
+  requiredBy:
+  - Modulo_Polynomial/Huge_Factorial.hpp
   timestamp: '2026-02-08 11:05:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
 documentation_of: Modulo_Polynomial/Multipoint_Evaluation.hpp
 layout: document

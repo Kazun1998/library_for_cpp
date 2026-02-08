@@ -12,8 +12,8 @@ data:
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
-      \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
+    title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
+      \u5F0F\u74B0"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
