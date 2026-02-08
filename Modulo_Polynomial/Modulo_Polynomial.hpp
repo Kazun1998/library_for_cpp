@@ -137,11 +137,6 @@ class Modulo_Polynomial {
         poly.resize(size);
     }
 
-    void update_precision(int precision) {
-        this->precision = precision;
-        if (poly.size() > precision) { poly.resize(precision); }
-    }
-
     bool is_zero() const {
         for (auto &a: poly) { unless(a.is_zero()) {return false;} }
         return true;
