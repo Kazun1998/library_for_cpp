@@ -367,7 +367,8 @@ data:
       title: Log
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Modulo_Polynomial.hpp
-      title: Modulo_Polynomial/Modulo_Polynomial.hpp
+      title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
+        \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Multipoint_Evaluation.hpp
       title: "\u591A\u70B9\u8A55\u4FA1"

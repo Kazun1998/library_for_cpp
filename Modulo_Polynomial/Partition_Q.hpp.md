@@ -18,7 +18,8 @@ data:
     title: Log
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: Modulo_Polynomial/Modulo_Polynomial.hpp
+    title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
+      \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
@@ -303,7 +304,13 @@ data:
     \ \u306E\u3068\u304D\u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B\
     .\n    void resize(int size = -1) {\n        if (size == -1) { size = this ->\
     \ precision; }\n        size = min(size, this -> precision);\n        poly.resize(size);\n\
-    \    }\n\n    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
+    \    }\n\n    /// @brief poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\
+    \u5927\u304D\u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\
+    \u308B.\n    /// @param size \u6307\u5B9A\u3059\u308B\u30B5\u30A4\u30BA. -1 \u306E\
+    \u5834\u5408\u306F precision \u3092\u4F7F\u7528\u3059\u308B.\n    void weak_resize(int\
+    \ size = -1) {\n        if (size == -1) { size = this->precision; }\n\n      \
+    \  if (size >= this->poly.size()) return;\n\n        resize(size);\n    }\n\n\
+    \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
     \ (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }\n    }\n\n   \
@@ -428,37 +435,42 @@ data:
     \    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
     \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
     \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
-    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
-    \ friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs,\
-    \ const Fast_Power_Series<mint> &rhs) {\n        return Fast_Power_Series<mint>(lhs)\
-    \ += rhs; \n    }\n\n    // \u6E1B\u7B97\n    Fast_Power_Series& operator-=(const\
-    \ Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(), B.poly.size()));\n\
-    \        for (int i = 0; i < B.poly.size(); i++) {\n            this->poly[i]\
-    \ -= B.poly[i];\n        }\n        this->precision = min(this->precision, B.precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series<mint>\
-    \ operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint>\
-    \ &rhs) {\n        return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n   \
-    \ // \u30B9\u30AB\u30E9\u30FC\u500D\n    Fast_Power_Series& operator*=(const mint\
-    \ &a){\n        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    Fast_Power_Series\
-    \ operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }\n\n\
-    \    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series\
-    \ &P) { return Fast_Power_Series(P) *= a; }\n\n    friend Fast_Power_Series operator*(const\
-    \ ll &a, const Fast_Power_Series &P) { return mint(a) * P; }\n\n    // \u7A4D\n\
-    \    Fast_Power_Series& operator*=(const Fast_Power_Series &P) {\n        auto\
-    \ tmp = calculator.convolution(this->poly, P.poly);\n\n        this->poly = tmp;\n\
-    \        this->precision = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) *= rhs; }\n\n    // (mod X^d) \u306B\u304A\u3051\u308B\
-    \u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1 \u306E\u3068\u304D\u306F,\
-    \ d = precision \u306B\u306A\u308B.\n    Fast_Power_Series inverse(int d = -1)\
-    \ {\n        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision\
-    \ : min(d, this->precision));\n        return {p, this->precision};\n    }\n\n\
-    \    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const Fast_Power_Series\
-    \ &P) {\n        vector<mint> inv = calculator.inverse(P.poly, P.precision);\n\
-    \        this->poly = calculator.convolution(this->poly, inv);\n        this->precision\
-    \ = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
+    \ B.precision);\n        this->weak_resize();\n        this->reduce();\n     \
+    \   return *this;\n    }\n\n    friend Fast_Power_Series<mint> operator+(const\
+    \ Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {\n      \
+    \  return Fast_Power_Series<mint>(lhs) += rhs; \n    }\n\n    // \u6E1B\u7B97\n\
+    \    Fast_Power_Series& operator-=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
+    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
+    \      this->poly[i] -= B.poly[i];\n        }\n        this->precision = min(this->precision,\
+    \ B.precision);\n        this->weak_resize();\n        this->reduce();\n     \
+    \   return *this;\n    }\n\n    friend Fast_Power_Series<mint> operator-(const\
+    \ Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {\n      \
+    \  return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n    // \u30B9\u30AB\u30E9\
+    \u30FC\u500D\n    Fast_Power_Series& operator*=(const mint &a){\n        for (int\
+    \ i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n        this->reduce();\n\
+    \        return *this;\n    }\n\n    Fast_Power_Series operator*(const mint &a)\
+    \ const {return Fast_Power_Series(*this) *= a; }\n\n    friend Fast_Power_Series\
+    \ operator*(const mint &a, const Fast_Power_Series &P) { return Fast_Power_Series(P)\
+    \ *= a; }\n\n    friend Fast_Power_Series operator*(const ll &a, const Fast_Power_Series\
+    \ &P) { return mint(a) * P; }\n\n    // \u7A4D\n    Fast_Power_Series& operator*=(const\
+    \ Fast_Power_Series &P) {\n        auto tmp = calculator.convolution(this->poly,\
+    \ P.poly);\n\n        this->poly = tmp;\n        this->precision = min(this->precision,\
+    \ P.precision);\n\n        this->weak_resize();\n        this->reduce();\n   \
+    \     return *this;\n    }\n\n    friend Fast_Power_Series operator*(const Fast_Power_Series\
+    \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) *= rhs;\
+    \ }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\u306E\u7A4D. \u7CBE\u5EA6\u306F\
+    \u7D50\u679C\u306E\u6B21\u6570\u306B\u5408\u308F\u305B\u3066\u81EA\u52D5\u62E1\
+    \u5F35\u3055\u308C\u308B.\n    Fast_Power_Series mul_poly(const Fast_Power_Series\
+    \ &P) const {\n        auto tmp = calculator.convolution(this->poly, P.poly);\n\
+    \        return Fast_Power_Series(tmp, tmp.size());\n    }\n\n    // (mod X^d)\
+    \ \u306B\u304A\u3051\u308B\u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1\
+    \ \u306E\u3068\u304D\u306F, d = precision \u306B\u306A\u308B.\n    Fast_Power_Series\
+    \ inverse(int d = -1) {\n        vector<mint> p = calculator.inverse(this->poly,\
+    \ (d == -1) ? this->precision : min(d, this->precision));\n        return {p,\
+    \ this->precision};\n    }\n\n    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const\
+    \ Fast_Power_Series &P) {\n        vector<mint> inv = calculator.inverse(P.poly,\
+    \ P.precision);\n        this->poly = calculator.convolution(this->poly, inv);\n\
+    \        this->precision = min(this->precision, P.precision);\n        this->weak_resize();\n\
     \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
     \ operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
     \ Fast_Power_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\
@@ -560,7 +572,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Partition_Q.hpp
   requiredBy: []
-  timestamp: '2026-02-08 01:18:26+09:00'
+  timestamp: '2026-02-08 11:05:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/original/Partition_Q.test.cpp

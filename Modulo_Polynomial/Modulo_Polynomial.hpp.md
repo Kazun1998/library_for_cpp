@@ -133,6 +133,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
+      \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
     links: []
   bundledCode: "#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n#line 2 \"\
     template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\
@@ -377,6 +379,12 @@ data:
     \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
     \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
     \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
+    \    /// @brief poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
+    \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B.\n \
+    \   /// @param size \u6307\u5B9A\u3059\u308B\u30B5\u30A4\u30BA. -1 \u306E\u5834\
+    \u5408\u306F precision \u3092\u4F7F\u7528\u3059\u308B.\n    void weak_resize(int\
+    \ size = -1) {\n        if (size == -1) { size = this->precision; }\n\n      \
+    \  if (size >= this->poly.size()) return;\n\n        resize(size);\n    }\n\n\
     \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
@@ -448,6 +456,12 @@ data:
     \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
     \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
     \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
+    \    /// @brief poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
+    \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B.\n \
+    \   /// @param size \u6307\u5B9A\u3059\u308B\u30B5\u30A4\u30BA. -1 \u306E\u5834\
+    \u5408\u306F precision \u3092\u4F7F\u7528\u3059\u308B.\n    void weak_resize(int\
+    \ size = -1) {\n        if (size == -1) { size = this->precision; }\n\n      \
+    \  if (size >= this->poly.size()) return;\n\n        resize(size);\n    }\n\n\
     \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
@@ -491,7 +505,7 @@ data:
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Multipoint_Evaluation.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2026-01-29 01:07:02+09:00'
+  timestamp: '2026-02-08 11:05:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
@@ -516,5 +530,6 @@ layout: document
 redirect_from:
 - /library/Modulo_Polynomial/Modulo_Polynomial.hpp
 - /library/Modulo_Polynomial/Modulo_Polynomial.hpp.html
-title: Modulo_Polynomial/Modulo_Polynomial.hpp
+title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\u5834\
+  \u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
 ---

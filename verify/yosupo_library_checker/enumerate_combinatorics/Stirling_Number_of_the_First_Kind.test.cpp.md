@@ -9,7 +9,8 @@ data:
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: Modulo_Polynomial/Modulo_Polynomial.hpp
+    title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\u3044\
+      \u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
@@ -296,6 +297,12 @@ data:
     \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
     \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
     \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
+    \    /// @brief poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
+    \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B.\n \
+    \   /// @param size \u6307\u5B9A\u3059\u308B\u30B5\u30A4\u30BA. -1 \u306E\u5834\
+    \u5408\u306F precision \u3092\u4F7F\u7528\u3059\u308B.\n    void weak_resize(int\
+    \ size = -1) {\n        if (size == -1) { size = this->precision; }\n\n      \
+    \  if (size >= this->poly.size()) return;\n\n        resize(size);\n    }\n\n\
     \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
     \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
     \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
@@ -421,37 +428,42 @@ data:
     \    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
     \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
     \      this->poly[i] += B.poly[i];\n        }\n        this->precision = min(this->precision,\
-    \ B.precision);\n        this->reduce();\n        return *this;\n    }\n\n   \
-    \ friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs,\
-    \ const Fast_Power_Series<mint> &rhs) {\n        return Fast_Power_Series<mint>(lhs)\
-    \ += rhs; \n    }\n\n    // \u6E1B\u7B97\n    Fast_Power_Series& operator-=(const\
-    \ Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(), B.poly.size()));\n\
-    \        for (int i = 0; i < B.poly.size(); i++) {\n            this->poly[i]\
-    \ -= B.poly[i];\n        }\n        this->precision = min(this->precision, B.precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series<mint>\
-    \ operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint>\
-    \ &rhs) {\n        return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n   \
-    \ // \u30B9\u30AB\u30E9\u30FC\u500D\n    Fast_Power_Series& operator*=(const mint\
-    \ &a){\n        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    Fast_Power_Series\
-    \ operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }\n\n\
-    \    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series\
-    \ &P) { return Fast_Power_Series(P) *= a; }\n\n    friend Fast_Power_Series operator*(const\
-    \ ll &a, const Fast_Power_Series &P) { return mint(a) * P; }\n\n    // \u7A4D\n\
-    \    Fast_Power_Series& operator*=(const Fast_Power_Series &P) {\n        auto\
-    \ tmp = calculator.convolution(this->poly, P.poly);\n\n        this->poly = tmp;\n\
-    \        this->precision = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
-    \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
-    \ operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
-    \ Fast_Power_Series(lhs) *= rhs; }\n\n    // (mod X^d) \u306B\u304A\u3051\u308B\
-    \u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1 \u306E\u3068\u304D\u306F,\
-    \ d = precision \u306B\u306A\u308B.\n    Fast_Power_Series inverse(int d = -1)\
-    \ {\n        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision\
-    \ : min(d, this->precision));\n        return {p, this->precision};\n    }\n\n\
-    \    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const Fast_Power_Series\
-    \ &P) {\n        vector<mint> inv = calculator.inverse(P.poly, P.precision);\n\
-    \        this->poly = calculator.convolution(this->poly, inv);\n        this->precision\
-    \ = min(this->precision, P.precision);\n        this->resize(this->precision);\n\
+    \ B.precision);\n        this->weak_resize();\n        this->reduce();\n     \
+    \   return *this;\n    }\n\n    friend Fast_Power_Series<mint> operator+(const\
+    \ Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {\n      \
+    \  return Fast_Power_Series<mint>(lhs) += rhs; \n    }\n\n    // \u6E1B\u7B97\n\
+    \    Fast_Power_Series& operator-=(const Fast_Power_Series &B) {\n        this->poly.resize(max(this->poly.size(),\
+    \ B.poly.size()));\n        for (int i = 0; i < B.poly.size(); i++) {\n      \
+    \      this->poly[i] -= B.poly[i];\n        }\n        this->precision = min(this->precision,\
+    \ B.precision);\n        this->weak_resize();\n        this->reduce();\n     \
+    \   return *this;\n    }\n\n    friend Fast_Power_Series<mint> operator-(const\
+    \ Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {\n      \
+    \  return Fast_Power_Series<mint>(lhs) -= rhs; \n    }\n\n    // \u30B9\u30AB\u30E9\
+    \u30FC\u500D\n    Fast_Power_Series& operator*=(const mint &a){\n        for (int\
+    \ i = 0; i < this->size(); i++) { this->poly[i] *= a; }\n        this->reduce();\n\
+    \        return *this;\n    }\n\n    Fast_Power_Series operator*(const mint &a)\
+    \ const {return Fast_Power_Series(*this) *= a; }\n\n    friend Fast_Power_Series\
+    \ operator*(const mint &a, const Fast_Power_Series &P) { return Fast_Power_Series(P)\
+    \ *= a; }\n\n    friend Fast_Power_Series operator*(const ll &a, const Fast_Power_Series\
+    \ &P) { return mint(a) * P; }\n\n    // \u7A4D\n    Fast_Power_Series& operator*=(const\
+    \ Fast_Power_Series &P) {\n        auto tmp = calculator.convolution(this->poly,\
+    \ P.poly);\n\n        this->poly = tmp;\n        this->precision = min(this->precision,\
+    \ P.precision);\n\n        this->weak_resize();\n        this->reduce();\n   \
+    \     return *this;\n    }\n\n    friend Fast_Power_Series operator*(const Fast_Power_Series\
+    \ &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) *= rhs;\
+    \ }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\u306E\u7A4D. \u7CBE\u5EA6\u306F\
+    \u7D50\u679C\u306E\u6B21\u6570\u306B\u5408\u308F\u305B\u3066\u81EA\u52D5\u62E1\
+    \u5F35\u3055\u308C\u308B.\n    Fast_Power_Series mul_poly(const Fast_Power_Series\
+    \ &P) const {\n        auto tmp = calculator.convolution(this->poly, P.poly);\n\
+    \        return Fast_Power_Series(tmp, tmp.size());\n    }\n\n    // (mod X^d)\
+    \ \u306B\u304A\u3051\u308B\u9006\u5143\u3092\u6C42\u3081\u308B\n    // d = -1\
+    \ \u306E\u3068\u304D\u306F, d = precision \u306B\u306A\u308B.\n    Fast_Power_Series\
+    \ inverse(int d = -1) {\n        vector<mint> p = calculator.inverse(this->poly,\
+    \ (d == -1) ? this->precision : min(d, this->precision));\n        return {p,\
+    \ this->precision};\n    }\n\n    // \u9664\u7B97\n    Fast_Power_Series& operator/=(const\
+    \ Fast_Power_Series &P) {\n        vector<mint> inv = calculator.inverse(P.poly,\
+    \ P.precision);\n        this->poly = calculator.convolution(this->poly, inv);\n\
+    \        this->precision = min(this->precision, P.precision);\n        this->weak_resize();\n\
     \        this->reduce();\n        return *this;\n    }\n\n    friend Fast_Power_Series\
     \ operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return\
     \ Fast_Power_Series(lhs) /= rhs; }\n\n    // \u591A\u9805\u5F0F\u3068\u3057\u3066\
@@ -483,29 +495,38 @@ data:
     \ &B) {\n    return A.divmod(B);\n}\n#line 2 \"Modulo_Polynomial/Taylor_Shift.hpp\"\
     \n\n#line 4 \"Modulo_Polynomial/Taylor_Shift.hpp\"\n\ntemplate<typename mint>\n\
     Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const mint\
-    \ &a) {\n    int n = P.precision;\n    vector<mint> fact(n), fact_inv(n);\n  \
-    \  fact[0] = 1;\n    for (int k = 1; k < n; k++) { fact[k] = k * fact[k - 1];\
-    \ }\n\n    fact_inv[n - 1] = fact[n - 1].inverse();\n    for (int k = n - 2; k\
-    \ >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1]; }\n\n    vector<mint>\
-    \ f(n), g(n);\n    for (int i = 0; i < n; i++) { f[i] = P[i] * fact[i]; }\n  \
-    \  mint a_pow = 1;\n    for (int i = 0; i < n; i++) {\n        g[i] = a_pow *\
-    \ fact_inv[i];\n        a_pow *= a;\n    }\n\n    reverse(g.begin(), g.end());\n\
-    \n    auto calculator = Numeric_Theory_Translation<mint>();\n\n    vector<mint>\
-    \ h = calculator.convolution(f, g);\n    h.erase(h.begin(), h.begin() + n - 1);\n\
-    \n    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }\n\n    return Fast_Power_Series<mint>(h,\
-    \ P.precision);\n}\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const\
-    \ Fast_Power_Series<mint> &P, const int &a) {\n    return Taylor_Shift(P, mint(a));\n\
-    }\n\ntemplate<typename mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint>\
-    \ &P, const ll &a) {\n    return Taylor_Shift(P, mint(a));\n}\n#line 5 \"Modulo_Polynomial/Stirling_1st.hpp\"\
-    \n\ntemplate<typename mint>\nvector<mint> Stirling_1st(int N, bool sign = false)\
-    \ {\n    using FPS = Fast_Power_Series<mint>;\n\n    auto g = [&N](auto self,\
-    \ int n) -> FPS {\n        if (n == 0) { return FPS({1}, N + 1); }\n        if\
-    \ (n == 1) { return FPS({0, 1}, N + 1); }\n\n        if (n % 2 == 1) { return\
-    \ self(self, n - 1) * FPS({n - 1, 1}, N + 1); }\n\n        FPS P = self(self,\
-    \ n / 2);\n        return P * Taylor_Shift(P, n / 2);\n    };\n    \n    auto\
-    \ c = g(g, N).poly;\n\n    unless(sign) { return c; }\n\n    for (int k = 0; k\
-    \ <= N; k++) {\n        unless (safe_mod(k, 2) == safe_mod(N, 2)) { c[k] *= -1;\
-    \ }\n    }\n\n    return c;\n}\n#line 5 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp\"\
+    \ &a) {\n    int n = P.precision;\n    if (n == 0) { return P; }\n    vector<mint>\
+    \ fact(n), fact_inv(n);\n    fact[0] = 1;\n    for (int k = 1; k < n; k++) { fact[k]\
+    \ = k * fact[k - 1]; }\n\n    fact_inv[n - 1] = fact[n - 1].inverse();\n    for\
+    \ (int k = n - 2; k >= 0; k--) { fact_inv[k] = (k + 1) * fact_inv[k + 1]; }\n\n\
+    \    vector<mint> f(n), g(n);\n    for (int i = 0; i < n; i++) { f[i] = P[i] *\
+    \ fact[i]; }\n    mint a_pow = 1;\n    for (int i = 0; i < n; i++) {\n       \
+    \ g[i] = a_pow * fact_inv[i];\n        a_pow *= a;\n    }\n\n    reverse(g.begin(),\
+    \ g.end());\n\n    static Numeric_Theory_Translation<mint> calculator;\n\n   \
+    \ vector<mint> h = calculator.convolution(f, g);\n    \n    vector<mint> res(n);\n\
+    \    for (int k = 0; k < n; k++) {\n        res[k] = h[n - 1 + k] * fact_inv[k];\n\
+    \    }\n\n    return Fast_Power_Series<mint>(res, P.precision);\n}\n\ntemplate<typename\
+    \ mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P,\
+    \ const int &a) {\n    return Taylor_Shift(P, mint(a));\n}\n\ntemplate<typename\
+    \ mint>\nFast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P,\
+    \ const ll &a) {\n    return Taylor_Shift(P, mint(a));\n}\n#line 5 \"Modulo_Polynomial/Stirling_1st.hpp\"\
+    \n\n/// @brief \u7B2C I \u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570 (Stirling\
+    \ numbers of the first kind) \u3092\u8A08\u7B97\u3059\u308B\n/// @tparam mint\n\
+    /// @param N \n/// @param sign \u7B26\u53F7\u306E\u6709\u7121. false \u306E\u5834\
+    \u5408\u306F\u7B26\u53F7\u306A\u3057 (\u4E0A\u6607\u968E\u4E57\u51AA\u306E\u4FC2\
+    \u6570), true \u306E\u5834\u5408\u306F\u7B26\u53F7\u3042\u308A (\u4E0B\u964D\u968E\
+    \u4E57\u51AA\u306E\u4FC2\u6570)\n/// @return \u9577\u3055 N + 1 \u306E vector.\
+    \ i \u756A\u76EE\u306E\u8981\u7D20\u306F S_1(N, i)\n/// @note \u8A08\u7B97\u91CF\
+    \ O(N log N)\ntemplate<typename mint>\nvector<mint> Stirling_1st(int N, bool sign\
+    \ = false) {\n    using FPS = Fast_Power_Series<mint>;\n    if (N == 0) { return\
+    \ {1}; }\n\n    auto g = [](auto self, int n) -> FPS {\n        if (n == 0) {\
+    \ return FPS({1}); }\n        if (n == 1) { return FPS({0, 1}); }\n\n        if\
+    \ (n % 2 == 1) {\n            FPS P = self(self, n - 1);\n            return P.mul_poly(FPS({mint(n\
+    \ - 1), 1}));\n        }\n\n        FPS P = self(self, n / 2);\n        FPS Q\
+    \ = Taylor_Shift(P, n / 2);\n        return P.mul_poly(Q);\n    };\n    \n   \
+    \ auto c = g(g, N).poly;\n\n    unless(sign) { return c; }\n\n    for (int k =\
+    \ 0; k <= N; k++) {\n        unless (k % 2 == N % 2) { c[k] *= -1; }\n    }\n\n\
+    \    return c;\n}\n#line 5 \"verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp\"\
     \n\nconst ll Mod = 998244353;\nusing mint = modint<Mod>;\n\nint main() {\n   \
     \ int N; cin >> N;\n    cout << Stirling_1st<mint>(N, true) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
@@ -529,7 +550,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
   requiredBy: []
-  timestamp: '2026-02-08 01:18:26+09:00'
+  timestamp: '2026-02-08 11:13:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
