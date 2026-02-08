@@ -262,10 +262,10 @@ data:
     \u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B. \u5B58\u5728\u3057\u306A\u3044\u5834\
     \u5408\u306F NotExist \u4F8B\u5916\u3092 raise.\n    /// @param A\n    /// @return\
     \ X * X = A \u3092\u6E80\u305F\u3059 Y \u306E\u3069\u308C\u304B 1 \u3064\n   \
-    \ Modulo Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) throw NotExist();\n\
-    \n        ll p = A.n;\n        if (A.is_zero()) return A;\n        else if (p\
-    \ == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p + 1) / 4);\n\
-    \        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
+    \ optional<Modulo> Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) return\
+    \ nullopt;\n\n        ll p = A.n;\n        if (A.is_zero()) return A;\n      \
+    \  else if (p == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p +\
+    \ 1) / 4);\n        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
     \ return pow(A, (p + 3) / 8);\n            else return pow(Modulo(2, p), (p -\
     \ 1) / 4) * pow(A, (p + 3) / 8);\n        }\n\n        ll q = p - 1, s = 0;\n\
     \        while (safe_mod(q, 2) == 0) { q >>= 1; s++; }\n\n        random_device\
@@ -276,16 +276,16 @@ data:
     \ {\n                tie (t, x) = make_pair(c * c * t, c * x);\n            }\n\
     \n            c *= c;\n            m --;\n        }\n\n        return x;\n   \
     \ }\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp\"\
-    \n\nint main() {\n    using namespace modulo;\n    int T; cin >> T;\n    for (int\
-    \ t = 0; t < T; t++) {\n        Modulo Y; scanf(\"%lld%lld\", &Y.a, &Y.n);\n\n\
-    \        try {\n            cout << Sqrt(Y).a << \"\\n\";\n        } catch (const\
-    \ NotExist &e) {\n            cout << -1 << \"\\n\";\n        }\n    }\n}\n"
+    \n\nint verify() {\n    using namespace modulo;\n    Modulo Y;\n    scanf(\"%lld%lld\"\
+    , &Y.a, &Y.n);\n\n    auto X = Sqrt(Y);\n    return X == nullopt ? -1 : X.value().a;\n\
+    }\n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++) {\n \
+    \       cout << verify() << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\n\n#include\"\
     ../../../template/template.hpp\"\n#include\"../../../Modulo/Sqrt.hpp\"\n\nint\
-    \ main() {\n    using namespace modulo;\n    int T; cin >> T;\n    for (int t\
-    \ = 0; t < T; t++) {\n        Modulo Y; scanf(\"%lld%lld\", &Y.a, &Y.n);\n\n \
-    \       try {\n            cout << Sqrt(Y).a << \"\\n\";\n        } catch (const\
-    \ NotExist &e) {\n            cout << -1 << \"\\n\";\n        }\n    }\n}\n"
+    \ verify() {\n    using namespace modulo;\n    Modulo Y;\n    scanf(\"%lld%lld\"\
+    , &Y.a, &Y.n);\n\n    auto X = Sqrt(Y);\n    return X == nullopt ? -1 : X.value().a;\n\
+    }\n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++) {\n \
+    \       cout << verify() << \"\\n\";\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-08 17:47:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp

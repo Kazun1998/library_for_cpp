@@ -258,10 +258,10 @@ data:
     \u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B. \u5B58\u5728\u3057\u306A\u3044\u5834\
     \u5408\u306F NotExist \u4F8B\u5916\u3092 raise.\n    /// @param A\n    /// @return\
     \ X * X = A \u3092\u6E80\u305F\u3059 Y \u306E\u3069\u308C\u304B 1 \u3064\n   \
-    \ Modulo Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) throw NotExist();\n\
-    \n        ll p = A.n;\n        if (A.is_zero()) return A;\n        else if (p\
-    \ == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p + 1) / 4);\n\
-    \        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
+    \ optional<Modulo> Sqrt(const Modulo &A) {\n        if (Legendre(A) == -1) return\
+    \ nullopt;\n\n        ll p = A.n;\n        if (A.is_zero()) return A;\n      \
+    \  else if (p == 2) return A;\n        else if (p % 4 == 3) return pow(A, (p +\
+    \ 1) / 4);\n        else if (p % 8 == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1))\
     \ return pow(A, (p + 3) / 8);\n            else return pow(Modulo(2, p), (p -\
     \ 1) / 4) * pow(A, (p + 3) / 8);\n        }\n\n        ll q = p - 1, s = 0;\n\
     \        while (safe_mod(q, 2) == 0) { q >>= 1; s++; }\n\n        random_device\
@@ -281,20 +281,20 @@ data:
     \ @brief X * X = A \u3092\u6E80\u305F\u3059 Y \u3092 1 \u3064\u6C42\u3081\u308B\
     . \u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F NotExist \u4F8B\u5916\u3092\
     \ raise.\n    /// @param A\n    /// @return X * X = A \u3092\u6E80\u305F\u3059\
-    \ Y \u306E\u3069\u308C\u304B 1 \u3064\n    Modulo Sqrt(const Modulo &A) {\n  \
-    \      if (Legendre(A) == -1) throw NotExist();\n\n        ll p = A.n;\n     \
-    \   if (A.is_zero()) return A;\n        else if (p == 2) return A;\n        else\
-    \ if (p % 4 == 3) return pow(A, (p + 1) / 4);\n        else if (p % 8 == 5) {\n\
-    \            if (pow(A, (p - 1) / 4).is_member(1)) return pow(A, (p + 3) / 8);\n\
-    \            else return pow(Modulo(2, p), (p - 1) / 4) * pow(A, (p + 3) / 8);\n\
-    \        }\n\n        ll q = p - 1, s = 0;\n        while (safe_mod(q, 2) == 0)\
-    \ { q >>= 1; s++; }\n\n        random_device device;\n        Modulo z;\n    \
-    \    while (true) {\n            z = Modulo(device(), p);\n            if (Legendre(z)\
-    \ == -1) break;\n        }\n\n        int m = s;\n        Modulo c = pow(z, q),\
-    \ t = pow(A, q), x = pow(A, (q + 1) / 2);\n        while (m > 1) {\n         \
-    \   unless (pow(t, intpow(2, m - 2)).is_member(1)) {\n                tie (t,\
-    \ x) = make_pair(c * c * t, c * x);\n            }\n\n            c *= c;\n  \
-    \          m --;\n        }\n\n        return x;\n    }\n}\n"
+    \ Y \u306E\u3069\u308C\u304B 1 \u3064\n    optional<Modulo> Sqrt(const Modulo\
+    \ &A) {\n        if (Legendre(A) == -1) return nullopt;\n\n        ll p = A.n;\n\
+    \        if (A.is_zero()) return A;\n        else if (p == 2) return A;\n    \
+    \    else if (p % 4 == 3) return pow(A, (p + 1) / 4);\n        else if (p % 8\
+    \ == 5) {\n            if (pow(A, (p - 1) / 4).is_member(1)) return pow(A, (p\
+    \ + 3) / 8);\n            else return pow(Modulo(2, p), (p - 1) / 4) * pow(A,\
+    \ (p + 3) / 8);\n        }\n\n        ll q = p - 1, s = 0;\n        while (safe_mod(q,\
+    \ 2) == 0) { q >>= 1; s++; }\n\n        random_device device;\n        Modulo\
+    \ z;\n        while (true) {\n            z = Modulo(device(), p);\n         \
+    \   if (Legendre(z) == -1) break;\n        }\n\n        int m = s;\n        Modulo\
+    \ c = pow(z, q), t = pow(A, q), x = pow(A, (q + 1) / 2);\n        while (m > 1)\
+    \ {\n            unless (pow(t, intpow(2, m - 2)).is_member(1)) {\n          \
+    \      tie (t, x) = make_pair(c * c * t, c * x);\n            }\n\n          \
+    \  c *= c;\n            m --;\n        }\n\n        return x;\n    }\n}\n"
   dependsOn:
   - Modulo/Modulo.hpp
   - template/template.hpp
@@ -307,7 +307,7 @@ data:
   isVerificationFile: false
   path: Modulo/Sqrt.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-08 17:47:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
