@@ -5,6 +5,7 @@
 template<typename mint>
 Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const mint &a) {
     int n = P.precision;
+    if (n == 0) { return P; }
     vector<mint> fact(n), fact_inv(n);
     fact[0] = 1;
     for (int k = 1; k < n; k++) { fact[k] = k * fact[k - 1]; }
@@ -22,14 +23,16 @@ Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const min
 
     reverse(g.begin(), g.end());
 
-    auto calculator = Numeric_Theory_Translation<mint>();
+    static Numeric_Theory_Translation<mint> calculator;
 
     vector<mint> h = calculator.convolution(f, g);
-    h.erase(h.begin(), h.begin() + n - 1);
+    
+    vector<mint> res(n);
+    for (int k = 0; k < n; k++) {
+        res[k] = h[n - 1 + k] * fact_inv[k];
+    }
 
-    for (int k = 0; k < n; k++) { h[k] *= fact_inv[k]; }
-
-    return Fast_Power_Series<mint>(h, P.precision);
+    return Fast_Power_Series<mint>(res, P.precision);
 }
 
 template<typename mint>
