@@ -2,7 +2,7 @@
 
 #include"../../../template/template.hpp"
 #include"../../../Algebra/modint.hpp"
-#include"../../../Graph/Graph/Cliques.hpp"
+#include"../../../Graph/Graph/Enumerate_Cliques.hpp"
 
 using namespace graph;
 using mint = modint<998244353>;
@@ -27,5 +27,12 @@ int main() {
         return res;
     };
 
-    cout << Cliques<mint>(G, product, add<mint>, 0)<< endl;
+    mint res(0);
+    for (auto clique: Enumerate_Cliques(G)) {
+        mint prod = 1;
+        for (int v: clique) prod *= x[v];
+        res += prod;
+    }
+
+    cout << res << endl;
 }
