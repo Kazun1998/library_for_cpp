@@ -5,8 +5,8 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Cliques.hpp
-    title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
+    path: Graph/Graph/Enumerate_Cliques.hpp
+    title: Graph/Graph/Enumerate_Cliques.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
@@ -228,7 +228,7 @@ data:
     \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
     \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
     \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Graph/Graph/Cliques.hpp\"\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Graph/Graph/Enumerate_Cliques.hpp\"\
     \n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\n\
     namespace graph {\n    struct Edge {\n        int id, source, target;\n      \
     \  Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source, int\
@@ -258,71 +258,70 @@ data:
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
     \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Cliques.hpp\"\
-    \n\nnamespace graph {\n    template<typename X>\n    X Cliques(\n            const\
-    \ Graph &G,\n            const function<X(const vector<int>)> &calc,\n       \
-    \     const function<X(X, X)> &merge,\n            const X unit,\n           \
-    \ bool empty = false) {\n\n        int N = G.order(), M = G.size();\n        int\
-    \ M_sqrt = ceil_sqrt(M);\n\n        vector<int> deg(N, 0);\n        for (int v\
-    \ = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n        vector<bool> alive(N,\
-    \ true);\n        vector<vector<bool>> E(N, vector<bool>(N, false));\n       \
-    \ for (int u = 0; u < N; u++) {\n            for (auto edge: G.incidence(u)) {\n\
-    \                int v = edge->target;\n                E[u][v] = true;\n    \
-    \            E[v][u] = true;\n            }\n        }\n\n        auto generate_bits_table\
-    \ = [&](const vector<int> &A) -> vector<ll> {\n            int K = A.size();\n\
-    \            vector<ll> bits(K, 0);\n\n            for (int i = 0; i < K; i++)\
-    \ {\n                for (int j = 0; j < i; j++) {\n                    unless(E[A[i]][A[j]])\
-    \ {\n                        bits[i] |= 1 << j;\n                        bits[j]\
-    \ |= 1 << i;\n                    }\n                }\n            }\n\n    \
-    \        return bits;\n        };\n\n        auto is_clique = [&](const vector<int>\
-    \ &A, const vector<ll> &bits, int S) -> bool {\n            for (int i = 0; i\
-    \ < A.size(); i++) {\n                if (get_bit(S, i) && (S & bits[i])) { return\
-    \ false; }\n            }\n\n            return true;\n        };\n\n        auto\
-    \ subcalc = [&](const vector<int> &A, const int leader = -1) -> X {\n        \
-    \    X res = unit;\n            bool empty_accept = (leader != -1) || empty;\n\
-    \n            int K = A.size();\n            auto bits = generate_bits_table(A);\n\
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Enumerate_Cliques.hpp\"\
+    \n\nnamespace graph {\n    vector<vector<int>> Enumerate_Cliques(const Graph &G,\
+    \ bool empty = false) {\n        vector<vector<int>> cliques;\n\n        int N\
+    \ = G.order(), M = G.size();\n        int M_sqrt = ceil_sqrt(M);\n\n        vector<int>\
+    \ deg(N, 0);\n        for (int v = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n\
+    \        vector<bool> alive(N, true);\n        vector<vector<bool>> E(N, vector<bool>(N,\
+    \ false));\n        for (int u = 0; u < N; u++) {\n            for (auto edge:\
+    \ G.incidence(u)) {\n                int v = edge->target;\n                E[u][v]\
+    \ = true;\n                E[v][u] = true;\n            }\n        }\n\n     \
+    \   auto generate_bits_table = [&](const vector<int> &A) -> vector<ll> {\n   \
+    \         int K = A.size();\n            vector<ll> bits(K, 0);\n\n          \
+    \  for (int i = 0; i < K; i++) {\n                for (int j = 0; j < i; j++)\
+    \ {\n                    unless(E[A[i]][A[j]]) {\n                        bits[i]\
+    \ |= 1 << j;\n                        bits[j] |= 1 << i;\n                   \
+    \ }\n                }\n            }\n\n            return bits;\n        };\n\
+    \n        auto is_clique = [&](const vector<int> &A, const vector<ll> &bits, int\
+    \ S) -> bool {\n            for (int i = 0; i < A.size(); i++) {\n           \
+    \     if (get_bit(S, i) && (S & bits[i])) { return false; }\n            }\n\n\
+    \            return true;\n        };\n\n        auto subcalc = [&](const vector<int>\
+    \ &A, const int leader = -1) -> void {\n            bool empty_accept = (leader\
+    \ != -1) || empty;\n\n            int K = A.size();\n            auto bits = generate_bits_table(A);\n\
     \n            for (int S = 0; S < (1 << K); S++) {\n                unless(is_clique(A,\
     \ bits, S)) { continue; }\n\n                vector<int> C;\n                if\
     \ (leader != -1) { C.emplace_back(leader); }\n\n                for (int i = 0;\
     \ i < K; i++) {\n                    if (get_bit(S, i)) {\n                  \
     \      C.emplace_back(A[i]);\n                    }\n                }\n\n   \
-    \             if(S > 0 || empty_accept) {\n                    res = merge(res,\
-    \ calc(C));\n                }\n            }\n\n            return res;\n   \
-    \     };\n\n        X res(unit);\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\
-    \u6E80\u306E\u9802\u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\
-    \u7B97\u3059\u308B\n        loop {\n            vector<int> A;\n\n           \
-    \ int leader = -1;\n            for (int u = 0; u < N; u++) {\n              \
-    \  unless (alive[u] && deg[u] < M_sqrt) { continue; }\n\n                for (int\
-    \ v = 0; v < N; v++) {\n                    if (u != v && alive[v] && E[u][v])\
-    \ {\n                        A.emplace_back(v);\n                    }\n     \
-    \           }\n\n                leader = u;\n                break;\n       \
-    \     }\n\n            if (leader == -1) { break; }\n\n            int K = A.size();\n\
-    \            res = merge(res, subcalc(A, leader));\n\n            alive[leader]\
-    \ = false;\n            deg[leader] = 0;\n\n            for (int v = 0; v < N;\
-    \ v++) {\n                if (leader != v && alive[v] && E[leader][v]) {\n   \
-    \                 deg[v]--;\n                }\n            }\n        }\n\n \
-    \       // \u6B8B\u3063\u305F\u9802\u70B9 M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\
-    \u308B \u2192 \u5168\u63A2\u7D22\n        vector<int> A;\n        for (int u =\
-    \ 0; u < N; u++) {\n            if(alive[u]) { A.emplace_back(u); }\n        }\n\
-    \n        res = merge(res, subcalc(A, -1));\n\n        return res;\n    };\n}\n\
-    #line 6 \"verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp\"\n\n\
-    using namespace graph;\nusing mint = modint<998244353>;\n\nint main() {\n    int\
-    \ N, M; cin >> N >> M;\n    Graph G(N);\n\n    vector<mint> x(N); cin >> x;\n\n\
-    \    for (int j = 0; j < M; j++) {\n        int u, v; cin >> u >> v;\n       \
-    \ G.add_edge(u, v);\n    }\n\n    auto product = [&x](const vector<int> &C) ->\
-    \ mint {\n        mint res = 1;\n        for (int v: C) {\n            res *=\
-    \ x[v];\n        }\n\n        return res;\n    };\n\n    cout << Cliques<mint>(G,\
-    \ product, add<mint>, 0)<< endl;\n}\n"
+    \             if(S > 0 || empty_accept) cliques.emplace_back(C);\n           \
+    \ }\n\n        };\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\u6E80\u306E\u9802\
+    \u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\u7B97\u3059\u308B\
+    \n        loop {\n            vector<int> A;\n\n            int leader = -1;\n\
+    \            for (int u = 0; u < N; u++) {\n                unless (alive[u] &&\
+    \ deg[u] < M_sqrt) { continue; }\n\n                for (int v = 0; v < N; v++)\
+    \ {\n                    if (u != v && alive[v] && E[u][v]) {\n              \
+    \          A.emplace_back(v);\n                    }\n                }\n\n  \
+    \              leader = u;\n                break;\n            }\n\n        \
+    \    if (leader == -1) { break; }\n\n            int K = A.size();\n         \
+    \   subcalc(A, leader);\n\n            alive[leader] = false;\n            deg[leader]\
+    \ = 0;\n\n            for (int v = 0; v < N; v++) {\n                if (leader\
+    \ != v && alive[v] && E[leader][v]) {\n                    deg[v]--;\n       \
+    \         }\n            }\n        }\n\n        // \u6B8B\u3063\u305F\u9802\u70B9\
+    \ M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\u308B \u2192 \u5168\u63A2\u7D22\n    \
+    \    vector<int> A;\n        for (int u = 0; u < N; u++) {\n            if(alive[u])\
+    \ { A.emplace_back(u); }\n        }\n\n        subcalc(A, -1);\n\n        return\
+    \ cliques;\n    };\n}\n#line 6 \"verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp\"\
+    \n\nusing namespace graph;\nusing mint = modint<998244353>;\n\nint main() {\n\
+    \    int N, M; cin >> N >> M;\n    Graph G(N);\n\n    vector<mint> x(N); cin >>\
+    \ x;\n\n    for (int j = 0; j < M; j++) {\n        int u, v; cin >> u >> v;\n\
+    \        G.add_edge(u, v);\n    }\n\n    auto product = [&x](const vector<int>\
+    \ &C) -> mint {\n        mint res = 1;\n        for (int v: C) {\n           \
+    \ res *= x[v];\n        }\n\n        return res;\n    };\n\n    mint res(0);\n\
+    \    for (auto clique: Enumerate_Cliques(G)) {\n        mint prod = 1;\n     \
+    \   for (int v: clique) prod *= x[v];\n        res += prod;\n    }\n\n    cout\
+    \ << res << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n\n\
     #include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
-    \n#include\"../../../Graph/Graph/Cliques.hpp\"\n\nusing namespace graph;\nusing\
-    \ mint = modint<998244353>;\n\nint main() {\n    int N, M; cin >> N >> M;\n  \
-    \  Graph G(N);\n\n    vector<mint> x(N); cin >> x;\n\n    for (int j = 0; j <\
-    \ M; j++) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v);\n   \
-    \ }\n\n    auto product = [&x](const vector<int> &C) -> mint {\n        mint res\
-    \ = 1;\n        for (int v: C) {\n            res *= x[v];\n        }\n\n    \
-    \    return res;\n    };\n\n    cout << Cliques<mint>(G, product, add<mint>, 0)<<\
-    \ endl;\n}\n"
+    \n#include\"../../../Graph/Graph/Enumerate_Cliques.hpp\"\n\nusing namespace graph;\n\
+    using mint = modint<998244353>;\n\nint main() {\n    int N, M; cin >> N >> M;\n\
+    \    Graph G(N);\n\n    vector<mint> x(N); cin >> x;\n\n    for (int j = 0; j\
+    \ < M; j++) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v);\n \
+    \   }\n\n    auto product = [&x](const vector<int> &C) -> mint {\n        mint\
+    \ res = 1;\n        for (int v: C) {\n            res *= x[v];\n        }\n\n\
+    \        return res;\n    };\n\n    mint res(0);\n    for (auto clique: Enumerate_Cliques(G))\
+    \ {\n        mint prod = 1;\n        for (int v: clique) prod *= x[v];\n     \
+    \   res += prod;\n    }\n\n    cout << res << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -332,12 +331,12 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   - Algebra/modint.hpp
-  - Graph/Graph/Cliques.hpp
+  - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Graph.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   requiredBy: []
-  timestamp: '2026-01-29 01:07:02+09:00'
+  timestamp: '2026-02-08 19:08:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp

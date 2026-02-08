@@ -207,11 +207,11 @@ data:
   - name: Graph/Graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: Graph/Graph/Cliques.hpp
-      title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
-    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Connected_Components.hpp
       title: Graph/Graph/Connected_Components.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Enumerate_Cliques.hpp
+      title: Graph/Graph/Enumerate_Cliques.hpp
     - icon: ':heavy_check_mark:'
       path: Graph/Graph/Enumerate_Triangles.hpp
       title: Graph/Graph/Enumerate_Triangles.hpp

@@ -161,11 +161,11 @@ data:
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: Graph/Digraph/Strongly_Connected_Components.hpp
   - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Cliques.hpp
-    title: "Clique \u306B\u95A2\u3059\u308B\u8A08\u7B97"
-  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Enumerate_Cliques.hpp
+    title: Graph/Graph/Enumerate_Cliques.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Triangles.hpp
     title: Graph/Graph/Enumerate_Triangles.hpp
@@ -837,7 +837,7 @@ data:
   - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Lowlink.hpp
-  - Graph/Graph/Cliques.hpp
+  - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Graph.hpp
   - Graph/Graph/Connected_Components.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
