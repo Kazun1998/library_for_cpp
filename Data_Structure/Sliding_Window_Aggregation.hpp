@@ -10,7 +10,7 @@ class Sliding_Window_Aggregation {
     vector<M> left_value, left_prod;
     vector<M> right_value, right_prod;
 
-    // 片方のスタックが空になった際、もう片方の半分を移し替える処理 (ならし O(1))
+    /// @brief right_value の要素を left_value に移動する.
     void rebalance_from_right() {
         size_t total = right_value.size();
         size_t rm = total / 2;
@@ -35,6 +35,7 @@ class Sliding_Window_Aggregation {
         }
     }
 
+    /// @brief left_value の要素を right_value に移動する.
     void rebalance_from_left() {
         size_t total = left_value.size();
         size_t lm = total / 2;
@@ -60,12 +61,19 @@ class Sliding_Window_Aggregation {
     }
 
     public:
+    /// @brief コンストラクタ.
     Sliding_Window_Aggregation(): left_value(), left_prod(), right_value(), right_prod() {}
 
+    /// @brief 格納されている要素数を返す.
+    /// @return 要素数.
     inline size_t size() const { return left_value.size() + right_value.size(); }
 
+    /// @brief 空かどうかを判定する.
+    /// @return 空なら true, そうでなければ false.
     inline bool empty() const { return size() == 0; }
 
+    /// @brief 先頭に要素を追加する.
+    /// @param x 追加する要素.
     void push_front(M x) {
         left_value.push_back(x);
         if (left_prod.empty()) {
@@ -76,6 +84,8 @@ class Sliding_Window_Aggregation {
         }
     }
 
+    /// @brief 末尾に要素を追加する.
+    /// @param x 追加する要素.
     void push_back(M x) {
         right_value.push_back(x);
         if (right_prod.empty()) {
@@ -86,6 +96,7 @@ class Sliding_Window_Aggregation {
         }
     }
 
+    /// @brief 先頭の要素を削除する.
     void pop_front() {
         if (left_value.empty()) {
             if (right_value.empty()) return;
@@ -95,6 +106,7 @@ class Sliding_Window_Aggregation {
         left_prod.pop_back();
     }
 
+    /// @brief 末尾の要素を削除する.
     void pop_back() {
         if (right_value.empty()) {
             if (left_value.empty()) return;
@@ -104,7 +116,8 @@ class Sliding_Window_Aggregation {
         right_prod.pop_back();
     }
 
-    // 全体の積を O(1) で取得
+    /// @brief 全ての要素の積を返す.
+    /// @return 全要素の積.
     M product() const {
         if (left_prod.empty() && right_prod.empty()) return identity;
         if (left_prod.empty()) return right_prod.back();
@@ -112,6 +125,7 @@ class Sliding_Window_Aggregation {
         return op(left_prod.back(), right_prod.back());
     }
 
+    /// @brief 全ての要素を削除する.
     void clear() {
         left_value.clear();
         left_prod.clear();
