@@ -8,12 +8,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # v1 から v4 へ更新（推奨）
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v5  # v1 から v5 へ更新
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.11'      # バージョンを明示的に指定
+        python-version: '3.11' # バージョンを明示的に指定
 
     - name: Install dependencies
       run: |
