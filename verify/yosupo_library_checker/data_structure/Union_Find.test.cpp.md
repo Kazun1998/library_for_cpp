@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Union_Find/Union_Find.hpp
     title: Union Find
   _extendedRequiredBy: []
@@ -55,7 +55,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   requiredBy: []
-  timestamp: '2025-10-18 12:03:24+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp

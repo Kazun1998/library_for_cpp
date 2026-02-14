@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: Integer/Miller_Rabin_Primality_Test.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Prime.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -286,17 +286,17 @@ data:
   path: Integer/Prime.hpp
   requiredBy:
   - Modulo/Order.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Prime_Pi.hpp
   - Integer/Euler_Totient.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document
 redirect_from:

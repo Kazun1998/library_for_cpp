@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
     title: Geometry/triangle_center/Circumcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/utility/Convex_Hull.hpp
     title: Geometry/utility/Convex_Hull.hpp
   - icon: ':heavy_check_mark:'
@@ -102,12 +102,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
     title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
@@ -355,34 +355,34 @@ data:
   isVerificationFile: false
   path: Geometry/utility/Counter_Clockwise.hpp
   requiredBy:
-  - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/intersection/Intersection_Segment_and_Segment.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/intersection/Intersection_Circle_and_Line.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/utility/Convex_Hull.hpp
   - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/distance/Distance_Line_and_Point.hpp
-  - Geometry/object/Line.hpp
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/projection/Projection_Point_Line.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/2B.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
 documentation_of: Geometry/utility/Counter_Clockwise.hpp
 layout: document
 redirect_from:

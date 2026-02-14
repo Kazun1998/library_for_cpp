@@ -1,143 +1,143 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Calculus.hpp
     title: "\u5FAE\u7A4D\u5206"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Huge_Factorial.hpp
     title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Log.hpp
     title: Log
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Multipoint_Evaluation.hpp
     title: "\u591A\u70B9\u8A55\u4FA1"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Partition_P.hpp
     title: "\u5206\u5272\u6570 (P)"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Partition_Q.hpp
     title: "\u5206\u5272\u6570 (Q)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Stirling_1st.hpp
     title: "\u7B2C I \u7A2E Stirling \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Stirling_2nd.hpp
     title: "\u7B2C II \u7A2E Stirling \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/original/Partition_Q.test.cpp
     title: verify/original/Partition_Q.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
     title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
     title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
     title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Log.test.cpp
     title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
     title: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
     title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
       \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B."
@@ -494,44 +494,44 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Modulo_Polynomial.hpp
   requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Partition_P.hpp
   - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
+  - Modulo_Polynomial/Multipoint_Evaluation.hpp
+  - Modulo_Polynomial/Huge_Factorial.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Bell_Number.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Partition_P.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Huge_Factorial.hpp
-  - Modulo_Polynomial/Stirling_2nd.hpp
-  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Modulo_Polynomial/Multipoint_Evaluation.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2026-02-08 11:05:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
+  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Modulo_Polynomial.hpp
 layout: document

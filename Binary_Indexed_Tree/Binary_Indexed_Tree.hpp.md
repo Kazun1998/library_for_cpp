@@ -79,7 +79,7 @@ data:
   path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
   requiredBy:
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
-  timestamp: '2025-11-18 00:49:33+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp

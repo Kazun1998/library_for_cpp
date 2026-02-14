@@ -3,9 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -22,8 +22,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
   requiredBy: []
-  timestamp: '2025-08-16 18:30:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
 layout: document

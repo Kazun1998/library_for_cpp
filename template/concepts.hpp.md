@@ -65,11 +65,11 @@ data:
   isVerificationFile: false
   path: template/concepts.hpp
   requiredBy:
+  - Math/Interval_Product.hpp
   - Data_Structure/Best_Sum.hpp
   - Sequence/Trie.hpp
   - Union_Find/Coloring_Union_Find.hpp
-  - Math/Interval_Product.hpp
-  timestamp: '2026-02-01 00:05:07+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

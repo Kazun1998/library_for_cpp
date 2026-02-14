@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Knapsack/Base.hpp
     title: Knapsack/Base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -304,11 +304,11 @@ data:
   isVerificationFile: false
   path: Knapsack/Knapsack_01.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/dpl1/1F.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
+  - verify/aizu_online_judge/dpl1/1F.test.cpp
 documentation_of: Knapsack/Knapsack_01.hpp
 layout: document
 title: "0-1 Knapsack \u554F\u984C"

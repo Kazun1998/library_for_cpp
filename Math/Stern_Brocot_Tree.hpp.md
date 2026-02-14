@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
     title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
     title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "SB \u6728\u306B\u304A\u3051\u308B 1/1 \u304B\u3089 a/b \u3078\
       \u306E\u30D1\u30B9\u3092\u6C42\u3081\u308B."
@@ -429,11 +429,11 @@ data:
   isVerificationFile: false
   path: Math/Stern_Brocot_Tree.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
   - verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
+  - verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
 documentation_of: Math/Stern_Brocot_Tree.hpp
 layout: document
 title: "Stern Brocot \u6728"

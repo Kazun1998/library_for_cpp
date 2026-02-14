@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   _extendedRequiredBy: []
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: Data_Structure/Disjoint_Sparse_Table.hpp
   requiredBy: []
-  timestamp: '2025-10-12 18:33:33+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp

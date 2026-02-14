@@ -105,7 +105,7 @@ data:
   isVerificationFile: false
   path: Algebra/Fraction.hpp
   requiredBy: []
-  timestamp: '2026-01-25 01:38:23+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/original/Fraction.test.cpp

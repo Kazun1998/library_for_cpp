@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Segment_Tree/Segment_Tree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
@@ -72,7 +72,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2026-01-12 13:35:13+09:00'
+  timestamp: '2026-02-14 19:18:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
     title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
@@ -96,8 +96,8 @@ data:
   isVerificationFile: false
   path: Graph/Weighted_Digraph/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2025-08-29 00:04:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
 documentation_of: Graph/Weighted_Digraph/Dijkstra.hpp

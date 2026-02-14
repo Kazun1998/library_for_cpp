@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Tree/Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
@@ -471,19 +471,19 @@ data:
   isVerificationFile: false
   path: Tree/Tree.hpp
   requiredBy:
-  - Tree/Generator.hpp
-  - Tree/Rerooting.hpp
   - Tree/Tree_DP.hpp
+  - Tree/Generator.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Tree/Rerooting.hpp
+  timestamp: '2026-02-14 19:18:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - verify/yukicoder/763.test.cpp
+  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
 documentation_of: Tree/Tree.hpp
 layout: document
 redirect_from:
