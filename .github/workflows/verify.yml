@@ -13,7 +13,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5  # v1 から v5 へ更新
       with:
-        python-version: '3.12'      # バージョンを明示的に指定
+        python-version: '3.11'      # バージョンを明示的に指定
 
     - name: Install dependencies
       run: |
