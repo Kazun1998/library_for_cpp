@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: Graph/Weighted_Graph/Weighted_Graph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
-  - icon: ':question:'
+  - icon: ':x:'
     path: Union_Find/Union_Find.hpp
     title: Union Find
   - icon: ':question:'
@@ -300,7 +300,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp

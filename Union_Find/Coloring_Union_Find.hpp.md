@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/concepts.hpp
     title: template/concepts.hpp
   - icon: ':question:'
@@ -282,7 +282,7 @@ data:
   isVerificationFile: false
   path: Union_Find/Coloring_Union_Find.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Union_Find/Coloring_Union_Find.hpp

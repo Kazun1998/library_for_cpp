@@ -55,7 +55,7 @@ data:
   - icon: ':warning:'
     path: Data_Structure/Best_Sum.hpp
     title: Best Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
   - icon: ':warning:'
@@ -64,6 +64,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
+  - icon: ':heavy_check_mark:'
+    path: Data_Structure/Sliding_Window_Aggregation.hpp
+    title: Sliding Window Aggregation
   - icon: ':heavy_check_mark:'
     path: Functional_Graph/Functional_Graph.hpp
     title: Functional Graph
@@ -229,7 +232,7 @@ data:
   - icon: ':x:'
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
   - icon: ':x:'
@@ -332,7 +335,7 @@ data:
   - icon: ':warning:'
     path: Queries/Mo.hpp
     title: Mo
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
   - icon: ':heavy_check_mark:'
@@ -383,7 +386,7 @@ data:
     title: "\u8FBA xy \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\u3088\u3063\u3066\
       \ x, y \u304C\u9023\u7D50\u306B\u306A\u3063\u305F\u5834\u5408, \u9023\u7D50\u6210\
       \u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
-  - icon: ':question:'
+  - icon: ':x:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
   - icon: ':question:'
@@ -493,6 +496,9 @@ data:
     path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - icon: ':heavy_check_mark:'
@@ -505,18 +511,21 @@ data:
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - icon: ':x:'
@@ -779,6 +788,7 @@ data:
   - Others/Topological_Sort.hpp
   - Data_Structure/AVL_Tree.hpp
   - Data_Structure/Binary_Trie.hpp
+  - Data_Structure/Sliding_Window_Aggregation.hpp
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Best_Sum.hpp
   - Data_Structure/Doubly_Linked_List.hpp
@@ -861,7 +871,7 @@ data:
   - Integer/Prime.hpp
   - Integer/Divisors.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
@@ -921,7 +931,9 @@ data:
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

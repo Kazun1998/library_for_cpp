@@ -6,12 +6,12 @@ data:
     title: template/bitop.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Data_Structure/Disjoint_Sparse_Table.hpp\"\n\n#line 2 \"\
@@ -85,8 +85,8 @@ data:
   isVerificationFile: false
   path: Data_Structure/Disjoint_Sparse_Table.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
 documentation_of: Data_Structure/Disjoint_Sparse_Table.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Data_Structure/Disjoint_Sparse_Table.hpp
     title: Disjoint Sparse Table
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -234,8 +234,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
 layout: document

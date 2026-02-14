@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: Math/Interval_Product.hpp
-    title: "\u533A\u9593\u7A4D"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -29,17 +26,21 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n#line\
+    document_title: "right_value \u306E\u8981\u7D20\u3092 left_value \u306B\u79FB\u52D5\
+      \u3059\u308B."
+    links: []
+  bundledCode: "#line 2 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\n\n#line\
     \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
     \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -188,16 +189,16 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Math/Interval_Product.hpp\"\
-    \n\n#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\u30B3\
-    \u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept Unary_Operator_Concept\
-    \ = requires(Op op, const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n\
-    };\n\n// \u4E8C\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate\
-    \ <typename Op, typename X>\nconcept Binary_Operator_Concept = requires(Op op,const\
-    \ X &x, const X &y) {\n    { op(x, y) } -> std::convertible_to<X>;\n};\n\n// \u30E2\
-    \u30CE\u30A4\u30C9\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u4E8C\u9805\u6F14\u7B97\
-    \ + \u5358\u4F4D\u5143\ntemplate <typename M, auto op, auto identity>\nconcept\
-    \ Monoid_Concept = \n    Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"template/concepts.hpp\"\
+    \n\n// \u5358\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate\
+    \ <typename Op, typename X>\nconcept Unary_Operator_Concept = requires(Op op,\
+    \ const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n};\n\n// \u4E8C\u9805\
+    \u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename\
+    \ X>\nconcept Binary_Operator_Concept = requires(Op op,const X &x, const X &y)\
+    \ {\n    { op(x, y) } -> std::convertible_to<X>;\n};\n\n// \u30E2\u30CE\u30A4\u30C9\
+    \u30B3\u30F3\u30BB\u30D7\u30C8\n// \u4E8C\u9805\u6F14\u7B97 + \u5358\u4F4D\u5143\
+    \ntemplate <typename M, auto op, auto identity>\nconcept Monoid_Concept = \n \
+    \   Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
     \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
     \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
     \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
@@ -206,34 +207,118 @@ data:
     \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
     \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
     \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
-    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Math/Interval_Product.hpp\"\
-    \n\ntemplate<class G, auto op, auto identity, auto inv>\nrequires Group_Concept<G,\
-    \ op, identity, inv>\nclass Interval_Product {\n    vector<G> prefix_prod;\n\n\
-    \    public:\n    explicit Interval_Product(const vector<G> &data) {\n       \
-    \ prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\u306F\
-    \ exclusive \u3067\u3068\u308B. \u3064\u307E\u308A, prefix_prod[i] = data[0] *\
-    \ data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n        prefix_prod.push_back(identity);\n\
-    \        for (const G &x : data) {\n            prefix_prod.push_back(op(prefix_prod.back(),\
-    \ x));\n        }\n    }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\
-    \u3051\u308B\u7D2F\u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n  \
-    \  /// @return \n    inline G query(const int r) const { return prefix_prod[r\
-    \ + 1]; }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\
-    \u7D2F\u7A4D\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param\
-    \ r \u533A\u9593\u306E\u53F3\u7AEF\n    inline G query(int l, int r) const {\n\
-    \        if (l == 0) return query(r);\n        return op(inv(query(l - 1)), query(r));\n\
-    \    }\n};\n#line 5 \"verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n    for\
-    \ (int i = 0; i < N; i++) scanf(\"%lld\", &a[i]);\n\n    Interval_Product<ll,\
-    \ add<ll>, 0LL, neg<ll>> I(a);\n\n    for (int q = 1; q <= Q; q++) {\n       \
-    \ int l, r; scanf(\"%d%d\", &l, &r);\n        cout << I.query(l, r - 1) << \"\\\
-    n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Math/Interval_Product.hpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n    for\
-    \ (int i = 0; i < N; i++) scanf(\"%lld\", &a[i]);\n\n    Interval_Product<ll,\
-    \ add<ll>, 0LL, neg<ll>> I(a);\n\n    for (int q = 1; q <= Q; q++) {\n       \
-    \ int l, r; scanf(\"%d%d\", &l, &r);\n        cout << I.query(l, r - 1) << \"\\\
-    n\";\n    }\n}\n"
+    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\
+    \n\ntemplate <typename M, auto op, auto identity>\nrequires Monoid_Concept<M,\
+    \ op, identity>\nclass Sliding_Window_Aggregation {\n    private:\n    vector<M>\
+    \ left_value, left_prod;\n    vector<M> right_value, right_prod;\n\n    /// @brief\
+    \ right_value \u306E\u8981\u7D20\u3092 left_value \u306B\u79FB\u52D5\u3059\u308B\
+    .\n    void rebalance_from_right() {\n        size_t total = right_value.size();\n\
+    \        size_t rm = total / 2;\n        size_t lm = total - rm;\n\n        vector<M>\
+    \ tmp;\n        for (size_t i = 0; i < rm; ++i) {\n            tmp.push_back(right_value.back());\n\
+    \            right_value.pop_back();\n        }\n        right_prod.clear();\n\
+    \n        for (size_t i = 0; i < lm; ++i) {\n            M y = right_value.back();\n\
+    \            right_value.pop_back();\n            push_front(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_back(v);\n        }\n    }\n\n    /// @brief left_value \u306E\
+    \u8981\u7D20\u3092 right_value \u306B\u79FB\u52D5\u3059\u308B.\n    void rebalance_from_left()\
+    \ {\n        size_t total = left_value.size();\n        size_t lm = total / 2;\n\
+    \        size_t rm = total - lm;\n\n        vector<M> tmp;\n        for (size_t\
+    \ i = 0; i < lm; ++i) {\n            tmp.push_back(left_value.back());\n     \
+    \       left_value.pop_back();\n        }\n        left_prod.clear();\n\n    \
+    \    for (size_t i = 0; i < rm; ++i) {\n            M y = left_value.back();\n\
+    \            left_value.pop_back();\n            push_back(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_front(v);\n        }\n    }\n\n    public:\n    /// @brief \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    Sliding_Window_Aggregation(): left_value(),\
+    \ left_prod(), right_value(), right_prod() {}\n\n    /// @brief \u683C\u7D0D\u3055\
+    \u308C\u3066\u3044\u308B\u8981\u7D20\u6570\u3092\u8FD4\u3059.\n    /// @return\
+    \ \u8981\u7D20\u6570.\n    inline size_t size() const { return left_value.size()\
+    \ + right_value.size(); }\n\n    /// @brief \u7A7A\u304B\u3069\u3046\u304B\u3092\
+    \u5224\u5B9A\u3059\u308B.\n    /// @return \u7A7A\u306A\u3089 true, \u305D\u3046\
+    \u3067\u306A\u3051\u308C\u3070 false.\n    inline bool empty() const { return\
+    \ size() == 0; }\n\n    /// @brief \u5148\u982D\u306B\u8981\u7D20\u3092\u8FFD\u52A0\
+    \u3059\u308B.\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void\
+    \ push_front(M x) {\n        left_value.push_back(x);\n        if (left_prod.empty())\
+    \ {\n            left_prod.push_back(x);\n        } else {\n            // \u5DE6\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65B0\u8981\u7D20 op \u65E2\u5B58\u7A4D\
+    )\n            left_prod.push_back(op(x, left_prod.back()));\n        }\n    }\n\
+    \n    /// @brief \u672B\u5C3E\u306B\u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\
+    .\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void push_back(M\
+    \ x) {\n        right_value.push_back(x);\n        if (right_prod.empty()) {\n\
+    \            right_prod.push_back(x);\n        } else {\n            // \u53F3\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65E2\u5B58\u7A4D op \u65B0\u8981\u7D20\
+    )\n            right_prod.push_back(op(right_prod.back(), x));\n        }\n  \
+    \  }\n\n    /// @brief \u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
+    .\n    void pop_front() {\n        if (left_value.empty()) {\n            if (right_value.empty())\
+    \ return;\n            rebalance_from_right();\n        }\n        left_value.pop_back();\n\
+    \        left_prod.pop_back();\n    }\n\n    /// @brief \u672B\u5C3E\u306E\u8981\
+    \u7D20\u3092\u524A\u9664\u3059\u308B.\n    void pop_back() {\n        if (right_value.empty())\
+    \ {\n            if (left_value.empty()) return;\n            rebalance_from_left();\n\
+    \        }\n        right_value.pop_back();\n        right_prod.pop_back();\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u306E\u7A4D\u3092\u8FD4\
+    \u3059.\n    /// @return \u5168\u8981\u7D20\u306E\u7A4D.\n    M product() const\
+    \ {\n        if (left_prod.empty() && right_prod.empty()) return identity;\n \
+    \       if (left_prod.empty()) return right_prod.back();\n        if (right_prod.empty())\
+    \ return left_prod.back();\n        return op(left_prod.back(), right_prod.back());\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\
+    \u308B.\n    void clear() {\n        left_value.clear();\n        left_prod.clear();\n\
+    \        right_value.clear();\n        right_prod.clear();\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../template/concepts.hpp\"\
+    \n\ntemplate <typename M, auto op, auto identity>\nrequires Monoid_Concept<M,\
+    \ op, identity>\nclass Sliding_Window_Aggregation {\n    private:\n    vector<M>\
+    \ left_value, left_prod;\n    vector<M> right_value, right_prod;\n\n    /// @brief\
+    \ right_value \u306E\u8981\u7D20\u3092 left_value \u306B\u79FB\u52D5\u3059\u308B\
+    .\n    void rebalance_from_right() {\n        size_t total = right_value.size();\n\
+    \        size_t rm = total / 2;\n        size_t lm = total - rm;\n\n        vector<M>\
+    \ tmp;\n        for (size_t i = 0; i < rm; ++i) {\n            tmp.push_back(right_value.back());\n\
+    \            right_value.pop_back();\n        }\n        right_prod.clear();\n\
+    \n        for (size_t i = 0; i < lm; ++i) {\n            M y = right_value.back();\n\
+    \            right_value.pop_back();\n            push_front(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_back(v);\n        }\n    }\n\n    /// @brief left_value \u306E\
+    \u8981\u7D20\u3092 right_value \u306B\u79FB\u52D5\u3059\u308B.\n    void rebalance_from_left()\
+    \ {\n        size_t total = left_value.size();\n        size_t lm = total / 2;\n\
+    \        size_t rm = total - lm;\n\n        vector<M> tmp;\n        for (size_t\
+    \ i = 0; i < lm; ++i) {\n            tmp.push_back(left_value.back());\n     \
+    \       left_value.pop_back();\n        }\n        left_prod.clear();\n\n    \
+    \    for (size_t i = 0; i < rm; ++i) {\n            M y = left_value.back();\n\
+    \            left_value.pop_back();\n            push_back(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_front(v);\n        }\n    }\n\n    public:\n    /// @brief \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    Sliding_Window_Aggregation(): left_value(),\
+    \ left_prod(), right_value(), right_prod() {}\n\n    /// @brief \u683C\u7D0D\u3055\
+    \u308C\u3066\u3044\u308B\u8981\u7D20\u6570\u3092\u8FD4\u3059.\n    /// @return\
+    \ \u8981\u7D20\u6570.\n    inline size_t size() const { return left_value.size()\
+    \ + right_value.size(); }\n\n    /// @brief \u7A7A\u304B\u3069\u3046\u304B\u3092\
+    \u5224\u5B9A\u3059\u308B.\n    /// @return \u7A7A\u306A\u3089 true, \u305D\u3046\
+    \u3067\u306A\u3051\u308C\u3070 false.\n    inline bool empty() const { return\
+    \ size() == 0; }\n\n    /// @brief \u5148\u982D\u306B\u8981\u7D20\u3092\u8FFD\u52A0\
+    \u3059\u308B.\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void\
+    \ push_front(M x) {\n        left_value.push_back(x);\n        if (left_prod.empty())\
+    \ {\n            left_prod.push_back(x);\n        } else {\n            // \u5DE6\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65B0\u8981\u7D20 op \u65E2\u5B58\u7A4D\
+    )\n            left_prod.push_back(op(x, left_prod.back()));\n        }\n    }\n\
+    \n    /// @brief \u672B\u5C3E\u306B\u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\
+    .\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void push_back(M\
+    \ x) {\n        right_value.push_back(x);\n        if (right_prod.empty()) {\n\
+    \            right_prod.push_back(x);\n        } else {\n            // \u53F3\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65E2\u5B58\u7A4D op \u65B0\u8981\u7D20\
+    )\n            right_prod.push_back(op(right_prod.back(), x));\n        }\n  \
+    \  }\n\n    /// @brief \u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
+    .\n    void pop_front() {\n        if (left_value.empty()) {\n            if (right_value.empty())\
+    \ return;\n            rebalance_from_right();\n        }\n        left_value.pop_back();\n\
+    \        left_prod.pop_back();\n    }\n\n    /// @brief \u672B\u5C3E\u306E\u8981\
+    \u7D20\u3092\u524A\u9664\u3059\u308B.\n    void pop_back() {\n        if (right_value.empty())\
+    \ {\n            if (left_value.empty()) return;\n            rebalance_from_left();\n\
+    \        }\n        right_value.pop_back();\n        right_prod.pop_back();\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u306E\u7A4D\u3092\u8FD4\
+    \u3059.\n    /// @return \u5168\u8981\u7D20\u306E\u7A4D.\n    M product() const\
+    \ {\n        if (left_prod.empty() && right_prod.empty()) return identity;\n \
+    \       if (left_prod.empty()) return right_prod.back();\n        if (right_prod.empty())\
+    \ return left_prod.back();\n        return op(left_prod.back(), right_prod.back());\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\
+    \u308B.\n    void clear() {\n        left_value.clear();\n        left_prod.clear();\n\
+    \        right_value.clear();\n        right_prod.clear();\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -242,18 +327,32 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Math/Interval_Product.hpp
   - template/concepts.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+  isVerificationFile: false
+  path: Data_Structure/Sliding_Window_Aggregation.hpp
   requiredBy: []
   timestamp: '2026-02-14 20:38:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+documentation_of: Data_Structure/Sliding_Window_Aggregation.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+title: Sliding Window Aggregation
 ---
+
+## Outline
+
+Monoid $M$ に対する Queue $Q$ に対して, 以下の処理を高速に行う.
+
+* $Q$ の先頭に $a \in M$ を挿入する.
+* $Q$ の末尾に $a \in M$ を挿入する.
+* $Q$ の先頭要素を削除する.
+* $Q$ の末尾要素を削除する.
+* $Q = (a_1, a_2, \dots, a_n)$ として, 総積 $a_1 a_2 \dots a_n$ を求める.
+
+## History 
+
+|日付|内容|
+|:---:|:---:|
+|2026/02/14| Sliding Window Aggregation 実装 |

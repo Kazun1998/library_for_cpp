@@ -72,10 +72,10 @@ data:
     - icon: ':warning:'
       path: Data_Structure/Best_Sum.hpp
       title: Best Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Data_Structure/Disjoint_Sparse_Table.hpp
       title: Disjoint Sparse Table
     - icon: ':warning:'
@@ -84,6 +84,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Dual_Heap.hpp
       title: Dual Heap
+    - icon: ':heavy_check_mark:'
+      path: Data_Structure/Sliding_Window_Aggregation.hpp
+      title: Sliding Window Aggregation
   - name: Functional_Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -299,7 +302,7 @@ data:
     - icon: ':x:'
       path: Math/Floor_Linear_Sum.hpp
       title: Floor Linear Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Interval_Product.hpp
       title: "\u533A\u9593\u7A4D"
     - icon: ':x:'
@@ -415,7 +418,7 @@ data:
       title: Mo
   - name: Segment_Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Segment_Tree/Dual_Segment_Tree.hpp
       title: "\u53CC\u5BFE Segment Tree"
     - icon: ':heavy_check_mark:'
@@ -477,10 +480,10 @@ data:
       title: "\u8FBA xy \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\u3088\u3063\u3066\
         \ x, y \u304C\u9023\u7D50\u306B\u306A\u3063\u305F\u5834\u5408, \u9023\u7D50\
         \u6210\u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
-    - icon: ':question:'
+    - icon: ':x:'
       path: Union_Find/Potentilized_Union_Find.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-    - icon: ':question:'
+    - icon: ':x:'
       path: Union_Find/Union_Find.hpp
       title: Union Find
   - name: template
@@ -488,7 +491,7 @@ data:
     - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/concepts.hpp
       title: template/concepts.hpp
     - icon: ':heavy_check_mark:'
@@ -637,6 +640,9 @@ data:
       path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
       title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     - icon: ':heavy_check_mark:'
@@ -649,24 +655,27 @@ data:
       path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
       title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
       title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
     - icon: ':x:'

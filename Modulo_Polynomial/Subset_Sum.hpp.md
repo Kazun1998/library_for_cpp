@@ -567,7 +567,7 @@ data:
   path: Modulo_Polynomial/Subset_Sum.hpp
   requiredBy:
   - Modulo_Polynomial/Partition_Q.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp

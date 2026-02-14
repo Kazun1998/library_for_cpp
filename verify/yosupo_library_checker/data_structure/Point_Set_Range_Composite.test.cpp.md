@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp

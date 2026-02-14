@@ -6,6 +6,9 @@ data:
     path: Data_Structure/Best_Sum.hpp
     title: Best Sum
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/Sliding_Window_Aggregation.hpp
+    title: Sliding Window Aggregation
+  - icon: ':x:'
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
   - icon: ':warning:'
@@ -18,11 +21,17 @@ data:
       \u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\
@@ -66,12 +75,15 @@ data:
   path: template/concepts.hpp
   requiredBy:
   - Math/Interval_Product.hpp
+  - Data_Structure/Sliding_Window_Aggregation.hpp
   - Data_Structure/Best_Sum.hpp
   - Sequence/Trie.hpp
   - Union_Find/Coloring_Union_Find.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
 documentation_of: template/concepts.hpp
 layout: document

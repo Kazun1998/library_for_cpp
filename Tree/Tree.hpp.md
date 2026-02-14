@@ -475,7 +475,7 @@ data:
   - Tree/Generator.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Tree/Rerooting.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/763.test.cpp

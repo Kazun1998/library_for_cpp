@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
@@ -295,8 +295,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
 layout: document

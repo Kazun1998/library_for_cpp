@@ -24,12 +24,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "x \u3092\u633F\u5165\u3059\u308B."
     links: []
@@ -462,8 +462,8 @@ data:
   isVerificationFile: false
   path: Data_Structure/Binary_Trie.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
 documentation_of: Data_Structure/Binary_Trie.hpp

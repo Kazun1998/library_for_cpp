@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: Math/Interval_Product.hpp
-    title: "\u533A\u9593\u7A4D"
+  - icon: ':question:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: Data_Structure/Sliding_Window_Aggregation.hpp
+    title: Sliding Window Aggregation
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -30,18 +33,18 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/deque_operate_all_composite
     links:
-    - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/deque_operate_all_composite
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -188,7 +191,44 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Math/Interval_Product.hpp\"\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Algebra/modint.hpp\"\
+    \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
+    \    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
+    \ constexpr int mod() { return _mod; }\n\n    static modint raw(int v) {\n   \
+    \     modint a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\
+    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n \
+    \       int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n\
+    \        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
+    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
+    \ modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
+    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
+    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
+    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
+    \ &b){\n        (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
+    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
+    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
+    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
+    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
+    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
+    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
+    \ mod()); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
+    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
+    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\
     \n\n#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\u30B3\
     \u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept Unary_Operator_Concept\
     \ = requires(Op op, const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n\
@@ -206,34 +246,96 @@ data:
     \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
     \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
     \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
-    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Math/Interval_Product.hpp\"\
-    \n\ntemplate<class G, auto op, auto identity, auto inv>\nrequires Group_Concept<G,\
-    \ op, identity, inv>\nclass Interval_Product {\n    vector<G> prefix_prod;\n\n\
-    \    public:\n    explicit Interval_Product(const vector<G> &data) {\n       \
-    \ prefix_prod.reserve(data.size() + 1);\n\n        // \u7D2F\u7A4D\u548C\u306F\
-    \ exclusive \u3067\u3068\u308B. \u3064\u307E\u308A, prefix_prod[i] = data[0] *\
-    \ data[1] * ... * data[i - 1] \u306B\u306A\u308B.\n        prefix_prod.push_back(identity);\n\
-    \        for (const G &x : data) {\n            prefix_prod.push_back(op(prefix_prod.back(),\
-    \ x));\n        }\n    }\n\n    /// @brief \u9589\u533A\u9593 [0, r] \u306B\u304A\
-    \u3051\u308B\u7D2F\u7A4D\n    /// @param r \u533A\u9593\u306E\u53F3\u7AEF\n  \
-    \  /// @return \n    inline G query(const int r) const { return prefix_prod[r\
-    \ + 1]; }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\
-    \u7D2F\u7A4D\n    /// @param l \u533A\u9593\u306E\u5DE6\u7AEF\n    /// @param\
-    \ r \u533A\u9593\u306E\u53F3\u7AEF\n    inline G query(int l, int r) const {\n\
-    \        if (l == 0) return query(r);\n        return op(inv(query(l - 1)), query(r));\n\
-    \    }\n};\n#line 5 \"verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n    for\
-    \ (int i = 0; i < N; i++) scanf(\"%lld\", &a[i]);\n\n    Interval_Product<ll,\
-    \ add<ll>, 0LL, neg<ll>> I(a);\n\n    for (int q = 1; q <= Q; q++) {\n       \
-    \ int l, r; scanf(\"%d%d\", &l, &r);\n        cout << I.query(l, r - 1) << \"\\\
-    n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n\
-    #include\"../../../template/template.hpp\"\n#include\"../../../Math/Interval_Product.hpp\"\
-    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n    for\
-    \ (int i = 0; i < N; i++) scanf(\"%lld\", &a[i]);\n\n    Interval_Product<ll,\
-    \ add<ll>, 0LL, neg<ll>> I(a);\n\n    for (int q = 1; q <= Q; q++) {\n       \
-    \ int l, r; scanf(\"%d%d\", &l, &r);\n        cout << I.query(l, r - 1) << \"\\\
-    n\";\n    }\n}\n"
+    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\
+    \n\ntemplate <typename M, auto op, auto identity>\nrequires Monoid_Concept<M,\
+    \ op, identity>\nclass Sliding_Window_Aggregation {\n    private:\n    vector<M>\
+    \ left_value, left_prod;\n    vector<M> right_value, right_prod;\n\n    /// @brief\
+    \ right_value \u306E\u8981\u7D20\u3092 left_value \u306B\u79FB\u52D5\u3059\u308B\
+    .\n    void rebalance_from_right() {\n        size_t total = right_value.size();\n\
+    \        size_t rm = total / 2;\n        size_t lm = total - rm;\n\n        vector<M>\
+    \ tmp;\n        for (size_t i = 0; i < rm; ++i) {\n            tmp.push_back(right_value.back());\n\
+    \            right_value.pop_back();\n        }\n        right_prod.clear();\n\
+    \n        for (size_t i = 0; i < lm; ++i) {\n            M y = right_value.back();\n\
+    \            right_value.pop_back();\n            push_front(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_back(v);\n        }\n    }\n\n    /// @brief left_value \u306E\
+    \u8981\u7D20\u3092 right_value \u306B\u79FB\u52D5\u3059\u308B.\n    void rebalance_from_left()\
+    \ {\n        size_t total = left_value.size();\n        size_t lm = total / 2;\n\
+    \        size_t rm = total - lm;\n\n        vector<M> tmp;\n        for (size_t\
+    \ i = 0; i < lm; ++i) {\n            tmp.push_back(left_value.back());\n     \
+    \       left_value.pop_back();\n        }\n        left_prod.clear();\n\n    \
+    \    for (size_t i = 0; i < rm; ++i) {\n            M y = left_value.back();\n\
+    \            left_value.pop_back();\n            push_back(y);\n        }\n\n\
+    \        reverse(tmp.begin(), tmp.end());\n        for (const auto& v : tmp) {\n\
+    \            push_front(v);\n        }\n    }\n\n    public:\n    /// @brief \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF.\n    Sliding_Window_Aggregation(): left_value(),\
+    \ left_prod(), right_value(), right_prod() {}\n\n    /// @brief \u683C\u7D0D\u3055\
+    \u308C\u3066\u3044\u308B\u8981\u7D20\u6570\u3092\u8FD4\u3059.\n    /// @return\
+    \ \u8981\u7D20\u6570.\n    inline size_t size() const { return left_value.size()\
+    \ + right_value.size(); }\n\n    /// @brief \u7A7A\u304B\u3069\u3046\u304B\u3092\
+    \u5224\u5B9A\u3059\u308B.\n    /// @return \u7A7A\u306A\u3089 true, \u305D\u3046\
+    \u3067\u306A\u3051\u308C\u3070 false.\n    inline bool empty() const { return\
+    \ size() == 0; }\n\n    /// @brief \u5148\u982D\u306B\u8981\u7D20\u3092\u8FFD\u52A0\
+    \u3059\u308B.\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void\
+    \ push_front(M x) {\n        left_value.push_back(x);\n        if (left_prod.empty())\
+    \ {\n            left_prod.push_back(x);\n        } else {\n            // \u5DE6\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65B0\u8981\u7D20 op \u65E2\u5B58\u7A4D\
+    )\n            left_prod.push_back(op(x, left_prod.back()));\n        }\n    }\n\
+    \n    /// @brief \u672B\u5C3E\u306B\u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\
+    .\n    /// @param x \u8FFD\u52A0\u3059\u308B\u8981\u7D20.\n    void push_back(M\
+    \ x) {\n        right_value.push_back(x);\n        if (right_prod.empty()) {\n\
+    \            right_prod.push_back(x);\n        } else {\n            // \u53F3\
+    \u5074\u3078\u306E\u8FFD\u52A0\u306F (\u65E2\u5B58\u7A4D op \u65B0\u8981\u7D20\
+    )\n            right_prod.push_back(op(right_prod.back(), x));\n        }\n  \
+    \  }\n\n    /// @brief \u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
+    .\n    void pop_front() {\n        if (left_value.empty()) {\n            if (right_value.empty())\
+    \ return;\n            rebalance_from_right();\n        }\n        left_value.pop_back();\n\
+    \        left_prod.pop_back();\n    }\n\n    /// @brief \u672B\u5C3E\u306E\u8981\
+    \u7D20\u3092\u524A\u9664\u3059\u308B.\n    void pop_back() {\n        if (right_value.empty())\
+    \ {\n            if (left_value.empty()) return;\n            rebalance_from_left();\n\
+    \        }\n        right_value.pop_back();\n        right_prod.pop_back();\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u306E\u7A4D\u3092\u8FD4\
+    \u3059.\n    /// @return \u5168\u8981\u7D20\u306E\u7A4D.\n    M product() const\
+    \ {\n        if (left_prod.empty() && right_prod.empty()) return identity;\n \
+    \       if (left_prod.empty()) return right_prod.back();\n        if (right_prod.empty())\
+    \ return left_prod.back();\n        return op(left_prod.back(), right_prod.back());\n\
+    \    }\n\n    /// @brief \u5168\u3066\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\
+    \u308B.\n    void clear() {\n        left_value.clear();\n        left_prod.clear();\n\
+    \        right_value.clear();\n        right_prod.clear();\n    }\n};\n#line 6\
+    \ \"verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\nusing M = pair<mint, mint>;\n\nM op(const\
+    \ M f, const M g) {\n    return { f.first * g.first, f.second * g.first + g.second};\n\
+    }\n\nconstexpr M id = make_pair<mint, mint>(mint(1), mint(0));\n\nvector<mint>\
+    \ verify() {\n    int Q; cin >> Q;\n    Sliding_Window_Aggregation<M, op, id>\
+    \ S;\n\n    vector<mint> ans;\n    for (int q = 1; q <= Q; ++q) {\n        int\
+    \ mode; scanf(\"%d\", &mode);\n        if (mode == 0) {\n            int _a, _b;\
+    \ scanf(\"%d%d\", &_a, &_b);\n            mint a(_a), b(_b);\n            S.push_front({a,\
+    \ b});\n        } else if (mode == 1) {\n            int _a, _b; scanf(\"%d%d\"\
+    , &_a, &_b);\n            mint a(_a), b(_b);\n            S.push_back({a, b});\n\
+    \        } else if (mode == 2) {\n            S.pop_front();\n        } else if\
+    \ (mode == 3) {\n            S.pop_back();\n        } else if (mode == 4) {\n\
+    \            int _x; scanf(\"%d\", &_x);\n            mint x(_x);\n          \
+    \  auto &&[a, b] = S.product();\n            ans.emplace_back(a * x + b);\n  \
+    \      }\n    }\n\n    return ans;\n}\n\nint main() {\n    for (const auto &ans:\
+    \ verify()) {\n        cout << ans << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
+    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
+    \n#include\"../../../Data_Structure/Sliding_Window_Aggregation.hpp\"\n\nusing\
+    \ mint = modint<998244353>;\nusing M = pair<mint, mint>;\n\nM op(const M f, const\
+    \ M g) {\n    return { f.first * g.first, f.second * g.first + g.second};\n}\n\
+    \nconstexpr M id = make_pair<mint, mint>(mint(1), mint(0));\n\nvector<mint> verify()\
+    \ {\n    int Q; cin >> Q;\n    Sliding_Window_Aggregation<M, op, id> S;\n\n  \
+    \  vector<mint> ans;\n    for (int q = 1; q <= Q; ++q) {\n        int mode; scanf(\"\
+    %d\", &mode);\n        if (mode == 0) {\n            int _a, _b; scanf(\"%d%d\"\
+    , &_a, &_b);\n            mint a(_a), b(_b);\n            S.push_front({a, b});\n\
+    \        } else if (mode == 1) {\n            int _a, _b; scanf(\"%d%d\", &_a,\
+    \ &_b);\n            mint a(_a), b(_b);\n            S.push_back({a, b});\n  \
+    \      } else if (mode == 2) {\n            S.pop_front();\n        } else if\
+    \ (mode == 3) {\n            S.pop_back();\n        } else if (mode == 4) {\n\
+    \            int _x; scanf(\"%d\", &_x);\n            mint x(_x);\n          \
+    \  auto &&[a, b] = S.product();\n            ans.emplace_back(a * x + b);\n  \
+    \      }\n    }\n\n    return ans;\n}\n\nint main() {\n    for (const auto &ans:\
+    \ verify()) {\n        cout << ans << \"\\n\";\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -242,18 +344,19 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Math/Interval_Product.hpp
+  - Algebra/modint.hpp
+  - Data_Structure/Sliding_Window_Aggregation.hpp
   - template/concepts.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+  path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   requiredBy: []
   timestamp: '2026-02-14 20:38:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+documentation_of: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp.html
+title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
 ---

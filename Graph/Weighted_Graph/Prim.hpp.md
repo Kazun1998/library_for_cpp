@@ -272,7 +272,7 @@ data:
   isVerificationFile: false
   path: Graph/Weighted_Graph/Prim.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp

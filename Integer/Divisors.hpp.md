@@ -208,7 +208,7 @@ data:
   path: Integer/Divisors.hpp
   requiredBy:
   - Modulo/Order.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp

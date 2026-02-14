@@ -558,7 +558,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Stirling_1st.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp

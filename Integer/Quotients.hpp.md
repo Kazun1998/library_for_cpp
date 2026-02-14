@@ -209,7 +209,7 @@ data:
   path: Integer/Quotients.hpp
   requiredBy:
   - Integer/Prime_Pi.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp

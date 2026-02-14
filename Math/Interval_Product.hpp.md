@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/concepts.hpp
     title: template/concepts.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u9589\u533A\u9593 [0, r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D"
     links: []
@@ -247,8 +247,8 @@ data:
   isVerificationFile: false
   path: Math/Interval_Product.hpp
   requiredBy: []
-  timestamp: '2026-02-14 19:18:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-14 20:38:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
 documentation_of: Math/Interval_Product.hpp

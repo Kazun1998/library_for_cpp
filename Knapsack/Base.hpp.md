@@ -227,7 +227,7 @@ data:
   path: Knapsack/Base.hpp
   requiredBy:
   - Knapsack/Knapsack_01.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/dpl1/1B.test.cpp

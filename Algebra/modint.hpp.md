@@ -92,15 +92,21 @@ data:
     path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
     title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - icon: ':x:'
@@ -444,7 +450,7 @@ data:
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Stirling_1st.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
-  timestamp: '2026-02-14 19:18:45+09:00'
+  timestamp: '2026-02-14 20:38:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
@@ -469,7 +475,9 @@ data:
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
