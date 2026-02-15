@@ -7,7 +7,7 @@ using namespace std;
 
 template<typename T>
 class Hungarian {
-    int n;
+    int n, m;
     vector<vector<T>> matrix;
     const T INF = numeric_limits<T>::max();
     vector<T> u, v, minv;
@@ -20,7 +20,7 @@ class Hungarian {
         T delta = INF;
         int j1 = -1;
 
-        for (int j = 0; j < n; ++j) {
+        for (int j = 0; j < m; ++j) {
             if (!used[j]) {
                 T cur = matrix[i0][j] - u[i0] - v[j];
                 if (cur < minv[j]) {
@@ -34,7 +34,7 @@ class Hungarian {
             }
         }
 
-        for (int j = 0; j <= n; ++j) {
+        for (int j = 0; j <= m; ++j) {
             if (used[j]) {
                 u[p[j]] += delta;
                 v[j] -= delta;
@@ -50,13 +50,13 @@ class Hungarian {
             int j1 = way[j0];
             p[j0] = p[j1];
             j0 = j1;
-        } while (j0 != n);
+        } while (j0 != m);
     }
 
     void construct_result() {
         total_cost = 0;
         matching.assign(n, -1);
-        for (int j = 0; j < n; ++j) {
+        for (int j = 0; j < m; ++j) {
             int i = p[j];
             if (i != n) {
                 matching[i] = j;
@@ -66,8 +66,8 @@ class Hungarian {
     }
 
     void augment(int s) {
-        p[n] = s;
-        int j0 = n;
+        p[m] = s;
+        int j0 = m;
 
         fill(minv.begin(), minv.end(), INF);
         fill(used.begin(), used.end(), false);
@@ -83,15 +83,18 @@ class Hungarian {
     vector<int> matching;
     T total_cost;
 
-    Hungarian(vector<vector<T>> cost_matrix) : matrix(cost_matrix), n(cost_matrix.size()) {
+    Hungarian(vector<vector<T>> cost_matrix) : matrix(cost_matrix) {
+        n = matrix.size();
+        m = n == 0 ? 0 : matrix[0].size();
+
         // initialize
         // 0-based indexing for internal logic, n is dummy
         u.assign(n + 1, 0);
-        v.assign(n + 1, 0);
-        p.assign(n + 1, n);
-        way.assign(n + 1, -1);
-        minv.assign(n + 1, INF);
-        used.assign(n + 1, false);
+        v.assign(m + 1, 0);
+        p.assign(m + 1, n);
+        way.assign(m + 1, -1);
+        minv.assign(m + 1, INF);
+        used.assign(m + 1, false);
 
         solve();
     }
