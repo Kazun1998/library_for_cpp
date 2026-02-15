@@ -13,6 +13,7 @@ class Hungarian {
     vector<T> u, v, minv;
     vector<int> p, way;
     vector<bool> used;
+    bool maximize_mode;
 
     void step(int &j0) {
         used[j0] = true;
@@ -63,6 +64,7 @@ class Hungarian {
                 total_cost += matrix[i][j];
             }
         }
+        if (maximize_mode) total_cost = -total_cost;
     }
 
     void augment(int s) {
@@ -83,9 +85,17 @@ class Hungarian {
     vector<int> matching;
     T total_cost;
 
-    Hungarian(vector<vector<T>> cost_matrix) : matrix(cost_matrix) {
+    Hungarian(vector<vector<T>> cost_matrix, bool maximize = false) : matrix(cost_matrix), maximize_mode(maximize) {
         n = matrix.size();
         m = n == 0 ? 0 : matrix[0].size();
+
+        if (maximize_mode) {
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < m; ++j) {
+                    matrix[i][j] = -matrix[i][j];
+                }
+            }
+        }
 
         // initialize
         // 0-based indexing for internal logic, n is dummy
