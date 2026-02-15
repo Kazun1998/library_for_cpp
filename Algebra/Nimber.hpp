@@ -55,6 +55,8 @@ class Nimber {
     // 出力
     friend ostream &operator<<(ostream &os, const Nimber &a) { return os << a.x; }
 
+    Nimber inverse() const;
+
     private:
     uint64_t x;
 
@@ -146,4 +148,9 @@ Nimber pow(Nimber x, T n) {
         n >>= 1;
     }
     return res;
+}
+
+inline Nimber Nimber::inverse() const {
+    int l = calculate_level(x);
+    return pow(*this, l >= 6 ? -2ULL : (1ULL << (1 << l)) - 2);
 }
