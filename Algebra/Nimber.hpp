@@ -141,6 +141,10 @@ class Nimber {
 
 template<typename T>
 Nimber pow(Nimber x, T n) {
+    if constexpr (std::is_signed_v<T>) {
+        if (n < 0) return pow(x.inverse(), -n);
+    }
+
     Nimber res(1);
     while (n > 0) {
         if (n & 1) res *= x;
