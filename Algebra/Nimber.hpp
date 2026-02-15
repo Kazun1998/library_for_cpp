@@ -136,3 +136,14 @@ class Nimber {
         return { upper, lower };
     }
 };
+
+template<typename T>
+Nimber pow(Nimber x, T n) {
+    Nimber res(1);
+    while (n > 0) {
+        if (n & 1) res *= x;
+        x = x.square();
+        n >>= 1;
+    }
+    return res;
+}
