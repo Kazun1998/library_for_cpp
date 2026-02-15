@@ -16,7 +16,7 @@ class Nimber {
 
     friend Nimber operator+(const Nimber &x, const Nimber &y) { return Nimber(x) += y; }
 
-    Nimber& operator-=(const Nimber &b){
+    Nimber& operator-=(const Nimber &b) {
         *this += b;
         return *this;
     }
@@ -24,7 +24,7 @@ class Nimber {
     friend Nimber operator-(const Nimber &x, const Nimber &y) { return Nimber(x) -= y; }
 
     // 乗法
-    Nimber& operator*=(const Nimber &b){
+    Nimber& operator*=(const Nimber &b) {
         if ((x | b.x) < 256) {
             if (!table_initialized) init_table();
             x = small_table[x][b.x];
