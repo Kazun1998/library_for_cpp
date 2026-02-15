@@ -37,6 +37,14 @@ class Nimber {
 
     friend Nimber operator*(const Nimber &x, const Nimber &y) { return Nimber(x) *= y; }
 
+    Nimber square() const {
+        if (x < 256) {
+            if (!table_initialized) init_table();
+            return small_table[x][x];
+        }
+        int level = calculate_level(x);
+        return Nimber(calculate_square(x, level));
+    }
 
     // 入力
     friend istream &operator>>(istream &is, Nimber &a) {
@@ -96,6 +104,23 @@ class Nimber {
         uint64_t res = (p * e) ^ a ^ b;
 
         return res;
+    }
+
+    static uint64_t calculate_square(const uint64_t x, int level) {
+        if (level <= 3) {
+            if (!table_initialized) init_table();
+            return small_table[x][x];
+        }
+
+        const auto &[x1, x0] = separate(x, level);
+
+        uint64_t p = calculate_square(x0, level - 1);
+        uint64_t b = calculate_square(x1, level - 1);
+        
+        uint64_t e = 1ULL << (1 << (level - 1));
+        uint64_t mul_part = calculate_mul(b, e >> 1, level - 1);
+
+        return p ^ (b << (1 << (level - 1))) ^ mul_part;
     }
 
     static int calculate_level(const uint64_t &x) {
