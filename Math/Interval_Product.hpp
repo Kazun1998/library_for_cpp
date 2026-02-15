@@ -3,8 +3,8 @@
 #include"../template/template.hpp"
 #include"../template/concepts.hpp"
 
-template<class G, auto op, auto inv, auto identity>
-requires Group_Concept<G, op, inv, identity>
+template<class G, auto op, auto identity, auto inv>
+requires Group_Concept<G, op, identity, inv>
 class Interval_Product {
     vector<G> prefix_prod;
 
