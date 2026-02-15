@@ -30,6 +30,9 @@ data:
     path: Binary_Search/Value.hpp
     title: Binary_Search/Value.hpp
   - icon: ':heavy_check_mark:'
+    path: Calculate/Slide_Maximum.hpp
+    title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
+  - icon: ':heavy_check_mark:'
     path: Convolution/Bitwise_And_Convolution.hpp
     title: Convolution/Bitwise_And_Convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -55,7 +58,7 @@ data:
   - icon: ':warning:'
     path: Data_Structure/Best_Sum.hpp
     title: Best Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
   - icon: ':warning:'
@@ -335,7 +338,7 @@ data:
   - icon: ':warning:'
     path: Queries/Mo.hpp
     title: Mo
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
   - icon: ':heavy_check_mark:'
@@ -457,6 +460,9 @@ data:
     path: verify/aizu_online_judge/dsl/2H.test.cpp
     title: verify/aizu_online_judge/dsl/2H.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dsl/3D.test.cpp
+    title: verify/aizu_online_judge/dsl/3D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -513,10 +519,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - icon: ':x:'
@@ -792,6 +798,7 @@ data:
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Best_Sum.hpp
   - Data_Structure/Doubly_Linked_List.hpp
+  - Calculate/Slide_Maximum.hpp
   - Functional_Graph/Functional_Graph.hpp
   - Knapsack/Base.hpp
   - Knapsack/Knapsack_01.hpp
@@ -871,7 +878,7 @@ data:
   - Integer/Prime.hpp
   - Integer/Divisors.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
@@ -955,6 +962,7 @@ data:
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/4B.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
+  - verify/aizu_online_judge/dsl/3D.test.cpp
   - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/aizu_online_judge/dsl/2G_2.test.cpp
   - verify/aizu_online_judge/dsl/2G.test.cpp

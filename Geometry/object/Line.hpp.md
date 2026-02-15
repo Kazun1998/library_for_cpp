@@ -352,7 +352,7 @@ data:
   - Geometry/distance/Distance_Line_and_Point.hpp
   - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/projection/Projection_Point_Line.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7C.test.cpp

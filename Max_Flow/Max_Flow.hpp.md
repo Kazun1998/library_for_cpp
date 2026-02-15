@@ -324,7 +324,7 @@ data:
   path: Max_Flow/Max_Flow.hpp
   requiredBy:
   - Max_Flow/Project_Selection_Problem.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1984.test.cpp

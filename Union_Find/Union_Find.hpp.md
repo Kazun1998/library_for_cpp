@@ -69,7 +69,7 @@ data:
   path: Union_Find/Union_Find.hpp
   requiredBy:
   - Graph/Weighted_Graph/Kruskal.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp

@@ -541,7 +541,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp

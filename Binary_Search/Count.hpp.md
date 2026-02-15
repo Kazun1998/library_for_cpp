@@ -215,7 +215,7 @@ data:
   isVerificationFile: false
   path: Binary_Search/Count.hpp
   requiredBy: []
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/Count.hpp

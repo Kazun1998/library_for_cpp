@@ -298,7 +298,7 @@ data:
   isVerificationFile: false
   path: Convolution/Bitwise_And_Convolution.hpp
   requiredBy: []
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp

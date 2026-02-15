@@ -285,7 +285,7 @@ data:
   path: Counting/Combination_Calculator.hpp
   requiredBy:
   - Counting/Q_Analog_Combination_Calculator.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp

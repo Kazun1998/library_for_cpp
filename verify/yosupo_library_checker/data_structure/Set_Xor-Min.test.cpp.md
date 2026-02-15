@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -348,8 +348,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   requiredBy: []
-  timestamp: '2026-02-14 20:38:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-15 10:09:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
 layout: document

@@ -40,6 +40,11 @@ data:
     - icon: ':warning:'
       path: Binary_Search/Value.hpp
       title: Binary_Search/Value.hpp
+  - name: Calculate
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Calculate/Slide_Maximum.hpp
+      title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
   - name: Convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -72,7 +77,7 @@ data:
     - icon: ':warning:'
       path: Data_Structure/Best_Sum.hpp
       title: Best Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
     - icon: ':x:'
@@ -418,7 +423,7 @@ data:
       title: Mo
   - name: Segment_Tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Segment_Tree/Dual_Segment_Tree.hpp
       title: "\u53CC\u5BFE Segment Tree"
     - icon: ':heavy_check_mark:'
@@ -587,6 +592,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/dsl/2H.test.cpp
       title: verify/aizu_online_judge/dsl/2H.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/3D.test.cpp
+      title: verify/aizu_online_judge/dsl/3D.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
     - icon: ':heavy_check_mark:'
@@ -657,13 +665,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
       title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     - icon: ':x:'

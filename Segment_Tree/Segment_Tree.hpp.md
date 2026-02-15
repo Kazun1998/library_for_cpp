@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   - icon: ':x:'
@@ -100,7 +100,7 @@ data:
   path: Segment_Tree/Segment_Tree.hpp
   requiredBy:
   - Tree/Subtree_Monoid_Vertex_Query.hpp
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp

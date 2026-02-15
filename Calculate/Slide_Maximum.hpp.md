@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: Geometry/base.hpp
-    title: Geometry/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/object/Circle.hpp
-    title: Geometry/object/Circle.hpp
-  - icon: ':question:'
-    path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':question:'
@@ -31,54 +22,40 @@ data:
   - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Geometry/tangent/Common_Tangent_Points.hpp
-    title: Geometry/tangent/Common_Tangent_Points.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-    title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7E.test.cpp
-    title: verify/aizu_online_judge/cgl/7E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7F.test.cpp
-    title: verify/aizu_online_judge/cgl/7F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/cgl/7G.test.cpp
-    title: verify/aizu_online_judge/cgl/7G.test.cpp
+    path: verify/aizu_online_judge/dsl/3D.test.cpp
+    title: verify/aizu_online_judge/dsl/3D.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\
-    \n\n#line 2 \"Geometry/object/Circle.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
-    \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
-    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
-    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
-    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Calculate/Slide_Maximum.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -204,88 +181,28 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Geometry/base.hpp\"\
-    \n\nnamespace geometry {\n    using Real = double long;\n    const Real epsilon\
-    \ = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class\
-    \ Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation {\
-    \ PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
-    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
-    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
-    \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
-    \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
-    \ ll &a, const ll &b) { return sign(b - a); }\n\n    inline int sign(const int\
-    \ &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const int &a,\
-    \ const int &b) { return sign(a - b) == 0; }\n    inline int compare(const int\
-    \ &a, const int &b) { return sign(b - a); }\n};\n#line 4 \"Geometry/object/Point.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Point {\n      \
-    \  public:\n        R x, y;\n\n        public:\n        Point(): x(0), y(0) {}\n\
-    \        Point(R _x, R _y): x(_x), y(_y) {}\n\n        // \u52A0\u6CD5\n     \
-    \   Point& operator+=(const Point &B){\n            x += B.x;\n            y +=\
-    \ B.y;\n            return *this;\n        }\n\n        friend Point operator+(const\
-    \ Point &P, const Point &Q) { return Point(P) += Q; }\n\n        // \u6E1B\u6CD5\
-    \n        Point& operator-=(const Point &B){\n            x -= B.x;\n        \
-    \    y -= B.y;\n            return *this;\n        }\n\n        friend Point operator-(const\
-    \ Point &P, const Point &Q) { return Point(P) -= Q; }\n\n        // \u30B9\u30AB\
-    \u30E9\u30FC\u500D\n        Point& operator*=(const R &a){\n            x *= a;\n\
-    \            y *= a;\n            return *this;\n        }\n\n        friend Point\
-    \ operator*(const Point &P, const R &a) { return Point(P) *= a; }\n        friend\
-    \ Point operator*(const R &a, const Point &P) { return Point(P) *= a; }\n\n  \
-    \      Point& operator/=(const R &a){\n            x /= a;\n            y /= a;\n\
-    \            return *this;\n        }\n\n        friend Point operator/(const\
-    \ Point &P, const R &a) { return Point(P) /= a; }\n\n        Point& operator*=(const\
-    \ Point &P){\n            R x1 = P.x * x - P.y * y, y1 = P.y * x + P.x * y;\n\
-    \            x = x1;\n            y = y1;\n            return *this;\n       \
-    \ }\n\n        friend Point operator*(const Point &P, const Point<R> &Q) { return\
-    \ Point(P) *= Q; }\n\n        friend istream& operator>>(istream &is, Point &P)\
-    \ {\n            R a, b;\n            is >> a >> b;\n            P = Point(a,\
-    \ b);\n            return is;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Point &P) {\n            return os << P.x << \" \" << P.y;\n    \
-    \    }\n\n        inline R norm_2() const { return x * x + y * y; }\n        inline\
-    \ double norm() const { return sqrt(norm_2()); }\n        inline R dot(const Point\
-    \ B) const { return x * B.x + y * B.y; }\n        inline R det(const Point B)\
-    \ const { return x * B.y - y * B.x; }\n\n        inline Point<R> normalize() const\
-    \ { return *this / norm(); }\n        inline Point<R> normal() const { return\
-    \ Point(-y, x); }\n\n        inline Point<Real> rotate(double theta) const {\n\
-    \            Real alpha = sin(theta), beta = cos(theta);\n            Real s =\
-    \ beta * x - alpha * y, t = alpha * x + beta * y;\n            return Point(s,\
-    \ t);\n        }\n    };\n\n    template<typename R>\n    bool compare_x(const\
-    \ Point<R> &A, const Point<R> &B) { return equal(A.x, B.x) ? A.y < B.y : A.x <\
-    \ B.x; }\n\n    template<typename R>\n    bool compare_y(const Point<R> &A, const\
-    \ Point<R> &B) { return equal(A.y, B.y) ? A.x < B.x : A.y < B.y; }\n\n    template<typename\
-    \ R>\n    inline bool operator==(const Point<R> &A, const Point<R> &B) { return\
-    \ equal(A.x, B.x) && equal(A.y, B.y); }\n\n    template<typename R>\n    inline\
-    \ bool operator!=(const Point<R> &A, const Point<R> &B) { return !(A == B); }\n\
-    \n    template<typename R>\n    inline R dot(const Point<R> &A, const Point<R>\
-    \ &B) { return A.x * B.x + A.y * B.y; }\n\n    template<typename R>\n    inline\
-    \ R cross(const Point<R> &A, const Point<R> &B) { return A.x * B.y - A.y * B.x;\
-    \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
-    \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
-    \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 4 \"Geometry/object/Circle.hpp\"\
-    \n\nnamespace geometry {\n    template<typename R>\n    class Circle {\n     \
-    \   public:\n        Point<R> center;\n        R radius;\n\n        public:\n\
-    \        Circle() = default;\n        Circle(const Point<R> &_center, const R\
-    \ &_radius): center(_center), radius(_radius) {}\n    };\n\n    template<typename\
-    \ R>\n    R Area(const Circle<R> &C) { return pi * C.radius * C.radius; }\n}\n\
-    #line 4 \"Geometry/intersection/Intersection_Circle_and_Circle.hpp\"\n\nnamespace\
-    \ geometry {\n    template<typename R>\n    vector<Point<Real>> Intersection(const\
-    \ Circle<R> &C, const Circle<R> &D) {\n        Point<R> v = D.center - C.center;\n\
-    \        Point<R> e = v.normalize();\n        Point<R> f = e.normal();\n\n   \
-    \     R d= v.norm(), r = C.radius, s = D.radius;\n        R x = (d * d + r * r\
-    \ - s * s) / (2 * d), y = sqrt(r * r - x * x);\n        return { C.center + x\
-    \ * e + y * f, C.center + x * e - y * f };\n    }\n}\n"
-  code: "#pragma once\n\n#include\"../object/Circle.hpp\"\n\nnamespace geometry {\n\
-    \    template<typename R>\n    vector<Point<Real>> Intersection(const Circle<R>\
-    \ &C, const Circle<R> &D) {\n        Point<R> v = D.center - C.center;\n     \
-    \   Point<R> e = v.normalize();\n        Point<R> f = e.normal();\n\n        R\
-    \ d= v.norm(), r = C.radius, s = D.radius;\n        R x = (d * d + r * r - s *\
-    \ s) / (2 * d), y = sqrt(r * r - x * x);\n        return { C.center + x * e +\
-    \ y * f, C.center + x * e - y * f };\n    }\n}\n"
+    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Calculate/Slide_Maximum.hpp\"\
+    \n\nvector<int> Slide_Maximum_Index(const vector<int>& data, const int k) {\n\
+    \    const int n = data.size();\n    std::vector<int> index(n);\n    std::deque<int>\
+    \ Q;\n\n    for (int i = 0; i < n; ++i) {\n        if (!Q.empty() && Q.front()\
+    \ <= i - k) Q.pop_front();\n\n        while (!Q.empty() && data[Q.back()] < data[i])\
+    \ Q.pop_back();\n\n        Q.push_back(i);\n        index[i] = Q.front();\n  \
+    \  }\n\n    return vector<int>(index.begin() + k - 1, index.end());\n}\n\ntemplate<typename\
+    \ T>\nvector<T> Slide_Maximum_Value(const vector<T> &data, const int k) {\n  \
+    \  int m = data.size() - k + 1;\n    vector<int> index = Slide_Maximum_Index(data,\
+    \ k);\n\n    vector<T> res(m);\n    for (int i = 0; i < m; i++) res[i] = data[index[i]];\n\
+    \n    return res;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nvector<int> Slide_Maximum_Index(const\
+    \ vector<int>& data, const int k) {\n    const int n = data.size();\n    std::vector<int>\
+    \ index(n);\n    std::deque<int> Q;\n\n    for (int i = 0; i < n; ++i) {\n   \
+    \     if (!Q.empty() && Q.front() <= i - k) Q.pop_front();\n\n        while (!Q.empty()\
+    \ && data[Q.back()] < data[i]) Q.pop_back();\n\n        Q.push_back(i);\n    \
+    \    index[i] = Q.front();\n    }\n\n    return vector<int>(index.begin() + k\
+    \ - 1, index.end());\n}\n\ntemplate<typename T>\nvector<T> Slide_Maximum_Value(const\
+    \ vector<T> &data, const int k) {\n    int m = data.size() - k + 1;\n    vector<int>\
+    \ index = Slide_Maximum_Index(data, k);\n\n    vector<T> res(m);\n    for (int\
+    \ i = 0; i < m; i++) res[i] = data[index[i]];\n\n    return res;\n}\n"
   dependsOn:
-  - Geometry/object/Circle.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/base.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -294,20 +211,28 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
-  requiredBy:
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  path: Calculate/Slide_Maximum.hpp
+  requiredBy: []
   timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
-documentation_of: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - verify/aizu_online_judge/dsl/3D.test.cpp
+documentation_of: Calculate/Slide_Maximum.hpp
 layout: document
-redirect_from:
-- /library/Geometry/intersection/Intersection_Circle_and_Circle.hpp
-- /library/Geometry/intersection/Intersection_Circle_and_Circle.hpp.html
-title: Geometry/intersection/Intersection_Circle_and_Circle.hpp
+title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
 ---
+
+## Outline
+
+全順序の列 $A = (A_1, \dots, A_N)$ と固定された整数 $K~(1 \leq K \leq N)$ に対して, 長さが $K$ の連続部分列に対する最大値を可能な全ての連続部分列を求める.
+
+つまり, 以下によって定義される長さ $(N-K+1)$ の列 $B = (B_1, \dots, B_{N-K+1})$ を求める.
+
+* $B_j := \max(A_j, A_{j+1}, \dots, A_{j+K-1})$.
+
+
+## History 
+
+|日付|内容|
+|:---:|:---:|
+|2026/02/15| スライド最大値 実装 |

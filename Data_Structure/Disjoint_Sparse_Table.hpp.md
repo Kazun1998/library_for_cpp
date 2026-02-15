@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: Data_Structure/Disjoint_Sparse_Table.hpp
   requiredBy: []
-  timestamp: '2026-02-14 20:38:43+09:00'
+  timestamp: '2026-02-15 10:09:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
