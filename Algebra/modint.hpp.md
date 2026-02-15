@@ -103,7 +103,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - icon: ':x:'
@@ -450,7 +450,7 @@ data:
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Stirling_1st.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp

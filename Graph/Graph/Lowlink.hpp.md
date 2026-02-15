@@ -280,7 +280,7 @@ data:
   path: Graph/Graph/Lowlink.hpp
   requiredBy:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

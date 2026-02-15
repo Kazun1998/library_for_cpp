@@ -522,7 +522,7 @@ data:
   isVerificationFile: false
   path: Data_Structure/AVL_Tree.hpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp

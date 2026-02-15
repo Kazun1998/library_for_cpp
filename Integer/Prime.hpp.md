@@ -289,7 +289,7 @@ data:
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Prime_Pi.hpp
   - Integer/Euler_Totient.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp

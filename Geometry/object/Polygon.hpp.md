@@ -285,7 +285,7 @@ data:
   path: Geometry/object/Polygon.hpp
   requiredBy:
   - Geometry/utility/Convex_Hull.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp

@@ -540,7 +540,7 @@ data:
   path: Modulo_Polynomial/Taylor_Shift.hpp
   requiredBy:
   - Modulo_Polynomial/Stirling_1st.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp

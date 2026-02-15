@@ -247,7 +247,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp

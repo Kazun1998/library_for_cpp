@@ -6,9 +6,9 @@ data:
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -72,8 +72,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-15 15:30:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
 layout: document

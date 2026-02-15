@@ -58,7 +58,7 @@ data:
   - icon: ':warning:'
     path: Data_Structure/Best_Sum.hpp
     title: Best Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Data_Structure/Binary_Trie.hpp
     title: "Binary Trie \u6728"
   - icon: ':x:'
@@ -341,7 +341,7 @@ data:
   - icon: ':warning:'
     path: Queries/Mo.hpp
     title: Mo
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
   - icon: ':heavy_check_mark:'
@@ -522,10 +522,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - icon: ':x:'
@@ -573,6 +573,9 @@ data:
   - icon: ':x:'
     path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
     title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - icon: ':x:'
+    path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
+    title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - icon: ':x:'
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
@@ -884,7 +887,7 @@ data:
   - Integer/Prime.hpp
   - Integer/Divisors.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
@@ -907,6 +910,7 @@ data:
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp

@@ -458,7 +458,7 @@ data:
   isVerificationFile: false
   path: Max_Flow/Project_Selection_Problem.hpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/1984.test.cpp

@@ -24,12 +24,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Segment_Tree/Dual_Segment_Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -254,8 +254,8 @@ data:
   isVerificationFile: false
   path: Segment_Tree/Dual_Segment_Tree.hpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-15 15:30:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
 documentation_of: Segment_Tree/Dual_Segment_Tree.hpp

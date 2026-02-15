@@ -42,6 +42,9 @@ data:
       title: Binary_Search/Value.hpp
   - name: Calculate
     pages:
+    - icon: ':x:'
+      path: Calculate/Hungarian.hpp
+      title: "Hungarian \u6CD5"
     - icon: ':heavy_check_mark:'
       path: Calculate/Slide_Maximum.hpp
       title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
@@ -77,7 +80,7 @@ data:
     - icon: ':warning:'
       path: Data_Structure/Best_Sum.hpp
       title: Best Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
     - icon: ':x:'
@@ -423,7 +426,7 @@ data:
       title: Mo
   - name: Segment_Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Segment_Tree/Dual_Segment_Tree.hpp
       title: "\u53CC\u5BFE Segment Tree"
     - icon: ':heavy_check_mark:'
@@ -665,13 +668,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
       title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     - icon: ':x:'
@@ -728,6 +731,9 @@ data:
       title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - name: verify/yosupo_library_checker/graph
     pages:
+    - icon: ':x:'
+      path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
+      title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
     - icon: ':x:'
       path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
       title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: Modulo/Composite.hpp
-    title: Modulo/Composite.hpp
-  - icon: ':x:'
-    path: Modulo/Modulo.hpp
-    title: Modulo/Modulo.hpp
+    path: Calculate/Hungarian.hpp
+    title: "Hungarian \u6CD5"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -35,24 +32,25 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2558
+    PROBLEM: https://judge.yosupo.jp/problem/assignment
     links:
-    - https://yukicoder.me/problems/no/2558
-  bundledCode: "#line 1 \"verify/yukicoder/2558.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2558\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    - https://judge.yosupo.jp/problem/assignment
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#line 2 \"\
+    template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\
+    \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
+    \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
+    \ <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include\
+    \ <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <deque>\n#include\
+    \ <fstream>\n#include <functional>\n#include <initializer_list>\n#include <iomanip>\n\
+    #include <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n\
+    #include <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include\
+    \ <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n#include\
+    \ <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n\
+    #include <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
+    #include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include\
+    \ <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
     \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
     . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
     template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
@@ -187,92 +185,52 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Modulo/Composite.hpp\"\
-    \n\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace\
-    \ modulo {\n    class DifferentModulus : public exception {\n        public: //\
-    \ public\u306B\u6307\u5B9A\n        const char* what() const noexcept override\
-    \ { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\
-    \u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n\
-    \        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
-    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
-    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
-    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
-    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
-    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
-    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
-    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
-    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
-    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
-    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
-    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
-    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
-    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
-    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
-    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
-    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
-    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
-    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
-    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
-    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
-    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
-    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
-    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
-    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
-    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
-    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
-    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
-    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
-    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
-    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
-    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
-    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
-    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
-    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
-    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
-    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
-    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
-    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
-    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
-    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
-    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
-    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
-    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
-    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
-    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
-    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
-    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
-    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
-    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 4 \"Modulo/Composite.hpp\"\n\nnamespace modulo {\n    class IncompatibleModuloComposite\
-    \ : public exception {\n      public: // public\u306B\u6307\u5B9A\n      const\
-    \ char* what() const noexcept override { return \"\u5408\u6210\u304C\u5B58\u5728\
-    \u3057\u307E\u305B\u3093\"; }\n    };\n\n    Modulo Composite(Modulo A, Modulo\
-    \ B) {\n        ll a = A.a, n = A.n;\n        ll b = B.a, m = B.n;\n        ll\
-    \ d = b - a;\n        ll g = gcd(n, m);\n\n        if (d % g) { throw IncompatibleModuloComposite();\
-    \ }\n\n        n /= g; m /= g; d /= g;\n\n        ll s = Modulo(n, m).inverse().a;\n\
-    \n        auto alpha = Modulo(a, n * m * g);\n        auto beta = Modulo(n * g,\
-    \ n * m * g);\n        auto gamma = Modulo(d * s, n * m * g);\n\n        return\
-    \ alpha + beta * gamma;\n    }\n\n    Modulo Composite() { return Modulo(0, 1);\
-    \ }\n\n    template <typename T, typename... Args>\n    Modulo Composite(const\
-    \ T& first, const Args&... rest) {\n        return Composite(first, Composite(rest...));\n\
-    \    }\n\n    Modulo Composite(vector<Modulo> As) {\n        auto res = Modulo(0,\
-    \ 1);\n        for (auto A: As) { res = Composite(res, A); }\n\n        return\
-    \ res;\n    }\n}\n#line 5 \"verify/yukicoder/2558.test.cpp\"\n\nusing namespace\
-    \ modulo;\n\nint main() {\n    Modulo X, Y;\n    cin >> X.n >> Y.n >> X.a >> Y.a;\n\
-    \    Modulo Z = Composite(X, Y);\n    cout << Z.a << endl;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2558\"\n\n#include\"../../template/template.hpp\"\
-    \n#include\"../../Modulo/Composite.hpp\"\n\nusing namespace modulo;\n\nint main()\
-    \ {\n    Modulo X, Y;\n    cin >> X.n >> Y.n >> X.a >> Y.a;\n    Modulo Z = Composite(X,\
-    \ Y);\n    cout << Z.a << endl;\n}\n"
+    \ {\n        return message.c_str();\n    }\n};\n#line 5 \"Calculate/Hungarian.hpp\"\
+    \n\nusing namespace std;\n\ntemplate<typename T>\nclass Hungarian {\n    int n,\
+    \ m;\n    vector<vector<T>> matrix;\n    const T INF = numeric_limits<T>::max();\n\
+    \    vector<T> u, v, minv;\n    vector<int> p, way;\n    vector<bool> used;\n\
+    \    bool maximize_mode;\n\n    void step(int &j0) {\n        used[j0] = true;\n\
+    \        int i0 = p[j0];\n        T delta = INF;\n        int j1 = -1;\n\n   \
+    \     for (int j = 0; j < m; ++j) {\n            if (!used[j]) {\n           \
+    \     T cur = matrix[i0][j] - u[i0] - v[j];\n                if (cur < minv[j])\
+    \ {\n                    minv[j] = cur;\n                    way[j] = j0;\n  \
+    \              }\n                if (minv[j] < delta) {\n                   \
+    \ delta = minv[j];\n                    j1 = j;\n                }\n         \
+    \   }\n        }\n\n        for (int j = 0; j <= m; ++j) {\n            if (used[j])\
+    \ {\n                u[p[j]] += delta;\n                v[j] -= delta;\n     \
+    \       } else {\n                if (minv[j] < INF) minv[j] -= delta;\n     \
+    \       }\n        }\n        j0 = j1;\n    }\n\n    void update_matching(int\
+    \ j0) {\n        do {\n            int j1 = way[j0];\n            p[j0] = p[j1];\n\
+    \            j0 = j1;\n        } while (j0 != m);\n    }\n\n    void construct_result()\
+    \ {\n        total_cost = 0;\n        matching.assign(n, -1);\n        for (int\
+    \ j = 0; j < m; ++j) {\n            int i = p[j];\n            if (i != n) {\n\
+    \                matching[i] = j;\n                total_cost += matrix[i][j];\n\
+    \            }\n        }\n        if (maximize_mode) total_cost = -total_cost;\n\
+    \    }\n\n    void augment(int s) {\n        p[m] = s;\n        int j0 = m;\n\n\
+    \        fill(minv.begin(), minv.end(), INF);\n        fill(used.begin(), used.end(),\
+    \ false);\n\n        do {\n            step(j0);\n        } while (p[j0] != n);\n\
+    \n        update_matching(j0);\n    }\n\n    public:\n    vector<int> matching;\n\
+    \    T total_cost;\n\n    Hungarian(vector<vector<T>> cost_matrix, bool maximize\
+    \ = false) : matrix(cost_matrix), maximize_mode(maximize) {\n        n = matrix.size();\n\
+    \        m = n == 0 ? 0 : matrix[0].size();\n\n        if (maximize_mode) {\n\
+    \            for (int i = 0; i < n; ++i) {\n                for (int j = 0; j\
+    \ < m; ++j) {\n                    matrix[i][j] = -matrix[i][j];\n           \
+    \     }\n            }\n        }\n\n        // initialize\n        // 0-based\
+    \ indexing for internal logic, n is dummy\n        u.assign(n + 1, 0);\n     \
+    \   v.assign(m + 1, 0);\n        p.assign(m + 1, n);\n        way.assign(m + 1,\
+    \ -1);\n        minv.assign(m + 1, INF);\n        used.assign(m + 1, false);\n\
+    \n        solve();\n    }\n\n    void solve() {\n        for (int i = 0; i < n;\
+    \ ++i) augment(i);\n\n        construct_result();\n    }\n};\n#line 5 \"verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp\"\
+    \n\nint main() {\n    int N; cin >> N;\n    vector<vector<ll>> a(N, vector<ll>(N,\
+    \ 0));\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j)\
+    \ {\n            cin >> a[i][j];\n        }\n    }\n\n    Hungarian<ll> H(a);\n\
+    \n    cout << H.total_cost << endl;\n    cout << H.matching << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Calculate/Hungarian.hpp\"\
+    \n\nint main() {\n    int N; cin >> N;\n    vector<vector<ll>> a(N, vector<ll>(N,\
+    \ 0));\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j)\
+    \ {\n            cin >> a[i][j];\n        }\n    }\n\n    Hungarian<ll> H(a);\n\
+    \n    cout << H.total_cost << endl;\n    cout << H.matching << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -281,18 +239,17 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Modulo/Composite.hpp
-  - Modulo/Modulo.hpp
+  - Calculate/Hungarian.hpp
   isVerificationFile: true
-  path: verify/yukicoder/2558.test.cpp
+  path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   requiredBy: []
   timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: verify/yukicoder/2558.test.cpp
+documentation_of: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yukicoder/2558.test.cpp
-- /verify/verify/yukicoder/2558.test.cpp.html
-title: verify/yukicoder/2558.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp.html
+title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
 ---

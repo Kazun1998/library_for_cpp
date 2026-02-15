@@ -271,7 +271,7 @@ data:
   isVerificationFile: false
   path: Math/Montmort_Number.hpp
   requiredBy: []
-  timestamp: '2026-02-15 10:09:33+09:00'
+  timestamp: '2026-02-15 15:30:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
