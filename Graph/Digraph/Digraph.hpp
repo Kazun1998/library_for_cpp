@@ -49,5 +49,11 @@ namespace digraph {
         // 弧 ID が id である弧を取得する.
         inline const Arc get_arc(int id) const { return arcs[id]; }
         inline Arc get_arc(int id) { return arcs[id]; }
+
+        // 頂点 v の出次数
+        inline int out_degree(const int v) const { return adjacent_out[v].size(); }
+
+        // 頂点 v の入次数
+        inline int in_degree(const int v) const { return adjacent_in[v].size(); }
     };
 }
