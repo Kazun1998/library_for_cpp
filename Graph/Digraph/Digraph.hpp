@@ -2,7 +2,7 @@
 
 #include"../../template/template.hpp"
 
-namespace Digraph {
+namespace digraph {
     struct Arc {
         int id, source, target;
 
