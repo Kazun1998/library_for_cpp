@@ -1,0 +1,43 @@
+# Compiled Object files
+*.o
+*.ko
+*.obj
+*.lo
+*.pobj
+
+# Libraries
+*.lib
+*.a
+*.la
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+*.bin
+*.elf
+a.out
+
+# Source Code Management
+.git/
+
+# Build directories
+build/
+bin/
+obj/
+dist/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Dependencies
+/jam
+/jam.cpp
+/verify
+.verify-helper/cache/
