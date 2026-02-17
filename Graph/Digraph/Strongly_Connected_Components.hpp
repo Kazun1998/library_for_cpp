@@ -1,6 +1,6 @@
 #include"Digraph.hpp"
 
-namespace Digraph {
+namespace digraph {
     class Strongly_Connected_Components {
         public:
         vector<vector<int>> components;
