@@ -8,7 +8,7 @@ using namespace std;
 
 int main(){
   int N, M, s, t; cin >> N >> M >> s >> t;
-  auto D = Weighted_Digraph::Weighted_Digraph<long long>(N);
+  auto D = weighted_digraph::Weighted_Digraph<long long>(N);
 
   for (int j = 0; j < M; j++) {
     int a, b, c;
@@ -17,13 +17,13 @@ int main(){
   }
 
   try {
-    auto shortest_path = Weighted_Digraph::Dijkstra::Dijkstra(D, s, t);
+    auto shortest_path = weighted_digraph::dijkstra::Dijkstra(D, s, t);
     cout << shortest_path.length << " " << shortest_path.path_arc_ids.size() << endl;
     auto P = shortest_path.path_vertices;
     for (int j = 0; j < shortest_path.path_arc_ids.size(); j++) {
       cout << P[j] << " " << P[j + 1] << "\n";
     }
-  } catch (Weighted_Digraph::Dijkstra::UnreachableException &e) {
+  } catch (weighted_digraph::dijkstra::UnreachableException &e) {
     cout << -1 << endl;
   }
 }

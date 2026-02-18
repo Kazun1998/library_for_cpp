@@ -1,7 +1,7 @@
 #pragma once
 #include"Weighted_Digraph.hpp"
 
-namespace Weighted_Digraph::Dijkstra {
+namespace weighted_digraph::dijkstra {
     class UnreachableException : public exception {
       public: // publicに指定
       const char* what() const noexcept override { return "求めるパスが存在しません"; }
