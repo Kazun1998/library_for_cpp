@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
     title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Prim.hpp
     title: "Prim \u6CD5"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\u304D\u7121\u5411\
       \u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B."
@@ -109,8 +109,8 @@ data:
   - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
   - Graph/Weighted_Graph/Prim.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-11-24 23:47:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp

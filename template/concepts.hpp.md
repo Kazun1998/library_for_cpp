@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Sliding_Window_Aggregation.hpp
     title: Sliding Window Aggregation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
   - icon: ':warning:'
@@ -26,12 +26,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\
@@ -79,8 +79,8 @@ data:
   - Data_Structure/Best_Sum.hpp
   - Sequence/Trie.hpp
   - Union_Find/Coloring_Union_Find.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-02-01 00:05:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp

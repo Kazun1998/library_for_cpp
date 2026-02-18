@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
@@ -247,8 +247,8 @@ data:
   path: Integer/Euler_Totient.hpp
   requiredBy:
   - Modulo/Order.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/concepts.hpp
     title: template/concepts.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u9589\u533A\u9593 [0, r] \u306B\u304A\u3051\u308B\u7D2F\u7A4D"
     links: []
@@ -247,8 +247,8 @@ data:
   isVerificationFile: false
   path: Math/Interval_Product.hpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-02-01 00:05:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
 documentation_of: Math/Interval_Product.hpp

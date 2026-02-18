@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3\
       \ (x, y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B."
@@ -342,8 +342,8 @@ data:
   isVerificationFile: false
   path: Math/Bezout.hpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
 documentation_of: Math/Bezout.hpp

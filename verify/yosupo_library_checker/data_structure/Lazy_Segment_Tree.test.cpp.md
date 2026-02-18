@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -367,7 +367,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
+  timestamp: '2026-01-29 01:07:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp

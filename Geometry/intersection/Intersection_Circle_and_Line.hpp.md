@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
@@ -13,34 +13,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Line.hpp
     title: Geometry/object/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/projection/Projection_Point_Line.hpp
     title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -326,7 +326,7 @@ data:
   isVerificationFile: false
   path: Geometry/intersection/Intersection_Circle_and_Line.hpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
+  timestamp: '2026-01-24 19:02:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7D.test.cpp

@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Cliques.hpp
     title: Graph/Graph/Enumerate_Cliques.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Triangles.hpp
     title: Graph/Graph/Enumerate_Triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
     title: Graph/Graph/Lowlink.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   _extendedVerifiedWith:
@@ -48,18 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\
       \u6570) \u3092\u6C42\u3081\u308B."
@@ -289,8 +289,8 @@ data:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Connected_Components.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp

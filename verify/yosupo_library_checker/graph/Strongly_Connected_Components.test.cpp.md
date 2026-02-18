@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
     title: Graph/Digraph/Digraph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: Graph/Digraph/Strongly_Connected_Components.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -189,7 +189,7 @@ data:
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
     \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Graph/Digraph/Digraph.hpp\"\
-    \n\n#line 4 \"Graph/Digraph/Digraph.hpp\"\n\nnamespace Digraph {\n    struct Arc\
+    \n\n#line 4 \"Graph/Digraph/Digraph.hpp\"\n\nnamespace digraph {\n    struct Arc\
     \ {\n        int id, source, target;\n\n        Arc() = default;\n        Arc(int\
     \ id, int source, int target): id(id), source(source), target(target) {}\n   \
     \ };\n\n    class Digraph {\n        private:\n        int arc_id_offset;\n  \
@@ -211,16 +211,20 @@ data:
     \n        inline const vector<Arc*>& predecessors(int u) const { return adjacent_in[u];\
     \ }\n\n        // \u5F27 ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\
     \u3059\u308B.\n        inline const Arc get_arc(int id) const { return arcs[id];\
-    \ }\n        inline Arc get_arc(int id) { return arcs[id]; }\n    };\n}\n#line\
-    \ 2 \"Graph/Digraph/Strongly_Connected_Components.hpp\"\n\nnamespace Digraph {\n\
-    \    class Strongly_Connected_Components {\n        public:\n        vector<vector<int>>\
-    \ components;\n        vector<int> group;\n\n        private:\n        vector<int>\
-    \ order;\n        vector<bool> used;\n\n        public:\n        Strongly_Connected_Components(const\
-    \ Digraph &D) {\n            int n = D.order();\n\n            used.assign(n,\
-    \ false);\n\n            for (int i = 0; i < n; i++) {\n                unless(used[i])\
-    \ { dfs1(D, i); }\n            }\n\n            reverse(all(order));\n       \
-    \     group.assign(n, -1);\n\n            for (int v: order) {\n             \
-    \   unless(group[v] == -1) { continue; }\n\n                components.emplace_back(vector<int>());\n\
+    \ }\n        inline Arc get_arc(int id) { return arcs[id]; }\n\n        // \u9802\
+    \u70B9 v \u306E\u51FA\u6B21\u6570\n        inline int out_degree(const int v)\
+    \ const { return adjacent_out[v].size(); }\n\n        // \u9802\u70B9 v \u306E\
+    \u5165\u6B21\u6570\n        inline int in_degree(const int v) const { return adjacent_in[v].size();\
+    \ }\n    };\n}\n#line 2 \"Graph/Digraph/Strongly_Connected_Components.hpp\"\n\n\
+    namespace digraph {\n    class Strongly_Connected_Components {\n        public:\n\
+    \        vector<vector<int>> components;\n        vector<int> group;\n\n     \
+    \   private:\n        vector<int> order;\n        vector<bool> used;\n\n     \
+    \   public:\n        Strongly_Connected_Components(const Digraph &D) {\n     \
+    \       int n = D.order();\n\n            used.assign(n, false);\n\n         \
+    \   for (int i = 0; i < n; i++) {\n                unless(used[i]) { dfs1(D, i);\
+    \ }\n            }\n\n            reverse(all(order));\n            group.assign(n,\
+    \ -1);\n\n            for (int v: order) {\n                unless(group[v] ==\
+    \ -1) { continue; }\n\n                components.emplace_back(vector<int>());\n\
     \                dfs2(D, v);\n            }\n        }\n\n        private:\n \
     \       void dfs1(const Digraph &D, int v) {\n            used[v] = true;\n  \
     \          for (auto arc: D.successors(v)) {\n                int w = arc->target;\n\
@@ -230,18 +234,18 @@ data:
     \n            for (auto arc: D.predecessors(v)) {\n                int w = arc->source;\n\
     \                if (group[w] == -1) { dfs2(D, w); }\n            }\n        }\n\
     \    };\n}\n#line 5 \"verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp\"\
-    \n\nint main() {\n    int N, M; cin >> N >> M;\n    auto D = Digraph::Digraph(N);\n\
-    \n    for (int j = 0; j < M; j++) {\n        int a, b; scanf(\"%d%d\", &a, &b);\n\
-    \        D.add_arc(a, b);\n    }\n\n    auto S = Digraph::Strongly_Connected_Components(D);\n\
-    \n    cout << S.components.size() << endl;\n    for (auto component: S.components)\
-    \ {\n        cout << component.size();\n        for (int v: component) {\n   \
-    \         cout << \" \" << v;\n        }\n\n        cout << \"\\n\";\n    }\n\
-    }\n"
+    \n\nint main() {\n    using namespace digraph;\n    int N, M; cin >> N >> M;\n\
+    \    auto D = Digraph(N);\n\n    for (int j = 0; j < M; j++) {\n        int a,\
+    \ b; scanf(\"%d%d\", &a, &b);\n        D.add_arc(a, b);\n    }\n\n    auto S =\
+    \ Strongly_Connected_Components(D);\n\n    cout << S.components.size() << endl;\n\
+    \    for (auto component: S.components) {\n        cout << component.size();\n\
+    \        for (int v: component) {\n            cout << \" \" << v;\n        }\n\
+    \n        cout << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n\n#include\"../../../template/template.hpp\"\
     \n#include\"../../../Graph/Digraph/Strongly_Connected_Components.hpp\"\n\nint\
-    \ main() {\n    int N, M; cin >> N >> M;\n    auto D = Digraph::Digraph(N);\n\n\
-    \    for (int j = 0; j < M; j++) {\n        int a, b; scanf(\"%d%d\", &a, &b);\n\
-    \        D.add_arc(a, b);\n    }\n\n    auto S = Digraph::Strongly_Connected_Components(D);\n\
+    \ main() {\n    using namespace digraph;\n    int N, M; cin >> N >> M;\n    auto\
+    \ D = Digraph(N);\n\n    for (int j = 0; j < M; j++) {\n        int a, b; scanf(\"\
+    %d%d\", &a, &b);\n        D.add_arc(a, b);\n    }\n\n    auto S = Strongly_Connected_Components(D);\n\
     \n    cout << S.components.size() << endl;\n    for (auto component: S.components)\
     \ {\n        cout << component.size();\n        for (int v: component) {\n   \
     \         cout << \" \" << v;\n        }\n\n        cout << \"\\n\";\n    }\n\
@@ -259,8 +263,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-16 23:24:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
 layout: document

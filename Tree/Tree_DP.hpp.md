@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Tree/Tree_DP.hpp\"\n\n#line 2 \"Tree/Tree.hpp\"\n\n#line\
@@ -356,8 +356,8 @@ data:
   path: Tree/Tree_DP.hpp
   requiredBy:
   - Tree/Rerooting.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-02-06 01:08:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/763.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp

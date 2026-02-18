@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
     title: Geometry/object/Point.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/utility/Argument_Sort.hpp
     title: Geometry/utility/Argument_Sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -281,8 +281,8 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
 layout: document

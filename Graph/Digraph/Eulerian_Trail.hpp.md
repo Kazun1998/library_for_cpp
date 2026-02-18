@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Digraph.hpp
+    title: Graph/Digraph/Digraph.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Path.hpp
+    title: Graph/Digraph/Path.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -25,14 +31,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/original/Functional_Graph.test.cpp
-    title: verify/original/Functional_Graph.test.cpp
+    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+  bundledCode: "#line 2 \"Graph/Digraph/Eulerian_Trail.hpp\"\n\n#line 2 \"Graph/Digraph/Digraph.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -180,124 +187,79 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Functional_Graph/Functional_Graph.hpp\"\
-    \n\nclass Functional_Graph {\n    private:\n    vector<int> f;\n    vector<vector<int>>\
-    \ f_inv;\n    int N;\n\n    vector<vector<int>> cycles;\n    vector<int> cycle_ids,\
-    \ cycle_vertex_ids;\n\n    vector<int> tree_ids, tree_vertex_ids, tree_depth;\n\
-    \    vector<vector<int>> tree_vertices;\n    vector<vector<vector<int>>> tree_doubling;\n\
-    \n    public:\n    Functional_Graph(const vector<int> &f): f(f), N(f.size()) {\n\
-    \        f_inv.resize(N);\n        for (int x = 0; x < N; x++) { f_inv[f[x]].emplace_back(x);\
-    \ }\n        build_up();\n    }\n\n    private:\n    void build_up() {\n     \
-    \   build_cycles();\n        build_branches();\n    }\n\n    // \u30B5\u30A4\u30AF\
-    \u30EB\u691C\u51FA\u30D1\u30FC\u30C8\n    void build_cycles() {\n        vector<int>\
-    \ indegree(N);\n        stack<int> st;\n        for (int x = 0; x < N; x++) {\n\
-    \            indegree[x] = f_inv[x].size();\n            if (indegree[x] == 0)\
-    \ { st.push(x); }\n        }\n\n        vector<bool> cycle_flag(N, true);\n\n\
-    \        while (!st.empty()) {\n            int x = st.top();\n            st.pop();\n\
-    \n            cycle_flag[x] = false;\n            indegree[f[x]]--;\n        \
-    \    if (indegree[f[x]] == 0) { st.push(f[x]); }\n        }\n\n        cycles.clear();\n\
-    \        cycle_ids.assign(N, -1);\n        cycle_vertex_ids.assign(N, -1);\n\n\
-    \        for (int x = 0; x < N; x++) {\n            if (!cycle_flag[x]) { continue;\
-    \ }\n\n            int cycle_id = cycles.size();\n\n            vector<int> cycle{x};\n\
-    \            cycle_flag[x] = false;\n            int y = f[x];\n            while\
-    \ (y != x) {\n                cycle.emplace_back(y);\n                cycle_flag[y]\
-    \ = false;\n                y = f[y];\n            }\n\n            cycles.emplace_back(cycle);\n\
-    \            for (int j = 0; j < cycle.size(); j++) {\n                int y =\
-    \ cycle[j];\n                cycle_ids[y] = cycle_id;\n                cycle_vertex_ids[y]\
-    \ = j;\n            }\n        }\n    }\n\n    void build_branches() {\n     \
-    \   tree_ids.assign(N, -1);\n        tree_vertex_ids.assign(N, -1);\n        tree_depth.assign(N,\
-    \ 0);\n\n        for (int x = 0; x < N; x++) {\n            if (cycle_ids[x] ==\
-    \ -1) { continue; }\n\n            int tree_id = tree_vertices.size();\n     \
-    \       vector<int> tree_vertex{x};\n\n            int vertex_id = 0;\n      \
-    \      tree_ids[x] = tree_id;\n            tree_vertex_ids[x] = vertex_id;\n\n\
-    \            stack<int> st;\n            st.push(x);\n\n            int max_depth\
-    \ = 0;\n\n            while (!st.empty()) {\n                int y = st.top();\
-    \ st.pop();\n\n                for (int z: f_inv[y]) {\n                    if\
-    \ (cycle_ids[z] != -1) { continue; }\n\n                    vertex_id++;\n   \
-    \                 tree_ids[z] = tree_id;\n                    tree_vertex_ids[z]\
-    \ = vertex_id;\n\n                    tree_depth[z] = tree_depth[y] + 1;\n   \
-    \                 chmax(max_depth, tree_depth[z]);\n\n                    st.push(z);\n\
-    \                    tree_vertex.emplace_back(z);\n                }\n       \
-    \     }\n\n            tree_vertices.emplace_back(tree_vertex);\n            int\
-    \ m = tree_vertex.size();\n            vector<vector<int>> doubling(max<int>(1,\
-    \ bit_length(max_depth)), vector<int>(m, -1));\n\n            for (int j = 1;\
-    \ j < m; j++) {\n                doubling[0][j] = tree_vertex_ids[f[tree_vertex[j]]];\n\
-    \            }\n\n            for (int b = 1; b < max<int>(1, bit_length(max_depth));\
-    \ b++) {\n                for (int j = 0; j < m; j++) {\n                    doubling[b][j]\
-    \ = doubling[b - 1][doubling[b - 1][j]];\n                }\n            }\n\n\
-    \            tree_doubling.emplace_back(doubling);\n        }\n    }\n\n    int\
-    \ upper(int x, ll k) {\n        int tree_id = tree_ids[x];\n        int vertex_id\
-    \ = tree_vertex_ids[x];\n\n        vector<vector<int>> doubling = tree_doubling[tree_id];\n\
-    \        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { vertex_id\
-    \ = doubling[b][vertex_id]; }\n        }\n\n        return tree_vertices[tree_id][vertex_id];\n\
-    \    }\n\n    int jump_on_cycle(int cycle_id, int vertex_id, ll k) {\n       \
-    \ auto &cycle = cycles[cycle_id];\n        int m = cycle.size();\n        k =\
-    \ safe_mod(k, m);\n        return cycle[(vertex_id + k) % m];\n    }\n\n    public:\n\
-    \    inline int root(int x) const { return tree_vertices[tree_ids[x]][0]; }\n\n\
-    \    int calculate(int x, ll k) {\n        if ( k < tree_depth[x]) { return upper(x,\
-    \ k); }\n\n        k -= tree_depth[x];\n        x = root(x);\n\n        int cycle_id\
-    \ = cycle_ids[x];\n        int vertex_id = cycle_vertex_ids[x];\n        return\
-    \ jump_on_cycle(cycle_id, vertex_id, k);\n    }\n\n    vector<vector<int>> &get_cycles()\
-    \ { return cycles; }\n};\n"
-  code: "#include\"../template/template.hpp\"\n\nclass Functional_Graph {\n    private:\n\
-    \    vector<int> f;\n    vector<vector<int>> f_inv;\n    int N;\n\n    vector<vector<int>>\
-    \ cycles;\n    vector<int> cycle_ids, cycle_vertex_ids;\n\n    vector<int> tree_ids,\
-    \ tree_vertex_ids, tree_depth;\n    vector<vector<int>> tree_vertices;\n    vector<vector<vector<int>>>\
-    \ tree_doubling;\n\n    public:\n    Functional_Graph(const vector<int> &f): f(f),\
-    \ N(f.size()) {\n        f_inv.resize(N);\n        for (int x = 0; x < N; x++)\
-    \ { f_inv[f[x]].emplace_back(x); }\n        build_up();\n    }\n\n    private:\n\
-    \    void build_up() {\n        build_cycles();\n        build_branches();\n \
-    \   }\n\n    // \u30B5\u30A4\u30AF\u30EB\u691C\u51FA\u30D1\u30FC\u30C8\n    void\
-    \ build_cycles() {\n        vector<int> indegree(N);\n        stack<int> st;\n\
-    \        for (int x = 0; x < N; x++) {\n            indegree[x] = f_inv[x].size();\n\
-    \            if (indegree[x] == 0) { st.push(x); }\n        }\n\n        vector<bool>\
-    \ cycle_flag(N, true);\n\n        while (!st.empty()) {\n            int x = st.top();\n\
-    \            st.pop();\n\n            cycle_flag[x] = false;\n            indegree[f[x]]--;\n\
-    \            if (indegree[f[x]] == 0) { st.push(f[x]); }\n        }\n\n      \
-    \  cycles.clear();\n        cycle_ids.assign(N, -1);\n        cycle_vertex_ids.assign(N,\
-    \ -1);\n\n        for (int x = 0; x < N; x++) {\n            if (!cycle_flag[x])\
-    \ { continue; }\n\n            int cycle_id = cycles.size();\n\n            vector<int>\
-    \ cycle{x};\n            cycle_flag[x] = false;\n            int y = f[x];\n \
-    \           while (y != x) {\n                cycle.emplace_back(y);\n       \
-    \         cycle_flag[y] = false;\n                y = f[y];\n            }\n\n\
-    \            cycles.emplace_back(cycle);\n            for (int j = 0; j < cycle.size();\
-    \ j++) {\n                int y = cycle[j];\n                cycle_ids[y] = cycle_id;\n\
-    \                cycle_vertex_ids[y] = j;\n            }\n        }\n    }\n\n\
-    \    void build_branches() {\n        tree_ids.assign(N, -1);\n        tree_vertex_ids.assign(N,\
-    \ -1);\n        tree_depth.assign(N, 0);\n\n        for (int x = 0; x < N; x++)\
-    \ {\n            if (cycle_ids[x] == -1) { continue; }\n\n            int tree_id\
-    \ = tree_vertices.size();\n            vector<int> tree_vertex{x};\n\n       \
-    \     int vertex_id = 0;\n            tree_ids[x] = tree_id;\n            tree_vertex_ids[x]\
-    \ = vertex_id;\n\n            stack<int> st;\n            st.push(x);\n\n    \
-    \        int max_depth = 0;\n\n            while (!st.empty()) {\n           \
-    \     int y = st.top(); st.pop();\n\n                for (int z: f_inv[y]) {\n\
-    \                    if (cycle_ids[z] != -1) { continue; }\n\n               \
-    \     vertex_id++;\n                    tree_ids[z] = tree_id;\n             \
-    \       tree_vertex_ids[z] = vertex_id;\n\n                    tree_depth[z] =\
-    \ tree_depth[y] + 1;\n                    chmax(max_depth, tree_depth[z]);\n\n\
-    \                    st.push(z);\n                    tree_vertex.emplace_back(z);\n\
-    \                }\n            }\n\n            tree_vertices.emplace_back(tree_vertex);\n\
-    \            int m = tree_vertex.size();\n            vector<vector<int>> doubling(max<int>(1,\
-    \ bit_length(max_depth)), vector<int>(m, -1));\n\n            for (int j = 1;\
-    \ j < m; j++) {\n                doubling[0][j] = tree_vertex_ids[f[tree_vertex[j]]];\n\
-    \            }\n\n            for (int b = 1; b < max<int>(1, bit_length(max_depth));\
-    \ b++) {\n                for (int j = 0; j < m; j++) {\n                    doubling[b][j]\
-    \ = doubling[b - 1][doubling[b - 1][j]];\n                }\n            }\n\n\
-    \            tree_doubling.emplace_back(doubling);\n        }\n    }\n\n    int\
-    \ upper(int x, ll k) {\n        int tree_id = tree_ids[x];\n        int vertex_id\
-    \ = tree_vertex_ids[x];\n\n        vector<vector<int>> doubling = tree_doubling[tree_id];\n\
-    \        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { vertex_id\
-    \ = doubling[b][vertex_id]; }\n        }\n\n        return tree_vertices[tree_id][vertex_id];\n\
-    \    }\n\n    int jump_on_cycle(int cycle_id, int vertex_id, ll k) {\n       \
-    \ auto &cycle = cycles[cycle_id];\n        int m = cycle.size();\n        k =\
-    \ safe_mod(k, m);\n        return cycle[(vertex_id + k) % m];\n    }\n\n    public:\n\
-    \    inline int root(int x) const { return tree_vertices[tree_ids[x]][0]; }\n\n\
-    \    int calculate(int x, ll k) {\n        if ( k < tree_depth[x]) { return upper(x,\
-    \ k); }\n\n        k -= tree_depth[x];\n        x = root(x);\n\n        int cycle_id\
-    \ = cycle_ids[x];\n        int vertex_id = cycle_vertex_ids[x];\n        return\
-    \ jump_on_cycle(cycle_id, vertex_id, k);\n    }\n\n    vector<vector<int>> &get_cycles()\
-    \ { return cycles; }\n};\n"
+    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Digraph/Digraph.hpp\"\
+    \n\nnamespace digraph {\n    struct Arc {\n        int id, source, target;\n\n\
+    \        Arc() = default;\n        Arc(int id, int source, int target): id(id),\
+    \ source(source), target(target) {}\n    };\n\n    class Digraph {\n        private:\n\
+    \        int arc_id_offset;\n        vector<vector<Arc*>> adjacent_out, adjacent_in;\n\
+    \        vector<Arc> arcs;\n\n        public:\n        Digraph(int n, int arc_id_offset\
+    \ = 0): arc_id_offset(arc_id_offset) {\n            adjacent_out.assign(n, {});\n\
+    \            adjacent_in.assign(n, {});\n            arcs.resize(arc_id_offset);\n\
+    \        }\n        \n        inline int order() const { return int(adjacent_in.size());\
+    \ }\n\n        inline int size() const { return int(arcs.size()) - arc_id_offset;\
+    \ }\n\n        // \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\
+    \u307F w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B.\n        Arc* add_arc(int\
+    \ u, int v) {\n            int id = int(arcs.size());\n\n            Arc* arc_ptr\
+    \ = new Arc(id, u, v);\n            arcs.emplace_back(*arc_ptr);\n           \
+    \ \n            adjacent_out[u].emplace_back(arc_ptr);\n            adjacent_in[v].emplace_back(arc_ptr);\n\
+    \n            return arc_ptr;\n        }\n\n        // \u9802\u70B9 u \u304B\u3089\
+    \u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n     \
+    \   inline const vector<Arc*>& successors(int u) const { return adjacent_out[u];\
+    \ }\n\n        // \u9802\u70B9 u \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\
+    \u30B9\u30C8\u3092\u53D6\u5F97\n        inline const vector<Arc*>& predecessors(int\
+    \ u) const { return adjacent_in[u]; }\n\n        // \u5F27 ID \u304C id \u3067\
+    \u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Arc get_arc(int\
+    \ id) const { return arcs[id]; }\n        inline Arc get_arc(int id) { return\
+    \ arcs[id]; }\n\n        // \u9802\u70B9 v \u306E\u51FA\u6B21\u6570\n        inline\
+    \ int out_degree(const int v) const { return adjacent_out[v].size(); }\n\n   \
+    \     // \u9802\u70B9 v \u306E\u5165\u6B21\u6570\n        inline int in_degree(const\
+    \ int v) const { return adjacent_in[v].size(); }\n    };\n}\n#line 2 \"Graph/Digraph/Path.hpp\"\
+    \n\n#line 4 \"Graph/Digraph/Path.hpp\"\n\nnamespace digraph {\n    struct Path\
+    \ {\n        vector<int> vertices;\n        vector<Arc> arcs;\n\n        Path(const\
+    \ int first, const vector<Arc> &path): arcs(path) {\n            vertices.emplace_back(first);\n\
+    \            for (const auto &arc: path) {\n                vertices.emplace_back(arc.target);\n\
+    \            }\n        }\n    };\n}\n#line 5 \"Graph/Digraph/Eulerian_Trail.hpp\"\
+    \n\nnamespace digraph {\n    optional<Path> Eulerian_Trail(const Digraph &D) {\n\
+    \        int n = D.order();\n        int m = D.size();\n        int start = -1,\
+    \ goal = -1;\n\n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n      \
+    \  for (int v = 0; v < n; ++v) {\n            int r = D.out_degree(v) - D.in_degree(v);\n\
+    \            if (abs<int>(r) >= 2) return nullopt;\n\n            if (r == 1)\
+    \ {\n                if (start != -1) return nullopt;\n\n                start\
+    \ = v;\n            } else if (r == -1) {\n                goal = v;\n       \
+    \     }\n        }\n\n        // start, goal \u306E\u6C7A\u5B9A\n        if (start\
+    \ == -1) {\n            for (int v = 0; v < n; ++v) {\n                if (D.out_degree(v)\
+    \ > 0) {\n                    start = goal = v;\n                    break;\n\
+    \                }\n            }\n\n            if (start == -1) start = goal\
+    \ = 0;\n        }\n\n        vector<int> iter(n, 0);\n        vector<Arc> path;\n\
+    \        auto dfs = [&](auto self, const int v) -> void {\n            const auto\
+    \ &arcs = D.successors(v);\n            while (iter[v] < arcs.size()) {\n    \
+    \            const Arc* arc = arcs[iter[v]++];\n                self(self, arc->target);\n\
+    \                path.emplace_back(*arc);\n            }\n        };\n\n     \
+    \   dfs(dfs, start);\n\n        // \u5341\u5206\u6027\u306E\u30C1\u30A7\u30C3\u30AF\
+    \n        if (path.size() < m) return nullopt;\n\n        reverse(path.begin(),\
+    \ path.end());\n        return Path(start, path);\n    }\n}\n"
+  code: "#pragma once\n\n#include \"Digraph.hpp\"\n#include \"Path.hpp\"\n\nnamespace\
+    \ digraph {\n    optional<Path> Eulerian_Trail(const Digraph &D) {\n        int\
+    \ n = D.order();\n        int m = D.size();\n        int start = -1, goal = -1;\n\
+    \n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n        for (int v =\
+    \ 0; v < n; ++v) {\n            int r = D.out_degree(v) - D.in_degree(v);\n  \
+    \          if (abs<int>(r) >= 2) return nullopt;\n\n            if (r == 1) {\n\
+    \                if (start != -1) return nullopt;\n\n                start = v;\n\
+    \            } else if (r == -1) {\n                goal = v;\n            }\n\
+    \        }\n\n        // start, goal \u306E\u6C7A\u5B9A\n        if (start ==\
+    \ -1) {\n            for (int v = 0; v < n; ++v) {\n                if (D.out_degree(v)\
+    \ > 0) {\n                    start = goal = v;\n                    break;\n\
+    \                }\n            }\n\n            if (start == -1) start = goal\
+    \ = 0;\n        }\n\n        vector<int> iter(n, 0);\n        vector<Arc> path;\n\
+    \        auto dfs = [&](auto self, const int v) -> void {\n            const auto\
+    \ &arcs = D.successors(v);\n            while (iter[v] < arcs.size()) {\n    \
+    \            const Arc* arc = arcs[iter[v]++];\n                self(self, arc->target);\n\
+    \                path.emplace_back(*arc);\n            }\n        };\n\n     \
+    \   dfs(dfs, start);\n\n        // \u5341\u5206\u6027\u306E\u30C1\u30A7\u30C3\u30AF\
+    \n        if (path.size() < m) return nullopt;\n\n        reverse(path.begin(),\
+    \ path.end());\n        return Path(start, path);\n    }\n}\n"
   dependsOn:
+  - Graph/Digraph/Digraph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -305,73 +267,44 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Graph/Digraph/Path.hpp
   isVerificationFile: false
-  path: Functional_Graph/Functional_Graph.hpp
+  path: Graph/Digraph/Eulerian_Trail.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-17 22:46:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/original/Functional_Graph.test.cpp
-documentation_of: Functional_Graph/Functional_Graph.hpp
+  - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+documentation_of: Graph/Digraph/Eulerian_Trail.hpp
 layout: document
-title: Functional Graph
+title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
 ---
 
 ## Outline
 
-Funtional Graph に関する構造の決定及び, 計算を高速に行う.
-
+有向 Graph $D = (V, A)$ における Eulerian Trail を求める.
 
 ## Definition
 
-有向グラフ $D = (V, A)$ において, 任意の頂点 $v \in V$ における出次数が $1$ であるとき, この $D$ は Functional Graph であるという.
+* 同じ弧を通らない歩道を路という.
+* 全ての弧を通る路を Eulerian Trail という.
 
 ## Theory
 
-### 写像との対応
-$V$ を有限集合とする. このとき, 以下は一対一対応する.
+以下は同値になる.
 
-* $V$ を頂点集合とする Functional Graph $D = (V, A)$ .
-* 写像 $f: V \to V$.
+* (a) $D$ は Eulerian Trail を持つ.
+* (b) 以下が全て従う.
+  * (1) $D$ における孤立点以外の任意の頂点は連結である.
+  * (2) $v \in V$ の出次数と入次数を $d_{\text{out}}(v), d_{\text{in}}(v)$ として, 以下のうちのどちらか一方が成り立つ.
+    * (イ) 任意の頂点において, $d_{\text{out}}(v) = d_{\text{in}}(v)$ である.
+    * (ロ) 以下が全て成り立つ.
+      * (A) $d_{\text{out}}(s) = d_{\text{in}}(s) + 1$ となる $s \in V$ がただ一つ存在する.
+      * (B) $d_{\text{out}}(t) = d_{\text{in}}(t) - 1$ となる $t \in V$ がただ一つ存在する.
+      * (C) (A), (B) 以外の残りの頂点 $v \in V$ は全て $d_{\text{out}}(t) = d_{\text{in}}(t)$ である.
 
-これらは, それぞれ以下のように対する.
+## History
 
-#### Functional Graph から写像
-
-Functional Graph $D = (V, A)$ において, 各頂点 $v \in V$ における唯一ので近傍を $f(v) \in V$ として得られる写像 $f: V \to V$ が対応する.
-
-#### 写像から Functional Graph
-
-写像 $f: V \to V$ に対して, $A$ を
-
-$$A := \left\{ \overrightarrow{v f(v)} ~\middle|~ v \in V \right\}$$
-
-としたときに得られる Functional Graph $D = (V, A)$ が対応する.
-
-### 構造の決定
-$D$ におけるそれぞれの弱連結成分 $\Gamma_i$ は次のようにして構成される.
-
-* $\Gamma_i$ にはただ一つのサイクル $v_{i,1}, v_{i,2}, \dots, v_{i,m_i}$ を持つ.
-* 各 $v_{i,j}$ について, $v_{i,j}$ を根とする有向根付き木を成す. 有向辺の向きは, 根へ向かう向き.
-
-## Contents
-
-### Constructer
-
-```cpp
-Functional_Graph(const vector<int> &f)
-```
-
-* 写像 $f$ による Functional Graph を生成する.
-* **計算量** : $O(N \log N)$ 時間.
-
-### calculate
-
-```cpp
-F.calculate(int x, ll k)
-```
-
-* $f^k(x)$ を求める.
-* **計算量** : $O(\log N)$ 時間.
-  * 厳密には, $f^k(x)$ がサイクル上の頂点ならば $O(1)$ 時間, サイクル上の頂点でなければ $O(\log k)$ 時間.
-
+|日付|内容|
+|:---:|:---|
+|2026/02/17| 有向グラフにおける Eulerian_Trail の実装|

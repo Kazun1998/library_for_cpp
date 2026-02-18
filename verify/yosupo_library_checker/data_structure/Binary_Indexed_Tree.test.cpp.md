@@ -66,7 +66,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
   requiredBy: []
-  timestamp: '2026-02-15 15:30:53+09:00'
+  timestamp: '2025-11-18 00:49:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp

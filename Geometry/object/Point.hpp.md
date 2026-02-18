@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Line.hpp
     title: Geometry/object/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/object/Polygon.hpp
     title: Geometry/object/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -92,13 +92,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incircle.hpp
     title: Geometry/triangle_center/Incircle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/utility/Argument_Sort.hpp
     title: Geometry/utility/Argument_Sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/utility/Convex_Hull.hpp
     title: Geometry/utility/Convex_Hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
   - icon: ':heavy_check_mark:'
@@ -153,15 +153,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7G.test.cpp
     title: verify/aizu_online_judge/cgl/7G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
     title: verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
     title: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\
@@ -457,8 +457,8 @@ data:
   - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/projection/Projection_Point_Line.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp

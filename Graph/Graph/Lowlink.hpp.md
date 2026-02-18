@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   _extendedVerifiedWith:
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/Graph/Lowlink.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
@@ -280,8 +280,8 @@ data:
   path: Graph/Graph/Lowlink.hpp
   requiredBy:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-02-15 15:30:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-01-24 19:02:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
