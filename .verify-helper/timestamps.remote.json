@@ -103,5 +103,6 @@
 "verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2026-01-24 19:02:38 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2026-01-24 19:02:38 +0900",
 "verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp": "2026-02-06 01:08:48 +0900",
-"verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp": "2026-02-06 01:08:48 +0900"
+"verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp": "2026-02-06 01:08:48 +0900",
+"verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp": "2026-01-24 19:02:38 +0900"
 }
