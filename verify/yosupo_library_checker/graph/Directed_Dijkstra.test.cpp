@@ -1,9 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
-#include<bits/stdc++.h>
-
-using namespace std;
-
 #include"../../../Graph/Weighted_Digraph/Dijkstra.hpp"
 
 int main(){
@@ -11,8 +7,8 @@ int main(){
   auto D = weighted_digraph::Weighted_Digraph<long long>(N);
 
   for (int j = 0; j < M; j++) {
-    int a, b, c;
-    scanf("%d%d%d", &a, &b, &c);
+    int a, b; ll c;
+    scanf("%d%d%lld", &a, &b, &c);
     D.add_arc(a, b, c);
   }
 
