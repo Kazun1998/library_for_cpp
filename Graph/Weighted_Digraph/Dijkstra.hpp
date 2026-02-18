@@ -13,7 +13,7 @@ namespace weighted_digraph::dijkstra {
     vector<int> path_vertices;
     W length;
 
-    Shortest_Path<W>(vector<int> path_arc_ids, vector<int> path_vertices, W length):
+    Shortest_Path(vector<int> path_arc_ids, vector<int> path_vertices, W length):
       path_arc_ids(path_arc_ids), path_vertices(path_vertices), length(length) {}
   };
 
