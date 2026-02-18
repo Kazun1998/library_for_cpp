@@ -39,5 +39,4 @@ Thumbs.db
 # Dependencies
 /jam
 /jam.cpp
-/verify
 .verify-helper/cache/
