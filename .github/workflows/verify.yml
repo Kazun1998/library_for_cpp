@@ -8,19 +8,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Cache .verify-helper
-      uses: actions/cache@v4
-      with:
-        path: .verify-helper
-        key: ${{ runner.os }}-verify-helper-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-verify-helper-${{ github.ref }}-
-          ${{ runner.os }}-verify-helper-
+      uses: actions/checkout@v1
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v1
       with:
         python-version: '3.11' # バージョンを明示的に指定
 
