@@ -53,7 +53,7 @@ namespace graph {
         }
 
         /// @brief 頂点 u に接続する辺のアドレス一覧を取得する.
-        vector<Edge*> incidence (int u) const { return incidences[u]; }
+        const vector<Edge*>& incidence (int u) const { return incidences[u]; }
 
         // 辺 ID が id であり, source が u である辺を取得する.
         inline const Edge& get_edge(int id) const { return edges[id]; }
