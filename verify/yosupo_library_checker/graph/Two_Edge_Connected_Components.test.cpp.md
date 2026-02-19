@@ -214,36 +214,37 @@ data:
     \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
     \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
     \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
-    \u3092\u53D6\u5F97\u3059\u308B.\n        vector<Edge*> incidence (int u) const\
-    \ { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\u308A\
-    , source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      inline const Edge& get_edge(int id) const { return edges[id]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int id) {\
-    \ return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\
-    \u6C42\u3081\u308B\n        inline int degree(const int v) const { return deg[v];\
-    \ }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\n\nnamespace graph {\n   \
-    \ class Lowlink {\n        private:\n        vector<bool> used;\n\n        public:\n\
-    \        vector<bool> bridge, articulation;\n        vector<int> ord, low;\n\n\
-    \        Lowlink(const Graph &G) {\n            int N = G.order(), M = G.size();\n\
-    \            used.assign(N, false);\n            ord.assign(N, -1);\n        \
-    \    low.assign(N, -1);\n\n            bridge.assign(M + G.edge_id_offset, false);\n\
-    \            articulation.assign(N, false);\n\n            int k = 0;\n      \
-    \      for (int i = 0; i < N; i++) {\n                unless(used[i]) { k = dfs(G,\
-    \ i, k, -1); }\n            }\n        }\n\n        private:\n        int dfs(const\
-    \ Graph &G, int v, int k, int parent) {\n            used[v] = true;\n       \
-    \     ord[v] = k++;\n            low[v] = ord[v];\n\n            bool is_articulation\
-    \ = false;\n            int children_number = 0;\n\n            for (auto edge:\
-    \ G.incidence(v)) {\n                int target = edge->target;\n            \
-    \    if (used[target]) {\n                    unless (target == parent) {\n  \
-    \                      low[v] = min(low[v], ord[target]);\n                  \
-    \  }\n                    continue;\n                }\n\n                children_number++;\n\
-    \                k = dfs(G, target, k, v);\n                low[v] = min(low[v],\
-    \ low[target]);\n\n                if (parent != -1 && ord[v] <= low[target])\
-    \ { is_articulation = true; }\n                if (ord[v] < low[target]) { bridge[edge->id]\
-    \ = true; }\n            }\n\n            if (parent == -1 && children_number\
-    \ >= 2) { is_articulation = true; }\n            if (is_articulation) { articulation[v]\
-    \ = true; }\n\n            return k;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
+    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
+    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
+    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
+    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
+    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
+    \ deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\n\nnamespace graph\
+    \ {\n    class Lowlink {\n        private:\n        vector<bool> used;\n\n   \
+    \     public:\n        vector<bool> bridge, articulation;\n        vector<int>\
+    \ ord, low;\n\n        Lowlink(const Graph &G) {\n            int N = G.order(),\
+    \ M = G.size();\n            used.assign(N, false);\n            ord.assign(N,\
+    \ -1);\n            low.assign(N, -1);\n\n            bridge.assign(M + G.edge_id_offset,\
+    \ false);\n            articulation.assign(N, false);\n\n            int k = 0;\n\
+    \            for (int i = 0; i < N; i++) {\n                unless(used[i]) {\
+    \ k = dfs(G, i, k, -1); }\n            }\n        }\n\n        private:\n    \
+    \    int dfs(const Graph &G, int v, int k, int parent) {\n            used[v]\
+    \ = true;\n            ord[v] = k++;\n            low[v] = ord[v];\n\n       \
+    \     bool is_articulation = false;\n            int children_number = 0;\n\n\
+    \            for (auto edge: G.incidence(v)) {\n                int target = edge->target;\n\
+    \                if (used[target]) {\n                    unless (target == parent)\
+    \ {\n                        low[v] = min(low[v], ord[target]);\n            \
+    \        }\n                    continue;\n                }\n\n             \
+    \   children_number++;\n                k = dfs(G, target, k, v);\n          \
+    \      low[v] = min(low[v], low[target]);\n\n                if (parent != -1\
+    \ && ord[v] <= low[target]) { is_articulation = true; }\n                if (ord[v]\
+    \ < low[target]) { bridge[edge->id] = true; }\n            }\n\n            if\
+    \ (parent == -1 && children_number >= 2) { is_articulation = true; }\n       \
+    \     if (is_articulation) { articulation[v] = true; }\n\n            return k;\n\
+    \        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
     \n\nnamespace graph {\n    class Two_Edge_Connected_Components {\n        public:\n\
     \        vector<vector<int>> components;\n        vector<int> component_ids;\n\
     \n        Two_Edge_Connected_Components(const Graph &G) {\n            calculate(G);\n\
@@ -290,7 +291,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-19 01:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

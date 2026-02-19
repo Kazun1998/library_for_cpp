@@ -251,9 +251,9 @@ data:
     \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
     \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
     \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
+    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
     \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   requiredBy: []
-  timestamp: '2026-02-08 19:08:45+09:00'
+  timestamp: '2026-02-19 01:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp

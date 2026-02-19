@@ -2,8 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Eulerian_Trail.hpp
+    title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Path.hpp
+    title: Graph/Graph/Path.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -25,26 +31,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Two_Edge_Connected_Components.hpp
-    title: Graph/Graph/Two_Edge_Connected_Components.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3A.test.cpp
-    title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3B.test.cpp
-    title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Graph/Graph/Lowlink.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_undirected
+    links:
+    - https://judge.yosupo.jp/problem/eulerian_trail_undirected
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp\"\
+    \n\n#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_undirected\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -193,11 +191,12 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\
-    \n\nnamespace graph {\n    struct Edge {\n        int id, source, target;\n  \
-    \      Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source,\
-    \ int target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\
-    \n    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Graph/Graph/Eulerian_Trail.hpp\"\
+    \n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\n\
+    namespace graph {\n    struct Edge {\n        int id, source, target;\n      \
+    \  Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source, int\
+    \ target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\n\
+    \    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
     \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
     \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
     \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
@@ -222,53 +221,55 @@ data:
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
     \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\
-    \n\nnamespace graph {\n    class Lowlink {\n        private:\n        vector<bool>\
-    \ used;\n\n        public:\n        vector<bool> bridge, articulation;\n     \
-    \   vector<int> ord, low;\n\n        Lowlink(const Graph &G) {\n            int\
-    \ N = G.order(), M = G.size();\n            used.assign(N, false);\n         \
-    \   ord.assign(N, -1);\n            low.assign(N, -1);\n\n            bridge.assign(M\
-    \ + G.edge_id_offset, false);\n            articulation.assign(N, false);\n\n\
-    \            int k = 0;\n            for (int i = 0; i < N; i++) {\n         \
-    \       unless(used[i]) { k = dfs(G, i, k, -1); }\n            }\n        }\n\n\
-    \        private:\n        int dfs(const Graph &G, int v, int k, int parent) {\n\
-    \            used[v] = true;\n            ord[v] = k++;\n            low[v] =\
-    \ ord[v];\n\n            bool is_articulation = false;\n            int children_number\
-    \ = 0;\n\n            for (auto edge: G.incidence(v)) {\n                int target\
-    \ = edge->target;\n                if (used[target]) {\n                    unless\
-    \ (target == parent) {\n                        low[v] = min(low[v], ord[target]);\n\
-    \                    }\n                    continue;\n                }\n\n \
-    \               children_number++;\n                k = dfs(G, target, k, v);\n\
-    \                low[v] = min(low[v], low[target]);\n\n                if (parent\
-    \ != -1 && ord[v] <= low[target]) { is_articulation = true; }\n              \
-    \  if (ord[v] < low[target]) { bridge[edge->id] = true; }\n            }\n\n \
-    \           if (parent == -1 && children_number >= 2) { is_articulation = true;\
-    \ }\n            if (is_articulation) { articulation[v] = true; }\n\n        \
-    \    return k;\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    class Lowlink\
-    \ {\n        private:\n        vector<bool> used;\n\n        public:\n       \
-    \ vector<bool> bridge, articulation;\n        vector<int> ord, low;\n\n      \
-    \  Lowlink(const Graph &G) {\n            int N = G.order(), M = G.size();\n \
-    \           used.assign(N, false);\n            ord.assign(N, -1);\n         \
-    \   low.assign(N, -1);\n\n            bridge.assign(M + G.edge_id_offset, false);\n\
-    \            articulation.assign(N, false);\n\n            int k = 0;\n      \
-    \      for (int i = 0; i < N; i++) {\n                unless(used[i]) { k = dfs(G,\
-    \ i, k, -1); }\n            }\n        }\n\n        private:\n        int dfs(const\
-    \ Graph &G, int v, int k, int parent) {\n            used[v] = true;\n       \
-    \     ord[v] = k++;\n            low[v] = ord[v];\n\n            bool is_articulation\
-    \ = false;\n            int children_number = 0;\n\n            for (auto edge:\
-    \ G.incidence(v)) {\n                int target = edge->target;\n            \
-    \    if (used[target]) {\n                    unless (target == parent) {\n  \
-    \                      low[v] = min(low[v], ord[target]);\n                  \
-    \  }\n                    continue;\n                }\n\n                children_number++;\n\
-    \                k = dfs(G, target, k, v);\n                low[v] = min(low[v],\
-    \ low[target]);\n\n                if (parent != -1 && ord[v] <= low[target])\
-    \ { is_articulation = true; }\n                if (ord[v] < low[target]) { bridge[edge->id]\
-    \ = true; }\n            }\n\n            if (parent == -1 && children_number\
-    \ >= 2) { is_articulation = true; }\n            if (is_articulation) { articulation[v]\
-    \ = true; }\n\n            return k;\n        }\n    };\n}\n"
+    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 2 \"Graph/Graph/Path.hpp\"\
+    \n\n#line 4 \"Graph/Graph/Path.hpp\"\n\nnamespace graph {\n    struct Path {\n\
+    \        vector<int> vertices;\n        vector<Edge> edges;\n\n        Path(const\
+    \ int first, const vector<Edge> &path): edges(path) {\n            vertices.emplace_back(first);\n\
+    \            for (const auto &edge: path) {\n                vertices.emplace_back(edge.target);\n\
+    \            }\n        }\n    };\n}\n#line 5 \"Graph/Graph/Eulerian_Trail.hpp\"\
+    \n\nnamespace graph {\n    optional<Path> Eulerian_Trail(const Graph &G) {\n \
+    \       int n = G.order();\n        int m = G.size();\n        int start = -1,\
+    \ goal = -1;\n\n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n      \
+    \  for (int v = 0; v < n; ++v) {\n            if (G.degree(v) % 2 == 1) {\n  \
+    \              if (start == -1) start = v;\n                else if (goal == -1)\
+    \ goal = v;\n                else return nullopt;\n            }\n        }\n\n\
+    \        // start, goal \u306E\u6C7A\u5B9A\n        if (start == -1) {\n     \
+    \       for (int v = 0; v < n; ++v) {\n                if (G.degree(v) > 0) {\n\
+    \                    start = goal = v;\n                    break;\n         \
+    \       }\n            }\n\n            if (start == -1) start = goal = 0;\n \
+    \       }\n\n        vector<int> iter(n, 0);\n        vector<bool> saw_edge_ids(m\
+    \ + G.edge_id_offset, false);\n        vector<Edge> path;\n\n        auto dfs\
+    \ = [&](auto self, const int v) -> void {\n            const auto &edges = G.incidence(v);\n\
+    \            while (iter[v] < edges.size()) {\n                const Edge* edge\
+    \ = edges[iter[v]++];\n                if (saw_edge_ids[edge->id]) { continue;\
+    \ }\n                saw_edge_ids[edge->id] = true;\n                self(self,\
+    \ edge->target);\n                path.emplace_back(*edge);\n            }\n \
+    \       };\n\n        dfs(dfs, start);\n\n        // \u5341\u5206\u6027\u306E\u30C1\
+    \u30A7\u30C3\u30AF\n        if (path.size() < m) return nullopt;\n\n        reverse(path.begin(),\
+    \ path.end());\n        return Path(start, path);\n    }\n}\n#line 6 \"verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp\"\
+    \n\nusing namespace graph;\n\noptional<Path> verify() {\n    int n, m;\n    cin\
+    \ >> n >> m;\n    auto D = Graph(n);\n    for (int j = 0; j < m; ++j) {\n    \
+    \    int u, v; scanf(\"%d%d\", &u, &v);\n        D.add_edge(u, v);\n    }\n\n\
+    \    return Eulerian_Trail(D);\n}\n\nint main() {\n    int T; cin >> T;\n    for\
+    \ (int t = 0; t < T; ++t) {\n        auto pre_trail = verify();\n        if (pre_trail\
+    \ == nullopt) {\n            cout << \"No\" << \"\\n\";\n            continue;\n\
+    \        }\n\n        Path trail = pre_trail.value();\n        cout << \"Yes\"\
+    \ << \"\\n\";\n\n        cout << trail.vertices << \"\\n\";\n        for (int\
+    \ j = 0; j < trail.edges.size(); ++j) {\n            cout << (j ? \" \" : \"\"\
+    ) << trail.edges[j].id;\n        }\n        cout << \"\\n\";\n    }\n}\n"
+  code: "\n#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_undirected\"\
+    \n\n#include \"../../../template/template.hpp\"\n#include \"../../../Graph/Graph/Eulerian_Trail.hpp\"\
+    \n\nusing namespace graph;\n\noptional<Path> verify() {\n    int n, m;\n    cin\
+    \ >> n >> m;\n    auto D = Graph(n);\n    for (int j = 0; j < m; ++j) {\n    \
+    \    int u, v; scanf(\"%d%d\", &u, &v);\n        D.add_edge(u, v);\n    }\n\n\
+    \    return Eulerian_Trail(D);\n}\n\nint main() {\n    int T; cin >> T;\n    for\
+    \ (int t = 0; t < T; ++t) {\n        auto pre_trail = verify();\n        if (pre_trail\
+    \ == nullopt) {\n            cout << \"No\" << \"\\n\";\n            continue;\n\
+    \        }\n\n        Path trail = pre_trail.value();\n        cout << \"Yes\"\
+    \ << \"\\n\";\n\n        cout << trail.vertices << \"\\n\";\n        for (int\
+    \ j = 0; j < trail.edges.size(); ++j) {\n            cout << (j ? \" \" : \"\"\
+    ) << trail.edges[j].id;\n        }\n        cout << \"\\n\";\n    }\n}\n"
   dependsOn:
-  - Graph/Graph/Graph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -276,20 +277,19 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Graph/Graph/Lowlink.hpp
-  requiredBy:
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-02-19 01:18:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
-documentation_of: Graph/Graph/Lowlink.hpp
+  - Graph/Graph/Eulerian_Trail.hpp
+  - Graph/Graph/Graph.hpp
+  - Graph/Graph/Path.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+  requiredBy: []
+  timestamp: '2026-02-19 01:19:12+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
 layout: document
 redirect_from:
-- /library/Graph/Graph/Lowlink.hpp
-- /library/Graph/Graph/Lowlink.hpp.html
-title: Graph/Graph/Lowlink.hpp
+- /verify/verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp.html
+title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
 ---

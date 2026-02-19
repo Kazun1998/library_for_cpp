@@ -33,8 +33,14 @@ data:
     path: Graph/Graph/Enumerate_Triangles.hpp
     title: Graph/Graph/Enumerate_Triangles.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Eulerian_Trail.hpp
+    title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
     title: Graph/Graph/Lowlink.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Path.hpp
+    title: Graph/Graph/Path.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
@@ -54,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
@@ -235,9 +244,9 @@ data:
     \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
     \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
     \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
+    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
     \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
@@ -265,9 +274,9 @@ data:
     \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
     \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
     \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      vector<Edge*> incidence (int u) const { return incidences[u]; }\n\n   \
-    \     // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\u308B\
-    \u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
+    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
+    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
     \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
@@ -288,13 +297,16 @@ data:
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
+  - Graph/Graph/Path.hpp
   - Graph/Graph/Connected_Components.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
+  - Graph/Graph/Eulerian_Trail.hpp
+  timestamp: '2026-02-19 01:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/alds1/11D.test.cpp
