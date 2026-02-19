@@ -37,6 +37,10 @@ class Nimber {
 
     friend Nimber operator*(const Nimber &x, const Nimber &y) { return Nimber(x) *= y; }
 
+    friend bool operator==(const Nimber &a, const Nimber &b) { return a.x == b.x; }
+    friend bool operator!=(const Nimber &a, const Nimber &b) { return a.x != b.x; }
+    friend bool operator<(const Nimber &a, const Nimber &b) { return a.x < b.x; }
+
     Nimber square() const {
         if (x < 256) {
             if (!table_initialized) init_table();
@@ -56,6 +60,7 @@ class Nimber {
     friend ostream &operator<<(ostream &os, const Nimber &a) { return os << a.x; }
 
     Nimber inverse() const;
+    bool is_zero() const { return x == 0; }
 
     private:
     uint64_t x;
