@@ -37,4 +37,17 @@ namespace graph {
 
         return groups;
     }
+
+    optional<pair<vector<int>, vector<int>>> Find_Bipartion(const Graph &G) {
+        auto bipartition = Biparte(G);
+        if (!bipartition) { return nullopt; }
+
+        vector<int> A, B;
+        for (const auto &[a, b]: *bipartition) {
+            A.insert(A.end(), a.begin(), a.end());
+            B.insert(B.end(), b.begin(), b.end());
+        }
+
+        return make_pair(A, B);
+    }
 }
