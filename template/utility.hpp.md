@@ -76,6 +76,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Functional_Graph/Functional_Graph.hpp
     title: Functional Graph
+  - icon: ':warning:'
+    path: Functional_Graph/Monoid_Functional_Graph.hpp
+    title: "Monoid \u91CD\u307F\u4ED8\u304D Functional Graph"
   - icon: ':heavy_check_mark:'
     path: Geometry/base.hpp
     title: Geometry/base.hpp
@@ -825,6 +828,7 @@ data:
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Convolution_Base.hpp
   - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Functional_Graph/Monoid_Functional_Graph.hpp
   - Functional_Graph/Functional_Graph.hpp
   - Algebra/Nimber.hpp
   - Algebra/dynamic_modint.hpp

@@ -103,6 +103,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Functional_Graph/Functional_Graph.hpp
       title: Functional Graph
+    - icon: ':warning:'
+      path: Functional_Graph/Monoid_Functional_Graph.hpp
+      title: "Monoid \u91CD\u307F\u4ED8\u304D Functional Graph"
   - name: Geometry
     pages:
     - icon: ':heavy_check_mark:'

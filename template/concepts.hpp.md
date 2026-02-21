@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Sliding_Window_Aggregation.hpp
     title: Sliding Window Aggregation
+  - icon: ':warning:'
+    path: Functional_Graph/Monoid_Functional_Graph.hpp
+    title: "Monoid \u91CD\u307F\u4ED8\u304D Functional Graph"
   - icon: ':heavy_check_mark:'
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
@@ -76,6 +79,7 @@ data:
   requiredBy:
   - Data_Structure/Sliding_Window_Aggregation.hpp
   - Data_Structure/Best_Sum.hpp
+  - Functional_Graph/Monoid_Functional_Graph.hpp
   - Sequence/Trie.hpp
   - Union_Find/Coloring_Union_Find.hpp
   - Math/Interval_Product.hpp
