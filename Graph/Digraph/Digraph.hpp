@@ -55,5 +55,31 @@ namespace digraph {
 
         // 頂点 v の入次数
         inline int in_degree(const int v) const { return adjacent_in[v].size(); }
+
+        // sources から到達可能な頂点一覧
+        vector<int> forward_reachable(const vector<int> &sources) const {
+            const int n = order();
+            vector<bool> visited(n, false);
+            vector<int> reachable;
+
+            for (const int s : sources) {
+                if (s < 0 || s >= n || visited[s]) continue;
+                visited[s] = true;
+                reachable.emplace_back(s);
+            }
+
+            for (int head = 0; head < reachable.size(); ++head) {
+                const int u = reachable[head];
+                for (const auto *arc : adjacent_out[u]) {
+                    const int v = arc->target;
+                    if (visited[v]) continue;
+
+                    visited[v] = true;
+                    reachable.emplace_back(v);
+                }
+            }
+
+            return reachable;
+        }
     };
 }
