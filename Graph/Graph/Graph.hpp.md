@@ -1,28 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Graph/Graph/Bipartition.hpp
+    title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
@@ -294,6 +297,7 @@ data:
   path: Graph/Graph/Graph.hpp
   requiredBy:
   - Graph/Graph/Enumerate_Triangles.hpp
+  - Graph/Graph/Bipartition.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Eulerian_Trail.hpp

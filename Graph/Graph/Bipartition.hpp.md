@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -23,16 +26,15 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u4E8C\u90E8\u30B0\u30E9\u30D5\u306B\u95A2\u3059\u308B\u60C5\u5831\
+      \u3092\u6C42\u3081\u308B."
     links: []
-  bundledCode: "#line 2 \"Algebra/Gaussian_Integer.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Graph/Graph/Bipartition.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -181,77 +183,114 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/Gaussian_Integer.hpp\"\
-    \n\ntemplate<typename R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\
-    \n    constexpr Gaussian_Integer(R re, R im): re(re), im(im) {}\n    constexpr\
-    \ Gaussian_Integer(R re): re(re), im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
-    \n    Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im);\
-    \ }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer& operator+=(const Gaussian_Integer\
-    \ &b){\n        re += b.re;\n        im += b.im;\n        return *this;\n    }\n\
-    \n    friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) += y; }\n\n    // \u6E1B\u6CD5\n    Gaussian_Integer&\
-    \ operator-=(const Gaussian_Integer &b){\n        re -= b.re;\n        im -= b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator-(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }\n\n    //\
-    \ \u4E57\u6CD5\n    Gaussian_Integer& operator*=(const Gaussian_Integer &b){\n\
-    \        tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im * b.re);\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator*(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }\n\n    //\
-    \ \u9664\u6CD5\n    Gaussian_Integer& operator/=(const Gaussian_Integer &b){\n\
-    \        R n = b.norm();\n        R x = round(re * b.re + im * b.im, n);\n   \
-    \     R y = round(im * b.re - re * b.im, n);\n        re = x;\n        im = y;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator/(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) /= y; }\n\n    //\
-    \ \u5270\u4F59\n    Gaussian_Integer& operator%=(const Gaussian_Integer &b){\n\
-    \        Gaussian_Integer a(re, im);\n        auto q = a / b;\n        auto r\
-    \ = a - b * q;\n        re = r.re;\n        im = r.im;\n        return *this;\n\
-    \    }\n\n    friend Gaussian_Integer operator%(const Gaussian_Integer &x, const\
-    \ Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }\n\n    // \u5171\u5F79\
-    \n    Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }\n\
-    \n    // \u30CE\u30EB\u30E0\n    R norm() const { return re * re + im * im; }\n\
-    \n    // \u5165\u529B\n    friend istream &operator>>(istream &is, Gaussian_Integer\
-    \ &a) {\n        is >> a.re >> a.im;\n        return is;\n    }\n\n    // \u51FA\
-    \u529B\n    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x)\
-    \ { return os << x.re << \"+\" << x.im << \"i\"; }\n\n    // \u30BC\u30ED?\n \
-    \   bool is_zero() const { return re == 0 && im == 0; }\n};\n\ntemplate<typename\
-    \ R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R> beta)\
-    \ {\n    while(!beta.is_zero()) {\n        tie(alpha, beta) = make_pair(beta,\
-    \ alpha % beta);\n    }\n\n    return alpha;\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
-    \ R>\nclass Gaussian_Integer {\n    public:\n    R re, im;\n\n    constexpr Gaussian_Integer(R\
-    \ re, R im): re(re), im(im) {}\n    constexpr Gaussian_Integer(R re): re(re),\
-    \ im(0) {}\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Gaussian_Integer operator-()\
-    \ const { return Gaussian_Integer(-re, -im); }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer&\
-    \ operator+=(const Gaussian_Integer &b){\n        re += b.re;\n        im += b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator+(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }\n\n    //\
-    \ \u6E1B\u6CD5\n    Gaussian_Integer& operator-=(const Gaussian_Integer &b){\n\
-    \        re -= b.re;\n        im -= b.im;\n        return *this;\n    }\n\n  \
-    \  friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) -= y; }\n\n    // \u4E57\u6CD5\n    Gaussian_Integer&\
-    \ operator*=(const Gaussian_Integer &b){\n        tie (re, im) = make_pair(re\
-    \ * b.re - im * b.im, re * b.im + im * b.re);\n        return *this;\n    }\n\n\
-    \    friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) *= y; }\n\n    // \u9664\u6CD5\n    Gaussian_Integer&\
-    \ operator/=(const Gaussian_Integer &b){\n        R n = b.norm();\n        R x\
-    \ = round(re * b.re + im * b.im, n);\n        R y = round(im * b.re - re * b.im,\
-    \ n);\n        re = x;\n        im = y;\n        return *this;\n    }\n\n    friend\
-    \ Gaussian_Integer operator/(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) /= y; }\n\n    // \u5270\u4F59\n    Gaussian_Integer&\
-    \ operator%=(const Gaussian_Integer &b){\n        Gaussian_Integer a(re, im);\n\
-    \        auto q = a / b;\n        auto r = a - b * q;\n        re = r.re;\n  \
-    \      im = r.im;\n        return *this;\n    }\n\n    friend Gaussian_Integer\
-    \ operator%(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
-    \ %= y; }\n\n    // \u5171\u5F79\n    Gaussian_Integer conjugate() const { return\
-    \ Gaussian_Integer(re, -im); }\n\n    // \u30CE\u30EB\u30E0\n    R norm() const\
-    \ { return re * re + im * im; }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, Gaussian_Integer &a) {\n        is >> a.re >> a.im;\n        return is;\n\
-    \    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
-    \ Gaussian_Integer &x) { return os << x.re << \"+\" << x.im << \"i\"; }\n\n  \
-    \  // \u30BC\u30ED?\n    bool is_zero() const { return re == 0 && im == 0; }\n\
-    };\n\ntemplate<typename R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha,\
-    \ Gaussian_Integer<R> beta) {\n    while(!beta.is_zero()) {\n        tie(alpha,\
-    \ beta) = make_pair(beta, alpha % beta);\n    }\n\n    return alpha;\n}"
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Graph/Graph/Graph.hpp\"\
+    \n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct Edge {\n\
+    \        int id, source, target;\n        Edge *rev;\n\n        Edge() = default;\n\
+    \        Edge(int id, int source, int target): id(id), source(source), target(target),\
+    \ rev(nullptr) {}\n    };\n\n    class Graph {\n        private:\n        vector<vector<Edge*>>\
+    \ incidences;\n        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\
+    \n        public:\n        int edge_id_offset;\n\n        public:\n        Graph(int\
+    \ n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n  \
+    \          incidences.assign(n, {});\n            edges.resize(edge_id_offset,\
+    \ Edge());\n        }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\
+    \u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int\
+    \ order() const { return int(incidences.size()); }\n\n        /// @brief \u3053\
+    \u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\
+    \u308B.\n        inline int size() const { return int(edges.size()) - edge_id_offset;\
+    \ }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B.\n        int add_edge(int\
+    \ u, int v) {\n            int id = int(edges.size());\n\n            Edge* edge\
+    \ = new Edge(id, u, v);\n            Edge* rev_edge = new Edge(id, v, u);\n\n\
+    \            edge->rev = rev_edge;\n            rev_edge->rev = edge;\n\n    \
+    \        incidences[u].emplace_back(edge);\n            incidences[v].emplace_back(rev_edge);\n\
+    \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
+    \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
+    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
+    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
+    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
+    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
+    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
+    \ deg[v]; }\n    };\n}\n#line 5 \"Graph/Graph/Bipartition.hpp\"\n\nnamespace graph\
+    \ {\n\n    /// @brief \u4E8C\u90E8\u30B0\u30E9\u30D5\u306B\u95A2\u3059\u308B\u60C5\
+    \u5831\u3092\u6C42\u3081\u308B.\n    /// @param G \n    /// @return \u305D\u3082\
+    \u305D\u3082\u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306F\u306A\u3044\u5834\u5408\
+    \u306F nullout, \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u3042\u308B\u5834\u5408\u306F\
+    , [(A0, B0), ..., (Ak, Bk)] \u306E\u5F62\u3067\u8FD4\u3055\u308C\u308B. (Ai, Bi)\
+    \ \u304C\u305D\u308C\u305E\u308C\u306E\u9023\u7D50\u6210\u5206\u306B\u304A\u3051\
+    \u308B\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<vector<pair<vector<int>,\
+    \ vector<int>>>> Biparte(const Graph &G) {\n        int n = G.order();\n     \
+    \   vector<int> colors(n, -1);\n\n        vector<pair<vector<int>, vector<int>>>\
+    \ groups;\n        for (int x = 0; x < n; ++x) {\n            if (colors[x] !=\
+    \ -1) continue;\n\n            vector<int> stack{x};\n            vector<int>\
+    \ white{x}, black;\n\n            colors[x] = 0;\n            while (!stack.empty())\
+    \ {\n                int v = stack.back(); stack.pop_back();\n\n             \
+    \   for (auto edge: G.incidence(v)) {\n                int u = edge->target;\n\
+    \                if (colors[u] != -1) {\n                    if (colors[u] ^ 1\
+    \ != colors[v]) return nullopt;\n                    continue;\n             \
+    \   }\n\n                colors[u] = colors[v] ^ 1;\n                (colors[u]\
+    \ == 0 ? white : black).emplace_back(u);\n                stack.emplace_back(u);\n\
+    \                }\n            }\n\n            groups.emplace_back(white, black);\n\
+    \        }\n\n        return groups;\n    }\n\n    /// @brief G \u306E\u4E8C\u90E8\
+    \u30B0\u30E9\u30D5\u306B\u5BFE\u3059\u308B\u90E8\u96C6\u5408\u306E\u4F8B\u3092\
+    \u6C42\u3081\u308B.\n    /// @param G \n    /// @return (A, B): A, B \u304C\u305D\
+    \u308C\u305E\u308C\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<pair<vector<int>,\
+    \ vector<int>>> Find_Bipartion(const Graph &G) {\n        auto bipartition = Biparte(G);\n\
+    \        if (!bipartition) { return nullopt; }\n\n        vector<int> A, B;\n\
+    \        for (const auto &[a, b]: *bipartition) {\n            A.insert(A.end(),\
+    \ a.begin(), a.end());\n            B.insert(B.end(), b.begin(), b.end());\n \
+    \       }\n\n        return make_pair(A, B);\n    }\n\n    bool Is_Bipartite(const\
+    \ Graph &G) {\n        int n = G.order();\n        vector<int> colors(n, -1);\n\
+    \n        for (int x = 0; x < n; ++x) {\n            if (colors[x] != -1) continue;\n\
+    \n            vector<int> stack{x};\n            colors[x] = 0;\n            while\
+    \ (!stack.empty()) {\n                int v = stack.back(); stack.pop_back();\n\
+    \n                for (auto edge: G.incidence(v)) {\n                    int u\
+    \ = edge->target;\n                    if (colors[u] != -1) {\n              \
+    \          if (colors[u] == colors[v]) return false;\n                       \
+    \ continue;\n                    }\n\n                    colors[u] = colors[v]\
+    \ ^ 1;\n                    stack.emplace_back(u);\n                }\n      \
+    \      }\n        }\n\n        return true;\n    }\n}\n"
+  code: "#pragma once\n\n#include \"../../template/template.hpp\"\n#include \"Graph.hpp\"\
+    \n\nnamespace graph {\n\n    /// @brief \u4E8C\u90E8\u30B0\u30E9\u30D5\u306B\u95A2\
+    \u3059\u308B\u60C5\u5831\u3092\u6C42\u3081\u308B.\n    /// @param G \n    ///\
+    \ @return \u305D\u3082\u305D\u3082\u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306F\u306A\
+    \u3044\u5834\u5408\u306F nullout, \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u3042\u308B\
+    \u5834\u5408\u306F, [(A0, B0), ..., (Ak, Bk)] \u306E\u5F62\u3067\u8FD4\u3055\u308C\
+    \u308B. (Ai, Bi) \u304C\u305D\u308C\u305E\u308C\u306E\u9023\u7D50\u6210\u5206\u306B\
+    \u304A\u3051\u308B\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<vector<pair<vector<int>,\
+    \ vector<int>>>> Biparte(const Graph &G) {\n        int n = G.order();\n     \
+    \   vector<int> colors(n, -1);\n\n        vector<pair<vector<int>, vector<int>>>\
+    \ groups;\n        for (int x = 0; x < n; ++x) {\n            if (colors[x] !=\
+    \ -1) continue;\n\n            vector<int> stack{x};\n            vector<int>\
+    \ white{x}, black;\n\n            colors[x] = 0;\n            while (!stack.empty())\
+    \ {\n                int v = stack.back(); stack.pop_back();\n\n             \
+    \   for (auto edge: G.incidence(v)) {\n                int u = edge->target;\n\
+    \                if (colors[u] != -1) {\n                    if (colors[u] ^ 1\
+    \ != colors[v]) return nullopt;\n                    continue;\n             \
+    \   }\n\n                colors[u] = colors[v] ^ 1;\n                (colors[u]\
+    \ == 0 ? white : black).emplace_back(u);\n                stack.emplace_back(u);\n\
+    \                }\n            }\n\n            groups.emplace_back(white, black);\n\
+    \        }\n\n        return groups;\n    }\n\n    /// @brief G \u306E\u4E8C\u90E8\
+    \u30B0\u30E9\u30D5\u306B\u5BFE\u3059\u308B\u90E8\u96C6\u5408\u306E\u4F8B\u3092\
+    \u6C42\u3081\u308B.\n    /// @param G \n    /// @return (A, B): A, B \u304C\u305D\
+    \u308C\u305E\u308C\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<pair<vector<int>,\
+    \ vector<int>>> Find_Bipartion(const Graph &G) {\n        auto bipartition = Biparte(G);\n\
+    \        if (!bipartition) { return nullopt; }\n\n        vector<int> A, B;\n\
+    \        for (const auto &[a, b]: *bipartition) {\n            A.insert(A.end(),\
+    \ a.begin(), a.end());\n            B.insert(B.end(), b.begin(), b.end());\n \
+    \       }\n\n        return make_pair(A, B);\n    }\n\n    bool Is_Bipartite(const\
+    \ Graph &G) {\n        int n = G.order();\n        vector<int> colors(n, -1);\n\
+    \n        for (int x = 0; x < n; ++x) {\n            if (colors[x] != -1) continue;\n\
+    \n            vector<int> stack{x};\n            colors[x] = 0;\n            while\
+    \ (!stack.empty()) {\n                int v = stack.back(); stack.pop_back();\n\
+    \n                for (auto edge: G.incidence(v)) {\n                    int u\
+    \ = edge->target;\n                    if (colors[u] != -1) {\n              \
+    \          if (colors[u] == colors[v]) return false;\n                       \
+    \ continue;\n                    }\n\n                    colors[u] = colors[v]\
+    \ ^ 1;\n                    stack.emplace_back(u);\n                }\n      \
+    \      }\n        }\n\n        return true;\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -260,17 +299,38 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Graph/Graph/Graph.hpp
   isVerificationFile: false
-  path: Algebra/Gaussian_Integer.hpp
+  path: Graph/Graph/Bipartition.hpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-documentation_of: Algebra/Gaussian_Integer.hpp
+  timestamp: '2026-02-21 20:39:18+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Graph/Graph/Bipartition.hpp
 layout: document
-redirect_from:
-- /library/Algebra/Gaussian_Integer.hpp
-- /library/Algebra/Gaussian_Integer.hpp.html
-title: Algebra/Gaussian_Integer.hpp
+title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
 ---
+
+## Outline
+
+無向グラフ $G = (V, E)$ に対しての二部グラフに関する情報を求める.
+
+## Definition
+
+無向グラフ $G = (V, E)$ について, 以下を満たす $V$ の分割 $A, B \subset V$ が存在するとき, $G$ は二部グラフであるという.
+
+* 任意の $e \in E$ に対して, $e = ab$ となる $a \in A, b \in B$ が存在する.
+
+## Theory
+
+無向グラフ $G = (V, E)$ に対して, 以下は同値になる.
+
+* (a) $G$ は二部グラフである.
+* (b) $G$ に長さが奇数のサイクルが存在しない.
+* (c) $G$ に長さが奇数の閉歩道が存在しない.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/02/21| 二部グラフに関する関数の実装 |
