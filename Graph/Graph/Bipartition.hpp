@@ -57,4 +57,32 @@ namespace graph {
 
         return make_pair(A, B);
     }
+
+    bool Is_Bipartite(const Graph &G) {
+        int n = G.order();
+        vector<int> colors(n, -1);
+
+        for (int x = 0; x < n; ++x) {
+            if (colors[x] != -1) continue;
+
+            vector<int> stack{x};
+            colors[x] = 0;
+            while (!stack.empty()) {
+                int v = stack.back(); stack.pop_back();
+
+                for (auto edge: G.incidence(v)) {
+                    int u = edge->target;
+                    if (colors[u] != -1) {
+                        if (colors[u] == colors[v]) return false;
+                        continue;
+                    }
+
+                    colors[u] = colors[v] ^ 1;
+                    stack.emplace_back(u);
+                }
+            }
+        }
+
+        return true;
+    }
 }
