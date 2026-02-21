@@ -81,5 +81,31 @@ namespace digraph {
 
             return reachable;
         }
+
+        // targets へ到達可能な頂点一覧
+        vector<int> backward_reachable(const vector<int> &targets) const {
+            const int n = order();
+            vector<bool> visited(n, false);
+            vector<int> reachable;
+
+            for (const int t : targets) {
+                if (t < 0 || t >= n || visited[t]) continue;
+                visited[t] = true;
+                reachable.emplace_back(t);
+            }
+
+            for (int head = 0; head < reachable.size(); ++head) {
+                const int u = reachable[head];
+                for (const auto *arc : adjacent_in[u]) {
+                    const int v = arc->source;
+                    if (visited[v]) continue;
+
+                    visited[v] = true;
+                    reachable.emplace_back(v);
+                }
+            }
+
+            return reachable;
+        }
     };
 }
