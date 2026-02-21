@@ -60,6 +60,17 @@ class Nimber {
     friend ostream &operator<<(ostream &os, const Nimber &a) { return os << a.x; }
 
     Nimber inverse() const;
+
+    Nimber sqrt() {
+        if (x < 256) {
+            if (!table_initialized) init_table();
+            return Nimber(small_sqrt_table[x]);
+        }
+
+        int level = calculate_level(x);
+        return Nimber(calculate_sqrt(x, level));
+    }
+
     bool is_zero() const { return x == 0; }
 
     private:
@@ -67,6 +78,7 @@ class Nimber {
 
     inline static uint8_t small_table[256][256];
     inline static bool table_initialized = false;
+    inline static uint8_t small_sqrt_table[256];
 
     static void init_table() {
         if (table_initialized) return;
@@ -89,6 +101,11 @@ class Nimber {
                 }
             }
         }
+
+        for (int i = 0; i < 256; ++i) {
+            small_sqrt_table[small_table[i][i]] = i;
+        }
+
         table_initialized = true;
     }
 
@@ -141,6 +158,23 @@ class Nimber {
         uint64_t mul_part = calculate_mul(b, e >> 1, level - 1);
 
         return p ^ (b << (1 << (level - 1))) ^ mul_part;
+    }
+
+    static uint64_t calculate_sqrt(const uint64_t x, int level) {
+        if (level <= 3) {
+            if (!table_initialized) init_table();
+            return small_sqrt_table[x];
+        }
+
+        const auto &[x1, x0] = separate(x, level);
+
+        uint64_t y1 = calculate_sqrt(x1, level - 1);
+
+        uint64_t e = 1ULL << (1 << (level - 1));
+        uint64_t prod = calculate_mul(x1, e >> 1, level - 1);
+        uint64_t y0 = calculate_sqrt(prod ^ x0, level - 1);
+
+        return (y1 << (1 << (level - 1))) ^ y0;
     }
 
     /// @brief x < 2^(2^k) を満たす最小の非負整数 k を求める.
