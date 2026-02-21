@@ -9,7 +9,7 @@ class modint {
     uint64_t x;
 
     public:
-    static int mod() { return _mod; }
+    static constexpr int mod() { return _mod; }
 
     static modint raw(int v) {
         modint a;

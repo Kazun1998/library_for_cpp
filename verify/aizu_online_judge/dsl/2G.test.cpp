@@ -6,11 +6,7 @@
 int main() {
     int n, q; cin >> n >> q;
 
-    auto add = [](ll x, ll y) -> ll { return x + y; };
-    auto neg = [](ll x) -> ll { return -x; };
-    auto mul = [](ll k, ll x) -> ll { return k * x; };
-
-    Range_Binary_Indexed_Tree<ll> B(n + 1, add, 0LL, neg, mul);
+    Range_Binary_Indexed_Tree<ll> B(n + 1, add<ll>, 0LL, neg<ll>, mul<ll>);
     for (int r = 1; r <= q; r++) {
         int p; scanf("%d", &p);
         if (p == 0) {

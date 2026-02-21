@@ -23,6 +23,8 @@ M: Monoid, F = {f: F x M → M: 作用素} に対して, 以下が成立する.
 作用素は左から掛ける. 更新も左から行う.
 */
 
+#include"../template/template.hpp"
+
 template<typename M, typename F>
 class Lazy_Segment_Tree {
     public:
@@ -123,13 +125,13 @@ class Lazy_Segment_Tree {
         int L = l + n, R = r + n + 1;
         while (L < R){
             if (L & 1){
-                lazy[L] = (alpha == id) ? id : comp(alpha, lazy[L]); 
+                lazy[L] = (lazy[L] == id) ? alpha : comp(alpha, lazy[L]); 
                 L++;
             }
 
             if (R & 1){
                 R--;
-                lazy[R] = (alpha == id) ? id : comp(alpha, lazy[R]);
+                lazy[R] = (lazy[R] == id) ? alpha : comp(alpha, lazy[R]);
             }
 
             L >>= 1; R >>= 1;
@@ -171,7 +173,7 @@ class Lazy_Segment_Tree {
 
     /// @brief 全要素における区間積を求める.
     /// @return 残要素における区間積
-    inline M all_product() {return product(0, n);}
+    inline M all_product() {return product(0, n - 1);}
 
     void refresh() {
         for (int m = 1; m < 2 * n; m++){

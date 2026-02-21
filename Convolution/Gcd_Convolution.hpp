@@ -46,7 +46,7 @@ namespace convolution {
             size_t n = f.size() - 1;
             vector<bool> is_prime(n + 1, true);
 
-            for (int p = 2; p <= n + 1; p++) {
+            for (int p = 2; p <= n; p++) {
                 if (!is_prime[p]) { continue; }
 
                 for (size_t k = n / p; k > 0; k--) {
@@ -60,7 +60,7 @@ namespace convolution {
             size_t n = g.size() - 1;
             vector<bool> is_prime(n + 1, true);
 
-            for (int p = 2; p <= n + 1; p++) {
+            for (int p = 2; p <= n; p++) {
                 if (!is_prime[p]) { continue; }
 
                 for (size_t k = 1; k <= n / p; k++) {

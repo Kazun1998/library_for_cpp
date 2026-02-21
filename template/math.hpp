@@ -1,5 +1,27 @@
 #pragma once
 
+// 演算子
+template<typename T>
+T add(const T &x, const T &y) { return x + y; }
+
+template<typename T>
+T sub(const T &x, const T &y) { return x - y; }
+
+template<typename T>
+T mul(const T &x, const T &y) { return x * y; }
+
+template<typename T>
+T neg(const T &x) { return -x; }
+
+template<typename T>
+T bitwise_and(const T &x, const T &y) { return x & y; }
+
+template<typename T>
+T bitwise_or(const T &x, const T &y) { return x | y; }
+
+template<typename T>
+T bitwise_xor(const T &x, const T &y) { return x ^ y; }
+
 // 除算に関する関数
 
 // floor(x / y) を求める.
@@ -86,10 +108,11 @@ T sum(vector<T> &X){
 }
 
 // a x + b y = gcd(a, b) を満たす整数の組 (a, b) に対して, (x, y, gcd(a, b)) を求める.
-tuple<ll, ll, ll> Extended_Euclid(ll a, ll b) {
-    ll s = 1, t = 0, u = 0, v = 1;
+template<integral T>
+tuple<T, T, T> Extended_Euclid(T a, T b) {
+    T s = 1, t = 0, u = 0, v = 1;
     while (b) {
-        ll q;
+        T q;
         tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));
         tie(s, t) = make_pair(t, s - q * t);
         tie(u, v) = make_pair(v, u - q * v);

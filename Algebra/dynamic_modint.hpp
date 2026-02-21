@@ -83,8 +83,9 @@ class dynamic_modint {
 
     // 入力
     friend istream &operator>>(istream &is, dynamic_modint &a) {
-        is >> a.x;
-        a.x = (a.x % mod() + mod()) % mod();
+        int64_t x;
+        is >> x;
+        a.x = (x % mod() + mod()) % mod();
         return is;
     }
 
