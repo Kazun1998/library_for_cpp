@@ -4,15 +4,16 @@
 #include"../../../Graph/Digraph/Strongly_Connected_Components.hpp"
 
 int main() {
+    using namespace digraph;
     int N, M; cin >> N >> M;
-    auto D = Digraph::Digraph(N);
+    auto D = Digraph(N);
 
     for (int j = 0; j < M; j++) {
         int a, b; scanf("%d%d", &a, &b);
         D.add_arc(a, b);
     }
 
-    auto S = Digraph::Strongly_Connected_Components(D);
+    auto S = Strongly_Connected_Components(D);
 
     cout << S.components.size() << endl;
     for (auto component: S.components) {
