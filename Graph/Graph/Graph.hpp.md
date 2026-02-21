@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -293,23 +293,23 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Graph.hpp
   requiredBy:
-  - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
-  - Graph/Graph/Path.hpp
-  - Graph/Graph/Connected_Components.hpp
+  - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Eulerian_Trail.hpp
+  - Graph/Graph/Connected_Components.hpp
+  - Graph/Graph/Two_Edge_Connected_Components.hpp
+  - Graph/Graph/Path.hpp
   timestamp: '2026-02-19 01:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/aizu_online_judge/alds1/11D.test.cpp
+  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
 documentation_of: Graph/Graph/Graph.hpp
 layout: document
 title: "\u7121\u5411 Graph"

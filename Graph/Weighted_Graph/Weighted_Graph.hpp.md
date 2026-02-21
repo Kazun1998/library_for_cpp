@@ -106,8 +106,8 @@ data:
   isVerificationFile: false
   path: Graph/Weighted_Graph/Weighted_Graph.hpp
   requiredBy:
-  - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
+  - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - Graph/Weighted_Graph/Prim.hpp
   timestamp: '2025-11-24 23:47:22+09:00'
   verificationStatus: LIBRARY_ALL_AC

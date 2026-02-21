@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Algebra/Nimber.hpp
+    title: Nimber
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -25,36 +28,38 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "vectors \u304B\u3089\u751F\u6210\u3055\u308C\u308B\u90E8\u5206\
-      \u7A7A\u9593\u3092\u751F\u6210\u3059\u308B."
-    links: []
-  bundledCode: "#line 2 \"Math/XOR_Vector_Space.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/nim_product_64
+    links:
+    - https://judge.yosupo.jp/problem/nim_product_64
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -180,64 +185,106 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Math/XOR_Vector_Space.hpp\"\
-    \n\ntemplate<integral T>\nclass Xor_Vector_Space {\n    vector<T> basis;\n\n \
-    \   public:\n    Xor_Vector_Space(): Xor_Vector_Space(vector<T>{}) {}\n\n    ///\
-    \ @brief vectors \u304B\u3089\u751F\u6210\u3055\u308C\u308B\u90E8\u5206\u7A7A\u9593\
-    \u3092\u751F\u6210\u3059\u308B.\n    /// @param vectors \u751F\u6210\u5143\u306E\
-    \u96C6\u5408\n    Xor_Vector_Space(const vector<T> &vectors) {\n        for (T\
-    \ x: vectors) {\n            add_vector(x);\n        }\n    }\n\n    /// @brief\
-    \ x \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param x \n    /// @return \u6B21\
-    \u5143\u304C\u5897\u3048\u305F\u3089 True. \u305D\u3046\u3067\u306A\u3051\u308C\
-    \u3070 False.\n    bool add_vector(T x) {\n        T y = projection(x);\n    \
-    \    if (y == 0) return false;\n\n        basis.emplace_back(y);\n\n        return\
-    \ true;\n    }\n\n    /// @brief x \u3092\u3053\u306E\u7A7A\u9593\u3078\u5C04\u5F71\
-    \u3057\u305F\u6642\u306E\u6B8B\u308A\u3092\u6C42\u3081\u308B.\n    /// @param\
-    \ x \n    /// @return x = a + b (b in X) \u3068\u306A\u308B a.\n    T projection(T\
-    \ x) const {\n        for (T v: basis) {\n            x = min<T>(x, x ^ v);\n\
-    \        }\n\n        return x;\n    }\n\n    /// @brief x \u306F\u3053\u306E\u7A7A\
-    \u9593\u306B\u542B\u307E\u308C\u308B\u304B?\n    /// @param x \n    constexpr\
-    \ inline bool contains(const T x) const { return projection(x) == 0; }\n\n   \
-    \ /// @brief \u3053\u306E\u7A7A\u9593\u306E\u6B21\u5143\u3092\u6C42\u3081\u308B\
-    .\n    constexpr inline size_t dimension() const { return basis.size(); }\n\n\
-    \    constexpr bool operator<=(const Xor_Vector_Space &W) const {\n        for\
-    \ (T x: basis) {\n            if (!W.contains(x)) return false;\n        }\n\n\
-    \        return true;\n    }\n\n    constexpr bool operator>=(const Xor_Vector_Space\
-    \ &W) const { return W <= *this; }\n    constexpr bool operator<(const Xor_Vector_Space\
-    \ &W) const { return (*this <= W) && (this->dimension() < W.dimension()); }\n\
-    \    constexpr bool operator>(const Xor_Vector_Space &W) const { return W < *this;\
-    \ }\n    constexpr bool operator==(const Xor_Vector_Space &W) const {  return\
-    \ (*this <= W) && (this->dimension() == W.dimension()); }\n    constexpr bool\
-    \ operator!=(const Xor_Vector_Space &W) const { return !(*this == W); }\n};\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<integral\
-    \ T>\nclass Xor_Vector_Space {\n    vector<T> basis;\n\n    public:\n    Xor_Vector_Space():\
-    \ Xor_Vector_Space(vector<T>{}) {}\n\n    /// @brief vectors \u304B\u3089\u751F\
-    \u6210\u3055\u308C\u308B\u90E8\u5206\u7A7A\u9593\u3092\u751F\u6210\u3059\u308B\
-    .\n    /// @param vectors \u751F\u6210\u5143\u306E\u96C6\u5408\n    Xor_Vector_Space(const\
-    \ vector<T> &vectors) {\n        for (T x: vectors) {\n            add_vector(x);\n\
-    \        }\n    }\n\n    /// @brief x \u3092\u8FFD\u52A0\u3059\u308B.\n    ///\
-    \ @param x \n    /// @return \u6B21\u5143\u304C\u5897\u3048\u305F\u3089 True.\
-    \ \u305D\u3046\u3067\u306A\u3051\u308C\u3070 False.\n    bool add_vector(T x)\
-    \ {\n        T y = projection(x);\n        if (y == 0) return false;\n\n     \
-    \   basis.emplace_back(y);\n\n        return true;\n    }\n\n    /// @brief x\
-    \ \u3092\u3053\u306E\u7A7A\u9593\u3078\u5C04\u5F71\u3057\u305F\u6642\u306E\u6B8B\
-    \u308A\u3092\u6C42\u3081\u308B.\n    /// @param x \n    /// @return x = a + b\
-    \ (b in X) \u3068\u306A\u308B a.\n    T projection(T x) const {\n        for (T\
-    \ v: basis) {\n            x = min<T>(x, x ^ v);\n        }\n\n        return\
-    \ x;\n    }\n\n    /// @brief x \u306F\u3053\u306E\u7A7A\u9593\u306B\u542B\u307E\
-    \u308C\u308B\u304B?\n    /// @param x \n    constexpr inline bool contains(const\
-    \ T x) const { return projection(x) == 0; }\n\n    /// @brief \u3053\u306E\u7A7A\
-    \u9593\u306E\u6B21\u5143\u3092\u6C42\u3081\u308B.\n    constexpr inline size_t\
-    \ dimension() const { return basis.size(); }\n\n    constexpr bool operator<=(const\
-    \ Xor_Vector_Space &W) const {\n        for (T x: basis) {\n            if (!W.contains(x))\
-    \ return false;\n        }\n\n        return true;\n    }\n\n    constexpr bool\
-    \ operator>=(const Xor_Vector_Space &W) const { return W <= *this; }\n    constexpr\
-    \ bool operator<(const Xor_Vector_Space &W) const { return (*this <= W) && (this->dimension()\
-    \ < W.dimension()); }\n    constexpr bool operator>(const Xor_Vector_Space &W)\
-    \ const { return W < *this; }\n    constexpr bool operator==(const Xor_Vector_Space\
-    \ &W) const {  return (*this <= W) && (this->dimension() == W.dimension()); }\n\
-    \    constexpr bool operator!=(const Xor_Vector_Space &W) const { return !(*this\
-    \ == W); }\n};\n"
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Algebra/Nimber.hpp\"\
+    \n\n#line 4 \"Algebra/Nimber.hpp\"\n\nclass Nimber {\n    public:\n    Nimber():\
+    \ x(0) {}\n    Nimber(uint64_t x): x(x) {}\n\n    Nimber operator-() const { return\
+    \ Nimber(x); }\n\n    Nimber& operator+=(const Nimber &b) {\n        x ^= b.x;\n\
+    \        return *this;\n    }\n\n    friend Nimber operator+(const Nimber &x,\
+    \ const Nimber &y) { return Nimber(x) += y; }\n\n    Nimber& operator-=(const\
+    \ Nimber &b) {\n        *this += b;\n        return *this;\n    }\n\n    friend\
+    \ Nimber operator-(const Nimber &x, const Nimber &y) { return Nimber(x) -= y;\
+    \ }\n\n    // \u4E57\u6CD5\n    Nimber& operator*=(const Nimber &b) {\n      \
+    \  if ((x | b.x) < 256) {\n            if (!table_initialized) init_table();\n\
+    \            x = small_table[x][b.x];\n            return *this;\n        }\n\
+    \        int level = max(calculate_level(x), calculate_level(b.x));\n        x\
+    \ = calculate_mul(x, b.x, level);\n        return *this;\n    }\n\n    friend\
+    \ Nimber operator*(const Nimber &x, const Nimber &y) { return Nimber(x) *= y;\
+    \ }\n\n    friend bool operator==(const Nimber &a, const Nimber &b) { return a.x\
+    \ == b.x; }\n    friend bool operator!=(const Nimber &a, const Nimber &b) { return\
+    \ a.x != b.x; }\n    friend bool operator<(const Nimber &a, const Nimber &b) {\
+    \ return a.x < b.x; }\n\n    Nimber square() const {\n        if (x < 256) {\n\
+    \            if (!table_initialized) init_table();\n            return small_table[x][x];\n\
+    \        }\n        int level = calculate_level(x);\n        return Nimber(calculate_square(x,\
+    \ level));\n    }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, Nimber &a) {\n        is >> a.x;\n        return is;\n    }\n\n    // \u51FA\
+    \u529B\n    friend ostream &operator<<(ostream &os, const Nimber &a) { return\
+    \ os << a.x; }\n\n    Nimber inverse() const;\n\n    Nimber sqrt() {\n       \
+    \ if (x < 256) {\n            if (!table_initialized) init_table();\n        \
+    \    return Nimber(small_sqrt_table[x]);\n        }\n\n        int level = calculate_level(x);\n\
+    \        return Nimber(calculate_sqrt(x, level));\n    }\n\n    bool is_zero()\
+    \ const { return x == 0; }\n\n    private:\n    uint64_t x;\n\n    inline static\
+    \ uint8_t small_table[256][256];\n    inline static bool table_initialized = false;\n\
+    \    inline static uint8_t small_sqrt_table[256];\n\n    static void init_table()\
+    \ {\n        if (table_initialized) return;\n        small_table[0][0] = 0; small_table[0][1]\
+    \ = 0;\n        small_table[1][0] = 0; small_table[1][1] = 1;\n        for (int\
+    \ level = 1; level <= 3; ++level) {\n            int half = 1 << (1 << (level\
+    \ - 1));\n            int full = 1 << (1 << level);\n            for (int i =\
+    \ 0; i < full; ++i) {\n                for (int j = 0; j < full; ++j) {\n    \
+    \                if (i < half && j < half) continue;\n                    int\
+    \ x0 = i & (half - 1);\n                    int x1 = i >> (1 << (level - 1));\n\
+    \                    int y0 = j & (half - 1);\n                    int y1 = j\
+    \ >> (1 << (level - 1));\n                    int p = small_table[x0][y0];\n \
+    \                   int m = small_table[x0 ^ x1][y0 ^ y1];\n                 \
+    \   int b = small_table[small_table[x1][y1]][half >> 1];\n                   \
+    \ small_table[i][j] = p ^ b ^ ((p ^ m) << (1 << (level - 1)));\n             \
+    \   }\n            }\n        }\n\n        for (int i = 0; i < 256; ++i) {\n \
+    \           small_sqrt_table[small_table[i][i]] = i;\n        }\n\n        table_initialized\
+    \ = true;\n    }\n\n    static uint64_t build_up(const uint64_t upper, const uint64_t\
+    \ lower, int level) {\n        return upper << (1 << (level - 1)) ^ lower;\n \
+    \   }\n\n    /// @brief x * y \u3092\u6C42\u3081\u308B\u305F\u3081\u306E\u30D8\
+    \u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x \n    /// @param y \n    ///\
+    \ @param level \n    /// @return \n    static uint64_t calculate_mul(const uint64_t\
+    \ x, const uint64_t y, int level) {\n        if (level <= 3) { \n            if\
+    \ (!table_initialized) init_table();\n            return small_table[x][y];\n\
+    \        }\n\n        const auto &[x1, x0] = separate(x, level);\n        const\
+    \ auto &[y1, y0] = separate(y, level);\n\n        uint64_t p = calculate_mul(x0,\
+    \ y0, level - 1);\n        uint64_t e = 1ULL << (1 << (level - 1));\n\n      \
+    \  uint64_t m = calculate_mul(x0 ^ x1, y0 ^ y1, level - 1);\n        uint64_t\
+    \ a = p ^ m * e;\n        uint64_t b = calculate_mul(calculate_mul(x1, y1, level\
+    \ - 1), e >> 1, level - 1);\n\n        uint64_t res = (p * e) ^ a ^ b;\n\n   \
+    \     return res;\n    }\n\n    /// @brief x \u306E\u81EA\u4E57\u3092\u6C42\u3081\
+    \u308B\u30D8\u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x \n    /// @param\
+    \ level \n    /// @return \n    static uint64_t calculate_square(const uint64_t\
+    \ x, int level) {\n        if (level <= 3) {\n            if (!table_initialized)\
+    \ init_table();\n            return small_table[x][x];\n        }\n\n        const\
+    \ auto &[x1, x0] = separate(x, level);\n\n        uint64_t p = calculate_square(x0,\
+    \ level - 1);\n        uint64_t b = calculate_square(x1, level - 1);\n       \
+    \ \n        uint64_t e = 1ULL << (1 << (level - 1));\n        uint64_t mul_part\
+    \ = calculate_mul(b, e >> 1, level - 1);\n\n        return p ^ (b << (1 << (level\
+    \ - 1))) ^ mul_part;\n    }\n\n    static uint64_t calculate_sqrt(const uint64_t\
+    \ x, int level) {\n        if (level <= 3) {\n            if (!table_initialized)\
+    \ init_table();\n            return small_sqrt_table[x];\n        }\n\n      \
+    \  const auto &[x1, x0] = separate(x, level);\n\n        uint64_t y1 = calculate_sqrt(x1,\
+    \ level - 1);\n\n        uint64_t e = 1ULL << (1 << (level - 1));\n        uint64_t\
+    \ prod = calculate_mul(x1, e >> 1, level - 1);\n        uint64_t y0 = calculate_sqrt(prod\
+    \ ^ x0, level - 1);\n\n        return (y1 << (1 << (level - 1))) ^ y0;\n    }\n\
+    \n    /// @brief x < 2^(2^k) \u3092\u6E80\u305F\u3059\u6700\u5C0F\u306E\u975E\u8CA0\
+    \u6574\u6570 k \u3092\u6C42\u3081\u308B.\n    /// @param x \n    /// @note x >\
+    \ 1 \u306E\u3068\u304D\u306F, k = floor_log2(floor_log2(x)) + 1 \u304C\u6210\u308A\
+    \u7ACB\u3064.\n    static int calculate_level(const uint64_t &x) {\n        if\
+    \ (x == 0 || x == 1) { return 0; }\n\n        return floor_log2(floor_log2(x))\
+    \ + 1;\n    }\n\n    /// @brief \u975E\u8CA0\u6574\u6570 x \u3092 x = x1 e_{level}\
+    \ + x0, 0 <= x_0 < e_{level}, 0 <= x_1 < e_{level} \u3068\u306A\u308B\u3088\u3046\
+    \u306B\u5206\u5272\u3059\u308B. \u305F\u3060\u3057, e_k := 2^(2^k).\n    /// @param\
+    \ x \u975E\u8CA0\u6574\u6570\n    /// @param level e_k \u306B\u304A\u3051\u308B\
+    \ k \u306E\u5024\n    /// @return {x1, x0} (\u9806\u756A\u6CE8\u610F)\n    static\
+    \ pair<uint64_t, uint64_t> separate(const uint64_t &x, int level) {\n        uint64_t\
+    \ upper = x >> (1 << (level - 1));\n        uint64_t lower = x ^ (upper << (1\
+    \ << level - 1));\n\n        return { upper, lower };\n    }\n};\n\ntemplate<typename\
+    \ T>\nNimber pow(Nimber x, T n) {\n    if constexpr (std::is_signed_v<T>) {\n\
+    \        if (n < 0) return pow(x.inverse(), -n);\n    }\n\n    Nimber res(1);\n\
+    \    while (n > 0) {\n        if (n & 1) res *= x;\n        x = x.square();\n\
+    \        n >>= 1;\n    }\n    return res;\n}\n\ninline Nimber Nimber::inverse()\
+    \ const {\n    int l = calculate_level(x);\n    return pow(*this, l >= 6 ? -2ULL\
+    \ : (1ULL << (1 << l)) - 2);\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp\"\
+    \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++) {\n  \
+    \      uint64_t a, b; scanf(\"%llu%llu\", &a, &b);\n        cout << Nimber(a)\
+    \ * Nimber(b) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\n\n#include\
+    \ \"../../../template/template.hpp\"\n#include \"../../../Algebra/Nimber.hpp\"\
+    \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++) {\n  \
+    \      uint64_t a, b; scanf(\"%llu%llu\", &a, &b);\n        cout << Nimber(a)\
+    \ * Nimber(b) << \"\\n\";\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -246,110 +293,17 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Math/XOR_Vector_Space.hpp
+  - Algebra/Nimber.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 19:02:38+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2026-02-21 10:05:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Math/XOR_Vector_Space.hpp
+documentation_of: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
 layout: document
-title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+redirect_from:
+- /verify/verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
 ---
-
-## Outline
-
-XOR 演算によるベクトル空間に関する計算を行う.
-
-## Definition
-
-任意の非負整数 $x \in \mathbb{N}$ はただ一つの二進数表示
-
-$$ x = \sum_{i=0}^\infty b_i 2^i \quad (b_i \in \{0, 1\}) $$
-
-を持つ.
-
-$\mathbb{F}_2$ 上の列で, 有限個の項を除いて $0$ であるような列全体の集合を $V$ とする.
-
-このとき, $\varphi: \mathbb{N} \to V, \psi: V \to \mathbb{N}$ を
-
-$$ \varphi(x) := (b_i), \quad \psi((b_i)) := \sum_{i=0}^\infty b_i 2^i $$
-
-で定めると, これらは逆写像になる.
-
-また, $V$ はベクトル空間であるため, $\varphi$ や $\psi$ による同一視によって, $\mathbb{N}$ を $\mathbb{F}_2$ 係数のベクトル空間とみなすことができる.
-
-このとき, $\mathbb{N}$ におけるベクトルとしての和を XOR という.
-
-## Theory
-
-以下が従う.
-
-* $\mathbb{N}$ は $\{ 2^i \mid i \in \mathbb{N}\}$ を基底とするベクトル空間である.
-* $\mathbb{N}$ は無限次元の空間ではあるが, 実用的には, $V_n := \\{ i \mid 0 \leq i \lt 2^n \\}$ に制限して扱う. この $V_n$ は $\mathbb{N}$ の $n$ 次元部分空間になる.
-* $\mathbb{N}$ の零ベクトルは $0$ である.
-* $x \in \mathbb{N}$ の逆元 $-x$ は自分自身である. つまり, $-x=x$ である.
-
-## Contents
-
-### Constructor
-
-```cpp
-template<integral T>
-Xor_Vector_Space()
-```
-
-* 型 `T` で扱える範囲に制限した $V_n$ の部分空間 $V$ 生成する.
-  * 例
-    * `T` = `int` のときは $V_{31} \quad (2^{31} \lt 2.2 \times 10^9 )$.
-    * `T` = `long long` のときは $V_{63} \quad (2^{63} \lt 9.3 \times 10^{18})$.
-
-```cpp
-template<integral T>
-Xor_Vector_Space(const vector<T> &vectors)
-```
-
-* `vectors` に含まれる `T` の要素でベクトル空間を生成する.
-
-### add_vector
-
-```cpp
-bool add_vector(T x)
-```
-
-* ベクトル空間に $x$ を加えて更新する.
-* **返り値**
-  * $x$ を追加して, 次元が増えるならば `true`, そうでなければ `false`.
-
-### projection
-
-```cpp
-bool projection(T x)
-```
-
-* 型 `T` の $x$ に対して, $x = a + b, b \in V$ となる型 `T` の $a$ が存在する. この $a$ を求める.
-* **返り値** : $x - a \in V$ となる $a$.
-
-### contains
-
-```cpp
-bool contains(T x)
-```
-
-* $x \in V$ かどうかを判定する.
-
-### dimension
-
-```cpp
-bool dimension()
-```
-
-* $V$ のベクトル空間としての次元を求める.
-
-### order operator
-
-```cpp
-bool operator<=(const Xor_Vector_Space &W)
-```
-
-* ベクトル空間として, $V \subset W$ かどうかを判定する.

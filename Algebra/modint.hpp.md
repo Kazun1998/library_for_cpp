@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Log.hpp
     title: Log
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
       \u5F0F\u74B0"
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   _extendedVerifiedWith:
@@ -178,21 +178,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
     title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Algebra/modint.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -431,64 +431,64 @@ data:
   isVerificationFile: false
   path: Algebra/modint.hpp
   requiredBy:
-  - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Stirling_2nd.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Multipoint_Evaluation.hpp
-  - Modulo_Polynomial/Huge_Factorial.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
   - Modulo_Polynomial/Partition_P.hpp
-  - Modulo_Polynomial/Partition_Q.hpp
+  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Stirling_1st.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Huge_Factorial.hpp
+  - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Multipoint_Evaluation.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
   timestamp: '2026-01-29 01:07:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verify/yukicoder/1358.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
-  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
-  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
-  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
-  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
   - verify/original/Partition_Q.test.cpp
+  - verify/yukicoder/1358.test.cpp
 documentation_of: Algebra/modint.hpp
 layout: document
 redirect_from:

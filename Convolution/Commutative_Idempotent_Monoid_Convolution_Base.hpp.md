@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/Convolution_Base.hpp
     title: Convolution/Convolution_Base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -259,13 +259,13 @@ data:
   isVerificationFile: false
   path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
   requiredBy:
-  - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Gcd_Convolution.hpp
+  - Convolution/Bitwise_And_Convolution.hpp
   timestamp: '2026-01-24 19:02:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
 documentation_of: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
 layout: document
 redirect_from:
