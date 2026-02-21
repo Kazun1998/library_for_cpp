@@ -86,6 +86,14 @@ $$(x_1 \oplus x_0) \otimes (y_1 \oplus y_0), \quad x_0 \otimes y_0, \quad x_1 \o
 
 の $4$ つの "1 レベル下" の積に帰着される.
 
+### 逆元
+
+$x \in F_{2^n}$ は $x \neq 0$ であるとする. Nimber 積の意味での $x$ の $m$ 乗を $\operatorname{power}(x, m)$ と書くことにする.
+
+体における乗法群 $F_{2^n}^\times$ の位数は $(2^{2^n}-1)$ であるため, Lagrange の定理により, $\operatorname{power}(x, 2^{2^n}-1) = 1$ である.
+
+よって, $x$ の Nimber 積の意味での逆元は $\operatorname{power}(x, 2^{2^n}-2)$ である.
+
 ### 平方根
 
 まず, 平方根の定義ができることを証明する.
