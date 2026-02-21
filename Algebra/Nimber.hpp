@@ -92,6 +92,10 @@ class Nimber {
         table_initialized = true;
     }
 
+    static uint64_t build_up(const uint64_t upper, const uint64_t lower, int level) {
+        return upper << (1 << (level - 1)) ^ lower;
+    }
+
     /// @brief x * y を求めるためのヘルパー関数
     /// @param x 
     /// @param y 
