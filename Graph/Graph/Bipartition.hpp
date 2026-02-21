@@ -4,6 +4,10 @@
 #include "Graph.hpp"
 
 namespace graph {
+
+    /// @brief 二部グラフに関する情報を求める.
+    /// @param G 
+    /// @return そもそも二部グラフではない場合は nullout, 二部グラフである場合は, [(A0, B0), ..., (Ak, Bk)] の形で返される. (Ai, Bi) がそれぞれの連結成分における部集合になる.
     optional<vector<pair<vector<int>, vector<int>>>> Biparte(const Graph &G) {
         int n = G.order();
         vector<int> colors(n, -1);
@@ -38,6 +42,9 @@ namespace graph {
         return groups;
     }
 
+    /// @brief G の二部グラフに対する部集合の例を求める.
+    /// @param G 
+    /// @return (A, B): A, B がそれぞれ部集合になる.
     optional<pair<vector<int>, vector<int>>> Find_Bipartion(const Graph &G) {
         auto bipartition = Biparte(G);
         if (!bipartition) { return nullopt; }
