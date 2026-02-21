@@ -82,6 +82,8 @@ namespace digraph {
             return reachable;
         }
 
+        vector<int> forward_reachable(const int source) const { return forward_reachable(vector<int>{source}); }
+
         // targets へ到達可能な頂点一覧
         vector<int> backward_reachable(const vector<int> &targets) const {
             const int n = order();
@@ -107,5 +109,7 @@ namespace digraph {
 
             return reachable;
         }
+
+        vector<int> backward_reachable(const int target) const { return backward_reachable(vector<int>{target}); }
     };
 }
