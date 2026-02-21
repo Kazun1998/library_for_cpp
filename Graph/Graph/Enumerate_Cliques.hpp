@@ -3,13 +3,8 @@
 #include"Graph.hpp"
 
 namespace graph {
-    template<typename X>
-    X Cliques(
-            const Graph &G,
-            const function<X(const vector<int>)> &calc,
-            const function<X(X, X)> &merge,
-            const X unit,
-            bool empty = false) {
+    vector<vector<int>> Enumerate_Cliques(const Graph &G, bool empty = false) {
+        vector<vector<int>> cliques;
 
         int N = G.order(), M = G.size();
         int M_sqrt = ceil_sqrt(M);
@@ -51,8 +46,7 @@ namespace graph {
             return true;
         };
 
-        auto subcalc = [&](const vector<int> &A, const int leader = -1) -> X {
-            X res = unit;
+        auto subcalc = [&](const vector<int> &A, const int leader = -1) -> void {
             bool empty_accept = (leader != -1) || empty;
 
             int K = A.size();
@@ -70,15 +64,10 @@ namespace graph {
                     }
                 }
 
-                if(S > 0 || empty_accept) {
-                    res = merge(res, calc(C));
-                }
+                if(S > 0 || empty_accept) cliques.emplace_back(C);
             }
 
-            return res;
         };
-
-        X res(unit);
 
         // 次数が M_sqrt 未満の頂点を含むクリークを計算する
         loop {
@@ -101,7 +90,7 @@ namespace graph {
             if (leader == -1) { break; }
 
             int K = A.size();
-            res = merge(res, subcalc(A, leader));
+            subcalc(A, leader);
 
             alive[leader] = false;
             deg[leader] = 0;
@@ -119,8 +108,8 @@ namespace graph {
             if(alive[u]) { A.emplace_back(u); }
         }
 
-        res = merge(res, subcalc(A, -1));
+        subcalc(A, -1);
 
-        return res;
+        return cliques;
     };
 }
