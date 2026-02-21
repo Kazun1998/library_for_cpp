@@ -1,7 +1,7 @@
 #pragma once
 #include"Weighted_Digraph.hpp"
 
-namespace Weighted_Digraph::Dijkstra {
+namespace weighted_digraph::dijkstra {
     class UnreachableException : public exception {
       public: // publicに指定
       const char* what() const noexcept override { return "求めるパスが存在しません"; }
@@ -13,7 +13,7 @@ namespace Weighted_Digraph::Dijkstra {
     vector<int> path_vertices;
     W length;
 
-    Shortest_Path<W>(vector<int> path_arc_ids, vector<int> path_vertices, W length):
+    Shortest_Path(vector<int> path_arc_ids, vector<int> path_vertices, W length):
       path_arc_ids(path_arc_ids), path_vertices(path_vertices), length(length) {}
   };
 
