@@ -92,6 +92,11 @@ class Nimber {
         table_initialized = true;
     }
 
+    /// @brief x * y を求めるためのヘルパー関数
+    /// @param x 
+    /// @param y 
+    /// @param level 
+    /// @return 
     static uint64_t calculate_mul(const uint64_t x, const uint64_t y, int level) {
         if (level <= 3) { 
             if (!table_initialized) init_table();
@@ -113,6 +118,10 @@ class Nimber {
         return res;
     }
 
+    /// @brief x の自乗を求めるヘルパー関数
+    /// @param x 
+    /// @param level 
+    /// @return 
     static uint64_t calculate_square(const uint64_t x, int level) {
         if (level <= 3) {
             if (!table_initialized) init_table();
@@ -130,12 +139,19 @@ class Nimber {
         return p ^ (b << (1 << (level - 1))) ^ mul_part;
     }
 
+    /// @brief x < 2^(2^k) を満たす最小の非負整数 k を求める.
+    /// @param x 
+    /// @note x > 1 のときは, k = floor_log2(floor_log2(x)) + 1 が成り立つ.
     static int calculate_level(const uint64_t &x) {
         if (x == 0 || x == 1) { return 0; }
 
         return floor_log2(floor_log2(x)) + 1;
     }
 
+    /// @brief 非負整数 x を x = x1 e_{level} + x0, 0 <= x_0 < e_{level}, 0 <= x_1 < e_{level} となるように分割する. ただし, e_k := 2^(2^k).
+    /// @param x 非負整数
+    /// @param level e_k における k の値
+    /// @return {x1, x0} (順番注意)
     static pair<uint64_t, uint64_t> separate(const uint64_t &x, int level) {
         uint64_t upper = x >> (1 << (level - 1));
         uint64_t lower = x ^ (upper << (1 << level - 1));
