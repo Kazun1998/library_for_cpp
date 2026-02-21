@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
-    title: Graph/Digraph/Digraph.hpp
+    title: "\u6709\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: Graph/Digraph/Strongly_Connected_Components.hpp
@@ -194,27 +194,85 @@ data:
     \ id, int source, int target): id(id), source(source), target(target) {}\n   \
     \ };\n\n    class Digraph {\n        private:\n        int arc_id_offset;\n  \
     \      vector<vector<Arc*>> adjacent_out, adjacent_in;\n        vector<Arc> arcs;\n\
-    \n        public:\n        Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset)\
-    \ {\n            adjacent_out.assign(n, {});\n            adjacent_in.assign(n,\
-    \ {});\n            arcs.resize(arc_id_offset);\n        }\n        \n       \
-    \ inline int order() const { return int(adjacent_in.size()); }\n\n        inline\
-    \ int size() const { return int(arcs.size()) - arc_id_offset; }\n\n        //\
-    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\
-    \u3092\u8FFD\u52A0\u3059\u308B.\n        Arc* add_arc(int u, int v) {\n      \
+    \n        public:\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n         * @param n \u9802\u70B9\u6570\n         * @param arc_id_offset\
+    \ \u5F27 ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n         */\n        Digraph(int\
+    \ n, int arc_id_offset = 0): arc_id_offset(arc_id_offset) {\n            adjacent_out.assign(n,\
+    \ {});\n            adjacent_in.assign(n, {});\n            arcs.resize(arc_id_offset);\n\
+    \        }\n        \n        /**\n         * @brief \u9802\u70B9\u6570\u3092\u53D6\
+    \u5F97\u3059\u308B\n         * @return int \u9802\u70B9\u6570\n         */\n \
+    \       inline int order() const { return int(adjacent_in.size()); }\n\n     \
+    \   /**\n         * @brief \u8FBA\u6570\u3092\u53D6\u5F97\u3059\u308B\n      \
+    \   * @return int \u8FBA\u6570\n         */\n        inline int size() const {\
+    \ return int(arcs.size()) - arc_id_offset; }\n\n        /**\n         * @brief\
+    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u5F27\u3092\u8FFD\u52A0\
+    \u3059\u308B\n         * @param u \u59CB\u70B9\n         * @param v \u7D42\u70B9\
+    \n         * @return Arc* \u8FFD\u52A0\u3055\u308C\u305F\u5F27\u3078\u306E\u30DD\
+    \u30A4\u30F3\u30BF\n         */\n        Arc* add_arc(int u, int v) {\n      \
     \      int id = int(arcs.size());\n\n            Arc* arc_ptr = new Arc(id, u,\
     \ v);\n            arcs.emplace_back(*arc_ptr);\n            \n            adjacent_out[u].emplace_back(arc_ptr);\n\
     \            adjacent_in[v].emplace_back(arc_ptr);\n\n            return arc_ptr;\n\
-    \        }\n\n        // \u9802\u70B9 u \u304B\u3089\u51FA\u308B\u5F27\u306E ID\
-    \ \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n        inline const vector<Arc*>&\
-    \ successors(int u) const { return adjacent_out[u]; }\n\n        // \u9802\u70B9\
-    \ u \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\
-    \n        inline const vector<Arc*>& predecessors(int u) const { return adjacent_in[u];\
-    \ }\n\n        // \u5F27 ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\
-    \u3059\u308B.\n        inline const Arc get_arc(int id) const { return arcs[id];\
-    \ }\n        inline Arc get_arc(int id) { return arcs[id]; }\n\n        // \u9802\
-    \u70B9 v \u306E\u51FA\u6B21\u6570\n        inline int out_degree(const int v)\
-    \ const { return adjacent_out[v].size(); }\n\n        // \u9802\u70B9 v \u306E\
-    \u5165\u6B21\u6570\n        inline int in_degree(const int v) const { return adjacent_in[v].size();\
+    \        }\n\n        /**\n         * @brief \u9802\u70B9 u \u304B\u3089\u51FA\
+    \u308B\u5F27\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\u308B\n         *\
+    \ @param u \u9802\u70B9\n         * @return const vector<Arc*>& \u5F27\u306E\u30EA\
+    \u30B9\u30C8\n         */\n        inline const vector<Arc*>& successors(int u)\
+    \ const { return adjacent_out[u]; }\n\n        /**\n         * @brief \u9802\u70B9\
+    \ u \u306B\u5165\u308B\u5F27\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\u308B\
+    \n         * @param u \u9802\u70B9\n         * @return const vector<Arc*>& \u5F27\
+    \u306E\u30EA\u30B9\u30C8\n         */\n        inline const vector<Arc*>& predecessors(int\
+    \ u) const { return adjacent_in[u]; }\n\n        /**\n         * @brief \u6307\
+    \u5B9A\u3055\u308C\u305F ID \u306E\u5F27\u3092\u53D6\u5F97\u3059\u308B\n     \
+    \    * @param id \u5F27 ID\n         * @return const Arc \u5F27\n         */\n\
+    \        inline const Arc get_arc(int id) const { return arcs[id]; }\n       \
+    \ inline Arc get_arc(int id) { return arcs[id]; }\n\n        /**\n         * @brief\
+    \ \u9802\u70B9 v \u306E\u51FA\u6B21\u6570\u3092\u53D6\u5F97\u3059\u308B\n    \
+    \     * @param v \u9802\u70B9\n         * @return int \u51FA\u6B21\u6570\n   \
+    \      */\n        inline int out_degree(const int v) const { return adjacent_out[v].size();\
+    \ }\n\n        /**\n         * @brief \u9802\u70B9 v \u306E\u5165\u6B21\u6570\u3092\
+    \u53D6\u5F97\u3059\u308B\n         * @param v \u9802\u70B9\n         * @return\
+    \ int \u5165\u6B21\u6570\n         */\n        inline int in_degree(const int\
+    \ v) const { return adjacent_in[v].size(); }\n\n        /**\n         * @brief\
+    \ \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u96C6\u5408\u304B\u3089\u5230\u9054\
+    \u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\
+    \u308B\n         * @param sources \u59CB\u70B9\u306E\u96C6\u5408\n         * @return\
+    \ vector<int> \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\
+    \n         */\n        vector<int> forward_reachable(const vector<int> &sources)\
+    \ const {\n            const int n = order();\n            vector<bool> visited(n,\
+    \ false);\n            vector<int> reachable;\n\n            for (const int s\
+    \ : sources) {\n                if (s < 0 || s >= n || visited[s]) continue;\n\
+    \                visited[s] = true;\n                reachable.emplace_back(s);\n\
+    \            }\n\n            for (int head = 0; head < reachable.size(); ++head)\
+    \ {\n                const int u = reachable[head];\n                for (const\
+    \ auto *arc : adjacent_out[u]) {\n                    const int v = arc->target;\n\
+    \                    if (visited[v]) continue;\n\n                    visited[v]\
+    \ = true;\n                    reachable.emplace_back(v);\n                }\n\
+    \            }\n\n            return reachable;\n        }\n\n        /**\n  \
+    \       * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u304B\u3089\u5230\u9054\
+    \u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\
+    \u308B\n         * @param source \u59CB\u70B9\n         * @return vector<int>\
+    \ \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\n       \
+    \  */\n        vector<int> forward_reachable(const int source) const { return\
+    \ forward_reachable(vector<int>{source}); }\n\n        /**\n         * @brief\
+    \ \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u96C6\u5408\u3078\u5230\u9054\u53EF\
+    \u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\u308B\
+    \n         * @param targets \u7D42\u70B9\u306E\u96C6\u5408\n         * @return\
+    \ vector<int> \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\
+    \n         */\n        vector<int> backward_reachable(const vector<int> &targets)\
+    \ const {\n            const int n = order();\n            vector<bool> visited(n,\
+    \ false);\n            vector<int> reachable;\n\n            for (const int t\
+    \ : targets) {\n                if (t < 0 || t >= n || visited[t]) continue;\n\
+    \                visited[t] = true;\n                reachable.emplace_back(t);\n\
+    \            }\n\n            for (int head = 0; head < reachable.size(); ++head)\
+    \ {\n                const int u = reachable[head];\n                for (const\
+    \ auto *arc : adjacent_in[u]) {\n                    const int v = arc->source;\n\
+    \                    if (visited[v]) continue;\n\n                    visited[v]\
+    \ = true;\n                    reachable.emplace_back(v);\n                }\n\
+    \            }\n\n            return reachable;\n        }\n\n        /**\n  \
+    \       * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u3078\u5230\u9054\u53EF\
+    \u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\u3059\u308B\
+    \n         * @param target \u7D42\u70B9\n         * @return vector<int> \u5230\
+    \u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\n         */\n  \
+    \      vector<int> backward_reachable(const int target) const { return backward_reachable(vector<int>{target});\
     \ }\n    };\n}\n#line 2 \"Graph/Digraph/Strongly_Connected_Components.hpp\"\n\n\
     namespace digraph {\n    class Strongly_Connected_Components {\n        public:\n\
     \        vector<vector<int>> components;\n        vector<int> group;\n\n     \
@@ -263,7 +321,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2026-02-16 23:24:38+09:00'
+  timestamp: '2026-02-21 23:53:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp

@@ -183,7 +183,7 @@ data:
     title: Geometry/utility/Perpendicular_Bisector.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
-    title: Graph/Digraph/Digraph.hpp
+    title: "\u6709\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Eulerian_Trail.hpp
     title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
