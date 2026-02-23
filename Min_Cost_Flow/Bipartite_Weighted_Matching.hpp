@@ -12,6 +12,11 @@ namespace min_cost_flow {
             edges[a].emplace_back(b, w);
         }
 
+        vector<Weight> matching_vertex_duplicate_each_size(const vector<int> &k, const vector<int> &l) {
+            auto [F, source, target] = prepare_min_cost_flow(k, l);
+            return F.slope(source, target);
+        }
+
         tuple<Weight, vector<vector<int>>, vector<vector<int>>> matching_vertex_duplicate(const vector<int> &k, const vector<int> &l) {
             auto [F, source, target] = prepare_min_cost_flow(k, l);
 
@@ -41,7 +46,6 @@ namespace min_cost_flow {
             int source = m + n, target = m + n + 1;
 
             int flow = min(sum(k), sum(l));
-            F.add_arc(source, target, flow, 0);
 
             for (int a = 0; a < m; ++a) F.add_arc(source, a, k[a], 0);
 
