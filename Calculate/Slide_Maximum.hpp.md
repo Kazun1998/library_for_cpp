@@ -183,8 +183,19 @@ data:
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
     \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Calculate/Slide_Maximum.hpp\"\
-    \n\nvector<int> Slide_Maximum_Index(const vector<int>& data, const int k) {\n\
-    \    const int n = data.size();\n    std::vector<int> index(n);\n    std::deque<int>\
+    \n\ntemplate<typename T>\nvector<int> Slide_Maximum_Index(const vector<T>& data,\
+    \ const int k) {\n    const int n = data.size();\n    std::vector<int> index(n);\n\
+    \    deque<T> Q;\n\n    for (int i = 0; i < n; ++i) {\n        if (!Q.empty()\
+    \ && Q.front() <= i - k) Q.pop_front();\n\n        while (!Q.empty() && data[Q.back()]\
+    \ < data[i]) Q.pop_back();\n\n        Q.push_back(i);\n        index[i] = Q.front();\n\
+    \    }\n\n    return vector<int>(index.begin() + k - 1, index.end());\n}\n\ntemplate<typename\
+    \ T>\nvector<T> Slide_Maximum_Value(const vector<T> &data, const int k) {\n  \
+    \  int m = data.size() - k + 1;\n    vector<int> index = Slide_Maximum_Index(data,\
+    \ k);\n\n    vector<T> res(m);\n    for (int i = 0; i < m; i++) res[i] = data[index[i]];\n\
+    \n    return res;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\ntemplate<typename\
+    \ T>\nvector<int> Slide_Maximum_Index(const vector<T>& data, const int k) {\n\
+    \    const int n = data.size();\n    std::vector<int> index(n);\n    deque<T>\
     \ Q;\n\n    for (int i = 0; i < n; ++i) {\n        if (!Q.empty() && Q.front()\
     \ <= i - k) Q.pop_front();\n\n        while (!Q.empty() && data[Q.back()] < data[i])\
     \ Q.pop_back();\n\n        Q.push_back(i);\n        index[i] = Q.front();\n  \
@@ -193,16 +204,6 @@ data:
     \  int m = data.size() - k + 1;\n    vector<int> index = Slide_Maximum_Index(data,\
     \ k);\n\n    vector<T> res(m);\n    for (int i = 0; i < m; i++) res[i] = data[index[i]];\n\
     \n    return res;\n}\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nvector<int> Slide_Maximum_Index(const\
-    \ vector<int>& data, const int k) {\n    const int n = data.size();\n    std::vector<int>\
-    \ index(n);\n    std::deque<int> Q;\n\n    for (int i = 0; i < n; ++i) {\n   \
-    \     if (!Q.empty() && Q.front() <= i - k) Q.pop_front();\n\n        while (!Q.empty()\
-    \ && data[Q.back()] < data[i]) Q.pop_back();\n\n        Q.push_back(i);\n    \
-    \    index[i] = Q.front();\n    }\n\n    return vector<int>(index.begin() + k\
-    \ - 1, index.end());\n}\n\ntemplate<typename T>\nvector<T> Slide_Maximum_Value(const\
-    \ vector<T> &data, const int k) {\n    int m = data.size() - k + 1;\n    vector<int>\
-    \ index = Slide_Maximum_Index(data, k);\n\n    vector<T> res(m);\n    for (int\
-    \ i = 0; i < m; i++) res[i] = data[index[i]];\n\n    return res;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -214,7 +215,7 @@ data:
   isVerificationFile: false
   path: Calculate/Slide_Maximum.hpp
   requiredBy: []
-  timestamp: '2026-02-23 18:31:15+09:00'
+  timestamp: '2026-02-24 00:27:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/dsl/3D.test.cpp
@@ -236,4 +237,5 @@ title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
 
 |日付|内容|
 |:---:|:---:|
+|2026/02/24| Slide_Maximum_Index がテンプレート対応していなかったバグの修正 |
 |2026/02/15| スライド最大値 実装 |
