@@ -8,6 +8,7 @@ class Semiring_Matrix {
     int row, col;
 
     Semiring_Matrix() : row(0), col(0) {}
+    Semiring_Matrix(int n): Semiring(n, n) {}
     Semiring_Matrix(int n, int m) : row(n), col(m), mat(n, vector<Semiring>(m, zero)) {}
     Semiring_Matrix(const vector<vector<Semiring>>& mat) : row(mat.size()), col(mat.size() ? mat[0].size() : 0), mat(mat) {}
 
