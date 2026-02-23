@@ -26,9 +26,16 @@ namespace min_cost_flow {
     template<class Cap, class Cost>
     class Min_Cost_Flow {
         public:
-        Min_Cost_Flow(int n): n(n), adjacent_out(n, vector<Arc<Cap, Cost>*>{}) {}
+        Min_Cost_Flow(int n): n(n), adjacent_out(n) {}
 
-        inline int order() const { return adjacent_out.size(); }
+        ~Min_Cost_Flow() {
+            for (auto* arc : arcs) {
+                delete arc->rev;
+                delete arc;
+            }
+        }
+
+        inline int order() const { return n; }
         inline int size() const { return arcs.size(); }
 
         Arc<Cap, Cost>* add_arc(int u, int v, Cap cap, Cost cost) {
@@ -47,47 +54,59 @@ namespace min_cost_flow {
             return arc;
         }
 
+        // 流量 f を流したときの最小コストを返す
+        // 流量 f を流せない場合は nullopt
+        optional<Cost> flow(int source, int target, Cap flow_amount) {
+            vector<Cost> g = slope(source, target, flow_amount);
+            // 実際に流せた流量が要求された流量に満たない場合は不可能
+            if (g.size() - 1 < flow_amount) {
+                return nullopt;
+            }
+            // g[k] は k 単位のフローを流したときの最小コスト
+            return g[flow_amount];
+        }
+
+        // 流量とコストの関係を表す傾きを計算する (Primal-Dual法)
         vector<Cost> slope(int source, int target, Cap flow_limit) {
-            int n = order();
-            Cost inf = numeric_limits<Cost>::max() / 3;
+            const Cost inf = numeric_limits<Cost>::max() / 3;
 
             potential.assign(n, Cost(0));
             vector<Cost> g{Cost(0)};
 
             while (flow_limit > 0) {
                 calculate_potential(source, inf);
-                if (dist[target] == inf) break;
+                if (dist[target] == inf) {
+                    // これ以上フローを流せる経路がない
+                    break;
+                }
 
-                for (int v = 0; v < n; ++v) potential[v] += dist[v];
+                // ポテンシャルの更新
+                for (int v = 0; v < n; ++v) {
+                    if (dist[v] != inf) { // 到達可能な頂点のみ更新
+                        potential[v] += dist[v];
+                    }
+                }
 
+                // 今回流す流量を計算
                 Cap push_flow = flow_limit;
-
-                int u;
-                u = target;
-                while (u != source) {
+                for (int u = target; u != source; u = pre_v[u]) {
                     chmin(push_flow, pre_a[u]->remain());
-                    u = pre_v[u];
                 }
 
                 flow_limit -= push_flow;
-                for (int k = 1; k <= push_flow; ++k) {
+
+                // コスト履歴を更新
+                for (int k = 0; k < push_flow; ++k) {
                     g.emplace_back(g.back() + potential[target]);
                 }
 
-                u = target;
-                while (u != source) {
-                    pre_a[u] -> push(push_flow);
-                    u = pre_v[u];
+                // 実際にフローを流す
+                for (int u = target; u != source; u = pre_v[u]) {
+                    pre_a[u]->push(push_flow);
                 }
             }
 
             return g;
-        }
-
-        optional<Cost> flow(int source, int target, int flow) {
-            vector<Cost> g = slope(source, target, flow);
-            if (g.size() == flow + 1) return g.back();
-            else return nullopt;
         }
 
         private:
@@ -99,29 +118,32 @@ namespace min_cost_flow {
         vector<Arc<Cap, Cost>*> pre_a;
         vector<Cost> dist;
 
+        // ポテンシャルを用いたDijkstra法で最短路を計算
         void calculate_potential(int s, const Cost inf) {
             pre_v.assign(n, -1);
             pre_a.assign(n, nullptr);
-            dist.assign(n, inf); dist[s] = Cost(0);
+            dist.assign(n, inf);
+            dist[s] = Cost(0);
 
             priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<pair<Cost, int>>> Q;
             Q.emplace(dist[s], s);
+
             while(!Q.empty()) {
-                auto top = Q.top();
+                auto [d, v] = Q.top();
                 Q.pop();
-                Cost d = top.first;
-                int v = top.second;
 
                 if (d > dist[v]) continue;
 
                 for (Arc<Cap, Cost>* arc: adjacent_out[v]) {
                     int w = arc->target;
-                    unless (arc->remain() > 0 && dist[w] > d + potential[v] - potential[w] + arc->cost) continue;
-
-                    dist[w] = d + potential[v] - potential[w] + arc->cost;
-                    pre_v[w] = v;
-                    pre_a[w] = arc;
-                    Q.emplace(dist[w], w);
+                    // 縮約コスト (reduced cost)
+                    Cost reduced_cost = arc->cost + potential[v] - potential[w];
+                    if (arc->remain() > 0 && dist[w] > d + reduced_cost) {
+                        dist[w] = d + reduced_cost;
+                        pre_v[w] = v;
+                        pre_a[w] = arc;
+                        Q.emplace(dist[w], w);
+                    }
                 }
             }
         }
