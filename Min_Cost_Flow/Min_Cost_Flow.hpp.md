@@ -191,93 +191,15 @@ data:
     \ { return flow < cap; }\n        inline Cap remain() const { return cap - flow;\
     \ }\n\n        void push(Cap d) {\n            flow += d;\n            rev->flow\
     \ -= d;\n        }\n    };\n\n    template<class Cap, class Cost>\n    class Min_Cost_Flow\
-    \ {\n        public:\n        Min_Cost_Flow(int n): n(n), adjacent_out(n) {}\n\
-    \n        ~Min_Cost_Flow() {\n            for (auto* arc : arcs) {\n         \
-    \       delete arc->rev;\n                delete arc;\n            }\n       \
-    \ }\n\n        inline int order() const { return n; }\n        inline int size()\
-    \ const { return arcs.size(); }\n\n        Arc<Cap, Cost>* add_arc(int u, int\
-    \ v, Cap cap, Cost cost) {\n            int m = size();\n\n            Arc<Cap,\
-    \ Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), cost, true);\n       \
-    \     Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m, v, u, Cap(0), Cap(0), -cost,\
-    \ false);\n\n            arc->rev = rev_arc;\n            rev_arc->rev = arc;\n\
-    \n            adjacent_out[u].emplace_back(arc);\n            adjacent_out[v].emplace_back(rev_arc);\n\
-    \            arcs.emplace_back(arc);\n\n            return arc;\n        }\n\n\
-    \        // \u6D41\u91CF f \u3092\u6D41\u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\
-    \u30B3\u30B9\u30C8\u3092\u8FD4\u3059\n        // \u6D41\u91CF f \u3092\u6D41\u305B\
-    \u306A\u3044\u5834\u5408\u306F nullopt\n        optional<Cost> flow(int source,\
-    \ int target, Cap flow_amount) {\n            vector<Cost> g = slope(source, target,\
-    \ flow_amount);\n            // \u5B9F\u969B\u306B\u6D41\u305B\u305F\u6D41\u91CF\
-    \u304C\u8981\u6C42\u3055\u308C\u305F\u6D41\u91CF\u306B\u6E80\u305F\u306A\u3044\
-    \u5834\u5408\u306F\u4E0D\u53EF\u80FD\n            if (g.size() - 1 < flow_amount)\
-    \ {\n                return nullopt;\n            }\n            // g[k] \u306F\
-    \ k \u5358\u4F4D\u306E\u30D5\u30ED\u30FC\u3092\u6D41\u3057\u305F\u3068\u304D\u306E\
-    \u6700\u5C0F\u30B3\u30B9\u30C8\n            return g[flow_amount];\n        }\n\
-    \n        // \u6D41\u91CF\u3068\u30B3\u30B9\u30C8\u306E\u95A2\u4FC2\u3092\u8868\
-    \u3059\u50BE\u304D\u3092\u8A08\u7B97\u3059\u308B (Primal-Dual\u6CD5)\n       \
-    \ vector<Cost> slope(int source, int target, Cap flow_limit) {\n            potential.assign(n,\
-    \ Cost(0));\n            vector<Cost> g{Cost(0)};\n\n            while (flow_limit\
-    \ != 0) {\n                calculate_potential(source);\n                if (!reachable[target])\
-    \ {\n                    // \u3053\u308C\u4EE5\u4E0A\u30D5\u30ED\u30FC\u3092\u6D41\
-    \u305B\u308B\u7D4C\u8DEF\u304C\u306A\u3044\n                    break;\n     \
-    \           }\n\n                // \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306E\
-    \u66F4\u65B0\n                for (int v = 0; v < n; ++v) {\n                \
-    \    if (reachable[v]) { // \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u307F\
-    \u66F4\u65B0\n                        potential[v] += dist[v];\n             \
-    \       }\n                }\n\n                // \u4ECA\u56DE\u6D41\u3059\u6D41\
-    \u91CF\u3092\u8A08\u7B97\n                Cap push_flow = flow_limit;\n      \
-    \          for (int u = target; u != source; u = pre_v[u]) {\n               \
-    \     if (flow_limit < 0 && u == target) {\n                        push_flow\
-    \ = pre_a[u]->remain();\n                    } else {\n                      \
-    \  chmin(push_flow, pre_a[u]->remain());\n                    }\n            \
-    \    }\n\n                if (flow_limit >= 0) flow_limit -= push_flow;\n\n  \
-    \              // \u30B3\u30B9\u30C8\u5C65\u6B74\u3092\u66F4\u65B0\n         \
-    \       for (int k = 0; k < push_flow; ++k) {\n                    g.emplace_back(g.back()\
-    \ + potential[target]);\n                }\n\n                // \u5B9F\u969B\u306B\
-    \u30D5\u30ED\u30FC\u3092\u6D41\u3059\n                for (int u = target; u !=\
-    \ source; u = pre_v[u]) {\n                    pre_a[u]->push(push_flow);\n  \
-    \              }\n            }\n\n            return g;\n        }\n\n      \
-    \  vector<Arc<Cap, Cost>> get_flow() const {\n            vector<Arc<Cap, Cost>>\
-    \ res;\n            for (const auto* arc : arcs) {\n                res.push_back(*arc);\n\
-    \            }\n            return res;\n        }\n\n        private:\n     \
-    \   int n;\n        vector<vector<Arc<Cap, Cost>*>> adjacent_out;\n        vector<Arc<Cap,\
-    \ Cost>*> arcs;\n        vector<Cost> potential;\n        vector<int> pre_v;\n\
-    \        vector<Arc<Cap, Cost>*> pre_a;\n        vector<Cost> dist;\n        vector<bool>\
-    \ reachable;\n\n        // \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u7528\u3044\
-    \u305FDijkstra\u6CD5\u3067\u6700\u77ED\u8DEF\u3092\u8A08\u7B97\n        void calculate_potential(int\
-    \ s) {\n            pre_v.assign(n, -1);\n            pre_a.assign(n, nullptr);\n\
-    \            dist.assign(n, Cost(0));\n            reachable.assign(n, false);\n\
-    \            dist[s] = Cost(0);\n            reachable[s] = true;\n\n        \
-    \    priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<pair<Cost,\
-    \ int>>> Q;\n            Q.emplace(dist[s], s);\n\n            while(!Q.empty())\
-    \ {\n                auto [d, v] = Q.top();\n                Q.pop();\n\n    \
-    \            if (d > dist[v]) continue;\n\n                for (Arc<Cap, Cost>*\
-    \ arc: adjacent_out[v]) {\n                    int w = arc->target;\n        \
-    \            // \u7E2E\u7D04\u30B3\u30B9\u30C8 (reduced cost)\n              \
-    \      Cost reduced_cost = arc->cost + potential[v] - potential[w];\n        \
-    \            Cost new_cost = d + reduced_cost;\n                    if (!(arc->remain()\
-    \ > 0 && (!reachable[w] || dist[w] > new_cost))) continue;\n\n               \
-    \     dist[w] = new_cost;\n                    reachable[w] = true;\n        \
-    \            pre_v[w] = v;\n                    pre_a[w] = arc;\n            \
-    \        Q.emplace(dist[w], w);\n                }\n            }\n        }\n\
-    \    };\n}\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nnamespace min_cost_flow\
-    \ {\n    template<class Cap, class Cost>\n    struct Arc {\n        int id, source,\
-    \ target;\n        Cap cap, flow;\n        Cost cost;\n        bool direction;\n\
-    \        Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap\
-    \ flow, Cost cost, bool direction):\n            id(id), source(source), target(target),\
-    \ cap(cap), flow(flow), cost(cost), direction(direction), rev(nullptr) {}\n\n\
-    \        inline bool is_flowable() const { return flow < cap; }\n        inline\
-    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
-    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<class\
-    \ Cap, class Cost>\n    class Min_Cost_Flow {\n        public:\n        Min_Cost_Flow(int\
-    \ n): n(n), adjacent_out(n) {}\n\n        ~Min_Cost_Flow() {\n            for\
-    \ (auto* arc : arcs) {\n                delete arc->rev;\n                delete\
-    \ arc;\n            }\n        }\n\n        inline int order() const { return\
-    \ n; }\n        inline int size() const { return arcs.size(); }\n\n        Arc<Cap,\
-    \ Cost>* add_arc(int u, int v, Cap cap, Cost cost) {\n            int m = size();\n\
-    \n            Arc<Cap, Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), cost,\
-    \ true);\n            Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m, v, u, Cap(0),\
-    \ Cap(0), -cost, false);\n\n            arc->rev = rev_arc;\n            rev_arc->rev\
+    \ {\n        public:\n        Min_Cost_Flow(int n): Min_Cost_Flow(n, 1) {}\n\n\
+    \        ~Min_Cost_Flow() {\n            for (auto* arc : arcs) {\n          \
+    \      delete arc->rev;\n                delete arc;\n            }\n        }\n\
+    \n        inline int order() const { return n; }\n        inline int size() const\
+    \ { return arcs.size(); }\n\n        Arc<Cap, Cost>* add_arc(int u, int v, Cap\
+    \ cap, Cost cost) {\n            int m = size();\n\n            Arc<Cap, Cost>*\
+    \ arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), objective * cost, true);\n  \
+    \          Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m, v, u, Cap(0), Cap(0),\
+    \ -objective * cost, false);\n\n            arc->rev = rev_arc;\n            rev_arc->rev\
     \ = arc;\n\n            adjacent_out[u].emplace_back(arc);\n            adjacent_out[v].emplace_back(rev_arc);\n\
     \            arcs.emplace_back(arc);\n\n            return arc;\n        }\n\n\
     \        // \u6D41\u91CF f \u3092\u6D41\u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\
@@ -310,34 +232,119 @@ data:
     \    }\n\n                if (flow_limit >= 0) flow_limit -= push_flow;\n\n  \
     \              // \u30B3\u30B9\u30C8\u5C65\u6B74\u3092\u66F4\u65B0\n         \
     \       for (int k = 0; k < push_flow; ++k) {\n                    g.emplace_back(g.back()\
-    \ + potential[target]);\n                }\n\n                // \u5B9F\u969B\u306B\
-    \u30D5\u30ED\u30FC\u3092\u6D41\u3059\n                for (int u = target; u !=\
-    \ source; u = pre_v[u]) {\n                    pre_a[u]->push(push_flow);\n  \
-    \              }\n            }\n\n            return g;\n        }\n\n      \
-    \  vector<Arc<Cap, Cost>> get_flow() const {\n            vector<Arc<Cap, Cost>>\
+    \ + objective * potential[target]);\n                }\n\n                // \u5B9F\
+    \u969B\u306B\u30D5\u30ED\u30FC\u3092\u6D41\u3059\n                for (int u =\
+    \ target; u != source; u = pre_v[u]) {\n                    pre_a[u]->push(push_flow);\n\
+    \                }\n            }\n\n            return g;\n        }\n\n    \
+    \    vector<Arc<Cap, Cost>> get_flow() const {\n            vector<Arc<Cap, Cost>>\
     \ res;\n            for (const auto* arc : arcs) {\n                res.push_back(*arc);\n\
     \            }\n            return res;\n        }\n\n        private:\n     \
     \   int n;\n        vector<vector<Arc<Cap, Cost>*>> adjacent_out;\n        vector<Arc<Cap,\
     \ Cost>*> arcs;\n        vector<Cost> potential;\n        vector<int> pre_v;\n\
     \        vector<Arc<Cap, Cost>*> pre_a;\n        vector<Cost> dist;\n        vector<bool>\
-    \ reachable;\n\n        // \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u7528\u3044\
-    \u305FDijkstra\u6CD5\u3067\u6700\u77ED\u8DEF\u3092\u8A08\u7B97\n        void calculate_potential(int\
-    \ s) {\n            pre_v.assign(n, -1);\n            pre_a.assign(n, nullptr);\n\
-    \            dist.assign(n, Cost(0));\n            reachable.assign(n, false);\n\
-    \            dist[s] = Cost(0);\n            reachable[s] = true;\n\n        \
-    \    priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<pair<Cost,\
-    \ int>>> Q;\n            Q.emplace(dist[s], s);\n\n            while(!Q.empty())\
-    \ {\n                auto [d, v] = Q.top();\n                Q.pop();\n\n    \
-    \            if (d > dist[v]) continue;\n\n                for (Arc<Cap, Cost>*\
-    \ arc: adjacent_out[v]) {\n                    int w = arc->target;\n        \
-    \            // \u7E2E\u7D04\u30B3\u30B9\u30C8 (reduced cost)\n              \
-    \      Cost reduced_cost = arc->cost + potential[v] - potential[w];\n        \
-    \            Cost new_cost = d + reduced_cost;\n                    if (!(arc->remain()\
-    \ > 0 && (!reachable[w] || dist[w] > new_cost))) continue;\n\n               \
-    \     dist[w] = new_cost;\n                    reachable[w] = true;\n        \
-    \            pre_v[w] = v;\n                    pre_a[w] = arc;\n            \
-    \        Q.emplace(dist[w], w);\n                }\n            }\n        }\n\
-    \    };\n}\n"
+    \ reachable;\n        int objective;\n\n        Min_Cost_Flow(int n, int objective):\
+    \ n(n), adjacent_out(n), objective(objective) {}\n\n        // \u30DD\u30C6\u30F3\
+    \u30B7\u30E3\u30EB\u3092\u7528\u3044\u305FDijkstra\u6CD5\u3067\u6700\u77ED\u8DEF\
+    \u3092\u8A08\u7B97\n        void calculate_potential(int s) {\n            pre_v.assign(n,\
+    \ -1);\n            pre_a.assign(n, nullptr);\n            dist.assign(n, Cost(0));\n\
+    \            reachable.assign(n, false);\n            dist[s] = Cost(0);\n   \
+    \         reachable[s] = true;\n\n            priority_queue<pair<Cost, int>,\
+    \ vector<pair<Cost, int>>, greater<pair<Cost, int>>> Q;\n            Q.emplace(dist[s],\
+    \ s);\n\n            while(!Q.empty()) {\n                auto [d, v] = Q.top();\n\
+    \                Q.pop();\n\n                if (d > dist[v]) continue;\n\n  \
+    \              for (Arc<Cap, Cost>* arc: adjacent_out[v]) {\n                \
+    \    int w = arc->target;\n                    // \u7E2E\u7D04\u30B3\u30B9\u30C8\
+    \ (reduced cost)\n                    Cost reduced_cost = arc->cost + potential[v]\
+    \ - potential[w];\n                    Cost new_cost = d + reduced_cost;\n   \
+    \                 if (!(arc->remain() > 0 && (!reachable[w] || dist[w] > new_cost)))\
+    \ continue;\n\n                    dist[w] = new_cost;\n                    reachable[w]\
+    \ = true;\n                    pre_v[w] = v;\n                    pre_a[w] = arc;\n\
+    \                    Q.emplace(dist[w], w);\n                }\n            }\n\
+    \        }\n    };\n\n    template <class Cap, class Cost>\n    class Max_Gain_Flow\
+    \ : public Min_Cost_Flow<Cap, Cost> {\n        public:\n        Max_Gain_Flow(int\
+    \ n): Min_Cost_Flow<Cap, Cost>(n, -1) {}\n    };\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nnamespace min_cost_flow\
+    \ {\n    template<class Cap, class Cost>\n    struct Arc {\n        int id, source,\
+    \ target;\n        Cap cap, flow;\n        Cost cost;\n        bool direction;\n\
+    \        Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap\
+    \ flow, Cost cost, bool direction):\n            id(id), source(source), target(target),\
+    \ cap(cap), flow(flow), cost(cost), direction(direction), rev(nullptr) {}\n\n\
+    \        inline bool is_flowable() const { return flow < cap; }\n        inline\
+    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
+    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<class\
+    \ Cap, class Cost>\n    class Min_Cost_Flow {\n        public:\n        Min_Cost_Flow(int\
+    \ n): Min_Cost_Flow(n, 1) {}\n\n        ~Min_Cost_Flow() {\n            for (auto*\
+    \ arc : arcs) {\n                delete arc->rev;\n                delete arc;\n\
+    \            }\n        }\n\n        inline int order() const { return n; }\n\
+    \        inline int size() const { return arcs.size(); }\n\n        Arc<Cap, Cost>*\
+    \ add_arc(int u, int v, Cap cap, Cost cost) {\n            int m = size();\n\n\
+    \            Arc<Cap, Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), objective\
+    \ * cost, true);\n            Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m,\
+    \ v, u, Cap(0), Cap(0), -objective * cost, false);\n\n            arc->rev = rev_arc;\n\
+    \            rev_arc->rev = arc;\n\n            adjacent_out[u].emplace_back(arc);\n\
+    \            adjacent_out[v].emplace_back(rev_arc);\n            arcs.emplace_back(arc);\n\
+    \n            return arc;\n        }\n\n        // \u6D41\u91CF f \u3092\u6D41\
+    \u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\u30B3\u30B9\u30C8\u3092\u8FD4\u3059\
+    \n        // \u6D41\u91CF f \u3092\u6D41\u305B\u306A\u3044\u5834\u5408\u306F nullopt\n\
+    \        optional<Cost> flow(int source, int target, Cap flow_amount) {\n    \
+    \        vector<Cost> g = slope(source, target, flow_amount);\n            //\
+    \ \u5B9F\u969B\u306B\u6D41\u305B\u305F\u6D41\u91CF\u304C\u8981\u6C42\u3055\u308C\
+    \u305F\u6D41\u91CF\u306B\u6E80\u305F\u306A\u3044\u5834\u5408\u306F\u4E0D\u53EF\
+    \u80FD\n            if (g.size() - 1 < flow_amount) {\n                return\
+    \ nullopt;\n            }\n            // g[k] \u306F k \u5358\u4F4D\u306E\u30D5\
+    \u30ED\u30FC\u3092\u6D41\u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\u30B3\u30B9\
+    \u30C8\n            return g[flow_amount];\n        }\n\n        // \u6D41\u91CF\
+    \u3068\u30B3\u30B9\u30C8\u306E\u95A2\u4FC2\u3092\u8868\u3059\u50BE\u304D\u3092\
+    \u8A08\u7B97\u3059\u308B (Primal-Dual\u6CD5)\n        vector<Cost> slope(int source,\
+    \ int target, Cap flow_limit) {\n            potential.assign(n, Cost(0));\n \
+    \           vector<Cost> g{Cost(0)};\n\n            while (flow_limit != 0) {\n\
+    \                calculate_potential(source);\n                if (!reachable[target])\
+    \ {\n                    // \u3053\u308C\u4EE5\u4E0A\u30D5\u30ED\u30FC\u3092\u6D41\
+    \u305B\u308B\u7D4C\u8DEF\u304C\u306A\u3044\n                    break;\n     \
+    \           }\n\n                // \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306E\
+    \u66F4\u65B0\n                for (int v = 0; v < n; ++v) {\n                \
+    \    if (reachable[v]) { // \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u307F\
+    \u66F4\u65B0\n                        potential[v] += dist[v];\n             \
+    \       }\n                }\n\n                // \u4ECA\u56DE\u6D41\u3059\u6D41\
+    \u91CF\u3092\u8A08\u7B97\n                Cap push_flow = flow_limit;\n      \
+    \          for (int u = target; u != source; u = pre_v[u]) {\n               \
+    \     if (flow_limit < 0 && u == target) {\n                        push_flow\
+    \ = pre_a[u]->remain();\n                    } else {\n                      \
+    \  chmin(push_flow, pre_a[u]->remain());\n                    }\n            \
+    \    }\n\n                if (flow_limit >= 0) flow_limit -= push_flow;\n\n  \
+    \              // \u30B3\u30B9\u30C8\u5C65\u6B74\u3092\u66F4\u65B0\n         \
+    \       for (int k = 0; k < push_flow; ++k) {\n                    g.emplace_back(g.back()\
+    \ + objective * potential[target]);\n                }\n\n                // \u5B9F\
+    \u969B\u306B\u30D5\u30ED\u30FC\u3092\u6D41\u3059\n                for (int u =\
+    \ target; u != source; u = pre_v[u]) {\n                    pre_a[u]->push(push_flow);\n\
+    \                }\n            }\n\n            return g;\n        }\n\n    \
+    \    vector<Arc<Cap, Cost>> get_flow() const {\n            vector<Arc<Cap, Cost>>\
+    \ res;\n            for (const auto* arc : arcs) {\n                res.push_back(*arc);\n\
+    \            }\n            return res;\n        }\n\n        private:\n     \
+    \   int n;\n        vector<vector<Arc<Cap, Cost>*>> adjacent_out;\n        vector<Arc<Cap,\
+    \ Cost>*> arcs;\n        vector<Cost> potential;\n        vector<int> pre_v;\n\
+    \        vector<Arc<Cap, Cost>*> pre_a;\n        vector<Cost> dist;\n        vector<bool>\
+    \ reachable;\n        int objective;\n\n        Min_Cost_Flow(int n, int objective):\
+    \ n(n), adjacent_out(n), objective(objective) {}\n\n        // \u30DD\u30C6\u30F3\
+    \u30B7\u30E3\u30EB\u3092\u7528\u3044\u305FDijkstra\u6CD5\u3067\u6700\u77ED\u8DEF\
+    \u3092\u8A08\u7B97\n        void calculate_potential(int s) {\n            pre_v.assign(n,\
+    \ -1);\n            pre_a.assign(n, nullptr);\n            dist.assign(n, Cost(0));\n\
+    \            reachable.assign(n, false);\n            dist[s] = Cost(0);\n   \
+    \         reachable[s] = true;\n\n            priority_queue<pair<Cost, int>,\
+    \ vector<pair<Cost, int>>, greater<pair<Cost, int>>> Q;\n            Q.emplace(dist[s],\
+    \ s);\n\n            while(!Q.empty()) {\n                auto [d, v] = Q.top();\n\
+    \                Q.pop();\n\n                if (d > dist[v]) continue;\n\n  \
+    \              for (Arc<Cap, Cost>* arc: adjacent_out[v]) {\n                \
+    \    int w = arc->target;\n                    // \u7E2E\u7D04\u30B3\u30B9\u30C8\
+    \ (reduced cost)\n                    Cost reduced_cost = arc->cost + potential[v]\
+    \ - potential[w];\n                    Cost new_cost = d + reduced_cost;\n   \
+    \                 if (!(arc->remain() > 0 && (!reachable[w] || dist[w] > new_cost)))\
+    \ continue;\n\n                    dist[w] = new_cost;\n                    reachable[w]\
+    \ = true;\n                    pre_v[w] = v;\n                    pre_a[w] = arc;\n\
+    \                    Q.emplace(dist[w], w);\n                }\n            }\n\
+    \        }\n    };\n\n    template <class Cap, class Cost>\n    class Max_Gain_Flow\
+    \ : public Min_Cost_Flow<Cap, Cost> {\n        public:\n        Max_Gain_Flow(int\
+    \ n): Min_Cost_Flow<Cap, Cost>(n, -1) {}\n    };\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -349,7 +356,7 @@ data:
   isVerificationFile: false
   path: Min_Cost_Flow/Min_Cost_Flow.hpp
   requiredBy: []
-  timestamp: '2026-02-23 09:45:32+09:00'
+  timestamp: '2026-02-23 17:32:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/grl/6B.test.cpp
