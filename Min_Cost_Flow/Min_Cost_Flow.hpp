@@ -119,6 +119,11 @@ namespace min_cost_flow {
             return res;
         }
 
+        Arc<Cap, Cost>* get_arc(int j) const { return arcs[j]; }
+
+        protected:
+        Min_Cost_Flow(int n, int objective): n(n), adjacent_out(n), objective(objective) {}
+
         private:
         int n;
         vector<vector<Arc<Cap, Cost>*>> adjacent_out;
@@ -129,8 +134,6 @@ namespace min_cost_flow {
         vector<Cost> dist;
         vector<bool> reachable;
         int objective;
-
-        Min_Cost_Flow(int n, int objective): n(n), adjacent_out(n), objective(objective) {}
 
         // ポテンシャルを用いたDijkstra法で最短路を計算
         void calculate_potential(int s) {
