@@ -68,21 +68,19 @@ namespace min_cost_flow {
 
         // 流量とコストの関係を表す傾きを計算する (Primal-Dual法)
         vector<Cost> slope(int source, int target, Cap flow_limit) {
-            const Cost inf = numeric_limits<Cost>::max() / 3;
-
             potential.assign(n, Cost(0));
             vector<Cost> g{Cost(0)};
 
             while (flow_limit > 0) {
-                calculate_potential(source, inf);
-                if (dist[target] == inf) {
+                calculate_potential(source);
+                if (!reachable[target]) {
                     // これ以上フローを流せる経路がない
                     break;
                 }
 
                 // ポテンシャルの更新
                 for (int v = 0; v < n; ++v) {
-                    if (dist[v] != inf) { // 到達可能な頂点のみ更新
+                    if (reachable[v]) { // 到達可能な頂点のみ更新
                         potential[v] += dist[v];
                     }
                 }
@@ -117,13 +115,16 @@ namespace min_cost_flow {
         vector<int> pre_v;
         vector<Arc<Cap, Cost>*> pre_a;
         vector<Cost> dist;
+        vector<bool> reachable;
 
         // ポテンシャルを用いたDijkstra法で最短路を計算
-        void calculate_potential(int s, const Cost inf) {
+        void calculate_potential(int s) {
             pre_v.assign(n, -1);
             pre_a.assign(n, nullptr);
-            dist.assign(n, inf);
+            dist.assign(n, Cost(0));
+            reachable.assign(n, false);
             dist[s] = Cost(0);
+            reachable[s] = true;
 
             priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<pair<Cost, int>>> Q;
             Q.emplace(dist[s], s);
@@ -138,8 +139,10 @@ namespace min_cost_flow {
                     int w = arc->target;
                     // 縮約コスト (reduced cost)
                     Cost reduced_cost = arc->cost + potential[v] - potential[w];
-                    if (arc->remain() > 0 && dist[w] > d + reduced_cost) {
-                        dist[w] = d + reduced_cost;
+                    Cost new_cost = d + reduced_cost;
+                    if (arc->remain() > 0 && (!reachable[w] || dist[w] > new_cost)) {
+                        dist[w] = new_cost;
+                        reachable[w] = true;
                         pre_v[w] = v;
                         pre_a[w] = arc;
                         Q.emplace(dist[w], w);
