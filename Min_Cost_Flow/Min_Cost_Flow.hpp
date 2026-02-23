@@ -166,4 +166,10 @@ namespace min_cost_flow {
             }
         }
     };
+
+    template <class Cap, class Cost>
+    class Max_Gain_Flow : public Min_Cost_Flow<Cap, Cost> {
+        public:
+        Max_Gain_Flow(int n): Min_Cost_Flow<Cap, Cost>(n, -1) {}
+    };
 }
