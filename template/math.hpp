@@ -107,6 +107,13 @@ T sum(vector<T> &X){
     return y;
 }
 
+template<typename T>
+T sum(const vector<T> &X) {
+    T y = T(0);
+    for (auto &&x: X) { y += x; }
+    return y;
+}
+
 // a x + b y = gcd(a, b) を満たす整数の組 (a, b) に対して, (x, y, gcd(a, b)) を求める.
 template<integral T>
 tuple<T, T, T> Extended_Euclid(T a, T b) {
