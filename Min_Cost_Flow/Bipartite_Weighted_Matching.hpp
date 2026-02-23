@@ -16,6 +16,21 @@ namespace min_cost_flow {
             return matching_vertex_duplicate_each_size(vector<int>(m, 1), vector<int>(n, 1));
         }
 
+        tuple<Weight, vector<int>, vector<int>> matching() {
+            auto [weight, X_pre, Y_pre] = matching_vertex_duplicate(vector<int>(m, 1), vector<int>(n, 1));
+
+            vector<int> X(m, -1), Y(n, -1);
+            for (int a = 0; a < m; ++a) {
+                if (!X_pre[a].empty()) X[a] = X_pre[a][0];
+            }
+
+            for (int b = 0; b < n; ++b) {
+                if (!Y_pre[b].empty()) Y[b] = Y_pre[b][0];
+            }
+
+            return { weight, X, Y };
+        }
+
         vector<Weight> matching_vertex_duplicate_each_size(const vector<int> &k, const vector<int> &l) {
             auto [F, source, target] = prepare_min_cost_flow(k, l);
             return F.slope(source, target);
