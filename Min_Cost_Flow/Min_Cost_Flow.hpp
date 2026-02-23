@@ -152,13 +152,13 @@ namespace min_cost_flow {
                     // 縮約コスト (reduced cost)
                     Cost reduced_cost = arc->cost + potential[v] - potential[w];
                     Cost new_cost = d + reduced_cost;
-                    if (arc->remain() > 0 && (!reachable[w] || dist[w] > new_cost)) {
-                        dist[w] = new_cost;
-                        reachable[w] = true;
-                        pre_v[w] = v;
-                        pre_a[w] = arc;
-                        Q.emplace(dist[w], w);
-                    }
+                    if (!(arc->remain() > 0 && (!reachable[w] || dist[w] > new_cost))) continue;
+
+                    dist[w] = new_cost;
+                    reachable[w] = true;
+                    pre_v[w] = v;
+                    pre_a[w] = arc;
+                    Q.emplace(dist[w], w);
                 }
             }
         }
