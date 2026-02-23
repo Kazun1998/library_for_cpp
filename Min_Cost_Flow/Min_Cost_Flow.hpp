@@ -101,6 +101,10 @@ namespace min_cost_flow {
             return g[flow_amount];
         }
 
+        vector<Cost> slope(int source, int target) {
+            return slope(source, target, -1);
+        }
+
         // 流量とコストの関係を表す傾きを計算する (Primal-Dual法)
         vector<Cost> slope(int source, int target, Cap flow_limit) {
             potential.assign(n, Cost(0));
