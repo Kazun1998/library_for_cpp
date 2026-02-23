@@ -26,7 +26,7 @@ namespace min_cost_flow {
     template<class Cap, class Cost>
     class Min_Cost_Flow {
         public:
-        Min_Cost_Flow(int n): n(n), adjacent_out(n) {}
+        Min_Cost_Flow(int n): Min_Cost_Flow(n, 1) {}
 
         ~Min_Cost_Flow() {
             for (auto* arc : arcs) {
@@ -41,8 +41,8 @@ namespace min_cost_flow {
         Arc<Cap, Cost>* add_arc(int u, int v, Cap cap, Cost cost) {
             int m = size();
 
-            Arc<Cap, Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), cost, true);
-            Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m, v, u, Cap(0), Cap(0), -cost, false);
+            Arc<Cap, Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), objective * cost, true);
+            Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m, v, u, Cap(0), Cap(0), -objective * cost, false);
 
             arc->rev = rev_arc;
             rev_arc->rev = arc;
@@ -99,7 +99,7 @@ namespace min_cost_flow {
 
                 // コスト履歴を更新
                 for (int k = 0; k < push_flow; ++k) {
-                    g.emplace_back(g.back() + potential[target]);
+                    g.emplace_back(g.back() + objective * potential[target]);
                 }
 
                 // 実際にフローを流す
@@ -128,6 +128,9 @@ namespace min_cost_flow {
         vector<Arc<Cap, Cost>*> pre_a;
         vector<Cost> dist;
         vector<bool> reachable;
+        int objective;
+
+        Min_Cost_Flow(int n, int objective): n(n), adjacent_out(n), objective(objective) {}
 
         // ポテンシャルを用いたDijkstra法で最短路を計算
         void calculate_potential(int s) {
@@ -162,5 +165,11 @@ namespace min_cost_flow {
                 }
             }
         }
+    };
+
+    template <class Cap, class Cost>
+    class Max_Gain_Flow : public Min_Cost_Flow<Cap, Cost> {
+        public:
+        Max_Gain_Flow(int n): Min_Cost_Flow<Cap, Cost>(n, -1) {}
     };
 }
