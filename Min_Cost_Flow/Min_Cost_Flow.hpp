@@ -28,6 +28,41 @@ namespace min_cost_flow {
         public:
         Min_Cost_Flow(int n): Min_Cost_Flow(n, 1) {}
 
+        // The Rule of Five:
+        // This class manages raw pointers in `arcs`, so we must define the
+        // special member functions to handle resource ownership correctly.
+
+        // 1. Copy constructor (deleted to prevent shallow copies)
+        Min_Cost_Flow(const Min_Cost_Flow&) = delete;
+
+        // 2. Copy assignment operator (deleted)
+        Min_Cost_Flow& operator=(const Min_Cost_Flow&) = delete;
+
+        // 3. Move constructor (default is sufficient and efficient)
+        Min_Cost_Flow(Min_Cost_Flow&&) noexcept = default;
+
+        // 4. Move assignment operator
+        Min_Cost_Flow& operator=(Min_Cost_Flow&& other) noexcept {
+            if (this != &other) {
+                // Release resources of the destination object
+                for (auto* arc : arcs) {
+                    delete arc->rev;
+                    delete arc;
+                }
+                // Pilfer (move) resources from the source object
+                n = other.n;
+                adjacent_out = std::move(other.adjacent_out);
+                arcs = std::move(other.arcs);
+                potential = std::move(other.potential);
+                pre_v = std::move(other.pre_v);
+                pre_a = std::move(other.pre_a);
+                dist = std::move(other.dist);
+                reachable = std::move(other.reachable);
+                objective = other.objective;
+            }
+            return *this;
+        }
+
         ~Min_Cost_Flow() {
             for (auto* arc : arcs) {
                 delete arc->rev;
