@@ -356,6 +356,9 @@ data:
       title: Max_Flow/Project_Selection_Problem.hpp
   - name: Min_Cost_Flow
     pages:
+    - icon: ':warning:'
+      path: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
+      title: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
     - icon: ':heavy_check_mark:'
       path: Min_Cost_Flow/Min_Cost_Flow.hpp
       title: Min_Cost_Flow/Min_Cost_Flow.hpp

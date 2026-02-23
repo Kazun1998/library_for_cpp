@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Min_Cost_Flow/Min_Cost_Flow.hpp
+    title: Min_Cost_Flow/Min_Cost_Flow.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,43 +25,38 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
-    title: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/6B.test.cpp
-    title: verify/aizu_online_judge/grl/6B.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Min_Cost_Flow/Min_Cost_Flow.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Min_Cost_Flow/Bipartite_Weighted_Matching.hpp\"\n\n#line\
+    \ 2 \"Min_Cost_Flow/Min_Cost_Flow.hpp\"\n\n#line 2 \"template/template.hpp\"\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
+    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
+    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -288,112 +286,78 @@ data:
     \        Q.emplace(dist[w], w);\n                }\n            }\n        }\n\
     \    };\n\n    template <class Cap, class Cost>\n    class Max_Gain_Flow : public\
     \ Min_Cost_Flow<Cap, Cost> {\n        public:\n        Max_Gain_Flow(int n): Min_Cost_Flow<Cap,\
-    \ Cost>(n, -1) {}\n    };\n}\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nnamespace min_cost_flow\
-    \ {\n    template<class Cap, class Cost>\n    struct Arc {\n        int id, source,\
-    \ target;\n        Cap cap, flow;\n        Cost cost;\n        bool direction;\n\
-    \        Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap\
-    \ flow, Cost cost, bool direction):\n            id(id), source(source), target(target),\
-    \ cap(cap), flow(flow), cost(cost), direction(direction), rev(nullptr) {}\n\n\
-    \        inline bool is_flowable() const { return flow < cap; }\n        inline\
-    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
-    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<class\
-    \ Cap, class Cost>\n    class Min_Cost_Flow {\n        public:\n        Min_Cost_Flow(int\
-    \ n): Min_Cost_Flow(n, 1) {}\n\n        // The Rule of Five:\n        // This\
-    \ class manages raw pointers in `arcs`, so we must define the\n        // special\
-    \ member functions to handle resource ownership correctly.\n\n        // 1. Copy\
-    \ constructor (deleted to prevent shallow copies)\n        Min_Cost_Flow(const\
-    \ Min_Cost_Flow&) = delete;\n\n        // 2. Copy assignment operator (deleted)\n\
-    \        Min_Cost_Flow& operator=(const Min_Cost_Flow&) = delete;\n\n        //\
-    \ 3. Move constructor (default is sufficient and efficient)\n        Min_Cost_Flow(Min_Cost_Flow&&)\
-    \ noexcept = default;\n\n        // 4. Move assignment operator\n        Min_Cost_Flow&\
-    \ operator=(Min_Cost_Flow&& other) noexcept {\n            if (this != &other)\
-    \ {\n                // Release resources of the destination object\n        \
-    \        for (auto* arc : arcs) {\n                    delete arc->rev;\n    \
-    \                delete arc;\n                }\n                // Pilfer (move)\
-    \ resources from the source object\n                n = other.n;\n           \
-    \     adjacent_out = std::move(other.adjacent_out);\n                arcs = std::move(other.arcs);\n\
-    \                potential = std::move(other.potential);\n                pre_v\
-    \ = std::move(other.pre_v);\n                pre_a = std::move(other.pre_a);\n\
-    \                dist = std::move(other.dist);\n                reachable = std::move(other.reachable);\n\
-    \                objective = other.objective;\n            }\n            return\
-    \ *this;\n        }\n\n        ~Min_Cost_Flow() {\n            for (auto* arc\
-    \ : arcs) {\n                delete arc->rev;\n                delete arc;\n \
-    \           }\n        }\n\n        inline int order() const { return n; }\n \
-    \       inline int size() const { return arcs.size(); }\n\n        Arc<Cap, Cost>*\
-    \ add_arc(int u, int v, Cap cap, Cost cost) {\n            int m = size();\n\n\
-    \            Arc<Cap, Cost>* arc = new Arc<Cap, Cost>(m, u, v, cap, Cap(0), objective\
-    \ * cost, true);\n            Arc<Cap, Cost>* rev_arc = new Arc<Cap, Cost>(m,\
-    \ v, u, Cap(0), Cap(0), -objective * cost, false);\n\n            arc->rev = rev_arc;\n\
-    \            rev_arc->rev = arc;\n\n            adjacent_out[u].emplace_back(arc);\n\
-    \            adjacent_out[v].emplace_back(rev_arc);\n            arcs.emplace_back(arc);\n\
-    \n            return arc;\n        }\n\n        // \u6D41\u91CF f \u3092\u6D41\
-    \u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\u30B3\u30B9\u30C8\u3092\u8FD4\u3059\
-    \n        // \u6D41\u91CF f \u3092\u6D41\u305B\u306A\u3044\u5834\u5408\u306F nullopt\n\
-    \        optional<Cost> flow(int source, int target, Cap flow_amount) {\n    \
-    \        vector<Cost> g = slope(source, target, flow_amount);\n            //\
-    \ \u5B9F\u969B\u306B\u6D41\u305B\u305F\u6D41\u91CF\u304C\u8981\u6C42\u3055\u308C\
-    \u305F\u6D41\u91CF\u306B\u6E80\u305F\u306A\u3044\u5834\u5408\u306F\u4E0D\u53EF\
-    \u80FD\n            if (g.size() - 1 < flow_amount) {\n                return\
-    \ nullopt;\n            }\n            // g[k] \u306F k \u5358\u4F4D\u306E\u30D5\
-    \u30ED\u30FC\u3092\u6D41\u3057\u305F\u3068\u304D\u306E\u6700\u5C0F\u30B3\u30B9\
-    \u30C8\n            return g[flow_amount];\n        }\n\n        vector<Cost>\
-    \ slope(int source, int target) {\n            return slope(source, target, -1);\n\
-    \        }\n\n        // \u6D41\u91CF\u3068\u30B3\u30B9\u30C8\u306E\u95A2\u4FC2\
-    \u3092\u8868\u3059\u50BE\u304D\u3092\u8A08\u7B97\u3059\u308B (Primal-Dual\u6CD5\
-    )\n        vector<Cost> slope(int source, int target, Cap flow_limit) {\n    \
-    \        potential.assign(n, Cost(0));\n            vector<Cost> g{Cost(0)};\n\
-    \n            while (flow_limit != 0) {\n                calculate_potential(source);\n\
-    \                if (!reachable[target]) {\n                    // \u3053\u308C\
-    \u4EE5\u4E0A\u30D5\u30ED\u30FC\u3092\u6D41\u305B\u308B\u7D4C\u8DEF\u304C\u306A\
-    \u3044\n                    break;\n                }\n\n                // \u30DD\
-    \u30C6\u30F3\u30B7\u30E3\u30EB\u306E\u66F4\u65B0\n                for (int v =\
-    \ 0; v < n; ++v) {\n                    if (reachable[v]) { // \u5230\u9054\u53EF\
-    \u80FD\u306A\u9802\u70B9\u306E\u307F\u66F4\u65B0\n                        potential[v]\
-    \ += dist[v];\n                    }\n                }\n\n                //\
-    \ \u4ECA\u56DE\u6D41\u3059\u6D41\u91CF\u3092\u8A08\u7B97\n                Cap\
-    \ push_flow = flow_limit;\n                for (int u = target; u != source; u\
-    \ = pre_v[u]) {\n                    if (flow_limit < 0 && u == target) {\n  \
-    \                      push_flow = pre_a[u]->remain();\n                    }\
-    \ else {\n                        chmin(push_flow, pre_a[u]->remain());\n    \
-    \                }\n                }\n\n                if (flow_limit >= 0)\
-    \ flow_limit -= push_flow;\n\n                // \u30B3\u30B9\u30C8\u5C65\u6B74\
-    \u3092\u66F4\u65B0\n                for (int k = 0; k < push_flow; ++k) {\n  \
-    \                  g.emplace_back(g.back() + objective * potential[target]);\n\
-    \                }\n\n                // \u5B9F\u969B\u306B\u30D5\u30ED\u30FC\u3092\
-    \u6D41\u3059\n                for (int u = target; u != source; u = pre_v[u])\
-    \ {\n                    pre_a[u]->push(push_flow);\n                }\n     \
-    \       }\n\n            return g;\n        }\n\n        vector<Arc<Cap, Cost>>\
-    \ get_flow() const {\n            vector<Arc<Cap, Cost>> res;\n            for\
-    \ (const auto* arc : arcs) {\n                res.push_back(*arc);\n         \
-    \   }\n            return res;\n        }\n\n        Arc<Cap, Cost>* get_arc(int\
-    \ j) const { return arcs[j]; }\n\n        protected:\n        Min_Cost_Flow(int\
-    \ n, int objective): n(n), adjacent_out(n), objective(objective) {}\n\n      \
-    \  private:\n        int n;\n        vector<vector<Arc<Cap, Cost>*>> adjacent_out;\n\
-    \        vector<Arc<Cap, Cost>*> arcs;\n        vector<Cost> potential;\n    \
-    \    vector<int> pre_v;\n        vector<Arc<Cap, Cost>*> pre_a;\n        vector<Cost>\
-    \ dist;\n        vector<bool> reachable;\n        int objective;\n\n        //\
-    \ \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3092\u7528\u3044\u305FDijkstra\u6CD5\u3067\
-    \u6700\u77ED\u8DEF\u3092\u8A08\u7B97\n        void calculate_potential(int s)\
-    \ {\n            pre_v.assign(n, -1);\n            pre_a.assign(n, nullptr);\n\
-    \            dist.assign(n, Cost(0));\n            reachable.assign(n, false);\n\
-    \            dist[s] = Cost(0);\n            reachable[s] = true;\n\n        \
-    \    priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<pair<Cost,\
-    \ int>>> Q;\n            Q.emplace(dist[s], s);\n\n            while(!Q.empty())\
-    \ {\n                auto [d, v] = Q.top();\n                Q.pop();\n\n    \
-    \            if (d > dist[v]) continue;\n\n                for (Arc<Cap, Cost>*\
-    \ arc: adjacent_out[v]) {\n                    int w = arc->target;\n        \
-    \            // \u7E2E\u7D04\u30B3\u30B9\u30C8 (reduced cost)\n              \
-    \      Cost reduced_cost = arc->cost + potential[v] - potential[w];\n        \
-    \            Cost new_cost = d + reduced_cost;\n                    if (!(arc->remain()\
-    \ > 0 && (!reachable[w] || dist[w] > new_cost))) continue;\n\n               \
-    \     dist[w] = new_cost;\n                    reachable[w] = true;\n        \
-    \            pre_v[w] = v;\n                    pre_a[w] = arc;\n            \
-    \        Q.emplace(dist[w], w);\n                }\n            }\n        }\n\
-    \    };\n\n    template <class Cap, class Cost>\n    class Max_Gain_Flow : public\
-    \ Min_Cost_Flow<Cap, Cost> {\n        public:\n        Max_Gain_Flow(int n): Min_Cost_Flow<Cap,\
-    \ Cost>(n, -1) {}\n    };\n}\n"
+    \ Cost>(n, -1) {}\n    };\n}\n#line 4 \"Min_Cost_Flow/Bipartite_Weighted_Matching.hpp\"\
+    \n\nnamespace min_cost_flow {\n    template<class Weight>\n    class Bipartite_Weighted_Matching\
+    \ {\n        public:\n        Bipartite_Weighted_Matching(int m, int n): m(m),\
+    \ n(n), edges(m, vector<pair<int, Weight>>{}) {}\n\n        void add_edge(int\
+    \ a, int b, Weight w) {\n            edges[a].emplace_back(b, w);\n        }\n\
+    \n        vector<Weight> matching_each_size() {\n            return matching_vertex_duplicate_each_size(vector<int>(m,\
+    \ 1), vector<int>(n, 1));\n        }\n\n        tuple<Weight, vector<int>, vector<int>>\
+    \ matching() {\n            auto [weight, X_pre, Y_pre] = matching_vertex_duplicate(vector<int>(m,\
+    \ 1), vector<int>(n, 1));\n\n            vector<int> X(m, -1), Y(n, -1);\n   \
+    \         for (int a = 0; a < m; ++a) {\n                if (!X_pre[a].empty())\
+    \ X[a] = X_pre[a][0];\n            }\n\n            for (int b = 0; b < n; ++b)\
+    \ {\n                if (!Y_pre[b].empty()) Y[b] = Y_pre[b][0];\n            }\n\
+    \n            return { weight, X, Y };\n        }\n\n        vector<Weight> matching_vertex_duplicate_each_size(const\
+    \ vector<int> &k, const vector<int> &l) {\n            auto [F, source, target]\
+    \ = prepare_min_cost_flow(k, l);\n            return F.slope(source, target);\n\
+    \        }\n\n        tuple<Weight, vector<vector<int>>, vector<vector<int>>>\
+    \ matching_vertex_duplicate(const vector<int> &k, const vector<int> &l) {\n  \
+    \          auto [F, source, target] = prepare_min_cost_flow(k, l);\n\n       \
+    \     Weight gain = F.slope(source, target, -1).back();\n\n            vector<vector<int>>\
+    \ X(m), Y(n);\n\n            for (int j = 0; j < F.size(); ++j) {\n          \
+    \      Arc<int, Weight> *arc = F.get_arc(j);\n                if (arc->source\
+    \ == source || arc->target == target) continue;\n                if (arc->is_flowable())\
+    \ continue;\n\n                int a = arc->source, b = arc->target - m;\n   \
+    \             X[a].emplace_back(b);\n                Y[b].emplace_back(a);\n \
+    \           }\n\n            return { gain, X, Y };\n        }\n\n        private:\n\
+    \        int m, n;\n        vector<vector<pair<int, Weight>>> edges;\n\n     \
+    \   tuple<Max_Gain_Flow<int, Weight>, int, int> prepare_min_cost_flow(const vector<int>\
+    \ &k, const vector<int> &l) {\n            Max_Gain_Flow<int, Weight> F(m + n\
+    \ + 2);\n            int source = m + n, target = m + n + 1;\n\n            int\
+    \ flow = min(sum(k), sum(l));\n\n            for (int a = 0; a < m; ++a) F.add_arc(source,\
+    \ a, k[a], 0);\n\n            for (int b = 0; b < n; ++b) F.add_arc(b + m, target,\
+    \ l[b], 0);\n\n            for (int a = 0; a < m; ++a) {\n                for\
+    \ (auto [b, w]: edges[a]) {\n                    F.add_arc(a, b + m, 1, w);\n\
+    \                }\n            }\n\n            return { move(F), source, target\
+    \ };\n        }\n    };\n}\n"
+  code: "#pragma once\n\n#include \"Min_Cost_Flow.hpp\"\n\nnamespace min_cost_flow\
+    \ {\n    template<class Weight>\n    class Bipartite_Weighted_Matching {\n   \
+    \     public:\n        Bipartite_Weighted_Matching(int m, int n): m(m), n(n),\
+    \ edges(m, vector<pair<int, Weight>>{}) {}\n\n        void add_edge(int a, int\
+    \ b, Weight w) {\n            edges[a].emplace_back(b, w);\n        }\n\n    \
+    \    vector<Weight> matching_each_size() {\n            return matching_vertex_duplicate_each_size(vector<int>(m,\
+    \ 1), vector<int>(n, 1));\n        }\n\n        tuple<Weight, vector<int>, vector<int>>\
+    \ matching() {\n            auto [weight, X_pre, Y_pre] = matching_vertex_duplicate(vector<int>(m,\
+    \ 1), vector<int>(n, 1));\n\n            vector<int> X(m, -1), Y(n, -1);\n   \
+    \         for (int a = 0; a < m; ++a) {\n                if (!X_pre[a].empty())\
+    \ X[a] = X_pre[a][0];\n            }\n\n            for (int b = 0; b < n; ++b)\
+    \ {\n                if (!Y_pre[b].empty()) Y[b] = Y_pre[b][0];\n            }\n\
+    \n            return { weight, X, Y };\n        }\n\n        vector<Weight> matching_vertex_duplicate_each_size(const\
+    \ vector<int> &k, const vector<int> &l) {\n            auto [F, source, target]\
+    \ = prepare_min_cost_flow(k, l);\n            return F.slope(source, target);\n\
+    \        }\n\n        tuple<Weight, vector<vector<int>>, vector<vector<int>>>\
+    \ matching_vertex_duplicate(const vector<int> &k, const vector<int> &l) {\n  \
+    \          auto [F, source, target] = prepare_min_cost_flow(k, l);\n\n       \
+    \     Weight gain = F.slope(source, target, -1).back();\n\n            vector<vector<int>>\
+    \ X(m), Y(n);\n\n            for (int j = 0; j < F.size(); ++j) {\n          \
+    \      Arc<int, Weight> *arc = F.get_arc(j);\n                if (arc->source\
+    \ == source || arc->target == target) continue;\n                if (arc->is_flowable())\
+    \ continue;\n\n                int a = arc->source, b = arc->target - m;\n   \
+    \             X[a].emplace_back(b);\n                Y[b].emplace_back(a);\n \
+    \           }\n\n            return { gain, X, Y };\n        }\n\n        private:\n\
+    \        int m, n;\n        vector<vector<pair<int, Weight>>> edges;\n\n     \
+    \   tuple<Max_Gain_Flow<int, Weight>, int, int> prepare_min_cost_flow(const vector<int>\
+    \ &k, const vector<int> &l) {\n            Max_Gain_Flow<int, Weight> F(m + n\
+    \ + 2);\n            int source = m + n, target = m + n + 1;\n\n            int\
+    \ flow = min(sum(k), sum(l));\n\n            for (int a = 0; a < m; ++a) F.add_arc(source,\
+    \ a, k[a], 0);\n\n            for (int b = 0; b < n; ++b) F.add_arc(b + m, target,\
+    \ l[b], 0);\n\n            for (int a = 0; a < m; ++a) {\n                for\
+    \ (auto [b, w]: edges[a]) {\n                    F.add_arc(a, b + m, 1, w);\n\
+    \                }\n            }\n\n            return { move(F), source, target\
+    \ };\n        }\n    };\n}"
   dependsOn:
+  - Min_Cost_Flow/Min_Cost_Flow.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -402,17 +366,15 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Min_Cost_Flow/Min_Cost_Flow.hpp
-  requiredBy:
-  - Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
-  timestamp: '2026-02-23 19:15:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/aizu_online_judge/grl/6B.test.cpp
-documentation_of: Min_Cost_Flow/Min_Cost_Flow.hpp
+  path: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
+  requiredBy: []
+  timestamp: '2026-02-23 21:17:19+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
 layout: document
 redirect_from:
-- /library/Min_Cost_Flow/Min_Cost_Flow.hpp
-- /library/Min_Cost_Flow/Min_Cost_Flow.hpp.html
-title: Min_Cost_Flow/Min_Cost_Flow.hpp
+- /library/Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
+- /library/Min_Cost_Flow/Bipartite_Weighted_Matching.hpp.html
+title: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
 ---

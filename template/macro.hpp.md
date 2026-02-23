@@ -283,6 +283,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
+  - icon: ':warning:'
+    path: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
+    title: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
   - icon: ':heavy_check_mark:'
     path: Min_Cost_Flow/Min_Cost_Flow.hpp
     title: Min_Cost_Flow/Min_Cost_Flow.hpp
@@ -835,6 +838,7 @@ data:
   - Tree/Tree_DP.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Min_Cost_Flow/Min_Cost_Flow.hpp
+  - Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Bipartition.hpp
   - Graph/Graph/Lowlink.hpp

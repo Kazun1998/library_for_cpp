@@ -283,6 +283,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
+  - icon: ':warning:'
+    path: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
+    title: Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
   - icon: ':heavy_check_mark:'
     path: Min_Cost_Flow/Min_Cost_Flow.hpp
     title: Min_Cost_Flow/Min_Cost_Flow.hpp
@@ -798,21 +801,22 @@ data:
     \    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector\
     \ \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename\
     \ T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n\
-    \    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\
-    \u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\
-    \u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n  \
-    \  T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n        tie(q,\
-    \ a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n        tie(s, t) =\
-    \ make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u - q * v);\n   \
-    \ }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\
-    \u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll isqrt(const\
-    \ ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n    while ((x\
-    \ + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\n    return\
-    \ x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
-    \u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return isqrt(N);\
-    \ }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F\
-    , 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x = isqrt(N);\n\
-    \    return x * x == N ? x : x + 1;\n}\n"
+    \    return y;\n}\n\ntemplate<typename T>\nT sum(const vector<T> &X) {\n    T\
+    \ y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b\
+    \ y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\
+    \u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral\
+    \ T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v\
+    \ = 1;\n    while (b) {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
+    \ b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n    \
+    \    tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u,\
+    \ a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
+    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
+    \ 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n \
+    \   while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
+    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
+    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
+    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
+    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   code: "#pragma once\n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const\
     \ T &x, const T &y) { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x,\
     \ const T &y) { return x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const\
@@ -846,21 +850,23 @@ data:
     \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
     \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
     \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
-    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a\
-    \ x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b)\
-    \ \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral\
-    \ T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v\
-    \ = 1;\n    while (b) {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
-    \ b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n    \
-    \    tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u,\
-    \ a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
-    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
-    \ 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n \
-    \   while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
+    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\ntemplate<typename\
+    \ T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y\
+    \ += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\
+    \u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\
+    \u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a,\
+    \ T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n \
+    \       tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n     \
+    \   tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u -\
+    \ q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\
     \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
-    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
-    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
-    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
+    \ isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -903,6 +909,7 @@ data:
   - Tree/Tree_DP.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Min_Cost_Flow/Min_Cost_Flow.hpp
+  - Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Bipartition.hpp
   - Graph/Graph/Lowlink.hpp
@@ -1004,7 +1011,7 @@ data:
   - Segment_Tree/preset/Range_Add_Range_Min.hpp
   - Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - Segment_Tree/Lazy_Segment_Tree.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-23 18:31:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Z_Algorithm.test.cpp

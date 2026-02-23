@@ -126,48 +126,49 @@ data:
     ll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return\
     \ y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B\
     .\ntemplate<typename T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto\
-    \ &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\
-    \u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a,\
-    \ b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T\
-    \ a, T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n\
-    \        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n    \
-    \    tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u\
-    \ - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
-    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
-    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
-    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
-    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
-    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
-    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
-    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
-    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 64 \"template/template.hpp\"\
-    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
-    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
-    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
-    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
-    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
-    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
-    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
-    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
-    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
-    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
-    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
-    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
-    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
-    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
-    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
-    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nstd::vector<T>\
-    \ input_vector(size_t n, size_t offset = 0) {\n    std::vector<T> res;\n    //\
-    \ \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\u4FDD\uFF08\
-    \u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n   \
-    \ // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
+    \ &&x: X) { y += x; }\n    return y;\n}\n\ntemplate<typename T>\nT sum(const vector<T>\
+    \ &X) {\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\
+    \n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a,\
+    \ b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral\
+    \ T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v\
+    \ = 1;\n    while (b) {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
+    \ b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n    \
+    \    tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u,\
+    \ a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
+    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
+    \ 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n \
+    \   while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
+    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
+    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
+    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
+    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
+    \ 64 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
+    \ \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >>\
+    \ a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
+    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
+    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
+    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
+    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
+    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
+    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
+    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
+    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
+    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
+    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
+    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
+    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
+    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
+    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
+    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nstd::vector<T> input_vector(size_t n, size_t offset = 0) {\n    std::vector<T>\
+    \ res;\n    // \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\
+    \u4FDD\uFF08\u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n\
+    \    // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\
     \    \n    for (size_t i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin\
     \ >> el)) break;\n        res.push_back(std::move(el));\n    }\n    return res;\n\
@@ -309,7 +310,7 @@ data:
   - Geometry/triangle_center/Incenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
-  timestamp: '2026-01-24 19:02:38+09:00'
+  timestamp: '2026-02-23 18:31:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7C.test.cpp
