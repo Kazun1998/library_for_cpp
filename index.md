@@ -354,6 +354,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Max_Flow/Project_Selection_Problem.hpp
       title: Max_Flow/Project_Selection_Problem.hpp
+  - name: Min_Cost_Flow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Min_Cost_Flow/Min_Cost_Flow.hpp
+      title: Min_Cost_Flow/Min_Cost_Flow.hpp
   - name: Modulo
     pages:
     - icon: ':heavy_check_mark:'
@@ -633,6 +638,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/6A.test.cpp
       title: verify/aizu_online_judge/grl/6A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/6B.test.cpp
+      title: verify/aizu_online_judge/grl/6B.test.cpp
   - name: verify/aizu_online_judge/ntl
     pages:
     - icon: ':heavy_check_mark:'

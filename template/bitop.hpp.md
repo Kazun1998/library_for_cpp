@@ -287,6 +287,9 @@ data:
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
   - icon: ':heavy_check_mark:'
+    path: Min_Cost_Flow/Min_Cost_Flow.hpp
+    title: Min_Cost_Flow/Min_Cost_Flow.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
   - icon: ':heavy_check_mark:'
@@ -504,6 +507,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/6A.test.cpp
     title: verify/aizu_online_judge/grl/6A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/6B.test.cpp
+    title: verify/aizu_online_judge/grl/6B.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
@@ -834,6 +840,7 @@ data:
   - Tree/Rerooting.hpp
   - Tree/Tree_DP.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
+  - Min_Cost_Flow/Min_Cost_Flow.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Bipartition.hpp
   - Graph/Graph/Lowlink.hpp
@@ -1031,6 +1038,7 @@ data:
   - verify/aizu_online_judge/dpl1/1F.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/grl/4B.test.cpp
+  - verify/aizu_online_judge/grl/6B.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
