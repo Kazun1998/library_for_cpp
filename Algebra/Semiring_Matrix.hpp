@@ -70,3 +70,18 @@ class Semiring_Matrix {
     private:
     vector<vector<Semiring>> mat;
 };
+
+template<class Semiring, auto ADD, auto zero, auto MUL, auto one>
+Semiring_Matrix<Semiring, ADD, zero, MUL, one> power(Semiring_Matrix<Semiring, ADD, zero, MUL, one> A, int64_t n) {
+    assert(A.row == A.col);
+    assert(n >= 0);
+
+    auto res = Semiring_Matrix<Semiring, ADD, zero, MUL, one>::identity(A.row);
+
+    while (n > 0) {
+        if (n & 1) res *= A;
+        A *= A;
+        n >>= 1;
+    }
+    return res;
+}
