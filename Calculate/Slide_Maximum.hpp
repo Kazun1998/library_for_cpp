@@ -2,10 +2,11 @@
 
 #include "../template/template.hpp"
 
-vector<int> Slide_Maximum_Index(const vector<int>& data, const int k) {
+template<typename T>
+vector<int> Slide_Maximum_Index(const vector<T>& data, const int k) {
     const int n = data.size();
     std::vector<int> index(n);
-    std::deque<int> Q;
+    std::deque<T> Q;
 
     for (int i = 0; i < n; ++i) {
         if (!Q.empty() && Q.front() <= i - k) Q.pop_front();
