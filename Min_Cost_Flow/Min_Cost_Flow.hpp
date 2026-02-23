@@ -111,6 +111,14 @@ namespace min_cost_flow {
             return g;
         }
 
+        vector<Arc<Cap, Cost>> get_flow() const {
+            vector<Arc<Cap, Cost>> res;
+            for (const auto* arc : arcs) {
+                res.push_back(*arc);
+            }
+            return res;
+        }
+
         private:
         int n;
         vector<vector<Arc<Cap, Cost>*>> adjacent_out;
