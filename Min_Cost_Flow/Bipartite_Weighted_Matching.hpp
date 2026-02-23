@@ -13,21 +13,7 @@ namespace min_cost_flow {
         }
 
         tuple<Weight, vector<vector<int>>, vector<vector<int>>> matching_vertex_duplicate(const vector<int> &k, const vector<int> &l) {
-            Max_Gain_Flow<int, Weight> F(m + n + 2);
-            int source = m + n, target = m + n + 1;
-
-            int flow = min(sum(k), sum(l));
-            F.add_arc(source, target, flow, 0);
-
-            for (int a = 0; a < m; ++a) F.add_arc(source, a, k[a], 0);
-
-            for (int b = 0; b < n; ++b) F.add_arc(b + m, target, l[b], 0);
-
-            for (int a = 0; a < m; ++a) {
-                for (auto [b, w]: edges[a]) {
-                    F.add_arc(a, b + m, 1, w);
-                }
-            }
+            auto [F, source, target] = prepare_min_cost_flow(k, l);
 
             Weight gain = F.slope(source, target, -1).back();
 
@@ -49,5 +35,25 @@ namespace min_cost_flow {
         private:
         int m, n;
         vector<vector<pair<int, Weight>>> edges;
+
+        tuple<Max_Gain_Flow<int, Weight>, int, int> prepare_min_cost_flow(const vector<int> &k, const vector<int> &l) {
+            Max_Gain_Flow<int, Weight> F(m + n + 2);
+            int source = m + n, target = m + n + 1;
+
+            int flow = min(sum(k), sum(l));
+            F.add_arc(source, target, flow, 0);
+
+            for (int a = 0; a < m; ++a) F.add_arc(source, a, k[a], 0);
+
+            for (int b = 0; b < n; ++b) F.add_arc(b + m, target, l[b], 0);
+
+            for (int a = 0; a < m; ++a) {
+                for (auto [b, w]: edges[a]) {
+                    F.add_arc(a, b + m, 1, w);
+                }
+            }
+
+            return { move(F), source, target };
+        }
     };
 }
