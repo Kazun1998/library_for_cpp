@@ -15,6 +15,9 @@ class Semiring_Matrix {
     inline const vector<Semiring>& operator[](int i) const { return mat[i]; }
     inline vector<Semiring>& operator[](int i) { return mat[i]; }
 
+    inline const Semiring& operator[](int i, int j) const { return mat[i][j]; }
+    inline Semiring& operator[](int i, int j) { return mat[i][j]; }
+
     static Semiring_Matrix identity(int n) {
         Semiring_Matrix res(n, n);
         for (int i = 0; i < n; ++i) res[i][i] = one;
