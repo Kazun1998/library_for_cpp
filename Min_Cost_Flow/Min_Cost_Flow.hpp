@@ -71,7 +71,7 @@ namespace min_cost_flow {
             potential.assign(n, Cost(0));
             vector<Cost> g{Cost(0)};
 
-            while (flow_limit > 0) {
+            while (flow_limit != 0) {
                 calculate_potential(source);
                 if (!reachable[target]) {
                     // これ以上フローを流せる経路がない
@@ -88,10 +88,14 @@ namespace min_cost_flow {
                 // 今回流す流量を計算
                 Cap push_flow = flow_limit;
                 for (int u = target; u != source; u = pre_v[u]) {
-                    chmin(push_flow, pre_a[u]->remain());
+                    if (flow_limit < 0 && u == target) {
+                        push_flow = pre_a[u]->remain();
+                    } else {
+                        chmin(push_flow, pre_a[u]->remain());
+                    }
                 }
 
-                flow_limit -= push_flow;
+                if (flow_limit >= 0) flow_limit -= push_flow;
 
                 // コスト履歴を更新
                 for (int k = 0; k < push_flow; ++k) {
