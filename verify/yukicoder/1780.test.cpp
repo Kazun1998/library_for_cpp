@@ -5,8 +5,7 @@
 #include "../../Algebra/Semiring_Matrix.hpp"
 
 using ell = Extended_Algebra<ll>;
-ell op_max(ell a, ell b) { return max(a, b); }
-using Mat = Semiring_Matrix<ell, op_max, -ell::inf, add<ell>, ell(0)>;
+using Mat = Tropical_Max_Matrix<ll>;
 int color = 16, member = 26;
 
 ell solve() {
@@ -20,8 +19,8 @@ ell solve() {
         cin >> S >> A >> B >> E;
         --A; --B;
         for (auto z: S) {
-            chmax(mat[z - 'A'][A][B], ell(E));
-            chmax(mat[z - 'A'][B][A], ell(E));
+            chmax(mat[z - 'A'][A, B], ell(E));
+            chmax(mat[z - 'A'][B, A], ell(E));
         }
     }
 
@@ -29,11 +28,15 @@ ell solve() {
     for (int z = 0; z < member; ++z) {
         Mat tmp = power(mat[z], K[z]);
         for (int c = 0; c < color; ++c) {
-            V[c] += tmp[C[z] - 1][c];
+            V[c] += tmp[C[z] - 1, c];
         }
     }
 
-    return max(V);
+    ell ans = -ell::inf;
+    for (const auto& v : V) {
+        chmax(ans, v);
+    }
+    return ans;
 }
 
 int main() {
