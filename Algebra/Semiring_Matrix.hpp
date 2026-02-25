@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../template/template.hpp"
+#include "Extended_Algebra.hpp"
 
 template<class Semiring, auto ADD, auto zero, auto MUL, auto one>
 class Semiring_Matrix {
@@ -89,3 +90,18 @@ Semiring_Matrix<Semiring, ADD, zero, MUL, one> power(Semiring_Matrix<Semiring, A
     }
     return res;
 }
+
+namespace semiring_ops {
+    template<class T> T op_max(T a, T b) { return a > b ? a : b; }
+    template<class T> T op_min(T a, T b) { return a < b ? a : b; }
+    template<class T> T op_add(T a, T b) { return a + b; }
+}
+
+template<class T>
+using Max_Min_Matrix = Semiring_Matrix<Extended_Algebra<T>, semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_min<Extended_Algebra<T>>, Extended_Algebra<T>::inf>;
+
+template<class T>
+using Tropical_Min_Matrix = Semiring_Matrix<Extended_Algebra<T>, semiring_ops::op_min<Extended_Algebra<T>>, Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>, Extended_Algebra<T>(0)>;
+
+template<class T>
+using Tropical_Max_Matrix = Semiring_Matrix<Extended_Algebra<T>, semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>, Extended_Algebra<T>(0)>;
