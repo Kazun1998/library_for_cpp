@@ -9,7 +9,6 @@ class IndeterminateOperationError : public std::runtime_error {
 
 template<typename R>
 struct Extended_Algebra {
-    private:
     R val;
     signed char inf_flag; // 0: finite, 1: +inf, -1: -inf
     constexpr Extended_Algebra(R val, signed char inf_flag): val(val), inf_flag(inf_flag) {}
