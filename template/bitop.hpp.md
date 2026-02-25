@@ -15,6 +15,9 @@ data:
     path: Algebra/Permutaion.hpp
     title: "\u7F6E\u63DB"
   - icon: ':heavy_check_mark:'
+    path: Algebra/Semiring_Matrix.hpp
+    title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
+  - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -754,6 +757,9 @@ data:
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/1780.test.cpp
+    title: verify/yukicoder/1780.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1984.test.cpp
     title: verify/yukicoder/1984.test.cpp
   - icon: ':heavy_check_mark:'
@@ -833,6 +839,7 @@ data:
   - Functional_Graph/Monoid_Functional_Graph.hpp
   - Functional_Graph/Functional_Graph.hpp
   - Algebra/Nimber.hpp
+  - Algebra/Semiring_Matrix.hpp
   - Algebra/dynamic_modint.hpp
   - Algebra/Gaussian_Integer.hpp
   - Algebra/Extended_Algebra.hpp
@@ -1060,6 +1067,7 @@ data:
   - verify/yukicoder/1984.test.cpp
   - verify/yukicoder/763.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/yukicoder/1780.test.cpp
 documentation_of: template/bitop.hpp
 layout: document
 redirect_from:

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Algebra/Extended_Algebra.hpp
+    title: Algebra/Extended_Algebra.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,26 +25,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Algebra/Semiring_Matrix.hpp
-    title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
-  - icon: ':heavy_check_mark:'
-    path: Max_Flow/Project_Selection_Problem.hpp
-    title: Max_Flow/Project_Selection_Problem.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1780.test.cpp
     title: verify/yukicoder/1780.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/1984.test.cpp
-    title: verify/yukicoder/1984.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Algebra/Extended_Algebra.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Algebra/Semiring_Matrix.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -191,96 +185,8 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/Extended_Algebra.hpp\"\
-    \n\nclass IndeterminateOperationError : public std::runtime_error {\n    public:\n\
-    \    IndeterminateOperationError(const std::string& msg): std::runtime_error(msg)\
-    \ {}\n};\n\ntemplate<typename R>\nstruct Extended_Algebra {\n    R val;\n    signed\
-    \ char inf_flag; // 0: finite, 1: +inf, -1: -inf\n    constexpr Extended_Algebra(R\
-    \ val, signed char inf_flag): val(val), inf_flag(inf_flag) {}\n\n    public:\n\
-    \    constexpr Extended_Algebra(): val(R()), inf_flag(0) {}\n    constexpr Extended_Algebra(R\
-    \ val): val(val), inf_flag(0) {}\n\n    constexpr Extended_Algebra operator-()\
-    \ const { return Extended_Algebra(-val, -inf_flag); }\n\n    static constexpr\
-    \ Extended_Algebra inf = Extended_Algebra(R(), 1);\n\n    constexpr bool is_finite()\
-    \ const { return inf_flag == 0; }\n    constexpr bool is_infinite() const { return\
-    \ !is_finite(); }\n\n    constexpr bool is_positive(const bool zero = false) const\
-    \ {\n        if(is_infinite()) { return inf_flag > 0; }\n\n        return zero\
-    \ ? val >= R() : val > R();\n    }\n\n    constexpr bool is_negative(const bool\
-    \ zero = false) const {\n        if(is_infinite()) { return inf_flag < 0; }\n\n\
-    \        return zero ? val <= R() : val < R();\n    }\n\n    constexpr bool is_positive_infinite()\
-    \ const { return inf_flag == 1; }\n    constexpr bool is_negative_infinite() const\
-    \ { return inf_flag == -1; }\n\n    constexpr inline bool is_zero() const { return\
-    \ inf_flag == 0 && val == R(); }\n\n    constexpr Extended_Algebra& operator+=(const\
-    \ Extended_Algebra &rhs) {\n        if (is_positive_infinite() && rhs.is_negative_infinite())\
-    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
-    \ form (inf + (-inf))\");\n        }\n        if (is_negative_infinite() && rhs.is_positive_infinite())\
-    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
-    \ form ((-inf) + inf)\");\n        }\n\n        if (is_finite() && rhs.is_finite())\
-    \ { val += rhs.val; }\n        else if (is_positive_infinite() || rhs.is_positive_infinite())\
-    \ { inf_flag = 1; }\n        else if (is_negative_infinite() || rhs.is_negative_infinite())\
-    \ { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend constexpr Extended_Algebra\
-    \ operator+(const Extended_Algebra &lhs, const Extended_Algebra &rhs) { return\
-    \ Extended_Algebra(lhs) += rhs; }\n\n    constexpr Extended_Algebra& operator-=(const\
-    \ Extended_Algebra &rhs) {\n        if (this->is_positive_infinite() && rhs.is_positive_infinite())\
-    \ { \n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
-    \ form (inf - inf)\");\n        }\n        if (this->is_negative_infinite() &&\
-    \ rhs.is_negative_infinite()) {\n            throw IndeterminateOperationError(\"\
-    Extended_Algebra: Indeterminate form ((-inf) - (-inf))\");\n        }\n\n    \
-    \    if (is_finite() && rhs.is_finite()) { val -= rhs.val; }\n        else if\
-    \ (is_positive_infinite() || rhs.is_negative_infinite()) { inf_flag = 1; }\n \
-    \       else if (is_negative_infinite() || rhs.is_positive_infinite()) { inf_flag\
-    \ = -1; }\n\n        return *this;\n    }\n\n    friend constexpr Extended_Algebra\
-    \ operator-(const Extended_Algebra &lhs, const Extended_Algebra &rhs) { return\
-    \ Extended_Algebra(lhs) -= rhs; }\n\n    constexpr Extended_Algebra& operator*=(const\
-    \ Extended_Algebra &rhs) {\n        if (is_zero() || rhs.is_zero()) {\n      \
-    \      val = R();\n            inf_flag = 0;\n            return *this;\n    \
-    \    }\n\n        if (is_finite() && rhs.is_finite()) { val *= rhs.val; return\
-    \ *this; }\n\n        if (is_positive() == rhs.is_positive()) { inf_flag = 1;\
-    \ }\n        else { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend\
-    \ constexpr Extended_Algebra operator*(const Extended_Algebra &lhs, const Extended_Algebra\
-    \ &rhs) { return Extended_Algebra(lhs) *= rhs; }\n\n    constexpr Extended_Algebra&\
-    \ operator/=(const Extended_Algebra &rhs) {\n        // 0-1. \u672A\u5B9A\u7FA9\
-    \u5F62: (\xB1 inf) / (\xB1 inf)\n        if (this->is_infinite() && rhs.is_infinite())\
-    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
-    \ form (inf / inf)\");\n        }\n        // 0-2. \u672A\u5B9A\u7FA9\u5F62: 0\
-    \ / 0\n        if (this->is_zero() && rhs.is_zero()) {\n            throw IndeterminateOperationError(\"\
-    Extended_Algebra: Indeterminate form (0 / 0)\");\n        }\n\n        // 1. \u30BC\
-    \u30ED\u9664\u7B97: finite (non-zero) / 0 -> \xB1inf\n        if (rhs.is_zero())\
-    \ {\n            // \u5206\u6BCD\u304C 0 \u3067\u3042\u308B\u304C, 0-2 \u3092\u901A\
-    \u308A\u629C\u3051\u3066\u3044\u308B\u306E\u3067, \u5206\u5B50\u304C 0 \u306B\u306F\
-    \u306A\u308A\u5F97\u306A\u3044.\n            inf_flag = is_positive() ? 1 : -1;\n\
-    \            val = R();\n            return *this;\n        }\n\n        // 2.\
-    \ \u3069\u3061\u3089\u3082\u6709\u9650 (\u5206\u6BCD != 0)\n        if (is_finite()\
-    \ && rhs.is_finite()) { \n            // \u30BC\u30ED\u9664\u7B97\u306F\u4E0A\u8A18\
-    \ 1 \u3067\u51E6\u7406\u6E08\u307F\n            val /= rhs.val; \n           \
-    \ return *this;\n        }\n\n        // 3. \u7121\u9650\u5927\u3092\u542B\u3080\
-    \u78BA\u5B9A\u7684\u306A\u8A08\u7B97\n        // inf / finite (non-zero) \u307E\
-    \u305F\u306F finite (zero) / inf\n        val = R(); // \u7D50\u679C\u306F inf\
-    \ / 0\n\n        if (this->is_infinite() && rhs.is_finite()) {\n            //\
-    \ inf / finite -> \u7B26\u53F7\u306F\u4E57\u7B97\u3068\u540C\u3058\n         \
-    \   inf_flag = (is_positive() == rhs.is_positive()) ? 1 : -1;\n        } else\
-    \ { // finite / inf -> 0 (\u65E2\u306B is_zero()\u3067\u51E6\u7406\u3055\u308C\
-    \u3066\u3044\u308B\u3079\u304D\u3060\u304C\u5B89\u5168\u306E\u305F\u3081)\n  \
-    \          inf_flag = 0;\n        }\n\n        return *this;\n    }\n\n    //\
-    \ \u975E\u8907\u5408\u6F14\u7B97\u5B50\n    friend constexpr Extended_Algebra\
-    \ operator/(const Extended_Algebra &lhs, const Extended_Algebra &rhs) {  return\
-    \ Extended_Algebra(lhs) /= rhs; }\n\n    // \u6BD4\u8F03\n    friend constexpr\
-    \ bool operator==(const Extended_Algebra &lhs, const Extended_Algebra &rhs) {\n\
-    \        if (lhs.inf_flag != rhs.inf_flag) { return false; }\n\n        if (lhs.is_finite())\
-    \ { return lhs.val == rhs.val; }\n\n        return true;\n    }\n\n    friend\
-    \ constexpr bool operator<(const Extended_Algebra &lhs, const Extended_Algebra\
-    \ &rhs) {\n        if (lhs.inf_flag != rhs.inf_flag) { return lhs.inf_flag < rhs.inf_flag;\
-    \ }\n\n        if (lhs.is_finite()) { return lhs.val < rhs.val; }\n\n        return\
-    \ false;\n    }\n\n    friend constexpr bool operator!=(const Extended_Algebra\
-    \ &lhs, const Extended_Algebra &rhs) {return !(lhs == rhs);}\n    friend constexpr\
-    \ bool operator> (const Extended_Algebra &lhs, const Extended_Algebra &rhs) {return\
-    \ rhs < lhs;}\n    friend constexpr bool operator<=(const Extended_Algebra &lhs,\
-    \ const Extended_Algebra &rhs) {return (lhs < rhs) || (lhs == rhs);}\n    friend\
-    \ constexpr bool operator>=(const Extended_Algebra &lhs, const Extended_Algebra\
-    \ &rhs) {return (lhs > rhs) || (lhs == rhs);}\n\n    // \u51FA\u529B\n    friend\
-    \ ostream &operator<<(ostream &os, const Extended_Algebra &x) {\n        if (x.is_positive_infinite())\
-    \ { return os << \"inf\"; }\n        if (x.is_negative_infinite()) { return os\
-    \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nclass IndeterminateOperationError\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Algebra/Extended_Algebra.hpp\"\
+    \n\n#line 4 \"Algebra/Extended_Algebra.hpp\"\n\nclass IndeterminateOperationError\
     \ : public std::runtime_error {\n    public:\n    IndeterminateOperationError(const\
     \ std::string& msg): std::runtime_error(msg) {}\n};\n\ntemplate<typename R>\n\
     struct Extended_Algebra {\n    R val;\n    signed char inf_flag; // 0: finite,\
@@ -368,7 +274,104 @@ data:
     \ &rhs) {return (lhs > rhs) || (lhs == rhs);}\n\n    // \u51FA\u529B\n    friend\
     \ ostream &operator<<(ostream &os, const Extended_Algebra &x) {\n        if (x.is_positive_infinite())\
     \ { return os << \"inf\"; }\n        if (x.is_negative_infinite()) { return os\
-    \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n"
+    \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n#line 5 \"Algebra/Semiring_Matrix.hpp\"\
+    \n\ntemplate<class Semiring, auto ADD, auto zero, auto MUL, auto one>\nclass Semiring_Matrix\
+    \ {\n    public:\n    int row, col;\n\n    Semiring_Matrix() : row(0), col(0)\
+    \ {}\n    Semiring_Matrix(int n): Semiring_Matrix(n, n) {}\n    Semiring_Matrix(int\
+    \ n, int m) : row(n), col(m), mat(n, vector<Semiring>(m, zero)) {}\n    Semiring_Matrix(const\
+    \ vector<vector<Semiring>>& mat) : row(mat.size()), col(mat.size() ? mat[0].size()\
+    \ : 0), mat(mat) {}\n\n    inline const vector<Semiring>& operator[](int i) const\
+    \ { return mat[i]; }\n    inline vector<Semiring>& operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const Semiring& operator[](int i, int j) const { return\
+    \ mat[i][j]; }\n    inline Semiring& operator[](int i, int j) { return mat[i][j];\
+    \ }\n\n    static Semiring_Matrix identity(int n) {\n        Semiring_Matrix res(n,\
+    \ n);\n        for (int i = 0; i < n; ++i) res[i][i] = one;\n        return res;\n\
+    \    }\n\n    Semiring_Matrix& operator+=(const Semiring_Matrix& b) {\n      \
+    \  assert(row == b.row && col == b.col);\n        for (int i = 0; i < row; ++i)\
+    \ {\n            for (int j = 0; j < col; ++j) {\n                mat[i][j] =\
+    \ ADD(mat[i][j], b[i][j]);\n            }\n        }\n        return *this;\n\
+    \    }\n\n    friend Semiring_Matrix operator+(const Semiring_Matrix& a, const\
+    \ Semiring_Matrix& b) { return Semiring_Matrix(a) += b; }\n\n    friend Semiring_Matrix\
+    \ operator*(const Semiring_Matrix& a, const Semiring_Matrix& b) {\n        assert(a.col\
+    \ == b.row);\n        Semiring_Matrix res(a.row, b.col);\n        for (int i =\
+    \ 0; i < a.row; ++i) {\n            for (int k = 0; k < a.col; ++k) {\n      \
+    \          for (int j = 0; j < b.col; ++j) {\n                    res[i][j] =\
+    \ ADD(res[i][j], MUL(a[i][k], b[k][j]));\n                }\n            }\n \
+    \       }\n        return res;\n    }\n\n    Semiring_Matrix& operator*=(const\
+    \ Semiring_Matrix& b) { return *this = *this * b; }\n\n    Semiring_Matrix transpose()\
+    \ const {\n        Semiring_Matrix res(col, row);\n        for (int i = 0; i <\
+    \ row; ++i) {\n            for (int j = 0; j < col; ++j) {\n                res[j][i]\
+    \ = mat[i][j];\n            }\n        }\n        return res;\n    }\n\n    friend\
+    \ ostream& operator<<(ostream& os, const Semiring_Matrix& m) {\n        for (int\
+    \ i = 0; i < m.row; ++i) {\n            for (int j = 0; j < m.col; ++j) {\n  \
+    \              os << m[i][j] << (j == m.col - 1 ? \"\" : \" \");\n           \
+    \ }\n            if (i != m.row - 1) os << \"\\n\";\n        }\n        return\
+    \ os;\n    }\n\n    private:\n    vector<vector<Semiring>> mat;\n};\n\ntemplate<class\
+    \ Semiring, auto ADD, auto zero, auto MUL, auto one>\nSemiring_Matrix<Semiring,\
+    \ ADD, zero, MUL, one> power(Semiring_Matrix<Semiring, ADD, zero, MUL, one> A,\
+    \ int64_t n) {\n    assert(A.row == A.col);\n    assert(n >= 0);\n\n    auto res\
+    \ = Semiring_Matrix<Semiring, ADD, zero, MUL, one>::identity(A.row);\n\n    while\
+    \ (n > 0) {\n        if (n & 1) res *= A;\n        A *= A;\n        n >>= 1;\n\
+    \    }\n    return res;\n}\n\nnamespace semiring_ops {\n    template<class T>\
+    \ T op_max(T a, T b) { return a > b ? a : b; }\n    template<class T> T op_min(T\
+    \ a, T b) { return a < b ? a : b; }\n    template<class T> T op_add(T a, T b)\
+    \ { return a + b; }\n}\n\ntemplate<class T>\nusing Max_Min_Matrix = Semiring_Matrix<Extended_Algebra<T>,\
+    \ semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_min<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>::inf>;\n\ntemplate<class T>\nusing Tropical_Min_Matrix =\
+    \ Semiring_Matrix<Extended_Algebra<T>, semiring_ops::op_min<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>, Extended_Algebra<T>(0)>;\n\
+    \ntemplate<class T>\nusing Tropical_Max_Matrix = Semiring_Matrix<Extended_Algebra<T>,\
+    \ semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>(0)>;\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Extended_Algebra.hpp\"\
+    \n\ntemplate<class Semiring, auto ADD, auto zero, auto MUL, auto one>\nclass Semiring_Matrix\
+    \ {\n    public:\n    int row, col;\n\n    Semiring_Matrix() : row(0), col(0)\
+    \ {}\n    Semiring_Matrix(int n): Semiring_Matrix(n, n) {}\n    Semiring_Matrix(int\
+    \ n, int m) : row(n), col(m), mat(n, vector<Semiring>(m, zero)) {}\n    Semiring_Matrix(const\
+    \ vector<vector<Semiring>>& mat) : row(mat.size()), col(mat.size() ? mat[0].size()\
+    \ : 0), mat(mat) {}\n\n    inline const vector<Semiring>& operator[](int i) const\
+    \ { return mat[i]; }\n    inline vector<Semiring>& operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const Semiring& operator[](int i, int j) const { return\
+    \ mat[i][j]; }\n    inline Semiring& operator[](int i, int j) { return mat[i][j];\
+    \ }\n\n    static Semiring_Matrix identity(int n) {\n        Semiring_Matrix res(n,\
+    \ n);\n        for (int i = 0; i < n; ++i) res[i][i] = one;\n        return res;\n\
+    \    }\n\n    Semiring_Matrix& operator+=(const Semiring_Matrix& b) {\n      \
+    \  assert(row == b.row && col == b.col);\n        for (int i = 0; i < row; ++i)\
+    \ {\n            for (int j = 0; j < col; ++j) {\n                mat[i][j] =\
+    \ ADD(mat[i][j], b[i][j]);\n            }\n        }\n        return *this;\n\
+    \    }\n\n    friend Semiring_Matrix operator+(const Semiring_Matrix& a, const\
+    \ Semiring_Matrix& b) { return Semiring_Matrix(a) += b; }\n\n    friend Semiring_Matrix\
+    \ operator*(const Semiring_Matrix& a, const Semiring_Matrix& b) {\n        assert(a.col\
+    \ == b.row);\n        Semiring_Matrix res(a.row, b.col);\n        for (int i =\
+    \ 0; i < a.row; ++i) {\n            for (int k = 0; k < a.col; ++k) {\n      \
+    \          for (int j = 0; j < b.col; ++j) {\n                    res[i][j] =\
+    \ ADD(res[i][j], MUL(a[i][k], b[k][j]));\n                }\n            }\n \
+    \       }\n        return res;\n    }\n\n    Semiring_Matrix& operator*=(const\
+    \ Semiring_Matrix& b) { return *this = *this * b; }\n\n    Semiring_Matrix transpose()\
+    \ const {\n        Semiring_Matrix res(col, row);\n        for (int i = 0; i <\
+    \ row; ++i) {\n            for (int j = 0; j < col; ++j) {\n                res[j][i]\
+    \ = mat[i][j];\n            }\n        }\n        return res;\n    }\n\n    friend\
+    \ ostream& operator<<(ostream& os, const Semiring_Matrix& m) {\n        for (int\
+    \ i = 0; i < m.row; ++i) {\n            for (int j = 0; j < m.col; ++j) {\n  \
+    \              os << m[i][j] << (j == m.col - 1 ? \"\" : \" \");\n           \
+    \ }\n            if (i != m.row - 1) os << \"\\n\";\n        }\n        return\
+    \ os;\n    }\n\n    private:\n    vector<vector<Semiring>> mat;\n};\n\ntemplate<class\
+    \ Semiring, auto ADD, auto zero, auto MUL, auto one>\nSemiring_Matrix<Semiring,\
+    \ ADD, zero, MUL, one> power(Semiring_Matrix<Semiring, ADD, zero, MUL, one> A,\
+    \ int64_t n) {\n    assert(A.row == A.col);\n    assert(n >= 0);\n\n    auto res\
+    \ = Semiring_Matrix<Semiring, ADD, zero, MUL, one>::identity(A.row);\n\n    while\
+    \ (n > 0) {\n        if (n & 1) res *= A;\n        A *= A;\n        n >>= 1;\n\
+    \    }\n    return res;\n}\n\nnamespace semiring_ops {\n    template<class T>\
+    \ T op_max(T a, T b) { return a > b ? a : b; }\n    template<class T> T op_min(T\
+    \ a, T b) { return a < b ? a : b; }\n    template<class T> T op_add(T a, T b)\
+    \ { return a + b; }\n}\n\ntemplate<class T>\nusing Max_Min_Matrix = Semiring_Matrix<Extended_Algebra<T>,\
+    \ semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_min<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>::inf>;\n\ntemplate<class T>\nusing Tropical_Min_Matrix =\
+    \ Semiring_Matrix<Extended_Algebra<T>, semiring_ops::op_min<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>, Extended_Algebra<T>(0)>;\n\
+    \ntemplate<class T>\nusing Tropical_Max_Matrix = Semiring_Matrix<Extended_Algebra<T>,\
+    \ semiring_ops::op_max<Extended_Algebra<T>>, -Extended_Algebra<T>::inf, semiring_ops::op_add<Extended_Algebra<T>>,\
+    \ Extended_Algebra<T>(0)>;\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -377,20 +380,25 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Algebra/Extended_Algebra.hpp
   isVerificationFile: false
-  path: Algebra/Extended_Algebra.hpp
-  requiredBy:
-  - Algebra/Semiring_Matrix.hpp
-  - Max_Flow/Project_Selection_Problem.hpp
-  timestamp: '2026-02-26 00:27:15+09:00'
+  path: Algebra/Semiring_Matrix.hpp
+  requiredBy: []
+  timestamp: '2026-02-26 00:40:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/1984.test.cpp
   - verify/yukicoder/1780.test.cpp
-documentation_of: Algebra/Extended_Algebra.hpp
+documentation_of: Algebra/Semiring_Matrix.hpp
 layout: document
-redirect_from:
-- /library/Algebra/Extended_Algebra.hpp
-- /library/Algebra/Extended_Algebra.hpp.html
-title: Algebra/Extended_Algebra.hpp
+title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
 ---
+
+## Outline
+
+半環上の行列に関する和と積に関する計算を行う.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/02/26| Semiring_Matrix クラスの実装 |

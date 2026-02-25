@@ -38,8 +38,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Max_Flow/Project_Selection_Problem.hpp\"\n\n#line 1 \"Algebra/Extended_Algebra.hpp\"\
-    \n#pragma\n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+  bundledCode: "#line 2 \"Max_Flow/Project_Selection_Problem.hpp\"\n\n#line 2 \"Algebra/Extended_Algebra.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -191,32 +191,33 @@ data:
     \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/Extended_Algebra.hpp\"\
     \n\nclass IndeterminateOperationError : public std::runtime_error {\n    public:\n\
     \    IndeterminateOperationError(const std::string& msg): std::runtime_error(msg)\
-    \ {}\n};\n\ntemplate<typename R>\nstruct Extended_Algebra {\n    private:\n  \
-    \  R val;\n    signed char inf_flag; // 0: finite, 1: +inf, -1: -inf\n    Extended_Algebra(R\
+    \ {}\n};\n\ntemplate<typename R>\nstruct Extended_Algebra {\n    R val;\n    signed\
+    \ char inf_flag; // 0: finite, 1: +inf, -1: -inf\n    constexpr Extended_Algebra(R\
     \ val, signed char inf_flag): val(val), inf_flag(inf_flag) {}\n\n    public:\n\
-    \    Extended_Algebra(): val(R()), inf_flag(0) {}\n    Extended_Algebra(R val):\
-    \ val(val), inf_flag(0) {}\n\n    Extended_Algebra operator-() const { return\
-    \ Extended_Algebra(-val, -inf_flag); }\n\n    static const Extended_Algebra inf;\n\
-    \n    bool is_finite() const { return inf_flag == 0; }\n    bool is_infinite()\
-    \ const { return !is_finite(); }\n\n    bool is_positive(const bool zero = false)\
-    \ const {\n        if(is_infinite()) { return inf_flag > 0; }\n\n        return\
-    \ zero ? val >= R() : val > R();\n    }\n\n    bool is_negative(const bool zero\
-    \ = false) const {\n        if(is_infinite()) { return inf_flag < 0; }\n\n   \
-    \     return zero ? val <= R() : val < R();\n    }\n\n    bool is_positive_infinite()\
-    \ const { return inf_flag == 1; }\n    bool is_negative_infinite() const { return\
-    \ inf_flag == -1; }\n\n    inline bool is_zero() const { return inf_flag == 0\
-    \ && val == R(); }\n\n    Extended_Algebra& operator+=(const Extended_Algebra\
-    \ &rhs) {\n        if (is_positive_infinite() && rhs.is_negative_infinite()) {\n\
-    \            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
+    \    constexpr Extended_Algebra(): val(R()), inf_flag(0) {}\n    constexpr Extended_Algebra(R\
+    \ val): val(val), inf_flag(0) {}\n\n    constexpr Extended_Algebra operator-()\
+    \ const { return Extended_Algebra(-val, -inf_flag); }\n\n    static constexpr\
+    \ Extended_Algebra inf = Extended_Algebra(R(), 1);\n\n    constexpr bool is_finite()\
+    \ const { return inf_flag == 0; }\n    constexpr bool is_infinite() const { return\
+    \ !is_finite(); }\n\n    constexpr bool is_positive(const bool zero = false) const\
+    \ {\n        if(is_infinite()) { return inf_flag > 0; }\n\n        return zero\
+    \ ? val >= R() : val > R();\n    }\n\n    constexpr bool is_negative(const bool\
+    \ zero = false) const {\n        if(is_infinite()) { return inf_flag < 0; }\n\n\
+    \        return zero ? val <= R() : val < R();\n    }\n\n    constexpr bool is_positive_infinite()\
+    \ const { return inf_flag == 1; }\n    constexpr bool is_negative_infinite() const\
+    \ { return inf_flag == -1; }\n\n    constexpr inline bool is_zero() const { return\
+    \ inf_flag == 0 && val == R(); }\n\n    constexpr Extended_Algebra& operator+=(const\
+    \ Extended_Algebra &rhs) {\n        if (is_positive_infinite() && rhs.is_negative_infinite())\
+    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
     \ form (inf + (-inf))\");\n        }\n        if (is_negative_infinite() && rhs.is_positive_infinite())\
     \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
     \ form ((-inf) + inf)\");\n        }\n\n        if (is_finite() && rhs.is_finite())\
     \ { val += rhs.val; }\n        else if (is_positive_infinite() || rhs.is_positive_infinite())\
     \ { inf_flag = 1; }\n        else if (is_negative_infinite() || rhs.is_negative_infinite())\
-    \ { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend Extended_Algebra\
+    \ { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend constexpr Extended_Algebra\
     \ operator+(const Extended_Algebra &lhs, const Extended_Algebra &rhs) { return\
-    \ Extended_Algebra(lhs) += rhs; }\n\n    Extended_Algebra& operator-=(const Extended_Algebra\
-    \ &rhs) {\n        if (this->is_positive_infinite() && rhs.is_positive_infinite())\
+    \ Extended_Algebra(lhs) += rhs; }\n\n    constexpr Extended_Algebra& operator-=(const\
+    \ Extended_Algebra &rhs) {\n        if (this->is_positive_infinite() && rhs.is_positive_infinite())\
     \ { \n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
     \ form (inf - inf)\");\n        }\n        if (this->is_negative_infinite() &&\
     \ rhs.is_negative_infinite()) {\n            throw IndeterminateOperationError(\"\
@@ -224,29 +225,29 @@ data:
     \    if (is_finite() && rhs.is_finite()) { val -= rhs.val; }\n        else if\
     \ (is_positive_infinite() || rhs.is_negative_infinite()) { inf_flag = 1; }\n \
     \       else if (is_negative_infinite() || rhs.is_positive_infinite()) { inf_flag\
-    \ = -1; }\n\n        return *this;\n    }\n\n    friend Extended_Algebra operator-(const\
-    \ Extended_Algebra &lhs, const Extended_Algebra &rhs) { return Extended_Algebra(lhs)\
-    \ -= rhs; }\n\n    Extended_Algebra& operator*=(const Extended_Algebra &rhs) {\n\
-    \        if (is_zero() || rhs.is_zero()) {\n            val = R();\n         \
-    \   inf_flag = 0;\n            return *this;\n        }\n\n        if (is_finite()\
-    \ && rhs.is_finite()) { val *= rhs.val; return *this; }\n\n        if (is_positive()\
-    \ == rhs.is_positive()) { inf_flag = 1; }\n        else { inf_flag = -1; }\n\n\
-    \        return *this;\n    }\n\n    friend Extended_Algebra operator*(const Extended_Algebra\
-    \ &lhs, const Extended_Algebra &rhs) { return Extended_Algebra(lhs) *= rhs; }\n\
-    \n    Extended_Algebra& operator/=(const Extended_Algebra &rhs) {\n        //\
-    \ 0-1. \u672A\u5B9A\u7FA9\u5F62: (\xB1 inf) / (\xB1 inf)\n        if (this->is_infinite()\
-    \ && rhs.is_infinite()) {\n            throw IndeterminateOperationError(\"Extended_Algebra:\
-    \ Indeterminate form (inf / inf)\");\n        }\n        // 0-2. \u672A\u5B9A\u7FA9\
-    \u5F62: 0 / 0\n        if (this->is_zero() && rhs.is_zero()) {\n            throw\
-    \ IndeterminateOperationError(\"Extended_Algebra: Indeterminate form (0 / 0)\"\
-    );\n        }\n\n        // 1. \u30BC\u30ED\u9664\u7B97: finite (non-zero) / 0\
-    \ -> \xB1inf\n        if (rhs.is_zero()) {\n            // \u5206\u6BCD\u304C\
-    \ 0 \u3067\u3042\u308B\u304C, 0-2 \u3092\u901A\u308A\u629C\u3051\u3066\u3044\u308B\
-    \u306E\u3067, \u5206\u5B50\u304C 0 \u306B\u306F\u306A\u308A\u5F97\u306A\u3044\
-    .\n            inf_flag = (is_positive() == rhs.is_positive()) ? 1 : -1;\n   \
-    \         val = R();\n            return *this;\n        }\n\n        // 2. \u3069\
-    \u3061\u3089\u3082\u6709\u9650 (\u5206\u6BCD != 0)\n        if (is_finite() &&\
-    \ rhs.is_finite()) { \n            // \u30BC\u30ED\u9664\u7B97\u306F\u4E0A\u8A18\
+    \ = -1; }\n\n        return *this;\n    }\n\n    friend constexpr Extended_Algebra\
+    \ operator-(const Extended_Algebra &lhs, const Extended_Algebra &rhs) { return\
+    \ Extended_Algebra(lhs) -= rhs; }\n\n    constexpr Extended_Algebra& operator*=(const\
+    \ Extended_Algebra &rhs) {\n        if (is_zero() || rhs.is_zero()) {\n      \
+    \      val = R();\n            inf_flag = 0;\n            return *this;\n    \
+    \    }\n\n        if (is_finite() && rhs.is_finite()) { val *= rhs.val; return\
+    \ *this; }\n\n        if (is_positive() == rhs.is_positive()) { inf_flag = 1;\
+    \ }\n        else { inf_flag = -1; }\n\n        return *this;\n    }\n\n    friend\
+    \ constexpr Extended_Algebra operator*(const Extended_Algebra &lhs, const Extended_Algebra\
+    \ &rhs) { return Extended_Algebra(lhs) *= rhs; }\n\n    constexpr Extended_Algebra&\
+    \ operator/=(const Extended_Algebra &rhs) {\n        // 0-1. \u672A\u5B9A\u7FA9\
+    \u5F62: (\xB1 inf) / (\xB1 inf)\n        if (this->is_infinite() && rhs.is_infinite())\
+    \ {\n            throw IndeterminateOperationError(\"Extended_Algebra: Indeterminate\
+    \ form (inf / inf)\");\n        }\n        // 0-2. \u672A\u5B9A\u7FA9\u5F62: 0\
+    \ / 0\n        if (this->is_zero() && rhs.is_zero()) {\n            throw IndeterminateOperationError(\"\
+    Extended_Algebra: Indeterminate form (0 / 0)\");\n        }\n\n        // 1. \u30BC\
+    \u30ED\u9664\u7B97: finite (non-zero) / 0 -> \xB1inf\n        if (rhs.is_zero())\
+    \ {\n            // \u5206\u6BCD\u304C 0 \u3067\u3042\u308B\u304C, 0-2 \u3092\u901A\
+    \u308A\u629C\u3051\u3066\u3044\u308B\u306E\u3067, \u5206\u5B50\u304C 0 \u306B\u306F\
+    \u306A\u308A\u5F97\u306A\u3044.\n            inf_flag = is_positive() ? 1 : -1;\n\
+    \            val = R();\n            return *this;\n        }\n\n        // 2.\
+    \ \u3069\u3061\u3089\u3082\u6709\u9650 (\u5206\u6BCD != 0)\n        if (is_finite()\
+    \ && rhs.is_finite()) { \n            // \u30BC\u30ED\u9664\u7B97\u306F\u4E0A\u8A18\
     \ 1 \u3067\u51E6\u7406\u6E08\u307F\n            val /= rhs.val; \n           \
     \ return *this;\n        }\n\n        // 3. \u7121\u9650\u5927\u3092\u542B\u3080\
     \u78BA\u5B9A\u7684\u306A\u8A08\u7B97\n        // inf / finite (non-zero) \u307E\
@@ -257,34 +258,33 @@ data:
     \ { // finite / inf -> 0 (\u65E2\u306B is_zero()\u3067\u51E6\u7406\u3055\u308C\
     \u3066\u3044\u308B\u3079\u304D\u3060\u304C\u5B89\u5168\u306E\u305F\u3081)\n  \
     \          inf_flag = 0;\n        }\n\n        return *this;\n    }\n\n    //\
-    \ \u975E\u8907\u5408\u6F14\u7B97\u5B50\n    friend Extended_Algebra operator/(const\
-    \ Extended_Algebra &lhs, const Extended_Algebra &rhs) {  return Extended_Algebra(lhs)\
-    \ /= rhs; }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const Extended_Algebra\
-    \ &lhs, const Extended_Algebra &rhs) {\n        if (lhs.inf_flag != rhs.inf_flag)\
-    \ { return false; }\n\n        if (lhs.is_finite()) { return lhs.val == rhs.val;\
-    \ }\n\n        return true;\n    }\n\n    friend bool operator<(const Extended_Algebra\
-    \ &lhs, const Extended_Algebra &rhs) {\n        if (lhs.inf_flag != rhs.inf_flag)\
-    \ { return lhs.inf_flag < rhs.inf_flag; }\n\n        if (lhs.is_finite()) { return\
-    \ lhs.val < rhs.val; }\n\n        return false;\n    }\n\n    friend bool operator!=(const\
-    \ Extended_Algebra &lhs, const Extended_Algebra &rhs) {return !(lhs == rhs);}\n\
-    \    friend bool operator> (const Extended_Algebra &lhs, const Extended_Algebra\
-    \ &rhs) {return rhs < lhs;}\n    friend bool operator<=(const Extended_Algebra\
-    \ &lhs, const Extended_Algebra &rhs) {return (lhs < rhs) || (lhs == rhs);}\n \
-    \   friend bool operator>=(const Extended_Algebra &lhs, const Extended_Algebra\
+    \ \u975E\u8907\u5408\u6F14\u7B97\u5B50\n    friend constexpr Extended_Algebra\
+    \ operator/(const Extended_Algebra &lhs, const Extended_Algebra &rhs) {  return\
+    \ Extended_Algebra(lhs) /= rhs; }\n\n    // \u6BD4\u8F03\n    friend constexpr\
+    \ bool operator==(const Extended_Algebra &lhs, const Extended_Algebra &rhs) {\n\
+    \        if (lhs.inf_flag != rhs.inf_flag) { return false; }\n\n        if (lhs.is_finite())\
+    \ { return lhs.val == rhs.val; }\n\n        return true;\n    }\n\n    friend\
+    \ constexpr bool operator<(const Extended_Algebra &lhs, const Extended_Algebra\
+    \ &rhs) {\n        if (lhs.inf_flag != rhs.inf_flag) { return lhs.inf_flag < rhs.inf_flag;\
+    \ }\n\n        if (lhs.is_finite()) { return lhs.val < rhs.val; }\n\n        return\
+    \ false;\n    }\n\n    friend constexpr bool operator!=(const Extended_Algebra\
+    \ &lhs, const Extended_Algebra &rhs) {return !(lhs == rhs);}\n    friend constexpr\
+    \ bool operator> (const Extended_Algebra &lhs, const Extended_Algebra &rhs) {return\
+    \ rhs < lhs;}\n    friend constexpr bool operator<=(const Extended_Algebra &lhs,\
+    \ const Extended_Algebra &rhs) {return (lhs < rhs) || (lhs == rhs);}\n    friend\
+    \ constexpr bool operator>=(const Extended_Algebra &lhs, const Extended_Algebra\
     \ &rhs) {return (lhs > rhs) || (lhs == rhs);}\n\n    // \u51FA\u529B\n    friend\
     \ ostream &operator<<(ostream &os, const Extended_Algebra &x) {\n        if (x.is_positive_infinite())\
     \ { return os << \"inf\"; }\n        if (x.is_negative_infinite()) { return os\
-    \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n\ntemplate<typename\
-    \ R>\nconst Extended_Algebra<R> Extended_Algebra<R>::inf = Extended_Algebra<R>(R(),\
-    \ 1);\n#line 2 \"Max_Flow/Max_Flow.hpp\"\n\n#line 4 \"Max_Flow/Max_Flow.hpp\"\n\
-    \nnamespace max_flow {\n    template<typename Cap>\n    struct Arc {\n       \
-    \ int id, source, target;\n        Cap cap, flow;\n        bool direction;\n \
-    \       Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap\
-    \ flow, bool direction):\n            id(id), source(source), target(target),\
-    \ cap(cap), flow(flow), direction(direction), rev(nullptr) {}\n\n        inline\
-    \ bool is_flowable() const { return flow < cap; }\n        inline Cap remain()\
-    \ const { return cap - flow; }\n\n        void push(Cap d) {\n            flow\
-    \ += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<typename\
+    \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n#line 2 \"Max_Flow/Max_Flow.hpp\"\
+    \n\n#line 4 \"Max_Flow/Max_Flow.hpp\"\n\nnamespace max_flow {\n    template<typename\
+    \ Cap>\n    struct Arc {\n        int id, source, target;\n        Cap cap, flow;\n\
+    \        bool direction;\n        Arc* rev;\n\n        Arc(int id, int source,\
+    \ int target, Cap cap, Cap flow, bool direction):\n            id(id), source(source),\
+    \ target(target), cap(cap), flow(flow), direction(direction), rev(nullptr) {}\n\
+    \n        inline bool is_flowable() const { return flow < cap; }\n        inline\
+    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
+    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<typename\
     \ Cap>\n    struct Max_Flow {\n        private:\n        using V = int;\n    \
     \    vector<vector<Arc<Cap>*>> adj_out;\n        vector<Arc<Cap>*> arcs;\n   \
     \     vector<int> level, iter;\n\n        bool bfs(const V s, const V t) {\n \
@@ -459,7 +459,7 @@ data:
   isVerificationFile: false
   path: Max_Flow/Project_Selection_Problem.hpp
   requiredBy: []
-  timestamp: '2026-02-23 18:31:15+09:00'
+  timestamp: '2026-02-26 00:27:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/1984.test.cpp
