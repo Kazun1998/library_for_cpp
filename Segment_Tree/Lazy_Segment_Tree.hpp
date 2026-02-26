@@ -23,6 +23,8 @@ M: Monoid, F = {f: F x M → M: 作用素} に対して, 以下が成立する.
 作用素は左から掛ける. 更新も左から行う.
 */
 
+#include"../template/template.hpp"
+
 template<typename M, typename F>
 class Lazy_Segment_Tree {
     public:
@@ -52,7 +54,9 @@ class Lazy_Segment_Tree {
     private:
     inline M evaluate_at(int m){ return lazy[m] == id ? data[m] : act(lazy[m], data[m]); }
 
-    void propagate_at(int m){
+    /// @brief セグメントツリーの第 m 要素を更新し, 遅延していた作用を子に伝搬させる.
+    /// @param m 
+    void push(int m){
         data[m] = evaluate_at(m);
 
         if ((m < n) && (lazy[m] != id)){
@@ -66,13 +70,17 @@ class Lazy_Segment_Tree {
         lazy[m] = id;
     }
 
+    /// @brief セグメントツリーの第 m 要素を含む区間についての lazy の要素について, 子への更新を行う.
+    /// @param m 
     inline void propagate_above(int m){
         int h = 0, mm = m;
         for (mm; mm; mm >>= 1, h++){}
 
-        for (h--; h >= 0; h--) { propagate_at(m>>h); }
+        for (h--; h >= 0; h--) { push(m >> h); }
     }
 
+    /// @brief セグメントツリーの第 m 要素を含む区間についての data の要素を更新する.
+    /// @param m 
     inline void recalc_above(int m){
         while (m > 1){
             m >>= 1;
@@ -96,7 +104,9 @@ class Lazy_Segment_Tree {
     }
 
     public:
-    // 第 k 項を取得する.
+    /// @brief 第 k 項を取得する.
+    /// @param k 
+    /// @return 第 k 項
     inline M operator[](int k){
         int m = k + n;
         propagate_above(m);
@@ -104,8 +114,10 @@ class Lazy_Segment_Tree {
         return data[m] = evaluate_at(m);
     }
 
-    // i = l, l + 1, ..., r に対して, alpha を作用させる.
-    // 作用の範囲が閉区間であることに注意.
+    /// @brief i = l, l + 1, ..., r に対して, 第 i 項に対して alpha を作用させる.
+    /// @param l 区間の左端
+    /// @param r 区間の右端
+    /// @param alpha 作用
     void action(int l, int r, F alpha){
         int L0, R0;
         tie(L0, R0) = range_propagate(l, r + 1);
@@ -113,13 +125,13 @@ class Lazy_Segment_Tree {
         int L = l + n, R = r + n + 1;
         while (L < R){
             if (L & 1){
-                lazy[L] = (alpha == id) ? id : comp(alpha, lazy[L]); 
+                lazy[L] = (lazy[L] == id) ? alpha : comp(alpha, lazy[L]); 
                 L++;
             }
 
             if (R & 1){
                 R--;
-                lazy[R] = (alpha == id) ? id : comp(alpha, lazy[R]);
+                lazy[R] = (lazy[R] == id) ? alpha : comp(alpha, lazy[R]);
             }
 
             L >>= 1; R >>= 1;
@@ -128,7 +140,9 @@ class Lazy_Segment_Tree {
         recalc_above(L0); recalc_above(R0);
     }
 
-    // 第 k 項を x に更新する.
+    /// @brief 第 k 項を x に更新する.
+    /// @param k 更新場所
+    /// @param x 更新後の要素
     inline void update(int k, M x){
         int m = k + n;
         propagate_above(m);
@@ -136,8 +150,11 @@ class Lazy_Segment_Tree {
         recalc_above(m);
     }
 
-    // 積 x[l] * x[l + 1] * ... * x[r] を求める.
-    // 積を取る範囲が閉区間であることに注意.
+
+    /// @brief 積 x[l] * x[l + 1] * ... * x[r] を求める.
+    /// @param l 区間の左端
+    /// @param r 区間の右端
+    /// @return 積
     M product(int l, int r){
         int L0, R0;
         tie(L0, R0) = range_propagate(l, r + 1);
@@ -154,8 +171,9 @@ class Lazy_Segment_Tree {
         return op(vL, vR);
     }
 
-    // 全要素の積を求める.
-    inline M all_product() {return product(0, n);}
+    /// @brief 全要素における区間積を求める.
+    /// @return 残要素における区間積
+    inline M all_product() {return product(0, n - 1);}
 
     void refresh() {
         for (int m = 1; m < 2 * n; m++){

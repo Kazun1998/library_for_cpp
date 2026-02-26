@@ -22,6 +22,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
             this->poly[i] += B.poly[i];
         }
         this->precision = min(this->precision, B.precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
@@ -37,6 +38,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
             this->poly[i] -= B.poly[i];
         }
         this->precision = min(this->precision, B.precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
@@ -64,12 +66,19 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
 
         this->poly = tmp;
         this->precision = min(this->precision, P.precision);
-        this->resize(this->precision);
+
+        this->weak_resize();
         this->reduce();
         return *this;
     }
 
     friend Fast_Power_Series operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) *= rhs; }
+
+    // 多項式としての積. 精度は結果の次数に合わせて自動拡張される.
+    Fast_Power_Series mul_poly(const Fast_Power_Series &P) const {
+        auto tmp = calculator.convolution(this->poly, P.poly);
+        return Fast_Power_Series(tmp, tmp.size());
+    }
 
     // (mod X^d) における逆元を求める
     // d = -1 のときは, d = precision になる.
@@ -83,7 +92,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         vector<mint> inv = calculator.inverse(P.poly, P.precision);
         this->poly = calculator.convolution(this->poly, inv);
         this->precision = min(this->precision, P.precision);
-        this->resize(this->precision);
+        this->weak_resize();
         this->reduce();
         return *this;
     }
@@ -91,8 +100,8 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
     friend Fast_Power_Series operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) /= rhs; }
 
     // 多項式としての除算
-    Fast_Power_Series div(Fast_Power_Series &B) {
-        this->reduce(); B.reduce();
+    Fast_Power_Series div(const Fast_Power_Series &B) {
+        this->reduce(); // B.reduce(); const なので変更しない
 
         int n = this->poly.size(), m = B.poly.size();
 
@@ -102,27 +111,42 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         reverse(a_rev.begin(), a_rev.end());
         reverse(b_rev.begin(), b_rev.end());
 
-        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, n));
-        c.resize(n - m + 1);
+        int k = n - m + 1;
+        if (a_rev.size() > k) { a_rev.resize(k); }
+        if (b_rev.size() > k) { b_rev.resize(k); }
+        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, k));
+        c.resize(k);
         reverse(c.begin(), c.end());
         return Fast_Power_Series(c, n);
     }
 
-    Fast_Power_Series& operator%=(Fast_Power_Series &B) {
+    Fast_Power_Series& operator%=(const Fast_Power_Series &B) {
         Fast_Power_Series Q = this->div(B);
-        this->poly = ((*this) - B * Q).poly;
+        vector<mint> product = calculator.convolution(B.poly, Q.poly);
+        if (this->poly.size() < product.size()) { this->poly.resize(product.size()); }
+        for (int i = 0; i < product.size(); i++) { this->poly[i] -= product[i]; }
+        this->reduce();
         return *this;
     }
 
-    friend Fast_Power_Series operator%(Fast_Power_Series &lhs, Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
+    friend Fast_Power_Series operator%(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs) { return Fast_Power_Series(lhs) %= rhs; }
+
+    pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series &B) {
+        Fast_Power_Series Q = this->div(B);
+        vector<mint> product = calculator.convolution(B.poly, Q.poly);
+
+        Fast_Power_Series R(*this);
+        if (R.poly.size() < product.size()) { R.poly.resize(product.size()); }
+        for (int i = 0; i < product.size(); i++) { R.poly[i] -= product[i]; }
+        R.reduce();
+        return {Q, R};
+    }
 };
 
 template<typename mint>
 Numeric_Theory_Translation<mint> Fast_Power_Series<mint>::calculator = Numeric_Theory_Translation<mint>();
 
 template<typename mint>
-pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, Fast_Power_Series<mint> &B) {
-    Fast_Power_Series Q = A.div(B);
-    Fast_Power_Series R = A - B * Q;
-    return {Q, R};
+pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> divmod(Fast_Power_Series<mint> &A, const Fast_Power_Series<mint> &B) {
+    return A.divmod(B);
 }

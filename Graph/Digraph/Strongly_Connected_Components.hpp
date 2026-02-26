@@ -1,6 +1,6 @@
 #include"Digraph.hpp"
 
-namespace Digraph {
+namespace digraph {
     class Strongly_Connected_Components {
         public:
         vector<vector<int>> components;
@@ -34,9 +34,8 @@ namespace Digraph {
         private:
         void dfs1(const Digraph &D, int v) {
             used[v] = true;
-            for (auto arc_id: D.successors(v)) {
-                auto arc = D.get_arc(arc_id);
-                int w = arc.target;
+            for (auto arc: D.successors(v)) {
+                int w = arc->target;
 
                 unless(used[w]) { dfs1(D, w); }
             }
@@ -47,9 +46,8 @@ namespace Digraph {
         void dfs2(const Digraph &D, int v) {
             components[group[v] = components.size() - 1].emplace_back(v);
 
-            for (auto arc_id: D.predecessors(v)) {
-                auto arc = D.get_arc(arc_id);
-                int w = arc.source;
+            for (auto arc: D.predecessors(v)) {
+                int w = arc->source;
                 if (group[w] == -1) { dfs2(D, w); }
             }
         }
