@@ -33,9 +33,15 @@ namespace summation {
     }
 
     template<typename T>
+    T max_linear(T a, T b, T d, T l, T r) { return max_linear(a, b, 0, d, l, r); }
+
+    template<typename T>
     T min_linear(T a, T b, T c, T d, T l, T r) {
         return -relu_linear(-(a - c), -(b - d), l, r) + linear(c, d, l, r);
     }
+
+    template<typename T>
+    T min_linear(T a, T b, T d, T l, T r) { return min_linear(a, b, 0, d, l, r); }
 
     template<typename T>
     T abs_linear(T a, T b, T l, T r) {
