@@ -52,4 +52,12 @@ namespace summation {
         if (n < 0) return 0;
         return n * (n + 1) * (2 * n + 1) / 6;
     }
+
+    template<typename T>
+    T square_linear(T a, T b, T l, T r) {
+        if (l > r) return 0;
+        T sum_1 = (r - l + 1) * (l + r) / 2;
+        T sum_2 = sum_sq(r) - sum_sq(l - 1);
+        return a * a * sum_2 + 2 * a * b * sum_1 + b * b * (r - l + 1);
+    }
 }
