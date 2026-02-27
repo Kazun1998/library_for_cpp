@@ -26,4 +26,9 @@ namespace summation {
 
         return linear(a, b, l, r);
     }
+
+    template<typename T>
+    T max_linear(T a, T b, T c, T d, T l, T r) {
+        return relu_linear(a - c, b - d, l, r) + linear(c, d, l, r);
+    }
 }
