@@ -15,20 +15,25 @@ namespace summation {
 
     template<typename T>
     T relu_linear(T a, T b, T l, T r) {
-        if (a == 0) { return (r - l + 1) * max(0, b); }
+        if (a == 0) { return (r - l + 1) * max<T>(0, b); }
         if (a < 0) { return relu_linear(-a, a * (r + l) + b, l, r); }
 
         // ここに到達した段階で a > 0 が保証される
 
         if (a * r + b <= 0) return 0;
 
-        T t = max(l, div_ceil(-b, a));
+        T t = max<T>(l, div_ceil(-b, a));
 
-        return linear(a, b, l, r);
+        return linear(a, b, t, r);
     }
 
     template<typename T>
     T max_linear(T a, T b, T c, T d, T l, T r) {
         return relu_linear(a - c, b - d, l, r) + linear(c, d, l, r);
+    }
+
+    template<typename T>
+    T min_linear(T a, T b, T c, T d, T l, T r) {
+        return -relu_linear(-(a - c), -(b - d), l, r) + linear(c, d, l, r);
     }
 }
