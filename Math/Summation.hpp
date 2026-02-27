@@ -75,4 +75,21 @@ namespace summation {
         T sum_k2 = sum_sq(r) - sum_sq(l - 1);
         return a * c * sum_k2 + (a * d + b * c) * sum_k + b * d * n;
     }
+
+    template<typename T>
+    T product_relu_linear(T a, T b, T c, T d, T l, T r) {
+        T L = l, R = r;
+
+        if (a > 0) L = max<T>(L, div_ceil(-b, a));
+        else if (a < 0) R = min<T>(R, div_floor(-b, a));
+        else if (b < 0) return 0;
+
+        if (c > 0) L = max<T>(L, div_ceil(-d, c));
+        else if (c < 0) R = min<T>(R, div_floor(-d, c));
+        else if (d < 0) return 0;
+
+        if (L > R) return 0;
+
+        return sum_product_linear(a, b, c, d, L, R);
+    }
 }
