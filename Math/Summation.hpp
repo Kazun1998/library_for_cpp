@@ -60,4 +60,13 @@ namespace summation {
         T sum_2 = sum_sq(r) - sum_sq(l - 1);
         return a * a * sum_2 + 2 * a * b * sum_1 + b * b * (r - l + 1);
     }
+
+    template<typename T>
+    T sum_product_linear(T a, T b, T c, T d, T l, T r) {
+        if (l > r) return 0;
+        T n = r - l + 1;
+        T sum_k = n * (l + r) / 2;
+        T sum_k2 = sum_sq(r) - sum_sq(l - 1);
+        return a * c * sum_k2 + (a * d + b * c) * sum_k + b * d * n;
+    }
 }
