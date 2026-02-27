@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../template/template.hpp"
+
 namespace summation {
     template<typename T>
     T linear(T a, T b, T l, T r) {
@@ -9,5 +11,19 @@ namespace summation {
         T sum_k = num_terms * (l + r) / 2;
         T sum_b = num_terms * b;
         return a * sum_k + sum_b;
+    }
+
+    template<typename T>
+    T relu_linear(T a, T b, T l, T r) {
+        if (a == 0) { return (r - l + 1) * max(0, b); }
+        if (a < 0) { return relu_linear(-a, a * (r + l) + b, l, r); }
+
+        // ここに到達した段階で a > 0 が保証される
+
+        if (a * r + b <= 0) return 0;
+
+        T t = max(l, div_ceil(-b, a));
+
+        return linear(a, b, l, r);
     }
 }
