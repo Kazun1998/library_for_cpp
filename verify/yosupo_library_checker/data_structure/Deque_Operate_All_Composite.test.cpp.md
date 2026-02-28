@@ -226,10 +226,12 @@ data:
     \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Data_Structure/Sliding_Window_Aggregation.hpp\"\
     \n\n#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\u30B3\
     \u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept Unary_Operator_Concept\
     \ = requires(Op op, const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n\
@@ -351,7 +353,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   requiredBy: []
-  timestamp: '2026-02-23 18:31:15+09:00'
+  timestamp: '2026-02-28 11:20:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp

@@ -269,10 +269,12 @@ data:
     \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 5 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
     \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
     \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
     \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
@@ -560,21 +562,21 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Log.hpp
   requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
   - Modulo_Polynomial/Exp.hpp
-  - Modulo_Polynomial/Power.hpp
-  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2026-02-23 18:31:15+09:00'
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Bell_Number.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
+  - Modulo_Polynomial/Power.hpp
+  timestamp: '2026-02-28 11:20:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Log.hpp
 layout: document

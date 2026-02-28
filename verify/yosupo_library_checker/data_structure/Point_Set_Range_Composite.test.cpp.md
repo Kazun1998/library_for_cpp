@@ -223,10 +223,12 @@ data:
     \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\
     \n\ntemplate<typename M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M>\
     \ data;\n    const function<M(M, M)> op;\n    const M unit;\n\n    public:\n \
     \   Segment_Tree(int size, const function<M(M, M)> op, const M unit): n(), op(op),\
@@ -303,7 +305,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   requiredBy: []
-  timestamp: '2026-02-23 18:31:15+09:00'
+  timestamp: '2026-02-28 11:20:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp

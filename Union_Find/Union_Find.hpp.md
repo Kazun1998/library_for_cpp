@@ -72,8 +72,8 @@ data:
   timestamp: '2025-10-18 12:03:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
 documentation_of: Union_Find/Union_Find.hpp
 layout: document
 title: Union Find

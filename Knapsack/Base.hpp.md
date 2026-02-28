@@ -231,8 +231,8 @@ data:
   timestamp: '2026-02-23 18:31:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/dpl1/1F.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
+  - verify/aizu_online_judge/dpl1/1F.test.cpp
 documentation_of: Knapsack/Base.hpp
 layout: document
 redirect_from:

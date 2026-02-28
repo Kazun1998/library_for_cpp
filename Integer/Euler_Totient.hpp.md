@@ -251,8 +251,8 @@ data:
   timestamp: '2026-02-23 18:31:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document
 title: "Euler's Totient \u95A2\u6570"

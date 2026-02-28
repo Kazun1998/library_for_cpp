@@ -379,10 +379,12 @@ data:
     \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod>\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto\
-    \ res = modint<mod>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n"
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<int M>\n\
     class modint {\n    public:\n    static constexpr int _mod = M; \n    uint64_t\
     \ x;\n\n    public:\n    static constexpr int mod() { return _mod; }\n\n    static\
@@ -417,10 +419,12 @@ data:
     \ }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
     \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
     \ }\n    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod();\
-    \ }\n};\n\ntemplate<int mod>\nmodint<mod> pow(modint<mod> x, long long n) {\n\
-    \    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res = modint<mod>(1);\n\
-    \    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n\
-    \    }\n\n    return res;\n}\n"
+    \ }\n};\n\ntemplate<typename T>\nstruct is_modint : std::false_type {};\n\ntemplate<int\
+    \ M>\nstruct is_modint<modint<M>> : std::true_type {};\n\ntemplate<typename Mint>\n\
+    requires is_modint<Mint>::value\nMint pow(Mint x, long long n) {\n    if (n <\
+    \ 0) { return pow(x, -n).inverse(); }\n\n    Mint res(1);\n    for (; n; n >>=\
+    \ 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n    }\n\n    return\
+    \ res;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -432,64 +436,64 @@ data:
   isVerificationFile: false
   path: Algebra/modint.hpp
   requiredBy:
-  - Modulo_Polynomial/Bell_Number.hpp
-  - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
-  - Modulo_Polynomial/Fraction_Coefficient.hpp
-  - Modulo_Polynomial/Taylor_Shift.hpp
-  - Modulo_Polynomial/Partition_P.hpp
   - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Numeric_Theory_Translation.hpp
+  - Modulo_Polynomial/Stirling_2nd.hpp
+  - Modulo_Polynomial/Taylor_Shift.hpp
+  - Modulo_Polynomial/Multipoint_Evaluation.hpp
+  - Modulo_Polynomial/Huge_Factorial.hpp
+  - Modulo_Polynomial/Bernoulli_Number.hpp
+  - Modulo_Polynomial/Fraction_Coefficient.hpp
   - Modulo_Polynomial/Modulo_Polynomial.hpp
+  - Modulo_Polynomial/Subset_Sum.hpp
+  - Modulo_Polynomial/Bell_Number.hpp
+  - Modulo_Polynomial/Calculus.hpp
+  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Modulo_Polynomial/Log.hpp
+  - Modulo_Polynomial/Partition_P.hpp
+  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Power.hpp
   - Modulo_Polynomial/Stirling_1st.hpp
-  - Modulo_Polynomial/Log.hpp
-  - Modulo_Polynomial/Calculus.hpp
-  - Modulo_Polynomial/Huge_Factorial.hpp
-  - Modulo_Polynomial/Stirling_2nd.hpp
-  - Modulo_Polynomial/Partition_Q.hpp
   - Modulo_Polynomial/Fast_Power_Series.hpp
-  - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
-  - Modulo_Polynomial/Multipoint_Evaluation.hpp
-  - Modulo_Polynomial/Bernoulli_Number.hpp
-  timestamp: '2026-02-23 18:31:15+09:00'
+  timestamp: '2026-02-28 11:20:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
-  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
-  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
+  - verify/yukicoder/1358.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_Second_Kind.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
-  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Partition_Function.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
-  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/polynomial/Log.test.cpp
+  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
+  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
+  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
+  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
+  - verify/yosupo_library_checker/polynomial/Division.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-  - verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - verify/yosupo_library_checker/polynomial/Inverse.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/original/Partition_Q.test.cpp
-  - verify/yukicoder/1358.test.cpp
 documentation_of: Algebra/modint.hpp
 layout: document
 redirect_from:

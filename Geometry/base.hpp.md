@@ -353,54 +353,54 @@ data:
   isVerificationFile: false
   path: Geometry/base.hpp
   requiredBy:
-  - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
   - Geometry/relationship/Relationship_Circle_and_Circle.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/intersection/Intersection_Segment_and_Segment.hpp
-  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/intersection/Intersection_Circle_and_Line.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
   - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Argument_Sort.hpp
   - Geometry/utility/Division_Point.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
   - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/distance/Distance_Line_and_Point.hpp
-  - Geometry/object/Line.hpp
-  - Geometry/object/Point.hpp
-  - Geometry/object/Circle.hpp
-  - Geometry/object/Segment.hpp
-  - Geometry/object/Polygon.hpp
-  - Geometry/object/Triangle.hpp
-  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
   - Geometry/triangle_center/Centroid.hpp
+  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Incenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/reflection/Reflection_Point_Point.hpp
+  - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/distance/Distance_Line_and_Point.hpp
+  - Geometry/object/Polygon.hpp
+  - Geometry/object/Point.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Triangle.hpp
+  - Geometry/object/Segment.hpp
+  - Geometry/object/Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/projection/Projection_Point_Line.hpp
   timestamp: '2026-02-23 18:31:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/7B.test.cpp
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/3A.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
-  - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/7A.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/2B.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/7A.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
 documentation_of: Geometry/base.hpp
 layout: document
 redirect_from:
