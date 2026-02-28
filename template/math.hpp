@@ -52,9 +52,10 @@ pair<T, T> divmod(T x, U y){
 
 // 四捨五入を求める.
 template<typename T, typename U>
-T round(T x, U y){
+auto round(T x, U y){
     T q, r;
     tie (q, r) = divmod(x, y);
+    if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;
     return (r >= div_ceil(y, 2)) ? q + 1 : q;
 }
 
