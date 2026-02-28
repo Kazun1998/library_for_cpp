@@ -44,6 +44,16 @@ namespace summation {
     T min_linear(T a, T b, T d, T l, T r) { return min_linear(a, b, 0, d, l, r); }
 
     template<typename T>
+    T sum_lower_cut_linear(T a, T b, T clamp_val, T l, T r) {
+        return linear(0, clamp_val, l, r) + relu_linear(a, b - clamp_val, l, r);
+    }
+
+    template<typename T>
+    T sum_upper_cut_linear(T a, T b, T clamp_val, T l, T r) {
+        return linear(0, clamp_val, l, r) - relu_linear(-a, clamp_val - b, l, r);
+    }
+
+    template<typename T>
     T abs_linear(T a, T b, T l, T r) {
         return max_linear(a, b, -a, -b, l, r);
     }
