@@ -26,11 +26,15 @@ T bitwise_xor(const T &x, const T &y) { return x ^ y; }
 
 // floor(x / y) を求める.
 template<typename T, typename U>
-T div_floor(T x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }
+auto div_floor(T x, U y){
+    return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));
+}
 
 // ceil(x / y) を求める.
 template<typename T, typename U>
-T div_ceil(T x, U y){ return (x > 0 ? (x + y - 1) / y: x / y) ;}
+auto div_ceil(T x, U y){
+    return x / y + ((x % y != 0) && ((x < 0) == (y < 0)));
+}
 
 // x を y で割った余りを求める.
 template<typename T, typename U>
