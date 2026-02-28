@@ -38,23 +38,22 @@ auto div_ceil(T x, U y){
 
 // x を y で割った余りを求める.
 template<typename T, typename U>
-T safe_mod(T x, U y){
-    T q = div_floor(x, y);
+auto safe_mod(T x, U y){
+    auto q = div_floor(x, y);
     return x - q * y ;
 }
 
 // x を y で割った商と余りを求める.
 template<typename T, typename U>
-pair<T, T> divmod(T x, U y){
-    T q = div_floor(x, y);
-    return {q, x - q * y};
+auto divmod(T x, U y){
+    auto q = div_floor(x, y);
+    return make_pair(q, x - q * y);
 }
 
 // 四捨五入を求める.
 template<typename T, typename U>
 auto round(T x, U y){
-    T q, r;
-    tie (q, r) = divmod(x, y);
+    auto [q, r] = divmod(x, y);
     if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;
     return (r >= div_ceil(y, 2)) ? q + 1 : q;
 }
@@ -95,21 +94,6 @@ T modpow(T x, U y, T z) {
     }
 
     return a;
-}
-
-// vector の要素の総和を求める.
-ll sum(vector<ll> &X){
-    ll y = 0;
-    for (auto &&x: X) { y+=x; }
-    return y;
-}
-
-// vector の要素の総和を求める.
-template<typename T>
-T sum(vector<T> &X){
-    T y = T(0);
-    for (auto &&x: X) { y += x; }
-    return y;
 }
 
 template<typename T>
