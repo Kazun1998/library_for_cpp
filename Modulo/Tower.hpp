@@ -42,4 +42,13 @@ namespace modulo {
         // 最終的な結果は通常の mod m で返す
         return Modulo(solve(solve, 0, m), m);
     }
+
+    Modulo Tetoration(ll a, ll k, ll m) {
+        // 特別ケース
+        if (k == 0) return Modulo(1, m);
+        if (a == 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);
+
+        k = min<ll>(k, ceil_log2(m) + 1);
+        return Power_Tower(vector<ll>(k, a), m);
+    }
 }
