@@ -49,8 +49,8 @@ namespace summation {
     }
 
     template<typename T>
-    T clamp_linear(T a, T b, T min_val, T max_val, T l, T r) {
-        return linear(a, b, l, r) - relu_linear(a, b - max_val, l, r) + relu_linear(-a, min_val - b, l, r);
+    T clamp_linear(T a, T b, T d, T u, T l, T r) {
+        return linear(a, b, l, r) - relu_linear(a, b - u, l, r) + relu_linear(-a, d - b, l, r);
     }
 
     template<typename T>
