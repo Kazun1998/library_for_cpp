@@ -154,4 +154,41 @@ namespace counting {
     T count_sum_range(T p, T q, T r, T s, T a, T b) {
         return count_between_lines(0, r, 0, s, -1, a, -1, b, p, q);
     }
+
+    /**
+     * @brief 以下の条件を満たす整数の組 (x, y) の個数を求めます.
+     * 
+     * 条件: p <= x <= q, r <= y <= s, x - y = k
+     * 
+     * @tparam T 整数型
+     * @param p x の下限
+     * @param q x の上限
+     * @param r y の下限
+     * @param s y の上限
+     * @param k 差 k
+     * @return T 条件を満たす (x, y) の個数
+     */
+    template<typename T>
+    T count_diff_eq(T p, T q, T r, T s, T k) {
+        return count_sum_eq(p, q, -s, -r, k);
+    }
+
+    /**
+     * @brief 以下の条件を満たす整数の組 (x, y) の個数を求めます.
+     * 
+     * 条件: p <= x <= q, r <= y <= s, a <= x - y <= b
+     * 
+     * @tparam T 整数型
+     * @param p x の下限
+     * @param q x の上限
+     * @param r y の下限
+     * @param s y の上限
+     * @param a 差 x - y の下限
+     * @param b 差 x - y の上限
+     * @return T 条件を満たす (x, y) の個数
+     */
+    template<typename T>
+    T count_diff_range(T p, T q, T r, T s, T a, T b) {
+        return count_sum_range(p, q, -s, -r, a, b);
+    }
 }
