@@ -117,4 +117,22 @@ namespace counting {
 
         return total;
     }
+
+    /**
+     * @brief 以下の条件を満たす整数の組 (x, y) の個数を求めます.
+     * 
+     * 条件: p <= x <= q, r <= y <= s, x + y = k
+     * 
+     * @tparam T 整数型
+     * @param p x の下限
+     * @param q x の上限
+     * @param r y の下限
+     * @param s y の上限
+     * @param k 和 k
+     * @return T 条件を満たす (x, y) の個数
+     */
+    template<typename T>
+    T count_sum_eq(T p, T q, T r, T s, T k) {
+        return count_between_lines(1, -s, 1, -r, p, q);
+    }
 }
