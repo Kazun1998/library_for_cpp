@@ -119,7 +119,7 @@ namespace summation {
      * @return T 総和
      */
     template<typename T>
-    T min_linear(T a, T b, T d, T l, T r) { return min_linear(a, b, 0, d, l, r); }
+    T min_linear(T a, T b, T u, T l, T r) { return min_linear(a, b, 0, u, l, r); }
 
     /**
      * @brief 一次関数の絶対値の和を求めます.

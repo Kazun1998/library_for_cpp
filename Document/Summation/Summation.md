@@ -226,10 +226,10 @@ T min_linear(T a, T b, T c, T d, T l, T r)
 
 ```cpp
 template<typename T>
-T min_linear(T a, T b, T d, T l, T r)
+T min_linear(T a, T b, T u, T l, T r)
 ```
 
-* $\displaystyle \sum_{k=l}^r \min(ak+b, d)$ を求める.
+* $\displaystyle \sum_{k=l}^r \min(ak+b, u)$ を求める.
 
 ### min_linear
 
