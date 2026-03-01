@@ -373,6 +373,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo/Discrete_Log.hpp
       title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
+    - icon: ':warning:'
+      path: Modulo/Garner.hpp
+      title: Modulo/Garner.hpp
     - icon: ':heavy_check_mark:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
@@ -496,6 +499,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: Sequence/Z_Algorithm.hpp
       title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
+  - name: Summation
+    pages:
+    - icon: ':warning:'
+      path: Summation/Counting.hpp
+      title: "\u6761\u4EF6\u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44\u306E\u8A08\
+        \u4E0A"
+    - icon: ':warning:'
+      path: Summation/Summation.hpp
+      title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'

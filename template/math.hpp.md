@@ -298,6 +298,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
+  - icon: ':warning:'
+    path: Modulo/Garner.hpp
+    title: Modulo/Garner.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
@@ -405,6 +408,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Sequence/Z_Algorithm.hpp
     title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
+  - icon: ':warning:'
+    path: Summation/Counting.hpp
+    title: "\u6761\u4EF6\u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44\u306E\u8A08\
+      \u4E0A"
+  - icon: ':warning:'
+    path: Summation/Summation.hpp
+    title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
   - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
@@ -782,47 +792,44 @@ data:
     \ &y) { return x | y; }\n\ntemplate<typename T>\nT bitwise_xor(const T &x, const\
     \ T &y) { return x ^ y; }\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\
     \n\n// floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\n\
-    T div_floor(T x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x\
-    \ / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_ceil(T\
-    \ x, U y){ return (x > 0 ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\
-    \u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename\
-    \ U>\nT safe_mod(T x, U y){\n    T q = div_floor(x, y);\n    return x - q * y\
-    \ ;\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\npair<T, T> divmod(T x,\
-    \ U y){\n    T q = div_floor(x, y);\n    return {q, x - q * y};\n}\n\n// \u56DB\
-    \u6368\u4E94\u5165\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\n\
-    T round(T x, U y){\n    T q, r;\n    tie (q, r) = divmod(x, y);\n    return (r\
-    \ >= div_ceil(y, 2)) ? q + 1 : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\
-    \u95A2\u6570\n\n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x,\
-    \ ll y){\n    ll a = 1;\n    while (y){\n        if (y & 1) { a *= x; }\n    \
-    \    x *= x;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
-    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll\
-    \ x, ll y, ll z){\n    ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x)\
-    \ %= z; }\n        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\
-    \n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\
-    \u3081\u308B.\ntemplate<typename T, typename U>\nT modpow(T x, U y, T z) {\n \
-    \   T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n     \
-    \   (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\
-    \u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n\
-    \    ll y = 0;\n    for (auto &&x: X) { y+=x; }\n    return y;\n}\n\n// vector\
-    \ \u306E\u8981\u7D20\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T>\nT sum(vector<T> &X){\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n\
-    \    return y;\n}\n\ntemplate<typename T>\nT sum(const vector<T> &X) {\n    T\
-    \ y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b\
-    \ y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\
-    \u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral\
-    \ T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v\
-    \ = 1;\n    while (b) {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a,\
-    \ b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t, s - q * t);\n    \
-    \    tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u,\
-    \ a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
-    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
-    \ 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n \
-    \   while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
-    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
-    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
-    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
-    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
+    auto div_floor(T x, U y){\n    return x / y - ((x % y != 0) && ((x < 0) != (y\
+    \ < 0)));\n}\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
+    \ typename U>\nauto div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x\
+    \ < 0) == (y < 0)));\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
+    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto safe_mod(T x, U y){\n\
+    \    auto q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\
+    \u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\nauto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return\
+    \ make_pair(q, x - q * y);\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
+    \u308B.\ntemplate<typename T, typename U>\nauto round(T x, U y){\n    auto [q,\
+    \ r] = divmod(x, y);\n    if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;\n\
+    \    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n}\n\n// \u6307\u6570\u306B\u95A2\
+    \u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll\
+    \ intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n        if (y & 1) { a *=\
+    \ x; }\n        x *= x;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E\
+    \ y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
+    .\nll modpow(ll x, ll y, ll z){\n    ll a = 1;\n    while (y){\n        if (y\
+    \ & 1) { (a *= x) %= z; }\n        (x *= x) %= z;\n        y >>= 1;\n    }\n \
+    \   return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\
+    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT modpow(T\
+    \ x, U y, T z) {\n    T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x)\
+    \ %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n\
+    }\n\ntemplate<typename T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for\
+    \ (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\
+    \u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x,\
+    \ y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T>\
+    \ Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b)\
+    \ {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a,\
+    \ b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v,\
+    \ u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
+    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   code: "#pragma once\n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const\
     \ T &x, const T &y) { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x,\
     \ const T &y) { return x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const\
@@ -831,48 +838,45 @@ data:
     \ x & y; }\n\ntemplate<typename T>\nT bitwise_or(const T &x, const T &y) { return\
     \ x | y; }\n\ntemplate<typename T>\nT bitwise_xor(const T &x, const T &y) { return\
     \ x ^ y; }\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x\
-    \ / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_floor(T\
-    \ x, U y){ return (x > 0 ? x / y: (x - y + 1) / y); }\n\n// ceil(x / y) \u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT div_ceil(T x, U y){ return\
-    \ (x > 0 ? (x + y - 1) / y: x / y) ;}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\
-    \u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT safe_mod(T\
-    \ x, U y){\n    T q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092\
-    \ y \u3067\u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\n\
-    template<typename T, typename U>\npair<T, T> divmod(T x, U y){\n    T q = div_floor(x,\
-    \ y);\n    return {q, x - q * y};\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\
-    \u3081\u308B.\ntemplate<typename T, typename U>\nT round(T x, U y){\n    T q,\
-    \ r;\n    tie (q, r) = divmod(x, y);\n    return (r >= div_ceil(y, 2)) ? q + 1\
-    \ : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E\
-    \ y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n \
-    \   while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n        y >>=\
-    \ 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\
-    \u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y, ll z){\n  \
-    \  ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n        (x\
-    \ *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\
-    \u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n \
-    \       if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>=\
-    \ 1;\n    }\n\n    return a;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\u548C\
-    \u3092\u6C42\u3081\u308B.\nll sum(vector<ll> &X){\n    ll y = 0;\n    for (auto\
-    \ &&x: X) { y+=x; }\n    return y;\n}\n\n// vector \u306E\u8981\u7D20\u306E\u7DCF\
-    \u548C\u3092\u6C42\u3081\u308B.\ntemplate<typename T>\nT sum(vector<T> &X){\n\
-    \    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\ntemplate<typename\
-    \ T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y\
-    \ += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\
-    \u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\
-    \u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a,\
-    \ T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n \
-    \       tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n     \
-    \   tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v, u -\
-    \ q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\
-    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
-    \ isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
-    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
-    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
-    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
-    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
-    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
-    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
+    \ / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto div_floor(T\
+    \ x, U y){\n    return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));\n}\n\n\
+    // ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto\
+    \ div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x < 0) == (y < 0)));\n\
+    }\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
+    .\ntemplate<typename T, typename U>\nauto safe_mod(T x, U y){\n    auto q = div_floor(x,\
+    \ y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u5546\
+    \u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\n\
+    auto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return make_pair(q,\
+    \ x - q * y);\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\u308B.\ntemplate<typename\
+    \ T, typename U>\nauto round(T x, U y){\n    auto [q, r] = divmod(x, y);\n   \
+    \ if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;\n    return (r >= div_ceil(y,\
+    \ 2)) ? q + 1 : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\
+    \n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll\
+    \ a = 1;\n    while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n  \
+    \      y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
+    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y,\
+    \ ll z){\n    ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n\
+    \        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E\
+    \ y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
+    .\ntemplate<typename T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n\
+    \    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %=\
+    \ z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\ntemplate<typename T>\nT sum(const\
+    \ vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return\
+    \ y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\
+    \u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B\
+    .\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s =\
+    \ 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n        tie(q, a, b)\
+    \ = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t,\
+    \ s - q * t);\n        tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return\
+    \ make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0\
+    \ \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n\
+    \    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x\
+    \ + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\n    return x;\n}\n\n\
+    // floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0\
+    \ \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return isqrt(N); }\n\n//\
+    \ ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\
+    \u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x = isqrt(N);\n    return\
+    \ x * x == N ? x : x + 1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -898,6 +902,7 @@ data:
   - Modulo/Modulo.hpp
   - Modulo/Sqrt.hpp
   - Modulo/Order.hpp
+  - Modulo/Garner.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Composite.hpp
   - Linear_Algebra/Rank.hpp
@@ -1018,7 +1023,9 @@ data:
   - Integer/Prime.hpp
   - Integer/Divisors.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
-  timestamp: '2026-02-23 18:31:15+09:00'
+  - Summation/Summation.hpp
+  - Summation/Counting.hpp
+  timestamp: '2026-02-28 23:52:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/1780.test.cpp
