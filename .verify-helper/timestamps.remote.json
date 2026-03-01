@@ -89,6 +89,7 @@
 "verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp": "2026-02-28 23:52:49 +0900",
 "verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp": "2026-02-28 23:52:49 +0900",
 "verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp": "2026-02-28 23:52:49 +0900",
+"verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp": "2026-03-01 19:39:33 +0900",
 "verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp": "2026-02-28 23:52:49 +0900",
 "verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp": "2026-02-28 23:52:49 +0900",
 "verify/yosupo_library_checker/other/two_sat.test.cpp": "2026-02-28 23:52:49 +0900",
