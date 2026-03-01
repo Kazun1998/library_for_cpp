@@ -41,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo/Sqrt.hpp
     title: "\u5E73\u65B9\u6839 mod"
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Tower.hpp
+    title: "\u6307\u6570\u30BF\u30EF\u30FC"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
@@ -349,6 +355,7 @@ data:
   - Modulo/Solve.hpp
   - Modulo/Sqrt.hpp
   - Modulo/Order.hpp
+  - Modulo/Tower.hpp
   - Modulo/Garner.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Composite.hpp
@@ -357,6 +364,7 @@ data:
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yukicoder/2558.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
 documentation_of: Modulo/Modulo.hpp

@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Integer/Euler_Totient.hpp
+    title: "Euler's Totient \u95A2\u6570"
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Modulo.hpp
+    title: Modulo/Modulo.hpp
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Tower.hpp
+    title: "\u6307\u6570\u30BF\u30EF\u30FC"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -25,31 +34,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Order.hpp
-    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Tower.hpp
-    title: "\u6307\u6570\u30BF\u30EF\u30FC"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/ntl/1D.test.cpp
-    title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/Modulo_Order.test.cpp
-    title: verify/yukicoder/Modulo_Order.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/tetration_mod
+    links:
+    - https://judge.yosupo.jp/problem/tetration_mod
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n\n#line 2\
+    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -195,52 +193,149 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Integer/Prime.hpp\"\
-    \n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long\
-    \ long prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
-    \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
-    \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
-    \   else if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n   \
-    \ }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if\
-    \ (n <= 3) { return n >= 2; }\n    else if (n == 5) { return true; }\n    else\
-    \ if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
-    \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
-    \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
-    \n  pair<long long, long long> exponents(long long n, long long p) {\n    long\
-    \ long e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n \
-    \ }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>>\
-    \ prime_factorization (long long n) {\n    if (n == 0) { return { make_pair(0,\
-    \ 0) }; } \n\n    vector<pair<long long, long long>> factors;\n    if (n < 0)\
-    \ {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n    }\n\
-    \n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
-    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
-    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
-    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
-    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
-    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
-    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
-    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
-    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
-    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
-    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
-    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
-    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
-    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
-    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
-    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
-    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
-    \ primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\n\nlong long Euler_Totient(long\
-    \ long N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n  \
-    \  long long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N))\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Modulo/Tower.hpp\"\n\
+    \n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\n\nnamespace\
+    \ modulo {\n    class DifferentModulus : public exception {\n        public: //\
+    \ public\u306B\u6307\u5B9A\n        const char* what() const noexcept override\
+    \ { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\
+    \u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n\
+    \        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
+    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
+    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
+    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
+    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
+    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
+    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
+    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
+    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
+    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
+    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
+    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
+    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
+    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
+    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
+    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
+    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
+    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
+    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
+    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
+    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
+    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
+    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
+    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
+    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
+    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
+    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
+    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
+    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
+    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
+    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
+    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
+    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
+    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
+    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
+    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
+    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
+    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
+    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
+    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
+    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
+    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
+    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
+    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
+    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
+    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
+    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
+    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
+    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
+    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
+    \ 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4\
+    \ \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n\
+    \    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long long\
+    \ get() {\n      if (step) {\n        prime += step;\n        step = 6 - step;\n\
+    \      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime == 2)\
+    \ { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n    \
+    \  return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
+    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
+    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
+    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
+    \    }\n\n    return true;\n  }\n\n  pair<long long, long long> exponents(long\
+    \ long n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++,\
+    \ n /= p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n\
+    \  vector<pair<long long, long long>> prime_factorization (long long n) {\n  \
+    \  if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long long,\
+    \ long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
+    \ 1));\n      n = abs(n);\n    }\n\n    Pseudo_Prime_Generator generator;\n  \
+    \  for (long long p =generator.get(); p * p <= n; p = generator.get()) {\n   \
+    \   long long e;\n      tie(e, n) = exponents(n, p); \n      if (e) { factors.emplace_back(make_pair(p,\
+    \ e)); }\n    }\n\n    if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n\
+    \  \n    return factors;\n  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\
+    \u30B9\u30C8\u3092\u4F5C\u6210\u3059\u308B.\n  vector<long long> prime_list(long\
+    \ long n) {\n    if (n == 0 || n == 1) { return {}; }\n    else if (n == 2) {\
+    \ return {2}; }\n\n    if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) /\
+    \ 2;\n\n    // prime_flag[k] := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool>\
+    \ prime_flag(m, true);\n    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E\
+    \ 3 \u306E\u500D\u6570\u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x\
+    \ += 3) { prime_flag[x] = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n\
+    \    for (auto p = generator.get(); p * p <= n; p = generator.get()) {\n     \
+    \ if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue;\
+    \ }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false;\
+    \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
+    \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
+    \    }\n\n    return primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\n\n\
+    long long Euler_Totient(long long N, bool mode = true) {\n    if (N == 1) { return\
+    \ mode ? 1 : 0; }\n\n    long long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N))\
     \ {\n        phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p;\
-    \ }\n    }\n\n    return phi;\n}\n"
-  code: "#pragma once\n\n#include\"Prime.hpp\"\n\nlong long Euler_Totient(long long\
-    \ N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n    long\
-    \ long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N)) {\n  \
-    \      phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p; }\n\
-    \    }\n\n    return phi;\n}\n"
+    \ }\n    }\n\n    return phi;\n}\n#line 6 \"Modulo/Tower.hpp\"\n\nnamespace modulo\
+    \ {\n    Modulo Power_Tower(vector<ll> tower, ll m) {\n        auto helper_mod\
+    \ = [](const ll a, const ll m) -> ll { return a < 2 * m ? a : safe_mod(a, m) +\
+    \ m; };\n        auto helper_mul = [&helper_mod](const ll a, const ll b, const\
+    \ ll m) -> ll { return helper_mod(a * b, m); };\n        auto helper_power = [&helper_mul](ll\
+    \ a, ll k, const ll m) -> ll {\n            ll res = 1;\n            while (k)\
+    \ {\n                if (k & 1) { res = helper_mul(res, a, m); }\n\n         \
+    \       a = helper_mul(a, a, m);\n                k >>= 1;\n            }\n\n\
+    \            return res;\n        };\n\n        // \u518D\u5E30\u30E9\u30E0\u30C0\
+    \ (C++23 \u306E\u578B\u63A8\u8AD6\u3092\u5229\u7528)\n        auto solve = [&](auto\
+    \ self, size_t idx, ll current_m) -> ll {\n            // \u57FA\u5E95\u6761\u4EF6\
+    1: \u6CD5\u304C1\u306B\u306A\u308C\u3070\u3001\u62E1\u5F35\u30AA\u30A4\u30E9\u30FC\
+    \u306E\u6027\u8CEA\u4E0A\u3001\u4EE5\u964D\u306E\u5024\u306F\u5E38\u306B\u300C\
+    mod 1 + 1 = 1\u300D\u6271\u3044\n            if (current_m == 1) return 1;\n \
+    \           \n            // \u57FA\u5E95\u6761\u4EF62: \u30BF\u30EF\u30FC\u306E\
+    \u6700\u4E0A\u6BB5\u306B\u5230\u9054\n            if (idx == tower.size() - 1)\
+    \ return helper_mod(tower[idx], current_m);\n\n            // \u518D\u5E30\u30B9\
+    \u30C6\u30C3\u30D7:\n            // \u4E00\u3064\u4E0A\u306E\u968E\u5C64\uFF08\
+    \u6307\u6570\u90E8\u5206\uFF09\u3092\u3001phi(current_m) \u3092\u6CD5\u3068\u3057\
+    \u3066\u8A08\u7B97\n            ll phi = Euler_Totient(current_m);\n         \
+    \   ll exponent = self(self, idx + 1, phi);\n            \n            // \u73FE\
+    \u5728\u306E\u5E95\u3092\u8A08\u7B97\u3057\u305F\u6307\u6570\u3067\u7D2F\u4E57\
+    \u3059\u308B\n            return helper_power(tower[idx], exponent, current_m);\n\
+    \        };\n\n        if (tower.empty()) return Modulo(0, m); // \u30AC\u30FC\
+    \u30C9\u53E5\n        \n        // \u6700\u7D42\u7684\u306A\u7D50\u679C\u306F\u901A\
+    \u5E38\u306E mod m \u3067\u8FD4\u3059\n        return Modulo(solve(solve, 0, m),\
+    \ m);\n    }\n\n    Modulo Tetoration(ll a, ll k, ll m) {\n        // \u7279\u5225\
+    \u30B1\u30FC\u30B9\n        if (k == 0) return Modulo(1, m);\n        if (a ==\
+    \ 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
+    \ ceil_log2(m) + 1);\n        return Power_Tower(vector<ll>(k, a), m);\n    }\n\
+    }\n#line 5 \"verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp\"\
+    \n\nusing namespace modulo;\n\nint main() {\n    int T; cin >> T;\n    for (int\
+    \ t = 0; t < T; ++t) {\n        ll a, b, m; cin >> a >> b >> m;\n        cout\
+    \ << Tetoration(a, b, m).a << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n\n#include\"\
+    ../../../template/template.hpp\"\n#include\"../../../Modulo/Tower.hpp\"\n\nusing\
+    \ namespace modulo;\n\nint main() {\n    int T; cin >> T;\n    for (int t = 0;\
+    \ t < T; ++t) {\n        ll a, b, m; cin >> a >> b >> m;\n        cout << Tetoration(a,\
+    \ b, m).a << endl;\n    }\n}\n"
   dependsOn:
-  - Integer/Prime.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -248,69 +343,20 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Integer/Euler_Totient.hpp
-  requiredBy:
-  - Modulo/Order.hpp
   - Modulo/Tower.hpp
-  timestamp: '2026-02-28 23:52:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
-documentation_of: Integer/Euler_Totient.hpp
+  - Modulo/Modulo.hpp
+  - Integer/Euler_Totient.hpp
+  - Integer/Prime.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  requiredBy: []
+  timestamp: '2026-03-01 19:39:33+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
 layout: document
-title: "Euler's Totient \u95A2\u6570"
+redirect_from:
+- /verify/verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
 ---
-
-## Outline
-
-正の整数 $N$ に対して, Euler の Totient 関数 $\varphi$ の $N$ における値 $\varphi(N)$ を求める.
-
-## Theory
-
-正の整数 $N$ に対して, $N$ と互いに素な $1$ 以上 $N$ 以下の整数の個数 $\varphi(N)$ を与える関数を Euler の Totient 関数という.
-
-Euler の Totient 関数 に対して, 以下の性質が成り立つ.
-
-* 素数 $p$ と非負整数 $k$ に対して, $\varphi(p^k) = p^k - p^{k-1} = p^{k-1} (p-1)$.
-* 互いに素な正の整数 $m, n$ に対して, $\varphi(mn) = \varphi(m) \varphi(n)$.
-
-$N$ の素因数分解を
-
-$$ N = p_1^{e_1} \cdot p_2^{e_2} \cdot \dots p_r^{e_r} $$
-
-とする ($p_1, \dots, p_r$ は素数, $e_1, \dots, e_r$ は正の整数).
-
-すると,
-
-$$\begin{align*}
-    \varphi(N)
-    &= \prod_{i=1}^r p_i^{e_i - 1} (p_i - 1) \\
-    &= N \prod_{i=1}^r \dfrac{p_i - 1}{p_i}
-\end{align*}$$
-
-となる.
-
-$N$ の素因数分解は試し割りを用いると, $O(\sqrt{N})$ 時間, 高速な方法で $O(N^{1/4})$ 時間で求められるので, $\varphi(N)$ もこれらと同程度の時間で求められる.
-
-## $\varphi$ の性質
-
-$\varphi$ について, 以下が成り立つ.
-
-* $N \geq 2$ に対して, $\mathbb{Z}/N \mathbb{Z}$ における可逆元の個数は $\varphi(N)$ 個である.
-* $d$ を $N$ の約数とする. $\gcd(N,x) = \frac{N}{d}$ となる $N$ 未満の非負整数の数は $\varphi(d)$ 個である. このことから, $\displaystyle \sum_{d \mid N} \varphi(d) = N$ が成り立つ.
-
-## Contents
-
-```cpp
-long long Euler_Totient(long long N, bool mode = true)
-```
-
-* 正の整数 $N$ に対して, $\varphi(N)$ を求める.
-* **引数**
-  * `mode`: `false` にした場合, 求めるものが 「$N$ と互いに素な $1$ 以上 $N$ **未満**の整数の個数」になる.
-    * $N \geq 2$ の場合は $\varphi(N)$ と等しくなる.
-    * $N = 1$ の場合の返り値が $1$ から $0$ になる.
-* **計算量** : $O\left(\sqrt{N} \right)$ 時間.

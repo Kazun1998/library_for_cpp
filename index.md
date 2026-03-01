@@ -388,6 +388,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo/Sqrt.hpp
       title: "\u5E73\u65B9\u6839 mod"
+    - icon: ':heavy_check_mark:'
+      path: Modulo/Tower.hpp
+      title: "\u6307\u6570\u30BF\u30EF\u30FC"
   - name: Modulo_Polynomial
     pages:
     - icon: ':heavy_check_mark:'
@@ -866,6 +869,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
       title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - name: verify/yosupo_library_checker/other
     pages:
     - icon: ':heavy_check_mark:'

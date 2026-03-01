@@ -314,6 +314,9 @@ data:
     path: Modulo/Sqrt.hpp
     title: "\u5E73\u65B9\u6839 mod"
   - icon: ':heavy_check_mark:'
+    path: Modulo/Tower.hpp
+    title: "\u6307\u6570\u30BF\u30EF\u30FC"
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
   - icon: ':heavy_check_mark:'
@@ -704,6 +707,9 @@ data:
     path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
     title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -818,6 +824,7 @@ data:
   - Modulo/Modulo.hpp
   - Modulo/Sqrt.hpp
   - Modulo/Order.hpp
+  - Modulo/Tower.hpp
   - Modulo/Garner.hpp
   - Modulo/Discrete_Log.hpp
   - Modulo/Composite.hpp
@@ -979,6 +986,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp

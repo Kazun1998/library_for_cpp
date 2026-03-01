@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
+  - icon: ':heavy_check_mark:'
+    path: Modulo/Tower.hpp
+    title: "\u6307\u6570\u30BF\u30EF\u30FC"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
@@ -285,6 +291,7 @@ data:
   path: Integer/Prime.hpp
   requiredBy:
   - Modulo/Order.hpp
+  - Modulo/Tower.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Prime_Pi.hpp
   - Integer/Euler_Totient.hpp
@@ -294,6 +301,7 @@ data:
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Prime.hpp
