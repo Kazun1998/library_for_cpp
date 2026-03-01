@@ -133,7 +133,7 @@ namespace counting {
      */
     template<typename T>
     T count_sum_eq(T p, T q, T r, T s, T k) {
-        return count_between_lines(1, -s, 1, -r, p, q);
+        return count_sum_range(p, q, r, s, k, k);
     }
 
     /**
