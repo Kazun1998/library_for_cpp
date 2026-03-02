@@ -13,45 +13,45 @@ T mul(const T &x, const T &y) { return x * y; }
 template<typename T>
 T neg(const T &x) { return -x; }
 
-template<typename T>
+template<integral T>
 T bitwise_and(const T &x, const T &y) { return x & y; }
 
-template<typename T>
+template<integral T>
 T bitwise_or(const T &x, const T &y) { return x | y; }
 
-template<typename T>
+template<integral T>
 T bitwise_xor(const T &x, const T &y) { return x ^ y; }
 
 // 除算に関する関数
 
 // floor(x / y) を求める.
-template<typename T, typename U>
+template<std::integral T, std::integral U>
 auto div_floor(T x, U y){
     return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));
 }
 
 // ceil(x / y) を求める.
-template<typename T, typename U>
+template<integral T, integral U>
 auto div_ceil(T x, U y){
     return x / y + ((x % y != 0) && ((x < 0) == (y < 0)));
 }
 
 // x を y で割った余りを求める.
-template<typename T, typename U>
+template<integral T, integral U>
 auto safe_mod(T x, U y){
     auto q = div_floor(x, y);
     return x - q * y ;
 }
 
 // x を y で割った商と余りを求める.
-template<typename T, typename U>
+template<integral T, integral U>
 auto divmod(T x, U y){
     auto q = div_floor(x, y);
     return make_pair(q, x - q * y);
 }
 
 // 四捨五入を求める.
-template<typename T, typename U>
+template<integral T, integral U>
 auto round(T x, U y){
     auto [q, r] = divmod(x, y);
     if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;
@@ -59,15 +59,15 @@ auto round(T x, U y){
 }
 
 // 奇数かどうか判定する.
-template<typename T>
+template<integral T>
 bool is_odd(const T &x) { return x % 2 != 0; }
 
 // 偶数かどうか判定する.
-template<typename T>
+template<integral T>
 bool is_even(const T &x) { return x % 2 == 0; }
 
 // m の倍数かどうか判定する.
-template<typename T, typename U>
+template<integral T, integral U>
 bool is_multiple(const T &x, const U &m) { return x % m == 0; }
 
 // 正かどうか判定する.
@@ -104,18 +104,7 @@ ll intpow(ll x, ll y){
 }
 
 // x の y 乗を z で割った余りを求める.
-ll modpow(ll x, ll y, ll z){
-    ll a = 1;
-    while (y){
-        if (y & 1) { (a *= x) %= z; }
-        (x *= x) %= z;
-        y >>= 1;
-    }
-    return a;
-}
-
-// x の y 乗を z で割った余りを求める.
-template<typename T, typename U>
+template<typename T, integral U>
 T modpow(T x, U y, T z) {
     T a = 1;
     while (y) {
@@ -140,8 +129,9 @@ template<integral T>
 tuple<T, T, T> Extended_Euclid(T a, T b) {
     T s = 1, t = 0, u = 0, v = 1;
     while (b) {
-        T q;
-        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a, b));
+        auto [q, r] = divmod(a, b);
+        a = b;
+        b = r;
         tie(s, t) = make_pair(t, s - q * t);
         tie(u, v) = make_pair(v, u - q * v);
     }
@@ -153,7 +143,7 @@ tuple<T, T, T> Extended_Euclid(T a, T b) {
 ll isqrt(const ll &N) { 
     if (N <= 0) { return 0; }
 
-    ll x = sqrt(N);
+    ll x = sqrtl(N);
     while ((x + 1) * (x + 1) <= N) { x++; }
     while (x * x > N) { x--; }
 
