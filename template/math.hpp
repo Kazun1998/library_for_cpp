@@ -25,7 +25,7 @@ T bitwise_xor(const T &x, const T &y) { return x ^ y; }
 // 除算に関する関数
 
 // floor(x / y) を求める.
-template<std::integral T, std::integral U>
+template<integral T, integral U>
 auto div_floor(T x, U y){
     return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));
 }
