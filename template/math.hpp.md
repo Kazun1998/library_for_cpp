@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Extended_Algebra.hpp
     title: Algebra/Extended_Algebra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Gaussian_Integer.hpp
     title: Algebra/Gaussian_Integer.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Nimber.hpp
     title: Nimber
   - icon: ':heavy_check_mark:'
     path: Algebra/Permutaion.hpp
     title: "\u7F6E\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Semiring_Matrix.hpp
     title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -223,22 +223,22 @@ data:
   - icon: ':warning:'
     path: Integer/Digit.hpp
     title: "\u6574\u6570\u306E\u6841"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: Integer/Miller_Rabin_Primality_Test.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Quotients.hpp
     title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':warning:'
@@ -250,19 +250,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Knapsack/Knapsack_01.hpp
     title: "0-1 Knapsack \u554F\u984C"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Bezout.hpp
     title: "Bezout \u306E\u7B49\u5F0F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
   - icon: ':heavy_check_mark:'
@@ -271,19 +271,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/Montmort_Number.hpp
     title: "Montmort \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Stern_Brocot_Tree.hpp
     title: "Stern Brocot \u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Two_SAT.hpp
     title: Math/Two_SAT.hpp
   - icon: ':warning:'
     path: Math/XOR_Vector_Space.hpp
     title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Max_Flow/Max_Flow.hpp
     title: "\u6700\u5927\u6D41"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
   - icon: ':warning:'
@@ -292,65 +292,65 @@ data:
   - icon: ':heavy_check_mark:'
     path: Min_Cost_Flow/Min_Cost_Flow.hpp
     title: Min_Cost_Flow/Min_Cost_Flow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':warning:'
     path: Modulo/Garner.hpp
     title: Modulo/Garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':warning:'
     path: Modulo/Solve.hpp
     title: Modulo/Solve.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Sqrt.hpp
     title: "\u5E73\u65B9\u6839 mod"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Tower.hpp
     title: "\u6307\u6570\u30BF\u30EF\u30FC"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Calculus.hpp
     title: "\u5FAE\u7A4D\u5206"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Exp.hpp
     title: Modulo_Polynomial/Exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Huge_Factorial.hpp
     title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Log.hpp
     title: Log
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
       \u5F0F\u74B0"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Multipoint_Evaluation.hpp
     title: "\u591A\u70B9\u8A55\u4FA1"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
   - icon: ':heavy_check_mark:'
@@ -359,7 +359,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Partition_Q.hpp
     title: "\u5206\u5272\u6570 (Q)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo_Polynomial/Power.hpp
     title: Modulo_Polynomial/Power.hpp
   - icon: ':heavy_check_mark:'
@@ -371,7 +371,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Subset_Sum.hpp
     title: "Subset Sum (\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
   - icon: ':heavy_check_mark:'
@@ -392,14 +392,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/preset/Range_Add_Range_Sum.hpp
     title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Sequence/Cartesian_Tree.hpp
     title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
       \u308B"
   - icon: ':warning:'
     path: Sequence/Hamming_Distance.hpp
     title: "Hamming \u8DDD\u96E2"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Sequence/Longest_Increasing_Subsequence.hpp
     title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
   - icon: ':warning:'
@@ -408,7 +408,7 @@ data:
   - icon: ':warning:'
     path: Sequence/Trie.hpp
     title: "Trie \u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Sequence/Z_Algorithm.hpp
     title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
   - icon: ':warning:'
@@ -418,19 +418,19 @@ data:
   - icon: ':warning:'
     path: Summation/Summation.hpp
     title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   - icon: ':warning:'
@@ -441,7 +441,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -664,225 +664,246 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
     title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
     title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
     title: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
     title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
     title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
     title: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/other/two_sat.test.cpp
     title: verify/yosupo_library_checker/other/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
     title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Division.test.cpp
     title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
     title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
     title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Log.test.cpp
     title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
     title: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Power.test.cpp
     title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
     title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
     title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
     title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1780.test.cpp
     title: verify/yukicoder/1780.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1984.test.cpp
     title: verify/yukicoder/1984.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/math.hpp\"\n\n// \u6F14\u7B97\u5B50\ntemplate<typename\
     \ T>\nT add(const T &x, const T &y) { return x + y; }\n\ntemplate<typename T>\n\
     T sub(const T &x, const T &y) { return x - y; }\n\ntemplate<typename T>\nT mul(const\
     \ T &x, const T &y) { return x * y; }\n\ntemplate<typename T>\nT neg(const T &x)\
-    \ { return -x; }\n\ntemplate<typename T>\nT bitwise_and(const T &x, const T &y)\
-    \ { return x & y; }\n\ntemplate<typename T>\nT bitwise_or(const T &x, const T\
-    \ &y) { return x | y; }\n\ntemplate<typename T>\nT bitwise_xor(const T &x, const\
+    \ { return -x; }\n\ntemplate<integral T>\nT bitwise_and(const T &x, const T &y)\
+    \ { return x & y; }\n\ntemplate<integral T>\nT bitwise_or(const T &x, const T\
+    \ &y) { return x | y; }\n\ntemplate<integral T>\nT bitwise_xor(const T &x, const\
     \ T &y) { return x ^ y; }\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\
-    \n\n// floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\n\
+    \n\n// floor(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<integral T, integral U>\n\
     auto div_floor(T x, U y){\n    return x / y - ((x % y != 0) && ((x < 0) != (y\
-    \ < 0)));\n}\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
-    \ typename U>\nauto div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x\
+    \ < 0)));\n}\n\n// ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<integral T,\
+    \ integral U>\nauto div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x\
     \ < 0) == (y < 0)));\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
-    \u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto safe_mod(T x, U y){\n\
+    \u6C42\u3081\u308B.\ntemplate<integral T, integral U>\nauto safe_mod(T x, U y){\n\
     \    auto q = div_floor(x, y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\
-    \u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\nauto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return\
+    \u5272\u3063\u305F\u5546\u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<integral\
+    \ T, integral U>\nauto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return\
     \ make_pair(q, x - q * y);\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\
-    \u308B.\ntemplate<typename T, typename U>\nauto round(T x, U y){\n    auto [q,\
+    \u308B.\ntemplate<integral T, integral U>\nauto round(T x, U y){\n    auto [q,\
     \ r] = divmod(x, y);\n    if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;\n\
-    \    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n}\n\n// \u6307\u6570\u306B\u95A2\
-    \u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll\
-    \ intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n        if (y & 1) { a *=\
-    \ x; }\n        x *= x;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E\
-    \ y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
-    .\nll modpow(ll x, ll y, ll z){\n    ll a = 1;\n    while (y){\n        if (y\
-    \ & 1) { (a *= x) %= z; }\n        (x *= x) %= z;\n        y >>= 1;\n    }\n \
-    \   return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\
-    \u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nT modpow(T\
-    \ x, U y, T z) {\n    T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x)\
-    \ %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n\
-    }\n\ntemplate<typename T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for\
-    \ (auto &&x: X) { y += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\
-    \u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x,\
-    \ y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T>\
-    \ Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b)\
-    \ {\n        T q;\n        tie(q, a, b) = make_tuple(div_floor(a, b), b, safe_mod(a,\
-    \ b));\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v,\
-    \ u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
-    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
-    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n\
-    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
-    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
-    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
-    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
-    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
-    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
-  code: "#pragma once\n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const\
-    \ T &x, const T &y) { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x,\
-    \ const T &y) { return x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const\
-    \ T &y) { return x * y; }\n\ntemplate<typename T>\nT neg(const T &x) { return\
-    \ -x; }\n\ntemplate<typename T>\nT bitwise_and(const T &x, const T &y) { return\
-    \ x & y; }\n\ntemplate<typename T>\nT bitwise_or(const T &x, const T &y) { return\
-    \ x | y; }\n\ntemplate<typename T>\nT bitwise_xor(const T &x, const T &y) { return\
-    \ x ^ y; }\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x\
-    \ / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto div_floor(T\
-    \ x, U y){\n    return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));\n}\n\n\
-    // ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\nauto\
-    \ div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x < 0) == (y < 0)));\n\
-    }\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
-    .\ntemplate<typename T, typename U>\nauto safe_mod(T x, U y){\n    auto q = div_floor(x,\
-    \ y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u5546\
-    \u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T, typename U>\n\
-    auto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return make_pair(q,\
-    \ x - q * y);\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\u308B.\ntemplate<typename\
-    \ T, typename U>\nauto round(T x, U y){\n    auto [q, r] = divmod(x, y);\n   \
-    \ if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;\n    return (r >= div_ceil(y,\
-    \ 2)) ? q + 1 : q;\n}\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\
-    \n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll\
-    \ a = 1;\n    while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n  \
-    \      y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
-    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\nll modpow(ll x, ll y,\
-    \ ll z){\n    ll a = 1;\n    while (y){\n        if (y & 1) { (a *= x) %= z; }\n\
-    \        (x *= x) %= z;\n        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E\
-    \ y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
-    .\ntemplate<typename T, typename U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n\
-    \    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %=\
-    \ z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\ntemplate<typename T>\nT sum(const\
-    \ vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return\
-    \ y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\
-    \u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B\
-    .\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s =\
-    \ 1, t = 0, u = 0, v = 1;\n    while (b) {\n        T q;\n        tie(q, a, b)\
-    \ = make_tuple(div_floor(a, b), b, safe_mod(a, b));\n        tie(s, t) = make_pair(t,\
+    \    return (r >= div_ceil(y, 2)) ? q + 1 : q;\n}\n\n// \u5947\u6570\u304B\u3069\
+    \u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<integral T>\nbool is_odd(const\
+    \ T &x) { return x % 2 != 0; }\n\n// \u5076\u6570\u304B\u3069\u3046\u304B\u5224\
+    \u5B9A\u3059\u308B.\ntemplate<integral T>\nbool is_even(const T &x) { return x\
+    \ % 2 == 0; }\n\n// m \u306E\u500D\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\
+    \u308B.\ntemplate<integral T, integral U>\nbool is_multiple(const T &x, const\
+    \ U &m) { return x % m == 0; }\n\n// \u6B63\u304B\u3069\u3046\u304B\u5224\u5B9A\
+    \u3059\u308B.\ntemplate<typename T>\nbool is_positive(const T &x) { return x >\
+    \ 0; }\n\n// \u8CA0\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<typename\
+    \ T>\nbool is_negative(const T &x) { return x < 0; }\n\n// \u30BC\u30ED\u304B\u3069\
+    \u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<typename T>\nbool is_zero(const\
+    \ T &x) { return x == 0; }\n\n// \u975E\u8CA0\u304B\u3069\u3046\u304B\u5224\u5B9A\
+    \u3059\u308B.\ntemplate<typename T>\nbool is_non_negative(const T &x) { return\
+    \ x >= 0; }\n\n// \u975E\u6B63\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\
+    .\ntemplate<typename T>\nbool is_non_positive(const T &x) { return x <= 0; }\n\
+    \n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// x \u306E y \u4E57\u3092\
+    \u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n    ll a = 1;\n    while (y){\n \
+    \       if (y & 1) { a *= x; }\n        x *= x;\n        y >>= 1;\n    }\n   \
+    \ return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\
+    \u3092\u6C42\u3081\u308B.\ntemplate<typename T, integral U>\nT modpow(T x, U y,\
+    \ T z) {\n    T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\
+    \n        (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\ntemplate<typename\
+    \ T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y\
+    \ += x; }\n    return y;\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\
+    \u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\
+    \u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a,\
+    \ T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while (b) {\n        auto [q,\
+    \ r] = divmod(a, b);\n        a = b;\n        b = r;\n        tie(s, t) = make_pair(t,\
     \ s - q * t);\n        tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return\
     \ make_tuple(s, u, a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0\
     \ \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n\
-    \    if (N <= 0) { return 0; }\n\n    ll x = sqrt(N);\n    while ((x + 1) * (x\
+    \    if (N <= 0) { return 0; }\n\n    ll x = sqrtl(N);\n    while ((x + 1) * (x\
     \ + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\n    return x;\n}\n\n\
     // floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0\
     \ \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return isqrt(N); }\n\n//\
     \ ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\
     \u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x = isqrt(N);\n    return\
     \ x * x == N ? x : x + 1;\n}\n"
+  code: "#pragma once\n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const\
+    \ T &x, const T &y) { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x,\
+    \ const T &y) { return x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const\
+    \ T &y) { return x * y; }\n\ntemplate<typename T>\nT neg(const T &x) { return\
+    \ -x; }\n\ntemplate<integral T>\nT bitwise_and(const T &x, const T &y) { return\
+    \ x & y; }\n\ntemplate<integral T>\nT bitwise_or(const T &x, const T &y) { return\
+    \ x | y; }\n\ntemplate<integral T>\nT bitwise_xor(const T &x, const T &y) { return\
+    \ x ^ y; }\n\n// \u9664\u7B97\u306B\u95A2\u3059\u308B\u95A2\u6570\n\n// floor(x\
+    \ / y) \u3092\u6C42\u3081\u308B.\ntemplate<integral T, integral U>\nauto div_floor(T\
+    \ x, U y){\n    return x / y - ((x % y != 0) && ((x < 0) != (y < 0)));\n}\n\n\
+    // ceil(x / y) \u3092\u6C42\u3081\u308B.\ntemplate<integral T, integral U>\nauto\
+    \ div_ceil(T x, U y){\n    return x / y + ((x % y != 0) && ((x < 0) == (y < 0)));\n\
+    }\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B\
+    .\ntemplate<integral T, integral U>\nauto safe_mod(T x, U y){\n    auto q = div_floor(x,\
+    \ y);\n    return x - q * y ;\n}\n\n// x \u3092 y \u3067\u5272\u3063\u305F\u5546\
+    \u3068\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<integral T, integral U>\n\
+    auto divmod(T x, U y){\n    auto q = div_floor(x, y);\n    return make_pair(q,\
+    \ x - q * y);\n}\n\n// \u56DB\u6368\u4E94\u5165\u3092\u6C42\u3081\u308B.\ntemplate<integral\
+    \ T, integral U>\nauto round(T x, U y){\n    auto [q, r] = divmod(x, y);\n   \
+    \ if (y < 0) return (r <= div_floor(y, 2)) ? q + 1 : q;\n    return (r >= div_ceil(y,\
+    \ 2)) ? q + 1 : q;\n}\n\n// \u5947\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\
+    \u308B.\ntemplate<integral T>\nbool is_odd(const T &x) { return x % 2 != 0; }\n\
+    \n// \u5076\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<integral\
+    \ T>\nbool is_even(const T &x) { return x % 2 == 0; }\n\n// m \u306E\u500D\u6570\
+    \u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<integral T, integral\
+    \ U>\nbool is_multiple(const T &x, const U &m) { return x % m == 0; }\n\n// \u6B63\
+    \u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<typename T>\nbool\
+    \ is_positive(const T &x) { return x > 0; }\n\n// \u8CA0\u304B\u3069\u3046\u304B\
+    \u5224\u5B9A\u3059\u308B.\ntemplate<typename T>\nbool is_negative(const T &x)\
+    \ { return x < 0; }\n\n// \u30BC\u30ED\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\
+    \u308B.\ntemplate<typename T>\nbool is_zero(const T &x) { return x == 0; }\n\n\
+    // \u975E\u8CA0\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<typename\
+    \ T>\nbool is_non_negative(const T &x) { return x >= 0; }\n\n// \u975E\u6B63\u304B\
+    \u3069\u3046\u304B\u5224\u5B9A\u3059\u308B.\ntemplate<typename T>\nbool is_non_positive(const\
+    \ T &x) { return x <= 0; }\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\
+    \n\n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n  \
+    \  ll a = 1;\n    while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n\
+    \        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
+    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
+    \ integral U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n    \
+    \    if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n\
+    \    }\n\n    return a;\n}\n\ntemplate<typename T>\nT sum(const vector<T> &X)\
+    \ {\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n\
+    // a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a,\
+    \ b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral\
+    \ T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v\
+    \ = 1;\n    while (b) {\n        auto [q, r] = divmod(a, b);\n        a = b;\n\
+    \        b = r;\n        tie(s, t) = make_pair(t, s - q * t);\n        tie(u,\
+    \ v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\
+    \n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F,\
+    \ 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0;\
+    \ }\n\n    ll x = sqrtl(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n   \
+    \ while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\
+    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const\
+    \ ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N\
+    \ < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll\
+    \ &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/math.hpp
@@ -1032,8 +1053,8 @@ data:
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Summation/Summation.hpp
   - Summation/Counting.hpp
-  timestamp: '2026-02-28 23:52:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-03-03 00:14:19+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1780.test.cpp
   - verify/yukicoder/1358.test.cpp
