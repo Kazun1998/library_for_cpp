@@ -21,4 +21,14 @@ struct Odd_Montgomery_Multiplication {
         u128 r = -mod % mod;
         r2 = (r * r) % mod;
     }
+
+    /// @brief モンゴメリリダクション. T * R^{-1} mod N を計算する.
+    /// @param T 0 <= T < N * R
+    /// @return T * R^{-1} mod N
+    u64 reduce(u128 T) const {
+        u64 m = u64(T) * neg_inv;
+        u64 t = (T + (u128)m * mod) >> 64;
+        if (t >= mod) { t -= mod; }
+        return t;
+    }
 };
