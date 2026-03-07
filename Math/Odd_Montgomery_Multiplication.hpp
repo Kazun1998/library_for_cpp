@@ -31,4 +31,9 @@ struct Odd_Montgomery_Multiplication {
         if (t >= mod) { t -= mod; }
         return t;
     }
+
+    /// @brief 通常の整数 a をモンゴメリ表現 aR mod N に変換する.
+    /// @param a 0 <= a < N
+    /// @return aR mod N
+    u64 form(u64 a) const { return reduce((u128)a * r2); }
 };
