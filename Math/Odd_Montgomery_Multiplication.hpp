@@ -48,4 +48,19 @@ struct Odd_Montgomery_Multiplication {
     /// @param b 0 <= b < N
     /// @return a * b mod N
     u64 mod_mul(u64 a, u64 b) const { return reduce(multiply(form(a), form(b))); }
+
+    /// @brief a^b mod N を計算する.
+    /// @param a 基数
+    /// @param b 指数
+    /// @return a^b mod N
+    u64 modpow(u64 a, u64 b) const {
+        u64 res = form(1);
+        u64 mont_a = form(a);
+        while (b > 0) {
+            if (b & 1) res = multiply(res, mont_a);
+            mont_a = multiply(mont_a, mont_a);
+            b >>= 1;
+        }
+        return reduce(res);
+    }
 };
