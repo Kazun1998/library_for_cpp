@@ -36,4 +36,10 @@ struct Odd_Montgomery_Multiplication {
     /// @param a 0 <= a < N
     /// @return aR mod N
     u64 form(u64 a) const { return reduce((u128)a * r2); }
+
+    /// @brief モンゴメリ表現された数 a, b の積を計算する.
+    /// @param a モンゴメリ表現された数
+    /// @param b モンゴメリ表現された数
+    /// @return a * b のモンゴメリ表現
+    u64 multiply(u64 a, u64 b) const { return reduce((u128)a * b); }
 };
