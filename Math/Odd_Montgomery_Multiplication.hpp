@@ -13,4 +13,12 @@ struct Odd_Montgomery_Multiplication {
 
     /// @brief (2^64)^2 mod N
     u64 r2;
+
+    Odd_Montgomery_Multiplication(u64 mod) : mod(mod) {
+        u64 inv = mod;
+        for (int i = 0; i < 5; ++i) inv *= 2 - mod * inv;
+        neg_inv = -inv;
+        u128 r = -mod % mod;
+        r2 = (r * r) % mod;
+    }
 };
