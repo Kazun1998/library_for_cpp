@@ -8,7 +8,7 @@ using namespace std;
 
 int main(){
   int N, A, B; cin >> N >> A >> B;
-  auto primes = Prime::prime_list(N);
+  auto primes = prime::prime_list(N);
 
   int X = (primes.size() - B - 1) / A + 1;
   cout << primes.size() << " " << X << endl;

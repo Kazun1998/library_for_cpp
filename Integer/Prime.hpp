@@ -1,6 +1,8 @@
 #pragma once
 
-namespace Prime {
+#include"../template/template.hpp"
+
+namespace prime {
   class Pseudo_Prime_Generator {
     private:
     long long prime = 1, step = 0;

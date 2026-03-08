@@ -1,6 +1,6 @@
 #include"Modulo.hpp"
 
-namespace Modulo {
+namespace modulo {
     long long Discrete_Log (Modulo &X, Modulo &Y, long long not_exist = -1) {
         assert(X.n == Y.n);
 

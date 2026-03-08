@@ -8,10 +8,10 @@ T Floor_Linear_Sum(T a, T b, T m, T n) {
     T x, y;
     while (true) {
         total += (n - 1) * n / 2 *  div_floor(a, m);
-        a = mod(a, m);
+        a = safe_mod(a, m);
 
         total += n * div_floor(b, m);
-        b = mod(b, m);
+        b = safe_mod(b, m);
 
         y = div_floor(a * n + b, m);
         x = b - y * m;
@@ -19,7 +19,7 @@ T Floor_Linear_Sum(T a, T b, T m, T n) {
         if (y == 0) { return total; }
 
         total += (n + div_floor(x, a)) * y;
-        tie(a, b, m, n) = make_tuple(m, mod(x, a), a, y);
+        tie(a, b, m, n) = make_tuple(m, safe_mod(x, a), a, y);
     }
 }
 

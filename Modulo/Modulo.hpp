@@ -2,10 +2,10 @@
 
 #include"../template/template.hpp"
 
-namespace Modulo {
+namespace modulo {
     class DifferentModulus : public exception {
-      public: // publicに指定
-      const char* what() const noexcept override { return "異なる法同士の四則演算です"; }
+        public: // publicに指定
+        const char* what() const noexcept override { return "異なる法同士の四則演算です"; }
     };
 
     struct Modulo {
@@ -97,10 +97,9 @@ namespace Modulo {
         }
 
         // include?
-        bool is_member(ll x) { return mod(x - a, n) == 0; }
+        bool is_member(ll x) const { return safe_mod(x - a, n) == 0; }
 
-        bool is_zero() { return is_member(0); }
-        
+        bool is_zero() const { return is_member(0); }
 
         // 比較
         friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a; }
