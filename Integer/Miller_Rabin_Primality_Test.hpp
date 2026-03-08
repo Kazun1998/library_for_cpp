@@ -1,7 +1,8 @@
 #pragma once
 
-#include"../template/template.hpp"
-#include"Prime.hpp"
+#include "../template/template.hpp"
+#include "Prime.hpp"
+#include "Odd_Montgomery_Multiplication.hpp"
 
 // N が素数かどうかを判定する.
 bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {
@@ -14,17 +15,18 @@ bool Miller_Rabin_Primality_Test(ll N, int trial = 30) {
     random_device device;
     mt19937_64 gen(device());
     uniform_int_distribution<ll> distribute(2, N - 1);
+    Odd_Montgomery_Multiplication calculator(N);
 
     auto challenge = [&]() -> bool {
-        __int128_t m = distribute(gen);
-        auto y = modpow(m, q, (__int128_t)N);
+        ll m = distribute(gen);
+        auto y = calculator.modpow(m, q);
 
         if (y == 1) { return true; }
 
         rep(k) {
-            if ((y + 1) % N == 0) { return true; }
+            if (y == N - 1) { return true; }
 
-            y *= y; y %= N;
+            y = calculator.mod_mul(y, y);
         }
 
         return false;
