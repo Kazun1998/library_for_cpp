@@ -4,6 +4,11 @@
 #include "Prime.hpp"
 #include "Odd_Montgomery_Multiplication.hpp"
 
+/// @brief ミラー・ラビン素数判定法により、与えられた整数が素数かどうかを判定する。
+/// @param n 判定対象の整数 (n <= 2^64 - 1)
+/// @return n が素数であれば true、そうでなければ false を返す。
+/// @note 2^64 未満の整数に対しては決定的な判定を行う。
+/// @see https://miller-rabin.appspot.com/
 bool Miller_Rabin_Primality_Test(uint64_t n) {
     if (n <= 1) return false;
     if (n % 2 == 0) return n == 2; 
