@@ -83,4 +83,5 @@ bool Miller_Rabin_Primality_Test(uint64_t n)
 
 |日付|内容|
 |:---:|:---|
-|2026/03/11| Miller_Rabin_Primality_Test の実装|
+|2026/03/11| モンゴメリ乗算と固定された証人の理論を用いた高速化 |
+|2025/09/06| Miller_Rabin_Primality_Test の実装 |
