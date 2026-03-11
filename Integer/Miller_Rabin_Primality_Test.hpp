@@ -32,8 +32,20 @@ bool Miller_Rabin_Primality_Test(uint64_t n) {
         return false;
     };
 
-    for (const uint64_t a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-        unless(challenge(a)) return false;
+    // n の値に応じて、決定的素数判定に使用する witness (証人) のリストを選択する。
+    // これらのリストは、特定の範囲内の数に対してミラー・ラビン法が確率的でなく決定的になることを保証する。
+    if (n < 4759123141) {
+        // 32ビット整数 (符号なし) の範囲より少し大きい値までをカバー
+        for (const uint64_t a : {2, 7, 61}) {
+            if (n == a) return true; // n が witness 自身の場合は素数
+            unless(challenge(a)) return false;
+        }
+    } else {
+        // 64ビット整数 (符号なし) の範囲をカバー
+        for (const uint64_t a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+            // この場合、n > a が保証されるため、n == a のチェックは不要
+            unless(challenge(a)) return false;
+        }
     }
 
     return true;
