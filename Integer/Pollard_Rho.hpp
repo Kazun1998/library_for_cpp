@@ -8,18 +8,20 @@
 uint64_t Find_Prime_Factor_by_Pollard_Rho(uint64_t n) {
     if (n == 1) return 1;
     if (n % 2 == 0) return 2;
+    if (Miller_Rabin_Primality_Test(n)) return n;
 
-    uint64_t m = 1 << (bit_length(m) / 8 + 1);
     Odd_Montgomery_Multiplication calc(n);
 
     for (uint64_t c = 1; c < 99; ++c) {
-        auto f = [&calc, &n, &c](const uint64_t x) -> uint64_t {
-            uint64_t y = calc.mod_mul(x, x);
-            uint64_t z = y + c;
-            return z < n ? z : z - n;
+        uint64_t mc = calc.form(c);
+        auto f = [&](uint64_t x) -> uint64_t {
+            uint64_t y = calc.multiply(x, x);
+            uint64_t z = y + mc;
+            if (z >= n) z -= n;
+            return z;
         };
         
-        uint64_t x = 0, y = 0;
+        uint64_t x = calc.form(0), y = calc.form(0);
         uint64_t g = 1;
         while (g == 1) {
             x = f(x);
@@ -30,10 +32,8 @@ uint64_t Find_Prime_Factor_by_Pollard_Rho(uint64_t n) {
         }
 
         if (g == n) continue;
-        if (Miller_Rabin_Primality_Test(g)) return g;
-        if (Miller_Rabin_Primality_Test(n / g)) return n / g;
-
-        return Find_Prime_Factor_by_Pollard_Rho(n);
+        
+        return Find_Prime_Factor_by_Pollard_Rho(g);
     }
 
     return n;
