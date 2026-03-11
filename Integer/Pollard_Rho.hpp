@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../template/template.hpp"
+#include "Prime.hpp"
 #include "Odd_Montgomery_Multiplication.hpp"
 #include "Miller_Rabin_Primality_Test.hpp"
 
@@ -36,4 +37,17 @@ uint64_t Find_Prime_Factor_by_Pollard_Rho(uint64_t n) {
     }
 
     return n;
+}
+
+vector<pair<uint64_t, ll>> Prime_Factorization_by_Pollard_Rho(uint64_t n) {
+    vector<pair<uint64_t, ll>> factors;
+    while (n > 1) {
+        uint64_t p = Find_Prime_Factor_by_Pollard_Rho(n);
+        auto [e, m] = prime::exponents(n, p);
+
+        factors.emplace_back(p, e);
+        n = m;
+    }
+
+    return factors;
 }
