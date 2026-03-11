@@ -12,11 +12,11 @@ bool Miller_Rabin_Primality_Test(uint64_t n) {
     tie (s, d) = prime::exponents(n - 1, 2);
 
     Odd_Montgomery_Multiplication calculator(n);
-    auto challenge = [&n, &s, &d, &calculator](uint64_t m) -> bool {
-        m %= n;
-        if (m == 0) return true;
+    auto challenge = [&n, &s, &d, &calculator](uint64_t a) -> bool {
+        a %= n;
+        if (a == 0) return true;
 
-        auto y = calculator.modpow(m, d);
+        auto y = calculator.modpow(a, d);
         if (y == 1 || y == n - 1) return true;
 
         rep(s) {
@@ -27,8 +27,8 @@ bool Miller_Rabin_Primality_Test(uint64_t n) {
         return false;
     };
 
-    for (const uint64_t m : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-        unless(challenge(m)) return false;
+    for (const uint64_t a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+        unless(challenge(a)) return false;
     }
 
     return true;
