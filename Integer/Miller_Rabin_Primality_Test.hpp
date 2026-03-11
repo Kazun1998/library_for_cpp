@@ -19,7 +19,7 @@ bool Miller_Rabin_Primality_Test(uint64_t n) {
         auto y = calculator.modpow(m, d);
         if (y == 1 || y == n - 1) return true;
 
-        for (int i = 1; i < s; ++i) {
+        rep(s) {
             y = calculator.mod_mul(y, y);
             if (y == n - 1) return true;
         }
