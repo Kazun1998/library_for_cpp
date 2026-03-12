@@ -124,6 +124,11 @@ T sum(const vector<T> &X) {
     return y;
 }
 
+template<typename T>
+T gcd(const T x, const T y) {
+    return y == 0 ? x : gcd(y, x % y);
+}
+
 // a x + b y = gcd(a, b) を満たす整数の組 (a, b) に対して, (x, y, gcd(a, b)) を求める.
 template<integral T>
 tuple<T, T, T> Extended_Euclid(T a, T b) {
