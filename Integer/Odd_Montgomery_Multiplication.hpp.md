@@ -2,10 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Sequence/Cartesian_Tree.hpp
-    title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
-      \u308B"
-  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -29,17 +25,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
-    links:
-    - https://judge.yosupo.jp/problem/cartesian_tree
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    document_title: "\u5270\u4F59"
+    links: []
+  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -195,47 +187,68 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Sequence/Cartesian_Tree.hpp\"\
-    \n\n#line 4 \"Sequence/Cartesian_Tree.hpp\"\n\ntemplate<typename O>\nclass Cartesian_Tree\
-    \ {\n    public:\n    bool reversal;\n    int root;\n    vector<int> left, right,\
-    \ parent;\n\n    Cartesian_Tree() = default;\n    Cartesian_Tree(const vector<O>\
-    \ &data, bool reversal = false): left(data.size(), -1), right(data.size(), -1),\
-    \ parent(data.size(), -1), root(-1), reversal(reversal) {\n        build_up(data);\n\
-    \    }\n\n    inline bool is_root(const int i) const { return root == i; }\n\n\
-    \    private:\n    /// @brief i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\
-    \u8A2D\u5B9A\u3059\u308B\n    /// @param i \u89AA\n    /// @param j \u5DE6\u306E\
-    \u5B50\n    void set_left(const int i, const int j) {\n        left[i] = j;\n\
-    \        parent[j] = i;\n    }\n\n    /// @brief i \u306E\u53F3\u306E\u5B50\u3068\
-    \u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\u308B\n    /// @param i \u89AA\n    ///\
-    \ @param j \u53F3\u306E\u5B50\n    void set_right(const int i, const int j) {\n\
-    \        right[i] = j;\n        parent[j] = i;\n    }\n\n    /// @brief \u9802\
-    \u70B9 i \u3092\u6839\u306B\u8A2D\u5B9A\u3059\u308B\n    /// @param i \u6839\n\
-    \    void set_root(const int i) {\n        root = i;\n    }\n\n    bool should_pop(const\
-    \ vector<O> &data, const int x, const int y) {\n        if (reversal) { return\
-    \ data[x] <= data[y]; }\n        else { return data[x] >= data[y]; }\n    }\n\n\
-    \    void build_up(const vector<O> &data) {\n        vector<int> stack;\n\n  \
-    \      for (int i = 0; i < data.size(); i++) {\n            if (i == 0) {\n  \
-    \              stack.emplace_back(0);\n                set_root(0);\n        \
-    \        continue;\n            }\n\n            int last_pop = -1;\n        \
-    \    while (!stack.empty() && should_pop(data, stack.back(), i)) {\n         \
-    \       last_pop = stack.back();\n                stack.pop_back();\n        \
-    \    }\n\n            // \u5DE6\u306E\u5B50\u306B\u95A2\u3059\u308B\u8A2D\u5B9A\
-    \n            if (last_pop != -1) {\n                set_left(i, last_pop);\n\
-    \            }\n\n            if (stack.empty()) {\n                set_root(i);\n\
-    \            } else {\n                set_right(stack.back(), i);\n         \
-    \   }\n\n            stack.emplace_back(i);\n        }\n    }\n};\n#line 5 \"\
-    verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp\"\n\nint main() {\n\
-    \    int N; cin >> N;\n    vector<int> a(N);\n    for (int i = 0; i < N; i++)\
-    \ {\n        scanf(\"%d\", &a[i]);\n    }\n\n    Cartesian_Tree<int> T(a);\n \
-    \   for (int i = 0; i < N; i++) {\n        int p = T.is_root(i) ? i : T.parent[i];\n\
-    \        cout << (i ? \" \" : \"\") << p;\n    }\n\n    cout << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\n\n#include\"\
-    ../../../template/template.hpp\"\n#include\"../../../Sequence/Cartesian_Tree.hpp\"\
-    \n\nint main() {\n    int N; cin >> N;\n    vector<int> a(N);\n    for (int i\
-    \ = 0; i < N; i++) {\n        scanf(\"%d\", &a[i]);\n    }\n\n    Cartesian_Tree<int>\
-    \ T(a);\n    for (int i = 0; i < N; i++) {\n        int p = T.is_root(i) ? i :\
-    \ T.parent[i];\n        cout << (i ? \" \" : \"\") << p;\n    }\n\n    cout <<\
-    \ endl;\n}\n"
+    \ {\n        return message.c_str();\n    }\n};\n#line 3 \"Integer/Odd_Montgomery_Multiplication.hpp\"\
+    \n\nstruct Odd_Montgomery_Multiplication {\n    using u64 = uint64_t;\n    using\
+    \ u128 = __uint128_t;\n\n    /// @brief \u5270\u4F59\n    u64 mod;\n\n    ///\
+    \ @brief N = mod \u3068\u3057\u305F\u3068\u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\
+    \u305F\u3059 N'\n    u64 neg_inv;\n\n    /// @brief (2^64)^2 mod N\n    u64 r2;\n\
+    \n    Odd_Montgomery_Multiplication(u64 mod) : mod(mod) {\n        u64 inv = mod;\n\
+    \        for (int i = 0; i < 5; ++i) inv *= 2 - mod * inv;\n        neg_inv =\
+    \ -inv;\n        u128 r = -mod % mod;\n        r2 = (r * r) % mod;\n    }\n\n\
+    \    /// @brief \u30E2\u30F3\u30B4\u30E1\u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3\
+    . T * R^{-1} mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param T 0 <= T <\
+    \ N * R\n    /// @return T * R^{-1} mod N\n    u64 reduce(u128 T) const {\n  \
+    \      u64 m = u64(T) * neg_inv;\n        u64 t = (T + (u128)m * mod) >> 64;\n\
+    \        if (t >= mod) { t -= mod; }\n        return t;\n    }\n\n    /// @brief\
+    \ \u901A\u5E38\u306E\u6574\u6570 a \u3092\u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\
+    \ aR mod N \u306B\u5909\u63DB\u3059\u308B.\n    /// @param a 0 <= a < N\n    ///\
+    \ @return aR mod N\n    u64 form(u64 a) const { return reduce((u128)a * r2); }\n\
+    \n    /// @brief \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\
+    \ a, b \u306E\u7A4D\u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a \u30E2\u30F3\
+    \u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\n    /// @param b \u30E2\
+    \u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\n    /// @return\
+    \ a * b \u306E\u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\n    u64 multiply(u64\
+    \ a, u64 b) const { return reduce((u128)a * b); }\n\n    /// @brief \u901A\u5E38\
+    \u306E\u6574\u6570 a, b \u306E\u7A4D a * b mod N \u3092\u8A08\u7B97\u3059\u308B\
+    .\n    /// @param a 0 <= a < N\n    /// @param b 0 <= b < N\n    /// @return a\
+    \ * b mod N\n    u64 mod_mul(u64 a, u64 b) const { return reduce(multiply(form(a),\
+    \ form(b))); }\n\n    /// @brief a^b mod N \u3092\u8A08\u7B97\u3059\u308B.\n \
+    \   /// @param a \u57FA\u6570\n    /// @param b \u6307\u6570\n    /// @return\
+    \ a^b mod N\n    u64 modpow(u64 a, u64 b) const {\n        u64 res = form(1);\n\
+    \        u64 mont_a = form(a);\n        while (b > 0) {\n            if (b & 1)\
+    \ res = multiply(res, mont_a);\n            mont_a = multiply(mont_a, mont_a);\n\
+    \            b >>= 1;\n        }\n        return reduce(res);\n    }\n};\n"
+  code: "#pragma once\n#include \"../template/template.hpp\"\n\nstruct Odd_Montgomery_Multiplication\
+    \ {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\n    /// @brief\
+    \ \u5270\u4F59\n    u64 mod;\n\n    /// @brief N = mod \u3068\u3057\u305F\u3068\
+    \u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\u305F\u3059 N'\n    u64 neg_inv;\n\n\
+    \    /// @brief (2^64)^2 mod N\n    u64 r2;\n\n    Odd_Montgomery_Multiplication(u64\
+    \ mod) : mod(mod) {\n        u64 inv = mod;\n        for (int i = 0; i < 5; ++i)\
+    \ inv *= 2 - mod * inv;\n        neg_inv = -inv;\n        u128 r = -mod % mod;\n\
+    \        r2 = (r * r) % mod;\n    }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3. T * R^{-1} mod N \u3092\u8A08\u7B97\
+    \u3059\u308B.\n    /// @param T 0 <= T < N * R\n    /// @return T * R^{-1} mod\
+    \ N\n    u64 reduce(u128 T) const {\n        u64 m = u64(T) * neg_inv;\n     \
+    \   u64 t = (T + (u128)m * mod) >> 64;\n        if (t >= mod) { t -= mod; }\n\
+    \        return t;\n    }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a \u3092\
+    \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE aR mod N \u306B\u5909\u63DB\u3059\u308B\
+    .\n    /// @param a 0 <= a < N\n    /// @return aR mod N\n    u64 form(u64 a)\
+    \ const { return reduce((u128)a * r2); }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u8868\u73FE\u3055\u308C\u305F\u6570 a, b \u306E\u7A4D\u3092\u8A08\u7B97\
+    \u3059\u308B.\n    /// @param a \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\
+    \u308C\u305F\u6570\n    /// @param b \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\
+    \u3055\u308C\u305F\u6570\n    /// @return a * b \u306E\u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u8868\u73FE\n    u64 multiply(u64 a, u64 b) const { return reduce((u128)a\
+    \ * b); }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a, b \u306E\u7A4D a\
+    \ * b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a 0 <= a < N\n   \
+    \ /// @param b 0 <= b < N\n    /// @return a * b mod N\n    u64 mod_mul(u64 a,\
+    \ u64 b) const { return reduce(multiply(form(a), form(b))); }\n\n    /// @brief\
+    \ a^b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a \u57FA\u6570\n \
+    \   /// @param b \u6307\u6570\n    /// @return a^b mod N\n    u64 modpow(u64 a,\
+    \ u64 b) const {\n        u64 res = form(1);\n        u64 mont_a = form(a);\n\
+    \        while (b > 0) {\n            if (b & 1) res = multiply(res, mont_a);\n\
+    \            mont_a = multiply(mont_a, mont_a);\n            b >>= 1;\n      \
+    \  }\n        return reduce(res);\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -244,17 +257,23 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Sequence/Cartesian_Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
+  isVerificationFile: false
+  path: Integer/Odd_Montgomery_Multiplication.hpp
   requiredBy: []
-  timestamp: '2026-03-03 00:14:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-08 23:14:58+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
+documentation_of: Integer/Odd_Montgomery_Multiplication.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp.html
-title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
+title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
 ---
+
+## Outline
+
+非常に大きい正の整数 $N$ に対して, 整数 $a, b$ における $a \times b$ を $N$ で割った余りを高速に求める.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/03/12| Odd_Montgomery_Multiplication の実装 |
