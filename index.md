@@ -3,28 +3,28 @@ data:
   libraryCategories:
   - name: Algebra
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Extended_Algebra.hpp
       title: Algebra/Extended_Algebra.hpp
     - icon: ':heavy_check_mark:'
       path: Algebra/Fraction.hpp
       title: Algebra/Fraction.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Gaussian_Integer.hpp
       title: Algebra/Gaussian_Integer.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Nimber.hpp
       title: Nimber
     - icon: ':heavy_check_mark:'
       path: Algebra/Permutaion.hpp
       title: "\u7F6E\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Semiring_Matrix.hpp
       title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
     - icon: ':heavy_check_mark:'
       path: Algebra/dynamic_modint.hpp
       title: Algebra/dynamic_modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Algebra/modint.hpp
       title: Algebra/modint.hpp
   - name: Binary_Indexed_Tree
@@ -286,25 +286,28 @@ data:
     - icon: ':warning:'
       path: Integer/Digit.hpp
       title: "\u6574\u6570\u306E\u6841"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Integer/Divisors.hpp
       title: Integer/Divisors.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Integer/Euler_Totient.hpp
       title: "Euler's Totient \u95A2\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Integer/Miller_Rabin_Primality_Test.hpp
-      title: Integer/Miller_Rabin_Primality_Test.hpp
-    - icon: ':warning:'
+      title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
+    - icon: ':x:'
       path: Integer/Odd_Montgomery_Multiplication.hpp
       title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: Integer/Pollard_Rho.hpp
+      title: Integer/Pollard_Rho.hpp
+    - icon: ':question:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Integer/Prime_Pi.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Integer/Quotients.hpp
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
     - icon: ':warning:'
@@ -320,21 +323,21 @@ data:
       title: "0-1 Knapsack \u554F\u984C"
   - name: Linear_Algebra
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Linear_Algebra/Field_Matrix.hpp
       title: Linear_Algebra/Field_Matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Linear_Algebra/Rank.hpp
       title: Linear_Algebra/Rank.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Linear_Algebra/Reduction.hpp
       title: Linear_Algebra/Reduction.hpp
   - name: Math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Bezout.hpp
       title: "Bezout \u306E\u7B49\u5F0F"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Floor_Linear_Sum.hpp
       title: Floor Linear Sum
     - icon: ':heavy_check_mark:'
@@ -343,10 +346,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Montmort_Number.hpp
       title: "Montmort \u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Stern_Brocot_Tree.hpp
       title: "Stern Brocot \u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Two_SAT.hpp
       title: Math/Two_SAT.hpp
     - icon: ':warning:'
@@ -354,10 +357,10 @@ data:
       title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - name: Max_Flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Max_Flow/Max_Flow.hpp
       title: "\u6700\u5927\u6D41"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Max_Flow/Project_Selection_Problem.hpp
       title: Max_Flow/Project_Selection_Problem.hpp
   - name: Min_Cost_Flow
@@ -370,28 +373,28 @@ data:
       title: Min_Cost_Flow/Min_Cost_Flow.hpp
   - name: Modulo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Composite.hpp
       title: Modulo/Composite.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Discrete_Log.hpp
       title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
     - icon: ':warning:'
       path: Modulo/Garner.hpp
       title: Modulo/Garner.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Order.hpp
       title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
     - icon: ':warning:'
       path: Modulo/Solve.hpp
       title: Modulo/Solve.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Sqrt.hpp
       title: "\u5E73\u65B9\u6839 mod"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Tower.hpp
       title: "\u6307\u6570\u30BF\u30EF\u30FC"
   - name: Modulo_Polynomial
@@ -399,38 +402,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Bell_Number.hpp
       title: "Bell \u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo_Polynomial/Bernoulli_Number.hpp
       title: "Bernoulli \u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Calculus.hpp
       title: "\u5FAE\u7A4D\u5206"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Exp.hpp
       title: Modulo_Polynomial/Exp.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Fast_Power_Series.hpp
       title: Modulo_Polynomial/Fast_Power_Series.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo_Polynomial/Fraction_Coefficient.hpp
       title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Huge_Factorial.hpp
       title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Log.hpp
       title: Log
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Modulo_Polynomial.hpp
       title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
         \u5F0F\u74B0"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Multipoint_Evaluation.hpp
       title: "\u591A\u70B9\u8A55\u4FA1"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
       title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
       title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\
         \u63DB"
@@ -440,7 +443,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Partition_Q.hpp
       title: "\u5206\u5272\u6570 (Q)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo_Polynomial/Power.hpp
       title: Modulo_Polynomial/Power.hpp
     - icon: ':heavy_check_mark:'
@@ -452,7 +455,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Modulo_Polynomial/Subset_Sum.hpp
       title: "Subset Sum (\u591A\u9805\u5F0F)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo_Polynomial/Taylor_Shift.hpp
       title: Taylor Shift
   - name: Others
@@ -473,7 +476,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/Lazy_Segment_Tree.hpp
       title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment Tree
   - name: Segment_Tree/preset
@@ -486,14 +489,14 @@ data:
       title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - name: Sequence
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Sequence/Cartesian_Tree.hpp
       title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
         \u308B"
     - icon: ':warning:'
       path: Sequence/Hamming_Distance.hpp
       title: "Hamming \u8DDD\u96E2"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Sequence/Longest_Increasing_Subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
     - icon: ':warning:'
@@ -502,7 +505,7 @@ data:
     - icon: ':warning:'
       path: Sequence/Trie.hpp
       title: "Trie \u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Sequence/Z_Algorithm.hpp
       title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
   - name: Summation
@@ -516,19 +519,19 @@ data:
       title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
   - name: Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Tree/Rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Tree/Subtree_Monoid_Vertex_Query.hpp
       title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Tree/Tree_DP.hpp
       title: "\u6728 DP"
   - name: Union_Find
@@ -546,7 +549,7 @@ data:
       title: Union Find
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
     - icon: ':heavy_check_mark:'
@@ -555,22 +558,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/enumerable.hpp
       title: enumerable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/exception.hpp
       title: template/exception.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
@@ -819,100 +822,103 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - name: verify/yosupo_library_checker/number_theory
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
       title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
       title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
       title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
       title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
       title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
       title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
       title: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
       title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
       title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
       title: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
       title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
       title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
       title: verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
       title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - name: verify/yosupo_library_checker/other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
       title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
       title: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/other/two_sat.test.cpp
       title: verify/yosupo_library_checker/other/two_sat.test.cpp
   - name: verify/yosupo_library_checker/polynomial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
       title: verify/yosupo_library_checker/polynomial/Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Division.test.cpp
       title: verify/yosupo_library_checker/polynomial/Division.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Exp.test.cpp
       title: verify/yosupo_library_checker/polynomial/Exp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
       title: verify/yosupo_library_checker/polynomial/Inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Log.test.cpp
       title: verify/yosupo_library_checker/polynomial/Log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
       title: verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Power.test.cpp
       title: verify/yosupo_library_checker/polynomial/Power.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
       title: verify/yosupo_library_checker/polynomial/Product_of_Polynomial_Sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
       title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - name: verify/yosupo_library_checker/sample
@@ -922,47 +928,47 @@ data:
       title: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
   - name: verify/yosupo_library_checker/string
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
       title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - name: verify/yosupo_library_checker/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
       title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
       title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
       title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
       title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
       title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
       title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - name: verify/yukicoder
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1358.test.cpp
       title: verify/yukicoder/1358.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1780.test.cpp
       title: verify/yukicoder/1780.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1984.test.cpp
       title: verify/yukicoder/1984.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/2558.test.cpp
       title: verify/yukicoder/2558.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/763.test.cpp
       title: verify/yukicoder/763.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/Modulo_Order.test.cpp
       title: verify/yukicoder/Modulo_Order.test.cpp
 layout: toppage
