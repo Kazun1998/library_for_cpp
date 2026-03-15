@@ -28,11 +28,9 @@ namespace modulo {
         return s;
     }
 
-    optional<ll> First_Garner(vector<Modulo> X, const ll R, bool positive = false) {
+    optional<vector<Modulo>> Preprocess_Garner(vector<Modulo> X) {
         int n = X.size();
-
         map<ll, pair<int, int>> champions;
-        prime::Pseudo_Prime_Generator generator;
 
         for (int i = 0; i < n; ++i) {
             for (auto [p, e]: prime::prime_factorization(X[i].n)) {
@@ -58,7 +56,16 @@ namespace modulo {
             }
         }
 
+        return X;
+    }
+
+    optional<ll> First_Garner(vector<Modulo> X, const ll R, bool positive = false) {
+        auto preprocessed = Preprocess_Garner(X);
+        if (!preprocessed) return nullopt;
+        X = *preprocessed;
+
         auto s = Garner_Base(X);
+        int n = X.size();
 
         if (positive && ranges::count(s, 0) == n) {
             ll res = 1;
