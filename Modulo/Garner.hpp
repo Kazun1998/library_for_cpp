@@ -70,9 +70,7 @@ namespace modulo {
 
         if (positive && ranges::count(s, 0) == n) {
             ll res = 1;
-            for (const auto &x: X) {
-                res = safe_mod(res * x.n, R);
-            }
+            for (const auto &x: X) res = safe_mod(res * x.n, R);
 
             return res;
         }
