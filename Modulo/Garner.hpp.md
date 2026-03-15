@@ -1,67 +1,67 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: Modulo/Composite.hpp
-    title: Modulo/Composite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime.hpp
+    title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':warning:'
-    path: Modulo/Solve.hpp
-    title: Modulo/Solve.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/187.test.cpp
+    title: verify/yukicoder/187.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Modulo/Garner.hpp\"\n\n#line 2 \"Modulo/Modulo.hpp\"\n\n\
-    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Modulo/Garner.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -197,7 +197,41 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Modulo/Modulo.hpp\"\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Integer/Prime.hpp\"\
+    \n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
+    \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
+    \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
+    \ step;\n      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime\
+    \ == 2) { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n\
+    \      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
+    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
+    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
+    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
+    \    }\n\n    return true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t\
+    \ n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++, n /=\
+    \ p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long\
+    \ long, long long>> prime_factorization (long long n) {\n    if (n == 0) { return\
+    \ { make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n\
+    \    if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
+    \    }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
+    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
+    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
+    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
+    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
+    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
+    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
+    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
+    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
+    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
+    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
+    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
+    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
+    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
+    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
+    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
+    \ primes;\n  }\n}\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\
     \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
     \    public: // public\u306B\u6307\u5B9A\n        const char* what() const noexcept\
     \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
@@ -261,63 +295,64 @@ data:
     \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
     \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
     \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 2 \"Modulo/Composite.hpp\"\n\n#line 4 \"Modulo/Composite.hpp\"\n\nnamespace\
-    \ modulo {\n    class IncompatibleModuloComposite : public exception {\n     \
-    \ public: // public\u306B\u6307\u5B9A\n      const char* what() const noexcept\
-    \ override { return \"\u5408\u6210\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\"\
-    ; }\n    };\n\n    Modulo Composite(Modulo A, Modulo B) {\n        ll a = A.a,\
-    \ n = A.n;\n        ll b = B.a, m = B.n;\n        ll d = b - a;\n        ll g\
-    \ = gcd(n, m);\n\n        if (d % g) { throw IncompatibleModuloComposite(); }\n\
-    \n        n /= g; m /= g; d /= g;\n\n        ll s = Modulo(n, m).inverse().a;\n\
-    \n        auto alpha = Modulo(a, n * m * g);\n        auto beta = Modulo(n * g,\
-    \ n * m * g);\n        auto gamma = Modulo(d * s, n * m * g);\n\n        return\
-    \ alpha + beta * gamma;\n    }\n\n    Modulo Composite() { return Modulo(0, 1);\
-    \ }\n\n    template <typename T, typename... Args>\n    Modulo Composite(const\
-    \ T& first, const Args&... rest) {\n        return Composite(first, Composite(rest...));\n\
-    \    }\n\n    Modulo Composite(vector<Modulo> As) {\n        auto res = Modulo(0,\
-    \ 1);\n        for (auto A: As) { res = Composite(res, A); }\n\n        return\
-    \ res;\n    }\n}\n#line 3 \"Modulo/Solve.hpp\"\n\n\nnamespace modulo {\n    class\
-    \ NoSolutionException : public std::runtime_error {\n    public:\n        NoSolutionException(const\
-    \ std::string& message) : std::runtime_error(message) {}\n    };\n\n    // \u7DDA\
-    \u5F62\u5408\u540C\u65B9\u7A0B\u5F0F ax \u2261 b (mod m) \u3092\u89E3\u304F.\n\
-    \    Modulo Solve_Congruence_Equation(ll a, ll b, ll m) {\n        if (m == 0)\
-    \ { throw \"m = 0 \u306F\u7981\u6B62\u3067\u3059\"; }\n\n        ll g = gcd(a,\
-    \ m);\n\n        // \u89E3\u306E\u5B58\u5728\u5224\u5B9A\n        if (b % g) {\
-    \ throw NoSolutionException(\"\u89E3\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\
-    .\"); }\n\n        a /= g; b /= g; m /= g;\n\n        return Modulo(a, m).inverse()\
-    \ * Modulo(b, m);\n    }\n\n    // ax \u2261 b (mod m) \u306E\u5F62\u306E\u7DDA\
-    \u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u304B\u3089\u306A\u308B\u9023\u7ACB\u7DDA\
-    \u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u3092\u89E3\u304F.\n    // equations \u306F\
-    \ (a, b, m) \u306E\u5F62\u304B\u3089\u306A\u308B\u30BF\u30D7\u30EB\u306E\u5217\
-    .\n    Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll, ll, ll>> equations)\
-    \ {\n        Modulo ans(0, 1);\n        for (auto &&[a, b, m]: equations) {\n\
-    \            ans = Composite(ans, Solve_Congruence_Equation(a, b, m));\n     \
-    \   }\n\n        return ans;\n    } \n}\n#line 5 \"Modulo/Garner.hpp\"\n\nnamespace\
-    \ modulo {\n    vector<ll> Garner_Base(vector<Modulo> X) {\n        int n = X.size();\n\
-    \        vector<ll> s(n);\n\n        for (int i = 0; i < n; i++) {\n         \
-    \   ll m = X[i].n;\n\n            ll a = 1;\n            for (int j = 0; j < i;\
-    \ j++) { a = mod(a * X[j].n, m); }\n\n            ll b = 0, h = 1;\n         \
-    \   for (int j = 0; j < i; j++) {\n                b = mod(b + s[j] * h, m);\n\
-    \                h = mod(h * X[j].n, m);\n            }\n\n            s[i] =\
-    \ Solve_Congruence_Equation(a, X[i].a - b, m).a;\n        }\n\n        return\
-    \ s;\n    }\n\n    ll Minimize_Garner(vector<Modulo> X, const ll M) {\n      \
-    \  vector<ll> s = Garner_Base(X);\n        ll y = 0, h = 1;\n        for (int\
-    \ i = 0; i < X.size(); i++) {\n            y = mod(y + s[i] * h, M);\n       \
-    \     h = mod(h * X[i].n, M);\n        }\n\n        return y;\n    }\n}\n"
-  code: "#pragma once\n\n#include\"Modulo.hpp\"\n#include\"Solve.hpp\"\n\nnamespace\
-    \ modulo {\n    vector<ll> Garner_Base(vector<Modulo> X) {\n        int n = X.size();\n\
-    \        vector<ll> s(n);\n\n        for (int i = 0; i < n; i++) {\n         \
-    \   ll m = X[i].n;\n\n            ll a = 1;\n            for (int j = 0; j < i;\
-    \ j++) { a = mod(a * X[j].n, m); }\n\n            ll b = 0, h = 1;\n         \
-    \   for (int j = 0; j < i; j++) {\n                b = mod(b + s[j] * h, m);\n\
-    \                h = mod(h * X[j].n, m);\n            }\n\n            s[i] =\
-    \ Solve_Congruence_Equation(a, X[i].a - b, m).a;\n        }\n\n        return\
-    \ s;\n    }\n\n    ll Minimize_Garner(vector<Modulo> X, const ll M) {\n      \
-    \  vector<ll> s = Garner_Base(X);\n        ll y = 0, h = 1;\n        for (int\
-    \ i = 0; i < X.size(); i++) {\n            y = mod(y + s[i] * h, M);\n       \
-    \     h = mod(h * X[i].n, M);\n        }\n\n        return y;\n    }\n}\n"
+    \ 6 \"Modulo/Garner.hpp\"\n\nnamespace modulo {\n    vector<ll> Garner_Base(const\
+    \ vector<Modulo> &X) {\n        int n = X.size();\n        vector<ll> a(n), m(n);\n\
+    \        for (int i = 0; i < n; ++i) {\n            a[i] = X[i].a, m[i] = X[i].n;\n\
+    \        }\n        vector<ll> s(n);\n\n        for (int i = 0; i < n; ++i) {\n\
+    \            ll m_product = 1;\n            ll left = 0;\n            for (int\
+    \ j = 0; j < i; ++j) {\n                left = safe_mod(left + safe_mod(m_product\
+    \ * s[j], m[i]), m[i]);\n                m_product = safe_mod(m_product * m[j],\
+    \ m[i]);\n            }\n\n            auto [right, _1, _2] = Extended_Euclid<ll>(m_product,\
+    \ m[i]);\n            s[i] = safe_mod((a[i] - left) * right, m[i]);\n        }\n\
+    \n        return s;\n    }\n\n    optional<vector<Modulo>> Preprocess_Garner(vector<Modulo>\
+    \ X) {\n        int n = X.size();\n        map<ll, pair<int, int>> champions;\n\
+    \n        for (int i = 0; i < n; ++i) {\n            for (auto [p, e]: prime::prime_factorization(X[i].n))\
+    \ {\n\n                if (champions.count(p) == 0) {\n                    champions[p]\
+    \ = {i, e};\n                    continue;\n                }\n\n            \
+    \    auto [j, f] = champions[p];\n\n                ll q = intpow(p, min<int>(e,\
+    \ f));\n\n                unless (X[i].a % q == X[j].a % q) return nullopt;\n\n\
+    \                if (e >= f) {\n                    X[j].degenerate(X[j].n / q);\n\
+    \                    champions[p] = {i, e};\n                }\n             \
+    \   else {\n                    X[i].degenerate(X[i].n / q);\n               \
+    \ }\n            }\n        }\n\n        return X;\n    }\n\n    optional<ll>\
+    \ First_Garner(vector<Modulo> X, const ll R, bool positive = false) {\n      \
+    \  auto preprocessed = Preprocess_Garner(X);\n        if (!preprocessed) return\
+    \ nullopt;\n\n        X = *preprocessed;\n\n        auto s = Garner_Base(X);\n\
+    \        int n = X.size();\n\n        if (positive && ranges::count(s, 0) == n)\
+    \ {\n            ll res = 1;\n            for (const auto &x: X) res = safe_mod(res\
+    \ * x.n, R);\n\n            return res;\n        }\n\n        ll res = 0;\n  \
+    \      for (int i = n - 1; i >=0 ; --i) {\n            res = safe_mod(X[i].n *\
+    \ res + s[i], R);\n        }\n\n        return res;\n    }\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../Integer/Prime.hpp\"\
+    \n#include \"Modulo.hpp\"\n\nnamespace modulo {\n    vector<ll> Garner_Base(const\
+    \ vector<Modulo> &X) {\n        int n = X.size();\n        vector<ll> a(n), m(n);\n\
+    \        for (int i = 0; i < n; ++i) {\n            a[i] = X[i].a, m[i] = X[i].n;\n\
+    \        }\n        vector<ll> s(n);\n\n        for (int i = 0; i < n; ++i) {\n\
+    \            ll m_product = 1;\n            ll left = 0;\n            for (int\
+    \ j = 0; j < i; ++j) {\n                left = safe_mod(left + safe_mod(m_product\
+    \ * s[j], m[i]), m[i]);\n                m_product = safe_mod(m_product * m[j],\
+    \ m[i]);\n            }\n\n            auto [right, _1, _2] = Extended_Euclid<ll>(m_product,\
+    \ m[i]);\n            s[i] = safe_mod((a[i] - left) * right, m[i]);\n        }\n\
+    \n        return s;\n    }\n\n    optional<vector<Modulo>> Preprocess_Garner(vector<Modulo>\
+    \ X) {\n        int n = X.size();\n        map<ll, pair<int, int>> champions;\n\
+    \n        for (int i = 0; i < n; ++i) {\n            for (auto [p, e]: prime::prime_factorization(X[i].n))\
+    \ {\n\n                if (champions.count(p) == 0) {\n                    champions[p]\
+    \ = {i, e};\n                    continue;\n                }\n\n            \
+    \    auto [j, f] = champions[p];\n\n                ll q = intpow(p, min<int>(e,\
+    \ f));\n\n                unless (X[i].a % q == X[j].a % q) return nullopt;\n\n\
+    \                if (e >= f) {\n                    X[j].degenerate(X[j].n / q);\n\
+    \                    champions[p] = {i, e};\n                }\n             \
+    \   else {\n                    X[i].degenerate(X[i].n / q);\n               \
+    \ }\n            }\n        }\n\n        return X;\n    }\n\n    optional<ll>\
+    \ First_Garner(vector<Modulo> X, const ll R, bool positive = false) {\n      \
+    \  auto preprocessed = Preprocess_Garner(X);\n        if (!preprocessed) return\
+    \ nullopt;\n\n        X = *preprocessed;\n\n        auto s = Garner_Base(X);\n\
+    \        int n = X.size();\n\n        if (positive && ranges::count(s, 0) == n)\
+    \ {\n            ll res = 1;\n            for (const auto &x: X) res = safe_mod(res\
+    \ * x.n, R);\n\n            return res;\n        }\n\n        ll res = 0;\n  \
+    \      for (int i = n - 1; i >=0 ; --i) {\n            res = safe_mod(X[i].n *\
+    \ res + s[i], R);\n        }\n\n        return res;\n    }\n}\n"
   dependsOn:
-  - Modulo/Modulo.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -325,18 +360,117 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Modulo/Solve.hpp
-  - Modulo/Composite.hpp
+  - Integer/Prime.hpp
+  - Modulo/Modulo.hpp
   isVerificationFile: false
   path: Modulo/Garner.hpp
   requiredBy: []
-  timestamp: '2026-03-12 00:53:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-03-15 15:29:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/187.test.cpp
 documentation_of: Modulo/Garner.hpp
 layout: document
-redirect_from:
-- /library/Modulo/Garner.hpp
-- /library/Modulo/Garner.hpp.html
-title: Modulo/Garner.hpp
+title: Garner
 ---
+
+## Outline
+
+Garner のアルゴリズムを用いて, 連立合同式
+
+$$ x \equiv a_1 \pmod{m_1}, \quad \dots, \quad x \equiv a_n \pmod{m_n} $$
+
+を満たす最小の非負整数 $x$ を $R$ で割った余りを求める.
+
+## Theory
+
+### Garner アルゴリズム
+
+$m_1, \dots, m_n$ はどの $2$ つも互いに素とする. このとき,
+
+$$ x \equiv a_1 \pmod{m_1}, \quad \dots, \quad x \equiv a_n \pmod{m_n} \quad \cdots \cdots (*) $$
+
+を満たす非負整数 $x$ は $0$ 以上 $m_1 \dots m_n$ 未満の中にただ一つ存在する.
+
+また, これは $x$ の表現として,
+
+$$ x = t_1 + m_1 t_2 + \dots + m_1 \dots m_{n-1} t_n \quad (0 \leq t_i < m_i) $$
+
+を満たす非負整数列 $t = (t_1, \dots, t_n)$ と利用することができる.
+
+$i = 1, 2, \dots, n$ の順に $t_i$ を求めていく. $(*)$ を $m_i$ で割った余りを考えることにより,
+
+$$ t_1 + m_1 t_2 + \dots + m_1 \dots m_{i-2} t_{i-1} + m_1 \dots m_{i-1} t_i \equiv a_i \pmod{m_i} $$
+
+となる. $m_1 \dots m_{i-1}$ は $m_i$ と互いに素なので,
+
+$$ t_i \equiv \left(a_i - (t_1 + m_1 t_2 + \dots + m_1 \dots m_{i-2} t_{i-1}) \right) \left(m_1 \dots m_{i-1} \right)^{-1} \pmod{m_i}$$
+
+となる.
+
+これによって, $t_1, t_2, \dots, t_n$ を特定できる.
+
+よって, 解が
+
+$$ x \equiv t_1 + m_1 t_2 + \dots + m_1 \dots m_{n-1} t_n \pmod{m_1 \dots m_n} $$
+
+となるため, これを満たす最小の非負整数 $x_0$ は
+
+$$x_0 = t_1 + m_1 t_2 + \dots + m_1 \dots m_{n-1} t_n $$
+
+である.
+
+### 互いに素でないときの処理
+
+$m_1, \dots, m_n$ が互いに素でないとする. 2 つの連立合同方程式
+
+$$ x \equiv a_1 \pmod{m_1}, \quad x \equiv a_2 \pmod{m_2} $$
+
+を互いに素である $m'_1, m'_2$ を用いた同値な連立合同方程式
+
+$$ x \equiv b_1 \pmod{m'_1}, \quad x \equiv b_2 \pmod{m'_2} $$
+
+に変換する.
+
+共通の素因数 $p$ に対して, $m_1, m_2$ の $p$ における指数を $e, f$ とする. $e \leq f$ としても一般性を失わない.
+
+このとき, $b_1 \equiv b_2 \pmod{p^e}$ を満たさないならば, この連立方程式は解無しになる.
+
+$b_1 \equiv b_2 \pmod{p^e}$ であるとき,
+
+$$ x \equiv a_1 \pmod{m_1} \quad \to \quad x \equiv a_1 \pmod{\frac{m_1}{p^e}}$$
+
+と変換すると, $\frac{m_1}{p^e}, m_2$ は互いに素になる.
+
+これを全てのペアに対して計算することにより, $(m_1, \dots, m_n)$ がどの $2$ つも互いに素な場合に帰着できる.
+
+## Contents
+
+### Garner_Base
+
+```cpp
+vector<ll> Garner_Base(const vector<Modulo> &X)
+```
+
+* $X$ に含まれる法は, どの $2$ つも互いに素であるとする. このとき, 以下を満たす $(t_0, t_1, \dots, t_{n-1})$ を求める.
+
+$$ x \equiv t_0 + m_0 t_1 + \dots + m_0 \dots m_{n-2} t_{n-1} \pmod{m_0 \dots m_{n-1}} $$
+
+* **計算量**: $O(n^2 + n \log \max(m_0, \dots, m_{n-1}))$ 時間.
+
+### First_Garner
+
+```cpp
+optional<ll> First_Garner(vector<Modulo> X, const ll R, bool positive = false)
+```
+
+* $X$ を全て満たす非負整数 $x_0$ を $R$ で割った余りを求める.
+* **引数**
+    * `positive`: `true` にすると, 非負整数が正の整数になる.
+* **計算量**: $O(n^2 + n \sqrt{\max(m_0, \dots, m_{n-1})})$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/03/15| Garner のアルゴリズム実装 |
