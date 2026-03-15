@@ -62,6 +62,7 @@ namespace modulo {
     optional<ll> First_Garner(vector<Modulo> X, const ll R, bool positive = false) {
         auto preprocessed = Preprocess_Garner(X);
         if (!preprocessed) return nullopt;
+
         X = *preprocessed;
 
         auto s = Garner_Base(X);
