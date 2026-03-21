@@ -16,4 +16,5 @@ documentation_of: //Calculate/Slide_Maximum.hpp
 
 |日付|内容|
 |:---:|:---:|
+|2026/02/24| Slide_Maximum_Index がテンプレート対応していなかったバグの修正 |
 |2026/02/15| スライド最大値 実装 |
