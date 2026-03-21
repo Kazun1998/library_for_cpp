@@ -5,7 +5,7 @@
 /**
  * @brief 区間アフィン変換・区間和取得を行う遅延セグメント木
  * @tparam T 値の型
- * @note クラス名に Min と含まれていますが、実際には区間和 (Sum) を管理します。作用素 (a, b) は x |-> a + bx を表します。
+ * @note 作用素 (a, b) は x |-> a + bx を表します。
  */
 template<typename T>
 class Range_Composite_Range_Sum_Lazy_Segment_Tree : public Lazy_Segment_Tree<pair<T, int>, pair<T, T>> {
