@@ -15,7 +15,7 @@ int main(){
         a[i] = x;
     }
 
-    Range_Composite_Range_Min_Lazy_Segment_Tree<mint> S(a);
+    Range_Composite_Range_Sum_Lazy_Segment_Tree<mint> S(a);
 
     for (int q = 0; q < Q; q++){
         int t, l, r;

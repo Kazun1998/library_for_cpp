@@ -8,7 +8,7 @@
  * @note クラス名に Min と含まれていますが、実際には区間和 (Sum) を管理します。作用素 (a, b) は x |-> a + bx を表します。
  */
 template<typename T>
-class Range_Composite_Range_Min_Lazy_Segment_Tree : public Lazy_Segment_Tree<pair<T, int>, pair<T, T>> {
+class Range_Composite_Range_Sum_Lazy_Segment_Tree : public Lazy_Segment_Tree<pair<T, int>, pair<T, T>> {
     using M = pair<T, int>;
     using F = pair<T, T>;
 
@@ -30,7 +30,7 @@ class Range_Composite_Range_Min_Lazy_Segment_Tree : public Lazy_Segment_Tree<pai
      * @param n 要素数
      * @note 初期値は全て 0 になる
      */
-    Range_Composite_Range_Min_Lazy_Segment_Tree(int n) : Lazy_Segment_Tree<M, F>(
+    Range_Composite_Range_Sum_Lazy_Segment_Tree(int n) : Lazy_Segment_Tree<M, F>(
         vector<M>(n, {0, 1}), op, {0, 0}, act, comp, {0, 1}
     ) {}
 
@@ -38,7 +38,7 @@ class Range_Composite_Range_Min_Lazy_Segment_Tree : public Lazy_Segment_Tree<pai
      * @brief コンストラクタ
      * @param vec 初期値の配列
      */
-    Range_Composite_Range_Min_Lazy_Segment_Tree(const vector<T> &vec) : Lazy_Segment_Tree<M, F>(
+    Range_Composite_Range_Sum_Lazy_Segment_Tree(const vector<T> &vec) : Lazy_Segment_Tree<M, F>(
         convert(vec), op, {0, 0}, act, comp, {0, 1}
     ) {}
 
