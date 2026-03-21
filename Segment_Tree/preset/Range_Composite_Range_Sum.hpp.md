@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Algebra/modint.hpp
-    title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
   - icon: ':heavy_check_mark:'
@@ -29,40 +26,62 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\
-    \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    document_title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u30FB\u533A\u9593\
+      \u548C\u53D6\u5F97\u3092\u884C\u3046\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\
+      \u6728"
+    links: []
+  bundledCode: "#line 2 \"Segment_Tree/preset/Range_Composite_Range_Sum.hpp\"\n\n\
+    #line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\n/* \u9045\u5EF6\u30BB\u30B0\u30E1\
+    \u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\u308B. M \u4E0A\u306E\u5217\u306B\
+    \u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\u533A\u9593\u4F5C\u7528\u3068,\
+    \ \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\u308B\u533A\u9593\u7A4D\u306E\
+    \u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\u306B\u884C\u3046.\n\n* M: Monoid\n\
+    * F: Monoid\n* op: M x M \u2192 M: M \u4E0A\u306E\u6F14\u7B97\n* unit: M \u306E\
+    \u5358\u4F4D\u5143\n* act: F x M \u2192 M: F \u304B\u3089\u306E M \u306E\u6F14\
+    \u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\u306E\u5408\u6210 (\u5DE6\u306E\
+    \u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F \u306E\u5358\u4F4D\u5143\n\n(\u6761\
+    \u4EF6)\nM: Monoid, F = {f: F x M \u2192 M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\
+    \u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\
+    \u5408\u6210\u306B\u9589\u3058\u3066\u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\
+    \u306E f,g in F \u306B\u5BFE\u3057\u3066, comp(f,g) in F\n* F \u306F M \u306B\u4F5C\
+    \u7528\u3059\u308B. \u3064\u307E\u308A, \u4EE5\u4E0B\u304C\u6210\u308A\u7ACB\u3064\
+    .\n    * F \u306E\u5358\u4F4D\u5143 id \u306F\u6052\u7B49\u7684\u306B\u4F5C\u7528\
+    \u3059\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E x in M \u306B\u5BFE\u3057\
+    \u3066 id(x) = x \u3068\u306A\u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in\
+    \ M \u306B\u5BFE\u3057\u3066, f(xy) = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\
+    \u610F)\n\u4F5C\u7528\u7D20\u306F\u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\
+    \u3082\u5DE6\u304B\u3089\u884C\u3046.\n*/\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -198,77 +217,18 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Algebra/modint.hpp\"\
-    \n\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
-    \    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
-    \ constexpr int mod() { return _mod; }\n\n    static modint raw(int v) {\n   \
-    \     modint a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\
-    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n \
-    \       int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n\
-    \        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
-    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
-    \ modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n\
-    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
-    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
-    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
-    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
-    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
-    \ &b){\n        (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
-    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
-    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
-    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
-    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
-    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
-    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
-    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
-    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
-    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
-    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
-    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
-    \ mod()); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
-    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
-    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
-    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
-    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
-    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
-    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
-    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
-    \n\n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\
-    \u3059\u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\
-    \u306E\u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\
-    \u3059\u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\
-    \u901F\u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M\
-    \ \u4E0A\u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192\
-    \ M: F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\
-    \u58EB\u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n\
-    * id: F \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
-    \ M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\
-    \u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\u5408\u6210\u306B\u9589\u3058\u3066\
-    \u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E f,g in F \u306B\u5BFE\u3057\
-    \u3066, comp(f,g) in F\n* F \u306F M \u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
-    \u308A, \u4EE5\u4E0B\u304C\u6210\u308A\u7ACB\u3064.\n    * F \u306E\u5358\u4F4D\
-    \u5143 id \u306F\u6052\u7B49\u7684\u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
-    \u308A, \u4EFB\u610F\u306E x in M \u306B\u5BFE\u3057\u3066 id(x) = x \u3068\u306A\
-    \u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in M \u306B\u5BFE\u3057\u3066, f(xy)\
-    \ = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\u610F)\n\u4F5C\u7528\u7D20\u306F\
-    \u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\u3082\u5DE6\u304B\u3089\u884C\
-    \u3046.\n*/\n\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\ntemplate<typename\
-    \ M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n    int n, depth;\n\
-    \    const function<M(M, M)> op;\n    const function<M(F, M)> act;\n    const\
-    \ function<F(F, F)> comp;\n    vector<M> data; const M unit;\n    vector<F> lazy;\
-    \ const F id;\n\n    public:\n    Lazy_Segment_Tree(int size, const function<M(M,\
-    \ M)> op, const M unit, const function<M(F, M)> act, const function<F(F, F)> comp,\
-    \ const F id):\n        n(), op(op), unit(unit), act(act), comp(comp), id(id),\
-    \ depth(0) {\n            int m = 1;\n            while (size > m) { depth++,\
-    \ m *= 2; }\n            n = m;\n            data.assign(2 * m, unit);\n     \
-    \       lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const vector<M>\
-    \ &vec, const function<M(M, M)> op, const M unit, const function<M(F, M)> act,\
-    \ const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
+    \ {\n        return message.c_str();\n    }\n};\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
+    \n\ntemplate<typename M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n\
+    \    int n, depth;\n    const function<M(M, M)> op;\n    const function<M(F, M)>\
+    \ act;\n    const function<F(F, F)> comp;\n    vector<M> data; const M unit;\n\
+    \    vector<F> lazy; const F id;\n\n    public:\n    Lazy_Segment_Tree(int size,\
+    \ const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const\
+    \ function<F(F, F)> comp, const F id):\n        n(), op(op), unit(unit), act(act),\
+    \ comp(comp), id(id), depth(0) {\n            int m = 1;\n            while (size\
+    \ > m) { depth++, m *= 2; }\n            n = m;\n            data.assign(2 * m,\
+    \ unit);\n            lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const\
+    \ vector<M> &vec, const function<M(M, M)> op, const M unit, const function<M(F,\
+    \ M)> act, const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
     \ op, unit, act, comp, id){\n            for (int k = 0; k < vec.size(); k++)\
     \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
     \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
@@ -331,42 +291,81 @@ data:
     \ 1;\n                lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m],\
     \ lazy[left]);\n\n                int right = m << 1 | 1;\n                lazy[right]\
     \ = (lazy[right] == id) ? lazy[m] : comp(lazy[m], lazy[m << 1 | 1]);\n       \
-    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp\"\
-    \n\nusing L = modint<998244353>;\nusing M = pair<L, int>;\nusing F = pair<L, L>;\n\
-    \nauto op = [](M x, M y) -> M {\n    auto first  = x.first  + y.first;\n    auto\
-    \ second = x.second + y.second;\n    return { first, second };\n};\n\nauto act\
-    \ = [](F a, M x) -> M {\n    auto first  = a.first * x.first + a.second * x.second;\n\
-    \    auto second = x.second;\n    return { first, second };\n};\n\nauto comp =\
-    \ [](F a, F b) -> F {\n    auto first  = a.first * b.first;\n    auto second =\
-    \ a.first * b.second + a.second;\n    return { first, second };\n};\n\nM unit\
-    \ = make_pair(0, 0);\nF id = make_pair(1, 0);\n\nint main(){\n    int N, Q; cin\
-    \ >> N >> Q;\n\n    vector<M> a(N);\n    for (int i = 0; i < N; i++){\n      \
-    \  int x; scanf(\"%d\", &x);\n        a[i] = {x, 1};\n    }\n\n    Lazy_Segment_Tree<M,\
-    \ F> S(a, op, unit, act, comp, id);\n\n    for (int q = 0; q < Q; q++){\n    \
-    \    int t, l, r;\n        scanf(\"%d\", &t);\n\n        if (t == 0){\n      \
-    \      int b, c;\n            scanf(\"%d%d%d%d\", &l, &r, &b, &c);\n         \
-    \   S.action(l, r - 1, {b, c});\n        } elif (t == 1) {\n            scanf(\"\
-    %d%d\", &l, &r);\n            cout << S.product(l, r - 1).first << \"\\n\";\n\
-    \        }\n    }\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
-    \n#include\"../../../Segment_Tree/Lazy_Segment_Tree.hpp\"\n\nusing L = modint<998244353>;\n\
-    using M = pair<L, int>;\nusing F = pair<L, L>;\n\nauto op = [](M x, M y) -> M\
-    \ {\n    auto first  = x.first  + y.first;\n    auto second = x.second + y.second;\n\
-    \    return { first, second };\n};\n\nauto act = [](F a, M x) -> M {\n    auto\
-    \ first  = a.first * x.first + a.second * x.second;\n    auto second = x.second;\n\
-    \    return { first, second };\n};\n\nauto comp = [](F a, F b) -> F {\n    auto\
-    \ first  = a.first * b.first;\n    auto second = a.first * b.second + a.second;\n\
-    \    return { first, second };\n};\n\nM unit = make_pair(0, 0);\nF id = make_pair(1,\
-    \ 0);\n\nint main(){\n    int N, Q; cin >> N >> Q;\n\n    vector<M> a(N);\n  \
-    \  for (int i = 0; i < N; i++){\n        int x; scanf(\"%d\", &x);\n        a[i]\
-    \ = {x, 1};\n    }\n\n    Lazy_Segment_Tree<M, F> S(a, op, unit, act, comp, id);\n\
-    \n    for (int q = 0; q < Q; q++){\n        int t, l, r;\n        scanf(\"%d\"\
-    , &t);\n\n        if (t == 0){\n            int b, c;\n            scanf(\"%d%d%d%d\"\
-    , &l, &r, &b, &c);\n            S.action(l, r - 1, {b, c});\n        } elif (t\
-    \ == 1) {\n            scanf(\"%d%d\", &l, &r);\n            cout << S.product(l,\
-    \ r - 1).first << \"\\n\";\n        }\n    }\n}\n\n"
+    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 4 \"Segment_Tree/preset/Range_Composite_Range_Sum.hpp\"\
+    \n\n/**\n * @brief \u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u30FB\u533A\
+    \u9593\u548C\u53D6\u5F97\u3092\u884C\u3046\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
+    \u30C8\u6728\n * @tparam T \u5024\u306E\u578B\n * @note \u4F5C\u7528\u7D20 (a,\
+    \ b) \u306F x |-> a + bx \u3092\u8868\u3057\u307E\u3059\u3002\n */\ntemplate<typename\
+    \ T>\nclass Range_Composite_Range_Sum_Lazy_Segment_Tree : public Lazy_Segment_Tree<pair<T,\
+    \ int>, pair<T, T>> {\n    using M = pair<T, int>;\n    using F = pair<T, T>;\n\
+    \n    static M op(M x, M y) { return { x.first + y.first, x.second + y.second\
+    \ }; }\n    static M act(F f, M x) { return { f.first * T(x.second) + f.second\
+    \ * x.first, x.second }; }\n    static F comp(F f, F g) { return { f.first + f.second\
+    \ * g.first, f.second * g.second }; }\n\n    static vector<M> convert(const vector<T>\
+    \ &vec) {\n        vector<M> res(vec.size());\n        for (int i = 0; i < (int)vec.size();\
+    \ ++i) {\n            res[i] = {vec[i], 1};\n        }\n        return res;\n\
+    \    }\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n     * @param n \u8981\u7D20\u6570\n     * @note \u521D\u671F\u5024\u306F\
+    \u5168\u3066 0 \u306B\u306A\u308B\n     */\n    Range_Composite_Range_Sum_Lazy_Segment_Tree(int\
+    \ n) : Lazy_Segment_Tree<M, F>(\n        vector<M>(n, {0, 1}), op, {0, 0}, act,\
+    \ comp, {0, 1}\n    ) {}\n\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n     * @param vec \u521D\u671F\u5024\u306E\u914D\u5217\n     */\n\
+    \    Range_Composite_Range_Sum_Lazy_Segment_Tree(const vector<T> &vec) : Lazy_Segment_Tree<M,\
+    \ F>(\n        convert(vec), op, {0, 0}, act, comp, {0, 1}\n    ) {}\n\n    /**\n\
+    \     * @brief \u4E00\u70B9\u66F4\u65B0\n     * @param k \u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\n     * @param x \u66F4\u65B0\u3059\u308B\u5024\n     */\n    void\
+    \ update(int k, T x) { Lazy_Segment_Tree<M, F>::update(k, {x, 1}); }\n\n    /**\n\
+    \     * @brief \u4E00\u70B9\u53D6\u5F97\n     * @param k \u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\n     * @return T \u5024\n     */\n    T operator[](int k) { return\
+    \ Lazy_Segment_Tree<M, F>::operator[](k).first; }\n\n    /**\n     * @brief \u533A\
+    \u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\n     * @param l \u533A\u9593\u306E\
+    \u5DE6\u7AEF\n     * @param r \u533A\u9593\u306E\u53F3\u7AEF\n     * @param a\
+    \ \u8DB3\u3055\u308C\u308B\u6570\n     * @param b \u4EE5\u524D\u306E\u5024\u306B\
+    \u639B\u3051\u308B\u6570\n     * @note \u533A\u9593 [l, r) \u306E\u5024 x \u306B\
+    \u5BFE\u3057\u3066, x <- a + b * x \u3092\u9069\u7528\u3057\u307E\u3059\u3002\n\
+    \     */\n    void composite(int l, int r, T a, T b) { this->action(l, r, {a,\
+    \ b}); }\n\n    /**\n     * @brief \u533A\u9593\u548C\u53D6\u5F97\n     * @param\
+    \ l \u533A\u9593\u306E\u5DE6\u7AEF\n     * @param r \u533A\u9593\u306E\u53F3\u7AEF\
+    \n     * @return T \u533A\u9593\u548C\n     */\n    T sum(int l, int r) { return\
+    \ this->product(l, r).first; }\n};\n"
+  code: "#pragma once\n\n#include \"../Lazy_Segment_Tree.hpp\"\n\n/**\n * @brief \u533A\
+    \u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u30FB\u533A\u9593\u548C\u53D6\u5F97\
+    \u3092\u884C\u3046\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\n * @tparam\
+    \ T \u5024\u306E\u578B\n * @note \u4F5C\u7528\u7D20 (a, b) \u306F x |-> a + bx\
+    \ \u3092\u8868\u3057\u307E\u3059\u3002\n */\ntemplate<typename T>\nclass Range_Composite_Range_Sum_Lazy_Segment_Tree\
+    \ : public Lazy_Segment_Tree<pair<T, int>, pair<T, T>> {\n    using M = pair<T,\
+    \ int>;\n    using F = pair<T, T>;\n\n    static M op(M x, M y) { return { x.first\
+    \ + y.first, x.second + y.second }; }\n    static M act(F f, M x) { return { f.first\
+    \ * T(x.second) + f.second * x.first, x.second }; }\n    static F comp(F f, F\
+    \ g) { return { f.first + f.second * g.first, f.second * g.second }; }\n\n   \
+    \ static vector<M> convert(const vector<T> &vec) {\n        vector<M> res(vec.size());\n\
+    \        for (int i = 0; i < (int)vec.size(); ++i) {\n            res[i] = {vec[i],\
+    \ 1};\n        }\n        return res;\n    }\n\n    public:\n    /**\n     * @brief\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n     * @param n \u8981\u7D20\u6570\
+    \n     * @note \u521D\u671F\u5024\u306F\u5168\u3066 0 \u306B\u306A\u308B\n   \
+    \  */\n    Range_Composite_Range_Sum_Lazy_Segment_Tree(int n) : Lazy_Segment_Tree<M,\
+    \ F>(\n        vector<M>(n, {0, 1}), op, {0, 0}, act, comp, {0, 1}\n    ) {}\n\
+    \n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n     * @param\
+    \ vec \u521D\u671F\u5024\u306E\u914D\u5217\n     */\n    Range_Composite_Range_Sum_Lazy_Segment_Tree(const\
+    \ vector<T> &vec) : Lazy_Segment_Tree<M, F>(\n        convert(vec), op, {0, 0},\
+    \ act, comp, {0, 1}\n    ) {}\n\n    /**\n     * @brief \u4E00\u70B9\u66F4\u65B0\
+    \n     * @param k \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @param x \u66F4\
+    \u65B0\u3059\u308B\u5024\n     */\n    void update(int k, T x) { Lazy_Segment_Tree<M,\
+    \ F>::update(k, {x, 1}); }\n\n    /**\n     * @brief \u4E00\u70B9\u53D6\u5F97\n\
+    \     * @param k \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     * @return T \u5024\
+    \n     */\n    T operator[](int k) { return Lazy_Segment_Tree<M, F>::operator[](k).first;\
+    \ }\n\n    /**\n     * @brief \u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\
+    \n     * @param l \u533A\u9593\u306E\u5DE6\u7AEF\n     * @param r \u533A\u9593\
+    \u306E\u53F3\u7AEF\n     * @param a \u8DB3\u3055\u308C\u308B\u6570\n     * @param\
+    \ b \u4EE5\u524D\u306E\u5024\u306B\u639B\u3051\u308B\u6570\n     * @note \u533A\
+    \u9593 [l, r) \u306E\u5024 x \u306B\u5BFE\u3057\u3066, x <- a + b * x \u3092\u9069\
+    \u7528\u3057\u307E\u3059\u3002\n     */\n    void composite(int l, int r, T a,\
+    \ T b) { this->action(l, r, {a, b}); }\n\n    /**\n     * @brief \u533A\u9593\u548C\
+    \u53D6\u5F97\n     * @param l \u533A\u9593\u306E\u5DE6\u7AEF\n     * @param r\
+    \ \u533A\u9593\u306E\u53F3\u7AEF\n     * @return T \u533A\u9593\u548C\n     */\n\
+    \    T sum(int l, int r) { return this->product(l, r).first; }\n};\n"
   dependsOn:
+  - Segment_Tree/Lazy_Segment_Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -374,18 +373,32 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Algebra/modint.hpp
-  - Segment_Tree/Lazy_Segment_Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  isVerificationFile: false
+  path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   requiredBy: []
-  timestamp: '2026-03-12 00:53:37+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+  timestamp: '2026-03-22 01:14:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+documentation_of: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
+title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\u306B\
+  \u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
 ---
+
+## Outline
+
+アフィン変換に関する遅延セグメント木
+
+## Theory
+
+可換体 $T$ 上の列 $A = (a_0, a_1, \dots, a_{n-1})$ における以下の処理を高速におこなう.
+
+* $a_l, \dots, a_r$ に対して, 以下のように更新する: $x$ から $b + cx$.
+* $\sum_{k=l}^r a_k$ を求める.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/03/22| Range_Composite_Range_Sum_Lazy_Segment_Tree 実装 |

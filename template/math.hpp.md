@@ -399,6 +399,10 @@ data:
     path: Segment_Tree/preset/Range_Add_Range_Sum.hpp
     title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
+    title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\u306B\
+      \u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+  - icon: ':heavy_check_mark:'
     path: Sequence/Cartesian_Tree.hpp
     title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
       \u308B"
@@ -566,9 +570,6 @@ data:
     path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
     title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -580,6 +581,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
@@ -963,6 +967,7 @@ data:
   - Segment_Tree/Dual_Segment_Tree.hpp
   - Segment_Tree/preset/Range_Add_Range_Min.hpp
   - Segment_Tree/preset/Range_Add_Range_Sum.hpp
+  - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   - Segment_Tree/Lazy_Segment_Tree.hpp
   - Counting/Q_Analog_Combination_Calculator.hpp
   - Counting/Combination_Calculator.hpp
@@ -1139,9 +1144,9 @@ data:
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp

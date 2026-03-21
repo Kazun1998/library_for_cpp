@@ -487,6 +487,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Segment_Tree/preset/Range_Add_Range_Sum.hpp
       title: Segment_Tree/preset/Range_Add_Range_Sum.hpp
+    - icon: ':heavy_check_mark:'
+      path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
+      title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\
+        \u306B\u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - name: Sequence
     pages:
     - icon: ':heavy_check_mark:'
@@ -713,9 +717,6 @@ data:
       path: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
       title: verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
     - icon: ':heavy_check_mark:'
-      path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-      title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
       title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -727,6 +728,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
       title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp

@@ -95,9 +95,6 @@ data:
     path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-    title: verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +103,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
@@ -490,9 +490,9 @@ data:
   - verify/yosupo_library_checker/polynomial/Division.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
-  - verify/yosupo_library_checker/data_structure/Lazy_Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
