@@ -1,6 +1,8 @@
 #pragma once
 
-namespace Weighted_Digraph {
+#include "../../template/template.hpp"
+
+namespace weighted_digraph {
   template<typename W>
   struct Weighted_Arc {
     int id, source, target;
