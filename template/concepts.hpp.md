@@ -24,7 +24,7 @@ data:
       \u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
   - icon: ':warning:'
     path: Union_Find/Group_Action_Union_Find.hpp
-    title: "Group_Action_Union_Find \u3092\u69CB\u7BC9\u3059\u308B."
+    title: "\u7FA4\u4F5C\u7528 Union Find"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
