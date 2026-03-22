@@ -448,6 +448,9 @@ data:
     title: "\u8FBA xy \u3092\u52A0\u3048\u308B. \u3053\u308C\u306B\u3088\u3063\u3066\
       \ x, y \u304C\u9023\u7D50\u306B\u306A\u3063\u305F\u5834\u5408, \u9023\u7D50\u6210\
       \u5206\u306E\u8272\u306E\u66F4\u65B0\u3092\u884C\u3046."
+  - icon: ':warning:'
+    path: Union_Find/Group_Action_Union_Find.hpp
+    title: "Group_Action_Union_Find \u3092\u69CB\u7BC9\u3059\u308B."
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
@@ -953,6 +956,7 @@ data:
   - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/projection/Projection_Point_Line.hpp
   - Union_Find/Coloring_Union_Find.hpp
+  - Union_Find/Group_Action_Union_Find.hpp
   - Union_Find/Potentilized_Union_Find.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Digit.hpp
