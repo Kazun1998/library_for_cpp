@@ -45,6 +45,9 @@ class Field_Matrix{
     inline const vector<F> &operator[](int i) const { return mat[i]; }
     inline vector<F> &operator[](int i) { return mat[i]; }
 
+    inline const F &operator[](const int i, const int j) const { return mat[i][j]; }
+    inline F operator[](const int i, const int j) { return mat[i][j]; }
+
     // 比較
     bool operator==(const Field_Matrix &B) const {
         if (row != B.row || col != B.col){ return false; }
@@ -102,7 +105,7 @@ class Field_Matrix{
         for (int i = 0; i < row; i++){
             for (int k = 0; k < col; k++){
                 for (int j = 0; j < B.col; j++){
-                    C[i][j] += (*this)[i][k] * B[k][j];
+                    C[i][j] += (*this)[i, k] * B[k, j];
                 }
             }
         }
