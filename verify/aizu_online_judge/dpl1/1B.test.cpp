@@ -13,5 +13,5 @@ int main() {
         cin >> items[i].value >> items[i].weight;
     }
 
-    cout << Knapsack_01<int, int, int>::solve_by_weight(items, W).total_value << endl;
+    cout << Knapsack_01<int, int, int, int>::solve_by_weight(items, W).total_value << endl;
 }
