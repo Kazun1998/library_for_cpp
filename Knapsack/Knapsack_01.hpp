@@ -16,16 +16,11 @@ namespace knapsack_problem {
             for (int i = 1; i <= n; i++) {
                 const auto &item = items[i - 1];
 
-                if (item.weight > capacity) {
-                    for (int w = 0; w <= capacity; ++w) dp[i][w] = dp[i - 1][w];
-                    break;
-                }
-
-                for (int w = 0; w < item.weight; ++w) {
+                for (W w = 0; w <= capacity; ++w) {
                     dp[i][w] = dp[i - 1][w];
-                }
-                for (int w = item.weight; w <= capacity; ++w) {
-                    dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - item.weight] + item.value);
+                    if (w >= item.weight) {
+                        dp[i][w] = max(dp[i][w], dp[i - 1][w - item.weight] + item.value);
+                    }
                 }
             }
 
@@ -64,10 +59,10 @@ namespace knapsack_problem {
                 }
             }
 
-            V packed_value, current_value;
+            V current_value = 0;
             for (int v = value_sum; v >= 0; --v) {
                 if (dp[n][v] <= capacity) {
-                    current_value = packed_value = v;
+                    current_value = v;
                     break;
                 }
             }
@@ -76,7 +71,7 @@ namespace knapsack_problem {
             for (int i = n; i >= 1; --i) {
                 const auto &item = items[i - 1];
 
-                if (dp[i][current_value] == dp[i - 1][current_value - item.value] + item.weight) {
+                if (current_value >= item.value && dp[i][current_value] == dp[i - 1][current_value - item.value] + item.weight) {
                     current_value -= item.value;
                     knapsack[i - 1]++;
                 }
