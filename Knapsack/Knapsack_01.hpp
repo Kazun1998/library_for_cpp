@@ -3,15 +3,13 @@
 #include"Base.hpp"
 
 namespace knapsack_problem {
-    template<typename I, typename V, typename W>
+    template<typename I, typename V, typename W, typename T>
     class Knapsack_01 {
-        using Item_List = vector<Item<I, V, W>>;
-
         public:
         /// @brief 各アイテムの重さが軽い場合の 0-1 Knapsack 問題を解く.
         /// @param items 詰め込むアイテムのリスト
         /// @param capacity ナップサックの容量
-        static Solution<I, V, W> solve_by_weight(const Item_List &items, const W capacity) {
+        static Solution<I, V, W, T> solve_by_weight(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             vector<vector<V>> dp(n + 1, vector<V>(capacity + 1, 0));
 
@@ -32,21 +30,18 @@ namespace knapsack_problem {
             }
 
             W current_weight = static_cast<W>(argmax(dp[n]));
-            const V packed_value = dp[n][current_weight];
-            Item_List packed_items;
+            vector<T> knapsack(n, 0);
 
             for (int i = n; i >= 1; --i) {
                 const auto &item = items[i - 1];
 
                 if (item.weight <= current_weight && dp[i][current_weight] == dp[i - 1][current_weight - item.weight] + item.value) {
                     current_weight -= item.weight;
-                    packed_items.emplace_back(item);
+                    knapsack[i - 1]++;
                 }
             }
 
-            reverse(packed_items.begin(), packed_items.end());
-
-            return Solution<I, V, W>(packed_items, packed_value);
+            return Solution<I, V, W, T>(items, knapsack);
         }
 
         static Solution<I, V, W> solve_by_value(const Item_List &items, const W capacity) {
