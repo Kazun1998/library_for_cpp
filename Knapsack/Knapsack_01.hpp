@@ -1,15 +1,16 @@
 #pragma once
 
 #include"Base.hpp"
+#include <concepts>
 
 namespace knapsack_problem {
-    template<typename I, typename V, typename W, typename T>
+    template<std::copyable I, std::integral V, std::integral W, std::integral Q>
     class Knapsack_01 {
         public:
         /// @brief 各アイテムの重さが軽い場合の 0-1 Knapsack 問題を解く.
         /// @param items 詰め込むアイテムのリスト
         /// @param capacity ナップサックの容量
-        static Solution<I, V, W, T> solve_by_weight(const vector<Item<I, V, W>> &items, const W capacity) {
+        static Solution<I, V, W, Q> solve_by_weight(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             vector<vector<V>> dp(n + 1, vector<V>(capacity + 1, 0));
 
@@ -25,7 +26,7 @@ namespace knapsack_problem {
             }
 
             W current_weight = static_cast<W>(argmax(dp[n]));
-            vector<T> knapsack(n, 0);
+            vector<Q> knapsack(n, 0);
 
             for (int i = n; i >= 1; --i) {
                 const auto &item = items[i - 1];
@@ -36,10 +37,10 @@ namespace knapsack_problem {
                 }
             }
 
-            return Solution<I, V, W, T>(items, knapsack);
+            return Solution<I, V, W, Q>(items, knapsack);
         }
 
-        static Solution<I, V, W, T> solve_by_value(const vector<Item<I, V, W>> &items, const W capacity) {
+        static Solution<I, V, W, Q> solve_by_value(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             V value_sum = 0;
             for (const auto &item: items) value_sum += item.value;
@@ -67,7 +68,7 @@ namespace knapsack_problem {
                 }
             }
 
-            vector<T> knapsack(n, 0);
+            vector<Q> knapsack(n, 0);
             for (int i = n; i >= 1; --i) {
                 const auto &item = items[i - 1];
 
@@ -77,7 +78,7 @@ namespace knapsack_problem {
                 }
             }
 
-            return Solution<I, V, W, T>(items, knapsack);
+            return Solution<I, V, W, Q>(items, knapsack);
         }
     };
 }
