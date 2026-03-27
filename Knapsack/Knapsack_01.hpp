@@ -4,7 +4,7 @@
 #include <concepts>
 
 namespace knapsack_problem {
-    template<std::copyable I, std::integral V, std::integral W, std::integral Q>
+    template<copyable I, integral V, integral W, integral Q>
     class Knapsack_01 {
         public:
         /// @brief 各アイテムの重さが軽い場合の 0-1 Knapsack 問題を解く.
