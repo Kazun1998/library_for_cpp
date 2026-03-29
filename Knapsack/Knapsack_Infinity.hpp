@@ -8,6 +8,13 @@ namespace knapsack_problem {
         using ItemList = vector<Item<I, V, W>>;
 
         public:
+        /**
+         * @brief 個数制限なしナップサック問題を動的計画法で解く
+         * 
+         * @param items 詰め込むアイテムのリスト（同一アイテムを何度でも使用可能）
+         * @param capacity ナップサックの容量
+         * @return Solution<I, V, W, Q> 最適解の情報
+         */
         static Solution<I, V, W, Q> solve_by_weight(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             vector<vector<V>> dp(n + 1, vector<V>(capacity + 1, 0));

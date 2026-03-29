@@ -9,6 +9,14 @@ namespace knapsack_problem {
         using ItemList = vector<Item<I, V, W>>;
 
         public:
+        /**
+         * @brief 個数制限付きナップサック問題を、0-1ナップサック問題に変換して解く
+         * 
+         * @param items 詰め込むアイテムのリスト
+         * @param limit 各アイテムの使用可能上限数
+         * @param capacity ナップサックの容量
+         * @return Solution<I, V, W, Q> 最適解の情報
+         */
         static Solution<I, V, W, Q> solve_by_weight(const vector<Item<I, V, W>> &items, const vector<Q> &limit, const W capacity) {
             const int n = items.size();
 

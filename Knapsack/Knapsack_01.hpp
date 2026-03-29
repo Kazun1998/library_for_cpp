@@ -9,9 +9,13 @@ namespace knapsack_problem {
         using ItemList = vector<Item<I, V, W>>;
 
         public:
-        /// @brief 各アイテムの重さが軽い場合の 0-1 Knapsack 問題を解く.
-        /// @param items 詰め込むアイテムのリスト
-        /// @param capacity ナップサックの容量
+        /**
+         * @brief 各アイテムの重さが軽い場合の 0-1 ナップサック問題を動的計画法で解く
+         * 
+         * @param items 詰め込むアイテムのリスト
+         * @param capacity ナップサックの容量
+         * @return Solution<I, V, W, Q> 最適解の情報
+         */
         static Solution<I, V, W, Q> solve_by_weight(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             vector<vector<V>> dp(n + 1, vector<V>(capacity + 1, 0));
@@ -42,6 +46,13 @@ namespace knapsack_problem {
             return Solution<I, V, W, Q>(items, knapsack);
         }
 
+        /**
+         * @brief 各アイテムの価値が小さい場合の 0-1 ナップサック問題を動的計画法で解く
+         * 
+         * @param items 詰め込むアイテムのリスト
+         * @param capacity ナップサックの容量
+         * @return Solution<I, V, W, Q> 最適解の情報
+         */
         static Solution<I, V, W, Q> solve_by_value(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = items.size();
             V value_sum = 0;
@@ -83,9 +94,13 @@ namespace knapsack_problem {
             return Solution<I, V, W, Q>(items, knapsack);
         }
 
-        /// @brief 半分全列挙を用いて 0-1 Knapsack 問題を解く.
-        /// @param items 詰め込むアイテムのリスト
-        /// @param capacity ナップサックの容量
+        /**
+         * @brief 半分全列挙を用いて 0-1 ナップサック問題を解く
+         * 
+         * @param items 詰め込むアイテムのリスト
+         * @param capacity ナップサックの容量
+         * @return Solution<I, V, W, Q> 最適解の情報
+         */
         static Solution<I, V, W, Q> solve_meet_in_the_middle(const vector<Item<I, V, W>> &items, const W capacity) {
             int n = (int)items.size();
             int a = n / 2, b = n - a;
