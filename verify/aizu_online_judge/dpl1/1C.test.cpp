@@ -1,7 +1,7 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_B"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_C"
 
 #include"../../../template/template.hpp"
-#include"../../../Knapsack/Knapsack_01.hpp"
+#include"../../../Knapsack/Knapsack_Infinity.hpp"
 
 using namespace knapsack_problem;
 
@@ -13,5 +13,5 @@ int main() {
         cin >> items[i].value >> items[i].weight;
     }
 
-    cout << Knapsack_01<int, int, int, int>::solve_by_weight(items, W).total_value << endl;
+    cout << Knapsack_Infinity<int, int, int, int>::solve_by_weight(items, W).total_value << endl;
 }
