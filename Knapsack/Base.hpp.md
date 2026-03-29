@@ -26,13 +26,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: Knapsack/Knapsack_01.hpp
     title: "0-1 Knapsack \u554F\u984C"
+  - icon: ':heavy_check_mark:'
+    path: Knapsack/Knapsack_Infinity.hpp
+    title: "Knapsack \u554F\u984C"
+  - icon: ':heavy_check_mark:'
+    path: Knapsack/Knapsack_Limitation.hpp
+    title: "\u500B\u6570\u5236\u9650\u4ED8\u304D Knapsack \u554F\u984C"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dpl1/1B.test.cpp
     title: verify/aizu_online_judge/dpl1/1B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1C.test.cpp
+    title: verify/aizu_online_judge/dpl1/1C.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dpl1/1F.test.cpp
     title: verify/aizu_online_judge/dpl1/1F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1G.test.cpp
+    title: verify/aizu_online_judge/dpl1/1G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/dpl1/1H.test.cpp
+    title: verify/aizu_online_judge/dpl1/1H.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -197,34 +212,38 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Knapsack/Base.hpp\"\
-    \n\nnamespace knapsack_problem {\n    template<typename I, typename V, typename\
-    \ W>\n    struct Item {\n        I id;\n        V value;\n        W weight;\n\n\
-    \        Item() = default;\n        Item(const V value, const W weight): value(value),\
-    \ weight(weight) {}\n        Item(const I id, const V value, const W weight):\
-    \ id(id), value(value), weight(weight) {}\n    };\n\n    template<typename I,\
-    \ typename V, typename W>\n    struct Solution {\n        private:\n        static\
-    \ V calculate_total_value(const vector<Item<I, V, W>> &items) {\n            V\
-    \ total_value = 0;\n            for (const auto &item : items) total_value +=\
-    \ item.value;\n            return total_value;\n        }\n\n        public:\n\
-    \        const vector<Item<I, V, W>> knapsack;\n        const V total_value;\n\
-    \n        Solution(const vector<Item<I, V, W>> &items, const V total_value): knapsack(items),\
-    \ total_value(total_value) {}\n        Solution(const vector<Item<I, V, W>> &items):\
-    \ knapsack(items), total_value(calculate_total_value(items)) {}\n    };\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace knapsack_problem\
-    \ {\n    template<typename I, typename V, typename W>\n    struct Item {\n   \
-    \     I id;\n        V value;\n        W weight;\n\n        Item() = default;\n\
-    \        Item(const V value, const W weight): value(value), weight(weight) {}\n\
-    \        Item(const I id, const V value, const W weight): id(id), value(value),\
-    \ weight(weight) {}\n    };\n\n    template<typename I, typename V, typename W>\n\
-    \    struct Solution {\n        private:\n        static V calculate_total_value(const\
-    \ vector<Item<I, V, W>> &items) {\n            V total_value = 0;\n          \
-    \  for (const auto &item : items) total_value += item.value;\n            return\
+    \ {\n        return message.c_str();\n    }\n};\n#line 5 \"Knapsack/Base.hpp\"\
+    \n\nnamespace knapsack_problem {\n    template<std::copyable I, std::integral\
+    \ V, std::integral W>\n    struct Item {\n        I id;\n        V value;\n  \
+    \      W weight;\n\n        Item() = default;\n        Item(const V value, const\
+    \ W weight): value(value), weight(weight) {}\n        Item(const I id, const V\
+    \ value, const W weight): id(id), value(value), weight(weight) {}\n    };\n\n\
+    \    template<std::copyable I, std::integral V, std::integral W, std::integral\
+    \ Q>\n    struct Solution {\n        private:\n        static V calculate_total_value(const\
+    \ vector<Item<I, V, W>> &items, const vector<Q> &knapsack) {\n            V total_value\
+    \ = 0;\n            for (int i = 0; i < items.size(); ++i) {\n               \
+    \ total_value += items[i].value * knapsack[i];\n            }\n            return\
     \ total_value;\n        }\n\n        public:\n        const vector<Item<I, V,\
-    \ W>> knapsack;\n        const V total_value;\n\n        Solution(const vector<Item<I,\
-    \ V, W>> &items, const V total_value): knapsack(items), total_value(total_value)\
-    \ {}\n        Solution(const vector<Item<I, V, W>> &items): knapsack(items), total_value(calculate_total_value(items))\
-    \ {}\n    };\n}\n"
+    \ W>> items;\n        const vector<Q> knapsack;\n        const V total_value;\n\
+    \n        Solution(const vector<Item<I, V, W>> &items, const vector<Q> &knapsack):\
+    \ items(items), knapsack(knapsack), total_value(calculate_total_value(items, knapsack)){}\n\
+    \    };\n}\n"
+  code: "#pragma once\n\n#include\"../template/template.hpp\"\n#include <concepts>\n\
+    \nnamespace knapsack_problem {\n    template<std::copyable I, std::integral V,\
+    \ std::integral W>\n    struct Item {\n        I id;\n        V value;\n     \
+    \   W weight;\n\n        Item() = default;\n        Item(const V value, const\
+    \ W weight): value(value), weight(weight) {}\n        Item(const I id, const V\
+    \ value, const W weight): id(id), value(value), weight(weight) {}\n    };\n\n\
+    \    template<std::copyable I, std::integral V, std::integral W, std::integral\
+    \ Q>\n    struct Solution {\n        private:\n        static V calculate_total_value(const\
+    \ vector<Item<I, V, W>> &items, const vector<Q> &knapsack) {\n            V total_value\
+    \ = 0;\n            for (int i = 0; i < items.size(); ++i) {\n               \
+    \ total_value += items[i].value * knapsack[i];\n            }\n            return\
+    \ total_value;\n        }\n\n        public:\n        const vector<Item<I, V,\
+    \ W>> items;\n        const vector<Q> knapsack;\n        const V total_value;\n\
+    \n        Solution(const vector<Item<I, V, W>> &items, const vector<Q> &knapsack):\
+    \ items(items), knapsack(knapsack), total_value(calculate_total_value(items, knapsack)){}\n\
+    \    };\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -237,10 +256,15 @@ data:
   path: Knapsack/Base.hpp
   requiredBy:
   - Knapsack/Knapsack_01.hpp
-  timestamp: '2026-03-12 00:53:37+09:00'
+  - Knapsack/Knapsack_Infinity.hpp
+  - Knapsack/Knapsack_Limitation.hpp
+  timestamp: '2026-03-27 01:16:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/aizu_online_judge/dpl1/1G.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
+  - verify/aizu_online_judge/dpl1/1H.test.cpp
+  - verify/aizu_online_judge/dpl1/1C.test.cpp
   - verify/aizu_online_judge/dpl1/1F.test.cpp
 documentation_of: Knapsack/Base.hpp
 layout: document

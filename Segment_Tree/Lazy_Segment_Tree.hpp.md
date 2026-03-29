@@ -409,9 +409,9 @@ data:
   isVerificationFile: false
   path: Segment_Tree/Lazy_Segment_Tree.hpp
   requiredBy:
-  - Segment_Tree/preset/Range_Add_Range_Min.hpp
-  - Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
+  - Segment_Tree/preset/Range_Add_Range_Sum.hpp
+  - Segment_Tree/preset/Range_Add_Range_Min.hpp
   timestamp: '2026-03-12 00:53:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

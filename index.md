@@ -321,6 +321,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Knapsack/Knapsack_01.hpp
       title: "0-1 Knapsack \u554F\u984C"
+    - icon: ':heavy_check_mark:'
+      path: Knapsack/Knapsack_Infinity.hpp
+      title: "Knapsack \u554F\u984C"
+    - icon: ':heavy_check_mark:'
+      path: Knapsack/Knapsack_Limitation.hpp
+      title: "\u500B\u6570\u5236\u9650\u4ED8\u304D Knapsack \u554F\u984C"
   - name: Linear_Algebra
     pages:
     - icon: ':heavy_check_mark:'
@@ -642,8 +648,17 @@ data:
       path: verify/aizu_online_judge/dpl1/1B.test.cpp
       title: verify/aizu_online_judge/dpl1/1B.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dpl1/1C.test.cpp
+      title: verify/aizu_online_judge/dpl1/1C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/dpl1/1F.test.cpp
       title: verify/aizu_online_judge/dpl1/1F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dpl1/1G.test.cpp
+      title: verify/aizu_online_judge/dpl1/1G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dpl1/1H.test.cpp
+      title: verify/aizu_online_judge/dpl1/1H.test.cpp
   - name: verify/aizu_online_judge/dsl
     pages:
     - icon: ':heavy_check_mark:'

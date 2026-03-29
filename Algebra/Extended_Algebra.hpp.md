@@ -389,13 +389,13 @@ data:
   isVerificationFile: false
   path: Algebra/Extended_Algebra.hpp
   requiredBy:
-  - Algebra/Semiring_Matrix.hpp
   - Max_Flow/Project_Selection_Problem.hpp
+  - Algebra/Semiring_Matrix.hpp
   timestamp: '2026-03-12 00:53:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/1780.test.cpp
   - verify/yukicoder/1984.test.cpp
+  - verify/yukicoder/1780.test.cpp
 documentation_of: Algebra/Extended_Algebra.hpp
 layout: document
 redirect_from:

@@ -429,11 +429,11 @@ data:
   timestamp: '2026-03-12 00:53:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
 documentation_of: Linear_Algebra/Field_Matrix.hpp
 layout: document
 redirect_from:

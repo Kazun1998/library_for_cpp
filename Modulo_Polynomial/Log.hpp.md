@@ -571,21 +571,21 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Log.hpp
   requiredBy:
-  - Modulo_Polynomial/Exp.hpp
+  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Bell_Number.hpp
   - Modulo_Polynomial/Bernoulli_Number.hpp
   - Modulo_Polynomial/Subset_Sum.hpp
-  - Modulo_Polynomial/Bell_Number.hpp
   - Modulo_Polynomial/Partition_Q.hpp
-  - Modulo_Polynomial/Power.hpp
+  - Modulo_Polynomial/Exp.hpp
   timestamp: '2026-03-12 00:53:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
-  - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
+  - verify/yosupo_library_checker/polynomial/Power.test.cpp
   - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Log.hpp
 layout: document
