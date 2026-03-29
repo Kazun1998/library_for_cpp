@@ -24,7 +24,6 @@ namespace knapsack_problem {
 
             Solution<pair<I, Q>, V, W, Q> reduced_result = Knapsack_01<pair<I, Q>, V, W, Q>::solve_by_weight(reduced_items, capacity);
 
-            int m = reduced_items.size();
             vector<Q> knapsack(n, 0);
             for (int j = 0; j < reduced_items.size(); ++j) {
                 if (reduced_result.knapsack[j] == 0) continue;
