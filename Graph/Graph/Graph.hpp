@@ -74,5 +74,11 @@ namespace graph {
 
             return matrix;
         }
+
+        vector<vector<int>> degree_matrix() const {
+            vector<vector<int>> matrix(order(), vector<int>(order(), 0));
+            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);
+            return matrix;
+        }
     };
 }
