@@ -3,16 +3,18 @@
 #include"../../../template/template.hpp"
 #include"../../../Modulo/Sqrt.hpp"
 
-int main() {
+int verify() {
     using namespace modulo;
+    Modulo Y;
+    scanf("%lld%lld", &Y.a, &Y.n);
+
+    auto X = Sqrt(Y);
+    return X == nullopt ? -1 : X.value().a;
+}
+
+int main() {
     int T; cin >> T;
     for (int t = 0; t < T; t++) {
-        Modulo Y; scanf("%lld%lld", &Y.a, &Y.n);
-
-        try {
-            cout << Sqrt(Y).a << "\n";
-        } catch (const NotExist &e) {
-            cout << -1 << "\n";
-        }
+        cout << verify() << "\n";
     }
 }

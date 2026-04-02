@@ -15,8 +15,8 @@ namespace modulo {
     /// @brief X * X = A を満たす Y を 1 つ求める. 存在しない場合は NotExist 例外を raise.
     /// @param A
     /// @return X * X = A を満たす Y のどれか 1 つ
-    Modulo Sqrt(const Modulo &A) {
-        if (Legendre(A) == -1) throw NotExist();
+    optional<Modulo> Sqrt(const Modulo &A) {
+        if (Legendre(A) == -1) return nullopt;
 
         ll p = A.n;
         if (A.is_zero()) return A;

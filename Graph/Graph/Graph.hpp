@@ -53,7 +53,7 @@ namespace graph {
         }
 
         /// @brief 頂点 u に接続する辺のアドレス一覧を取得する.
-        vector<Edge*> incidence (int u) const { return incidences[u]; }
+        const vector<Edge*>& incidence (int u) const { return incidences[u]; }
 
         // 辺 ID が id であり, source が u である辺を取得する.
         inline const Edge& get_edge(int id) const { return edges[id]; }
@@ -63,5 +63,34 @@ namespace graph {
 
         /// @brief 頂点 v の次数を求める
         inline int degree(const int v) const { return deg[v]; }
+
+        vector<vector<int>> adjacency_matrix() const {
+            vector<vector<int>> matrix(order(), vector<int>(order(), 0));
+            for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {
+                Edge edge = edges[j];
+                matrix[edge.source][edge.target]++;
+                matrix[edge.target][edge.source]++;
+            }
+
+            return matrix;
+        }
+
+        vector<vector<int>> degree_matrix() const {
+            vector<vector<int>> matrix(order(), vector<int>(order(), 0));
+            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);
+            return matrix;
+        }
+
+        vector<vector<int>> laplacian_matrix() const {
+            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();
+            vector<vector<int>> L(order(), vector<int>(order()));
+            for (int i = 0; i < order(); ++i) {
+                for (int j = 0; j < order(); ++j) {
+                    L[i][j] = D[i][j] - A[i][j];
+                }
+            }
+
+            return L;
+        }
     };
 }

@@ -17,6 +17,7 @@ using namespace std;
 #include <climits>
 #include <cmath>
 #include <complex>
+#include <concepts>
 #include <cstdarg>
 #include <cstddef>
 #include <cstdint>
@@ -39,6 +40,7 @@ using namespace std;
 #include <new>
 #include <numeric>
 #include <ostream>
+#include <optional>
 #include <queue>
 #include <random>
 #include <set>

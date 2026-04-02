@@ -8,28 +8,30 @@ vector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X alpha) 
 
     data[T.get_root()] = alpha;
 
-    for (int x: T.top_down()) {
+    auto dfs = [&](auto self, int x) -> void {
         for (int y: T.get_children(x)) {
             data[y] = f(data[x], x, y);
+            self(self, y);
         }
-    }
+    };
 
+    dfs(dfs, T.get_root());
     return data;
 }
 
 template<typename X, typename M>
 vector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {
-    using V = int;
-
     vector<X> data(T.vector_size());
 
-    for (V v: T.bottom_up()) {
-        M tmp = unit;
-        for (V w: T.get_children(v)) {
-            tmp = merge(tmp, f(data[w], v, w));
+    auto dfs = [&](auto self, int v) -> void {
+        M children_product = unit;
+        for (int w: T.get_children(v)) {
+            self(self, w);
+            children_product = merge(children_product, f(data[w], v, w));
         }
-        data[v] = g(tmp, v);
-    }
+        data[v] = g(children_product, v);
+    };
 
+    dfs(dfs, T.get_root());
     return data;
 }

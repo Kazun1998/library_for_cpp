@@ -35,7 +35,7 @@ namespace prime {
     return true;
   }
 
-  pair<long long, long long> exponents(long long n, long long p) {
+  pair<uint64_t, long long> exponents(uint64_t n, long long p) {
     long long e = 0;
     while (n % p == 0) { e++, n /= p; }
     return {e, n};

@@ -1,10 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
 
-#include"../../../Math/Montmort_Number.hpp"
+#include "../../../Algebra/dynamic_modint.hpp"
+#include "../../../Math/Montmort_Number.hpp"
+
+using mint = dynamic_modint<0>;
 
 int main() {
     int N, M; cin >> N >> M;
-    auto b = Montmort_Number(N, M);
-    for (int k = 1; k <= N; k++) { cout << b[k].a << (k < N ? " " : ""); }
+    mint::set_mod(M);
+    auto b = Montmort_Number<mint>(N);
+    for (int k = 1; k <= N; k++) { cout << b[k].x << (k < N ? " " : ""); }
     cout << endl;
 }

@@ -84,8 +84,15 @@ $$ m_n = \begin{cases} 1 & (n = 0) \\ n m_{n-1} + (-1)^n & (n \geq 1) \end{cases
 ### Contents
 
 ```cpp
-vector<Modulo>Montmort_Number(int N, const ll M)
+template<typename mint>
+vector<mint>Montmort_Number(int N)
 ```
 
-* Montmort 数 $m_0, m_1, \dots, m_N$ をそれぞれ $M$ で割った余りを求める.
+* Montmort 数 $m_0, m_1, \dots, m_N$ を求める.
 
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/02/21| テンプレート対応 |
+|2025/10/03| Montmort_Number メソッドの実装 |

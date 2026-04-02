@@ -9,7 +9,7 @@ class modint {
     uint64_t x;
 
     public:
-    static int mod() { return _mod; }
+    static constexpr int mod() { return _mod; }
 
     static modint raw(int v) {
         modint a;
@@ -95,11 +95,18 @@ class modint {
     bool is_member(ll a) const { return x == (a % mod() + mod()) % mod(); }
 };
 
-template<int mod>
-modint<mod> pow(modint<mod> x, long long n) {
+template<typename T>
+struct is_modint : std::false_type {};
+
+template<int M>
+struct is_modint<modint<M>> : std::true_type {};
+
+template<typename Mint>
+requires is_modint<Mint>::value
+Mint pow(Mint x, long long n) {
     if (n < 0) { return pow(x, -n).inverse(); }
 
-    auto res = modint<mod>(1);
+    Mint res(1);
     for (; n; n >>= 1) {
         if (n & 1) { res *= x; }
         x *= x;

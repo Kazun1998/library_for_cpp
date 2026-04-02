@@ -8,7 +8,7 @@ int main() {
     vector<ll> a(N);
     for (int i = 0; i < N; i++) scanf("%lld", &a[i]);
 
-    Interval_Product<ll, add<ll>, neg<ll>, 0LL> I(a);
+    Interval_Product<ll, add<ll>, 0LL, neg<ll>> I(a);
 
     for (int q = 1; q <= Q; q++) {
         int l, r; scanf("%d%d", &l, &r);

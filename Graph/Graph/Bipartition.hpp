@@ -1,0 +1,88 @@
+#pragma once
+
+#include "../../template/template.hpp"
+#include "Graph.hpp"
+
+namespace graph {
+
+    /// @brief 二部グラフに関する情報を求める.
+    /// @param G 
+    /// @return そもそも二部グラフではない場合は nullout, 二部グラフである場合は, [(A0, B0), ..., (Ak, Bk)] の形で返される. (Ai, Bi) がそれぞれの連結成分における部集合になる.
+    optional<vector<pair<vector<int>, vector<int>>>> Biparte(const Graph &G) {
+        int n = G.order();
+        vector<int> colors(n, -1);
+
+        vector<pair<vector<int>, vector<int>>> groups;
+        for (int x = 0; x < n; ++x) {
+            if (colors[x] != -1) continue;
+
+            vector<int> stack{x};
+            vector<int> white{x}, black;
+
+            colors[x] = 0;
+            while (!stack.empty()) {
+                int v = stack.back(); stack.pop_back();
+
+                for (auto edge: G.incidence(v)) {
+                int u = edge->target;
+                if (colors[u] != -1) {
+                    if (colors[u] ^ 1 != colors[v]) return nullopt;
+                    continue;
+                }
+
+                colors[u] = colors[v] ^ 1;
+                (colors[u] == 0 ? white : black).emplace_back(u);
+                stack.emplace_back(u);
+                }
+            }
+
+            groups.emplace_back(white, black);
+        }
+
+        return groups;
+    }
+
+    /// @brief G の二部グラフに対する部集合の例を求める.
+    /// @param G 
+    /// @return (A, B): A, B がそれぞれ部集合になる.
+    optional<pair<vector<int>, vector<int>>> Find_Bipartion(const Graph &G) {
+        auto bipartition = Biparte(G);
+        if (!bipartition) { return nullopt; }
+
+        vector<int> A, B;
+        for (const auto &[a, b]: *bipartition) {
+            A.insert(A.end(), a.begin(), a.end());
+            B.insert(B.end(), b.begin(), b.end());
+        }
+
+        return make_pair(A, B);
+    }
+
+    bool Is_Bipartite(const Graph &G) {
+        int n = G.order();
+        vector<int> colors(n, -1);
+
+        for (int x = 0; x < n; ++x) {
+            if (colors[x] != -1) continue;
+
+            vector<int> stack{x};
+            colors[x] = 0;
+            while (!stack.empty()) {
+                int v = stack.back(); stack.pop_back();
+
+                for (auto edge: G.incidence(v)) {
+                    int u = edge->target;
+                    if (colors[u] != -1) {
+                        if (colors[u] == colors[v]) return false;
+                        continue;
+                    }
+
+                    colors[u] = colors[v] ^ 1;
+                    stack.emplace_back(u);
+                }
+            }
+        }
+
+        return true;
+    }
+}

@@ -1,13 +1,11 @@
 #include"../template/template.hpp"
-#include"../Modulo/Modulo.hpp"
 
-using namespace modulo;
+template<typename mint>
+vector<mint>Montmort_Number(int N) {
+    if (N == 0) { return vector<mint>({1}); }
 
-vector<Modulo>Montmort_Number(int N, const ll M) {
-    if (N == 0) { return vector<Modulo>({{1, M}}); }
-
-    vector<Modulo> montmort(N + 1);
-    montmort[0] = Modulo(1, M); montmort[1] = Modulo(0, M);
+    vector<mint> montmort(N + 1);
+    montmort[0] = mint(1); montmort[1] = mint(0);
 
     for (int k = 2; k <= N; k++) {
         montmort[k] = k * montmort[k - 1] + (k % 2 == 0 ? 1 : -1);
