@@ -35,7 +35,20 @@ namespace convolution {
             return *this;
         }
 
+        Self& pow(long long n) {
+            zeta();
+            for (R &v : this->data) { v = ::pow(v, n); }
+            mobius();
+            return *this;
+        }
+
         void zeta() { zeta_transform(this->data); }
         void mobius() { mobius_transform(this->data); }
     };
+
+    template<typename T>
+    T pow(T a, ll n) {
+        a.pow(n);
+        return a;
+    }
 }
