@@ -286,7 +286,7 @@ template<typename F>
 F Trace(const Field_Matrix<F> &A) {
     assert (A.is_square());
     F tr = F(0);
-    for (int i = 0; i < row; i++) res += A[i, i];
+    for (int i = 0; i < row(); i++) tr += A[i, i];
     return tr;
 }
 
