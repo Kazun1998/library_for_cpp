@@ -21,7 +21,7 @@ class Field_Matrix{
 
     Field_Matrix(int row): Field_Matrix(row, row){}
 
-    Field_Matrix(vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){
+    Field_Matrix(const vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){
         for (int i = 0; i < row; i++){
             copy(ele[i].begin(), ele[i].end(), mat[i].begin());
         }
@@ -44,6 +44,9 @@ class Field_Matrix{
     // 要素
     inline const vector<F> &operator[](int i) const { return mat[i]; }
     inline vector<F> &operator[](int i) { return mat[i]; }
+
+    inline const F &operator[](const int i, const int j) const { return mat[i][j]; }
+    inline F operator[](const int i, const int j) { return mat[i][j]; }
 
     // 比較
     bool operator==(const Field_Matrix &B) const {
@@ -102,7 +105,7 @@ class Field_Matrix{
         for (int i = 0; i < row; i++){
             for (int k = 0; k < col; k++){
                 for (int j = 0; j < B.col; j++){
-                    C[i][j] += (*this)[i][k] * B[k][j];
+                    C[i][j] += mat[i][k] * B.mat[k][j];
                 }
             }
         }
@@ -276,6 +279,15 @@ F Determinant(const Field_Matrix<F> &A){
     }
 
     return det;
+}
+
+// トレース
+template<typename F>
+F Trace(const Field_Matrix<F> &A) {
+    assert (A.is_square());
+    F tr = F(0);
+    for (int i = 0; i < row; i++) res += A[i, i];
+    return tr;
 }
 
 // 第 (i, i) 要素が a[i] である対角行列を生成する.
