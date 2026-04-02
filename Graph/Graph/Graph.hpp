@@ -80,5 +80,17 @@ namespace graph {
             for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);
             return matrix;
         }
+
+        vector<vector<int>> laplacian_matrix() const {
+            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();
+            vector<vector<int>> L(order(), vector<int>(order()));
+            for (int i = 0; i < order(); ++i) {
+                for (int j = 0; j < order(); ++j) {
+                    L[i][j] = D[i][j] - A[i][j];
+                }
+            }
+
+            return L;
+        }
     };
 }
