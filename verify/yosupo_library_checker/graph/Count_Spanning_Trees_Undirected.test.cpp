@@ -12,7 +12,7 @@ mint verify() {
     cin >> N >> M;
     Graph G(N);
     for (int j = 0; j < M; ++j) {
-        int u, v; cin >> u >> v;
+        int u, v; scanf("%d%d", &u, &v);
         G.add_edge(u, v);
     }
     return Count_Spanning_Trees<mint>(G);
