@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_spanning_tree_undirected"
 
 #include "../../../template/template.hpp"
-#include "../../../Graph/Graph/Count_Spanning_Tree.hpp"
+#include "../../../Graph/Graph/Count_Spanning_Trees.hpp"
 #include "../../../Algebra/modint.hpp"
 
 using namespace graph;
@@ -15,7 +15,7 @@ mint verify() {
         int u, v; cin >> u >> v;
         G.add_edge(u, v);
     }
-    return Count_Spanning_Tree<mint>(G);
+    return Count_Spanning_Trees<mint>(G);
 }
 
 int main() {

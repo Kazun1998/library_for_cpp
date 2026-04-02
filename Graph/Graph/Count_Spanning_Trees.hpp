@@ -6,7 +6,7 @@
 
 namespace graph {
     template<typename F>
-    F Count_Spanning_Tree(const Graph &G) {
+    F Count_Spanning_Trees(const Graph &G) {
         vector<vector<int>> L_pre = G.laplacian_matrix();
 
         const int n = G.order();
