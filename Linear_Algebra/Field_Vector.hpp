@@ -22,9 +22,8 @@ class Field_Vector {
     // 比較
     bool operator==(const Field_Vector &w) const {
         if (dimension () != w.dimension ()){ return false; }
-
         for (int i = 0; i < dimension (); i++) {
-            unless((*this)[i] == w[i]) { return false;}
+            if ((*this)[i] != w[i]) { return false;}
         }
         return true;
     }
@@ -59,15 +58,15 @@ class Field_Vector {
     Field_Vector operator-(const Field_Vector &w) const { return Field_Vector(*this) -= w; }
 
     // スカラー倍
-    Field_Vector& operator*=(const F a) {
+    Field_Vector& operator*=(const F& a) {
         for (int i = 0; i < dimension (); i++){ (*this)[i] *= a; }
         return *this;
     }
 
     Field_Vector operator*(const F &a) const { return Field_Vector(*this) *= a; }
 
-    Field_Vector& operator/=(const F a) {
-        F a_inv = a.inverse();
+    Field_Vector& operator/=(const F& a) {
+        const F a_inv = a.inverse(); // inverse()の結果をconstで保持
         for (int i = 0; i < dimension (); i++){ (*this)[i] *= a_inv; }
         return *this;
     }
@@ -77,7 +76,7 @@ class Field_Vector {
     // zero?
     bool is_zero() const {
         for (int i = 0; i < dimension (); i++) {
-            unless((*this)[i] == 0) { return false; }
+            if ((*this)[i] != F(0)) { return false; }
         }
         return true;
     }
@@ -98,7 +97,9 @@ class Field_Vector {
 
     // 内積
     F inner(const Field_Vector<F> &w) const {
-        F res = 0;
+        assert(dimension() == w.dimension());
+
+        F res = F(0);
         for (int i = 0; i < dimension (); i++) { res += (*this)[i] * w[i]; }
         return res;
     }
