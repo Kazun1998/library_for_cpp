@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Field_Matrix.hpp
+    title: Linear_Algebra/Field_Matrix.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,67 +28,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Graph/Graph/Bipartition.hpp
-    title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Connected_Components.hpp
-    title: Graph/Graph/Connected_Components.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Count_Spanning_Trees.hpp
-    title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Enumerate_Cliques.hpp
-    title: Graph/Graph/Enumerate_Cliques.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Enumerate_Triangles.hpp
-    title: Graph/Graph/Enumerate_Triangles.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Eulerian_Trail.hpp
-    title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Lowlink.hpp
-    title: Graph/Graph/Lowlink.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Path.hpp
-    title: Graph/Graph/Path.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Two_Edge_Connected_Components.hpp
-    title: Graph/Graph/Two_Edge_Connected_Components.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/alds1/11D.test.cpp
-    title: verify/aizu_online_judge/alds1/11D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3A.test.cpp
-    title: verify/aizu_online_judge/grl/3A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/3B.test.cpp
-    title: verify/aizu_online_judge/grl/3B.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-    title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-    title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-    title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\
-      \u6570) \u3092\u6C42\u3081\u308B."
+    document_title: "\u30B0\u30E9\u30D5 G \u306E\u5168\u57DF\u6728\u306E\u500B\u6570\
+      \u3092\u6C42\u3081\u308B."
     links: []
-  bundledCode: "#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Graph/Graph/Count_Spanning_Trees.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -241,52 +199,116 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\
-    \n\nnamespace graph {\n    struct Edge {\n        int id, source, target;\n  \
-    \      Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source,\
-    \ int target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\
-    \n    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
-    \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
-    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
-    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
-    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
-    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
-    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
-    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
-    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
-    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
-    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
-    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
-    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
-    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n\n        vector<vector<int>>\
-    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
-    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
-    \ + size(); ++j) {\n                Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
-    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
-    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
-    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
-    \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
-    \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
-    \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
-    \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
-    \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
-    \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
-    \            }\n\n            return L;\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"../../template/template.hpp\"\n\nnamespace graph\
-    \ {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\n\
-    \        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
+    \ private exception{\n    const char* what() const throw() {\n        return \"\
+    \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
+    \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
+    \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
+    \   Field_Matrix(int row, int col): row(row), col(col){\n        mat.assign(row,\
+    \ vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row): Field_Matrix(row,\
+    \ row){}\n\n    Field_Matrix(const vector<vector<F>> &ele): Field_Matrix(ele.size(),\
+    \ ele[0].size()){\n        for (int i = 0; i < row; i++){\n            copy(ele[i].begin(),\
+    \ ele[i].end(), mat[i].begin());\n        }\n    }\n\n    static Field_Matrix\
+    \ Zero_Matrix(int row, int col) { return Field_Matrix(row, col); }\n\n    static\
+    \ Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix A(size);\n  \
+    \      for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return A;\n  \
+    \  }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
+    \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
+    \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const F &operator[](const int i, const int j) const\
+    \ { return mat[i][j]; }\n    inline F &operator[](const int i, const int j) {\
+    \ return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix\
+    \ &B) const {\n        if (row != B.row || col != B.col){ return false; }\n\n\
+    \        for (int i = 0; i < row; i++){\n            for (int j = 0; j < col;\
+    \ j++){\n                if ((*this)[i] != B[i]) return false;\n            }\n\
+    \        }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix\
+    \ &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n  \
+    \      for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
+    \ A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\n    // \u52A0\
+    \u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] += B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator+(const\
+    \ Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\n    // \u6E1B\
+    \u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] -= B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator-(const\
+    \ Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\n    // \u4E57\
+    \u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n        assert (col\
+    \ == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col, F()));\n\n   \
+    \     for (int i = 0; i < row; i++){\n            for (int k = 0; k < col; k++){\n\
+    \                for (int j = 0; j < B.col; j++){\n                    C[i][j]\
+    \ += mat[i][k] * B.mat[k][j];\n                }\n            }\n        }\n\n\
+    \        mat.swap(C); col = B.col;\n        return *this;\n    }\n\n    Field_Matrix\
+    \ operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }\n\n\
+    \    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
+    \ F &scaler, const Field_Matrix &rhs){\n        Field_Matrix res(rhs);\n     \
+    \   for (int i = 0; i < rhs.row; i++){\n            for (int j = 0; j < rhs.col;\
+    \ j++) { res[i][j] *= scaler; }\n        }\n\n        return res;\n    }\n\n \
+    \   // \u9006\u884C\u5217\n    Field_Matrix inverse(){\n        assert (is_square());\n\
+    \        int N = col;\n        Field_Matrix A(*this), B(N,N);\n        for (int\
+    \ i = 0; i < N; i++) B[i][i] = F(1);\n\n        for (int j = 0; j < N; j++){\n\
+    \            if (A[j][j] == 0){\n                int i = j + 1;\n            \
+    \    for (; i < N; i++){\n                    if (A[i][j] != 0) break;\n     \
+    \           }\n\n                if (i == N) { throw SingularMatrixError(); }\n\
+    \n                swap(A[i], A[j]); swap(B[i], B[j]);\n            }\n\n     \
+    \       F a_inv = A[j][j].inverse();\n\n            for (int k = 0; k < N; k++){\n\
+    \                A[j][k] *= a_inv;\n                B[j][k] *= a_inv;\n      \
+    \      }\n\n            for (int i = 0; i < N; i++){\n                if (i ==\
+    \ j) { continue; }\n\n                F c = A[i][j];\n                for (int\
+    \ k = 0; k < N; k++){\n                    A[i][k] -= A[j][k] * c;\n         \
+    \           B[i][k] -= B[j][k] * c;\n                }\n            }\n      \
+    \  }\n\n        return B;\n    }\n\n    bool is_regular(){\n        assert (is_square());\n\
+    \        int N = row;\n\n        vector<vector<F>> A(N, vector<F>(N));\n\n   \
+    \     for (int i = 0; i < N; i++){\n            copy(mat[i].begin(), mat[i].end(),\
+    \ A[i].begin());\n        }\n\n        for (int j = 0; j < N; j++){\n        \
+    \    if (A[j][j] == 0){\n                int i = j + 1;\n                for (;\
+    \ i < N; i++){\n                    if (A[i][j] != 0) break;\n               \
+    \ }\n                if (i == N) return false;\n                swap(A[i], A[j]);\n\
+    \            }\n\n            F a_inv = A[j][j].inverse();\n            for (int\
+    \ i = j + 1; i < N; i++){\n                F c = -a_inv * A[i][j];\n\n       \
+    \        for (int k = 0; k < N; k++){ A[i][k] += c * A[j][k]; }\n            }\n\
+    \        }\n\n        return true;\n    }\n\n    // \u8EE2\u7F6E\n    Field_Matrix\
+    \ transpose(){\n        Field_Matrix B(col, row);\n        for (int i = 0; i <\
+    \ col; i++){\n            for (int j = 0; j < row; j++) B[i][j] = (*this)[j][i];\n\
+    \        }\n        return B;\n    }\n\n    //\n    bool is_valid(){return (row\
+    \ > 0) && (col > 0);}\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, Field_Matrix &A) {\n        for (int i = 0; i < A.row; i++){\n        \
+    \    for (int j = 0; j < A.col; j++){\n                cin >> A[i][j];\n     \
+    \       }\n        }\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend\
+    \ ostream &operator<<(ostream &os, const Field_Matrix &A){\n        for (int i\
+    \ = 0; i < A.row; i++){\n            for (int j = 0; j < A.col; j++){\n      \
+    \          cout << (j ? \" \": \"\") << A[i][j];\n            }\n            if\
+    \ (i < A.row - 1) cout << \"\\n\";\n        }\n        return os;\n    }\n};\n\
+    \ntemplate<typename F>\nField_Matrix<F> power(Field_Matrix<F> A, int64_t n){\n\
+    \    assert (A.is_square());\n\n    if (n == 0) { return Field_Matrix<F>::Identity_Matrix(A.row);\
+    \ }\n    if (n < 0) { return power(A.inverse(), -n); }\n\n    if (n % 2 == 0){\n\
+    \        Field_Matrix<F> B = power(A, n / 2);\n        return B * B;\n    } else\
+    \ {\n        Field_Matrix<F> B = power(A, (n - 1) / 2);\n        return A * B\
+    \ * B;\n    }\n}\n\n// \u884C\u5217 A \u306E\u884C\u5217\u5F0F\u3092\u6C42\u3081\
+    \u308B\ntemplate<typename F>\nF Determinant(const Field_Matrix<F> &A){\n    assert\
+    \ (A.is_square());\n\n    int n = A.row;\n    F det(1);\n    Field_Matrix<F> B(A);\n\
+    \n    for (int j = 0; j < n; j ++){\n        if (B[j][j] == 0){\n            int\
+    \ i = j + 1;\n            for (; i < n; i++) {\n                if (B[i][j] !=\
+    \ 0) { break; }\n            } \n\n            if (i == n) { return F(0); }\n\n\
+    \            swap(B[i], B[j]);\n            det = -det;\n        }\n\n       \
+    \ F a_inv = B[j][j].inverse();\n        for (int i = j + 1; i < n; i++){\n   \
+    \         F c = -a_inv * B[i][j];\n            for (int k = 0; k < n; k++) { B[i][k]\
+    \ += c * B[j][k]; }\n        }\n\n        det *= B[j][j];\n    }\n\n    return\
+    \ det;\n}\n\n// \u30C8\u30EC\u30FC\u30B9\ntemplate<typename F>\nF Trace(const\
+    \ Field_Matrix<F> &A) {\n    assert (A.is_square());\n    F tr = F(0);\n    for\
+    \ (int i = 0; i < A.row; i++) tr += A[i, i];\n    return tr;\n}\n\n// \u7B2C (i,\
+    \ i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\u89D2\u884C\u5217\u3092\u751F\
+    \u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F> Diagonal_Matrix(vector<F>\
+    \ a) {\n    int n = a.size();\n    vector<vector<F>> X(n, vector<F>(n));\n\n \
+    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n#line\
+    \ 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace\
+    \ graph {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\
+    \n        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
     \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
     \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
     \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
@@ -326,7 +348,44 @@ data:
     \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
     \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
-    \            }\n\n            return L;\n        }\n    };\n}\n"
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 6 \"Graph/Graph/Count_Spanning_Trees.hpp\"\
+    \n\nnamespace graph {\n    /**\n     * @brief \u30B0\u30E9\u30D5 G \u306E\u5168\
+    \u57DF\u6728\u306E\u500B\u6570\u3092\u6C42\u3081\u308B.\n     * @details \u884C\
+    \u5217\u6728\u5B9A\u7406 (Matrix Tree Theorem) \u3092\u7528\u3044\u3001\u30E9\u30D7\
+    \u30E9\u30B7\u30A2\u30F3\u884C\u5217\u306E\u4EFB\u610F\u306E\u4F59\u56E0\u5B50\
+    \uFF08\u3053\u3053\u3067\u306F\u7B2C (n, n) \u4F59\u56E0\u5B50\uFF09\u306E\u884C\
+    \u5217\u5F0F\u3092\u8A08\u7B97\u3059\u308B\u3053\u3068\u3067\u3001\u7121\u5411\
+    \u30B0\u30E9\u30D5\u306E\u5168\u57DF\u6728\u306E\u500B\u6570\u3092\u6C42\u3081\
+    \u308B\u3002\u8A08\u7B97\u91CF\u306F\u884C\u5217\u5F0F\u306E\u8A08\u7B97\u306B\
+    \u4F9D\u5B58\u3057\u3001\u901A\u5E38 O(V^3) \u3068\u306A\u308B\u3002\n     * @tparam\
+    \ F \u8A08\u7B97\u306B\u4F7F\u7528\u3059\u308B\u4F53\u306E\u578B (\u4F8B: modint\
+    \ \u306A\u3069)\n     * @param G \u5BFE\u8C61\u3068\u306A\u308B\u7121\u5411\u30B0\
+    \u30E9\u30D5\n     * @return F \u5168\u57DF\u6728\u306E\u500B\u6570\n     */\n\
+    \    template<typename F>\n    F Count_Spanning_Trees(const Graph &G) {\n    \
+    \    vector<vector<int>> L_pre = G.laplacian_matrix();\n\n        const int n\
+    \ = G.order();\n        Field_Matrix<F> L(n - 1);\n        for (int i = 0; i <\
+    \ n - 1; ++i) {\n            for (int j = 0; j < n - 1; ++j) {\n             \
+    \   L[i, j] = F(L_pre[i][j]);\n            }\n        }\n\n        return Determinant(L);\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include \"../../template/template.hpp\"\n#include \"../../Linear_Algebra/Field_Matrix.hpp\"\
+    \n#include \"Graph.hpp\"\n\nnamespace graph {\n    /**\n     * @brief \u30B0\u30E9\
+    \u30D5 G \u306E\u5168\u57DF\u6728\u306E\u500B\u6570\u3092\u6C42\u3081\u308B.\n\
+    \     * @details \u884C\u5217\u6728\u5B9A\u7406 (Matrix Tree Theorem) \u3092\u7528\
+    \u3044\u3001\u30E9\u30D7\u30E9\u30B7\u30A2\u30F3\u884C\u5217\u306E\u4EFB\u610F\
+    \u306E\u4F59\u56E0\u5B50\uFF08\u3053\u3053\u3067\u306F\u7B2C (n, n) \u4F59\u56E0\
+    \u5B50\uFF09\u306E\u884C\u5217\u5F0F\u3092\u8A08\u7B97\u3059\u308B\u3053\u3068\
+    \u3067\u3001\u7121\u5411\u30B0\u30E9\u30D5\u306E\u5168\u57DF\u6728\u306E\u500B\
+    \u6570\u3092\u6C42\u3081\u308B\u3002\u8A08\u7B97\u91CF\u306F\u884C\u5217\u5F0F\
+    \u306E\u8A08\u7B97\u306B\u4F9D\u5B58\u3057\u3001\u901A\u5E38 O(V^3) \u3068\u306A\
+    \u308B\u3002\n     * @tparam F \u8A08\u7B97\u306B\u4F7F\u7528\u3059\u308B\u4F53\
+    \u306E\u578B (\u4F8B: modint \u306A\u3069)\n     * @param G \u5BFE\u8C61\u3068\
+    \u306A\u308B\u7121\u5411\u30B0\u30E9\u30D5\n     * @return F \u5168\u57DF\u6728\
+    \u306E\u500B\u6570\n     */\n    template<typename F>\n    F Count_Spanning_Trees(const\
+    \ Graph &G) {\n        vector<vector<int>> L_pre = G.laplacian_matrix();\n\n \
+    \       const int n = G.order();\n        Field_Matrix<F> L(n - 1);\n        for\
+    \ (int i = 0; i < n - 1; ++i) {\n            for (int j = 0; j < n - 1; ++j) {\n\
+    \                L[i, j] = F(L_pre[i][j]);\n            }\n        }\n\n     \
+    \   return Determinant(L);\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -335,40 +394,58 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Linear_Algebra/Field_Matrix.hpp
+  - Graph/Graph/Graph.hpp
   isVerificationFile: false
-  path: Graph/Graph/Graph.hpp
-  requiredBy:
-  - Graph/Graph/Eulerian_Trail.hpp
-  - Graph/Graph/Lowlink.hpp
-  - Graph/Graph/Bipartition.hpp
-  - Graph/Graph/Enumerate_Cliques.hpp
-  - Graph/Graph/Count_Spanning_Trees.hpp
-  - Graph/Graph/Enumerate_Triangles.hpp
-  - Graph/Graph/Connected_Components.hpp
-  - Graph/Graph/Path.hpp
-  - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-04-02 09:04:46+09:00'
+  path: Graph/Graph/Count_Spanning_Trees.hpp
+  requiredBy: []
+  timestamp: '2026-04-02 11:45:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - verify/aizu_online_judge/alds1/11D.test.cpp
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
-documentation_of: Graph/Graph/Graph.hpp
+documentation_of: Graph/Graph/Count_Spanning_Trees.hpp
 layout: document
-title: "\u7121\u5411 Graph"
+title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
 ---
 
 ## Outline
 
-無向 Graph $G$ を保存するクラスを提供する.
+無向グラフ $G$ における全域木の個数 (同じ頂点間を結ぶ辺同士であっても, 異なる辺であるならば区別する) を求める.
+
+## Definition
+
+無向グラフ $G = (V, E)$ における部分木のうち, 頂点集合が $V$ である部分木のことを, $G$ の全域木という.
+
+## Theory
+
+行列木定理を用いる.
+
+$G$ のラプラシアン行列 $L$ とは, 次数行列を $D$, 隣接行列を $A$ としたときの
+
+$$ L := D - A $$
+
+である.
+
+このとき, 以下が成り立つ.
+
+* $L$ の余因子は取り除く行と列に関わらず一致する.
+* $G$ における全域木の数は $L$ における (任意の) 余因子と一致する.
+
+## Contents
+
+
+```cpp
+template<typename F>
+F Count_Spanning_Trees(const Graph &G)
+```
+
+* 無向グラフ $G = (V, E)$ における全域木の数を求める
+* **引数**
+  * $G$ : 無向グラフ
+* **計算量** : $G$ の位数とサイズを $N, M$ とすると, $O \left(N^3 \right)$ 時間.
 
 ## History
 
 |日付|内容|
-|:---:|:---|
-|2025/12/06|無向 Graph のドキュメントの作成|
+|:---:|:---:|
+|2026/04/02| Count_Spanning_Trees 実装 |

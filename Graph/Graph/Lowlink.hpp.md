@@ -232,7 +232,20 @@ data:
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
     .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
     \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\
+    \ int degree(const int v) const { return deg[v]; }\n\n        vector<vector<int>>\
+    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
+    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
+    \ + size(); ++j) {\n                Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
+    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
+    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
+    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
+    \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
+    \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
+    \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
+    \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
+    \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\
     \n\nnamespace graph {\n    class Lowlink {\n        private:\n        vector<bool>\
     \ used;\n\n        public:\n        vector<bool> bridge, articulation;\n     \
     \   vector<int> ord, low;\n\n        Lowlink(const Graph &G) {\n            int\
@@ -290,7 +303,7 @@ data:
   path: Graph/Graph/Lowlink.hpp
   requiredBy:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
-  timestamp: '2026-03-12 00:53:37+09:00'
+  timestamp: '2026-04-02 09:04:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

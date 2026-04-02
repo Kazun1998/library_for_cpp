@@ -239,6 +239,9 @@ data:
       path: Graph/Graph/Connected_Components.hpp
       title: Graph/Graph/Connected_Components.hpp
     - icon: ':heavy_check_mark:'
+      path: Graph/Graph/Count_Spanning_Trees.hpp
+      title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
+    - icon: ':heavy_check_mark:'
       path: Graph/Graph/Enumerate_Cliques.hpp
       title: Graph/Graph/Enumerate_Cliques.hpp
     - icon: ':heavy_check_mark:'
@@ -812,6 +815,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
       title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+      title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
       title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

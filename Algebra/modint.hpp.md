@@ -131,6 +131,9 @@ data:
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - icon: ':heavy_check_mark:'
@@ -475,6 +478,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp

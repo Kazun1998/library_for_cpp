@@ -24,12 +24,18 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Count_Spanning_Trees.hpp
+    title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
@@ -434,6 +440,7 @@ data:
   requiredBy:
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Reduction.hpp
+  - Graph/Graph/Count_Spanning_Trees.hpp
   timestamp: '2026-04-02 10:42:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -442,6 +449,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
 documentation_of: Linear_Algebra/Field_Matrix.hpp
 layout: document
 redirect_from:

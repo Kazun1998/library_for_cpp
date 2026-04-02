@@ -223,14 +223,27 @@ data:
     \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
     \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
     \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
-    \ deg[v]; }\n    };\n}\n#line 5 \"Graph/Graph/Bipartition.hpp\"\n\nnamespace graph\
-    \ {\n\n    /// @brief \u4E8C\u90E8\u30B0\u30E9\u30D5\u306B\u95A2\u3059\u308B\u60C5\
-    \u5831\u3092\u6C42\u3081\u308B.\n    /// @param G \n    /// @return \u305D\u3082\
-    \u305D\u3082\u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306F\u306A\u3044\u5834\u5408\
-    \u306F nullout, \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u3042\u308B\u5834\u5408\u306F\
-    , [(A0, B0), ..., (Ak, Bk)] \u306E\u5F62\u3067\u8FD4\u3055\u308C\u308B. (Ai, Bi)\
-    \ \u304C\u305D\u308C\u305E\u308C\u306E\u9023\u7D50\u6210\u5206\u306B\u304A\u3051\
-    \u308B\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<vector<pair<vector<int>,\
+    \ deg[v]; }\n\n        vector<vector<int>> adjacency_matrix() const {\n      \
+    \      vector<vector<int>> matrix(order(), vector<int>(order(), 0));\n       \
+    \     for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {\n     \
+    \           Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
+    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
+    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
+    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
+    \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
+    \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
+    \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
+    \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
+    \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 5 \"Graph/Graph/Bipartition.hpp\"\
+    \n\nnamespace graph {\n\n    /// @brief \u4E8C\u90E8\u30B0\u30E9\u30D5\u306B\u95A2\
+    \u3059\u308B\u60C5\u5831\u3092\u6C42\u3081\u308B.\n    /// @param G \n    ///\
+    \ @return \u305D\u3082\u305D\u3082\u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306F\u306A\
+    \u3044\u5834\u5408\u306F nullout, \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u3042\u308B\
+    \u5834\u5408\u306F, [(A0, B0), ..., (Ak, Bk)] \u306E\u5F62\u3067\u8FD4\u3055\u308C\
+    \u308B. (Ai, Bi) \u304C\u305D\u308C\u305E\u308C\u306E\u9023\u7D50\u6210\u5206\u306B\
+    \u304A\u3051\u308B\u90E8\u96C6\u5408\u306B\u306A\u308B.\n    optional<vector<pair<vector<int>,\
     \ vector<int>>>> Biparte(const Graph &G) {\n        int n = G.order();\n     \
     \   vector<int> colors(n, -1);\n\n        vector<pair<vector<int>, vector<int>>>\
     \ groups;\n        for (int x = 0; x < n; ++x) {\n            if (colors[x] !=\
@@ -313,7 +326,7 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Bipartition.hpp
   requiredBy: []
-  timestamp: '2026-03-12 00:53:37+09:00'
+  timestamp: '2026-04-02 09:04:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/Graph/Bipartition.hpp

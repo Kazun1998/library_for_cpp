@@ -188,6 +188,9 @@ data:
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Count_Spanning_Trees.hpp
+    title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Cliques.hpp
     title: Graph/Graph/Enumerate_Cliques.hpp
   - icon: ':heavy_check_mark:'
@@ -654,6 +657,9 @@ data:
     path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
     title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
@@ -909,6 +915,7 @@ data:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Bipartition.hpp
   - Graph/Graph/Enumerate_Cliques.hpp
+  - Graph/Graph/Count_Spanning_Trees.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
   - Graph/Graph/Graph.hpp
   - Graph/Graph/Connected_Components.hpp
@@ -1039,6 +1046,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+  - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp

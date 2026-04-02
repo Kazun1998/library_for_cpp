@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Count_Spanning_Trees.hpp
+    title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Field_Matrix.hpp
+    title: Linear_Algebra/Field_Matrix.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -26,16 +35,17 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/alds1/11D.test.cpp
-    title: verify/aizu_online_judge/alds1/11D.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Graph/Graph/Connected_Components.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
+    links:
+    - https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -194,13 +204,120 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\
-    \n\nnamespace graph {\n    struct Edge {\n        int id, source, target;\n  \
-    \      Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source,\
-    \ int target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\
-    \n    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
-    \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Graph/Graph/Count_Spanning_Trees.hpp\"\
+    \n\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
+    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
+    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
+    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
+    \ col;\n\n    public:\n    Field_Matrix(int row, int col): row(row), col(col){\n\
+    \        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(const vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
+    \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
+    \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const F &operator[](const int i, const int j) const\
+    \ { return mat[i][j]; }\n    inline F &operator[](const int i, const int j) {\
+    \ return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix\
+    \ &B) const {\n        if (row != B.row || col != B.col){ return false; }\n\n\
+    \        for (int i = 0; i < row; i++){\n            for (int j = 0; j < col;\
+    \ j++){\n                if ((*this)[i] != B[i]) return false;\n            }\n\
+    \        }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix\
+    \ &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n  \
+    \      for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
+    \ A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\n    // \u52A0\
+    \u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] += B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator+(const\
+    \ Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\n    // \u6E1B\
+    \u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] -= B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator-(const\
+    \ Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\n    // \u4E57\
+    \u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n        assert (col\
+    \ == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col, F()));\n\n   \
+    \     for (int i = 0; i < row; i++){\n            for (int k = 0; k < col; k++){\n\
+    \                for (int j = 0; j < B.col; j++){\n                    C[i][j]\
+    \ += mat[i][k] * B.mat[k][j];\n                }\n            }\n        }\n\n\
+    \        mat.swap(C); col = B.col;\n        return *this;\n    }\n\n    Field_Matrix\
+    \ operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }\n\n\
+    \    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
+    \ F &scaler, const Field_Matrix &rhs){\n        Field_Matrix res(rhs);\n     \
+    \   for (int i = 0; i < rhs.row; i++){\n            for (int j = 0; j < rhs.col;\
+    \ j++) { res[i][j] *= scaler; }\n        }\n\n        return res;\n    }\n\n \
+    \   // \u9006\u884C\u5217\n    Field_Matrix inverse(){\n        assert (is_square());\n\
+    \        int N = col;\n        Field_Matrix A(*this), B(N,N);\n        for (int\
+    \ i = 0; i < N; i++) B[i][i] = F(1);\n\n        for (int j = 0; j < N; j++){\n\
+    \            if (A[j][j] == 0){\n                int i = j + 1;\n            \
+    \    for (; i < N; i++){\n                    if (A[i][j] != 0) break;\n     \
+    \           }\n\n                if (i == N) { throw SingularMatrixError(); }\n\
+    \n                swap(A[i], A[j]); swap(B[i], B[j]);\n            }\n\n     \
+    \       F a_inv = A[j][j].inverse();\n\n            for (int k = 0; k < N; k++){\n\
+    \                A[j][k] *= a_inv;\n                B[j][k] *= a_inv;\n      \
+    \      }\n\n            for (int i = 0; i < N; i++){\n                if (i ==\
+    \ j) { continue; }\n\n                F c = A[i][j];\n                for (int\
+    \ k = 0; k < N; k++){\n                    A[i][k] -= A[j][k] * c;\n         \
+    \           B[i][k] -= B[j][k] * c;\n                }\n            }\n      \
+    \  }\n\n        return B;\n    }\n\n    bool is_regular(){\n        assert (is_square());\n\
+    \        int N = row;\n\n        vector<vector<F>> A(N, vector<F>(N));\n\n   \
+    \     for (int i = 0; i < N; i++){\n            copy(mat[i].begin(), mat[i].end(),\
+    \ A[i].begin());\n        }\n\n        for (int j = 0; j < N; j++){\n        \
+    \    if (A[j][j] == 0){\n                int i = j + 1;\n                for (;\
+    \ i < N; i++){\n                    if (A[i][j] != 0) break;\n               \
+    \ }\n                if (i == N) return false;\n                swap(A[i], A[j]);\n\
+    \            }\n\n            F a_inv = A[j][j].inverse();\n            for (int\
+    \ i = j + 1; i < N; i++){\n                F c = -a_inv * A[i][j];\n\n       \
+    \        for (int k = 0; k < N; k++){ A[i][k] += c * A[j][k]; }\n            }\n\
+    \        }\n\n        return true;\n    }\n\n    // \u8EE2\u7F6E\n    Field_Matrix\
+    \ transpose(){\n        Field_Matrix B(col, row);\n        for (int i = 0; i <\
+    \ col; i++){\n            for (int j = 0; j < row; j++) B[i][j] = (*this)[j][i];\n\
+    \        }\n        return B;\n    }\n\n    //\n    bool is_valid(){return (row\
+    \ > 0) && (col > 0);}\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, Field_Matrix &A) {\n        for (int i = 0; i < A.row; i++){\n        \
+    \    for (int j = 0; j < A.col; j++){\n                cin >> A[i][j];\n     \
+    \       }\n        }\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend\
+    \ ostream &operator<<(ostream &os, const Field_Matrix &A){\n        for (int i\
+    \ = 0; i < A.row; i++){\n            for (int j = 0; j < A.col; j++){\n      \
+    \          cout << (j ? \" \": \"\") << A[i][j];\n            }\n            if\
+    \ (i < A.row - 1) cout << \"\\n\";\n        }\n        return os;\n    }\n};\n\
+    \ntemplate<typename F>\nField_Matrix<F> power(Field_Matrix<F> A, int64_t n){\n\
+    \    assert (A.is_square());\n\n    if (n == 0) { return Field_Matrix<F>::Identity_Matrix(A.row);\
+    \ }\n    if (n < 0) { return power(A.inverse(), -n); }\n\n    if (n % 2 == 0){\n\
+    \        Field_Matrix<F> B = power(A, n / 2);\n        return B * B;\n    } else\
+    \ {\n        Field_Matrix<F> B = power(A, (n - 1) / 2);\n        return A * B\
+    \ * B;\n    }\n}\n\n// \u884C\u5217 A \u306E\u884C\u5217\u5F0F\u3092\u6C42\u3081\
+    \u308B\ntemplate<typename F>\nF Determinant(const Field_Matrix<F> &A){\n    assert\
+    \ (A.is_square());\n\n    int n = A.row;\n    F det(1);\n    Field_Matrix<F> B(A);\n\
+    \n    for (int j = 0; j < n; j ++){\n        if (B[j][j] == 0){\n            int\
+    \ i = j + 1;\n            for (; i < n; i++) {\n                if (B[i][j] !=\
+    \ 0) { break; }\n            } \n\n            if (i == n) { return F(0); }\n\n\
+    \            swap(B[i], B[j]);\n            det = -det;\n        }\n\n       \
+    \ F a_inv = B[j][j].inverse();\n        for (int i = j + 1; i < n; i++){\n   \
+    \         F c = -a_inv * B[i][j];\n            for (int k = 0; k < n; k++) { B[i][k]\
+    \ += c * B[j][k]; }\n        }\n\n        det *= B[j][j];\n    }\n\n    return\
+    \ det;\n}\n\n// \u30C8\u30EC\u30FC\u30B9\ntemplate<typename F>\nF Trace(const\
+    \ Field_Matrix<F> &A) {\n    assert (A.is_square());\n    F tr = F(0);\n    for\
+    \ (int i = 0; i < A.row; i++) tr += A[i, i];\n    return tr;\n}\n\n// \u7B2C (i,\
+    \ i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\u89D2\u884C\u5217\u3092\u751F\
+    \u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F> Diagonal_Matrix(vector<F>\
+    \ a) {\n    int n = a.size();\n    vector<vector<F>> X(n, vector<F>(n));\n\n \
+    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n#line\
+    \ 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace\
+    \ graph {\n    struct Edge {\n        int id, source, target;\n        Edge *rev;\n\
+    \n        Edge() = default;\n        Edge(int id, int source, int target): id(id),\
+    \ source(source), target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n\
+    \        private:\n        vector<vector<Edge*>> incidences;\n        vector<Edge>\
+    \ edges, rev_edges;\n        vector<int> deg;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
     \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
     \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
     \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
@@ -236,45 +353,77 @@ data:
     \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
     \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
-    \            }\n\n            return L;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Connected_Components.hpp\"\
-    \n\nnamespace graph {\n    class Connected_Components {\n        public:\n   \
-    \     vector<vector<int>> components;\n        vector<int> component_ids;\n\n\
-    \        Connected_Components(const Graph &G) {\n            components.clear();\n\
-    \            component_ids.assign(G.order(), -1);\n\n            for (int x =\
-    \ 0; x < G.order(); x++) {\n                unless(component_ids[x] == -1) { continue;\
-    \ }\n                dfs(G, x);\n            }\n        };\n\n        private:\n\
-    \        void dfs(const Graph &G, int start) {\n            int component_id =\
-    \ components.size();\n\n            components.emplace_back();\n            component_ids[start]\
-    \ = component_id;\n\n            stack<int> st;\n            st.emplace(start);\n\
-    \            components[component_id].emplace_back(start);\n\n            while(!st.empty())\
-    \ {\n                int x = st.top(); st.pop();\n                for (auto edge:\
-    \ G.incidence(x)) {\n                    int y = edge->target;\n             \
-    \       unless (component_ids[y] == -1) { continue; }\n\n                    component_ids[y]\
-    \ = component_id;\n                    components[component_id].emplace_back(y);\n\
-    \                    st.emplace(y);\n                }\n            }\n      \
-    \  }\n    };\n\n    bool is_Connected(const Graph &G) {\n        auto connected_components\
-    \ = Connected_Components(G);\n        return connected_components.components.size()\
-    \ == 1;\n    }\n}\n"
-  code: "#pragma once\n\n#include\"Graph.hpp\"\n\nnamespace graph {\n    class Connected_Components\
-    \ {\n        public:\n        vector<vector<int>> components;\n        vector<int>\
-    \ component_ids;\n\n        Connected_Components(const Graph &G) {\n         \
-    \   components.clear();\n            component_ids.assign(G.order(), -1);\n\n\
-    \            for (int x = 0; x < G.order(); x++) {\n                unless(component_ids[x]\
-    \ == -1) { continue; }\n                dfs(G, x);\n            }\n        };\n\
-    \n        private:\n        void dfs(const Graph &G, int start) {\n          \
-    \  int component_id = components.size();\n\n            components.emplace_back();\n\
-    \            component_ids[start] = component_id;\n\n            stack<int> st;\n\
-    \            st.emplace(start);\n            components[component_id].emplace_back(start);\n\
-    \n            while(!st.empty()) {\n                int x = st.top(); st.pop();\n\
-    \                for (auto edge: G.incidence(x)) {\n                    int y\
-    \ = edge->target;\n                    unless (component_ids[y] == -1) { continue;\
-    \ }\n\n                    component_ids[y] = component_id;\n                \
-    \    components[component_id].emplace_back(y);\n                    st.emplace(y);\n\
-    \                }\n            }\n        }\n    };\n\n    bool is_Connected(const\
-    \ Graph &G) {\n        auto connected_components = Connected_Components(G);\n\
-    \        return connected_components.components.size() == 1;\n    }\n}\n"
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 6 \"Graph/Graph/Count_Spanning_Trees.hpp\"\
+    \n\nnamespace graph {\n    /**\n     * @brief \u30B0\u30E9\u30D5 G \u306E\u5168\
+    \u57DF\u6728\u306E\u500B\u6570\u3092\u6C42\u3081\u308B.\n     * @details \u884C\
+    \u5217\u6728\u5B9A\u7406 (Matrix Tree Theorem) \u3092\u7528\u3044\u3001\u30E9\u30D7\
+    \u30E9\u30B7\u30A2\u30F3\u884C\u5217\u306E\u4EFB\u610F\u306E\u4F59\u56E0\u5B50\
+    \uFF08\u3053\u3053\u3067\u306F\u7B2C (n, n) \u4F59\u56E0\u5B50\uFF09\u306E\u884C\
+    \u5217\u5F0F\u3092\u8A08\u7B97\u3059\u308B\u3053\u3068\u3067\u3001\u7121\u5411\
+    \u30B0\u30E9\u30D5\u306E\u5168\u57DF\u6728\u306E\u500B\u6570\u3092\u6C42\u3081\
+    \u308B\u3002\u8A08\u7B97\u91CF\u306F\u884C\u5217\u5F0F\u306E\u8A08\u7B97\u306B\
+    \u4F9D\u5B58\u3057\u3001\u901A\u5E38 O(V^3) \u3068\u306A\u308B\u3002\n     * @tparam\
+    \ F \u8A08\u7B97\u306B\u4F7F\u7528\u3059\u308B\u4F53\u306E\u578B (\u4F8B: modint\
+    \ \u306A\u3069)\n     * @param G \u5BFE\u8C61\u3068\u306A\u308B\u7121\u5411\u30B0\
+    \u30E9\u30D5\n     * @return F \u5168\u57DF\u6728\u306E\u500B\u6570\n     */\n\
+    \    template<typename F>\n    F Count_Spanning_Trees(const Graph &G) {\n    \
+    \    vector<vector<int>> L_pre = G.laplacian_matrix();\n\n        const int n\
+    \ = G.order();\n        Field_Matrix<F> L(n - 1);\n        for (int i = 0; i <\
+    \ n - 1; ++i) {\n            for (int j = 0; j < n - 1; ++j) {\n             \
+    \   L[i, j] = F(L_pre[i][j]);\n            }\n        }\n\n        return Determinant(L);\n\
+    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\
+    \ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
+    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
+    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
+    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
+    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
+    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
+    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
+    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
+    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
+    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
+    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
+    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
+    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
+    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
+    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
+    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
+    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
+    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
+    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
+    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
+    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
+    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
+    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
+    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
+    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
+    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
+    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 6 \"verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp\"\
+    \n\nusing namespace graph;\nusing mint = modint<998244353>;\n\nmint verify() {\n\
+    \    int N, M;\n    cin >> N >> M;\n    Graph G(N);\n    for (int j = 0; j < M;\
+    \ ++j) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n        G.add_edge(u, v);\n\
+    \    }\n    return Count_Spanning_Trees<mint>(G);\n}\n\nint main() {\n    cout\
+    \ << verify() << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
+    \n\n#include \"../../../template/template.hpp\"\n#include \"../../../Graph/Graph/Count_Spanning_Trees.hpp\"\
+    \n#include \"../../../Algebra/modint.hpp\"\n\nusing namespace graph;\nusing mint\
+    \ = modint<998244353>;\n\nmint verify() {\n    int N, M;\n    cin >> N >> M;\n\
+    \    Graph G(N);\n    for (int j = 0; j < M; ++j) {\n        int u, v; scanf(\"\
+    %d%d\", &u, &v);\n        G.add_edge(u, v);\n    }\n    return Count_Spanning_Trees<mint>(G);\n\
+    }\n\nint main() {\n    cout << verify() << endl;\n}\n"
   dependsOn:
-  - Graph/Graph/Graph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -282,17 +431,20 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Graph/Graph/Connected_Components.hpp
+  - Graph/Graph/Count_Spanning_Trees.hpp
+  - Linear_Algebra/Field_Matrix.hpp
+  - Graph/Graph/Graph.hpp
+  - Algebra/modint.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   requiredBy: []
-  timestamp: '2026-04-02 09:04:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/aizu_online_judge/alds1/11D.test.cpp
-documentation_of: Graph/Graph/Connected_Components.hpp
+  timestamp: '2026-04-02 11:45:35+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
 layout: document
 redirect_from:
-- /library/Graph/Graph/Connected_Components.hpp
-- /library/Graph/Graph/Connected_Components.hpp.html
-title: Graph/Graph/Connected_Components.hpp
+- /verify/verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp.html
+title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
 ---
