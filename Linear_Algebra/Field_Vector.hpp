@@ -1,6 +1,7 @@
 #pragma once
 
-#include"../template/template.hpp"
+#include "../template/template.hpp"
+#include "Field_Matrix.hpp"
 
 template<typename F>
 class Field_Vector {
@@ -119,3 +120,17 @@ Field_Vector<F> operator* (const F &a, const Field_Vector<F> &v) { return v * a;
 
 template<typename F>
 F inner(const Field_Vector<F> &u, const Field_Vector<F> &v) { return u.inner(v); }
+
+template<typename F>
+Field_Vector<F> Action(const Field_Matrix<F> &A, const Field_Vector<F> &v) {
+    assert(A.col == v.dimension());
+
+    Field_Vector<F> res(A.row);
+    for (int i = 0; i < A.row; i++) {
+        for (int j = 0; j < A.col; j++) {
+            res[i] += A[i, j] * v[j];
+        }
+    }
+
+    return res;
+}
