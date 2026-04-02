@@ -1,9 +1,10 @@
 #pragma once
 
 #include"../template/template.hpp"
+#include <concepts>
 
 namespace knapsack_problem {
-    template<typename I, typename V, typename W>
+    template<std::copyable I, std::integral V, std::integral W>
     struct Item {
         I id;
         V value;
@@ -14,20 +15,22 @@ namespace knapsack_problem {
         Item(const I id, const V value, const W weight): id(id), value(value), weight(weight) {}
     };
 
-    template<typename I, typename V, typename W>
+    template<std::copyable I, std::integral V, std::integral W, std::integral Q>
     struct Solution {
         private:
-        static V calculate_total_value(const vector<Item<I, V, W>> &items) {
+        static V calculate_total_value(const vector<Item<I, V, W>> &items, const vector<Q> &knapsack) {
             V total_value = 0;
-            for (const auto &item : items) total_value += item.value;
+            for (int i = 0; i < items.size(); ++i) {
+                total_value += items[i].value * knapsack[i];
+            }
             return total_value;
         }
 
         public:
-        const vector<Item<I, V, W>> knapsack;
+        const vector<Item<I, V, W>> items;
+        const vector<Q> knapsack;
         const V total_value;
 
-        Solution(const vector<Item<I, V, W>> &items, const V total_value): knapsack(items), total_value(total_value) {}
-        Solution(const vector<Item<I, V, W>> &items): knapsack(items), total_value(calculate_total_value(items)) {}
+        Solution(const vector<Item<I, V, W>> &items, const vector<Q> &knapsack): items(items), knapsack(knapsack), total_value(calculate_total_value(items, knapsack)){}
     };
 }
