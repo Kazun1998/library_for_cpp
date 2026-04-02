@@ -204,7 +204,7 @@ data:
     \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
     \ col;\n\n    public:\n    Field_Matrix(int row, int col): row(row), col(col){\n\
     \        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
-    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(vector<vector<F>> &ele):\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(const vector<vector<F>> &ele):\
     \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
     \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
     \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
@@ -214,14 +214,16 @@ data:
     \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
     \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
     \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
-    \ mat[i]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix &B)\
-    \ const {\n        if (row != B.row || col != B.col){ return false; }\n\n    \
-    \    for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++){\n\
-    \                if ((*this)[i] != B[i]) return false;\n            }\n      \
-    \  }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix &B)\
-    \ const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n\
-    \    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n   \
-    \     for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
+    \ mat[i]; }\n\n    inline const F &operator[](const int i, const int j) const\
+    \ { return mat[i][j]; }\n    inline F &operator[](const int i, const int j) {\
+    \ return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix\
+    \ &B) const {\n        if (row != B.row || col != B.col){ return false; }\n\n\
+    \        for (int i = 0; i < row; i++){\n            for (int j = 0; j < col;\
+    \ j++){\n                if ((*this)[i] != B[i]) return false;\n            }\n\
+    \        }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix\
+    \ &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n  \
+    \      for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
     \ A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\n    // \u52A0\
     \u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n        assert (row\
     \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
@@ -237,7 +239,7 @@ data:
     \ == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col, F()));\n\n   \
     \     for (int i = 0; i < row; i++){\n            for (int k = 0; k < col; k++){\n\
     \                for (int j = 0; j < B.col; j++){\n                    C[i][j]\
-    \ += (*this)[i][k] * B[k][j];\n                }\n            }\n        }\n\n\
+    \ += mat[i][k] * B.mat[k][j];\n                }\n            }\n        }\n\n\
     \        mat.swap(C); col = B.col;\n        return *this;\n    }\n\n    Field_Matrix\
     \ operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }\n\n\
     \    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
@@ -294,11 +296,14 @@ data:
     \ F a_inv = B[j][j].inverse();\n        for (int i = j + 1; i < n; i++){\n   \
     \         F c = -a_inv * B[i][j];\n            for (int k = 0; k < n; k++) { B[i][k]\
     \ += c * B[j][k]; }\n        }\n\n        det *= B[j][j];\n    }\n\n    return\
-    \ det;\n}\n\n// \u7B2C (i, i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\
-    \u89D2\u884C\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F>\
-    \ Diagonal_Matrix(vector<F> a) {\n    int n = a.size();\n    vector<vector<F>>\
-    \ X(n, vector<F>(n));\n\n    for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\
-    \n    return X;\n}\n#line 2 \"Linear_Algebra/Reduction.hpp\"\n\n#line 4 \"Linear_Algebra/Reduction.hpp\"\
+    \ det;\n}\n\n// \u30C8\u30EC\u30FC\u30B9\ntemplate<typename F>\nF Trace(const\
+    \ Field_Matrix<F> &A) {\n    assert (A.is_square());\n    F tr = F(0);\n    for\
+    \ (int i = 0; i < A.row; i++) tr += A[i, i];\n    return tr;\n}\n\n// \u7B2C (i,\
+    \ i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\u89D2\u884C\u5217\u3092\u751F\
+    \u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F> Diagonal_Matrix(vector<F>\
+    \ a) {\n    int n = a.size();\n    vector<vector<F>> X(n, vector<F>(n));\n\n \
+    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n#line\
+    \ 2 \"Linear_Algebra/Reduction.hpp\"\n\n#line 4 \"Linear_Algebra/Reduction.hpp\"\
     \n\ntemplate<typename F>\nField_Matrix<F> Row_Reduce(const Field_Matrix<F> &A)\
     \ {\n    if (A.row == 0) { return Field_Matrix(A); }\n\n    vector<vector<F>>\
     \ X(A.mat);\n    for (int i = 0, j = 0; i < A.row && j < A.col; j++) {\n     \
@@ -313,13 +318,13 @@ data:
     }\n#line 5 \"Linear_Algebra/Rank.hpp\"\n\ntemplate<typename F>\nint Rank(const\
     \ Field_Matrix<F> &A) {\n    Field_Matrix<F> B = Row_Reduce(A);\n\n    int rank\
     \ = 0;\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
-    \ j++) {\n            unless(B.mat[i][j] == 0) { rank++; break; }\n        }\n\
-    \    }\n    return rank;\n}\n"
+    \ j++) {\n            unless(B[i][j] == 0) { rank++; break; }\n        }\n   \
+    \ }\n    return rank;\n}\n"
   code: "#pragma once\n\n#include\"Field_Matrix.hpp\"\n#include\"Reduction.hpp\"\n\
     \ntemplate<typename F>\nint Rank(const Field_Matrix<F> &A) {\n    Field_Matrix<F>\
     \ B = Row_Reduce(A);\n\n    int rank = 0;\n    for (int i = 0; i < A.row; i++)\
-    \ {\n        for (int j = 0; j < A.col; j++) {\n            unless(B.mat[i][j]\
-    \ == 0) { rank++; break; }\n        }\n    }\n    return rank;\n}\n"
+    \ {\n        for (int j = 0; j < A.col; j++) {\n            unless(B[i][j] ==\
+    \ 0) { rank++; break; }\n        }\n    }\n    return rank;\n}\n"
   dependsOn:
   - Linear_Algebra/Field_Matrix.hpp
   - template/template.hpp
@@ -333,7 +338,7 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Rank.hpp
   requiredBy: []
-  timestamp: '2026-03-12 00:53:37+09:00'
+  timestamp: '2026-04-02 10:42:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
