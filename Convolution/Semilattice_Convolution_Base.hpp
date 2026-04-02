@@ -4,10 +4,10 @@
 
 namespace convolution {
     template<typename R>
-    class Commutative_Idempotent_Monoid_Convolution_Base: public Convolution_Base<R> {
+    class Semilattice_Convolution_Base: public Convolution_Base<R> {
         // 型エイリアス
         using Base = Convolution_Base<R>;
-        using Self = Commutative_Idempotent_Monoid_Convolution_Base<R>;
+        using Self = Semilattice_Convolution_Base<R>;
 
         using Base::Base;
 

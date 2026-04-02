@@ -19,6 +19,6 @@ int main() {
         b[j] = mint(y);
     }
 
-    convolution::Bitwize_And_Convolution<mint> A(a), B(b);
+    convolution::Bitwise_And_Convolution<mint> A(a), B(b);
     cout <<  (A * B).to_vector() << endl;
 }
