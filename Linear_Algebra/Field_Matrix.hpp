@@ -46,7 +46,7 @@ class Field_Matrix{
     inline vector<F> &operator[](int i) { return mat[i]; }
 
     inline const F &operator[](const int i, const int j) const { return mat[i][j]; }
-    inline F operator[](const int i, const int j) { return mat[i][j]; }
+    inline F &operator[](const int i, const int j) { return mat[i][j]; }
 
     // 比較
     bool operator==(const Field_Matrix &B) const {
