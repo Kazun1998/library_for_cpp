@@ -243,15 +243,15 @@ data:
     \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
     \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
     \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
-    \   Field_Matrix(int row, int col): row(row), col(col){\n        mat.assign(row,\
-    \ vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row): Field_Matrix(row,\
-    \ row){}\n\n    Field_Matrix(const vector<vector<F>> &ele): Field_Matrix(ele.size(),\
-    \ ele[0].size()){\n        for (int i = 0; i < row; i++){\n            copy(ele[i].begin(),\
-    \ ele[i].end(), mat[i].begin());\n        }\n    }\n\n    static Field_Matrix\
-    \ Zero_Matrix(int row, int col) { return Field_Matrix(row, col); }\n\n    static\
-    \ Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix A(size);\n  \
-    \      for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return A;\n  \
-    \  }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \   Field_Matrix() = default;\n\n    Field_Matrix(int row, int col): row(row),\
+    \ col(col){\n        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(const vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
     \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
     \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
     \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
@@ -365,7 +365,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-04-02 10:42:02+09:00'
+  timestamp: '2026-04-02 12:25:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp

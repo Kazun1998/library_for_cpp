@@ -271,6 +271,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
+  - icon: ':warning:'
+    path: Linear_Algebra/Field_Vector.hpp
+    title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+  - icon: ':warning:'
+    path: Linear_Algebra/Field_Vector_Space.hpp
+    title: Linear_Algebra/Field_Vector_Space.hpp
+  - icon: ':warning:'
+    path: Linear_Algebra/Matrix_Space.hpp
+    title: Linear_Algebra/Matrix_Space.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
@@ -896,7 +905,10 @@ data:
   - Data_Structure/Doubly_Linked_List.hpp
   - Data_Structure/Dual_Heap.hpp
   - Data_Structure/Disjoint_Sparse_Table.hpp
+  - Linear_Algebra/Matrix_Space.hpp
   - Linear_Algebra/Field_Matrix.hpp
+  - Linear_Algebra/Field_Vector_Space.hpp
+  - Linear_Algebra/Field_Vector.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Reduction.hpp
   - Counting/Combination_Calculator.hpp
