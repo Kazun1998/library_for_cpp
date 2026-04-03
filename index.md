@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: Algebra
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Extended_Algebra.hpp
       title: Algebra/Extended_Algebra.hpp
     - icon: ':heavy_check_mark:'
@@ -18,13 +18,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Algebra/Permutaion.hpp
       title: "\u7F6E\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Algebra/Semiring_Matrix.hpp
       title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
     - icon: ':heavy_check_mark:'
       path: Algebra/dynamic_modint.hpp
       title: Algebra/dynamic_modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Algebra/modint.hpp
       title: Algebra/modint.hpp
   - name: Binary_Indexed_Tree
@@ -59,15 +59,27 @@ data:
     - icon: ':heavy_check_mark:'
       path: Convolution/Bitwise_And_Convolution.hpp
       title: Convolution/Bitwise_And_Convolution.hpp
-    - icon: ':heavy_check_mark:'
-      path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-      title: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+    - icon: ':warning:'
+      path: Convolution/Bitwise_Or_Convolution.hpp
+      title: Convolution/Bitwise_Or_Convolution.hpp
     - icon: ':heavy_check_mark:'
       path: Convolution/Convolution_Base.hpp
-      title: Convolution/Convolution_Base.hpp
+      title: "\u7573\u307F\u8FBC\u307F"
     - icon: ':heavy_check_mark:'
       path: Convolution/Gcd_Convolution.hpp
       title: Convolution/Gcd_Convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/Lcm_Convolution.hpp
+      title: Convolution/Lcm_Convolution.hpp
+    - icon: ':warning:'
+      path: Convolution/Max_Convolution.hpp
+      title: Convolution/Max_Convolution.hpp
+    - icon: ':warning:'
+      path: Convolution/Min_Convolution.hpp
+      title: Convolution/Min_Convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/Semilattice_Convolution_Base.hpp
+      title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
   - name: Counting
     pages:
     - icon: ':heavy_check_mark:'
@@ -289,10 +301,10 @@ data:
     - icon: ':warning:'
       path: Integer/Digit.hpp
       title: "\u6574\u6570\u306E\u6841"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Integer/Divisors.hpp
       title: Integer/Divisors.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Integer/Euler_Totient.hpp
       title: "Euler's Totient \u95A2\u6570"
     - icon: ':heavy_check_mark:'
@@ -304,7 +316,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Pollard_Rho.hpp
       title: Integer/Pollard_Rho.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Integer/Prime.hpp
       title: Integer/Prime.hpp
     - icon: ':heavy_check_mark:'
@@ -352,7 +364,7 @@ data:
       title: Linear_Algebra/Reduction.hpp
   - name: Math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Bezout.hpp
       title: "Bezout \u306E\u7B49\u5F0F"
     - icon: ':heavy_check_mark:'
@@ -375,10 +387,10 @@ data:
       title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - name: Max_Flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Max_Flow/Max_Flow.hpp
       title: "\u6700\u5927\u6D41"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Max_Flow/Project_Selection_Problem.hpp
       title: Max_Flow/Project_Selection_Problem.hpp
   - name: Min_Cost_Flow
@@ -391,19 +403,19 @@ data:
       title: Min_Cost_Flow/Min_Cost_Flow.hpp
   - name: Modulo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Composite.hpp
       title: Modulo/Composite.hpp
     - icon: ':heavy_check_mark:'
       path: Modulo/Discrete_Log.hpp
       title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Garner.hpp
       title: Garner
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Modulo/Modulo.hpp
       title: Modulo/Modulo.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Modulo/Order.hpp
       title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
     - icon: ':warning:'
@@ -541,7 +553,7 @@ data:
       title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
   - name: Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'
@@ -550,10 +562,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Tree/Subtree_Monoid_Vertex_Query.hpp
       title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Tree/Tree.hpp
       title: Tree/Tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Tree/Tree_DP.hpp
       title: "\u6728 DP"
   - name: Union_Find
@@ -574,7 +586,7 @@ data:
       title: Union Find
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
     - icon: ':heavy_check_mark:'
@@ -583,22 +595,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: template/enumerable.hpp
       title: enumerable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/exception.hpp
       title: template/exception.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/inout.hpp
       title: template/inout.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macro.hpp
       title: template/macro.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/math.hpp
       title: template/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/utility.hpp
       title: template/utility.hpp
   verificationCategories:
@@ -735,6 +747,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
       title: verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
+      title: verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
   - name: verify/yosupo_library_checker/data_structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -990,25 +1005,25 @@ data:
       title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - name: verify/yukicoder
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1358.test.cpp
       title: verify/yukicoder/1358.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1780.test.cpp
       title: verify/yukicoder/1780.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/187.test.cpp
       title: verify/yukicoder/187.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/1984.test.cpp
       title: verify/yukicoder/1984.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/2558.test.cpp
       title: verify/yukicoder/2558.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/763.test.cpp
       title: verify/yukicoder/763.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verify/yukicoder/Modulo_Order.test.cpp
       title: verify/yukicoder/Modulo_Order.test.cpp
 layout: toppage

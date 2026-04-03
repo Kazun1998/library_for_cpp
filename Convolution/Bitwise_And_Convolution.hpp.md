@@ -2,30 +2,30 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-    title: Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
-  - icon: ':heavy_check_mark:'
     path: Convolution/Convolution_Base.hpp
-    title: Convolution/Convolution_Base.hpp
+    title: "\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
+    path: Convolution/Semilattice_Convolution_Base.hpp
+    title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -39,31 +39,30 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Convolution/Bitwise_And_Convolution.hpp\"\n\n#line 2 \"\
-    Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\n\n#line 2 \"\
-    Convolution/Convolution_Base.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
-    \ namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
-    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
-    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
-    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    Convolution/Semilattice_Convolution_Base.hpp\"\n\n#line 2 \"Convolution/Convolution_Base.hpp\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -113,54 +112,55 @@ data:
     \ T &x) { return x <= 0; }\n\n// \u6307\u6570\u306B\u95A2\u3059\u308B\u95A2\u6570\
     \n\n// x \u306E y \u4E57\u3092\u6C42\u3081\u308B.\nll intpow(ll x, ll y){\n  \
     \  ll a = 1;\n    while (y){\n        if (y & 1) { a *= x; }\n        x *= x;\n\
-    \        y >>= 1;\n    }\n    return a;\n}\n\n// x \u306E y \u4E57\u3092 z \u3067\
-    \u5272\u3063\u305F\u4F59\u308A\u3092\u6C42\u3081\u308B.\ntemplate<typename T,\
-    \ integral U>\nT modpow(T x, U y, T z) {\n    T a = 1;\n    while (y) {\n    \
-    \    if (y & 1) { (a *= x) %= z; }\n\n        (x *= x) %= z;\n        y >>= 1;\n\
-    \    }\n\n    return a;\n}\n\ntemplate<typename T>\nT sum(const vector<T> &X)\
-    \ {\n    T y = T(0);\n    for (auto &&x: X) { y += x; }\n    return y;\n}\n\n\
-    template<typename T>\nT gcd(const T x, const T y) {\n    return y == 0 ? x : gcd(y,\
-    \ x % y);\n}\n\n// a x + b y = gcd(a, b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\
-    \u7D44 (a, b) \u306B\u5BFE\u3057\u3066, (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B\
-    .\ntemplate<integral T>\ntuple<T, T, T> Extended_Euclid(T a, T b) {\n    T s =\
-    \ 1, t = 0, u = 0, v = 1;\n    while (b) {\n        auto [q, r] = divmod(a, b);\n\
-    \        a = b;\n        b = r;\n        tie(s, t) = make_pair(t, s - q * t);\n\
-    \        tie(u, v) = make_pair(v, u - q * v);\n    }\n\n    return make_tuple(s,\
-    \ u, a);\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\
-    \u306F, 0 \u3068\u3059\u308B).\nll isqrt(const ll &N) { \n    if (N <= 0) { return\
-    \ 0; }\n\n    ll x = sqrtl(N);\n    while ((x + 1) * (x + 1) <= N) { x++; }\n\
-    \    while (x * x > N) { x--; }\n\n    return x;\n}\n\n// floor(sqrt(N)) \u3092\
-    \u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll\
-    \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
-    \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
-    \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
-    \ 64 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
-    \ \u5165\u51FA\u529B\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ... >>\
-    \ a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
-    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
-    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
-    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
-    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
-    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nvector<T> vector_input(int N, int index){\n\
-    \    vector<T> X(N+index);\n    for (int i=index; i<index+N; i++) cin >> X[i];\n\
-    \    return X;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T>\
-    \ &X){\n    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const vector<T> &X){\n    int s = (int)X.size();\n\
-    \    for (int i = 0; i < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return\
-    \ os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const unordered_set<T>\
-    \ &S){\n    int i = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n\
-    \    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ set<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a;\
-    \ i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os\
-    \ << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\n\
-    ostream &operator<<(ostream &os, const multiset<T> &S){\n    int i = 0;\n    for\
-    \ (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nstd::vector<T> input_vector(size_t n, size_t offset = 0) {\n    std::vector<T>\
-    \ res;\n    // \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\
-    \u4FDD\uFF08\u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n\
-    \    // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
+    \        y >>= 1;\n    }\n    return a;\n}\n\nll pow(ll x, ll y) { return intpow(x,\
+    \ y); }\n\n// x \u306E y \u4E57\u3092 z \u3067\u5272\u3063\u305F\u4F59\u308A\u3092\
+    \u6C42\u3081\u308B.\ntemplate<typename T, integral U>\nT modpow(T x, U y, T z)\
+    \ {\n    T a = 1;\n    while (y) {\n        if (y & 1) { (a *= x) %= z; }\n\n\
+    \        (x *= x) %= z;\n        y >>= 1;\n    }\n\n    return a;\n}\n\ntemplate<typename\
+    \ T>\nT sum(const vector<T> &X) {\n    T y = T(0);\n    for (auto &&x: X) { y\
+    \ += x; }\n    return y;\n}\n\ntemplate<typename T>\nT gcd(const T x, const T\
+    \ y) {\n    return y == 0 ? x : gcd(y, x % y);\n}\n\n// a x + b y = gcd(a, b)\
+    \ \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44 (a, b) \u306B\u5BFE\u3057\u3066\
+    , (x, y, gcd(a, b)) \u3092\u6C42\u3081\u308B.\ntemplate<integral T>\ntuple<T,\
+    \ T, T> Extended_Euclid(T a, T b) {\n    T s = 1, t = 0, u = 0, v = 1;\n    while\
+    \ (b) {\n        auto [q, r] = divmod(a, b);\n        a = b;\n        b = r;\n\
+    \        tie(s, t) = make_pair(t, s - q * t);\n        tie(u, v) = make_pair(v,\
+    \ u - q * v);\n    }\n\n    return make_tuple(s, u, a);\n}\n\n// floor(sqrt(N))\
+    \ \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B\
+    ).\nll isqrt(const ll &N) { \n    if (N <= 0) { return 0; }\n\n    ll x = sqrtl(N);\n\
+    \    while ((x + 1) * (x + 1) <= N) { x++; }\n    while (x * x > N) { x--; }\n\
+    \n    return x;\n}\n\n// floor(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\
+    \u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll floor_sqrt(const ll &N) { return\
+    \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
+    \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
+    \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 64 \"template/template.hpp\"\
+    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
+    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
+    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
+    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
+    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
+    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
+    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
+    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
+    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
+    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
+    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
+    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
+    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
+    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
+    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
+    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
+    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
+    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
+    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
+    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nstd::vector<T>\
+    \ input_vector(size_t n, size_t offset = 0) {\n    std::vector<T> res;\n    //\
+    \ \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\u4FDD\uFF08\
+    \u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n   \
+    \ // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\
     \    \n    for (size_t i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin\
     \ >> el)) break;\n        res.push_back(std::move(el));\n    }\n    return res;\n\
@@ -203,27 +203,29 @@ data:
     \n\nnamespace convolution {\n    template<typename R>\n    class Convolution_Base\
     \ {\n        protected:\n        std::vector<R> data;\n\n        public:\n   \
     \     Convolution_Base() = default;\n        Convolution_Base(std::vector<R> data_in):\
-    \ data(std::move(data_in)) {}\n        \n        Convolution_Base(size_t n): data(std::vector<R>(n))\
-    \ {} \n        \n        // \u52A0\u6CD5 (+=)\n        Convolution_Base& operator+=(const\
+    \ data(std::move(data_in)) {}\n\n        Convolution_Base(initializer_list<R>\
+    \ init): data(init) {}\n        \n        Convolution_Base(size_t n): data(std::vector<R>(n))\
+    \ {} \n        \n        Convolution_Base& operator=(initializer_list<R> init)\
+    \ {\n            data = init;\n            return *this;\n        }\n\n      \
+    \  // \u52A0\u6CD5 (+=)\n        Convolution_Base& operator+=(const Convolution_Base<R>\
+    \ &B) {\n            if(data.size() != B.data.size()) { throw std::length_error(\"\
+    Convolution operands must have the same size.\"); }\n\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] += B.data[i]; }\n            return *this;\n\
+    \        }\n\n        // \u6E1B\u6CD5 (-=)\n        Convolution_Base& operator-=(const\
     \ Convolution_Base<R> &B) {\n            if(data.size() != B.data.size()) { throw\
-    \ std::length_error(\"Convolution operands must have the same size.\"); }\n\n\
-    \            for (size_t i = 0; i < data.size(); i++) { data[i] += B.data[i];\
-    \ }\n            return *this;\n        }\n\n        // \u6E1B\u6CD5 (-=)\n  \
-    \      Convolution_Base& operator-=(const Convolution_Base<R> &B) {\n        \
-    \    if(data.size() != B.data.size()) { throw std::length_error(\"Convolution\
-    \ operands must have the same size.\"); }\n            for (size_t i = 0; i <\
-    \ data.size(); i++) { data[i] -= B.data[i]; }\n            return *this;\n   \
-    \     }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D (*=)\n        Convolution_Base&\
-    \ operator*=(const R &a) {\n            for (size_t i = 0; i < data.size(); i++)\
-    \ { data[i] *= a; }\n            return *this;\n        }\n\n        virtual Convolution_Base<R>&\
-    \ operator*=(const Convolution_Base<R> &B) = 0;\n\n        inline size_t size()\
-    \ const { return data.size(); }\n\n        inline R& operator[](size_t k) { return\
-    \ data[k]; }\n        inline const R& operator[](size_t k) const { return data[k];\
-    \ }\n\n        const std::vector<R>& to_vector() const { return data; }\n    };\n\
-    }\n#line 4 \"Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\n\
-    \nnamespace convolution {\n    template<typename R>\n    class Commutative_Idempotent_Monoid_Convolution_Base:\
+    \ std::length_error(\"Convolution operands must have the same size.\"); }\n  \
+    \          for (size_t i = 0; i < data.size(); i++) { data[i] -= B.data[i]; }\n\
+    \            return *this;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (*=)\n        Convolution_Base& operator*=(const R &a) {\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] *= a; }\n            return *this;\n\
+    \        }\n\n        virtual Convolution_Base<R>& operator*=(const Convolution_Base<R>\
+    \ &B) = 0;\n\n        inline size_t size() const { return data.size(); }\n\n \
+    \       inline R& operator[](size_t k) { return data[k]; }\n        inline const\
+    \ R& operator[](size_t k) const { return data[k]; }\n\n        const std::vector<R>&\
+    \ to_vector() const { return data; }\n    };\n}\n#line 4 \"Convolution/Semilattice_Convolution_Base.hpp\"\
+    \n\nnamespace convolution {\n    template<typename R>\n    class Semilattice_Convolution_Base:\
     \ public Convolution_Base<R> {\n        // \u578B\u30A8\u30A4\u30EA\u30A2\u30B9\
-    \n        using Base = Convolution_Base<R>;\n        using Self = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
+    \n        using Base = Convolution_Base<R>;\n        using Self = Semilattice_Convolution_Base<R>;\n\
     \n        using Base::Base;\n\n        public:\n        virtual void zeta_transform(std::vector<R>\
     \ &f) const = 0;\n        virtual void mobius_transform(std::vector<R> &g) const\
     \ = 0;\n\n        Self& operator*=(const Base &B) override {\n            if (this->data.size()\
@@ -234,27 +236,30 @@ data:
     \ \n\n            for (size_t i = 0; i < f_copy.size(); i++) { \n            \
     \    f_copy[i] *= g_copy[i]; \n            }\n\n            this->mobius_transform(f_copy);\n\
     \            this->data = std::move(f_copy);\n            return *this;\n    \
-    \    }\n\n        void zeta() { zeta_transform(this->data); }\n        void mobius()\
-    \ { mobius_transform(this->data); }\n    };\n}\n#line 4 \"Convolution/Bitwise_And_Convolution.hpp\"\
-    \n\nnamespace convolution {\n    template<typename R>\n    class Bitwize_And_Convolution:\
-    \ public Commutative_Idempotent_Monoid_Convolution_Base<R> {\n        using Base\
-    \ = Convolution_Base<R>;\n        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
+    \    }\n\n        Self& pow(long long n) {\n            zeta();\n            for\
+    \ (R &v : this->data) { v = ::pow(v, n); }\n            mobius();\n          \
+    \  return *this;\n        }\n\n        void zeta() { zeta_transform(this->data);\
+    \ }\n        void mobius() { mobius_transform(this->data); }\n    };\n\n    template<typename\
+    \ T>\n    T pow(T a, const ll n) {\n        a.pow(n);\n        return a;\n   \
+    \ }\n}\n#line 4 \"Convolution/Bitwise_And_Convolution.hpp\"\n\nnamespace convolution\
+    \ {\n    template<typename R>\n    class Bitwise_And_Convolution: public Semilattice_Convolution_Base<R>\
+    \ {\n        using Base = Convolution_Base<R>;\n        using ImplBase = Semilattice_Convolution_Base<R>;\n\
     \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
-    \ Bitwize_And_Convolution operator+(const Bitwize_And_Convolution &lhs, const\
-    \ Bitwize_And_Convolution &rhs) {\n            Bitwize_And_Convolution temp(lhs);\n\
+    \ Bitwise_And_Convolution operator+(const Bitwise_And_Convolution &lhs, const\
+    \ Bitwise_And_Convolution &rhs) {\n            Bitwise_And_Convolution temp(lhs);\n\
     \            temp += rhs;\n            return temp;\n        }\n\n        // \u6E1B\
-    \u6CD5 (-)\n        friend Bitwize_And_Convolution operator-(const Bitwize_And_Convolution\
-    \ &lhs, const Bitwize_And_Convolution &rhs) {\n            Bitwize_And_Convolution\
+    \u6CD5 (-)\n        friend Bitwise_And_Convolution operator-(const Bitwise_And_Convolution\
+    \ &lhs, const Bitwise_And_Convolution &rhs) {\n            Bitwise_And_Convolution\
     \ temp(lhs);\n            temp -= rhs;\n            return temp;\n        }\n\n\
-    \        // \u4E57\u6CD5 (*)\n        friend Bitwize_And_Convolution operator*(const\
-    \ Bitwize_And_Convolution &lhs, const Bitwize_And_Convolution &rhs) { \n     \
-    \       Bitwize_And_Convolution temp(lhs);\n            temp *= rhs;\n       \
+    \        // \u4E57\u6CD5 (*)\n        friend Bitwise_And_Convolution operator*(const\
+    \ Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution &rhs) { \n     \
+    \       Bitwise_And_Convolution temp(lhs);\n            temp *= rhs;\n       \
     \     return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D (a\
-    \ * rhs)\n        friend Bitwize_And_Convolution operator*(const R &a, const Bitwize_And_Convolution\
-    \ &rhs) {\n            Bitwize_And_Convolution temp(rhs);\n            temp *=\
+    \ * rhs)\n        friend Bitwise_And_Convolution operator*(const R &a, const Bitwise_And_Convolution\
+    \ &rhs) {\n            Bitwise_And_Convolution temp(rhs);\n            temp *=\
     \ a;\n            return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\
-    \u500D (lhs * a)\n        friend Bitwize_And_Convolution operator*(const Bitwize_And_Convolution\
-    \ &lhs, const R &a) {\n            Bitwize_And_Convolution temp(lhs);\n      \
+    \u500D (lhs * a)\n        friend Bitwise_And_Convolution operator*(const Bitwise_And_Convolution\
+    \ &lhs, const R &a) {\n            Bitwise_And_Convolution temp(lhs);\n      \
     \      temp *= a;\n            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
     \ &f) const override {\n            int m = floor_log2(f.size());\n\n        \
     \    for (size_t i = 0; i < m; i++) {\n                for (int S = 0; S < (1\
@@ -265,38 +270,38 @@ data:
     \ 0; i < m; i++) {\n                for (int S = 0; S < (1 << m); S++) {\n   \
     \                 if (get_bit(S, i)) { continue; }\n\n                    g[S]\
     \ -= g[S | (1 << i)];\n                }\n            }\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"Commutative_Idempotent_Monoid_Convolution_Base.hpp\"\
-    \n\nnamespace convolution {\n    template<typename R>\n    class Bitwize_And_Convolution:\
-    \ public Commutative_Idempotent_Monoid_Convolution_Base<R> {\n        using Base\
-    \ = Convolution_Base<R>;\n        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;\n\
-    \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
-    \ Bitwize_And_Convolution operator+(const Bitwize_And_Convolution &lhs, const\
-    \ Bitwize_And_Convolution &rhs) {\n            Bitwize_And_Convolution temp(lhs);\n\
-    \            temp += rhs;\n            return temp;\n        }\n\n        // \u6E1B\
-    \u6CD5 (-)\n        friend Bitwize_And_Convolution operator-(const Bitwize_And_Convolution\
-    \ &lhs, const Bitwize_And_Convolution &rhs) {\n            Bitwize_And_Convolution\
-    \ temp(lhs);\n            temp -= rhs;\n            return temp;\n        }\n\n\
-    \        // \u4E57\u6CD5 (*)\n        friend Bitwize_And_Convolution operator*(const\
-    \ Bitwize_And_Convolution &lhs, const Bitwize_And_Convolution &rhs) { \n     \
-    \       Bitwize_And_Convolution temp(lhs);\n            temp *= rhs;\n       \
-    \     return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D (a\
-    \ * rhs)\n        friend Bitwize_And_Convolution operator*(const R &a, const Bitwize_And_Convolution\
-    \ &rhs) {\n            Bitwize_And_Convolution temp(rhs);\n            temp *=\
-    \ a;\n            return temp;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\
-    \u500D (lhs * a)\n        friend Bitwize_And_Convolution operator*(const Bitwize_And_Convolution\
-    \ &lhs, const R &a) {\n            Bitwize_And_Convolution temp(lhs);\n      \
-    \      temp *= a;\n            return temp;\n        }\n\n        void zeta_transform(std::vector<R>\
-    \ &f) const override {\n            int m = floor_log2(f.size());\n\n        \
+  code: "#pragma once\n\n#include \"Semilattice_Convolution_Base.hpp\"\n\nnamespace\
+    \ convolution {\n    template<typename R>\n    class Bitwise_And_Convolution:\
+    \ public Semilattice_Convolution_Base<R> {\n        using Base = Convolution_Base<R>;\n\
+    \        using ImplBase = Semilattice_Convolution_Base<R>;\n        using ImplBase::ImplBase;\n\
+    \n        // \u52A0\u6CD5 (+)\n        friend Bitwise_And_Convolution operator+(const\
+    \ Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution &rhs) {\n      \
+    \      Bitwise_And_Convolution temp(lhs);\n            temp += rhs;\n        \
+    \    return temp;\n        }\n\n        // \u6E1B\u6CD5 (-)\n        friend Bitwise_And_Convolution\
+    \ operator-(const Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution\
+    \ &rhs) {\n            Bitwise_And_Convolution temp(lhs);\n            temp -=\
+    \ rhs;\n            return temp;\n        }\n\n        // \u4E57\u6CD5 (*)\n \
+    \       friend Bitwise_And_Convolution operator*(const Bitwise_And_Convolution\
+    \ &lhs, const Bitwise_And_Convolution &rhs) { \n            Bitwise_And_Convolution\
+    \ temp(lhs);\n            temp *= rhs;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (a * rhs)\n        friend Bitwise_And_Convolution\
+    \ operator*(const R &a, const Bitwise_And_Convolution &rhs) {\n            Bitwise_And_Convolution\
+    \ temp(rhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (lhs * a)\n        friend Bitwise_And_Convolution\
+    \ operator*(const Bitwise_And_Convolution &lhs, const R &a) {\n            Bitwise_And_Convolution\
+    \ temp(lhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        void zeta_transform(std::vector<R> &f) const override {\n           \
+    \ int m = floor_log2(f.size());\n\n            for (size_t i = 0; i < m; i++)\
+    \ {\n                for (int S = 0; S < (1 << m); S++) {\n                  \
+    \  if (get_bit(S, i)) { continue; }\n\n                    f[S] += f[S | (1 <<\
+    \ i)];\n                }\n            }\n        }\n\n        void mobius_transform(std::vector<R>\
+    \ &g) const override {\n            int m = floor_log2(g.size());\n\n        \
     \    for (size_t i = 0; i < m; i++) {\n                for (int S = 0; S < (1\
     \ << m); S++) {\n                    if (get_bit(S, i)) { continue; }\n\n    \
-    \                f[S] += f[S | (1 << i)];\n                }\n            }\n\
-    \        }\n\n        void mobius_transform(std::vector<R> &g) const override\
-    \ {\n            int m = floor_log2(g.size());\n\n            for (size_t i =\
-    \ 0; i < m; i++) {\n                for (int S = 0; S < (1 << m); S++) {\n   \
-    \                 if (get_bit(S, i)) { continue; }\n\n                    g[S]\
-    \ -= g[S | (1 << i)];\n                }\n            }\n        }\n    };\n}\n"
+    \                g[S] -= g[S | (1 << i)];\n                }\n            }\n\
+    \        }\n    };\n}\n"
   dependsOn:
-  - Convolution/Commutative_Idempotent_Monoid_Convolution_Base.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
   - Convolution/Convolution_Base.hpp
   - template/template.hpp
   - template/utility.hpp
@@ -308,7 +313,7 @@ data:
   isVerificationFile: false
   path: Convolution/Bitwise_And_Convolution.hpp
   requiredBy: []
-  timestamp: '2026-03-12 00:53:37+09:00'
+  timestamp: '2026-04-04 00:20:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
