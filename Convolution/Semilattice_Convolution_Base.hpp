@@ -47,7 +47,7 @@ namespace convolution {
     };
 
     template<typename T>
-    T pow(T a, ll n) {
+    T pow(T a, const ll n) {
         a.pow(n);
         return a;
     }
