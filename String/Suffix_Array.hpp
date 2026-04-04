@@ -38,6 +38,24 @@ vector<int> Suffix_Array(const vector<T> &A) {
     return suffix_array;
 }
 
+template<typename T>
+requires (!integral<T>)
+vector<int> Suffix_Array(const vector<T> &A) {
+    int n = A.size();
+
+    vector<int> idx(n);
+    iota(idx.begin(), idx.end(), 0);
+    sort(idx.begin(), idx.end(), [&](int i, int j) { return A[i] < A[j]; });
+
+    vector<int> B(n);
+    int r = 0;
+    for (int i = 0; i < n; ++i) {
+        if (i > 0 && A[idx[i - 1]] < A[idx[i]]) r++;
+        B[idx[i]] = r;
+    }
+    return Suffix_Array<int>(B);
+}
+
 vector<int> Suffix_Array(const string &S) {
     return Suffix_Array<char>(vector<char>(S.begin(), S.end()));
 }
