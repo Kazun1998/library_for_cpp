@@ -40,4 +40,4 @@ vector<int> Longest_Common_Prefix(const vector<T> &A)
 
 |日付|内容|
 |:---:|:---|
-|2026/04/05| Longest_Suffix_Prefix 実装 |
+|2026/04/05| Longest_Common_Prefix 実装 |
