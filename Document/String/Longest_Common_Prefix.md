@@ -5,7 +5,7 @@ documentation_of: //String/Longest_Common_Prefix.hpp
 
 ## Outline
 
-列 $A$ に対する接尾辞配列で互いに隣り合うもの同士の Longest Suffix Prefix の長さを求める.
+列 $A$ に対する接尾辞配列で互いに隣り合うもの同士の Longest Common Prefix の長さを求める.
 
 ## Theory
 
