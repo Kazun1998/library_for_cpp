@@ -28,3 +28,51 @@ ll Number_of_Continuous_Subsequence(const vector<T> &A) {
 ll Number_of_Substrings(const string &S) {
     return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(), S.end()));
 }
+
+template<totally_ordered T>
+ll Number_of_Continuous_Subsequence(const vector<vector<T>> &As) {
+    ll k = As.size();
+
+    // Step I: 各文字列の長さから, 候補となる部分文字列の数を求める.
+    ll n_sum = 0, candidates = 0;
+    for (const vector<T> A: As) {
+        ll n = A.size();
+        candidates += n * (n + 1) / 2;
+        n_sum += n;
+    }
+
+    // Step II: A に出てくる全ての要素に対する座標圧縮を行う
+    vector<T> coords;
+    coords.reserve(n_sum);
+    for (const vector<T> &A: As) {
+        for (const T &a: A) coords.emplace_back(a);
+    }
+
+    sort(coords.begin(), coords.end());
+    coords.erase(unique(coords.begin(), coords.end()), coords.end());
+
+    // Step III: 全てを連結させた 1 つの列を作成する.
+    int sentinel = coords.size();
+
+    vector<int> B;
+    B.reserve(n_sum + k);
+    for (const vector<T> &A: As) {
+        for (const T &a: A) {
+            B.push_back(lower_bound(coords.begin(), coords.end(), a) - coords.begin());
+        }
+        B.push_back(sentinel++);
+    }
+
+    const vector<int> lcp = Longest_Common_Prefix(B);
+
+    return candidates - accumulate(lcp.begin(), lcp.end(), 0LL);
+}
+
+ll Number_of_Substrings(const vector<string> &Ss) {
+    vector<vector<char>> As(Ss.size());
+    for (int i = 0; i < Ss.size(); ++i) {
+        As[i] = vector<char>(Ss[i].begin(), Ss[i].end());
+    }
+
+    return Number_of_Continuous_Subsequence<char>(As);
+}
