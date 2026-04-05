@@ -2,6 +2,17 @@
 
 #include "../template/template.hpp"
 
+/**
+ * @brief Suffix Array を構築する.
+ * 
+ * ダブリングと基数ソート（Counting Sort の 2 回適用）を用いて O(N log N) で構築する.
+ * 返り値の vector を sa とすると、sa[i] は辞書順で i 番目の接尾辞の開始インデックスを表す.
+ * (空文字列を除く n 個の接尾辞の順序)
+ * 
+ * @tparam T 配列の要素の型（整数型である必要がある）
+ * @param A 構築対象の配列
+ * @return vector<int> 構築された Suffix Array
+ */
 template<integral T>
 vector<int> Suffix_Array(const vector<T> &A) {
     int n = A.size();
@@ -65,6 +76,15 @@ vector<int> Suffix_Array(const vector<T> &A) {
     return suffix_array;
 }
 
+/**
+ * @brief 整数型以外の要素を持つ配列に対して Suffix Array を構築する.
+ * 
+ * 内部で座標圧縮を行い、整数型の Suffix_Array を呼び出す.
+ * 
+ * @tparam T 任意の型
+ * @param A 構築対象の配列
+ * @return vector<int> Suffix Array
+ */
 // 文字列や、整数以外のベクトルを扱うためのラップ関数
 template<typename T>
 requires (!integral<T>)
@@ -84,6 +104,12 @@ vector<int> Suffix_Array(const vector<T> &A) {
     return Suffix_Array<int>(B);
 }
 
+/**
+ * @brief 文字列に対して Suffix Array を構築する.
+ * 
+ * @param S 構築対象の文字列
+ * @return vector<int> Suffix Array
+ */
 vector<int> Suffix_Array(const string &S) {
     return Suffix_Array<char>(vector<char>(S.begin(), S.end()));
 }
