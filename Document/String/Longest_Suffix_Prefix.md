@@ -7,6 +7,21 @@ documentation_of: //String/Longest_Common_Prefix.hpp
 
 列 $A$ に対する接尾辞配列で互いに隣り合うもの同士の Longest Suffix Prefix の長さを求める.
 
+## Theory
+
+以下のように記号を定義する.
+
+* 列 $A$ の長さを $N$ とする.
+* $A$ における第 $i$ 接尾辞を $B_i$ とする.
+* $A$ における接尾辞配列を $(S_1, \dots, S_N)$ とする.
+* $B_{S_i}$ と $B_{S_{i+1}}$ の最長共通接頭辞の長さを $L_i$ とする.
+
+このとき, 以下が成り立つ.
+
+* $i < j$ とする. このとき, $B_{S_i}$ と $B_{S_j}$ の最長共通接頭辞の長さは
+  $$ \min(B_{S_i}, B_{S_{i+1}}, \dots, B_{S_{j-1}}) $$
+である.
+
 ## Contents
 
 ```cpp
