@@ -5,11 +5,11 @@
 /**
  * @brief Suffix Array を構築する.
  * 
- * ダブリングと基数ソート（Counting Sort の 2 回適用）を用いて O(N log N) で構築する.
- * 返り値の vector を sa とすると、sa[i] は辞書順で i 番目の接尾辞の開始インデックスを表す.
- * (空文字列を除く n 個の接尾辞の順序)
+ * ダブリングと基数ソートを用いて O(N log N) で構築する.
+ * 返り値 sa は, sa[i] が「辞書順で i 番目に小さい接尾辞の開始インデックス」となるようなサイズ N の配列.
+ * 空文字列（番兵）は内部的な構築過程でのみ利用され、返り値には含まれない.
  * 
- * @tparam T 配列の要素の型（整数型である必要がある）
+ * @tparam T 配列の要素の型. std::integral コンセプトを満たす必要がある.
  * @param A 構築対象の配列
  * @return vector<int> 構築された Suffix Array
  */
@@ -78,16 +78,16 @@ vector<int> Suffix_Array(const vector<T> &A) {
 
 /**
  * @brief 整数型以外の要素を持つ配列に対して Suffix Array を構築する.
- * 
- * 内部で座標圧縮を行い、整数型の Suffix_Array を呼び出す.
- * 
- * @tparam T 任意の型
+ *
+ * 内部で座標圧縮を行い, 整数型の Suffix Array 構築関数を呼び出す.
+ * 計算量は座標圧縮を含めて O(N log N) となる.
+ *
+ * @tparam T 配列の要素の型. !std::integral かつ std::totally_ordered コンセプトを満たす必要がある.
  * @param A 構築対象の配列
  * @return vector<int> Suffix Array
  */
-// 文字列や、整数以外のベクトルを扱うためのラップ関数
 template<typename T>
-requires (!integral<T>)
+requires (!integral<T> && totally_ordered<T>)
 vector<int> Suffix_Array(const vector<T> &A) {
     int n = A.size();
 
@@ -106,7 +106,9 @@ vector<int> Suffix_Array(const vector<T> &A) {
 
 /**
  * @brief 文字列に対して Suffix Array を構築する.
- * 
+ *
+ * 内部で vector<char> に変換して処理を行うラップ関数.
+ *
  * @param S 構築対象の文字列
  * @return vector<int> Suffix Array
  */
