@@ -2,6 +2,13 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: String/Longest_Common_Prefix.hpp
+    title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
+      \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
+  - icon: ':heavy_check_mark:'
+    path: String/Suffix_Array.hpp
+    title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,51 +29,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: String/Longest_Common_Prefix.hpp
-    title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
-      \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
-  - icon: ':heavy_check_mark:'
-    path: String/Number_of_Substrings.hpp
-    title: "\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
     title: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
-    title: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "Suffix Array \u3092\u69CB\u7BC9\u3059\u308B."
+    document_title: "\u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\
+      \u985E\u6570\u3092\u6C42\u3081\u308B."
     links: []
-  bundledCode: "#line 2 \"String/Suffix_Array.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"String/Number_of_Substrings.hpp\"\n\n#line 2 \"String/Longest_Common_Prefix.hpp\"\
+    \n\n#line 2 \"String/Suffix_Array.hpp\"\n\n#line 2 \"template/template.hpp\"\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
+    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
+    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -281,87 +280,55 @@ data:
     \u51E6\u7406\u3092\u884C\u3046\u30E9\u30C3\u30D7\u95A2\u6570.\n *\n * @param S\
     \ \u69CB\u7BC9\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return vector<int> Suffix\
     \ Array\n */\nvector<int> Suffix_Array(const string &S) {\n    return Suffix_Array<char>(vector<char>(S.begin(),\
+    \ S.end()));\n}\n#line 4 \"String/Longest_Common_Prefix.hpp\"\n\ntemplate<integral\
+    \ T>\nvector<int> Longest_Common_Prefix(const vector<T> &A, const vector<int>\
+    \ &sa) {\n    int n = A.size();\n    if (n <= 1) return {};\n    vector<int> rank(n);\n\
+    \    for (int i = 0; i < n; ++i) rank[sa[i]] = i;\n\n    vector<int> lcp(n - 1);\n\
+    \    int h = 0;\n    for (int i = 0; i < n; ++i) {\n        if (rank[i] == n -\
+    \ 1) continue;\n\n        int j = sa[rank[i] + 1];\n        while (i + h < n &&\
+    \ j + h < n && A[i + h] == A[j + h]) h++;\n\n        lcp[rank[i]] = h;\n\n   \
+    \     if (h > 0) h--;\n    }\n\n    return lcp;\n}\n\ntemplate<integral T>\nvector<int>\
+    \ Longest_Common_Prefix(const vector<T> &A) {\n    return Longest_Common_Prefix(A,\
+    \ Suffix_Array(A));\n}\n\ntemplate<typename T>\nrequires (!integral<T> && totally_ordered<T>)\n\
+    vector<int> Longest_Common_Prefix(const vector<T> &A) {\n    int n = A.size();\n\
+    \    vector<int> idx(n);\n    iota(idx.begin(), idx.end(), 0);\n    sort(idx.begin(),\
+    \ idx.end(), [&](int i, int j) { return A[i] < A[j]; });\n\n    vector<int> B(n);\n\
+    \    int r = 0;\n    for (int i = 0; i < n; ++i) {\n        if (i > 0 && A[idx[i\
+    \ - 1]] < A[idx[i]]) r++;\n        B[idx[i]] = r;\n    }\n    return Longest_Common_Prefix<int>(B);\n\
+    }\n\nvector<int> Longest_Common_Prefix(const string &S) {\n    return Longest_Common_Prefix<char>(vector<char>(S.begin(),\
+    \ S.end()));\n}\n#line 4 \"String/Number_of_Substrings.hpp\"\n\n/**\n * @brief\
+    \ \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\u3092\
+    \u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\
+    \u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\u8A08\u7B97\u3059\
+    \u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B\n * @param\
+    \ A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll \u9023\u7D9A\u90E8\
+    \u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
+    \ vector<T> &A) {\n    ll n = A.size();\n    auto lcp = Longest_Common_Prefix(A);\n\
+    \    ll lcp_sum = accumulate(lcp.begin(), lcp.end(), 0LL);\n    return n * (n\
+    \ + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief \u6587\u5B57\u5217 S \u306E\u90E8\u5206\
+    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * @param\
+    \ S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return ll \u90E8\u5206\
+    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\n */\nll Number_of_Substrings(const\
+    \ string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
     \ S.end()));\n}\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\n/**\n * @brief Suffix\
-    \ Array \u3092\u69CB\u7BC9\u3059\u308B.\n * \n * \u30C0\u30D6\u30EA\u30F3\u30B0\
-    \u3068\u57FA\u6570\u30BD\u30FC\u30C8\u3092\u7528\u3044\u3066 O(N log N) \u3067\
-    \u69CB\u7BC9\u3059\u308B.\n * \u8FD4\u308A\u5024 sa \u306F, sa[i] \u304C\u300C\
-    \u8F9E\u66F8\u9806\u3067 i \u756A\u76EE\u306B\u5C0F\u3055\u3044\u63A5\u5C3E\u8F9E\
-    \u306E\u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u300D\u3068\u306A\u308B\
-    \u3088\u3046\u306A\u30B5\u30A4\u30BA N \u306E\u914D\u5217.\n * \u7A7A\u6587\u5B57\
-    \u5217\uFF08\u756A\u5175\uFF09\u306F\u5185\u90E8\u7684\u306A\u69CB\u7BC9\u904E\
-    \u7A0B\u3067\u306E\u307F\u5229\u7528\u3055\u308C\u3001\u8FD4\u308A\u5024\u306B\
-    \u306F\u542B\u307E\u308C\u306A\u3044.\n * \n * @tparam T \u914D\u5217\u306E\u8981\
-    \u7D20\u306E\u578B. std::integral \u30B3\u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\
-    \u3059\u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\
-    \u914D\u5217\n * @return vector<int> \u69CB\u7BC9\u3055\u308C\u305F Suffix Array\n\
-    \ */\ntemplate<integral T>\nvector<int> Suffix_Array(const vector<T> &A) {\n \
-    \   int n = A.size();\n    // \u7A7A\u6587\u5B57\u5217\uFF08\u756A\u5175\uFF09\
-    \u3092\u542B\u3081\u305F\u30B5\u30A4\u30BA n+1 \u3067\u7BA1\u7406\n    vector<int>\
-    \ suffix_array(n + 1);\n    vector<int> rank(n + 1);     // \u5404\u63A5\u5C3E\
-    \u8F9E\u306E\u73FE\u5728\u306E\u30E9\u30F3\u30AF\n    vector<int> tmp_sa(n + 1);\n\
-    \    vector<int> tmp_rank(n + 1);\n\n    // 1\u6587\u5B57\u76EE\u306B\u3088\u308B\
-    \u521D\u671F\u30BD\u30FC\u30C8\n    iota(suffix_array.begin(), suffix_array.end(),\
-    \ 0);\n    sort(suffix_array.begin(), suffix_array.end(), [&](int i, int j) {\n\
-    \        // \u756A\u5175 (index n) \u3092\u6700\u5C0F\u3068\u3057\u3066\u6271\u3046\
-    \n        if (i == n) return true;\n        if (j == n) return false;\n      \
-    \  return A[i] < A[j];\n    });\n\n    rank[suffix_array[0]] = 0;\n    int r =\
-    \ 0;\n    for (int i = 1; i <= n; ++i) {\n        if (suffix_array[i - 1] == n\
-    \ || (suffix_array[i] != n && A[suffix_array[i - 1]] < A[suffix_array[i]])) r++;\n\
-    \        rank[suffix_array[i]] = r;\n    }\n    \n    // \u30C0\u30D6\u30EA\u30F3\
-    \u30B0: \u9577\u3055 k \u306E\u6BD4\u8F03\u7D50\u679C\u304B\u3089\u9577\u3055\
-    \ 2k \u306E\u6BD4\u8F03\u7D50\u679C\u3092\u5C0E\u51FA\u3059\u308B\n    for (int\
-    \ k = 1; k <= n; k <<= 1) {\n        // \u7B2C2\u30AD\u30FC (rank[i+k]) \u306B\
-    \u57FA\u3065\u3044\u3066 tmp_sa \u3092\u69CB\u6210\n        int it = 0;\n    \
-    \    // \u5F8C\u534A\u90E8\u5206\u304C\u5B58\u5728\u3057\u306A\u3044 (i+k > n)\
-    \ \u63A5\u5C3E\u8F9E\u304C\u6700\u5C0F\n        for (int i = n - k + 1; i <= n;\
-    \ ++i) tmp_sa[it++] = i;\n        // \u305D\u308C\u4EE5\u5916\u3092\u76F4\u524D\
-    \u306E suffix_array \u306E\u9806\u5E8F\uFF08\u9577\u3055 k \u3067\u306E\u9806\u5E8F\
-    \uFF09\u3092\u5229\u7528\u3057\u3066\u4E26\u3079\u308B\n        for (int i = 0;\
-    \ i <= n; ++i) {\n            if (suffix_array[i] >= k) tmp_sa[it++] = suffix_array[i]\
-    \ - k;\n        }\n\n        // \u7B2C1\u30AD\u30FC (rank[i]) \u306B\u57FA\u3065\
-    \u3044\u3066\u8A08\u6570\u30BD\u30FC\u30C8\uFF08Counting Sort\uFF09\u3092\u884C\
-    \u3046\n        // \u3053\u308C\u306B\u3088\u308A (rank[i], rank[i+k]) \u306E\u30DA\
-    \u30A2\u3067\u30BD\u30FC\u30C8\u3057\u305F\u3053\u3068\u306B\u306A\u308B\n   \
-    \     vector<int> cnt(r + 1, 0);\n        for (int i = 0; i <= n; ++i) cnt[rank[i]]++;\n\
-    \        for (int i = 1; i <= r; ++i) cnt[i] += cnt[i - 1];\n        // \u5B89\
-    \u5B9A\u30BD\u30FC\u30C8\u3092\u7DAD\u6301\u3059\u308B\u305F\u3081\u5F8C\u308D\
-    \u304B\u3089\u8D70\u67FB\n        for (int i = n; i >= 0; --i) suffix_array[--cnt[rank[tmp_sa[i]]]]\
-    \ = tmp_sa[i];\n\n        tmp_rank[suffix_array[0]] = 0;\n        r = 0;\n   \
-    \     auto first = [&](int idx) { return rank[idx]; };\n        auto second =\
-    \ [&](int idx) { return (idx + k <= n) ? rank[idx + k] : -1; };\n        for (int\
-    \ i = 1; i <= n; ++i) {\n            // \u524D\u306E\u8981\u7D20\u3068 (\u7B2C\
-    1\u30AD\u30FC, \u7B2C2\u30AD\u30FC) \u306E\u30DA\u30A2\u304C\u7570\u306A\u308B\
-    \u5834\u5408\u306B\u30E9\u30F3\u30AF\u3092\u4E0A\u3052\u308B\n            unless\
-    \ (first(suffix_array[i - 1]) == first(suffix_array[i]) && second(suffix_array[i\
-    \ - 1]) == second(suffix_array[i])) r++;\n            tmp_rank[suffix_array[i]]\
-    \ = r;\n        }\n        rank = tmp_rank;\n        // \u3059\u3079\u3066\u306E\
-    \u30E9\u30F3\u30AF\u304C\u7570\u306A\u308C\u3070\uFF08\u4E00\u610F\u306B\u5B9A\
-    \u307E\u308C\u3070\uFF09\u7D42\u4E86\n        if (r == n) break;\n    }\n\n  \
-    \  // \u5148\u982D\u306E\u756A\u5175 (n) \u3092\u524A\u9664\n    suffix_array.erase(suffix_array.begin());\n\
-    \n    return suffix_array;\n}\n\n/**\n * @brief \u6574\u6570\u578B\u4EE5\u5916\
-    \u306E\u8981\u7D20\u3092\u6301\u3064\u914D\u5217\u306B\u5BFE\u3057\u3066 Suffix\
-    \ Array \u3092\u69CB\u7BC9\u3059\u308B.\n *\n * \u5185\u90E8\u3067\u5EA7\u6A19\
-    \u5727\u7E2E\u3092\u884C\u3044, \u6574\u6570\u578B\u306E Suffix Array \u69CB\u7BC9\
-    \u95A2\u6570\u3092\u547C\u3073\u51FA\u3059.\n * \u8A08\u7B97\u91CF\u306F\u5EA7\
-    \u6A19\u5727\u7E2E\u3092\u542B\u3081\u3066 O(N log N) \u3068\u306A\u308B.\n *\n\
-    \ * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B. !std::integral \u304B\
-    \u3064 std::totally_ordered \u30B3\u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\u3059\
-    \u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\u914D\
-    \u5217\n * @return vector<int> Suffix Array\n */\ntemplate<typename T>\nrequires\
-    \ (!integral<T> && totally_ordered<T>)\nvector<int> Suffix_Array(const vector<T>\
-    \ &A) {\n    int n = A.size();\n\n    vector<int> idx(n);\n    iota(idx.begin(),\
-    \ idx.end(), 0);\n    sort(idx.begin(), idx.end(), [&](int i, int j) { return\
-    \ A[i] < A[j]; });\n\n    vector<int> B(n);\n    int r = 0;\n    for (int i =\
-    \ 0; i < n; ++i) {\n        if (i > 0 && A[idx[i - 1]] < A[idx[i]]) r++;\n   \
-    \     B[idx[i]] = r;\n    }\n    return Suffix_Array<int>(B);\n}\n\n/**\n * @brief\
-    \ \u6587\u5B57\u5217\u306B\u5BFE\u3057\u3066 Suffix Array \u3092\u69CB\u7BC9\u3059\
-    \u308B.\n *\n * \u5185\u90E8\u3067 vector<char> \u306B\u5909\u63DB\u3057\u3066\
-    \u51E6\u7406\u3092\u884C\u3046\u30E9\u30C3\u30D7\u95A2\u6570.\n *\n * @param S\
-    \ \u69CB\u7BC9\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return vector<int> Suffix\
-    \ Array\n */\nvector<int> Suffix_Array(const string &S) {\n    return Suffix_Array<char>(vector<char>(S.begin(),\
+  code: "#pragma once\n\n#include \"Longest_Common_Prefix.hpp\"\n\n/**\n * @brief\
+    \ \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\u3092\
+    \u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\
+    \u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\u8A08\u7B97\u3059\
+    \u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B\n * @param\
+    \ A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll \u9023\u7D9A\u90E8\
+    \u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
+    \ vector<T> &A) {\n    ll n = A.size();\n    auto lcp = Longest_Common_Prefix(A);\n\
+    \    ll lcp_sum = accumulate(lcp.begin(), lcp.end(), 0LL);\n    return n * (n\
+    \ + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief \u6587\u5B57\u5217 S \u306E\u90E8\u5206\
+    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * @param\
+    \ S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return ll \u90E8\u5206\
+    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\n */\nll Number_of_Substrings(const\
+    \ string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
     \ S.end()));\n}\n"
   dependsOn:
+  - String/Longest_Common_Prefix.hpp
+  - String/Suffix_Array.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -370,59 +337,81 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: String/Suffix_Array.hpp
-  requiredBy:
-  - String/Number_of_Substrings.hpp
-  - String/Longest_Common_Prefix.hpp
-  timestamp: '2026-04-05 14:29:47+09:00'
+  path: String/Number_of_Substrings.hpp
+  requiredBy: []
+  timestamp: '2026-04-05 15:55:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Suffix_Array.test.cpp
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
-documentation_of: String/Suffix_Array.hpp
+documentation_of: String/Number_of_Substrings.hpp
 layout: document
-title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
+title: "\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570"
 ---
 
 ## Outline
 
-列 $A$ に対する Suffix Array を求める.
+列 $A$ における空ではない連続部分列の種類数を求める.
 
-## Definition
+## Theory
 
-$O$ を全順序集合とする.
+$N := \lvert A \rvert$ とする. 列 $A$ における接尾辞配列を $S = (S_1, S_2, \dots, S_N)$ とする. $A$ における第 $i$ 接尾辞を $B_i$ と書くことにする.
 
-* $O$ 上の列 $A = (A_1, \dots, A_N)$ に対して, ある $1$ 以上 $(N+1)$ 以下の整数 $i$ を用いて $(A_i, A_{i+1}, \dots, A_N)$ と表される列を $A$ の接尾辞という.
-* $O$ 上の列 $A$ における $N$ 個の空ではない接尾辞を辞書式順序昇順に並べた長さ $N$ の列を $A$ の接尾辞配列という. なお, 異なる始点同士の接尾辞は互いに長さが異なるため, 接尾辞配列は一意である.
+$B_{S_i}$ と $B_{S_{i+1}}$ の共通接頭辞の長さを $L_i$ と書く. $L = (L_1, \dots, L_{N-1})$ は `Longest_Common_Prefix` を使って $O(N)$ 時間で求められる.
+
+連続部分列とは, ある接尾辞の接頭辞である. また逆に, ある接尾辞の接頭辞は連続部分列になる. そのため, 全ての接尾辞における接頭辞を考えれば良い.
+
+$B_{S_1}, \dots, B_{S_N}$ の順に新規に出現した接尾辞をカウントしていく.
+
+* $B_{S_1}$ は最初に見る接尾辞である. そのため, $B_{S_1}$ に現れる接頭辞は全て初登場であるため, $(N - S_1 + 1)$ 個の部分文字列がそのまま初登場になる.
+* $B_{S_2}$ について
+  * $j \leq L_1$ のときは, LCP の定義から, $B_{S_1}$ と $B_{S_2}$ の最初の $j$ 文字が一致する. そのため, 初登場ではない.
+  * $j > L_1$ のとき, LCP の定義から, 以下のうちのどちらか一方が成り立つ.
+    * $B_{S_1}$ の長さは $j$ 未満.
+    * $B_{S_1}$ と $B_{S_2}$ の最初の $j$ 文字が一致しない.
+    そのため, $B_{S_2}$ の長さ $j$ の接頭辞は初登場である.
+
+    以上から, 初登場になる部分文字列は $(N - S_2 + 1 - L_1)$ である.
+* $\vdots$
+* $B_{S_i}$ について
+  * $j \leq L_{i-1}$ のときは, LCP の定義から, $B_{S_{i-1}}$ と $B_{S_i}$ の最初の $j$ 文字が一致する. そのため, 初登場ではない.
+  * $j > L_{i-1}$ のとき, LCP の性質から, $k < i$ に対して, $B_{S_k}$ と $B_{S_i}$ の最長接頭辞の長さは
+    $$ L := \min(L_k, L_{k+1}, \dots, L_{i-1})$$
+    である. このとき, $j > L_{i-1} \geq L$ であるため, 以下のうちのどちらか一方が成り立つ.
+      * $B_{S_k}$ の長さは $j$ 未満.
+      * $B_{S_k}$ と $B_{S_i}$ の最初の $j$ 文字が一致しない.
+    これが $k < i$ なる全ての $k$ で成立するため, $B_{S_i}$ の長さ $j$ の接頭辞は初登場である.
+
+    以上から, 初登場になる部分文字列は $(N - S_i + 1 - L_{i-1})$ である.
+
+この理論を用いて, $i = 1, 2, \dots, N$ について走らせることによって, 以下のようになることがわかる. なお, $(S_1, \dots, S_N)$ は $(1, \dots, N)$ の名たび変えであること注意すること.
+
+$$\begin{align*}
+  (N - S_1 + 1) + \sum_{i=2}^N (N - S_i + 1 - L_{i-1})
+  &= \sum_{i=1}^N (N - S_i + 1) - \sum_{i=2}^N L_{i-1} \\
+  &= \sum_{t=1}^N t - \sum_{i=1}^{N - 1} L_i \\
+  &= \dfrac{N (N + 1)}{2} - \sum_{i=1}^{N - 1} L_i
+\end{align*}$$
 
 ## Contents
 
 ```cpp
-template<integral T>
-vector<int> Suffix_Array(const vector<T> &A)
+template<totally_ordered T>
+ll Number_of_Continuous_Subsequence(const vector<T> &A)
 ```
 
-* 整数型 $T$ 上の列 $A$ に対する Suffix Array を求める.
-* **計算量**: $N := \lvert A \rvert$ として, $O(N \log N)$ 時間
+* $T$ 上の列 $A$ における空ではない連続部分列の種類すを求める.
+* **計算量**: $N := \lvert A \rvert$ として, $O(N \log N)$ 時間.
 
 ```cpp
-template<typename T>
-requires (!integral<T>)
-vector<int> Suffix_Array(const vector<T> &A)
+template<totally_ordered T>
+ll Number_of_Substrings(const string &S)
 ```
 
-* 一般的な全順序 $T$ 上の列 $A$ に対する Suffix Array を求める.
-* **計算量**: $N := \lvert A \rvert$ として, $O(N \log N)$ 時間
-
-```cpp
-vector<int> Suffix_Array(const string &S)
-```
-
-* 文字列 $S$ に対する Suffix Array を求める.
-* **計算量**: $N := \lvert S \rvert$ として, $O(N \log N)$ 時間
+* $S$ における空ではない部分文字列の種類すを求める.
+* **計算量**: $N := \lvert S \rvert$ として, $O(N \log N)$ 時間.
 
 ## History
 
 |日付|内容|
 |:---:|:---|
-|2026/04/05| Suffix Array 実装 |
+|2026/04/05| Number_of_Substrings 実装 |

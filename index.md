@@ -545,6 +545,13 @@ data:
   - name: String
     pages:
     - icon: ':heavy_check_mark:'
+      path: String/Longest_Common_Prefix.hpp
+      title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
+        \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
+    - icon: ':heavy_check_mark:'
+      path: String/Number_of_Substrings.hpp
+      title: "\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570"
+    - icon: ':heavy_check_mark:'
       path: String/Suffix_Array.hpp
       title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
   - name: Summation
@@ -985,6 +992,9 @@ data:
       title: verify/yosupo_library_checker/sample/a_plus_b.test.cpp
   - name: verify/yosupo_library_checker/string
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
+      title: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
       title: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
