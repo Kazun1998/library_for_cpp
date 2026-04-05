@@ -73,6 +73,7 @@ vector<int> Suffix_Array(const vector<T> &A) {
 
     // 先頭の番兵 (n) を削除
     suffix_array.erase(suffix_array.begin());
+
     return suffix_array;
 }
 
