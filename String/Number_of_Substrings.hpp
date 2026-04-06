@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Longest_Common_Prefix.hpp"
+#include "Concat_with_Compression.hpp"
 
 /**
  * @brief 配列 A の連続部分列の種類数を求める.
@@ -41,27 +42,8 @@ ll Number_of_Continuous_Subsequence(const vector<vector<T>> &As) {
         n_sum += n;
     }
 
-    // Step II: A に出てくる全ての要素に対する座標圧縮を行う
-    vector<T> coords;
-    coords.reserve(n_sum);
-    for (const vector<T> &A: As) {
-        for (const T &a: A) coords.emplace_back(a);
-    }
-
-    sort(coords.begin(), coords.end());
-    coords.erase(unique(coords.begin(), coords.end()), coords.end());
-
-    // Step III: 全てを連結させた 1 つの列を作成する.
-    int sentinel = coords.size();
-
-    vector<int> B;
-    B.reserve(n_sum + k);
-    for (const vector<T> &A: As) {
-        for (const T &a: A) {
-            B.push_back(lower_bound(coords.begin(), coords.end(), a) - coords.begin());
-        }
-        B.push_back(sentinel++);
-    }
+    // Step II: A に出てくる全ての要素に対する座標圧縮を行う. また, 全てを連結させた 1 つの列を作成する.
+    auto [B, ignore] = Concat_with_Compression(As);
 
     const vector<int> lcp = Longest_Common_Prefix(B);
 
