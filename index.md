@@ -545,6 +545,9 @@ data:
   - name: String
     pages:
     - icon: ':heavy_check_mark:'
+      path: String/Concat_with_Compression.hpp
+      title: String/Concat_with_Compression.hpp
+    - icon: ':heavy_check_mark:'
       path: String/Longest_Common_Prefix.hpp
       title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
         \u9577\u5171\u901A\u63A5\u982D\u8F9E)"

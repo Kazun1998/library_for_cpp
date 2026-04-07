@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: String/Concat_with_Compression.hpp
+    title: String/Concat_with_Compression.hpp
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Prefix.hpp
     title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
       \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
@@ -296,36 +299,76 @@ data:
     \    int r = 0;\n    for (int i = 0; i < n; ++i) {\n        if (i > 0 && A[idx[i\
     \ - 1]] < A[idx[i]]) r++;\n        B[idx[i]] = r;\n    }\n    return Longest_Common_Prefix<int>(B);\n\
     }\n\nvector<int> Longest_Common_Prefix(const string &S) {\n    return Longest_Common_Prefix<char>(vector<char>(S.begin(),\
-    \ S.end()));\n}\n#line 4 \"String/Number_of_Substrings.hpp\"\n\n/**\n * @brief\
-    \ \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\u3092\
-    \u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\
-    \u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\u8A08\u7B97\u3059\
-    \u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B\n * @param\
-    \ A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll \u9023\u7D9A\u90E8\
-    \u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
-    \ vector<T> &A) {\n    ll n = A.size();\n    auto lcp = Longest_Common_Prefix(A);\n\
-    \    ll lcp_sum = accumulate(lcp.begin(), lcp.end(), 0LL);\n    return n * (n\
-    \ + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief \u6587\u5B57\u5217 S \u306E\u90E8\u5206\
-    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * @param\
-    \ S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return ll \u90E8\u5206\
-    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\n */\nll Number_of_Substrings(const\
-    \ string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
-    \ S.end()));\n}\n"
-  code: "#pragma once\n\n#include \"Longest_Common_Prefix.hpp\"\n\n/**\n * @brief\
-    \ \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\u3092\
-    \u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\
-    \u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\u8A08\u7B97\u3059\
-    \u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B\n * @param\
-    \ A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll \u9023\u7D9A\u90E8\
-    \u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
-    \ vector<T> &A) {\n    ll n = A.size();\n    auto lcp = Longest_Common_Prefix(A);\n\
-    \    ll lcp_sum = accumulate(lcp.begin(), lcp.end(), 0LL);\n    return n * (n\
-    \ + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief \u6587\u5B57\u5217 S \u306E\u90E8\u5206\
-    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * @param\
-    \ S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return ll \u90E8\u5206\
-    \u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\n */\nll Number_of_Substrings(const\
-    \ string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
-    \ S.end()));\n}\n"
+    \ S.end()));\n}\n#line 2 \"String/Concat_with_Compression.hpp\"\n\n#line 4 \"\
+    String/Concat_with_Compression.hpp\"\n\ntemplate<totally_ordered T>\npair<vector<int>,\
+    \ int> Concat_with_Compression(const vector<vector<T>> &sequences) {\n    vector<T>\
+    \ coords;\n    size_t total_length = 0;\n    for (const vector<T> &sequence: sequences)\
+    \ {\n        total_length += sequence.size();\n\n        for (const auto &x: sequence)\
+    \ coords.emplace_back(x);\n    }\n\n    sort(coords.begin(), coords.end());\n\
+    \    coords.erase(unique(coords.begin(), coords.end()), coords.end());\n\n   \
+    \ vector<int> converted;\n    converted.reserve(total_length + sequences.size());\n\
+    \    int sentinel = coords.size();\n\n    for (const vector<T> &sequence: sequences)\
+    \ {\n        for (const auto &x: sequence) {\n            int y = lower_bound(coords.begin(),\
+    \ coords.end(), x) - coords.begin();\n            converted.emplace_back(y);\n\
+    \        }\n\n        converted.push_back(sentinel++);\n    }\n\n    return {\
+    \ converted, coords.size() };\n\n}\n#line 5 \"String/Number_of_Substrings.hpp\"\
+    \n\n/**\n * @brief \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\
+    \u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08\
+    Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\
+    \u8A08\u7B97\u3059\u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\
+    \u578B\n * @param A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll\
+    \ \u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered\
+    \ T>\nll Number_of_Continuous_Subsequence(const vector<T> &A) {\n    ll n = A.size();\n\
+    \    auto lcp = Longest_Common_Prefix(A);\n    ll lcp_sum = accumulate(lcp.begin(),\
+    \ lcp.end(), 0LL);\n    return n * (n + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief\
+    \ \u6587\u5B57\u5217 S \u306E\u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\
+    \u3092\u6C42\u3081\u308B.\n * \n * @param S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\
+    \u5B57\u5217\n * @return ll \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\
+    \n */\nll Number_of_Substrings(const string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
+    \ S.end()));\n}\n\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
+    \ vector<vector<T>> &As) {\n    ll k = As.size();\n\n    // Step I: \u5404\u6587\
+    \u5B57\u5217\u306E\u9577\u3055\u304B\u3089, \u5019\u88DC\u3068\u306A\u308B\u90E8\
+    \u5206\u6587\u5B57\u5217\u306E\u6570\u3092\u6C42\u3081\u308B.\n    ll n_sum =\
+    \ 0, candidates = 0;\n    for (const vector<T> A: As) {\n        ll n = A.size();\n\
+    \        candidates += n * (n + 1) / 2;\n        n_sum += n;\n    }\n\n    //\
+    \ Step II: A \u306B\u51FA\u3066\u304F\u308B\u5168\u3066\u306E\u8981\u7D20\u306B\
+    \u5BFE\u3059\u308B\u5EA7\u6A19\u5727\u7E2E\u3092\u884C\u3046. \u307E\u305F, \u5168\
+    \u3066\u3092\u9023\u7D50\u3055\u305B\u305F 1 \u3064\u306E\u5217\u3092\u4F5C\u6210\
+    \u3059\u308B.\n    auto [B, ignore] = Concat_with_Compression(As);\n\n    const\
+    \ vector<int> lcp = Longest_Common_Prefix(B);\n\n    return candidates - accumulate(lcp.begin(),\
+    \ lcp.end(), 0LL);\n}\n\nll Number_of_Substrings(const vector<string> &Ss) {\n\
+    \    vector<vector<char>> As(Ss.size());\n    for (int i = 0; i < Ss.size(); ++i)\
+    \ {\n        As[i] = vector<char>(Ss[i].begin(), Ss[i].end());\n    }\n\n    return\
+    \ Number_of_Continuous_Subsequence<char>(As);\n}\n"
+  code: "#pragma once\n\n#include \"Longest_Common_Prefix.hpp\"\n#include \"Concat_with_Compression.hpp\"\
+    \n\n/**\n * @brief \u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\
+    \u985E\u6570\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\u5217\uFF08\
+    Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066 O(N log N) \u3067\
+    \u8A08\u7B97\u3059\u308B.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\
+    \u578B\n * @param A \u691C\u7D22\u5BFE\u8C61\u306E\u914D\u5217\n * @return ll\
+    \ \u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570\n */\ntemplate<totally_ordered\
+    \ T>\nll Number_of_Continuous_Subsequence(const vector<T> &A) {\n    ll n = A.size();\n\
+    \    auto lcp = Longest_Common_Prefix(A);\n    ll lcp_sum = accumulate(lcp.begin(),\
+    \ lcp.end(), 0LL);\n    return n * (n + 1) / 2 - lcp_sum;\n}\n\n/**\n * @brief\
+    \ \u6587\u5B57\u5217 S \u306E\u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\
+    \u3092\u6C42\u3081\u308B.\n * \n * @param S \u691C\u7D22\u5BFE\u8C61\u306E\u6587\
+    \u5B57\u5217\n * @return ll \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\
+    \n */\nll Number_of_Substrings(const string &S) {\n    return Number_of_Continuous_Subsequence<char>(vector<char>(S.begin(),\
+    \ S.end()));\n}\n\ntemplate<totally_ordered T>\nll Number_of_Continuous_Subsequence(const\
+    \ vector<vector<T>> &As) {\n    ll k = As.size();\n\n    // Step I: \u5404\u6587\
+    \u5B57\u5217\u306E\u9577\u3055\u304B\u3089, \u5019\u88DC\u3068\u306A\u308B\u90E8\
+    \u5206\u6587\u5B57\u5217\u306E\u6570\u3092\u6C42\u3081\u308B.\n    ll n_sum =\
+    \ 0, candidates = 0;\n    for (const vector<T> A: As) {\n        ll n = A.size();\n\
+    \        candidates += n * (n + 1) / 2;\n        n_sum += n;\n    }\n\n    //\
+    \ Step II: A \u306B\u51FA\u3066\u304F\u308B\u5168\u3066\u306E\u8981\u7D20\u306B\
+    \u5BFE\u3059\u308B\u5EA7\u6A19\u5727\u7E2E\u3092\u884C\u3046. \u307E\u305F, \u5168\
+    \u3066\u3092\u9023\u7D50\u3055\u305B\u305F 1 \u3064\u306E\u5217\u3092\u4F5C\u6210\
+    \u3059\u308B.\n    auto [B, ignore] = Concat_with_Compression(As);\n\n    const\
+    \ vector<int> lcp = Longest_Common_Prefix(B);\n\n    return candidates - accumulate(lcp.begin(),\
+    \ lcp.end(), 0LL);\n}\n\nll Number_of_Substrings(const vector<string> &Ss) {\n\
+    \    vector<vector<char>> As(Ss.size());\n    for (int i = 0; i < Ss.size(); ++i)\
+    \ {\n        As[i] = vector<char>(Ss[i].begin(), Ss[i].end());\n    }\n\n    return\
+    \ Number_of_Continuous_Subsequence<char>(As);\n}\n"
   dependsOn:
   - String/Longest_Common_Prefix.hpp
   - String/Suffix_Array.hpp
@@ -336,10 +379,11 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - String/Concat_with_Compression.hpp
   isVerificationFile: false
   path: String/Number_of_Substrings.hpp
   requiredBy: []
-  timestamp: '2026-04-05 15:55:36+09:00'
+  timestamp: '2026-04-07 01:00:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp

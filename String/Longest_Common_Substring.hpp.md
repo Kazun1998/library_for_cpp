@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: String/Concat_with_Compression.hpp
+    title: String/Concat_with_Compression.hpp
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Prefix.hpp
     title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
       \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
@@ -296,98 +299,96 @@ data:
     \    int r = 0;\n    for (int i = 0; i < n; ++i) {\n        if (i > 0 && A[idx[i\
     \ - 1]] < A[idx[i]]) r++;\n        B[idx[i]] = r;\n    }\n    return Longest_Common_Prefix<int>(B);\n\
     }\n\nvector<int> Longest_Common_Prefix(const string &S) {\n    return Longest_Common_Prefix<char>(vector<char>(S.begin(),\
-    \ S.end()));\n}\n#line 4 \"String/Longest_Common_Substring.hpp\"\n\n/**\n * @brief\
-    \ 2\u3064\u306E\u914D\u5217\u306E\u6700\u9577\u5171\u901A\u9023\u7D9A\u90E8\u5206\
-    \u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\
-    \u5217\uFF08Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066\
-    \ O((N+M) log (N+M)) \u3067\u8A08\u7B97\u3059\u308B.\n * \n * @tparam T \u914D\
-    \u5217\u306E\u8981\u7D20\u306E\u578B. std::totally_ordered \u3092\u6E80\u305F\u3059\
-    \u5FC5\u8981\u304C\u3042\u308B.\n * @param A 1\u3064\u76EE\u306E\u914D\u5217\n\
-    \ * @param B 2\u3064\u76EE\u306E\u914D\u5217\n * @return tuple<int, int, int,\
-    \ int> {A\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, A\u5185\u306E\u7D42\u4E86\u4F4D\
+    \ S.end()));\n}\n#line 2 \"String/Concat_with_Compression.hpp\"\n\n#line 4 \"\
+    String/Concat_with_Compression.hpp\"\n\ntemplate<totally_ordered T>\npair<vector<int>,\
+    \ int> Concat_with_Compression(const vector<vector<T>> &sequences) {\n    vector<T>\
+    \ coords;\n    size_t total_length = 0;\n    for (const vector<T> &sequence: sequences)\
+    \ {\n        total_length += sequence.size();\n\n        for (const auto &x: sequence)\
+    \ coords.emplace_back(x);\n    }\n\n    sort(coords.begin(), coords.end());\n\
+    \    coords.erase(unique(coords.begin(), coords.end()), coords.end());\n\n   \
+    \ vector<int> converted;\n    converted.reserve(total_length + sequences.size());\n\
+    \    int sentinel = coords.size();\n\n    for (const vector<T> &sequence: sequences)\
+    \ {\n        for (const auto &x: sequence) {\n            int y = lower_bound(coords.begin(),\
+    \ coords.end(), x) - coords.begin();\n            converted.emplace_back(y);\n\
+    \        }\n\n        converted.push_back(sentinel++);\n    }\n\n    return {\
+    \ converted, coords.size() };\n\n}\n#line 5 \"String/Longest_Common_Substring.hpp\"\
+    \n\n/**\n * @brief 2\u3064\u306E\u914D\u5217\u306E\u6700\u9577\u5171\u901A\u9023\
+    \u7D9A\u90E8\u5206\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\
+    \u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\
+    \u3044\u3066 O((N+M) log (N+M)) \u3067\u8A08\u7B97\u3059\u308B.\n * \n * @tparam\
+    \ T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B. std::totally_ordered \u3092\u6E80\
+    \u305F\u3059\u5FC5\u8981\u304C\u3042\u308B.\n * @param A 1\u3064\u76EE\u306E\u914D\
+    \u5217\n * @param B 2\u3064\u76EE\u306E\u914D\u5217\n * @return tuple<int, int,\
+    \ int, int> {A\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, A\u5185\u306E\u7D42\u4E86\u4F4D\
     \u7F6E(inclusive), B\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, B\u5185\u306E\u7D42\u4E86\
     \u4F4D\u7F6E(inclusive)}\n *         \u5171\u901A\u90E8\u5206\u304C\u306A\u3044\
     \u5834\u5408\u306F {0, -1, 0, -1} \u3092\u8FD4\u3059.\n */\ntemplate<totally_ordered\
     \ T>\ntuple<int, int, int, int> Longest_Common_Continuous_Subsequence(const vector<T>\
     \ &A, const vector<T> &B) {\n    int n = A.size(), m = B.size();\n\n    // Step\
     \ I: A \u3068 B \u306E\u8981\u7D20\u3092\u5408\u308F\u305B\u3066\u5EA7\u6A19\u5727\
-    \u7E2E\u3092\u884C\u3046\n    vector<T> coords;\n    coords.reserve(n + m);\n\
-    \    for (const T &a : A) coords.push_back(a);\n    for (const T &b : B) coords.push_back(b);\n\
-    \    sort(coords.begin(), coords.end());\n    coords.erase(unique(coords.begin(),\
-    \ coords.end()), coords.end());\n\n    // Step II: \u5EA7\u6A19\u5727\u7E2E\u5F8C\
-    \u306E\u6574\u6570\u5217\u3092\u751F\u6210\n    vector<int> C;\n    C.reserve(n\
-    \ + m + 1);\n\n    for (const T &a : A) {\n        C.push_back(lower_bound(coords.begin(),\
-    \ coords.end(), a) - coords.begin());\n    }\n\n    int sentinel = coords.size();\
-    \ // \u756A\u5175\n    C.push_back(sentinel); // A \u3068 B \u3092\u533A\u5207\
-    \u308B\u756A\u5175\n\n    for (const auto &b : B) {\n        C.push_back(lower_bound(coords.begin(),\
-    \ coords.end(), b) - coords.begin());\n    }\n\n    // Step III: LCP \u3092\u8A08\
-    \u7B97\n    vector<int> suffix_array = Suffix_Array(C);\n    vector<int> lcp =\
-    \ Longest_Common_Prefix(C, suffix_array);\n\n    // Step IV: SA \u306B\u304A\u3051\
-    \u308B\u7531\u6765\u304C\u7570\u306A\u308B\u90E8\u5206\u306B\u304A\u3051\u308B\
-    \ LCP \u304C LCS \u306B\u306A\u308B.\n\n    // x \u756A\u76EE\u306E SA \u304C\
-    \ A \u7531\u6765\u306A\u3089\u3070 true, B \u7531\u6765\u306A\u3089\u3070 false\n\
-    \    auto belong = [&](const int x) -> bool { return suffix_array[x] < n; };\n\
-    \n    int a = 0, b = -1, c = 0, d = -1, length = 0;\n    for (int i = 0; i < n\
-    \ + m; ++i) {\n        if (suffix_array[i] == n) continue;\n        if (belong(i)\
-    \ == belong(i + 1)) continue;\n        unless(chmax(length, lcp[i])) continue;\n\
-    \n        int ia = belong(i) ? i : i + 1;\n        int ic = belong(i) ? i + 1\
-    \ : i;\n\n        a = suffix_array[ia];\n        b = a + length - 1;\n       \
-    \ c = suffix_array[ic] - (n + 1);\n        d = c + length - 1;\n    }\n\n    return\
-    \ {a, b, c, d};\n}\n\n/**\n * @brief 2\u3064\u306E\u6587\u5B57\u5217\u306E\u6700\
-    \u9577\u5171\u901A\u90E8\u5206\u6587\u5B57\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\
-    \u308B.\n * \n * @param S 1\u3064\u76EE\u306E\u6587\u5B57\u5217\n * @param T 2\u3064\
-    \u76EE\u306E\u6587\u5B57\u5217\n * @return tuple<int, int, int, int> {S\u5185\u306E\
-    \u958B\u59CB\u4F4D\u7F6E, S\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive), T\u5185\
-    \u306E\u958B\u59CB\u4F4D\u7F6E, T\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive)}\n\
-    \ */\ntuple<int, int, int, int> Longest_Common_Substring(const string &S, const\
-    \ string &T) {\n    return Longest_Common_Continuous_Subsequence<char>(vector<char>(S.begin(),\
-    \ S.end()), vector<char>(T.begin(), T.end()));\n}\n"
-  code: "#pragma once\n\n#include \"Longest_Common_Prefix.hpp\"\n\n/**\n * @brief\
-    \ 2\u3064\u306E\u914D\u5217\u306E\u6700\u9577\u5171\u901A\u9023\u7D9A\u90E8\u5206\
-    \u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\u5C3E\u8F9E\u914D\
-    \u5217\uFF08Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\u3044\u3066\
-    \ O((N+M) log (N+M)) \u3067\u8A08\u7B97\u3059\u308B.\n * \n * @tparam T \u914D\
-    \u5217\u306E\u8981\u7D20\u306E\u578B. std::totally_ordered \u3092\u6E80\u305F\u3059\
-    \u5FC5\u8981\u304C\u3042\u308B.\n * @param A 1\u3064\u76EE\u306E\u914D\u5217\n\
-    \ * @param B 2\u3064\u76EE\u306E\u914D\u5217\n * @return tuple<int, int, int,\
-    \ int> {A\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, A\u5185\u306E\u7D42\u4E86\u4F4D\
+    \u7E2E\u3092\u884C\u3044, \u5EA7\u6A19\u5727\u7E2E\u5F8C\u306E\u6574\u6570\u5217\
+    \u3092\u751F\u6210\u3059\u308B.\n    auto [C, ignore] = Concat_with_Compression(vector<vector<T>>{A,\
+    \ B});\n\n    // Step II: LCP \u3092\u8A08\u7B97\n    vector<int> suffix_array\
+    \ = Suffix_Array(C);\n    vector<int> lcp = Longest_Common_Prefix(C, suffix_array);\n\
+    \n    // Step II: SA \u306B\u304A\u3051\u308B\u7531\u6765\u304C\u7570\u306A\u308B\
+    \u90E8\u5206\u306B\u304A\u3051\u308B LCP \u304C LCS \u306B\u306A\u308B.\n\n  \
+    \  // x \u756A\u76EE\u306E SA \u304C A \u7531\u6765\u306A\u3089\u3070 true, B\
+    \ \u7531\u6765\u306A\u3089\u3070 false\n    auto belong = [&](const int x) ->\
+    \ bool { return suffix_array[x] < n; };\n\n    int a = 0, b = -1, c = 0, d = -1,\
+    \ length = 0;\n    for (int i = 0; i < n + m; ++i) {\n        if (suffix_array[i]\
+    \ == n) continue;\n        if (belong(i) == belong(i + 1)) continue;\n       \
+    \ unless(chmax(length, lcp[i])) continue;\n\n        int ia = belong(i) ? i :\
+    \ i + 1;\n        int ic = belong(i) ? i + 1 : i;\n\n        a = suffix_array[ia];\n\
+    \        b = a + length - 1;\n        c = suffix_array[ic] - (n + 1);\n      \
+    \  d = c + length - 1;\n    }\n\n    return {a, b, c, d};\n}\n\n/**\n * @brief\
+    \ 2\u3064\u306E\u6587\u5B57\u5217\u306E\u6700\u9577\u5171\u901A\u90E8\u5206\u6587\
+    \u5B57\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * @param S 1\u3064\
+    \u76EE\u306E\u6587\u5B57\u5217\n * @param T 2\u3064\u76EE\u306E\u6587\u5B57\u5217\
+    \n * @return tuple<int, int, int, int> {S\u5185\u306E\u958B\u59CB\u4F4D\u7F6E\
+    , S\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive), T\u5185\u306E\u958B\u59CB\u4F4D\
+    \u7F6E, T\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive)}\n */\ntuple<int, int,\
+    \ int, int> Longest_Common_Substring(const string &S, const string &T) {\n   \
+    \ return Longest_Common_Continuous_Subsequence<char>(vector<char>(S.begin(), S.end()),\
+    \ vector<char>(T.begin(), T.end()));\n}\n"
+  code: "#pragma once\n\n#include \"Longest_Common_Prefix.hpp\"\n#include \"Concat_with_Compression.hpp\"\
+    \n\n/**\n * @brief 2\u3064\u306E\u914D\u5217\u306E\u6700\u9577\u5171\u901A\u9023\
+    \u7D9A\u90E8\u5206\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * \u63A5\
+    \u5C3E\u8F9E\u914D\u5217\uFF08Suffix Array\uFF09\u3068 LCP \u914D\u5217\u3092\u7528\
+    \u3044\u3066 O((N+M) log (N+M)) \u3067\u8A08\u7B97\u3059\u308B.\n * \n * @tparam\
+    \ T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B. std::totally_ordered \u3092\u6E80\
+    \u305F\u3059\u5FC5\u8981\u304C\u3042\u308B.\n * @param A 1\u3064\u76EE\u306E\u914D\
+    \u5217\n * @param B 2\u3064\u76EE\u306E\u914D\u5217\n * @return tuple<int, int,\
+    \ int, int> {A\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, A\u5185\u306E\u7D42\u4E86\u4F4D\
     \u7F6E(inclusive), B\u5185\u306E\u958B\u59CB\u4F4D\u7F6E, B\u5185\u306E\u7D42\u4E86\
     \u4F4D\u7F6E(inclusive)}\n *         \u5171\u901A\u90E8\u5206\u304C\u306A\u3044\
     \u5834\u5408\u306F {0, -1, 0, -1} \u3092\u8FD4\u3059.\n */\ntemplate<totally_ordered\
     \ T>\ntuple<int, int, int, int> Longest_Common_Continuous_Subsequence(const vector<T>\
     \ &A, const vector<T> &B) {\n    int n = A.size(), m = B.size();\n\n    // Step\
     \ I: A \u3068 B \u306E\u8981\u7D20\u3092\u5408\u308F\u305B\u3066\u5EA7\u6A19\u5727\
-    \u7E2E\u3092\u884C\u3046\n    vector<T> coords;\n    coords.reserve(n + m);\n\
-    \    for (const T &a : A) coords.push_back(a);\n    for (const T &b : B) coords.push_back(b);\n\
-    \    sort(coords.begin(), coords.end());\n    coords.erase(unique(coords.begin(),\
-    \ coords.end()), coords.end());\n\n    // Step II: \u5EA7\u6A19\u5727\u7E2E\u5F8C\
-    \u306E\u6574\u6570\u5217\u3092\u751F\u6210\n    vector<int> C;\n    C.reserve(n\
-    \ + m + 1);\n\n    for (const T &a : A) {\n        C.push_back(lower_bound(coords.begin(),\
-    \ coords.end(), a) - coords.begin());\n    }\n\n    int sentinel = coords.size();\
-    \ // \u756A\u5175\n    C.push_back(sentinel); // A \u3068 B \u3092\u533A\u5207\
-    \u308B\u756A\u5175\n\n    for (const auto &b : B) {\n        C.push_back(lower_bound(coords.begin(),\
-    \ coords.end(), b) - coords.begin());\n    }\n\n    // Step III: LCP \u3092\u8A08\
-    \u7B97\n    vector<int> suffix_array = Suffix_Array(C);\n    vector<int> lcp =\
-    \ Longest_Common_Prefix(C, suffix_array);\n\n    // Step IV: SA \u306B\u304A\u3051\
-    \u308B\u7531\u6765\u304C\u7570\u306A\u308B\u90E8\u5206\u306B\u304A\u3051\u308B\
-    \ LCP \u304C LCS \u306B\u306A\u308B.\n\n    // x \u756A\u76EE\u306E SA \u304C\
-    \ A \u7531\u6765\u306A\u3089\u3070 true, B \u7531\u6765\u306A\u3089\u3070 false\n\
-    \    auto belong = [&](const int x) -> bool { return suffix_array[x] < n; };\n\
-    \n    int a = 0, b = -1, c = 0, d = -1, length = 0;\n    for (int i = 0; i < n\
-    \ + m; ++i) {\n        if (suffix_array[i] == n) continue;\n        if (belong(i)\
-    \ == belong(i + 1)) continue;\n        unless(chmax(length, lcp[i])) continue;\n\
-    \n        int ia = belong(i) ? i : i + 1;\n        int ic = belong(i) ? i + 1\
-    \ : i;\n\n        a = suffix_array[ia];\n        b = a + length - 1;\n       \
-    \ c = suffix_array[ic] - (n + 1);\n        d = c + length - 1;\n    }\n\n    return\
-    \ {a, b, c, d};\n}\n\n/**\n * @brief 2\u3064\u306E\u6587\u5B57\u5217\u306E\u6700\
-    \u9577\u5171\u901A\u90E8\u5206\u6587\u5B57\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\
-    \u308B.\n * \n * @param S 1\u3064\u76EE\u306E\u6587\u5B57\u5217\n * @param T 2\u3064\
-    \u76EE\u306E\u6587\u5B57\u5217\n * @return tuple<int, int, int, int> {S\u5185\u306E\
-    \u958B\u59CB\u4F4D\u7F6E, S\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive), T\u5185\
-    \u306E\u958B\u59CB\u4F4D\u7F6E, T\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive)}\n\
-    \ */\ntuple<int, int, int, int> Longest_Common_Substring(const string &S, const\
-    \ string &T) {\n    return Longest_Common_Continuous_Subsequence<char>(vector<char>(S.begin(),\
-    \ S.end()), vector<char>(T.begin(), T.end()));\n}\n"
+    \u7E2E\u3092\u884C\u3044, \u5EA7\u6A19\u5727\u7E2E\u5F8C\u306E\u6574\u6570\u5217\
+    \u3092\u751F\u6210\u3059\u308B.\n    auto [C, ignore] = Concat_with_Compression(vector<vector<T>>{A,\
+    \ B});\n\n    // Step II: LCP \u3092\u8A08\u7B97\n    vector<int> suffix_array\
+    \ = Suffix_Array(C);\n    vector<int> lcp = Longest_Common_Prefix(C, suffix_array);\n\
+    \n    // Step II: SA \u306B\u304A\u3051\u308B\u7531\u6765\u304C\u7570\u306A\u308B\
+    \u90E8\u5206\u306B\u304A\u3051\u308B LCP \u304C LCS \u306B\u306A\u308B.\n\n  \
+    \  // x \u756A\u76EE\u306E SA \u304C A \u7531\u6765\u306A\u3089\u3070 true, B\
+    \ \u7531\u6765\u306A\u3089\u3070 false\n    auto belong = [&](const int x) ->\
+    \ bool { return suffix_array[x] < n; };\n\n    int a = 0, b = -1, c = 0, d = -1,\
+    \ length = 0;\n    for (int i = 0; i < n + m; ++i) {\n        if (suffix_array[i]\
+    \ == n) continue;\n        if (belong(i) == belong(i + 1)) continue;\n       \
+    \ unless(chmax(length, lcp[i])) continue;\n\n        int ia = belong(i) ? i :\
+    \ i + 1;\n        int ic = belong(i) ? i + 1 : i;\n\n        a = suffix_array[ia];\n\
+    \        b = a + length - 1;\n        c = suffix_array[ic] - (n + 1);\n      \
+    \  d = c + length - 1;\n    }\n\n    return {a, b, c, d};\n}\n\n/**\n * @brief\
+    \ 2\u3064\u306E\u6587\u5B57\u5217\u306E\u6700\u9577\u5171\u901A\u90E8\u5206\u6587\
+    \u5B57\u5217\uFF08LCS\uFF09\u3092\u6C42\u3081\u308B.\n * \n * @param S 1\u3064\
+    \u76EE\u306E\u6587\u5B57\u5217\n * @param T 2\u3064\u76EE\u306E\u6587\u5B57\u5217\
+    \n * @return tuple<int, int, int, int> {S\u5185\u306E\u958B\u59CB\u4F4D\u7F6E\
+    , S\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive), T\u5185\u306E\u958B\u59CB\u4F4D\
+    \u7F6E, T\u5185\u306E\u7D42\u4E86\u4F4D\u7F6E(inclusive)}\n */\ntuple<int, int,\
+    \ int, int> Longest_Common_Substring(const string &S, const string &T) {\n   \
+    \ return Longest_Common_Continuous_Subsequence<char>(vector<char>(S.begin(), S.end()),\
+    \ vector<char>(T.begin(), T.end()));\n}\n"
   dependsOn:
   - String/Longest_Common_Prefix.hpp
   - String/Suffix_Array.hpp
@@ -398,10 +399,11 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - String/Concat_with_Compression.hpp
   isVerificationFile: false
   path: String/Longest_Common_Substring.hpp
   requiredBy: []
-  timestamp: '2026-04-05 19:25:06+09:00'
+  timestamp: '2026-04-08 00:05:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp

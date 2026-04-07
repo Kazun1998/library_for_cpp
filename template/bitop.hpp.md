@@ -455,6 +455,9 @@ data:
     path: Sequence/Z_Algorithm.hpp
     title: "\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E (Z-Algorithm)"
   - icon: ':heavy_check_mark:'
+    path: String/Concat_with_Compression.hpp
+    title: String/Concat_with_Compression.hpp
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Prefix.hpp
     title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
       \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
@@ -949,6 +952,7 @@ data:
   - Linear_Algebra/Field_Vector.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Reduction.hpp
+  - String/Concat_with_Compression.hpp
   - String/Longest_Common_Substring.hpp
   - String/Suffix_Array.hpp
   - String/Number_of_Substrings.hpp
