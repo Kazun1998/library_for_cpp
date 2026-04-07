@@ -25,7 +25,7 @@ tuple<int, int, int, int> Longest_Common_Continuous_Subsequence(const vector<T> 
     vector<int> suffix_array = Suffix_Array(C);
     vector<int> lcp = Longest_Common_Prefix(C, suffix_array);
 
-    // Step III: SA における由来が異なる部分における LCP が LCS になる.
+    // Step II: SA における由来が異なる部分における LCP が LCS になる.
 
     // x 番目の SA が A 由来ならば true, B 由来ならば false
     auto belong = [&](const int x) -> bool { return suffix_array[x] < n; };
