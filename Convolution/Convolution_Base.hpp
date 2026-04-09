@@ -11,9 +11,16 @@ namespace convolution {
         public:
         Convolution_Base() = default;
         Convolution_Base(std::vector<R> data_in): data(std::move(data_in)) {}
+
+        Convolution_Base(initializer_list<R> init): data(init) {}
         
         Convolution_Base(size_t n): data(std::vector<R>(n)) {} 
         
+        Convolution_Base& operator=(initializer_list<R> init) {
+            data = init;
+            return *this;
+        }
+
         // 加法 (+=)
         Convolution_Base& operator+=(const Convolution_Base<R> &B) {
             if(data.size() != B.data.size()) { throw std::length_error("Convolution operands must have the same size."); }

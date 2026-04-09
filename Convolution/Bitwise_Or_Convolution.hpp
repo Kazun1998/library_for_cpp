@@ -4,42 +4,42 @@
 
 namespace convolution {
     template<typename R>
-    class Bitwise_And_Convolution: public Semilattice_Convolution_Base<R> {
+    class Bitwise_Or_Convolution: public Semilattice_Convolution_Base<R> {
         using Base = Convolution_Base<R>;
         using ImplBase = Semilattice_Convolution_Base<R>;
         using ImplBase::ImplBase;
 
         // 加法 (+)
-        friend Bitwise_And_Convolution operator+(const Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution &rhs) {
-            Bitwise_And_Convolution temp(lhs);
+        friend Bitwise_Or_Convolution operator+(const Bitwise_Or_Convolution &lhs, const Bitwise_Or_Convolution &rhs) {
+            Bitwise_Or_Convolution temp(lhs);
             temp += rhs;
             return temp;
         }
 
         // 減法 (-)
-        friend Bitwise_And_Convolution operator-(const Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution &rhs) {
-            Bitwise_And_Convolution temp(lhs);
+        friend Bitwise_Or_Convolution operator-(const Bitwise_Or_Convolution &lhs, const Bitwise_Or_Convolution &rhs) {
+            Bitwise_Or_Convolution temp(lhs);
             temp -= rhs;
             return temp;
         }
 
         // 乗法 (*)
-        friend Bitwise_And_Convolution operator*(const Bitwise_And_Convolution &lhs, const Bitwise_And_Convolution &rhs) { 
-            Bitwise_And_Convolution temp(lhs);
+        friend Bitwise_Or_Convolution operator*(const Bitwise_Or_Convolution &lhs, const Bitwise_Or_Convolution &rhs) { 
+            Bitwise_Or_Convolution temp(lhs);
             temp *= rhs;
             return temp;
         }
 
         // スカラー倍 (a * rhs)
-        friend Bitwise_And_Convolution operator*(const R &a, const Bitwise_And_Convolution &rhs) {
-            Bitwise_And_Convolution temp(rhs);
+        friend Bitwise_Or_Convolution operator*(const R &a, const Bitwise_Or_Convolution &rhs) {
+            Bitwise_Or_Convolution temp(rhs);
             temp *= a;
             return temp;
         }
 
         // スカラー倍 (lhs * a)
-        friend Bitwise_And_Convolution operator*(const Bitwise_And_Convolution &lhs, const R &a) {
-            Bitwise_And_Convolution temp(lhs);
+        friend Bitwise_Or_Convolution operator*(const Bitwise_Or_Convolution &lhs, const R &a) {
+            Bitwise_Or_Convolution temp(lhs);
             temp *= a;
             return temp;
         }
@@ -49,9 +49,9 @@ namespace convolution {
 
             for (size_t i = 0; i < m; i++) {
                 for (int S = 0; S < (1 << m); S++) {
-                    if (get_bit(S, i)) { continue; }
+                    if (!get_bit(S, i)) { continue; }
 
-                    f[S] += f[S | (1 << i)];
+                    f[S] += f[S ^ (1 << i)];
                 }
             }
         }
@@ -61,9 +61,9 @@ namespace convolution {
 
             for (size_t i = 0; i < m; i++) {
                 for (int S = 0; S < (1 << m); S++) {
-                    if (get_bit(S, i)) { continue; }
+                    if (!get_bit(S, i)) { continue; }
 
-                    g[S] -= g[S | (1 << i)];
+                    g[S] -= g[S ^ (1 << i)];
                 }
             }
         }

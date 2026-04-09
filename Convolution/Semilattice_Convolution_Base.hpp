@@ -4,10 +4,10 @@
 
 namespace convolution {
     template<typename R>
-    class Commutative_Idempotent_Monoid_Convolution_Base: public Convolution_Base<R> {
+    class Semilattice_Convolution_Base: public Convolution_Base<R> {
         // 型エイリアス
         using Base = Convolution_Base<R>;
-        using Self = Commutative_Idempotent_Monoid_Convolution_Base<R>;
+        using Self = Semilattice_Convolution_Base<R>;
 
         using Base::Base;
 
@@ -35,7 +35,20 @@ namespace convolution {
             return *this;
         }
 
+        Self& pow(long long n) {
+            zeta();
+            for (R &v : this->data) { v = ::pow(v, n); }
+            mobius();
+            return *this;
+        }
+
         void zeta() { zeta_transform(this->data); }
         void mobius() { mobius_transform(this->data); }
     };
+
+    template<typename T>
+    T pow(T a, const ll n) {
+        a.pow(n);
+        return a;
+    }
 }

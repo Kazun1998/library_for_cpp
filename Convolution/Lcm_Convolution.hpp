@@ -1,71 +1,79 @@
+#pragma once
+
 #include "Semilattice_Convolution_Base.hpp"
 
 namespace convolution {
     template<typename R>
-    class Gcd_Convolution: public Semilattice_Convolution_Base<R> {
+    class Lcm_Convolution: public Semilattice_Convolution_Base<R> {
         using Base = Convolution_Base<R>;
         using ImplBase = Semilattice_Convolution_Base<R>;
         using ImplBase::ImplBase;
 
         // 加法 (+)
-        friend Gcd_Convolution operator+(const Gcd_Convolution &lhs, const Gcd_Convolution &rhs) {
-            Gcd_Convolution temp(lhs);
+        friend Lcm_Convolution operator+(const Lcm_Convolution &lhs, const Lcm_Convolution &rhs) {
+            Lcm_Convolution temp(lhs);
             temp += rhs;
             return temp;
         }
 
         // 減法 (-)
-        friend Gcd_Convolution operator-(const Gcd_Convolution &lhs, const Gcd_Convolution &rhs) {
-            Gcd_Convolution temp(lhs);
+        friend Lcm_Convolution operator-(const Lcm_Convolution &lhs, const Lcm_Convolution &rhs) {
+            Lcm_Convolution temp(lhs);
             temp -= rhs;
             return temp;
         }
 
         // 乗法 (*)
-        friend Gcd_Convolution operator*(const Gcd_Convolution &lhs, const Gcd_Convolution &rhs) { 
-            Gcd_Convolution temp(lhs);
+        friend Lcm_Convolution operator*(const Lcm_Convolution &lhs, const Lcm_Convolution &rhs) { 
+            Lcm_Convolution temp(lhs);
             temp *= rhs;
             return temp;
         }
 
         // スカラー倍 (a * rhs)
-        friend Gcd_Convolution operator*(const R &a, const Gcd_Convolution &rhs) {
-            Gcd_Convolution temp(rhs);
+        friend Lcm_Convolution operator*(const R &a, const Lcm_Convolution &rhs) {
+            Lcm_Convolution temp(rhs);
             temp *= a;
             return temp;
         }
 
         // スカラー倍 (lhs * a)
-        friend Gcd_Convolution operator*(const Gcd_Convolution &lhs, const R &a) {
-            Gcd_Convolution temp(lhs);
+        friend Lcm_Convolution operator*(const Lcm_Convolution &lhs, const R &a) {
+            Lcm_Convolution temp(lhs);
             temp *= a;
             return temp;
         }
 
         void zeta_transform(std::vector<R> &f) const override {
+            if (f.empty()) return;
+
             size_t n = f.size() - 1;
             vector<bool> is_prime(n + 1, true);
 
             for (int p = 2; p <= n; p++) {
                 if (!is_prime[p]) { continue; }
 
-                for (size_t k = n / p; k > 0; k--) {
+                // 約数変換: f[k*p] に f[k] を足していく (forward)
+                for (size_t k = 1; k <= n / p; k++) {
                     is_prime[k * p] = false;
-                    f[k] += f[k * p];
+                    f[k * p] += f[k];
                 }
             }
         }
 
         void mobius_transform(std::vector<R> &g) const override {
+            if (g.empty()) return;
+
             size_t n = g.size() - 1;
             vector<bool> is_prime(n + 1, true);
 
             for (int p = 2; p <= n; p++) {
                 if (!is_prime[p]) { continue; }
 
-                for (size_t k = 1; k <= n / p; k++) {
+                // メビウス逆変換: g[k*p] から g[k] を引いていく (backward)
+                for (size_t k = n / p; k > 0; k--) {
                     is_prime[k * p] = false;
-                    g[k] -= g[k * p];
+                    g[k * p] -= g[k];
                 }
             }
         }
