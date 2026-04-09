@@ -312,9 +312,9 @@ data:
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/aizu_online_judge/cgl/7E.test.cpp
   - verify/aizu_online_judge/cgl/7G.test.cpp
   - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
 documentation_of: Geometry/intersection/Intersection_Circle_and_Circle.hpp
 layout: document
 redirect_from:

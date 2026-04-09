@@ -262,13 +262,13 @@ data:
   isVerificationFile: false
   path: Integer/Euler_Totient.hpp
   requiredBy:
-  - Modulo/Order.hpp
   - Modulo/Tower.hpp
+  - Modulo/Order.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document

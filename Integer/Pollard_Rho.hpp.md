@@ -31,11 +31,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Integer/Primitive_Root.hpp
+    title: "\u539F\u59CB\u6839"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
     title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -375,11 +381,13 @@ data:
   - Integer/Miller_Rabin_Primality_Test.hpp
   isVerificationFile: false
   path: Integer/Pollard_Rho.hpp
-  requiredBy: []
+  requiredBy:
+  - Integer/Primitive_Root.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
 documentation_of: Integer/Pollard_Rho.hpp
 layout: document
 redirect_from:

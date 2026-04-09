@@ -278,13 +278,13 @@ data:
   isVerificationFile: false
   path: Convolution/Convolution_Base.hpp
   requiredBy:
+  - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Min_Convolution.hpp
   - Convolution/Lcm_Convolution.hpp
-  - Convolution/Semilattice_Convolution_Base.hpp
-  - Convolution/Bitwise_Or_Convolution.hpp
-  - Convolution/Max_Convolution.hpp
   - Convolution/Gcd_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
+  - Convolution/Bitwise_Or_Convolution.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
+  - Convolution/Max_Convolution.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

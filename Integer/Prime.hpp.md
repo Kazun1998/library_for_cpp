@@ -36,6 +36,9 @@ data:
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   - icon: ':heavy_check_mark:'
+    path: Integer/Primitive_Root.hpp
+    title: "\u539F\u59CB\u6839"
+  - icon: ':heavy_check_mark:'
     path: Modulo/Garner.hpp
     title: Garner
   - icon: ':heavy_check_mark:'
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
@@ -313,23 +319,25 @@ data:
   isVerificationFile: false
   path: Integer/Prime.hpp
   requiredBy:
+  - Integer/Primitive_Root.hpp
+  - Integer/Prime_Pi.hpp
+  - Integer/Pollard_Rho.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
+  - Integer/Euler_Totient.hpp
+  - Modulo/Tower.hpp
   - Modulo/Garner.hpp
   - Modulo/Order.hpp
-  - Modulo/Tower.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
-  - Integer/Prime_Pi.hpp
-  - Integer/Euler_Totient.hpp
-  - Integer/Pollard_Rho.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/187.test.cpp
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yukicoder/187.test.cpp
+  - verify/yukicoder/Modulo_Order.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document

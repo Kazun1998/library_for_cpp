@@ -410,15 +410,15 @@ data:
   isVerificationFile: false
   path: Segment_Tree/Lazy_Segment_Tree.hpp
   requiredBy:
-  - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   - Segment_Tree/preset/Range_Add_Range_Sum.hpp
+  - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   - Segment_Tree/preset/Range_Add_Range_Min.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
-  - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/aizu_online_judge/dsl/2G_2.test.cpp
+  - verify/aizu_online_judge/dsl/2H.test.cpp
 documentation_of: Segment_Tree/Lazy_Segment_Tree.hpp
 layout: document
 title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"

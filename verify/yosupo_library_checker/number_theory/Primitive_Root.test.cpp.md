@@ -2,6 +2,21 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Integer/Miller_Rabin_Primality_Test.hpp
+    title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Integer/Odd_Montgomery_Multiplication.hpp
+    title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
+  - icon: ':heavy_check_mark:'
+    path: Integer/Pollard_Rho.hpp
+    title: Integer/Pollard_Rho.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Prime.hpp
+    title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: Integer/Primitive_Root.hpp
+    title: "\u539F\u59CB\u6839"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,34 +37,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality_Test.hpp
-    title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':heavy_check_mark:'
-    path: Integer/Pollard_Rho.hpp
-    title: Integer/Pollard_Rho.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Primitive_Root.hpp
-    title: "\u539F\u59CB\u6839"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u5270\u4F59"
-    links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
+    links:
+    - https://judge.yosupo.jp/problem/primitive_root
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#line\
+    \ 2 \"Integer/Primitive_Root.hpp\"\n\n#line 2 \"Integer/Pollard_Rho.hpp\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -207,12 +209,46 @@ data:
     \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
     \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
     \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 3 \"Integer/Odd_Montgomery_Multiplication.hpp\"\
-    \n\nstruct Odd_Montgomery_Multiplication {\n    using u64 = uint64_t;\n    using\
-    \ u128 = __uint128_t;\n\n    /// @brief \u5270\u4F59\n    u64 mod;\n\n    ///\
-    \ @brief N = mod \u3068\u3057\u305F\u3068\u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\
-    \u305F\u3059 N'\n    u64 neg_inv;\n\n    /// @brief (2^64)^2 mod N\n    u64 r2;\n\
-    \n    Odd_Montgomery_Multiplication(u64 mod) : mod(mod) {\n        u64 inv = mod;\n\
+    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Integer/Prime.hpp\"\
+    \n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
+    \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
+    \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
+    \ step;\n      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime\
+    \ == 2) { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n\
+    \      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
+    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
+    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
+    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
+    \    }\n\n    return true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t\
+    \ n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++, n /=\
+    \ p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long\
+    \ long, long long>> prime_factorization (long long n) {\n    if (n == 0) { return\
+    \ { make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n\
+    \    if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
+    \    }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
+    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
+    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
+    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
+    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
+    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
+    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
+    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
+    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
+    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
+    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
+    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
+    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
+    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
+    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
+    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
+    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
+    \ primes;\n  }\n}\n#line 3 \"Integer/Odd_Montgomery_Multiplication.hpp\"\n\nstruct\
+    \ Odd_Montgomery_Multiplication {\n    using u64 = uint64_t;\n    using u128 =\
+    \ __uint128_t;\n\n    /// @brief \u5270\u4F59\n    u64 mod;\n\n    /// @brief\
+    \ N = mod \u3068\u3057\u305F\u3068\u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\u305F\
+    \u3059 N'\n    u64 neg_inv;\n\n    /// @brief (2^64)^2 mod N\n    u64 r2;\n\n\
+    \    Odd_Montgomery_Multiplication(u64 mod) : mod(mod) {\n        u64 inv = mod;\n\
     \        for (int i = 0; i < 5; ++i) inv *= 2 - mod * inv;\n        neg_inv =\
     \ -inv;\n        u128 r = -mod % mod;\n        r2 = (r * r) % mod;\n    }\n\n\
     \    /// @brief \u30E2\u30F3\u30B4\u30E1\u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3\
@@ -237,39 +273,116 @@ data:
     \ a^b mod N\n    u64 modpow(u64 a, u64 b) const {\n        u64 res = form(1);\n\
     \        u64 mont_a = form(a);\n        while (b > 0) {\n            if (b & 1)\
     \ res = multiply(res, mont_a);\n            mont_a = multiply(mont_a, mont_a);\n\
-    \            b >>= 1;\n        }\n        return reduce(res);\n    }\n};\n"
-  code: "#pragma once\n#include \"../template/template.hpp\"\n\nstruct Odd_Montgomery_Multiplication\
-    \ {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\n    /// @brief\
-    \ \u5270\u4F59\n    u64 mod;\n\n    /// @brief N = mod \u3068\u3057\u305F\u3068\
-    \u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\u305F\u3059 N'\n    u64 neg_inv;\n\n\
-    \    /// @brief (2^64)^2 mod N\n    u64 r2;\n\n    Odd_Montgomery_Multiplication(u64\
-    \ mod) : mod(mod) {\n        u64 inv = mod;\n        for (int i = 0; i < 5; ++i)\
-    \ inv *= 2 - mod * inv;\n        neg_inv = -inv;\n        u128 r = -mod % mod;\n\
-    \        r2 = (r * r) % mod;\n    }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
-    \u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3. T * R^{-1} mod N \u3092\u8A08\u7B97\
-    \u3059\u308B.\n    /// @param T 0 <= T < N * R\n    /// @return T * R^{-1} mod\
-    \ N\n    u64 reduce(u128 T) const {\n        u64 m = u64(T) * neg_inv;\n     \
-    \   u64 t = (T + (u128)m * mod) >> 64;\n        if (t >= mod) { t -= mod; }\n\
-    \        return t;\n    }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a \u3092\
-    \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE aR mod N \u306B\u5909\u63DB\u3059\u308B\
-    .\n    /// @param a 0 <= a < N\n    /// @return aR mod N\n    u64 form(u64 a)\
-    \ const { return reduce((u128)a * r2); }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
-    \u30EA\u8868\u73FE\u3055\u308C\u305F\u6570 a, b \u306E\u7A4D\u3092\u8A08\u7B97\
-    \u3059\u308B.\n    /// @param a \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\
-    \u308C\u305F\u6570\n    /// @param b \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\
-    \u3055\u308C\u305F\u6570\n    /// @return a * b \u306E\u30E2\u30F3\u30B4\u30E1\
-    \u30EA\u8868\u73FE\n    u64 multiply(u64 a, u64 b) const { return reduce((u128)a\
-    \ * b); }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a, b \u306E\u7A4D a\
-    \ * b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a 0 <= a < N\n   \
-    \ /// @param b 0 <= b < N\n    /// @return a * b mod N\n    u64 mod_mul(u64 a,\
-    \ u64 b) const { return reduce(multiply(form(a), form(b))); }\n\n    /// @brief\
-    \ a^b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a \u57FA\u6570\n \
-    \   /// @param b \u6307\u6570\n    /// @return a^b mod N\n    u64 modpow(u64 a,\
-    \ u64 b) const {\n        u64 res = form(1);\n        u64 mont_a = form(a);\n\
-    \        while (b > 0) {\n            if (b & 1) res = multiply(res, mont_a);\n\
-    \            mont_a = multiply(mont_a, mont_a);\n            b >>= 1;\n      \
-    \  }\n        return reduce(res);\n    }\n};\n"
+    \            b >>= 1;\n        }\n        return reduce(res);\n    }\n};\n#line\
+    \ 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\n\n#line 6 \"Integer/Miller_Rabin_Primality_Test.hpp\"\
+    \n\n/// @brief \u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+    \u6CD5\u306B\u3088\u308A\u3001\u4E0E\u3048\u3089\u308C\u305F\u6574\u6570\u304C\
+    \u7D20\u6570\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\u3002\n///\
+    \ @param n \u5224\u5B9A\u5BFE\u8C61\u306E\u6574\u6570 (n <= 2^64 - 1)\n/// @return\
+    \ n \u304C\u7D20\u6570\u3067\u3042\u308C\u3070 true\u3001\u305D\u3046\u3067\u306A\
+    \u3051\u308C\u3070 false \u3092\u8FD4\u3059\u3002\n/// @note 2^64 \u672A\u6E80\
+    \u306E\u6574\u6570\u306B\u5BFE\u3057\u3066\u306F\u6C7A\u5B9A\u7684\u306A\u5224\
+    \u5B9A\u3092\u884C\u3046\u3002\n/// @see https://miller-rabin.appspot.com/\nbool\
+    \ Miller_Rabin_Primality_Test(uint64_t n) {\n    if (n <= 1) return false;\n \
+    \   if (n % 2 == 0) return n == 2; \n\n    int s; uint64_t d;\n    tie (s, d)\
+    \ = prime::exponents(n - 1, 2);\n\n    Odd_Montgomery_Multiplication calculator(n);\n\
+    \    auto challenge = [&n, &s, &d, &calculator](uint64_t a) -> bool {\n      \
+    \  a %= n;\n        if (a == 0) return true;\n\n        auto y = calculator.modpow(a,\
+    \ d);\n        if (y == 1 || y == n - 1) return true;\n\n        rep(s) {\n  \
+    \          y = calculator.mod_mul(y, y);\n            if (y == n - 1) return true;\n\
+    \        }\n\n        return false;\n    };\n\n    // n \u306E\u5024\u306B\u5FDC\
+    \u3058\u3066\u3001\u6C7A\u5B9A\u7684\u7D20\u6570\u5224\u5B9A\u306B\u4F7F\u7528\
+    \u3059\u308B witness (\u8A3C\u4EBA) \u306E\u30EA\u30B9\u30C8\u3092\u9078\u629E\
+    \u3059\u308B\u3002\n    // \u3053\u308C\u3089\u306E\u30EA\u30B9\u30C8\u306F\u3001\
+    \u7279\u5B9A\u306E\u7BC4\u56F2\u5185\u306E\u6570\u306B\u5BFE\u3057\u3066\u30DF\
+    \u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u6CD5\u304C\u78BA\u7387\u7684\u3067\u306A\
+    \u304F\u6C7A\u5B9A\u7684\u306B\u306A\u308B\u3053\u3068\u3092\u4FDD\u8A3C\u3059\
+    \u308B\u3002\n    if (n < 4759123141) {\n        // 32\u30D3\u30C3\u30C8\u6574\
+    \u6570 (\u7B26\u53F7\u306A\u3057) \u306E\u7BC4\u56F2\u3088\u308A\u5C11\u3057\u5927\
+    \u304D\u3044\u5024\u307E\u3067\u3092\u30AB\u30D0\u30FC\n        for (const uint64_t\
+    \ a : {2, 7, 61}) {\n            if (n == a) return true; // n \u304C witness\
+    \ \u81EA\u8EAB\u306E\u5834\u5408\u306F\u7D20\u6570\n            unless(challenge(a))\
+    \ return false;\n        }\n    } else {\n        // 64\u30D3\u30C3\u30C8\u6574\
+    \u6570 (\u7B26\u53F7\u306A\u3057) \u306E\u7BC4\u56F2\u3092\u30AB\u30D0\u30FC\n\
+    \        for (const uint64_t a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
+    \ {\n            // \u3053\u306E\u5834\u5408\u3001n > a \u304C\u4FDD\u8A3C\u3055\
+    \u308C\u308B\u305F\u3081\u3001n == a \u306E\u30C1\u30A7\u30C3\u30AF\u306F\u4E0D\
+    \u8981\n            unless(challenge(a)) return false;\n        }\n    }\n\n \
+    \   return true;\n}\n#line 7 \"Integer/Pollard_Rho.hpp\"\n\nuint64_t Find_Prime_Factor_by_Pollard_Rho(uint64_t\
+    \ n) {\n    if (n == 1) return 1;\n    if (n % 2 == 0) return 2;\n    if (Miller_Rabin_Primality_Test(n))\
+    \ return n;\n\n    Odd_Montgomery_Multiplication calc(n);\n\n    for (uint64_t\
+    \ c = 1; c < 99; ++c) {\n        uint64_t mc = calc.form(c);\n        auto f =\
+    \ [&](uint64_t x) -> uint64_t {\n            uint64_t y = calc.multiply(x, x);\n\
+    \            uint64_t z = y + mc;\n            if (z >= n) z -= n;\n         \
+    \   return z;\n        };\n        \n        // form \u3067\u5909\u63DB\u3057\u305F\
+    \u5F8C\u306E\u6574\u6570\u3067 gcd \u3092\u53D6\u3063\u3066\u3044\u308B\u304C\
+    ,\n        // n \u304C\u5947\u6570\u3067, form \u3067\u306FOdd_Montgomery_Multiplication\
+    \ \u306E\u53D6\u308A\u65B9\u7684\u306B n \u3068\u4E92\u3044\u306B\u7D20\u306A\
+    2^64 \u3092\u304B\u3051\u3066 n \u3067\u5272\u3063\u3066\u3044\u308B\u305F\u3081\
+    ,\n        // gcd \u306F\u4E0D\u5909\u3067\u3042\u308B.\n\n        uint64_t x\
+    \ = calc.form(0), y = calc.form(0);\n        uint64_t g = 1;\n        uint64_t\
+    \ q = calc.form(1);\n        uint64_t m = 500;\n\n        while (g == 1) {\n \
+    \           uint64_t xs = x, ys = y;\n            for (int i = 0; i < m; ++i)\
+    \ {\n                x = f(x);\n                y = f(f(y));\n               \
+    \ uint64_t diff = x < y ? y - x : x - y;\n                q = calc.multiply(q,\
+    \ diff);\n            }\n            g = gcd(q, n);\n            if (g == 1) continue;\n\
+    \            if (g == n) {\n                g = 1;\n                x = xs; y\
+    \ = ys;\n                while (g == 1) {\n                    x = f(x);\n   \
+    \                 y = f(f(y));\n                    uint64_t diff = x < y ? y\
+    \ - x : x - y;\n                    g = gcd(diff, n);\n                }\n   \
+    \             if (g == n) break;\n            }\n\n            if (Miller_Rabin_Primality_Test(g))\
+    \ return g;\n            if (Miller_Rabin_Primality_Test(n / g)) return n / g;\n\
+    \            return Find_Prime_Factor_by_Pollard_Rho(g);\n        }\n    }\n \
+    \   return n;\n}\n\nvector<pair<uint64_t, ll>> Prime_Factorization_by_Pollard_Rho(uint64_t\
+    \ n) {\n    vector<pair<uint64_t, ll>> factors;\n    while (n > 1) {\n       \
+    \ uint64_t p = Find_Prime_Factor_by_Pollard_Rho(n);\n        auto [e, m] = prime::exponents(n,\
+    \ p);\n\n        factors.emplace_back(p, e);\n        n = m;\n    }\n\n    return\
+    \ factors;\n}\n#line 5 \"Integer/Primitive_Root.hpp\"\n\n/// @brief n \u304C\u539F\
+    \u59CB\u6839\u3092\u6301\u3064\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\
+    \u308B\n/// @param n \n/// @return n \u304C\u539F\u59CB\u6839\u3092\u6301\u3064\
+    \u306A\u3089 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089 false\nbool has_Primitive_Root(const\
+    \ uint64_t n) {\n    // n \u304C\u539F\u59CB\u6839\u3092\u6301\u3064\u305F\u3081\
+    \u306E\u5FC5\u8981\u5341\u5206\u6761\u4EF6\u306F\n    // n = (1,) 2, 4, p^k, 2p^k\
+    \ (p: \u5947\u7D20\u6570, k: \u6B63\u306E\u6574\u6570)\n    // \u3067\u8868\u305B\
+    \u308B\u3053\u3068\u3067\u3042\u308B.\n\n    if (n <= 1) return n == 1;\n    if\
+    \ (n == 2 || n == 4) return true;\n    if (n % 4 == 0) return false;\n\n    uint64_t\
+    \ m = (n % 2 == 0) ? n / 2 : n;\n    auto factors = Prime_Factorization_by_Pollard_Rho(m);\n\
+    \    // m = p^k (p \u306F\u5947\u7D20\u6570) \u3067\u3042\u308B\u304B\u5224\u5B9A\
+    \n    return factors.size() == 1 && factors[0].first != 2;\n}\n\n/// @brief n\
+    \ \u306B\u304A\u3051\u308B\u539F\u59CB\u6839\u306E\u3046\u3061\u306E 1 \u3064\u3092\
+    \u6C42\u3081\u308B\n/// @param n \u306F 2, 4, p^k, 2p^k \u306E\u3046\u3061\u306E\
+    \u3044\u305A\u308C\u304B\u3067\u306A\u304F\u3066\u306F\u306A\u3089\u306A\u3044\
+    \ (p: \u7D20\u6570)\n/// @return \u539F\u59CB\u6839\u306E 1 \u3064\n/// @note\
+    \ \u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306E\u8FD4\u308A\u5024\u306F 0 (n\
+    \ = 1 \u306E\u3068\u304D\u3082\u8FD4\u308A\u5024 0 \u306A\u306E\u3067\u6CE8\u610F\
+    ).\nuint64_t Find_Primitive_Root(const uint64_t n) {\n    // \u5076\u6570\u3068\
+    \u3088\u304F\u4F7F\u308F\u308C\u308B\u7D20\u6570\u306F Early Return\n    if (n\
+    \ == 1) return 0;\n    if (n == 2) return 1;\n    if (n == 4) return 3;\n    if\
+    \ (n == 998244353) return 3;\n    if (n == 1000000007) return 5;\n\n    unless\
+    \ (has_Primitive_Root(n)) return 0;\n\n    uint64_t m = (n % 2 == 0) ? n / 2 :\
+    \ n;\n    auto factors = Prime_Factorization_by_Pollard_Rho(m);\n\n    // has_Primitive_Root(n)\
+    \ \u304C true \u304B\u3064 n > 4 \u306A\u306E\u3067 m \u306F\u5FC5\u305A\u5947\
+    \u7D20\u6570\u306E\u51AA p^k \u3068\u306A\u308B\n    // n = p^k \u306E\u3068\u304D\
+    , phi(n) = n (p-1) / p = p^(k-1)(p-1)\n    // n = 2p^k \u306E\u3068\u304D, phi(n)\
+    \ = n * (1/2) * (p-1)/p = p^(k-1)(p-1)\n    uint64_t p = factors[0].first;\n \
+    \   uint64_t phi = (m / p) * (p - 1);\n    auto phi_factors = Prime_Factorization_by_Pollard_Rho(phi);\n\
+    \    auto calc = Odd_Montgomery_Multiplication(m);\n\n    auto judge = [&](const\
+    \ uint64_t g) {\n        for (auto [q, ignore]: phi_factors) {\n            if\
+    \ (calc.modpow(g % m, phi / q) == 1) return false;\n        }\n\n        return\
+    \ true;\n    };\n\n    for (uint64_t g = 2; g < n; ++g) {\n        unless (gcd(g,\
+    \ n) == 1) continue;\n        if (judge(g)) return g;\n    }\n\n    return 0;\n\
+    }\n#line 4 \"verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp\"\
+    \n\nuint64_t verify() {\n    uint64_t p; cin >> p;\n    return Find_Primitive_Root(p);\n\
+    }\n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++){\n  \
+    \      cout << verify() << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\"\
+    ../../../Integer/Primitive_Root.hpp\"\n\nuint64_t verify() {\n    uint64_t p;\
+    \ cin >> p;\n    return Find_Primitive_Root(p);\n}\n\nint main() {\n    int T;\
+    \ cin >> T;\n    for (int t = 0; t < T; t++){\n        cout << verify() << endl;\n\
+    \    }\n}\n"
   dependsOn:
+  - Integer/Primitive_Root.hpp
+  - Integer/Pollard_Rho.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -277,29 +390,19 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Integer/Odd_Montgomery_Multiplication.hpp
-  requiredBy:
-  - Integer/Primitive_Root.hpp
-  - Integer/Pollard_Rho.hpp
+  - Integer/Prime.hpp
+  - Integer/Odd_Montgomery_Multiplication.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-documentation_of: Integer/Odd_Montgomery_Multiplication.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+  requiredBy: []
+  timestamp: '2026-04-10 00:03:02+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
 layout: document
-title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
+redirect_from:
+- /verify/verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+- /verify/verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp.html
+title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
 ---
-
-## Outline
-
-非常に大きい正の整数 $N$ に対して, 整数 $a, b$ における $a \times b$ を $N$ で割った余りを高速に求める.
-
-## History
-
-|日付|内容|
-|:---:|:---|
-|2026/03/12| Odd_Montgomery_Multiplication の実装 |

@@ -562,8 +562,8 @@ data:
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
 documentation_of: Modulo_Polynomial/Multipoint_Evaluation.hpp
 layout: document
 title: "\u591A\u70B9\u8A55\u4FA1"

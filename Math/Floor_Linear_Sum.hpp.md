@@ -237,8 +237,8 @@ data:
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
 documentation_of: Math/Floor_Linear_Sum.hpp
 layout: document
 title: Floor Linear Sum

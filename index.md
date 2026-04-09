@@ -323,6 +323,9 @@ data:
       path: Integer/Prime_Pi.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
     - icon: ':heavy_check_mark:'
+      path: Integer/Primitive_Root.hpp
+      title: "\u539F\u59CB\u6839"
+    - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
     - icon: ':warning:'
@@ -940,6 +943,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
       title: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+      title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
       title: verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp

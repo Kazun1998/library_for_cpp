@@ -295,12 +295,12 @@ data:
   isVerificationFile: false
   path: Convolution/Semilattice_Convolution_Base.hpp
   requiredBy:
+  - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Min_Convolution.hpp
   - Convolution/Lcm_Convolution.hpp
+  - Convolution/Gcd_Convolution.hpp
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Max_Convolution.hpp
-  - Convolution/Gcd_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
   timestamp: '2026-04-04 00:20:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

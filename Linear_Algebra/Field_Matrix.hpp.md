@@ -448,21 +448,21 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Field_Matrix.hpp
   requiredBy:
-  - Linear_Algebra/Matrix_Space.hpp
   - Linear_Algebra/Field_Vector_Space.hpp
-  - Linear_Algebra/Field_Vector.hpp
-  - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Matrix_Space.hpp
   - Linear_Algebra/Reduction.hpp
+  - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Field_Vector.hpp
   - Graph/Graph/Count_Spanning_Trees.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-  - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
 documentation_of: Linear_Algebra/Field_Matrix.hpp
 layout: document
 redirect_from:

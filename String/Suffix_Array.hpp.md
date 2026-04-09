@@ -379,15 +379,15 @@ data:
   isVerificationFile: false
   path: String/Suffix_Array.hpp
   requiredBy:
-  - String/Longest_Common_Substring.hpp
   - String/Number_of_Substrings.hpp
   - String/Longest_Common_Prefix.hpp
+  - String/Longest_Common_Substring.hpp
   timestamp: '2026-04-05 14:29:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
   - verify/yosupo_library_checker/string/Suffix_Array.test.cpp
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
-  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
 documentation_of: String/Suffix_Array.hpp
 layout: document
 title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"

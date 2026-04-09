@@ -237,13 +237,13 @@ data:
   isVerificationFile: false
   path: String/Concat_with_Compression.hpp
   requiredBy:
-  - String/Longest_Common_Substring.hpp
   - String/Number_of_Substrings.hpp
+  - String/Longest_Common_Substring.hpp
   timestamp: '2026-04-07 01:00:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
+  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
 documentation_of: String/Concat_with_Compression.hpp
 layout: document
 redirect_from:
