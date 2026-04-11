@@ -8,11 +8,10 @@ using mint = modint<998244353>;
 
 int main() {
     int N; cin >> N;
-    convolution::Sub<mint> A(N + 1), B(N + 1);
-    for (int i = 1; i <= N; i++) scanf("%d", &A[i]);
-    for (int j = 1; j <= N; j++) scanf("%d", &B[j]);
+    convolution::Sub<mint> A(N), B(N);
+    for (int i = 0; i < (1 << N); i++) scanf("%uld", &A[i].x);
+    for (int j = 0; j < (1 << N); j++) scanf("%uld", &B[j].x);
 
     vector<mint> c = (A * B).to_vector();
-    c.erase(c.begin(), c.begin() + 1);
     cout << c << endl;
 }
