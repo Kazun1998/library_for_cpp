@@ -6,9 +6,12 @@ namespace convolution {
     template<typename R>
     class Subset_Convolution : public Convolution_Base<R> {
         using Base = Convolution_Base<R>;
-        using Base::Base;
 
         public:
+        using Base::Base;
+
+        Subset_Convolution(size_t n) : Base(1ULL << n) {}
+
         // 加法 (+)
         friend Subset_Convolution operator+(const Subset_Convolution& lhs, const Subset_Convolution& rhs) {
             Subset_Convolution temp(lhs);
@@ -44,67 +47,107 @@ namespace convolution {
             return temp;
         }
 
+        /**
+         * @brief ランク付きゼータ変換 (Ranked Zeta Transform)
+         * 
+         * @param f ランク付き形式のデータ (フラット化された 1 次元配列)
+         * @param N 全体集合の要素数
+         */
+        void zeta_transform(std::vector<R>& f, int N) const {
+            int size = 1 << N;
+            for (int i = 0; i < N; i++) {
+                for (int S = 0; S < size; S++) {
+                    unless (get_bit(S, i)) continue;
+
+                    int curr_offset = S * (N + 1);
+                    int prev_offset = (S ^ (1 << i)) * (N + 1);
+                    for (int j = 0; j <= N; j++) {
+                        f[curr_offset + j] += f[prev_offset + j];
+                    }
+                }
+            }
+        }
+
+        /**
+         * @brief ランク付きメビウス変換 (Ranked Mobius Transform)
+         * 
+         * @param g ランク付き形式のデータ (フラット化された 1 次元配列)
+         * @param N 全体集合の要素数
+         */
+        void mobius_transform(std::vector<R>& g, int N) const {
+            int size = 1 << N;
+            for (int i = 0; i < N; i++) {
+                for (int S = 0; S < size; S++) {
+                    unless (get_bit(S, i)) continue;
+
+                    int curr_offset = S * (N + 1);
+                    int prev_offset = (S ^ (1 << i)) * (N + 1);
+                    for (int j = 0; j <= N; j++) {
+                        g[curr_offset + j] -= g[prev_offset + j];
+                    }
+                }
+            }
+        }
+
+        /**
+         * @brief ランク付き表現の各集合 S に対して多項式乗算を行う
+         * 
+         * @param fa ランク付き形式のデータ A
+         * @param fb ランク付き形式のデータ B
+         * @param N 全体集合の要素数
+         */
+        void multiply_ranked_representation(std::vector<R>& fa, const std::vector<R>& fb, int N) const {
+            int size = 1 << N;
+            std::vector<R> buf(N + 1);
+            for (int S = 0; S < size; S++) {
+                int offset = S * (N + 1);
+                std::fill(buf.begin(), buf.end(), R(0));
+                for (int i = 0; i <= N; i++) {
+                    if (is_zero(fa[offset + i])) continue;
+
+                    for (int j = 0; i + j <= N; j++) {
+                        buf[i + j] += fa[offset + i] * fb[offset + j];
+                    }
+                }
+                for (int i = 0; i <= N; i++) fa[offset + i] = buf[i];
+            }
+        }
+
         Subset_Convolution& operator*=(const Base& B) override {
             const std::vector<R>& b_data = B.to_vector();
-            if (this->data.size() != b_data.size()) {
+            unless (this->data.size() == b_data.size()) {
                 throw std::length_error("Convolution operands must have the same size.");
             }
 
             int n = this->data.size();
-            if (n == 0) return *this;
+            unless (n > 0) return *this;
 
-            int m = 0;
-            while ((1 << m) < n) m++;
-            int N = 1 << m;
+            int N = ceil_log2(n);
+            int size = 1 << N;
 
-            // ランク付きゼータ変換のためのテーブル (rank, mask)
-            // メモリレイアウトを考慮し、[rank * N + mask] の形式で管理
-            std::vector<R> fa(N * (m + 1), 0), fb(N * (m + 1), 0);
+            // ランク付きゼータ変換のためのテーブル (mask, rank)
+            std::vector<R> fa(size * (N + 1), 0), fb(size * (N + 1), 0);
             for (int i = 0; i < n; i++) {
-                int pc = __builtin_popcount(i);
-                fa[pc * N + i] = this->data[i];
-                fb[pc * N + i] = b_data[i];
+                fa[i * (N + 1) + popcount(i)] = this->data[i];
+                fb[i * (N + 1) + popcount(i)] = b_data[i];
             }
 
             // ゼータ変換 (各ランクに対して bitwise OR convolution の変換を行う)
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j <= m; j++) {
-                    int offset = j * N;
-                    for (int mask = 0; mask < N; mask++) {
-                        if ((mask >> i) & 1) {
-                            fa[offset + mask] += fa[offset + (mask ^ (1 << i))];
-                            fb[offset + mask] += fb[offset + (mask ^ (1 << i))];
-                        }
-                    }
-                }
-            }
+            zeta_transform(fa, N);
+            zeta_transform(fb, N);
 
-            // 各 mask ごとに多項式の乗算を行う
-            std::vector<R> fc(N * (m + 1), 0);
-            for (int mask = 0; mask < N; mask++) {
-                for (int i = 0; i <= m; i++) {
-                    if (fa[i * N + mask] == 0) continue;
-                    for (int j = 0; i + j <= m; j++) {
-                        fc[(i + j) * N + mask] += fa[i * N + mask] * fb[j * N + mask];
-                    }
-                }
-            }
+            // 各 S ごとに多項式の乗算を行う
+            multiply_ranked_representation(fa, fb, N);
+
+            // 不要になった fb のメモリを早期解放
+            { std::vector<R> empty; fb.swap(empty); }
 
             // メビウス変換 (各ランクに対して逆変換を行う)
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j <= m; j++) {
-                    int offset = j * N;
-                    for (int mask = 0; mask < N; mask++) {
-                        if ((mask >> i) & 1) {
-                            fc[offset + mask] -= fc[offset + (mask ^ (1 << i))];
-                        }
-                    }
-                }
-            }
+            mobius_transform(fa, N);
 
             this->data.assign(n, 0);
             for (int i = 0; i < n; i++) {
-                this->data[i] = fc[__builtin_popcount(i) * N + i];
+                this->data[i] = fa[i * (N + 1) + popcount(i)];
             }
 
             return *this;
