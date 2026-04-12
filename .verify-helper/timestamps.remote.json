@@ -114,6 +114,7 @@
 "verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp": "2026-04-07 01:00:02 +0900",
 "verify/yosupo_library_checker/string/Suffix_Array.test.cpp": "2026-04-05 14:29:47 +0900",
 "verify/yosupo_library_checker/string/Z_Algorithm.test.cpp": "2026-04-03 00:40:01 +0900",
+"verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp": "2026-04-12 08:29:05 +0900",
 "verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp": "2026-04-03 00:40:01 +0900",
 "verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2026-04-03 00:40:01 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2026-04-03 00:40:01 +0900",
