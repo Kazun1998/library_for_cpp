@@ -7,28 +7,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Odd_Montgomery_Multiplication.hpp
     title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -197,27 +197,30 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\
-    \n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace\
-    \ prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long long prime\
-    \ = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step) {\n  \
-    \      prime += step;\n        step = 6 - step;\n      }\n      else if (prime\
-    \ == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n      else\
-    \ if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\
-    \n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if (n <= 3)\
-    \ { return n >= 2; }\n    else if (n == 5) { return true; }\n    else if ((n %\
-    \ 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
-    \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
-    \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
-    \n  pair<uint64_t, long long> exponents(uint64_t n, long long p) {\n    long long\
-    \ e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n  }\n\n\
-    \  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>> prime_factorization\
-    \ (long long n) {\n    if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Integer/Miller_Rabin_Primality_Test.hpp\"\n\n#line 2 \"\
+    Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class\
+    \ Pseudo_Prime_Generator {\n    private:\n    long long prime = 1, step = 0;\n\
+    \n    public:\n    long long get() {\n      if (step) {\n        prime += step;\n\
+    \        step = 6 - step;\n      }\n      else if (prime == 1) { prime = 2; }\n\
+    \      else if (prime == 2) { prime = 3; }\n      else if (prime == 3) { prime\
+    \ = 5, step = 2; }\n\n      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570\
+    ?\n  bool is_prime(long long n) {\n    if (n <= 3) { return n >= 2; }\n    else\
+    \ if (n == 5) { return true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n\
+    \ % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator generator;\n    for\
+    \ (long long p = generator.get(); p * p <= n; p = generator.get()) {\n      if\
+    \ (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\n  pair<uint64_t,\
+    \ long long> exponents(uint64_t n, long long p) {\n    long long e = 0;\n    while\
+    \ (n % p == 0) { e++, n /= p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\
+    \u5206\u89E3\n  vector<pair<long long, long long>> prime_factorization (long long\
+    \ n) {\n    if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long\
     \ long, long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
     \ 1));\n      n = abs(n);\n    }\n\n    Pseudo_Prime_Generator generator;\n  \
     \  for (long long p =generator.get(); p * p <= n; p = generator.get()) {\n   \
@@ -323,7 +326,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

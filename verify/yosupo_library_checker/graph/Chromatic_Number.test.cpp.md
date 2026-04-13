@@ -2,16 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Algebra/dynamic_modint.hpp
-    title: Algebra/dynamic_modint.hpp
+    path: Convolution/Bitwise_Or_Convolution.hpp
+    title: Convolution/Bitwise_Or_Convolution.hpp
   - icon: ':heavy_check_mark:'
-    path: Counting/Combination_Calculator.hpp
-    title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
-      \u7684\u306A\u8A08\u7B97"
+    path: Convolution/Convolution_Base.hpp
+    title: "\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
-    path: Counting/Q_Analog_Combination_Calculator.hpp
-    title: "$q$ -\u6570\u306B\u3088\u308B\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\
-      \u95A2\u3059\u308B\u57FA\u672C\u7684\u306A\u8A08\u7B97"
+    path: Convolution/Semilattice_Convolution_Base.hpp
+    title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Chromatic_Number.hpp
+    title: "\u5F69\u8272\u6570"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -40,12 +44,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod
+    PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
     links:
-    - https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    - https://judge.yosupo.jp/problem/chromatic_number
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n#line\
+    \ 2 \"Graph/Graph/Chromatic_Number.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\
+    \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
@@ -207,154 +212,160 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Algebra/dynamic_modint.hpp\"\n\n#line 4 \"Algebra/dynamic_modint.hpp\"\
-    \n\ntemplate<int id>\nclass dynamic_modint {\n    public:\n    uint64_t x;\n \
-    \   static int _mod;\n\n    static void set_mod(const int m) { _mod = m; } \n\
-    \    static int mod() { return _mod; }\n\n    public:\n    static dynamic_modint\
-    \ raw(int v) {\n        dynamic_modint a;\n        a.x = v;\n        return a;\n\
-    \    }\n\n    // \u521D\u671F\u5316\n    constexpr dynamic_modint(): x(0) {}\n\
-    \    constexpr dynamic_modint(int64_t a) {\n        int64_t w = (int64_t)(a) %\
-    \ mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint operator-() const { return\
-    \ dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n    dynamic_modint& operator+=(const\
-    \ dynamic_modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return\
-    \ *this;\n    }\n\n    friend dynamic_modint operator+(const dynamic_modint &x,\
-    \ const dynamic_modint &y) { return dynamic_modint(x) += y; }\n\n    // \u6E1B\
-    \u6CD5\n    dynamic_modint& operator-=(const dynamic_modint &b){\n        if ((x\
-    \ += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint &y) {\
-    \ return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
-    \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
-    \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
-    \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
-    \ dynamic_modint operator*(const int &x, const dynamic_modint &y) { return dynamic_modint(x)\
-    \ *= y; }\n    friend dynamic_modint operator*(const ll &x, const dynamic_modint\
-    \ &y) { return dynamic_modint(x) *= y; }\n\n    // \u9664\u6CD5\n    dynamic_modint&\
-    \ operator/=(const dynamic_modint &b){ return (*this) *= b.inverse(); }\n\n  \
-    \  friend dynamic_modint operator/(const dynamic_modint &x, const dynamic_modint\
-    \ &y) { return dynamic_modint(x) /= y; }\n\n    dynamic_modint inverse() const\
-    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
-    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
-    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
-    \ (a == 1);\n\n        return dynamic_modint(s);\n    }\n\n    // \u6BD4\u8F03\
-    \n    friend bool operator==(const dynamic_modint &a, const dynamic_modint &b)\
-    \ { return (a.x == b.x); }\n    friend bool operator==(const dynamic_modint &a,\
-    \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
-    \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
-    \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
-    \ &a) {\n        int64_t x;\n        is >> x;\n        a.x = (x % mod() + mod())\
-    \ % mod();\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
-    \ &operator<<(ostream &os, const dynamic_modint &a) { return os << a.x; }\n\n\
-    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
-    \ return x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod\
-    \ = 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long\
-    \ long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res =\
-    \ dynamic_modint<id>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
-    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n#line 2 \"Counting/Q_Analog_Combination_Calculator.hpp\"\
-    \n\n#line 2 \"Counting/Combination_Calculator.hpp\"\n\n#line 4 \"Counting/Combination_Calculator.hpp\"\
-    \n\ntemplate<typename mint>\nclass Combination_Calculator {\n    private:\n  \
-    \  vector<mint> _fact, _fact_inv;\n\n    void resize(const int m) {\n        if\
-    \ (m < _fact.size()) { return; }\n\n        int current_size = _fact.size();\n\
-    \        int next_size = min(max(2 * current_size, m + 1), mint::mod());\n\n \
-    \       _fact.resize(next_size);\n        _fact_inv.resize(next_size);\n\n   \
-    \     for (int k = current_size; k < next_size; k++) {\n            _fact[k] =\
-    \ k * _fact[k - 1];\n        }\n\n        _fact_inv.back() = _fact.back().inverse();\n\
-    \n        for (int k = next_size - 2; k >= current_size; --k) {\n            _fact_inv[k]\
-    \ = (k + 1) * _fact_inv[k + 1];\n        }\n    }\n\n    public:\n    /**\n  \
-    \   * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF: \u521D\u671F\u30B5\u30A4\
-    \u30BAn\u307E\u3067\u968E\u4E57\u30FB\u9006\u968E\u4E57\u3092\u8A08\u7B97\u3059\
-    \u308B\n     * @param n \u521D\u671F\u8A08\u7B97\u306E\u4E0A\u9650\n     */\n\
-    \    Combination_Calculator(const int n) {\n        _fact.emplace_back(1); _fact.emplace_back(1);\n\
-    \        _fact_inv.emplace_back(1); _fact_inv.emplace_back(1);\n\n        resize(n);\n\
-    \    }\n\n    Combination_Calculator(): Combination_Calculator(0) {}\n\n    /**\n\
-    \     * @brief k! \u3092\u53D6\u5F97\n     */\n    mint fact(const int k) {\n\
-    \        resize(k);\n        return _fact[k];\n    }\n\n    /**\n     * @brief\
-    \ (k!)^(-1) \u3092\u53D6\u5F97\n     */\n    mint fact_inv(const int k) {\n  \
-    \      resize(k);\n        return _fact_inv[k];\n    }\n\n    /**\n     * @brief\
-    \ k \u306E\u9006\u5143 k^(-1) \u3092\u6C42\u3081\u308B\n     * @param k \u9006\
-    \u5143\u3092\u6C42\u3081\u305F\u3044\u6570\n     */\n    mint inv(const int k)\
-    \ {\n        if (k <= 0) { return 0; }\n\n        resize(k);\n        return _fact_inv[k]\
-    \ * _fact[k - 1];\n    }\n\n    /**\n     * @brief \u7D44\u307F\u5408\u308F\u305B\
-    \ nCk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint nCr(const int n, const\
-    \ int r) {\n        if (!(0 <= r && r <= n)) { return 0; }\n        resize(n);\n\
-    \        return _fact[n] * _fact_inv[r] * _fact_inv[n - r];\n    }\n\n    /**\n\
-    \     * @brief \u9806\u5217 nPk \u3092\u8A08\u7B97\u3059\u308B\n     */\n    mint\
-    \ nPr(const int n, const int r) {\n        if (!(0 <= r && r <= n)) { return 0;\
-    \ }\n        resize(n);\n        return _fact[n] * _fact_inv[n - r];\n    }\n\n\
-    \    /**\n     * @brief \u91CD\u8907\u7D44\u5408\u305B nHk \u3092\u8A08\u7B97\u3059\
-    \u308B\n     */\n    mint nHr(const int n, const int r) {\n        if (n == 0\
-    \ && r == 0) { return 1; }\n\n        return nCr(n + r - 1, r);\n    }\n\n   \
-    \ /**\n     * @brief \u591A\u9805\u4FC2\u6570 (k_sum)! / (k1! * k2! * ...) \u3092\
-    \u8A08\u7B97\u3059\u308B\n     */\n    mint multinomial_coefficient(const vector<int>\
-    \ &ks) {\n        int k_sum = 0;\n        mint lower = 1;\n        for (int k:\
-    \ ks) {\n            k_sum += k;\n            lower *= _fact_inv[k];\n       \
-    \ }\n\n        resize(k_sum);\n\n        mint upper = _fact[k_sum];\n\n      \
-    \  return upper * lower;\n    }\n\n    mint catalan(const int n) {\n        if\
-    \ (n < 0) { return 0; }\n        resize(2 * n);\n        return _fact[2 * n] *\
-    \ _fact_inv[n + 1] * _fact_inv[n];\n    }\n};\n#line 5 \"Counting/Q_Analog_Combination_Calculator.hpp\"\
-    \n\ntemplate<typename mint>\nclass Q_Analog_Calculator {\n    private:\n    Combination_Calculator<mint>\
-    \ calc;\n\n    mint q;\n    int order;\n    vector<mint> _power;    // q^k\n \
-    \   vector<mint> _bracket;  // q-\u6570 [n]_q\n    vector<mint> _fact;     //\
-    \ q-\u968E\u4E57 [n]_q !\n    vector<mint> _fact_inv; // q-\u968E\u4E57\u306E\u9006\
-    \u6570 ([n]_q !)^(-1)\n\n    void resize(const int m) {\n        if (order !=\
-    \ -1) { return; }\n\n        int current_size = _fact.size();\n        if (m <\
-    \ current_size) { return; }\n\n        int next_size = min(max(2 * current_size,\
-    \ m), mint::mod());\n\n        _power.resize(next_size);\n        for (int k =\
-    \ current_size; k < next_size; k++) {\n            _power[k] = q * _power[k -\
-    \ 1];\n\n            if(_power[k] == 1) {\n                order = k;\n      \
-    \          next_size = k;\n                _power.resize(k);\n               \
-    \ break;\n            }\n        }\n\n        _bracket.resize(next_size);\n  \
-    \      _fact.resize(next_size);\n        for (int k = current_size; k < next_size;\
-    \ k++) {\n            _bracket[k] = _bracket[k - 1] + _power[k - 1];\n       \
-    \     _fact[k] = _bracket[k] * _fact[k - 1];\n        }\n\n        _fact_inv.resize(next_size);\n\
-    \        _fact_inv.back() = _fact.back().inverse();\n        for (int k = next_size\
-    \ - 2; k >= current_size; --k) {\n            _fact_inv[k] = _bracket[k + 1] *\
-    \ _fact_inv[k + 1];\n        }\n    }\n\n    mint query(const int n, const int\
-    \ r) const {\n        return _fact[n] * _fact_inv[r] * _fact_inv[n - r];\n   \
-    \ }\n\n    public:\n    /// @brief \n    /// @param  \n    /// @return \n    Q_Analog_Calculator(const\
-    \ mint q, const int n): q(q), order(-1), calc() {\n        _power.emplace_back(1);\n\
-    \        _bracket.emplace_back(0); \n        _fact.emplace_back(1);\n        _fact_inv.emplace_back(1);\n\
-    \n        resize(n);\n    }\n\n    Q_Analog_Calculator(const mint q): Q_Analog_Calculator(q,\
-    \ 0) {}\n\n    /// @brief q^k \u3092\u6C42\u3081\u308B.\n    mint q_power(const\
-    \ int k) {\n        resize(k);\n        return _power[k];\n    }\n\n    /// @brief\
-    \ [n]_q = 1 + q + ... + q^(n-1) \u3092\u6C42\u3081\u308B.\n    mint q_bracket(const\
-    \ int n) {\n        resize(n);\n        return _bracket[n];\n    }\n\n    ///\
-    \ @brief [n]_q ! = [1]_q * [2]_q * ... * [n]_q \u3092\u6C42\u3081\u308B.\n   \
-    \ mint q_fact(const int n) {\n        resize(n);\n        return _fact[n];\n \
-    \   }\n\n    /// @brief ([n]_q !)^(-1) \u3092\u6C42\u3081\u308B.\n    mint q_fact_inv(const\
-    \ int n) {\n        resize(n);\n        return _fact_inv[n];\n    }\n\n    ///\
-    \ @brief ([n]_q)^(-1) \u3092\u6C42\u3081\u308B.\n    mint q_inv(const int n) {\n\
-    \        resize(n);\n        return _fact_inv[n] * _fact[n];\n    }\n\n    ///\
-    \ @brief q-\u7D44\u307F\u5408\u308F\u305B nCk \u3092\u8A08\u7B97\u3059\u308B\n\
-    \    mint q_nCr(const int n, const int r) {\n        if (!(0 <= r && r <= n))\
-    \ { return 0; }\n        resize(n);\n\n        if (order == -1) { return query(n,\
-    \ r); }\n        if (n < order && r < order) { return query(n, r); }\n\n     \
-    \   return calc.nCr(n / order, r / order) * q_nCr(n % order, r % order);\n   \
-    \ }\n\n    /// @brief q-\u9806\u5217 nPk \u3092\u8A08\u7B97\u3059\u308B\n    mint\
-    \ q_nPr(const int n, const int r) {\n        if (!(0 <= r && r <= n)) { return\
-    \ 0; }\n        resize(n);\n        return _fact[n] * _fact_inv[n - r];\n    }\n\
-    \n    /// @brief q-\u91CD\u8907\u7D44\u5408\u305B nHk \u3092\u8A08\u7B97\u3059\
-    \u308B\n    mint q_nHr(const int n, const int r) {\n        if (n == 0 && r ==\
-    \ 0) { return 1; }\n\n        return q_nCr(n + r - 1, r);\n    }\n\n\n    ///\
-    \ @brief q-\u591A\u9805\u4FC2\u6570 (k_sum)! / (k1! * k2! * ...) \u3092\u8A08\u7B97\
-    \u3059\u308B\n    mint q_multinomial_coefficient(const vector<int> &ks) {\n  \
-    \      int k_sum = 0;\n        mint lower = 1;\n        for (int k: ks) {\n  \
-    \          k_sum += k;\n            lower *= _fact_inv[k];\n        }\n\n    \
-    \    resize(k_sum);\n\n        mint upper = _fact[k_sum];\n\n        return upper\
-    \ * lower;\n    }\n};\n#line 6 \"verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp\"\
-    \n\nusing mint = dynamic_modint<0>;\n\nint main() {\n    int T, m; cin >> T >>\
-    \ m;\n    mint::set_mod(m);\n    mint q; cin >> q;\n\n    Q_Analog_Calculator<mint>\
-    \ calc(q, min(m, 10000000));\n\n    for (int t = 0; t < T; t++) {\n        int\
-    \ n, k; scanf(\"%d%d\", &n, &k);\n        cout << calc.q_nCr(n, k) << \"\\n\"\
-    ;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/q_binomial_coefficient_prime_mod\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/dynamic_modint.hpp\"\
-    \n#include\"../../../Counting/Q_Analog_Combination_Calculator.hpp\"\n\nusing mint\
-    \ = dynamic_modint<0>;\n\nint main() {\n    int T, m; cin >> T >> m;\n    mint::set_mod(m);\n\
-    \    mint q; cin >> q;\n\n    Q_Analog_Calculator<mint> calc(q, min(m, 10000000));\n\
-    \n    for (int t = 0; t < T; t++) {\n        int n, k; scanf(\"%d%d\", &n, &k);\n\
-    \        cout << calc.q_nCr(n, k) << \"\\n\";\n    }\n}\n"
+    \    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct\
+    \ Edge {\n        int id, source, target;\n        Edge *rev;\n\n        Edge()\
+    \ = default;\n        Edge(int id, int source, int target): id(id), source(source),\
+    \ target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n        private:\n\
+    \        vector<vector<Edge*>> incidences;\n        vector<Edge> edges, rev_edges;\n\
+    \        vector<int> deg;\n\n        public:\n        int edge_id_offset;\n\n\
+    \        public:\n        Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset),\
+    \ deg(n, 0) {\n            incidences.assign(n, {});\n            edges.resize(edge_id_offset,\
+    \ Edge());\n        }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\
+    \u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int\
+    \ order() const { return int(incidences.size()); }\n\n        /// @brief \u3053\
+    \u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\
+    \u308B.\n        inline int size() const { return int(edges.size()) - edge_id_offset;\
+    \ }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B.\n        int add_edge(int\
+    \ u, int v) {\n            int id = int(edges.size());\n\n            Edge* edge\
+    \ = new Edge(id, u, v);\n            Edge* rev_edge = new Edge(id, v, u);\n\n\
+    \            edge->rev = rev_edge;\n            rev_edge->rev = edge;\n\n    \
+    \        incidences[u].emplace_back(edge);\n            incidences[v].emplace_back(rev_edge);\n\
+    \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
+    \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
+    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
+    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
+    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
+    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
+    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
+    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
+    \ deg[v]; }\n\n        vector<vector<int>> adjacency_matrix() const {\n      \
+    \      vector<vector<int>> matrix(order(), vector<int>(order(), 0));\n       \
+    \     for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {\n     \
+    \           Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
+    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
+    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
+    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
+    \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
+    \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
+    \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
+    \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
+    \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 2 \"Convolution/Bitwise_Or_Convolution.hpp\"\
+    \n\n#line 2 \"Convolution/Semilattice_Convolution_Base.hpp\"\n\n#line 2 \"Convolution/Convolution_Base.hpp\"\
+    \n\n#line 4 \"Convolution/Convolution_Base.hpp\"\n\nnamespace convolution {\n\
+    \    template<typename R>\n    class Convolution_Base {\n        protected:\n\
+    \        std::vector<R> data;\n\n        public:\n        Convolution_Base() =\
+    \ default;\n        Convolution_Base(std::vector<R> data_in): data(std::move(data_in))\
+    \ {}\n\n        Convolution_Base(initializer_list<R> init): data(init) {}\n  \
+    \      \n        Convolution_Base(size_t n): data(std::vector<R>(n)) {} \n   \
+    \     \n        Convolution_Base& operator=(initializer_list<R> init) {\n    \
+    \        data = init;\n            return *this;\n        }\n\n        // \u52A0\
+    \u6CD5 (+=)\n        Convolution_Base& operator+=(const Convolution_Base<R> &B)\
+    \ {\n            if(data.size() != B.data.size()) { throw std::length_error(\"\
+    Convolution operands must have the same size.\"); }\n\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] += B.data[i]; }\n            return *this;\n\
+    \        }\n\n        // \u6E1B\u6CD5 (-=)\n        Convolution_Base& operator-=(const\
+    \ Convolution_Base<R> &B) {\n            if(data.size() != B.data.size()) { throw\
+    \ std::length_error(\"Convolution operands must have the same size.\"); }\n  \
+    \          for (size_t i = 0; i < data.size(); i++) { data[i] -= B.data[i]; }\n\
+    \            return *this;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (*=)\n        Convolution_Base& operator*=(const R &a) {\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] *= a; }\n            return *this;\n\
+    \        }\n\n        virtual Convolution_Base<R>& operator*=(const Convolution_Base<R>\
+    \ &B) = 0;\n\n        inline size_t size() const { return data.size(); }\n\n \
+    \       inline R& operator[](size_t k) { return data[k]; }\n        inline const\
+    \ R& operator[](size_t k) const { return data[k]; }\n\n        const std::vector<R>&\
+    \ to_vector() const { return data; }\n    };\n}\n#line 4 \"Convolution/Semilattice_Convolution_Base.hpp\"\
+    \n\nnamespace convolution {\n    template<typename R>\n    class Semilattice_Convolution_Base:\
+    \ public Convolution_Base<R> {\n        // \u578B\u30A8\u30A4\u30EA\u30A2\u30B9\
+    \n        using Base = Convolution_Base<R>;\n        using Self = Semilattice_Convolution_Base<R>;\n\
+    \n        using Base::Base;\n\n        public:\n        virtual void zeta_transform(std::vector<R>\
+    \ &f) const = 0;\n        virtual void mobius_transform(std::vector<R> &g) const\
+    \ = 0;\n\n        Self& operator*=(const Base &B) override {\n            if (this->data.size()\
+    \ != B.to_vector().size()) {\n                throw std::length_error(\"Convolution\
+    \ operands must have the same size.\");\n            }\n\n            std::vector<R>\
+    \ f_copy(this->data); \n            std::vector<R> g_copy(B.to_vector()); \n\n\
+    \            this->zeta_transform(f_copy);\n            this->zeta_transform(g_copy);\
+    \ \n\n            for (size_t i = 0; i < f_copy.size(); i++) { \n            \
+    \    f_copy[i] *= g_copy[i]; \n            }\n\n            this->mobius_transform(f_copy);\n\
+    \            this->data = std::move(f_copy);\n            return *this;\n    \
+    \    }\n\n        Self& pow(long long n) {\n            zeta();\n            for\
+    \ (R &v : this->data) { v = ::pow(v, n); }\n            mobius();\n          \
+    \  return *this;\n        }\n\n        void zeta() { zeta_transform(this->data);\
+    \ }\n        void mobius() { mobius_transform(this->data); }\n    };\n\n    template<typename\
+    \ T>\n    T pow(T a, const ll n) {\n        a.pow(n);\n        return a;\n   \
+    \ }\n}\n#line 4 \"Convolution/Bitwise_Or_Convolution.hpp\"\n\nnamespace convolution\
+    \ {\n    template<typename R>\n    class Bitwise_Or_Convolution: public Semilattice_Convolution_Base<R>\
+    \ {\n        using Base = Convolution_Base<R>;\n        using ImplBase = Semilattice_Convolution_Base<R>;\n\
+    \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
+    \ Bitwise_Or_Convolution operator+(const Bitwise_Or_Convolution &lhs, const Bitwise_Or_Convolution\
+    \ &rhs) {\n            Bitwise_Or_Convolution temp(lhs);\n            temp +=\
+    \ rhs;\n            return temp;\n        }\n\n        // \u6E1B\u6CD5 (-)\n \
+    \       friend Bitwise_Or_Convolution operator-(const Bitwise_Or_Convolution &lhs,\
+    \ const Bitwise_Or_Convolution &rhs) {\n            Bitwise_Or_Convolution temp(lhs);\n\
+    \            temp -= rhs;\n            return temp;\n        }\n\n        // \u4E57\
+    \u6CD5 (*)\n        friend Bitwise_Or_Convolution operator*(const Bitwise_Or_Convolution\
+    \ &lhs, const Bitwise_Or_Convolution &rhs) { \n            Bitwise_Or_Convolution\
+    \ temp(lhs);\n            temp *= rhs;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (a * rhs)\n        friend Bitwise_Or_Convolution\
+    \ operator*(const R &a, const Bitwise_Or_Convolution &rhs) {\n            Bitwise_Or_Convolution\
+    \ temp(rhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (lhs * a)\n        friend Bitwise_Or_Convolution\
+    \ operator*(const Bitwise_Or_Convolution &lhs, const R &a) {\n            Bitwise_Or_Convolution\
+    \ temp(lhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        void zeta_transform(std::vector<R> &f) const override {\n           \
+    \ int m = floor_log2(f.size());\n\n            for (size_t i = 0; i < m; i++)\
+    \ {\n                for (int S = 0; S < (1 << m); S++) {\n                  \
+    \  if (!get_bit(S, i)) { continue; }\n\n                    f[S] += f[S ^ (1 <<\
+    \ i)];\n                }\n            }\n        }\n\n        void mobius_transform(std::vector<R>\
+    \ &g) const override {\n            int m = floor_log2(g.size());\n\n        \
+    \    for (size_t i = 0; i < m; i++) {\n                for (int S = 0; S < (1\
+    \ << m); S++) {\n                    if (!get_bit(S, i)) { continue; }\n\n   \
+    \                 g[S] -= g[S ^ (1 << i)];\n                }\n            }\n\
+    \        }\n    };\n}\n#line 5 \"Graph/Graph/Chromatic_Number.hpp\"\n\nnamespace\
+    \ graph {\n    int Chromatic_Number(const Graph &G) {\n        int n = G.order();\n\
+    \        if (n == 0) return 0;\n\n        using namespace convolution;\n     \
+    \   using Conv = Bitwise_Or_Convolution<long long>;\n\n        vector<int> adj_mask(n,\
+    \ 0);\n        for (int i = 0; i < n; ++i) {\n            for (auto edge : G.incidence(i))\
+    \ {\n                adj_mask[i] |= (1 << edge->target);\n            }\n    \
+    \    }\n\n        // Section I: \u72EC\u7ACB\u96C6\u5408\u306E\u5224\u5B9A (S\
+    \ \u304C\u72EC\u7ACB\u96C6\u5408\u306A\u3089 1, \u305D\u3046\u3067\u306A\u3051\
+    \u308C\u3070 0)\n        vector<long long> indep_vec(1 << n, 0);\n        indep_vec[0]\
+    \ = 1;\n        for (int S = 1; S < (1 << n); ++S) {\n            int x = lowest_bit(S);\n\
+    \            int prev = S ^ (1 << x);\n            if (indep_vec[prev] && !(adj_mask[x]\
+    \ & prev)) indep_vec[S] = 1;\n        }\n\n        if (indep_vec[(1 << n) - 1])\
+    \ return 1;\n        Conv indep(indep_vec);\n\n        auto clamp = [&](Conv &c)\
+    \ {\n            for (int S = 0; S < (1 << n); ++S) c[S] = (c[S] > 0);\n     \
+    \   };\n\n        // Section II: k = 2, 4, 8, ... \u306B\u5BFE\u3057\u3066\u30C0\
+    \u30D6\u30EA\u30F3\u30B0\n        vector<Conv> dp_pow2;\n        dp_pow2.push_back(indep);\n\
+    \        int k = 0;\n        while ((1 << (k + 1)) <= n) {\n            Conv next\
+    \ = dp_pow2.back() * dp_pow2.back();\n            clamp(next);\n            if\
+    \ (next[(1 << n) - 1]) break;\n            dp_pow2.push_back(next);\n        \
+    \    k++;\n        }\n\n        // Section III: \u4E8C\u5206\u63A2\u7D22\u306B\
+    \u3088\u3063\u3066\u5F69\u8272\u6570\u3092\u6C42\u3081\u308B\n        int current_k\
+    \ = (1 << k);\n        Conv current_dp = dp_pow2.back();\n        for (int i =\
+    \ k - 1; i >= 0; --i) {\n            if (current_k + (1 << i) > n) continue;\n\
+    \            Conv res = current_dp * dp_pow2[i];\n            clamp(res);\n  \
+    \          unless (res[(1 << n) - 1]) {\n                current_k += (1 << i);\n\
+    \                current_dp = res;\n            }\n        }\n\n        return\
+    \ current_k + 1;\n    }\n}\n#line 4 \"verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp\"\
+    \n\nusing namespace graph;\n\nint verify() {\n    int N, M; cin >> N >> M;\n \
+    \   Graph G(N);\n    for (int j = 0; j < M; ++j) {\n        int u, v; cin >> u\
+    \ >> v;\n        G.add_edge(u, v);\n    }\n\n    return Chromatic_Number(G);\n\
+    }\n\nint main(){\n    cout << verify() << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
+    #include\"../../../Graph/Graph/Chromatic_Number.hpp\"\n\nusing namespace graph;\n\
+    \nint verify() {\n    int N, M; cin >> N >> M;\n    Graph G(N);\n    for (int\
+    \ j = 0; j < M; ++j) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u,\
+    \ v);\n    }\n\n    return Chromatic_Number(G);\n}\n\nint main(){\n    cout <<\
+    \ verify() << endl;\n}\n"
   dependsOn:
+  - Graph/Graph/Chromatic_Number.hpp
+  - Graph/Graph/Graph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -362,19 +373,19 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Algebra/dynamic_modint.hpp
-  - Counting/Q_Analog_Combination_Calculator.hpp
-  - Counting/Combination_Calculator.hpp
+  - Convolution/Bitwise_Or_Convolution.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
+  - Convolution/Convolution_Base.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+  path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-04-13 12:08:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+documentation_of: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
-- /verify/verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp.html
-title: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+- /verify/verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp.html
+title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
 ---

@@ -11,25 +11,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: String/Suffix_Array.hpp
     title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -200,39 +200,42 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"String/Suffix_Array.hpp\"\
-    \n\n/**\n * @brief Suffix Array \u3092\u69CB\u7BC9\u3059\u308B.\n * \n * \u30C0\
-    \u30D6\u30EA\u30F3\u30B0\u3068\u57FA\u6570\u30BD\u30FC\u30C8\u3092\u7528\u3044\
-    \u3066 O(N log N) \u3067\u69CB\u7BC9\u3059\u308B.\n * \u8FD4\u308A\u5024 sa \u306F\
-    , sa[i] \u304C\u300C\u8F9E\u66F8\u9806\u3067 i \u756A\u76EE\u306B\u5C0F\u3055\u3044\
-    \u63A5\u5C3E\u8F9E\u306E\u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u300D\
-    \u3068\u306A\u308B\u3088\u3046\u306A\u30B5\u30A4\u30BA N \u306E\u914D\u5217.\n\
-    \ * \u7A7A\u6587\u5B57\u5217\uFF08\u756A\u5175\uFF09\u306F\u5185\u90E8\u7684\u306A\
-    \u69CB\u7BC9\u904E\u7A0B\u3067\u306E\u307F\u5229\u7528\u3055\u308C\u3001\u8FD4\
-    \u308A\u5024\u306B\u306F\u542B\u307E\u308C\u306A\u3044.\n * \n * @tparam T \u914D\
-    \u5217\u306E\u8981\u7D20\u306E\u578B. std::integral \u30B3\u30F3\u30BB\u30D7\u30C8\
-    \u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\
-    \u5BFE\u8C61\u306E\u914D\u5217\n * @return vector<int> \u69CB\u7BC9\u3055\u308C\
-    \u305F Suffix Array\n */\ntemplate<integral T>\nvector<int> Suffix_Array(const\
-    \ vector<T> &A) {\n    int n = A.size();\n    // \u7A7A\u6587\u5B57\u5217\uFF08\
-    \u756A\u5175\uFF09\u3092\u542B\u3081\u305F\u30B5\u30A4\u30BA n+1 \u3067\u7BA1\u7406\
-    \n    vector<int> suffix_array(n + 1);\n    vector<int> rank(n + 1);     // \u5404\
-    \u63A5\u5C3E\u8F9E\u306E\u73FE\u5728\u306E\u30E9\u30F3\u30AF\n    vector<int>\
-    \ tmp_sa(n + 1);\n    vector<int> tmp_rank(n + 1);\n\n    // 1\u6587\u5B57\u76EE\
-    \u306B\u3088\u308B\u521D\u671F\u30BD\u30FC\u30C8\n    iota(suffix_array.begin(),\
-    \ suffix_array.end(), 0);\n    sort(suffix_array.begin(), suffix_array.end(),\
-    \ [&](int i, int j) {\n        // \u756A\u5175 (index n) \u3092\u6700\u5C0F\u3068\
-    \u3057\u3066\u6271\u3046\n        if (i == n) return true;\n        if (j == n)\
-    \ return false;\n        return A[i] < A[j];\n    });\n\n    rank[suffix_array[0]]\
-    \ = 0;\n    int r = 0;\n    for (int i = 1; i <= n; ++i) {\n        if (suffix_array[i\
-    \ - 1] == n || (suffix_array[i] != n && A[suffix_array[i - 1]] < A[suffix_array[i]]))\
-    \ r++;\n        rank[suffix_array[i]] = r;\n    }\n    \n    // \u30C0\u30D6\u30EA\
-    \u30F3\u30B0: \u9577\u3055 k \u306E\u6BD4\u8F03\u7D50\u679C\u304B\u3089\u9577\u3055\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"String/Suffix_Array.hpp\"\n\n/**\n * @brief Suffix Array\
+    \ \u3092\u69CB\u7BC9\u3059\u308B.\n * \n * \u30C0\u30D6\u30EA\u30F3\u30B0\u3068\
+    \u57FA\u6570\u30BD\u30FC\u30C8\u3092\u7528\u3044\u3066 O(N log N) \u3067\u69CB\
+    \u7BC9\u3059\u308B.\n * \u8FD4\u308A\u5024 sa \u306F, sa[i] \u304C\u300C\u8F9E\
+    \u66F8\u9806\u3067 i \u756A\u76EE\u306B\u5C0F\u3055\u3044\u63A5\u5C3E\u8F9E\u306E\
+    \u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u300D\u3068\u306A\u308B\u3088\
+    \u3046\u306A\u30B5\u30A4\u30BA N \u306E\u914D\u5217.\n * \u7A7A\u6587\u5B57\u5217\
+    \uFF08\u756A\u5175\uFF09\u306F\u5185\u90E8\u7684\u306A\u69CB\u7BC9\u904E\u7A0B\
+    \u3067\u306E\u307F\u5229\u7528\u3055\u308C\u3001\u8FD4\u308A\u5024\u306B\u306F\
+    \u542B\u307E\u308C\u306A\u3044.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\
+    \u306E\u578B. std::integral \u30B3\u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\u3059\
+    \u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\u914D\
+    \u5217\n * @return vector<int> \u69CB\u7BC9\u3055\u308C\u305F Suffix Array\n */\n\
+    template<integral T>\nvector<int> Suffix_Array(const vector<T> &A) {\n    int\
+    \ n = A.size();\n    // \u7A7A\u6587\u5B57\u5217\uFF08\u756A\u5175\uFF09\u3092\
+    \u542B\u3081\u305F\u30B5\u30A4\u30BA n+1 \u3067\u7BA1\u7406\n    vector<int> suffix_array(n\
+    \ + 1);\n    vector<int> rank(n + 1);     // \u5404\u63A5\u5C3E\u8F9E\u306E\u73FE\
+    \u5728\u306E\u30E9\u30F3\u30AF\n    vector<int> tmp_sa(n + 1);\n    vector<int>\
+    \ tmp_rank(n + 1);\n\n    // 1\u6587\u5B57\u76EE\u306B\u3088\u308B\u521D\u671F\
+    \u30BD\u30FC\u30C8\n    iota(suffix_array.begin(), suffix_array.end(), 0);\n \
+    \   sort(suffix_array.begin(), suffix_array.end(), [&](int i, int j) {\n     \
+    \   // \u756A\u5175 (index n) \u3092\u6700\u5C0F\u3068\u3057\u3066\u6271\u3046\
+    \n        if (i == n) return true;\n        if (j == n) return false;\n      \
+    \  return A[i] < A[j];\n    });\n\n    rank[suffix_array[0]] = 0;\n    int r =\
+    \ 0;\n    for (int i = 1; i <= n; ++i) {\n        if (suffix_array[i - 1] == n\
+    \ || (suffix_array[i] != n && A[suffix_array[i - 1]] < A[suffix_array[i]])) r++;\n\
+    \        rank[suffix_array[i]] = r;\n    }\n    \n    // \u30C0\u30D6\u30EA\u30F3\
+    \u30B0: \u9577\u3055 k \u306E\u6BD4\u8F03\u7D50\u679C\u304B\u3089\u9577\u3055\
     \ 2k \u306E\u6BD4\u8F03\u7D50\u679C\u3092\u5C0E\u51FA\u3059\u308B\n    for (int\
     \ k = 1; k <= n; k <<= 1) {\n        // \u7B2C2\u30AD\u30FC (rank[i+k]) \u306B\
     \u57FA\u3065\u3044\u3066 tmp_sa \u3092\u69CB\u6210\n        int it = 0;\n    \
@@ -403,7 +406,7 @@ data:
   isVerificationFile: false
   path: String/Longest_Common_Substring.hpp
   requiredBy: []
-  timestamp: '2026-04-08 00:05:56+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp

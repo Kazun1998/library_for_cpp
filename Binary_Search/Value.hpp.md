@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -183,31 +183,34 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Binary_Search/Value.hpp\"\
-    \n\n// \u30BD\u30FC\u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066\
-    , x \u672A\u6E80\u3067\u6700\u5927\u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n\
-    // A \u306B\u304A\u3044\u3066, x \u672A\u6E80\u306E\u8981\u7D20\u304C\u5B58\u5728\
-    \u3057\u306A\u3044\u5834\u5408\u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\
-    \u3059\u308B.\n// equal = true \u306B\u3059\u308B\u3068, \u300C\u672A\u6E80\u300D\
-    \u304C\u300C\u4EE5\u4E0B\u300D\u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename\
-    \ T>\nT Binary_Search_Low_Value(const vector<T> &A, T x, T default_value, bool\
-    \ equal = false) {\n    auto it = equal ? upper_bound(A.begin(), A.end(), x) :\
-    \ lower_bound(A.begin(), A.end(), x);\n    return (it == A.begin()) ? default_value\
-    \ : *(--it);\n}\n\n// \u30BD\u30FC\u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\
-    \u3057\u3066, x \u3088\u308A\u5927\u304D\u3044\u6700\u5C0F\u306E\u8981\u7D20\u3092\
-    \u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066, x \u3088\u308A\u5927\u304D\
-    \u3044\u8981\u7D20\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F, default_value\
-    \ \u3092\u8FD4\u308A\u5024\u3068\u3059\u308B.\n// equal = true \u306B\u3059\u308B\
-    \u3068, \u300C\u3088\u308A\u5927\u304D\u3044\u300D\u304C\u300C\u4EE5\u4E0A\u300D\
-    \u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename T>\nT Binary_Search_High_Value(const\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Binary_Search/Value.hpp\"\n\n// \u30BD\u30FC\u30C8\u6E08\
+    \u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u672A\u6E80\u3067\u6700\u5927\
+    \u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066, x\
+    \ \u672A\u6E80\u306E\u8981\u7D20\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
+    \u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\u3059\u308B.\n// equal =\
+    \ true \u306B\u3059\u308B\u3068, \u300C\u672A\u6E80\u300D\u304C\u300C\u4EE5\u4E0B\
+    \u300D\u306B\u7F6E\u304D\u304B\u308F\u308B.\ntemplate<typename T>\nT Binary_Search_Low_Value(const\
     \ vector<T> &A, T x, T default_value, bool equal = false) {\n    auto it = equal\
-    \ ? lower_bound(A.begin(), A.end(), x) : upper_bound(A.begin(), A.end(), x);\n\
-    \    return (it == A.end()) ? default_value : *it;\n}\n"
+    \ ? upper_bound(A.begin(), A.end(), x) : lower_bound(A.begin(), A.end(), x);\n\
+    \    return (it == A.begin()) ? default_value : *(--it);\n}\n\n// \u30BD\u30FC\
+    \u30C8\u6E08\u307F\u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u3088\u308A\u5927\
+    \u304D\u3044\u6700\u5C0F\u306E\u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\
+    \u304A\u3044\u3066, x \u3088\u308A\u5927\u304D\u3044\u8981\u7D20\u304C\u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408\u306F, default_value \u3092\u8FD4\u308A\u5024\u3068\
+    \u3059\u308B.\n// equal = true \u306B\u3059\u308B\u3068, \u300C\u3088\u308A\u5927\
+    \u304D\u3044\u300D\u304C\u300C\u4EE5\u4E0A\u300D\u306B\u7F6E\u304D\u304B\u308F\
+    \u308B.\ntemplate<typename T>\nT Binary_Search_High_Value(const vector<T> &A,\
+    \ T x, T default_value, bool equal = false) {\n    auto it = equal ? lower_bound(A.begin(),\
+    \ A.end(), x) : upper_bound(A.begin(), A.end(), x);\n    return (it == A.end())\
+    \ ? default_value : *it;\n}\n"
   code: "#include\"../template/template.hpp\"\n\n// \u30BD\u30FC\u30C8\u6E08\u307F\
     \u306E vector<T> A \u306B\u5BFE\u3057\u3066, x \u672A\u6E80\u3067\u6700\u5927\u306E\
     \u8981\u7D20\u3092\u6C42\u3081\u308B.\n// A \u306B\u304A\u3044\u3066, x \u672A\
@@ -239,7 +242,7 @@ data:
   isVerificationFile: false
   path: Binary_Search/Value.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/Value.hpp

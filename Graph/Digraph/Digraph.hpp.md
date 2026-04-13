@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -200,27 +200,30 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Digraph/Digraph.hpp\"\
-    \n\nnamespace digraph {\n    struct Arc {\n        int id, source, target;\n\n\
-    \        Arc() = default;\n        Arc(int id, int source, int target): id(id),\
-    \ source(source), target(target) {}\n    };\n\n    class Digraph {\n        private:\n\
-    \        int arc_id_offset;\n        vector<vector<Arc*>> adjacent_out, adjacent_in;\n\
-    \        vector<Arc> arcs;\n\n        public:\n        /**\n         * @brief\
-    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n         * @param n \u9802\u70B9\
-    \u6570\n         * @param arc_id_offset \u5F27 ID \u306E\u30AA\u30D5\u30BB\u30C3\
-    \u30C8\n         */\n        Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset)\
-    \ {\n            adjacent_out.assign(n, {});\n            adjacent_in.assign(n,\
-    \ {});\n            arcs.resize(arc_id_offset);\n        }\n        \n       \
-    \ /**\n         * @brief \u9802\u70B9\u6570\u3092\u53D6\u5F97\u3059\u308B\n  \
-    \       * @return int \u9802\u70B9\u6570\n         */\n        inline int order()\
-    \ const { return int(adjacent_in.size()); }\n\n        /**\n         * @brief\
-    \ \u8FBA\u6570\u3092\u53D6\u5F97\u3059\u308B\n         * @return int \u8FBA\u6570\
-    \n         */\n        inline int size() const { return int(arcs.size()) - arc_id_offset;\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Graph/Digraph/Digraph.hpp\"\n\nnamespace digraph {\n   \
+    \ struct Arc {\n        int id, source, target;\n\n        Arc() = default;\n\
+    \        Arc(int id, int source, int target): id(id), source(source), target(target)\
+    \ {}\n    };\n\n    class Digraph {\n        private:\n        int arc_id_offset;\n\
+    \        vector<vector<Arc*>> adjacent_out, adjacent_in;\n        vector<Arc>\
+    \ arcs;\n\n        public:\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n         * @param n \u9802\u70B9\u6570\n         * @param\
+    \ arc_id_offset \u5F27 ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n         */\n\
+    \        Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset) {\n\
+    \            adjacent_out.assign(n, {});\n            adjacent_in.assign(n, {});\n\
+    \            arcs.resize(arc_id_offset);\n        }\n        \n        /**\n \
+    \        * @brief \u9802\u70B9\u6570\u3092\u53D6\u5F97\u3059\u308B\n         *\
+    \ @return int \u9802\u70B9\u6570\n         */\n        inline int order() const\
+    \ { return int(adjacent_in.size()); }\n\n        /**\n         * @brief \u8FBA\
+    \u6570\u3092\u53D6\u5F97\u3059\u308B\n         * @return int \u8FBA\u6570\n  \
+    \       */\n        inline int size() const { return int(arcs.size()) - arc_id_offset;\
     \ }\n\n        /**\n         * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9\
     \ v \u3078\u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B\n         * @param u \u59CB\
     \u70B9\n         * @param v \u7D42\u70B9\n         * @return Arc* \u8FFD\u52A0\
@@ -391,7 +394,7 @@ data:
   - Graph/Digraph/Eulerian_Trail.hpp
   - Graph/Digraph/Path.hpp
   - Graph/Digraph/Strongly_Connected_Components.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Integer/Divisors.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -190,17 +190,19 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Integer/Divisors.hpp\"\
-    \n\n// N \u4EE5\u4E0B\u306E\u7D04\u6570\u3092\u5217\u6319\nvector<ll> Divisors(ll\
-    \ N) {\n    vector<ll> divisors;\n    for (int x = 1; x * x <= N; x++){\n    \
-    \    unless(N % x == 0) { continue; }\n\n        divisors.emplace_back(x);\n \
-    \       if (N / x != x) { divisors.emplace_back(N / x); }\n    }\n\n    sort(all(divisors));\n\
-    \n    return divisors;\n}\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Integer/Divisors.hpp\"\n\n// N \u4EE5\u4E0B\u306E\u7D04\u6570\
+    \u3092\u5217\u6319\nvector<ll> Divisors(ll N) {\n    vector<ll> divisors;\n  \
+    \  for (int x = 1; x * x <= N; x++){\n        unless(N % x == 0) { continue; }\n\
+    \n        divisors.emplace_back(x);\n        if (N / x != x) { divisors.emplace_back(N\
+    \ / x); }\n    }\n\n    sort(all(divisors));\n\n    return divisors;\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\n// N \u4EE5\u4E0B\
     \u306E\u7D04\u6570\u3092\u5217\u6319\nvector<ll> Divisors(ll N) {\n    vector<ll>\
     \ divisors;\n    for (int x = 1; x * x <= N; x++){\n        unless(N % x == 0)\
@@ -219,8 +221,8 @@ data:
   path: Integer/Divisors.hpp
   requiredBy:
   - Modulo/Order.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-13 01:27:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Divisors.hpp

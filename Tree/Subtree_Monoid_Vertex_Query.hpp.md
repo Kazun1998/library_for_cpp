@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Segment_Tree/Segment_Tree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B."
     links: []
@@ -194,29 +194,32 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n\
-    #line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, _offset, root;\n\
-    \    vector<int> parent;\n    vector<vector<int>> children;\n\n    int N_bit;\n\
-    \    bool locked;\n\n    public:\n    Tree(int N, int _offset = 0): N(N), _offset(_offset),\
-    \ N_bit(0) {\n        parent.assign(N + _offset, -1);\n        for (; (1 << N_bit)\
-    \ <= N; N_bit++) {}\n        locked = false;\n    }\n\n    bool is_locked() const\
-    \ { return locked; }\n\n    public:\n    inline void set_root(const int &x) {\n\
-    \        assert (!is_locked());\n        root = x;\n    }\n\n    inline int vector_size()\
-    \ const { return order() + offset(); }\n\n    inline int get_root() const { return\
-    \ root; }\n    inline int get_parent(const int &x) const { return parent[x]; }\n\
-    \    inline vector<int> get_children(const int &x) const { return children[x];\
-    \ }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\
-    \u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int &x, const int\
-    \ &y) {\n        assert (!is_locked());\n        parent[x] = y;\n    }\n\n   \
-    \ // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\
-    \u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const int &y) { set_parent(y,\
-    \ x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal()\
-    \ {\n        assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree\
+    \ {\n    private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
+    \ children;\n\n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N,\
+    \ int _offset = 0): N(N), _offset(_offset), N_bit(0) {\n        parent.assign(N\
+    \ + _offset, -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked\
+    \ = false;\n    }\n\n    bool is_locked() const { return locked; }\n\n    public:\n\
+    \    inline void set_root(const int &x) {\n        assert (!is_locked());\n  \
+    \      root = x;\n    }\n\n    inline int vector_size() const { return order()\
+    \ + offset(); }\n\n    inline int get_root() const { return root; }\n    inline\
+    \ int get_parent(const int &x) const { return parent[x]; }\n    inline vector<int>\
+    \ get_children(const int &x) const { return children[x]; }\n\n    public:\n  \
+    \  // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\
+    \u308B.\n    inline void set_parent(const int &x, const int &y) {\n        assert\
+    \ (!is_locked());\n        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\
+    \u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n\
+    \    inline void set_child(const int &x, const int &y) { set_parent(y, x); }\n\
+    \n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal() {\n     \
+    \   assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
     \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
     \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
@@ -413,8 +416,8 @@ data:
   isVerificationFile: false
   path: Tree/Subtree_Monoid_Vertex_Query.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-13 01:27:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
 documentation_of: Tree/Subtree_Monoid_Vertex_Query.hpp

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
     path: template/enumerable.hpp
     title: enumerable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,32 +191,35 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"template/enumerable.hpp\"\
-    \n\n#line 11 \"template/enumerable.hpp\"\n#include <stdexcept>\n#line 13 \"template/enumerable.hpp\"\
-    \n\nnamespace enumerable {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\
-    \u8981\u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\
-    \u679C\u3092\u65B0\u3057\u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\
-    \n    ///\n    /// Ruby \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`)\
-    \ \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\
-    \u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\
-    \u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\
-    \u304C\u7570\u306A\u308A\u307E\u3059\u3002\n    /// @tparam Container \u30A4\u30C6\
-    \u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g.,\
-    \ std::vector<T>)\u3002\n    /// @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\
-    \u3059\u308B\u95A2\u6570\u306E\u578B\u3002\n    /// @param container \u5BFE\u8C61\
-    \u306E\u30B3\u30F3\u30C6\u30CA\u3002\n    /// @param func \u5404\u8981\u7D20\u306B\
-    \u9069\u7528\u3059\u308B\u95A2\u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\
-    \u30E0\u30C0\u5F0F\u306A\u3069)\u3002\n    /// @return \u95A2\u6570\u306E\u9069\
-    \u7528\u7D50\u679C\u3092\u683C\u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\
-    \n    template <typename Container, typename Func>\n    auto collect(const Container&\
-    \ container, const Func& func) {\n        using ResultType = std::invoke_result_t<Func,\
-    \ typename Container::const_reference>;\n        std::vector<ResultType> result;\n\
-    \        if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"template/enumerable.hpp\"\n\n#line 11 \"template/enumerable.hpp\"\
+    \n#include <stdexcept>\n#line 13 \"template/enumerable.hpp\"\n\nnamespace enumerable\
+    \ {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\
+    \u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\
+    \u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby\
+    \ \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\
+    \u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\
+    \u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector`\
+    \ \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\
+    \u3059\u3002\n    /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\
+    \u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    ///\
+    \ @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\
+    \u578B\u3002\n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\
+    \u3002\n    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\
+    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069\
+    )\u3002\n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\
+    \u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename\
+    \ Container, typename Func>\n    auto collect(const Container& container, const\
+    \ Func& func) {\n        using ResultType = std::invoke_result_t<Func, typename\
+    \ Container::const_reference>;\n        std::vector<ResultType> result;\n    \
+    \    if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
     \        }\n        for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
     \ element));\n        }\n        return result;\n    }\n\n    /// @brief \u30B3\
     \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u5BFE\u3057\u3066\u8FF0\u8A9E\
@@ -466,7 +469,7 @@ data:
   isVerificationFile: true
   path: verify/original/enumerable.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/original/enumerable.test.cpp

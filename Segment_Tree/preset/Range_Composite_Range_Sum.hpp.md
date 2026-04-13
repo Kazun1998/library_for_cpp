@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -213,23 +213,26 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
-    \n\ntemplate<typename M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n\
-    \    int n, depth;\n    const function<M(M, M)> op;\n    const function<M(F, M)>\
-    \ act;\n    const function<F(F, F)> comp;\n    vector<M> data; const M unit;\n\
-    \    vector<F> lazy; const F id;\n\n    public:\n    Lazy_Segment_Tree(int size,\
-    \ const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const\
-    \ function<F(F, F)> comp, const F id):\n        n(), op(op), unit(unit), act(act),\
-    \ comp(comp), id(id), depth(0) {\n            int m = 1;\n            while (size\
-    \ > m) { depth++, m *= 2; }\n            n = m;\n            data.assign(2 * m,\
-    \ unit);\n            lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const\
-    \ vector<M> &vec, const function<M(M, M)> op, const M unit, const function<M(F,\
-    \ M)> act, const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\ntemplate<typename\
+    \ M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n    int n, depth;\n\
+    \    const function<M(M, M)> op;\n    const function<M(F, M)> act;\n    const\
+    \ function<F(F, F)> comp;\n    vector<M> data; const M unit;\n    vector<F> lazy;\
+    \ const F id;\n\n    public:\n    Lazy_Segment_Tree(int size, const function<M(M,\
+    \ M)> op, const M unit, const function<M(F, M)> act, const function<F(F, F)> comp,\
+    \ const F id):\n        n(), op(op), unit(unit), act(act), comp(comp), id(id),\
+    \ depth(0) {\n            int m = 1;\n            while (size > m) { depth++,\
+    \ m *= 2; }\n            n = m;\n            data.assign(2 * m, unit);\n     \
+    \       lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const vector<M>\
+    \ &vec, const function<M(M, M)> op, const M unit, const function<M(F, M)> act,\
+    \ const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
     \ op, unit, act, comp, id){\n            for (int k = 0; k < vec.size(); k++)\
     \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
     \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
@@ -377,7 +380,7 @@ data:
   isVerificationFile: false
   path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp

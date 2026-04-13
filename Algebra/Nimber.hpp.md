@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -189,71 +189,74 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/Nimber.hpp\"\
-    \n\nclass Nimber {\n    public:\n    Nimber(): x(0) {}\n    Nimber(uint64_t x):\
-    \ x(x) {}\n\n    Nimber operator-() const { return Nimber(x); }\n\n    Nimber&\
-    \ operator+=(const Nimber &b) {\n        x ^= b.x;\n        return *this;\n  \
-    \  }\n\n    friend Nimber operator+(const Nimber &x, const Nimber &y) { return\
-    \ Nimber(x) += y; }\n\n    Nimber& operator-=(const Nimber &b) {\n        *this\
-    \ += b;\n        return *this;\n    }\n\n    friend Nimber operator-(const Nimber\
-    \ &x, const Nimber &y) { return Nimber(x) -= y; }\n\n    // \u4E57\u6CD5\n   \
-    \ Nimber& operator*=(const Nimber &b) {\n        if ((x | b.x) < 256) {\n    \
-    \        if (!table_initialized) init_table();\n            x = small_table[x][b.x];\n\
-    \            return *this;\n        }\n        int level = max(calculate_level(x),\
-    \ calculate_level(b.x));\n        x = calculate_mul(x, b.x, level);\n        return\
-    \ *this;\n    }\n\n    friend Nimber operator*(const Nimber &x, const Nimber &y)\
-    \ { return Nimber(x) *= y; }\n\n    friend bool operator==(const Nimber &a, const\
-    \ Nimber &b) { return a.x == b.x; }\n    friend bool operator!=(const Nimber &a,\
-    \ const Nimber &b) { return a.x != b.x; }\n    friend bool operator<(const Nimber\
-    \ &a, const Nimber &b) { return a.x < b.x; }\n\n    Nimber square() const {\n\
-    \        if (x < 256) {\n            if (!table_initialized) init_table();\n \
-    \           return small_table[x][x];\n        }\n        int level = calculate_level(x);\n\
-    \        return Nimber(calculate_square(x, level));\n    }\n\n    // \u5165\u529B\
-    \n    friend istream &operator>>(istream &is, Nimber &a) {\n        is >> a.x;\n\
-    \        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream\
-    \ &os, const Nimber &a) { return os << a.x; }\n\n    Nimber inverse() const;\n\
-    \n    Nimber sqrt() {\n        if (x < 256) {\n            if (!table_initialized)\
-    \ init_table();\n            return Nimber(small_sqrt_table[x]);\n        }\n\n\
-    \        int level = calculate_level(x);\n        return Nimber(calculate_sqrt(x,\
-    \ level));\n    }\n\n    bool is_zero() const { return x == 0; }\n\n    private:\n\
-    \    uint64_t x;\n\n    inline static uint8_t small_table[256][256];\n    inline\
-    \ static bool table_initialized = false;\n    inline static uint8_t small_sqrt_table[256];\n\
-    \n    static void init_table() {\n        if (table_initialized) return;\n   \
-    \     small_table[0][0] = 0; small_table[0][1] = 0;\n        small_table[1][0]\
-    \ = 0; small_table[1][1] = 1;\n        for (int level = 1; level <= 3; ++level)\
-    \ {\n            int half = 1 << (1 << (level - 1));\n            int full = 1\
-    \ << (1 << level);\n            for (int i = 0; i < full; ++i) {\n           \
-    \     for (int j = 0; j < full; ++j) {\n                    if (i < half && j\
-    \ < half) continue;\n                    int x0 = i & (half - 1);\n          \
-    \          int x1 = i >> (1 << (level - 1));\n                    int y0 = j &\
-    \ (half - 1);\n                    int y1 = j >> (1 << (level - 1));\n       \
-    \             int p = small_table[x0][y0];\n                    int m = small_table[x0\
-    \ ^ x1][y0 ^ y1];\n                    int b = small_table[small_table[x1][y1]][half\
-    \ >> 1];\n                    small_table[i][j] = p ^ b ^ ((p ^ m) << (1 << (level\
-    \ - 1)));\n                }\n            }\n        }\n\n        for (int i =\
-    \ 0; i < 256; ++i) {\n            small_sqrt_table[small_table[i][i]] = i;\n \
-    \       }\n\n        table_initialized = true;\n    }\n\n    static uint64_t build_up(const\
-    \ uint64_t upper, const uint64_t lower, int level) {\n        return upper <<\
-    \ (1 << (level - 1)) ^ lower;\n    }\n\n    /// @brief x * y \u3092\u6C42\u3081\
-    \u308B\u305F\u3081\u306E\u30D8\u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x\
-    \ \n    /// @param y \n    /// @param level \n    /// @return \n    static uint64_t\
-    \ calculate_mul(const uint64_t x, const uint64_t y, int level) {\n        if (level\
-    \ <= 3) { \n            if (!table_initialized) init_table();\n            return\
-    \ small_table[x][y];\n        }\n\n        const auto &[x1, x0] = separate(x,\
-    \ level);\n        const auto &[y1, y0] = separate(y, level);\n\n        uint64_t\
-    \ p = calculate_mul(x0, y0, level - 1);\n        uint64_t e = 1ULL << (1 << (level\
-    \ - 1));\n\n        uint64_t m = calculate_mul(x0 ^ x1, y0 ^ y1, level - 1);\n\
-    \        uint64_t a = p ^ m * e;\n        uint64_t b = calculate_mul(calculate_mul(x1,\
-    \ y1, level - 1), e >> 1, level - 1);\n\n        uint64_t res = (p * e) ^ a ^\
-    \ b;\n\n        return res;\n    }\n\n    /// @brief x \u306E\u81EA\u4E57\u3092\
-    \u6C42\u3081\u308B\u30D8\u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x \n  \
-    \  /// @param level \n    /// @return \n    static uint64_t calculate_square(const\
-    \ uint64_t x, int level) {\n        if (level <= 3) {\n            if (!table_initialized)\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Algebra/Nimber.hpp\"\n\nclass Nimber {\n    public:\n  \
+    \  Nimber(): x(0) {}\n    Nimber(uint64_t x): x(x) {}\n\n    Nimber operator-()\
+    \ const { return Nimber(x); }\n\n    Nimber& operator+=(const Nimber &b) {\n \
+    \       x ^= b.x;\n        return *this;\n    }\n\n    friend Nimber operator+(const\
+    \ Nimber &x, const Nimber &y) { return Nimber(x) += y; }\n\n    Nimber& operator-=(const\
+    \ Nimber &b) {\n        *this += b;\n        return *this;\n    }\n\n    friend\
+    \ Nimber operator-(const Nimber &x, const Nimber &y) { return Nimber(x) -= y;\
+    \ }\n\n    // \u4E57\u6CD5\n    Nimber& operator*=(const Nimber &b) {\n      \
+    \  if ((x | b.x) < 256) {\n            if (!table_initialized) init_table();\n\
+    \            x = small_table[x][b.x];\n            return *this;\n        }\n\
+    \        int level = max(calculate_level(x), calculate_level(b.x));\n        x\
+    \ = calculate_mul(x, b.x, level);\n        return *this;\n    }\n\n    friend\
+    \ Nimber operator*(const Nimber &x, const Nimber &y) { return Nimber(x) *= y;\
+    \ }\n\n    friend bool operator==(const Nimber &a, const Nimber &b) { return a.x\
+    \ == b.x; }\n    friend bool operator!=(const Nimber &a, const Nimber &b) { return\
+    \ a.x != b.x; }\n    friend bool operator<(const Nimber &a, const Nimber &b) {\
+    \ return a.x < b.x; }\n\n    Nimber square() const {\n        if (x < 256) {\n\
+    \            if (!table_initialized) init_table();\n            return small_table[x][x];\n\
+    \        }\n        int level = calculate_level(x);\n        return Nimber(calculate_square(x,\
+    \ level));\n    }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, Nimber &a) {\n        is >> a.x;\n        return is;\n    }\n\n    // \u51FA\
+    \u529B\n    friend ostream &operator<<(ostream &os, const Nimber &a) { return\
+    \ os << a.x; }\n\n    Nimber inverse() const;\n\n    Nimber sqrt() {\n       \
+    \ if (x < 256) {\n            if (!table_initialized) init_table();\n        \
+    \    return Nimber(small_sqrt_table[x]);\n        }\n\n        int level = calculate_level(x);\n\
+    \        return Nimber(calculate_sqrt(x, level));\n    }\n\n    bool is_zero()\
+    \ const { return x == 0; }\n\n    private:\n    uint64_t x;\n\n    inline static\
+    \ uint8_t small_table[256][256];\n    inline static bool table_initialized = false;\n\
+    \    inline static uint8_t small_sqrt_table[256];\n\n    static void init_table()\
+    \ {\n        if (table_initialized) return;\n        small_table[0][0] = 0; small_table[0][1]\
+    \ = 0;\n        small_table[1][0] = 0; small_table[1][1] = 1;\n        for (int\
+    \ level = 1; level <= 3; ++level) {\n            int half = 1 << (1 << (level\
+    \ - 1));\n            int full = 1 << (1 << level);\n            for (int i =\
+    \ 0; i < full; ++i) {\n                for (int j = 0; j < full; ++j) {\n    \
+    \                if (i < half && j < half) continue;\n                    int\
+    \ x0 = i & (half - 1);\n                    int x1 = i >> (1 << (level - 1));\n\
+    \                    int y0 = j & (half - 1);\n                    int y1 = j\
+    \ >> (1 << (level - 1));\n                    int p = small_table[x0][y0];\n \
+    \                   int m = small_table[x0 ^ x1][y0 ^ y1];\n                 \
+    \   int b = small_table[small_table[x1][y1]][half >> 1];\n                   \
+    \ small_table[i][j] = p ^ b ^ ((p ^ m) << (1 << (level - 1)));\n             \
+    \   }\n            }\n        }\n\n        for (int i = 0; i < 256; ++i) {\n \
+    \           small_sqrt_table[small_table[i][i]] = i;\n        }\n\n        table_initialized\
+    \ = true;\n    }\n\n    static uint64_t build_up(const uint64_t upper, const uint64_t\
+    \ lower, int level) {\n        return upper << (1 << (level - 1)) ^ lower;\n \
+    \   }\n\n    /// @brief x * y \u3092\u6C42\u3081\u308B\u305F\u3081\u306E\u30D8\
+    \u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x \n    /// @param y \n    ///\
+    \ @param level \n    /// @return \n    static uint64_t calculate_mul(const uint64_t\
+    \ x, const uint64_t y, int level) {\n        if (level <= 3) { \n            if\
+    \ (!table_initialized) init_table();\n            return small_table[x][y];\n\
+    \        }\n\n        const auto &[x1, x0] = separate(x, level);\n        const\
+    \ auto &[y1, y0] = separate(y, level);\n\n        uint64_t p = calculate_mul(x0,\
+    \ y0, level - 1);\n        uint64_t e = 1ULL << (1 << (level - 1));\n\n      \
+    \  uint64_t m = calculate_mul(x0 ^ x1, y0 ^ y1, level - 1);\n        uint64_t\
+    \ a = p ^ m * e;\n        uint64_t b = calculate_mul(calculate_mul(x1, y1, level\
+    \ - 1), e >> 1, level - 1);\n\n        uint64_t res = (p * e) ^ a ^ b;\n\n   \
+    \     return res;\n    }\n\n    /// @brief x \u306E\u81EA\u4E57\u3092\u6C42\u3081\
+    \u308B\u30D8\u30EB\u30D1\u30FC\u95A2\u6570\n    /// @param x \n    /// @param\
+    \ level \n    /// @return \n    static uint64_t calculate_square(const uint64_t\
+    \ x, int level) {\n        if (level <= 3) {\n            if (!table_initialized)\
     \ init_table();\n            return small_table[x][x];\n        }\n\n        const\
     \ auto &[x1, x0] = separate(x, level);\n\n        uint64_t p = calculate_square(x0,\
     \ level - 1);\n        uint64_t b = calculate_square(x1, level - 1);\n       \
@@ -387,7 +390,7 @@ data:
   isVerificationFile: false
   path: Algebra/Nimber.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp

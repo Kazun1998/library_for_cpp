@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Sequence/Longest_Increasing_Subsequence.hpp
     title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,25 +191,28 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Sequence/Longest_Increasing_Subsequence.hpp\"\
-    \n\n#line 4 \"Sequence/Longest_Increasing_Subsequence.hpp\"\n\ntemplate<typename\
-    \ O>\nstruct Longest_Increasing_Subsequence {\n    int length = 0;\n    vector<O>\
-    \ lis;\n    vector<int> index;\n    \n    Longest_Increasing_Subsequence(const\
-    \ vector<O> &data, bool equal = false) {\n        int N = data.size();\n     \
-    \   vector<O> X;\n        vector<int> I(N);\n\n        for (int i = 0; i < N;\
-    \ i++) {\n            auto it = equal ? upper_bound(X.begin(), X.end(), data[i])\
-    \ : lower_bound(X.begin(), X.end(), data[i]);\n            int k = distance(X.begin(),\
-    \ it);\n            if (k == X.size()) { X.emplace_back(data[i]); }\n        \
-    \    else { X[k] = data[i]; }\n\n            I[i] = k;\n        }\n\n        length\
-    \ = X.size();\n        lis.resize(length); index.resize(length);\n\n        for\
-    \ (int i = N - 1, j = length - 1; i >= 0; i--) {\n            unless(I[i] == j)\
-    \ { continue; }\n\n            lis[j] = data[i];\n            index[j] = i;\n\
-    \            j--;\n        }\n    }\n};\n#line 5 \"verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp\"\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Sequence/Longest_Increasing_Subsequence.hpp\"\n\n#line 4\
+    \ \"Sequence/Longest_Increasing_Subsequence.hpp\"\n\ntemplate<typename O>\nstruct\
+    \ Longest_Increasing_Subsequence {\n    int length = 0;\n    vector<O> lis;\n\
+    \    vector<int> index;\n    \n    Longest_Increasing_Subsequence(const vector<O>\
+    \ &data, bool equal = false) {\n        int N = data.size();\n        vector<O>\
+    \ X;\n        vector<int> I(N);\n\n        for (int i = 0; i < N; i++) {\n   \
+    \         auto it = equal ? upper_bound(X.begin(), X.end(), data[i]) : lower_bound(X.begin(),\
+    \ X.end(), data[i]);\n            int k = distance(X.begin(), it);\n         \
+    \   if (k == X.size()) { X.emplace_back(data[i]); }\n            else { X[k] =\
+    \ data[i]; }\n\n            I[i] = k;\n        }\n\n        length = X.size();\n\
+    \        lis.resize(length); index.resize(length);\n\n        for (int i = N -\
+    \ 1, j = length - 1; i >= 0; i--) {\n            unless(I[i] == j) { continue;\
+    \ }\n\n            lis[j] = data[i];\n            index[j] = i;\n            j--;\n\
+    \        }\n    }\n};\n#line 5 \"verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp\"\
     \n\nint main() {\n    int N; cin >> N;\n    vector<int> A(N); cin >> A;\n\n  \
     \  Longest_Increasing_Subsequence<int> B(A, false);\n\n    cout << B.length <<\
     \ endl;\n    cout << B.index << endl;\n}\n"
@@ -230,7 +233,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp

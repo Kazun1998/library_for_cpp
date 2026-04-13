@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/187.test.cpp
     title: verify/yukicoder/187.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Modulo/Garner.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -193,117 +193,119 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Integer/Prime.hpp\"\
-    \n\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
-    \ {\n    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long\
-    \ long get() {\n      if (step) {\n        prime += step;\n        step = 6 -\
-    \ step;\n      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime\
-    \ == 2) { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n\
-    \      return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
-    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
-    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
-    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
-    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
-    \    }\n\n    return true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t\
-    \ n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++, n /=\
-    \ p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long\
-    \ long, long long>> prime_factorization (long long n) {\n    if (n == 0) { return\
-    \ { make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n\
-    \    if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
-    \    }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
-    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
-    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
-    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
-    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
-    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
-    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
-    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
-    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
-    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
-    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
-    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
-    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
-    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
-    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
-    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
-    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
-    \ primes;\n  }\n}\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\
-    \n\nnamespace modulo {\n    class DifferentModulus : public exception {\n    \
-    \    public: // public\u306B\u6307\u5B9A\n        const char* what() const noexcept\
-    \ override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\
-    \u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\
-    \n        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
-    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
-    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
-    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
-    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
-    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
-    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
-    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
-    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
-    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
-    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
-    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
-    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\n\
+    namespace prime {\n  class Pseudo_Prime_Generator {\n    private:\n    long long\
+    \ prime = 1, step = 0;\n\n    public:\n    long long get() {\n      if (step)\
+    \ {\n        prime += step;\n        step = 6 - step;\n      }\n      else if\
+    \ (prime == 1) { prime = 2; }\n      else if (prime == 2) { prime = 3; }\n   \
+    \   else if (prime == 3) { prime = 5, step = 2; }\n\n      return prime;\n   \
+    \ }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if\
+    \ (n <= 3) { return n >= 2; }\n    else if (n == 5) { return true; }\n    else\
+    \ if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    Pseudo_Prime_Generator\
+    \ generator;\n    for (long long p = generator.get(); p * p <= n; p = generator.get())\
+    \ {\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\
+    \n  pair<uint64_t, long long> exponents(uint64_t n, long long p) {\n    long long\
+    \ e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n  }\n\n\
+    \  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>> prime_factorization\
+    \ (long long n) {\n    if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long\
+    \ long, long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
+    \ 1));\n      n = abs(n);\n    }\n\n    Pseudo_Prime_Generator generator;\n  \
+    \  for (long long p =generator.get(); p * p <= n; p = generator.get()) {\n   \
+    \   long long e;\n      tie(e, n) = exponents(n, p); \n      if (e) { factors.emplace_back(make_pair(p,\
+    \ e)); }\n    }\n\n    if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n\
+    \  \n    return factors;\n  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\
+    \u30B9\u30C8\u3092\u4F5C\u6210\u3059\u308B.\n  vector<long long> prime_list(long\
+    \ long n) {\n    if (n == 0 || n == 1) { return {}; }\n    else if (n == 2) {\
+    \ return {2}; }\n\n    if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) /\
+    \ 2;\n\n    // prime_flag[k] := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool>\
+    \ prime_flag(m, true);\n    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E\
+    \ 3 \u306E\u500D\u6570\u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x\
+    \ += 3) { prime_flag[x] = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n\
+    \    for (auto p = generator.get(); p * p <= n; p = generator.get()) {\n     \
+    \ if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue;\
+    \ }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false;\
+    \ }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long k = 0; k\
+    \ < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n\
+    \    }\n\n    return primes;\n  }\n}\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4\
+    \ \"Modulo/Modulo.hpp\"\n\nnamespace modulo {\n    class DifferentModulus : public\
+    \ exception {\n        public: // public\u306B\u6307\u5B9A\n        const char*\
+    \ what() const noexcept override { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\
+    \u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo {\n\
+    \        long long a, n;\n\n        public:\n        // \u521D\u671F\u5316\n \
+    \       Modulo(): a(0), n(1) {}\n        Modulo(long long a, long long n): a((a\
+    \ % n + n) % n), n(n) {}\n\n        // \u30DE\u30A4\u30CA\u30B9\u5143\n      \
+    \  Modulo operator-() const { return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\
+    \n        Modulo& operator+=(const Modulo &y) {\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n    \n            if ((a += y.a) >= n) a -= n;\n    \
+    \        return *this;\n        }\n\n        Modulo& operator+=(const long long\
+    \ &y) { return (*this) += Modulo(y, n); }\n\n        friend Modulo operator+(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) += y ; }\n        friend Modulo\
+    \ operator+(const Modulo &x, const long long &a) { return x + Modulo(a, x.n);\
+    \ }\n        friend Modulo operator+(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) + x; }\n\n        // \u6E1B\u6CD5\n        Modulo& operator-=(const\
     \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
-    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
-    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
-    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
-    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
-    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
-    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
-    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
-    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
-    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
-    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
-    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
-    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
-    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
-    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
-    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
-    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
-    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
-    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
-    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
-    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
-    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
-    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
-    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
-    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
-    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
-    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
-    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
-    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
-    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
-    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
-    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
-    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
-    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
-    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
-    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
-    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
-    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 6 \"Modulo/Garner.hpp\"\n\nnamespace modulo {\n    vector<ll> Garner_Base(const\
-    \ vector<Modulo> &X) {\n        int n = X.size();\n        vector<ll> a(n), m(n);\n\
-    \        for (int i = 0; i < n; ++i) {\n            a[i] = X[i].a, m[i] = X[i].n;\n\
-    \        }\n        vector<ll> s(n);\n\n        for (int i = 0; i < n; ++i) {\n\
-    \            ll m_product = 1;\n            ll left = 0;\n            for (int\
-    \ j = 0; j < i; ++j) {\n                left = safe_mod(left + safe_mod(m_product\
-    \ * s[j], m[i]), m[i]);\n                m_product = safe_mod(m_product * m[j],\
-    \ m[i]);\n            }\n\n            auto [right, _1, _2] = Extended_Euclid<ll>(m_product,\
+    \        if ((a += (n - y.a)) >= n) a -= n;\n            return *this;\n     \
+    \   }\n\n        Modulo& operator-=(const long long &y) { return (*this) -= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator-(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) -= y; }\n        friend Modulo operator-(const Modulo &x, const\
+    \ long long &a) { return x - Modulo(a, x.n); }\n        friend Modulo operator-(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) - x; }\n\n        //\
+    \ \u4E57\u6CD5\n        Modulo& operator*=(const Modulo &y) {\n            if\
+    \ (n != y.n) { throw DifferentModulus(); }\n            (a *= y.a) %= n;\n   \
+    \         return *this;\n        }\n\n        Modulo& operator*=(const long long\
+    \ &y){return (*this) *= Modulo(y, n); }\n\n        friend Modulo operator*(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) *= y; }\n        friend Modulo\
+    \ operator*(const Modulo &x, const long long &a) { return x * Modulo(a,x.n); }\n\
+    \        friend Modulo operator*(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\n        Modulo& operator/=(const\
+    \ Modulo &y){\n            if (n != y.n) { throw DifferentModulus(); }\n     \
+    \       return (*this) *= y.inverse();\n        }\n\n        Modulo& operator/=(const\
+    \ long long &y) {return (*this ) /= Modulo(y, n); }\n\n        friend Modulo operator/(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) /= y; }\n        friend Modulo\
+    \ operator/(const Modulo &x, const long long &a) { return x / Modulo(a, x.n);\
+    \ }\n        friend Modulo operator/(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) / x; }\n\n        // \u9000\u5316\n        Modulo& degenerate(const\
+    \ int m){\n            a %= m; n = m;\n            return *this;\n        }\n\n\
+    \        // \u30E2\u30B8\u30E5\u30E9\u30FC\u9006\u5143\n        bool invertible()\
+    \ const {\n            long long x = a, y = n;\n            while (y) { swap(x\
+    \ = x % y, y); }\n            return x == 1;\n        }\n\n        Modulo inverse()\
+    \ const{\n            long long s = 1, t = 0;\n            long long x = a, y\
+    \ = n;\n            while (y){\n                auto q = x / y;\n            \
+    \    swap(x -= q * y, y);\n                swap(s -= q * t, t);\n            }\n\
+    \n            return Modulo(s, n);\n        }\n\n        // include?\n       \
+    \ bool is_member(ll x) const { return safe_mod(x - a, n) == 0; }\n\n        bool\
+    \ is_zero() const { return is_member(0); }\n\n        // \u6BD4\u8F03\n      \
+    \  friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a;\
+    \ }\n        friend bool operator==(const Modulo &x, const long long &a) { return\
+    \ (x.a - a) % x.n == 0; }\n        friend bool operator==(const long long &a,\
+    \ const Modulo &x) { return (a - x.a) % x.n == 0; }\n\n        friend bool operator!=(const\
+    \ Modulo &x, const Modulo &y) { return x.a != y.a; }\n        friend bool operator!=(const\
+    \ Modulo &x, const long long &a) { return (x.a - a)% x.n != 0; }\n        friend\
+    \ bool operator!=(const long long &a, const Modulo &x) { return (a - x.a)% x.n\
+    \ != 0; }\n\n        // \u5165\u529B\n        friend istream &operator>>(istream\
+    \ &is, Modulo &x) {\n            long long b, m;\n            is >> b >> m;\n\
+    \            x = Modulo(b, m);\n            return (is);\n        }\n\n      \
+    \  // \u51FA\u529B\n        friend ostream &operator<<(ostream &os, const Modulo\
+    \ &x) { return os << x.a << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo\
+    \ pow(Modulo x, long long n) {\n        if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n        auto res = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n    \
+    \        if (n & 1) { res *= x; }\n            x *= x;\n        }\n\n        return\
+    \ res;\n    }\n}\n#line 6 \"Modulo/Garner.hpp\"\n\nnamespace modulo {\n    vector<ll>\
+    \ Garner_Base(const vector<Modulo> &X) {\n        int n = X.size();\n        vector<ll>\
+    \ a(n), m(n);\n        for (int i = 0; i < n; ++i) {\n            a[i] = X[i].a,\
+    \ m[i] = X[i].n;\n        }\n        vector<ll> s(n);\n\n        for (int i =\
+    \ 0; i < n; ++i) {\n            ll m_product = 1;\n            ll left = 0;\n\
+    \            for (int j = 0; j < i; ++j) {\n                left = safe_mod(left\
+    \ + safe_mod(m_product * s[j], m[i]), m[i]);\n                m_product = safe_mod(m_product\
+    \ * m[j], m[i]);\n            }\n\n            auto [right, _1, _2] = Extended_Euclid<ll>(m_product,\
     \ m[i]);\n            s[i] = safe_mod((a[i] - left) * right, m[i]);\n        }\n\
     \n        return s;\n    }\n\n    optional<vector<Modulo>> Preprocess_Garner(vector<Modulo>\
     \ X) {\n        int n = X.size();\n        map<ll, pair<int, int>> champions;\n\
@@ -366,8 +368,8 @@ data:
   isVerificationFile: false
   path: Modulo/Garner.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-13 01:27:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/187.test.cpp
 documentation_of: Modulo/Garner.hpp

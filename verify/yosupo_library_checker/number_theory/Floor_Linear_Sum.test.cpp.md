@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -192,27 +192,30 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Math/Floor_Linear_Sum.hpp\"\
-    \n\ntemplate<typename T>\nT Floor_Linear_Sum(T a, T b, T m, T n) {\n    T total\
-    \ = 0;\n    T x, y;\n    while (true) {\n        total += (n - 1) * n / 2 *  div_floor(a,\
-    \ m);\n        a = safe_mod(a, m);\n\n        total += n * div_floor(b, m);\n\
-    \        b = safe_mod(b, m);\n\n        y = div_floor(a * n + b, m);\n       \
-    \ x = b - y * m;\n\n        if (y == 0) { return total; }\n\n        total +=\
-    \ (n + div_floor(x, a)) * y;\n        tie(a, b, m, n) = make_tuple(m, safe_mod(x,\
-    \ a), a, y);\n    }\n}\n\ntemplate<typename T>\nT Floor_Linear_Sum(T a, T b, T\
-    \ m, T l, T r) {\n    return Floor_Linear_Sum(a, a * l + b, m, r - l + 1);\n}\n\
-    \ntemplate<typename T>\nT Min_of_Mod_of_Linear(T a, T b, T m, T n) {\n    T l\
-    \ = 0, r = m;\n    T target = Floor_Linear_Sum(a, b, m, n);\n    while (r - l\
-    \ > 1) {\n        T x = l + (r - l) / 2;\n        if (target == Floor_Linear_Sum(a,\
-    \ b - x, m, n)) {\n            l = x;\n        } else {\n            r = x;\n\
-    \        }\n    }\n\n    return l;\n}\n#line 4 \"verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp\"\
-    \n\nint main(){\n  int T; cin >> T;\n  for (int t = 1; t <= T; t++) {\n    ll\
-    \ N, M, A, B; scanf(\"%lld%lld%lld%lld\", &N, &M, &A, &B);\n    cout << Floor_Linear_Sum(A,\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Math/Floor_Linear_Sum.hpp\"\n\ntemplate<typename T>\nT Floor_Linear_Sum(T\
+    \ a, T b, T m, T n) {\n    T total = 0;\n    T x, y;\n    while (true) {\n   \
+    \     total += (n - 1) * n / 2 *  div_floor(a, m);\n        a = safe_mod(a, m);\n\
+    \n        total += n * div_floor(b, m);\n        b = safe_mod(b, m);\n\n     \
+    \   y = div_floor(a * n + b, m);\n        x = b - y * m;\n\n        if (y == 0)\
+    \ { return total; }\n\n        total += (n + div_floor(x, a)) * y;\n        tie(a,\
+    \ b, m, n) = make_tuple(m, safe_mod(x, a), a, y);\n    }\n}\n\ntemplate<typename\
+    \ T>\nT Floor_Linear_Sum(T a, T b, T m, T l, T r) {\n    return Floor_Linear_Sum(a,\
+    \ a * l + b, m, r - l + 1);\n}\n\ntemplate<typename T>\nT Min_of_Mod_of_Linear(T\
+    \ a, T b, T m, T n) {\n    T l = 0, r = m;\n    T target = Floor_Linear_Sum(a,\
+    \ b, m, n);\n    while (r - l > 1) {\n        T x = l + (r - l) / 2;\n       \
+    \ if (target == Floor_Linear_Sum(a, b - x, m, n)) {\n            l = x;\n    \
+    \    } else {\n            r = x;\n        }\n    }\n\n    return l;\n}\n#line\
+    \ 4 \"verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp\"\n\
+    \nint main(){\n  int T; cin >> T;\n  for (int t = 1; t <= T; t++) {\n    ll N,\
+    \ M, A, B; scanf(\"%lld%lld%lld%lld\", &N, &M, &A, &B);\n    cout << Floor_Linear_Sum(A,\
     \ B, M, N) << \"\\n\";\n  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\
     \n\n#include\"../../../Math/Floor_Linear_Sum.hpp\"\n\nint main(){\n  int T; cin\
@@ -231,7 +234,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -197,23 +197,26 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"String/Concat_with_Compression.hpp\"\
-    \n\ntemplate<totally_ordered T>\npair<vector<int>, int> Concat_with_Compression(const\
-    \ vector<vector<T>> &sequences) {\n    vector<T> coords;\n    size_t total_length\
-    \ = 0;\n    for (const vector<T> &sequence: sequences) {\n        total_length\
-    \ += sequence.size();\n\n        for (const auto &x: sequence) coords.emplace_back(x);\n\
-    \    }\n\n    sort(coords.begin(), coords.end());\n    coords.erase(unique(coords.begin(),\
-    \ coords.end()), coords.end());\n\n    vector<int> converted;\n    converted.reserve(total_length\
-    \ + sequences.size());\n    int sentinel = coords.size();\n\n    for (const vector<T>\
-    \ &sequence: sequences) {\n        for (const auto &x: sequence) {\n         \
-    \   int y = lower_bound(coords.begin(), coords.end(), x) - coords.begin();\n \
-    \           converted.emplace_back(y);\n        }\n\n        converted.push_back(sentinel++);\n\
-    \    }\n\n    return { converted, coords.size() };\n\n}\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"String/Concat_with_Compression.hpp\"\n\ntemplate<totally_ordered\
+    \ T>\npair<vector<int>, int> Concat_with_Compression(const vector<vector<T>> &sequences)\
+    \ {\n    vector<T> coords;\n    size_t total_length = 0;\n    for (const vector<T>\
+    \ &sequence: sequences) {\n        total_length += sequence.size();\n\n      \
+    \  for (const auto &x: sequence) coords.emplace_back(x);\n    }\n\n    sort(coords.begin(),\
+    \ coords.end());\n    coords.erase(unique(coords.begin(), coords.end()), coords.end());\n\
+    \n    vector<int> converted;\n    converted.reserve(total_length + sequences.size());\n\
+    \    int sentinel = coords.size();\n\n    for (const vector<T> &sequence: sequences)\
+    \ {\n        for (const auto &x: sequence) {\n            int y = lower_bound(coords.begin(),\
+    \ coords.end(), x) - coords.begin();\n            converted.emplace_back(y);\n\
+    \        }\n\n        converted.push_back(sentinel++);\n    }\n\n    return {\
+    \ converted, coords.size() };\n\n}\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n\ntemplate<totally_ordered\
     \ T>\npair<vector<int>, int> Concat_with_Compression(const vector<vector<T>> &sequences)\
     \ {\n    vector<T> coords;\n    size_t total_length = 0;\n    for (const vector<T>\
@@ -239,7 +242,7 @@ data:
   requiredBy:
   - String/Number_of_Substrings.hpp
   - String/Longest_Common_Substring.hpp
-  timestamp: '2026-04-07 01:00:02+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp

@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Functional_Graph/Functional_Graph.hpp
     title: Functional Graph
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,33 +191,36 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Functional_Graph/Functional_Graph.hpp\"\
-    \n\nclass Functional_Graph {\n    private:\n    vector<int> f;\n    vector<vector<int>>\
-    \ f_inv;\n    int N;\n\n    vector<vector<int>> cycles;\n    vector<int> cycle_ids,\
-    \ cycle_vertex_ids;\n\n    vector<int> tree_ids, tree_vertex_ids, tree_depth;\n\
-    \    vector<vector<int>> tree_vertices;\n    vector<vector<vector<int>>> tree_doubling;\n\
-    \n    public:\n    Functional_Graph(const vector<int> &f): f(f), N(f.size()) {\n\
-    \        f_inv.resize(N);\n        for (int x = 0; x < N; x++) { f_inv[f[x]].emplace_back(x);\
-    \ }\n        build_up();\n    }\n\n    private:\n    void build_up() {\n     \
-    \   build_cycles();\n        build_branches();\n    }\n\n    // \u30B5\u30A4\u30AF\
-    \u30EB\u691C\u51FA\u30D1\u30FC\u30C8\n    void build_cycles() {\n        vector<int>\
-    \ indegree(N);\n        stack<int> st;\n        for (int x = 0; x < N; x++) {\n\
-    \            indegree[x] = f_inv[x].size();\n            if (indegree[x] == 0)\
-    \ { st.push(x); }\n        }\n\n        vector<bool> cycle_flag(N, true);\n\n\
-    \        while (!st.empty()) {\n            int x = st.top();\n            st.pop();\n\
-    \n            cycle_flag[x] = false;\n            indegree[f[x]]--;\n        \
-    \    if (indegree[f[x]] == 0) { st.push(f[x]); }\n        }\n\n        cycles.clear();\n\
-    \        cycle_ids.assign(N, -1);\n        cycle_vertex_ids.assign(N, -1);\n\n\
-    \        for (int x = 0; x < N; x++) {\n            if (!cycle_flag[x]) { continue;\
-    \ }\n\n            int cycle_id = cycles.size();\n\n            vector<int> cycle{x};\n\
-    \            cycle_flag[x] = false;\n            int y = f[x];\n            while\
-    \ (y != x) {\n                cycle.emplace_back(y);\n                cycle_flag[y]\
-    \ = false;\n                y = f[y];\n            }\n\n            cycles.emplace_back(cycle);\n\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Functional_Graph/Functional_Graph.hpp\"\n\nclass Functional_Graph\
+    \ {\n    private:\n    vector<int> f;\n    vector<vector<int>> f_inv;\n    int\
+    \ N;\n\n    vector<vector<int>> cycles;\n    vector<int> cycle_ids, cycle_vertex_ids;\n\
+    \n    vector<int> tree_ids, tree_vertex_ids, tree_depth;\n    vector<vector<int>>\
+    \ tree_vertices;\n    vector<vector<vector<int>>> tree_doubling;\n\n    public:\n\
+    \    Functional_Graph(const vector<int> &f): f(f), N(f.size()) {\n        f_inv.resize(N);\n\
+    \        for (int x = 0; x < N; x++) { f_inv[f[x]].emplace_back(x); }\n      \
+    \  build_up();\n    }\n\n    private:\n    void build_up() {\n        build_cycles();\n\
+    \        build_branches();\n    }\n\n    // \u30B5\u30A4\u30AF\u30EB\u691C\u51FA\
+    \u30D1\u30FC\u30C8\n    void build_cycles() {\n        vector<int> indegree(N);\n\
+    \        stack<int> st;\n        for (int x = 0; x < N; x++) {\n            indegree[x]\
+    \ = f_inv[x].size();\n            if (indegree[x] == 0) { st.push(x); }\n    \
+    \    }\n\n        vector<bool> cycle_flag(N, true);\n\n        while (!st.empty())\
+    \ {\n            int x = st.top();\n            st.pop();\n\n            cycle_flag[x]\
+    \ = false;\n            indegree[f[x]]--;\n            if (indegree[f[x]] == 0)\
+    \ { st.push(f[x]); }\n        }\n\n        cycles.clear();\n        cycle_ids.assign(N,\
+    \ -1);\n        cycle_vertex_ids.assign(N, -1);\n\n        for (int x = 0; x <\
+    \ N; x++) {\n            if (!cycle_flag[x]) { continue; }\n\n            int\
+    \ cycle_id = cycles.size();\n\n            vector<int> cycle{x};\n           \
+    \ cycle_flag[x] = false;\n            int y = f[x];\n            while (y != x)\
+    \ {\n                cycle.emplace_back(y);\n                cycle_flag[y] = false;\n\
+    \                y = f[y];\n            }\n\n            cycles.emplace_back(cycle);\n\
     \            for (int j = 0; j < cycle.size(); j++) {\n                int y =\
     \ cycle[j];\n                cycle_ids[y] = cycle_id;\n                cycle_vertex_ids[y]\
     \ = j;\n            }\n        }\n    }\n\n    void build_branches() {\n     \
@@ -297,7 +300,7 @@ data:
   isVerificationFile: true
   path: verify/original/Functional_Graph.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/original/Functional_Graph.test.cpp

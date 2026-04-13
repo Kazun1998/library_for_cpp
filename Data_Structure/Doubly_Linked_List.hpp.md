@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -184,40 +184,42 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Data_Structure/Doubly_Linked_List.hpp\"\
-    \n\nclass Doubly_Linked_List {\n    private:\n    vector<int> front, back;\n\n\
-    \    public:\n    Doubly_Linked_List(int N): front(N, -1), back(N, -1) {}\n\n\
-    \    // x \u306E\u524D\u306F\u5B58\u5728\u3059\u308B\u304B ?\n    inline bool\
-    \ has_front(int x) const { return front[x] != -1; }\n\n    // x \u306E\u5F8C\u306F\
-    \u5B58\u5728\u3059\u308B\u304B ?\n    inline bool has_back(int x) const { return\
-    \ back[x] != -1; }\n\n    // x \u306E\u76F4\u524D\u306E\u9805 (\u5B58\u5728\u3057\
-    \u306A\u3044\u5834\u5408\u306F first \u306E\u5024\u304C\u8FD4\u3063\u3066\u304F\
-    \u308B)\n    inline int previous(int x, int first = -1) const { return has_front(x)\
-    \ ? front[x] : first; }\n\n    // x \u306E\u76F4\u5F8C\u306E\u9805 (\u5B58\u5728\
-    \u3057\u306A\u3044\u5834\u5408\u306F last \u306E\u5024\u304C\u8FD4\u3063\u3066\
-    \u304F\u308B)\n    inline int next(int x, int last = -1) const {  return has_back(x)\
-    \ ? back[x] : last; }\n\n    // x \u304B\u3089\u524D\u306B\u4F38\u3073\u308B\u30EA\
-    \u30F3\u30AF\u3092\u524A\u9664\u3059\u308B.\n    void disconnect_front(int x)\
-    \ {\n        unless(has_front(x)) { return; }\n\n        int y = front[x];\n \
-    \       front[x] = -1;\n        back[y] = -1;\n    }\n\n    // x \u304B\u3089\u5F8C\
-    \u308D\u306B\u4F38\u3073\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\u3059\u308B\
-    .\n    void disconnect_back(int x) {\n        unless(has_back(x)) { return; }\n\
-    \n        int y = back[x];\n        back[x] = -1;\n        front[y] = -1;\n  \
-    \  }\n\n    // x \u306B\u63A5\u7D9A\u3059\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\
-    \u3057, x \u306E\u524D\u5F8C\u304C\u5B58\u5728\u3059\u308B\u306A\u3089\u3070,\
-    \ \u305D\u308C\u3089\u3092\u7E4B\u3050.\n    void extract(int x) {\n        int\
-    \ a = front[x], b = back[x];\n        disconnect_front(x);\n        disconnect_back(x);\n\
-    \n        if (a >= 0 && b >= 0) { connect(a, b); }\n    }\n\n    // x \u304B\u3089\
-    \ y \u3078\u306E\u30EA\u30F3\u30AF\u3092\u751F\u6210\u3059\u308B (\u3059\u3067\
-    \u306B\u3042\u308B x \u304B\u3089\u306E\u30EA\u30F3\u30AF\u3068 y \u3078\u306E\
-    \u30EA\u30F3\u30AF\u306F\u524A\u9664\u3055\u308C\u308B).\n    void connect(int\
-    \ x, int y) {\n        disconnect_back(x);\n        disconnect_front(y);\n\n \
-    \       back[x] = y;\n        front[y] = x;\n    }\n\n    // x \u306E\u76F4\u524D\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Data_Structure/Doubly_Linked_List.hpp\"\n\nclass Doubly_Linked_List\
+    \ {\n    private:\n    vector<int> front, back;\n\n    public:\n    Doubly_Linked_List(int\
+    \ N): front(N, -1), back(N, -1) {}\n\n    // x \u306E\u524D\u306F\u5B58\u5728\u3059\
+    \u308B\u304B ?\n    inline bool has_front(int x) const { return front[x] != -1;\
+    \ }\n\n    // x \u306E\u5F8C\u306F\u5B58\u5728\u3059\u308B\u304B ?\n    inline\
+    \ bool has_back(int x) const { return back[x] != -1; }\n\n    // x \u306E\u76F4\
+    \u524D\u306E\u9805 (\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F first \u306E\
+    \u5024\u304C\u8FD4\u3063\u3066\u304F\u308B)\n    inline int previous(int x, int\
+    \ first = -1) const { return has_front(x) ? front[x] : first; }\n\n    // x \u306E\
+    \u76F4\u5F8C\u306E\u9805 (\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F last\
+    \ \u306E\u5024\u304C\u8FD4\u3063\u3066\u304F\u308B)\n    inline int next(int x,\
+    \ int last = -1) const {  return has_back(x) ? back[x] : last; }\n\n    // x \u304B\
+    \u3089\u524D\u306B\u4F38\u3073\u308B\u30EA\u30F3\u30AF\u3092\u524A\u9664\u3059\
+    \u308B.\n    void disconnect_front(int x) {\n        unless(has_front(x)) { return;\
+    \ }\n\n        int y = front[x];\n        front[x] = -1;\n        back[y] = -1;\n\
+    \    }\n\n    // x \u304B\u3089\u5F8C\u308D\u306B\u4F38\u3073\u308B\u30EA\u30F3\
+    \u30AF\u3092\u524A\u9664\u3059\u308B.\n    void disconnect_back(int x) {\n   \
+    \     unless(has_back(x)) { return; }\n\n        int y = back[x];\n        back[x]\
+    \ = -1;\n        front[y] = -1;\n    }\n\n    // x \u306B\u63A5\u7D9A\u3059\u308B\
+    \u30EA\u30F3\u30AF\u3092\u524A\u9664\u3057, x \u306E\u524D\u5F8C\u304C\u5B58\u5728\
+    \u3059\u308B\u306A\u3089\u3070, \u305D\u308C\u3089\u3092\u7E4B\u3050.\n    void\
+    \ extract(int x) {\n        int a = front[x], b = back[x];\n        disconnect_front(x);\n\
+    \        disconnect_back(x);\n\n        if (a >= 0 && b >= 0) { connect(a, b);\
+    \ }\n    }\n\n    // x \u304B\u3089 y \u3078\u306E\u30EA\u30F3\u30AF\u3092\u751F\
+    \u6210\u3059\u308B (\u3059\u3067\u306B\u3042\u308B x \u304B\u3089\u306E\u30EA\u30F3\
+    \u30AF\u3068 y \u3078\u306E\u30EA\u30F3\u30AF\u306F\u524A\u9664\u3055\u308C\u308B\
+    ).\n    void connect(int x, int y) {\n        disconnect_back(x);\n        disconnect_front(y);\n\
+    \n        back[x] = y;\n        front[y] = x;\n    }\n\n    // x \u306E\u76F4\u524D\
     \u306B y \u3092\u633F\u5165\u3059\u308B.\n    void insert_front(int x, int y)\
     \ {\n        int z = front[x];\n\n        connect(y, x);\n        unless(z ==\
     \ -1) { connect(z, y); }\n    }\n\n    // x \u306E\u76F4\u5F8C\u306B y \u3092\u633F\
@@ -285,7 +287,7 @@ data:
   isVerificationFile: false
   path: Data_Structure/Doubly_Linked_List.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Data_Structure/Doubly_Linked_List.hpp

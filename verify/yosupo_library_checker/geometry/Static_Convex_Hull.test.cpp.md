@@ -16,25 +16,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -203,20 +203,22 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Geometry/utility/Convex_Hull.hpp\"\
-    \n\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\n\n#line 2 \"Geometry/object/Point.hpp\"\
-    \n\n#line 2 \"Geometry/base.hpp\"\n\n#line 4 \"Geometry/base.hpp\"\n\nnamespace\
-    \ geometry {\n    using Real = double long;\n    const Real epsilon = 1e-9;\n\
-    \    const Real pi = acos(static_cast<Real>(-1));\n\n    enum class Inclusion\
-    \ { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation { PARALLEL\
-    \ = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real &r) { return\
-    \ r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const Real\
-    \ &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Geometry/utility/Convex_Hull.hpp\"\n\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\
+    \n\n#line 2 \"Geometry/object/Point.hpp\"\n\n#line 2 \"Geometry/base.hpp\"\n\n\
+    #line 4 \"Geometry/base.hpp\"\n\nnamespace geometry {\n    using Real = double\
+    \ long;\n    const Real epsilon = 1e-9;\n    const Real pi = acos(static_cast<Real>(-1));\n\
+    \n    enum class Inclusion { OUT = -1, ON = 0, IN = 1 };\n    enum class Direction_Relation\
+    \ { PARALLEL = 1, ORTHOGONAL = -1, CROSS = 0}; \n\n    inline int sign(const Real\
+    \ &r) { return r <= -epsilon ? -1 : r >= epsilon ? 1: 0; }\n    inline int equal(const\
+    \ Real &a, const Real &b) { return sign(a - b) == 0; }\n    inline int compare(const\
     \ Real &a, const Real &b) { return sign(b - a); }\n\n    inline int sign(const\
     \ ll &r) { return r < 0 ? -1 : r > 0 ? 1 : 0; }\n    inline int equal(const ll\
     \ &a, const ll &b) { return sign(a - b) == 0; }\n    inline int compare(const\
@@ -330,7 +332,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp

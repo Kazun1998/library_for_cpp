@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/6A.test.cpp
     title: verify/aizu_online_judge/grl/6A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1984.test.cpp
     title: verify/yukicoder/1984.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Max_Flow/Max_Flow.hpp\"\n\n#line 2 \"template/template.hpp\"\
@@ -193,20 +193,22 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Max_Flow/Max_Flow.hpp\"\
-    \n\nnamespace max_flow {\n    template<typename Cap>\n    struct Arc {\n     \
-    \   int id, source, target;\n        Cap cap, flow;\n        bool direction;\n\
-    \        Arc* rev;\n\n        Arc(int id, int source, int target, Cap cap, Cap\
-    \ flow, bool direction):\n            id(id), source(source), target(target),\
-    \ cap(cap), flow(flow), direction(direction), rev(nullptr) {}\n\n        inline\
-    \ bool is_flowable() const { return flow < cap; }\n        inline Cap remain()\
-    \ const { return cap - flow; }\n\n        void push(Cap d) {\n            flow\
-    \ += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<typename\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Max_Flow/Max_Flow.hpp\"\n\nnamespace max_flow {\n    template<typename\
+    \ Cap>\n    struct Arc {\n        int id, source, target;\n        Cap cap, flow;\n\
+    \        bool direction;\n        Arc* rev;\n\n        Arc(int id, int source,\
+    \ int target, Cap cap, Cap flow, bool direction):\n            id(id), source(source),\
+    \ target(target), cap(cap), flow(flow), direction(direction), rev(nullptr) {}\n\
+    \n        inline bool is_flowable() const { return flow < cap; }\n        inline\
+    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
+    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<typename\
     \ Cap>\n    struct Max_Flow {\n        private:\n        using V = int;\n    \
     \    vector<vector<Arc<Cap>*>> adj_out;\n        vector<Arc<Cap>*> arcs;\n   \
     \     vector<int> level, iter;\n\n        bool bfs(const V s, const V t) {\n \
@@ -335,8 +337,8 @@ data:
   path: Max_Flow/Max_Flow.hpp
   requiredBy:
   - Max_Flow/Project_Selection_Problem.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-13 01:27:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yukicoder/1984.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp

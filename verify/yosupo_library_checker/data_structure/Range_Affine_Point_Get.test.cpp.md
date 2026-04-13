@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/Dual_Segment_Tree.hpp
     title: "\u53CC\u5BFE Segment Tree"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -195,57 +195,59 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Algebra/modint.hpp\"\
-    \n\ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
-    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
-    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
-    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
-    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
-    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
-    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
-    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
-    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
-    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
-    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
-    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
-    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
-    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
-    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
-    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
-    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Dual_Segment_Tree.hpp\"\
-    \n\n#line 4 \"Segment_Tree/Dual_Segment_Tree.hpp\"\n\ntemplate <typename F>\n\
-    class Dual_Segment_Tree {\n    private:\n    function<F(F, F)> comp;\n    F id;\n\
-    \    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int m) {\n   \
-    \     if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] = comp(lazy[m],\
-    \ lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m], lazy[(m <<\
-    \ 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n\
+    \    public:\n    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n\
+    \    static constexpr int mod() { return _mod; }\n\n    static modint raw(int\
+    \ v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\n    //\
+    \ \u521D\u671F\u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t\
+    \ a) {\n        int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod();\
+    \ }\n        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint\
+    \ operator-() const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint&\
+    \ operator+=(const modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n\
+    \        return *this;\n    }\n\n    friend modint operator+(const modint &x,\
+    \ const modint &y) { return modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint&\
+    \ operator-=(const modint &b){\n        if ((x += mod() - b.x) >= mod()) x -=\
+    \ mod();\n        return *this;\n    }\n\n    friend modint operator-(const modint\
+    \ &x, const modint &y) { return modint(x) -= y; }\n\n    // \u4E57\u6CD5\n   \
+    \ modint& operator*=(const modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend modint operator*(const modint &x, const modint\
+    \ &y) { return modint(x) *= y; }\n    friend modint operator*(const int &x, const\
+    \ modint &y) { return modint(x) *= y; }\n    friend modint operator*(const ll\
+    \ &x, const modint &y) { return modint(x) *= y; }\n\n    // \u9664\u6CD5\n   \
+    \ modint& operator/=(const modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend modint operator/(const modint &x, const modint &y) { return modint(x)\
+    \ /= y; }\n\n    modint inverse() const {\n        int64_t s = 1, t = 0;\n   \
+    \     int64_t a = x, b = mod();\n\n        while (b > 0) {\n            int64_t\
+    \ q = a / b;\n\n            a -= q * b; swap(a, b);\n            s -= q * t; swap(s,\
+    \ t);\n        }\n\n        assert (a == 1);\n\n        return modint(s);\n  \
+    \  }\n\n    // \u6BD4\u8F03\n    friend bool operator==(const modint &a, const\
+    \ modint &b) { return (a.x == b.x); }\n    friend bool operator==(const modint\
+    \ &a, const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ modint &a, const modint &b) { return (a.x != b.x); }\n\n    // \u5165\u529B\n\
+    \    friend istream &operator>>(istream &is, modint &a) {\n        int64_t x;\n\
+    \        is >> x;\n        a.x = safe_mod(x, mod());\n        return is;\n   \
+    \ }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
+    \ modint &a) { return os << a.x; }\n\n    bool is_zero() const { return x == 0;\
+    \ }\n    bool is_member(ll a) const { return x == (a % mod() + mod()) % mod();\
+    \ }\n};\n\ntemplate<typename T>\nstruct is_modint : std::false_type {};\n\ntemplate<int\
+    \ M>\nstruct is_modint<modint<M>> : std::true_type {};\n\ntemplate<typename Mint>\n\
+    requires is_modint<Mint>::value\nMint pow(Mint x, long long n) {\n    if (n <\
+    \ 0) { return pow(x, -n).inverse(); }\n\n    Mint res(1);\n    for (; n; n >>=\
+    \ 1) {\n        if (n & 1) { res *= x; }\n        x *= x;\n    }\n\n    return\
+    \ res;\n}\n#line 2 \"Segment_Tree/Dual_Segment_Tree.hpp\"\n\n#line 4 \"Segment_Tree/Dual_Segment_Tree.hpp\"\
+    \n\ntemplate <typename F>\nclass Dual_Segment_Tree {\n    private:\n    function<F(F,\
+    \ F)> comp;\n    F id;\n    int N, size;\n    vector<F> lazy;\n\n    void propagate_at(int\
+    \ m) {\n        if (lazy[m] == id) { return; }\n\n        lazy[(m << 1) | 0] =\
+    \ comp(lazy[m], lazy[(m << 1) | 0]);\n        lazy[(m << 1) | 1] = comp(lazy[m],\
+    \ lazy[(m << 1) | 1]);\n        lazy[m] = id;\n    }\n\n    inline void propagate_above(int\
     \ m) {\n        for (int h = bit_length(m) - 1; h > 0; --h) {\n            propagate_at(m\
     \ >> h);\n        }\n    }\n\n    public:\n    Dual_Segment_Tree(int N, std::function<F(F,\
     \ F)> comp, const F& id): N(N), comp(comp), id(id) {\n        int d = max(1, (int)bit_length(N\
@@ -308,7 +310,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp

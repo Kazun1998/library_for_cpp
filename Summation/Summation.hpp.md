@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -190,63 +190,65 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Summation/Summation.hpp\"\
-    \n\nnamespace summation {\n    /**\n     * @brief \u7B49\u5DEE\u6570\u5217\u306E\
-    \u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r} (a * k +\
-    \ b)\n     * \n     * @tparam T \u6574\u6570\u578B\n     * @param a \u4FC2\u6570\
-    \ a\n     * @param b \u5B9A\u6570 b\n     * @param l \u4E0B\u9650\n     * @param\
-    \ r \u4E0A\u9650\n     * @return T \u7DCF\u548C\n     */\n    template<typename\
-    \ T>\n    T linear(T a, T b, T l, T r) {\n        if (l > r) return 0;\n\n   \
-    \     T num_terms = r - l + 1;\n        T sum_k = num_terms * (l + r) / 2;\n \
-    \       T sum_b = num_terms * b;\n        return a * sum_k + sum_b;\n    }\n\n\
-    \    /**\n     * @brief ReLU(\u4E00\u6B21\u95A2\u6570) \u306E\u548C\u3092\u6C42\
-    \u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r} max(0, a * k + b)\n     * \n\
-    \     * @tparam T \u6574\u6570\u578B\n     * @param a \u4FC2\u6570 a\n     * @param\
-    \ b \u5B9A\u6570 b\n     * @param l \u4E0B\u9650\n     * @param r \u4E0A\u9650\
-    \n     * @return T \u7DCF\u548C\n     */\n    template<typename T>\n    T relu_linear(T\
-    \ a, T b, T l, T r) {\n        if (a == 0) { return (r - l + 1) * max<T>(0, b);\
-    \ }\n        if (a < 0) { return relu_linear(-a, a * (r + l) + b, l, r); }\n\n\
-    \        // \u3053\u3053\u306B\u5230\u9054\u3057\u305F\u6BB5\u968E\u3067 a > 0\
-    \ \u304C\u4FDD\u8A3C\u3055\u308C\u308B\n\n        if (a * r + b <= 0) return 0;\n\
-    \n        T t = max<T>(l, div_ceil(-b, a));\n\n        return linear(a, b, t,\
-    \ r);\n    }\n\n    /**\n     * @brief 2\u3064\u306E\u4E00\u6B21\u95A2\u6570\u306E\
-    \u6700\u5927\u5024\u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n     *\
-    \ sum_{k=l}^{r} max(a * k + b, c * k + d)\n     * \n     * @tparam T \u6574\u6570\
-    \u578B\n     * @param a \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570\
-    \ a\n     * @param b \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 b\n\
-    \     * @param c \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570 c\n \
-    \    * @param d \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 d\n  \
-    \   * @param l \u4E0B\u9650\n     * @param r \u4E0A\u9650\n     * @return T \u7DCF\
-    \u548C\n     */\n    template<typename T>\n    T max_linear(T a, T b, T c, T d,\
-    \ T l, T r) {\n        return relu_linear(a - c, b - d, l, r) + linear(c, d, l,\
-    \ r);\n    }\n\n    /**\n     * @brief \u4E00\u6B21\u95A2\u6570\u3068\u5B9A\u6570\
-    \u306E\u6700\u5927\u5024\u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n\
-    \     * sum_{k=l}^{r} max(a * k + b, d)\n     * \n     * @tparam T \u6574\u6570\
-    \u578B\n     * @param a \u4FC2\u6570 a\n     * @param b \u5B9A\u6570 b\n     *\
-    \ @param d \u5B9A\u6570 d\n     * @param l \u4E0B\u9650\n     * @param r \u4E0A\
-    \u9650\n     * @return T \u7DCF\u548C\n     */\n    template<typename T>\n   \
-    \ T max_linear(T a, T b, T d, T l, T r) { return max_linear(a, b, 0, d, l, r);\
-    \ }\n\n    /**\n     * @brief 2\u3064\u306E\u4E00\u6B21\u95A2\u6570\u306E\u6700\
-    \u5C0F\u5024\u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r}\
-    \ min(a * k + b, c * k + d)\n     * \n     * @tparam T \u6574\u6570\u578B\n  \
-    \   * @param a \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570 a\n   \
-    \  * @param b \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 b\n    \
-    \ * @param c \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570 c\n     *\
-    \ @param d \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 d\n     * @param\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Summation/Summation.hpp\"\n\nnamespace summation {\n   \
+    \ /**\n     * @brief \u7B49\u5DEE\u6570\u5217\u306E\u548C\u3092\u6C42\u3081\u307E\
+    \u3059.\n     * \n     * sum_{k=l}^{r} (a * k + b)\n     * \n     * @tparam T\
+    \ \u6574\u6570\u578B\n     * @param a \u4FC2\u6570 a\n     * @param b \u5B9A\u6570\
+    \ b\n     * @param l \u4E0B\u9650\n     * @param r \u4E0A\u9650\n     * @return\
+    \ T \u7DCF\u548C\n     */\n    template<typename T>\n    T linear(T a, T b, T\
+    \ l, T r) {\n        if (l > r) return 0;\n\n        T num_terms = r - l + 1;\n\
+    \        T sum_k = num_terms * (l + r) / 2;\n        T sum_b = num_terms * b;\n\
+    \        return a * sum_k + sum_b;\n    }\n\n    /**\n     * @brief ReLU(\u4E00\
+    \u6B21\u95A2\u6570) \u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n   \
+    \  * sum_{k=l}^{r} max(0, a * k + b)\n     * \n     * @tparam T \u6574\u6570\u578B\
+    \n     * @param a \u4FC2\u6570 a\n     * @param b \u5B9A\u6570 b\n     * @param\
     \ l \u4E0B\u9650\n     * @param r \u4E0A\u9650\n     * @return T \u7DCF\u548C\n\
-    \     */\n    template<typename T>\n    T min_linear(T a, T b, T c, T d, T l,\
-    \ T r) {\n        return -relu_linear(-(a - c), -(b - d), l, r) + linear(c, d,\
-    \ l, r);\n    }\n\n    /**\n     * @brief \u4E00\u6B21\u95A2\u6570\u3068\u5B9A\
-    \u6570\u306E\u6700\u5C0F\u5024\u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n  \
-    \   * \n     * sum_{k=l}^{r} min(a * k + b, d)\n     * \n     * @tparam T \u6574\
-    \u6570\u578B\n     * @param a \u4FC2\u6570 a\n     * @param b \u5B9A\u6570 b\n\
-    \     * @param d \u5B9A\u6570 d\n     * @param l \u4E0B\u9650\n     * @param r\
-    \ \u4E0A\u9650\n     * @return T \u7DCF\u548C\n     */\n    template<typename\
+    \     */\n    template<typename T>\n    T relu_linear(T a, T b, T l, T r) {\n\
+    \        if (a == 0) { return (r - l + 1) * max<T>(0, b); }\n        if (a < 0)\
+    \ { return relu_linear(-a, a * (r + l) + b, l, r); }\n\n        // \u3053\u3053\
+    \u306B\u5230\u9054\u3057\u305F\u6BB5\u968E\u3067 a > 0 \u304C\u4FDD\u8A3C\u3055\
+    \u308C\u308B\n\n        if (a * r + b <= 0) return 0;\n\n        T t = max<T>(l,\
+    \ div_ceil(-b, a));\n\n        return linear(a, b, t, r);\n    }\n\n    /**\n\
+    \     * @brief 2\u3064\u306E\u4E00\u6B21\u95A2\u6570\u306E\u6700\u5927\u5024\u306E\
+    \u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r} max(a * k\
+    \ + b, c * k + d)\n     * \n     * @tparam T \u6574\u6570\u578B\n     * @param\
+    \ a \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570 a\n     * @param b\
+    \ \u7B2C1\u306E\u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 b\n     * @param c \u7B2C\
+    2\u306E\u4E00\u6B21\u95A2\u6570\u306E\u4FC2\u6570 c\n     * @param d \u7B2C2\u306E\
+    \u4E00\u6B21\u95A2\u6570\u306E\u5B9A\u6570 d\n     * @param l \u4E0B\u9650\n \
+    \    * @param r \u4E0A\u9650\n     * @return T \u7DCF\u548C\n     */\n    template<typename\
+    \ T>\n    T max_linear(T a, T b, T c, T d, T l, T r) {\n        return relu_linear(a\
+    \ - c, b - d, l, r) + linear(c, d, l, r);\n    }\n\n    /**\n     * @brief \u4E00\
+    \u6B21\u95A2\u6570\u3068\u5B9A\u6570\u306E\u6700\u5927\u5024\u306E\u548C\u3092\
+    \u6C42\u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r} max(a * k + b, d)\n \
+    \    * \n     * @tparam T \u6574\u6570\u578B\n     * @param a \u4FC2\u6570 a\n\
+    \     * @param b \u5B9A\u6570 b\n     * @param d \u5B9A\u6570 d\n     * @param\
+    \ l \u4E0B\u9650\n     * @param r \u4E0A\u9650\n     * @return T \u7DCF\u548C\n\
+    \     */\n    template<typename T>\n    T max_linear(T a, T b, T d, T l, T r)\
+    \ { return max_linear(a, b, 0, d, l, r); }\n\n    /**\n     * @brief 2\u3064\u306E\
+    \u4E00\u6B21\u95A2\u6570\u306E\u6700\u5C0F\u5024\u306E\u548C\u3092\u6C42\u3081\
+    \u307E\u3059.\n     * \n     * sum_{k=l}^{r} min(a * k + b, c * k + d)\n     *\
+    \ \n     * @tparam T \u6574\u6570\u578B\n     * @param a \u7B2C1\u306E\u4E00\u6B21\
+    \u95A2\u6570\u306E\u4FC2\u6570 a\n     * @param b \u7B2C1\u306E\u4E00\u6B21\u95A2\
+    \u6570\u306E\u5B9A\u6570 b\n     * @param c \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\
+    \u306E\u4FC2\u6570 c\n     * @param d \u7B2C2\u306E\u4E00\u6B21\u95A2\u6570\u306E\
+    \u5B9A\u6570 d\n     * @param l \u4E0B\u9650\n     * @param r \u4E0A\u9650\n \
+    \    * @return T \u7DCF\u548C\n     */\n    template<typename T>\n    T min_linear(T\
+    \ a, T b, T c, T d, T l, T r) {\n        return -relu_linear(-(a - c), -(b - d),\
+    \ l, r) + linear(c, d, l, r);\n    }\n\n    /**\n     * @brief \u4E00\u6B21\u95A2\
+    \u6570\u3068\u5B9A\u6570\u306E\u6700\u5C0F\u5024\u306E\u548C\u3092\u6C42\u3081\
+    \u307E\u3059.\n     * \n     * sum_{k=l}^{r} min(a * k + b, d)\n     * \n    \
+    \ * @tparam T \u6574\u6570\u578B\n     * @param a \u4FC2\u6570 a\n     * @param\
+    \ b \u5B9A\u6570 b\n     * @param d \u5B9A\u6570 d\n     * @param l \u4E0B\u9650\
+    \n     * @param r \u4E0A\u9650\n     * @return T \u7DCF\u548C\n     */\n    template<typename\
     \ T>\n    T min_linear(T a, T b, T u, T l, T r) { return min_linear(a, b, 0, u,\
     \ l, r); }\n\n    /**\n     * @brief \u4E00\u6B21\u95A2\u6570\u306E\u7D76\u5BFE\
     \u5024\u306E\u548C\u3092\u6C42\u3081\u307E\u3059.\n     * \n     * sum_{k=l}^{r}\
@@ -422,7 +424,7 @@ data:
   path: Summation/Summation.hpp
   requiredBy:
   - Summation/Counting.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Summation/Summation.hpp

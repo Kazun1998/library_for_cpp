@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Calculate/Hungarian.hpp
     title: "Hungarian \u6CD5"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,45 +191,47 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 5 \"Calculate/Hungarian.hpp\"\
-    \n\nusing namespace std;\n\ntemplate<typename T>\nclass Hungarian {\n    int n,\
-    \ m;\n    vector<vector<T>> matrix;\n    const T INF = numeric_limits<T>::max();\n\
-    \    vector<T> u, v, minv;\n    vector<int> p, way;\n    vector<bool> used;\n\
-    \    bool maximize_mode;\n\n    void step(int &j0) {\n        used[j0] = true;\n\
-    \        int i0 = p[j0];\n        T delta = INF;\n        int j1 = -1;\n\n   \
-    \     for (int j = 0; j < m; ++j) {\n            if (!used[j]) {\n           \
-    \     T cur = matrix[i0][j] - u[i0] - v[j];\n                if (cur < minv[j])\
-    \ {\n                    minv[j] = cur;\n                    way[j] = j0;\n  \
-    \              }\n                if (minv[j] < delta) {\n                   \
-    \ delta = minv[j];\n                    j1 = j;\n                }\n         \
-    \   }\n        }\n\n        for (int j = 0; j <= m; ++j) {\n            if (used[j])\
-    \ {\n                u[p[j]] += delta;\n                v[j] -= delta;\n     \
-    \       } else {\n                if (minv[j] < INF) minv[j] -= delta;\n     \
-    \       }\n        }\n        j0 = j1;\n    }\n\n    void update_matching(int\
-    \ j0) {\n        do {\n            int j1 = way[j0];\n            p[j0] = p[j1];\n\
-    \            j0 = j1;\n        } while (j0 != m);\n    }\n\n    void construct_result()\
-    \ {\n        total_cost = 0;\n        matching.assign(n, -1);\n        for (int\
-    \ j = 0; j < m; ++j) {\n            int i = p[j];\n            if (i != n) {\n\
-    \                matching[i] = j;\n                total_cost += matrix[i][j];\n\
-    \            }\n        }\n        if (maximize_mode) total_cost = -total_cost;\n\
-    \    }\n\n    void augment(int s) {\n        p[m] = s;\n        int j0 = m;\n\n\
-    \        fill(minv.begin(), minv.end(), INF);\n        fill(used.begin(), used.end(),\
-    \ false);\n\n        do {\n            step(j0);\n        } while (p[j0] != n);\n\
-    \n        update_matching(j0);\n    }\n\n    public:\n    vector<int> matching;\n\
-    \    T total_cost;\n\n    Hungarian(vector<vector<T>> cost_matrix, bool maximize\
-    \ = false) : matrix(cost_matrix), maximize_mode(maximize) {\n        n = matrix.size();\n\
-    \        m = n == 0 ? 0 : matrix[0].size();\n\n        if (maximize_mode) {\n\
-    \            for (int i = 0; i < n; ++i) {\n                for (int j = 0; j\
-    \ < m; ++j) {\n                    matrix[i][j] = -matrix[i][j];\n           \
-    \     }\n            }\n        }\n\n        // initialize\n        // 0-based\
-    \ indexing for internal logic, n is dummy\n        u.assign(n + 1, 0);\n     \
-    \   v.assign(m + 1, 0);\n        p.assign(m + 1, n);\n        way.assign(m + 1,\
-    \ -1);\n        minv.assign(m + 1, INF);\n        used.assign(m + 1, false);\n\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 5 \"Calculate/Hungarian.hpp\"\n\nusing namespace std;\n\ntemplate<typename\
+    \ T>\nclass Hungarian {\n    int n, m;\n    vector<vector<T>> matrix;\n    const\
+    \ T INF = numeric_limits<T>::max();\n    vector<T> u, v, minv;\n    vector<int>\
+    \ p, way;\n    vector<bool> used;\n    bool maximize_mode;\n\n    void step(int\
+    \ &j0) {\n        used[j0] = true;\n        int i0 = p[j0];\n        T delta =\
+    \ INF;\n        int j1 = -1;\n\n        for (int j = 0; j < m; ++j) {\n      \
+    \      if (!used[j]) {\n                T cur = matrix[i0][j] - u[i0] - v[j];\n\
+    \                if (cur < minv[j]) {\n                    minv[j] = cur;\n  \
+    \                  way[j] = j0;\n                }\n                if (minv[j]\
+    \ < delta) {\n                    delta = minv[j];\n                    j1 = j;\n\
+    \                }\n            }\n        }\n\n        for (int j = 0; j <= m;\
+    \ ++j) {\n            if (used[j]) {\n                u[p[j]] += delta;\n    \
+    \            v[j] -= delta;\n            } else {\n                if (minv[j]\
+    \ < INF) minv[j] -= delta;\n            }\n        }\n        j0 = j1;\n    }\n\
+    \n    void update_matching(int j0) {\n        do {\n            int j1 = way[j0];\n\
+    \            p[j0] = p[j1];\n            j0 = j1;\n        } while (j0 != m);\n\
+    \    }\n\n    void construct_result() {\n        total_cost = 0;\n        matching.assign(n,\
+    \ -1);\n        for (int j = 0; j < m; ++j) {\n            int i = p[j];\n   \
+    \         if (i != n) {\n                matching[i] = j;\n                total_cost\
+    \ += matrix[i][j];\n            }\n        }\n        if (maximize_mode) total_cost\
+    \ = -total_cost;\n    }\n\n    void augment(int s) {\n        p[m] = s;\n    \
+    \    int j0 = m;\n\n        fill(minv.begin(), minv.end(), INF);\n        fill(used.begin(),\
+    \ used.end(), false);\n\n        do {\n            step(j0);\n        } while\
+    \ (p[j0] != n);\n\n        update_matching(j0);\n    }\n\n    public:\n    vector<int>\
+    \ matching;\n    T total_cost;\n\n    Hungarian(vector<vector<T>> cost_matrix,\
+    \ bool maximize = false) : matrix(cost_matrix), maximize_mode(maximize) {\n  \
+    \      n = matrix.size();\n        m = n == 0 ? 0 : matrix[0].size();\n\n    \
+    \    if (maximize_mode) {\n            for (int i = 0; i < n; ++i) {\n       \
+    \         for (int j = 0; j < m; ++j) {\n                    matrix[i][j] = -matrix[i][j];\n\
+    \                }\n            }\n        }\n\n        // initialize\n      \
+    \  // 0-based indexing for internal logic, n is dummy\n        u.assign(n + 1,\
+    \ 0);\n        v.assign(m + 1, 0);\n        p.assign(m + 1, n);\n        way.assign(m\
+    \ + 1, -1);\n        minv.assign(m + 1, INF);\n        used.assign(m + 1, false);\n\
     \n        solve();\n    }\n\n    void solve() {\n        for (int i = 0; i < n;\
     \ ++i) augment(i);\n\n        construct_result();\n    }\n};\n#line 5 \"verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp\"\
     \n\nint main() {\n    int N; cin >> N;\n    vector<vector<ll>> a(N, vector<ll>(N,\
@@ -254,7 +256,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp

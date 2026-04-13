@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -183,37 +183,39 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Binary_Search/General_Integer.hpp\"\
-    \n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\
-    \ cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C True \u306B\u306A\u308B\u6700\u5C0F\
-    \u306E\u6574\u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n\
-    // Args\n// T L: \u4E0B\u9650\n// T R: \u4E0A\u9650\n// function<bool(T)> cond:\
-    \ [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\n// T default_value:\
-    \ cond(R) \u304C False \u306E\u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename\
-    \ T>\nT General_Binary_Increase_Search_Integer(T L, T R, const function<bool(T)>\
-    \ cond, T default_value) {\n    // \u4F8B\u5916\u30B1\u30FC\u30B9\u306E\u51E6\u7406\
-    \n    // R \u3067\u3082 False \u2192 \u7570\u5E38\u5024\n    unless(cond(R)) {\
-    \ return default_value; }\n    // L \u306B\u3066 True \u2192 L\n    if(cond(L))\
-    \ { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\n    while (R - L > 1)\
-    \ {\n        T C = L + (R - L) / 2;\n        cond(C) ? R = C : L = C;\n    }\n\
-    \n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\
-    \u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C True \u306B\u306A\
-    \u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\
-    \u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R: \u4E0A\u9650\n// function<bool(T)>\
-    \ cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6\n\
-    // T default_value: cond(L) \u304C False \u306E\u6642\u306E\u8FD4\u308A\u5024\n\
-    template<typename T>\nT General_Binary_Decrease_Search_Integer(T L, T R, const\
-    \ function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\u30B1\u30FC\u30B9\
-    \u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\u5E38\u5024\n  \
-    \  unless(cond(L)) { return default_value; }\n    // R \u306B\u3066 True \u2192\
-    \ R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\n\
-    \    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C) ? L\
-    \ = C : R = C;\n    }\n\n    return L;\n}\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Binary_Search/General_Integer.hpp\"\n\n// [L, R] \u4E0A\u3067\
+    \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\
+    \u3066, cond(x) \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x\
+    \ \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\
+    \u9650\n// T R: \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\
+    \u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\n// T default_value: cond(R) \u304C\
+    \ False \u306E\u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Increase_Search_Integer(T\
+    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
+    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 False \u2192 \u7570\
+    \u5E38\u5024\n    unless(cond(R)) { return default_value; }\n    // L \u306B\u3066\
+    \ True \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
+    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
+    \ ? R = C : L = C;\n    }\n\n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
+    \u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
+    \ \u304C True \u306B\u306A\u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
+    \u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R:\
+    \ \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\
+    \u6E1B\u5C11\u306A\u6761\u4EF6\n// T default_value: cond(L) \u304C False \u306E\
+    \u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Decrease_Search_Integer(T\
+    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
+    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\
+    \u5E38\u5024\n    unless(cond(L)) { return default_value; }\n    // R \u306B\u3066\
+    \ True \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
+    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
+    \ ? L = C : R = C;\n    }\n\n    return L;\n}\n"
   code: "#include\"../template/template.hpp\"\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
     \u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
     \ \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
@@ -250,7 +252,7 @@ data:
   isVerificationFile: false
   path: Binary_Search/General_Integer.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/General_Integer.hpp

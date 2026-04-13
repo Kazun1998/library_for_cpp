@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -190,44 +190,47 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\
-    \n\nnamespace graph {\n    struct Edge {\n        int id, source, target;\n  \
-    \      Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source,\
-    \ int target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\
-    \n    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
-    \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
-    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
-    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
-    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
-    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
-    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
-    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
-    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
-    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
-    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
-    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
-    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct\
+    \ Edge {\n        int id, source, target;\n        Edge *rev;\n\n        Edge()\
+    \ = default;\n        Edge(int id, int source, int target): id(id), source(source),\
+    \ target(target), rev(nullptr) {}\n    };\n\n    class Graph {\n        private:\n\
+    \        vector<vector<Edge*>> incidences;\n        vector<Edge> edges, rev_edges;\n\
+    \        vector<int> deg;\n\n        public:\n        int edge_id_offset;\n\n\
+    \        public:\n        Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset),\
+    \ deg(n, 0) {\n            incidences.assign(n, {});\n            edges.resize(edge_id_offset,\
+    \ Edge());\n        }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\
+    \u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int\
+    \ order() const { return int(incidences.size()); }\n\n        /// @brief \u3053\
+    \u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\
+    \u308B.\n        inline int size() const { return int(edges.size()) - edge_id_offset;\
+    \ }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B.\n        int add_edge(int\
+    \ u, int v) {\n            int id = int(edges.size());\n\n            Edge* edge\
+    \ = new Edge(id, u, v);\n            Edge* rev_edge = new Edge(id, v, u);\n\n\
+    \            edge->rev = rev_edge;\n            rev_edge->rev = edge;\n\n    \
+    \        incidences[u].emplace_back(edge);\n            incidences[v].emplace_back(rev_edge);\n\
+    \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
+    \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
+    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
+    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
     \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
-    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n\n        vector<vector<int>>\
-    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
-    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
-    \ + size(); ++j) {\n                Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
+    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
+    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
+    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
+    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
+    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
+    \ deg[v]; }\n\n        vector<vector<int>> adjacency_matrix() const {\n      \
+    \      vector<vector<int>> matrix(order(), vector<int>(order(), 0));\n       \
+    \     for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {\n     \
+    \           Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
     \                matrix[edge.target][edge.source]++;\n            }\n\n      \
     \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
     \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
@@ -274,7 +277,7 @@ data:
   isVerificationFile: false
   path: Graph/Graph/Enumerate_Triangles.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp

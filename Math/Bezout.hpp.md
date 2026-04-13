@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3\
       \ (x, y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B."
@@ -189,76 +189,79 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Math/Bezout.hpp\"\n\
-    \nnamespace bezout {\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x\
-    \ + b y = c \u306E\u89E3 (x, y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B.\n   \
-    \ /// @param hint (p, q) \u306F a p + b q = gcd(a, b) \u3092\u6E80\u305F\u3059\
-    .\n    /// @return \u89E3 (x, y). \u89E3\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\
-    \u5408\u306F std::nullopt.\n    template<integral T>\n    optional<pair<T, T>>\
-    \ Find_Particular_Solution(const T a, const T b, const T c, const pair<T, T> &hint)\
-    \ {\n        T p, q;\n        tie (p, q) = hint;\n\n        const T g = a * p\
-    \ + b * q;\n\n        if (g == 0) {\n            if (c == 0) { return pair<T,\
-    \ T>(0, 0); }\n            return nullopt;\n        }\n\n        if (safe_mod(c,\
-    \ g) != 0) { return nullopt; }\n\n        const T k = c / g;\n        return pair<T,\
-    \ T>(p * k, q * k);\n    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F\
-    \ a x + b y = c \u306E\u89E3 (x, y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B.\n\
-    \    /// @return \u89E3 (x, y). \u89E3\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\
-    \u5408\u306F std::nullopt.\n    template<integral T>\n    optional<pair<T, T>>\
-    \ Find_Particular_Solution(const T a, const T b, const T c) {\n        auto [p,\
-    \ q, g] = Extended_Euclid<T>(a, b);\n        return Find_Particular_Solution<T>(a,\
-    \ b, c, {p, q});\n    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F\
-    \ a x + b y = c \u306E\u89E3 (x, y) \u3067, lx <= x <= rx, ly <= y <= ry \u3092\
-    \u6E80\u305F\u3059\u3082\u306E\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u3092\u6C42\
-    \u3081\u308B.\n    /// @return {x0, dx, y0, dy, kl, kr}. \u89E3\u306F x = x0 +\
-    \ k * dx, y = y0 + k * dy (kl <= k <= kr) \u3068\u8868\u3055\u308C\u308B. \u89E3\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Math/Bezout.hpp\"\n\nnamespace bezout {\n    /// @brief\
+    \ 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3 (x, y) \u3092\
+    \ 1 \u7D44\u898B\u3064\u3051\u308B.\n    /// @param hint (p, q) \u306F a p + b\
+    \ q = gcd(a, b) \u3092\u6E80\u305F\u3059.\n    /// @return \u89E3 (x, y). \u89E3\
     \u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F std::nullopt.\n    template<integral\
-    \ T>\n    optional<tuple<T, T, T, T, T, T>> Solve(T a, T b, T c, const T lx, const\
-    \ T rx, const T ly, const T ry, const pair<T, T> &hint) {\n        T p, q;\n \
-    \       tie (p, q) = hint;\n        const T g = a * p + b * q;\n\n        if (safe_mod(c,\
-    \ g) != 0) { return nullopt; }\n\n        a /= g; b /= g; c /= g;\n\n        T\
-    \ tmp_l, tmp_r;\n        if (b > 0) {\n            tmp_l = lx - c * p;\n     \
-    \       tmp_r = rx - c * p;\n        } else {\n            tmp_l = -(rx - c *\
-    \ p);\n            tmp_r = -(lx - c * p);\n        }\n\n        T klx = div_ceil(tmp_l,\
-    \ abs<T>(b));\n        T krx = div_floor(tmp_r, abs<T>(b));\n\n        if (a >\
-    \ 0) {\n            tmp_l = -ry + c * q;\n            tmp_r = -ly + c * q;\n \
-    \       } else {\n            tmp_l = -(-ly + c * q);\n            tmp_r = -(-ry\
-    \ + c * q);\n        }\n\n        T kly = div_ceil(tmp_l, abs<T>(a));\n      \
-    \  T kry = div_floor(tmp_r, abs<T>(a));\n\n        T kl = max<T>(klx, kly), kr\
-    \ = min<T>(krx, kry);\n\n        if (kl > kr) return nullopt;\n\n        return\
-    \ make_tuple(c * p, b, c * q, -a, kl, kr);\n    };\n\n    template<integral T>\n\
-    \    optional<tuple<T, T, T, T, T, T>> Solve(T a, T b, T c, const T lx, const\
-    \ T rx, const T ly, const T ry) {\n        auto [p, q, g] = Extended_Euclid<T>(a,\
-    \ b);\n        return Solve<T>(a, b, c, lx, rx, ly, ry, make_pair(p, q));\n  \
-    \  };\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\
-    \u89E3 (x, y) \u3067, lx <= x <= rx, ly <= y <= ry \u3092\u6E80\u305F\u3059\u3082\
-    \u306E\u306E\u500B\u6570\u3092\u6C42\u3081\u308B.\n    /// @return \u89E3\u306E\
-    \u500B\u6570.\n    template<integral T>\n    T Count_Solutions(const T a, const\
-    \ T b, const T c, const T lx, const T rx, const T ly, const T ry, const pair<T,\
-    \ T> &hint) {\n        auto res = Solve<T>(a, b, c, lx, rx, ly, ry, hint);\n \
-    \       if (!res) return 0;\n        auto [x0, dx, y0, dy, kl, kr] = res.value();\n\
-    \        return kr - kl + 1;\n    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\
-    \u7A0B\u5F0F a x + b y = c \u306E\u89E3 (x, y) \u3067, lx <= x <= rx, ly <= y\
-    \ <= ry \u3092\u6E80\u305F\u3059\u3082\u306E\u306E\u500B\u6570\u3092\u6C42\u3081\
-    \u308B.\n    /// @return \u89E3\u306E\u500B\u6570.\n    template<integral T>\n\
-    \    T Count_Solutions(const T a, const T b, const T c, const T lx, const T rx,\
-    \ const T ly, const T ry) {\n        auto [p, q, g] = Extended_Euclid<T>(a, b);\n\
-    \        return Count_Solutions<T>(a, b, c, lx, rx, ly, ry, {p, q});\n    }\n\n\
-    \    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u975E\
-    \u8CA0\u6574\u6570\u89E3 (x, y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B.\n   \
-    \ /// @return \u89E3 (x, y). \u89E3\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
-    \u306F std::nullopt.\n    template<integral T>\n    optional<pair<T, T>> Find_Non_Negative_Solution(const\
-    \ T a, const T b, const T c, const pair<T, T> &hint) {\n        if (a == 0 &&\
-    \ b == 0) {\n            if (c == 0) return pair<T, T>(0, 0);\n            return\
-    \ nullopt;\n        }\n        if (a == 0) {\n            if (safe_mod(c, b) ==\
-    \ 0 && c / b >= 0) return pair<T, T>(0, c / b);\n            return nullopt;\n\
-    \        }\n        if (b == 0) {\n            if (safe_mod(c, a) == 0 && c /\
-    \ a >= 0) return pair<T, T>(c / a, 0);\n            return nullopt;\n        }\n\
-    \n        auto res = Solve<T>(a, b, c, 0, numeric_limits<T>::max(), 0, numeric_limits<T>::max(),\
+    \ T>\n    optional<pair<T, T>> Find_Particular_Solution(const T a, const T b,\
+    \ const T c, const pair<T, T> &hint) {\n        T p, q;\n        tie (p, q) =\
+    \ hint;\n\n        const T g = a * p + b * q;\n\n        if (g == 0) {\n     \
+    \       if (c == 0) { return pair<T, T>(0, 0); }\n            return nullopt;\n\
+    \        }\n\n        if (safe_mod(c, g) != 0) { return nullopt; }\n\n       \
+    \ const T k = c / g;\n        return pair<T, T>(p * k, q * k);\n    }\n\n    ///\
+    \ @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3 (x,\
+    \ y) \u3092 1 \u7D44\u898B\u3064\u3051\u308B.\n    /// @return \u89E3 (x, y).\
+    \ \u89E3\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F std::nullopt.\n\
+    \    template<integral T>\n    optional<pair<T, T>> Find_Particular_Solution(const\
+    \ T a, const T b, const T c) {\n        auto [p, q, g] = Extended_Euclid<T>(a,\
+    \ b);\n        return Find_Particular_Solution<T>(a, b, c, {p, q});\n    }\n\n\
+    \    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3\
+    \ (x, y) \u3067, lx <= x <= rx, ly <= y <= ry \u3092\u6E80\u305F\u3059\u3082\u306E\
+    \u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u3092\u6C42\u3081\u308B.\n    /// @return\
+    \ {x0, dx, y0, dy, kl, kr}. \u89E3\u306F x = x0 + k * dx, y = y0 + k * dy (kl\
+    \ <= k <= kr) \u3068\u8868\u3055\u308C\u308B. \u89E3\u304C\u5B58\u5728\u3057\u306A\
+    \u3044\u5834\u5408\u306F std::nullopt.\n    template<integral T>\n    optional<tuple<T,\
+    \ T, T, T, T, T>> Solve(T a, T b, T c, const T lx, const T rx, const T ly, const\
+    \ T ry, const pair<T, T> &hint) {\n        T p, q;\n        tie (p, q) = hint;\n\
+    \        const T g = a * p + b * q;\n\n        if (safe_mod(c, g) != 0) { return\
+    \ nullopt; }\n\n        a /= g; b /= g; c /= g;\n\n        T tmp_l, tmp_r;\n \
+    \       if (b > 0) {\n            tmp_l = lx - c * p;\n            tmp_r = rx\
+    \ - c * p;\n        } else {\n            tmp_l = -(rx - c * p);\n           \
+    \ tmp_r = -(lx - c * p);\n        }\n\n        T klx = div_ceil(tmp_l, abs<T>(b));\n\
+    \        T krx = div_floor(tmp_r, abs<T>(b));\n\n        if (a > 0) {\n      \
+    \      tmp_l = -ry + c * q;\n            tmp_r = -ly + c * q;\n        } else\
+    \ {\n            tmp_l = -(-ly + c * q);\n            tmp_r = -(-ry + c * q);\n\
+    \        }\n\n        T kly = div_ceil(tmp_l, abs<T>(a));\n        T kry = div_floor(tmp_r,\
+    \ abs<T>(a));\n\n        T kl = max<T>(klx, kly), kr = min<T>(krx, kry);\n\n \
+    \       if (kl > kr) return nullopt;\n\n        return make_tuple(c * p, b, c\
+    \ * q, -a, kl, kr);\n    };\n\n    template<integral T>\n    optional<tuple<T,\
+    \ T, T, T, T, T>> Solve(T a, T b, T c, const T lx, const T rx, const T ly, const\
+    \ T ry) {\n        auto [p, q, g] = Extended_Euclid<T>(a, b);\n        return\
+    \ Solve<T>(a, b, c, lx, rx, ly, ry, make_pair(p, q));\n    };\n\n    /// @brief\
+    \ 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\u89E3 (x, y) \u3067\
+    , lx <= x <= rx, ly <= y <= ry \u3092\u6E80\u305F\u3059\u3082\u306E\u306E\u500B\
+    \u6570\u3092\u6C42\u3081\u308B.\n    /// @return \u89E3\u306E\u500B\u6570.\n \
+    \   template<integral T>\n    T Count_Solutions(const T a, const T b, const T\
+    \ c, const T lx, const T rx, const T ly, const T ry, const pair<T, T> &hint) {\n\
+    \        auto res = Solve<T>(a, b, c, lx, rx, ly, ry, hint);\n        if (!res)\
+    \ return 0;\n        auto [x0, dx, y0, dy, kl, kr] = res.value();\n        return\
+    \ kr - kl + 1;\n    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F\
+    \ a x + b y = c \u306E\u89E3 (x, y) \u3067, lx <= x <= rx, ly <= y <= ry \u3092\
+    \u6E80\u305F\u3059\u3082\u306E\u306E\u500B\u6570\u3092\u6C42\u3081\u308B.\n  \
+    \  /// @return \u89E3\u306E\u500B\u6570.\n    template<integral T>\n    T Count_Solutions(const\
+    \ T a, const T b, const T c, const T lx, const T rx, const T ly, const T ry) {\n\
+    \        auto [p, q, g] = Extended_Euclid<T>(a, b);\n        return Count_Solutions<T>(a,\
+    \ b, c, lx, rx, ly, ry, {p, q});\n    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\
+    \u7A0B\u5F0F a x + b y = c \u306E\u975E\u8CA0\u6574\u6570\u89E3 (x, y) \u3092\
+    \ 1 \u7D44\u898B\u3064\u3051\u308B.\n    /// @return \u89E3 (x, y). \u89E3\u304C\
+    \u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F std::nullopt.\n    template<integral\
+    \ T>\n    optional<pair<T, T>> Find_Non_Negative_Solution(const T a, const T b,\
+    \ const T c, const pair<T, T> &hint) {\n        if (a == 0 && b == 0) {\n    \
+    \        if (c == 0) return pair<T, T>(0, 0);\n            return nullopt;\n \
+    \       }\n        if (a == 0) {\n            if (safe_mod(c, b) == 0 && c / b\
+    \ >= 0) return pair<T, T>(0, c / b);\n            return nullopt;\n        }\n\
+    \        if (b == 0) {\n            if (safe_mod(c, a) == 0 && c / a >= 0) return\
+    \ pair<T, T>(c / a, 0);\n            return nullopt;\n        }\n\n        auto\
+    \ res = Solve<T>(a, b, c, 0, numeric_limits<T>::max(), 0, numeric_limits<T>::max(),\
     \ hint);\n        if (!res) { return nullopt; }\n\n        auto [x0, dx, y0, dy,\
     \ kl, kr] = res.value();\n        return pair<T, T>(x0 + kl * dx, y0 + kl * dy);\n\
     \    }\n\n    /// @brief 1\u6B21\u4E0D\u5B9A\u65B9\u7A0B\u5F0F a x + b y = c \u306E\
@@ -353,8 +356,8 @@ data:
   isVerificationFile: false
   path: Math/Bezout.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-13 01:27:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/1358.test.cpp
 documentation_of: Math/Bezout.hpp

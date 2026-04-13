@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Convolution/Bitwise_Or_Convolution.hpp
+    title: Convolution/Bitwise_Or_Convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: Convolution/Convolution_Base.hpp
+    title: "\u7573\u307F\u8FBC\u307F"
+  - icon: ':heavy_check_mark:'
+    path: Convolution/Semilattice_Convolution_Base.hpp
+    title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Graph/Path.hpp
-    title: Graph/Graph/Path.hpp
   - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -31,14 +37,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+    path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+    title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Graph/Graph/Eulerian_Trail.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+  bundledCode: "#line 2 \"Graph/Graph/Chromatic_Number.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -243,53 +249,132 @@ data:
     \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
     \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
-    \            }\n\n            return L;\n        }\n    };\n}\n#line 2 \"Graph/Graph/Path.hpp\"\
-    \n\n#line 4 \"Graph/Graph/Path.hpp\"\n\nnamespace graph {\n    struct Path {\n\
-    \        vector<int> vertices;\n        vector<Edge> edges;\n\n        Path(const\
-    \ int first, const vector<Edge> &path): edges(path) {\n            vertices.emplace_back(first);\n\
-    \            for (const auto &edge: path) {\n                vertices.emplace_back(edge.target);\n\
-    \            }\n        }\n    };\n}\n#line 5 \"Graph/Graph/Eulerian_Trail.hpp\"\
-    \n\nnamespace graph {\n    optional<Path> Eulerian_Trail(const Graph &G) {\n \
-    \       int n = G.order();\n        int m = G.size();\n        int start = -1,\
-    \ goal = -1;\n\n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n      \
-    \  for (int v = 0; v < n; ++v) {\n            if (G.degree(v) % 2 == 1) {\n  \
-    \              if (start == -1) start = v;\n                else if (goal == -1)\
-    \ goal = v;\n                else return nullopt;\n            }\n        }\n\n\
-    \        // start, goal \u306E\u6C7A\u5B9A\n        if (start == -1) {\n     \
-    \       for (int v = 0; v < n; ++v) {\n                if (G.degree(v) > 0) {\n\
-    \                    start = goal = v;\n                    break;\n         \
-    \       }\n            }\n\n            if (start == -1) start = goal = 0;\n \
-    \       }\n\n        vector<int> iter(n, 0);\n        vector<bool> saw_edge_ids(m\
-    \ + G.edge_id_offset, false);\n        vector<Edge> path;\n\n        auto dfs\
-    \ = [&](auto self, const int v) -> void {\n            const auto &edges = G.incidence(v);\n\
-    \            while (iter[v] < edges.size()) {\n                const Edge* edge\
-    \ = edges[iter[v]++];\n                if (saw_edge_ids[edge->id]) { continue;\
-    \ }\n                saw_edge_ids[edge->id] = true;\n                self(self,\
-    \ edge->target);\n                path.emplace_back(*edge);\n            }\n \
-    \       };\n\n        dfs(dfs, start);\n\n        // \u5341\u5206\u6027\u306E\u30C1\
-    \u30A7\u30C3\u30AF\n        if (path.size() < m) return nullopt;\n\n        reverse(path.begin(),\
-    \ path.end());\n        return Path(start, path);\n    }\n}\n"
-  code: "#pragma once\n\n#include \"Graph.hpp\"\n#include \"Path.hpp\"\n\nnamespace\
-    \ graph {\n    optional<Path> Eulerian_Trail(const Graph &G) {\n        int n\
-    \ = G.order();\n        int m = G.size();\n        int start = -1, goal = -1;\n\
-    \n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n        for (int v =\
-    \ 0; v < n; ++v) {\n            if (G.degree(v) % 2 == 1) {\n                if\
-    \ (start == -1) start = v;\n                else if (goal == -1) goal = v;\n \
-    \               else return nullopt;\n            }\n        }\n\n        // start,\
-    \ goal \u306E\u6C7A\u5B9A\n        if (start == -1) {\n            for (int v\
-    \ = 0; v < n; ++v) {\n                if (G.degree(v) > 0) {\n               \
-    \     start = goal = v;\n                    break;\n                }\n     \
-    \       }\n\n            if (start == -1) start = goal = 0;\n        }\n\n   \
-    \     vector<int> iter(n, 0);\n        vector<bool> saw_edge_ids(m + G.edge_id_offset,\
-    \ false);\n        vector<Edge> path;\n\n        auto dfs = [&](auto self, const\
-    \ int v) -> void {\n            const auto &edges = G.incidence(v);\n        \
-    \    while (iter[v] < edges.size()) {\n                const Edge* edge = edges[iter[v]++];\n\
-    \                if (saw_edge_ids[edge->id]) { continue; }\n                saw_edge_ids[edge->id]\
-    \ = true;\n                self(self, edge->target);\n                path.emplace_back(*edge);\n\
-    \            }\n        };\n\n        dfs(dfs, start);\n\n        // \u5341\u5206\
-    \u6027\u306E\u30C1\u30A7\u30C3\u30AF\n        if (path.size() < m) return nullopt;\n\
-    \n        reverse(path.begin(), path.end());\n        return Path(start, path);\n\
-    \    }\n}\n"
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 2 \"Convolution/Bitwise_Or_Convolution.hpp\"\
+    \n\n#line 2 \"Convolution/Semilattice_Convolution_Base.hpp\"\n\n#line 2 \"Convolution/Convolution_Base.hpp\"\
+    \n\n#line 4 \"Convolution/Convolution_Base.hpp\"\n\nnamespace convolution {\n\
+    \    template<typename R>\n    class Convolution_Base {\n        protected:\n\
+    \        std::vector<R> data;\n\n        public:\n        Convolution_Base() =\
+    \ default;\n        Convolution_Base(std::vector<R> data_in): data(std::move(data_in))\
+    \ {}\n\n        Convolution_Base(initializer_list<R> init): data(init) {}\n  \
+    \      \n        Convolution_Base(size_t n): data(std::vector<R>(n)) {} \n   \
+    \     \n        Convolution_Base& operator=(initializer_list<R> init) {\n    \
+    \        data = init;\n            return *this;\n        }\n\n        // \u52A0\
+    \u6CD5 (+=)\n        Convolution_Base& operator+=(const Convolution_Base<R> &B)\
+    \ {\n            if(data.size() != B.data.size()) { throw std::length_error(\"\
+    Convolution operands must have the same size.\"); }\n\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] += B.data[i]; }\n            return *this;\n\
+    \        }\n\n        // \u6E1B\u6CD5 (-=)\n        Convolution_Base& operator-=(const\
+    \ Convolution_Base<R> &B) {\n            if(data.size() != B.data.size()) { throw\
+    \ std::length_error(\"Convolution operands must have the same size.\"); }\n  \
+    \          for (size_t i = 0; i < data.size(); i++) { data[i] -= B.data[i]; }\n\
+    \            return *this;\n        }\n\n        // \u30B9\u30AB\u30E9\u30FC\u500D\
+    \ (*=)\n        Convolution_Base& operator*=(const R &a) {\n            for (size_t\
+    \ i = 0; i < data.size(); i++) { data[i] *= a; }\n            return *this;\n\
+    \        }\n\n        virtual Convolution_Base<R>& operator*=(const Convolution_Base<R>\
+    \ &B) = 0;\n\n        inline size_t size() const { return data.size(); }\n\n \
+    \       inline R& operator[](size_t k) { return data[k]; }\n        inline const\
+    \ R& operator[](size_t k) const { return data[k]; }\n\n        const std::vector<R>&\
+    \ to_vector() const { return data; }\n    };\n}\n#line 4 \"Convolution/Semilattice_Convolution_Base.hpp\"\
+    \n\nnamespace convolution {\n    template<typename R>\n    class Semilattice_Convolution_Base:\
+    \ public Convolution_Base<R> {\n        // \u578B\u30A8\u30A4\u30EA\u30A2\u30B9\
+    \n        using Base = Convolution_Base<R>;\n        using Self = Semilattice_Convolution_Base<R>;\n\
+    \n        using Base::Base;\n\n        public:\n        virtual void zeta_transform(std::vector<R>\
+    \ &f) const = 0;\n        virtual void mobius_transform(std::vector<R> &g) const\
+    \ = 0;\n\n        Self& operator*=(const Base &B) override {\n            if (this->data.size()\
+    \ != B.to_vector().size()) {\n                throw std::length_error(\"Convolution\
+    \ operands must have the same size.\");\n            }\n\n            std::vector<R>\
+    \ f_copy(this->data); \n            std::vector<R> g_copy(B.to_vector()); \n\n\
+    \            this->zeta_transform(f_copy);\n            this->zeta_transform(g_copy);\
+    \ \n\n            for (size_t i = 0; i < f_copy.size(); i++) { \n            \
+    \    f_copy[i] *= g_copy[i]; \n            }\n\n            this->mobius_transform(f_copy);\n\
+    \            this->data = std::move(f_copy);\n            return *this;\n    \
+    \    }\n\n        Self& pow(long long n) {\n            zeta();\n            for\
+    \ (R &v : this->data) { v = ::pow(v, n); }\n            mobius();\n          \
+    \  return *this;\n        }\n\n        void zeta() { zeta_transform(this->data);\
+    \ }\n        void mobius() { mobius_transform(this->data); }\n    };\n\n    template<typename\
+    \ T>\n    T pow(T a, const ll n) {\n        a.pow(n);\n        return a;\n   \
+    \ }\n}\n#line 4 \"Convolution/Bitwise_Or_Convolution.hpp\"\n\nnamespace convolution\
+    \ {\n    template<typename R>\n    class Bitwise_Or_Convolution: public Semilattice_Convolution_Base<R>\
+    \ {\n        using Base = Convolution_Base<R>;\n        using ImplBase = Semilattice_Convolution_Base<R>;\n\
+    \        using ImplBase::ImplBase;\n\n        // \u52A0\u6CD5 (+)\n        friend\
+    \ Bitwise_Or_Convolution operator+(const Bitwise_Or_Convolution &lhs, const Bitwise_Or_Convolution\
+    \ &rhs) {\n            Bitwise_Or_Convolution temp(lhs);\n            temp +=\
+    \ rhs;\n            return temp;\n        }\n\n        // \u6E1B\u6CD5 (-)\n \
+    \       friend Bitwise_Or_Convolution operator-(const Bitwise_Or_Convolution &lhs,\
+    \ const Bitwise_Or_Convolution &rhs) {\n            Bitwise_Or_Convolution temp(lhs);\n\
+    \            temp -= rhs;\n            return temp;\n        }\n\n        // \u4E57\
+    \u6CD5 (*)\n        friend Bitwise_Or_Convolution operator*(const Bitwise_Or_Convolution\
+    \ &lhs, const Bitwise_Or_Convolution &rhs) { \n            Bitwise_Or_Convolution\
+    \ temp(lhs);\n            temp *= rhs;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (a * rhs)\n        friend Bitwise_Or_Convolution\
+    \ operator*(const R &a, const Bitwise_Or_Convolution &rhs) {\n            Bitwise_Or_Convolution\
+    \ temp(rhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        // \u30B9\u30AB\u30E9\u30FC\u500D (lhs * a)\n        friend Bitwise_Or_Convolution\
+    \ operator*(const Bitwise_Or_Convolution &lhs, const R &a) {\n            Bitwise_Or_Convolution\
+    \ temp(lhs);\n            temp *= a;\n            return temp;\n        }\n\n\
+    \        void zeta_transform(std::vector<R> &f) const override {\n           \
+    \ int m = floor_log2(f.size());\n\n            for (size_t i = 0; i < m; i++)\
+    \ {\n                for (int S = 0; S < (1 << m); S++) {\n                  \
+    \  if (!get_bit(S, i)) { continue; }\n\n                    f[S] += f[S ^ (1 <<\
+    \ i)];\n                }\n            }\n        }\n\n        void mobius_transform(std::vector<R>\
+    \ &g) const override {\n            int m = floor_log2(g.size());\n\n        \
+    \    for (size_t i = 0; i < m; i++) {\n                for (int S = 0; S < (1\
+    \ << m); S++) {\n                    if (!get_bit(S, i)) { continue; }\n\n   \
+    \                 g[S] -= g[S ^ (1 << i)];\n                }\n            }\n\
+    \        }\n    };\n}\n#line 5 \"Graph/Graph/Chromatic_Number.hpp\"\n\nnamespace\
+    \ graph {\n    int Chromatic_Number(const Graph &G) {\n        int n = G.order();\n\
+    \        if (n == 0) return 0;\n\n        using namespace convolution;\n     \
+    \   using Conv = Bitwise_Or_Convolution<long long>;\n\n        vector<int> adj_mask(n,\
+    \ 0);\n        for (int i = 0; i < n; ++i) {\n            for (auto edge : G.incidence(i))\
+    \ {\n                adj_mask[i] |= (1 << edge->target);\n            }\n    \
+    \    }\n\n        // Section I: \u72EC\u7ACB\u96C6\u5408\u306E\u5224\u5B9A (S\
+    \ \u304C\u72EC\u7ACB\u96C6\u5408\u306A\u3089 1, \u305D\u3046\u3067\u306A\u3051\
+    \u308C\u3070 0)\n        vector<long long> indep_vec(1 << n, 0);\n        indep_vec[0]\
+    \ = 1;\n        for (int S = 1; S < (1 << n); ++S) {\n            int x = lowest_bit(S);\n\
+    \            int prev = S ^ (1 << x);\n            if (indep_vec[prev] && !(adj_mask[x]\
+    \ & prev)) indep_vec[S] = 1;\n        }\n\n        if (indep_vec[(1 << n) - 1])\
+    \ return 1;\n        Conv indep(indep_vec);\n\n        auto clamp = [&](Conv &c)\
+    \ {\n            for (int S = 0; S < (1 << n); ++S) c[S] = (c[S] > 0);\n     \
+    \   };\n\n        // Section II: k = 2, 4, 8, ... \u306B\u5BFE\u3057\u3066\u30C0\
+    \u30D6\u30EA\u30F3\u30B0\n        vector<Conv> dp_pow2;\n        dp_pow2.push_back(indep);\n\
+    \        int k = 0;\n        while ((1 << (k + 1)) <= n) {\n            Conv next\
+    \ = dp_pow2.back() * dp_pow2.back();\n            clamp(next);\n            if\
+    \ (next[(1 << n) - 1]) break;\n            dp_pow2.push_back(next);\n        \
+    \    k++;\n        }\n\n        // Section III: \u4E8C\u5206\u63A2\u7D22\u306B\
+    \u3088\u3063\u3066\u5F69\u8272\u6570\u3092\u6C42\u3081\u308B\n        int current_k\
+    \ = (1 << k);\n        Conv current_dp = dp_pow2.back();\n        for (int i =\
+    \ k - 1; i >= 0; --i) {\n            if (current_k + (1 << i) > n) continue;\n\
+    \            Conv res = current_dp * dp_pow2[i];\n            clamp(res);\n  \
+    \          unless (res[(1 << n) - 1]) {\n                current_k += (1 << i);\n\
+    \                current_dp = res;\n            }\n        }\n\n        return\
+    \ current_k + 1;\n    }\n}\n"
+  code: "#pragma once\n\n#include \"Graph.hpp\"\n#include \"../../Convolution/Bitwise_Or_Convolution.hpp\"\
+    \n\nnamespace graph {\n    int Chromatic_Number(const Graph &G) {\n        int\
+    \ n = G.order();\n        if (n == 0) return 0;\n\n        using namespace convolution;\n\
+    \        using Conv = Bitwise_Or_Convolution<long long>;\n\n        vector<int>\
+    \ adj_mask(n, 0);\n        for (int i = 0; i < n; ++i) {\n            for (auto\
+    \ edge : G.incidence(i)) {\n                adj_mask[i] |= (1 << edge->target);\n\
+    \            }\n        }\n\n        // Section I: \u72EC\u7ACB\u96C6\u5408\u306E\
+    \u5224\u5B9A (S \u304C\u72EC\u7ACB\u96C6\u5408\u306A\u3089 1, \u305D\u3046\u3067\
+    \u306A\u3051\u308C\u3070 0)\n        vector<long long> indep_vec(1 << n, 0);\n\
+    \        indep_vec[0] = 1;\n        for (int S = 1; S < (1 << n); ++S) {\n   \
+    \         int x = lowest_bit(S);\n            int prev = S ^ (1 << x);\n     \
+    \       if (indep_vec[prev] && !(adj_mask[x] & prev)) indep_vec[S] = 1;\n    \
+    \    }\n\n        if (indep_vec[(1 << n) - 1]) return 1;\n        Conv indep(indep_vec);\n\
+    \n        auto clamp = [&](Conv &c) {\n            for (int S = 0; S < (1 << n);\
+    \ ++S) c[S] = (c[S] > 0);\n        };\n\n        // Section II: k = 2, 4, 8, ...\
+    \ \u306B\u5BFE\u3057\u3066\u30C0\u30D6\u30EA\u30F3\u30B0\n        vector<Conv>\
+    \ dp_pow2;\n        dp_pow2.push_back(indep);\n        int k = 0;\n        while\
+    \ ((1 << (k + 1)) <= n) {\n            Conv next = dp_pow2.back() * dp_pow2.back();\n\
+    \            clamp(next);\n            if (next[(1 << n) - 1]) break;\n      \
+    \      dp_pow2.push_back(next);\n            k++;\n        }\n\n        // Section\
+    \ III: \u4E8C\u5206\u63A2\u7D22\u306B\u3088\u3063\u3066\u5F69\u8272\u6570\u3092\
+    \u6C42\u3081\u308B\n        int current_k = (1 << k);\n        Conv current_dp\
+    \ = dp_pow2.back();\n        for (int i = k - 1; i >= 0; --i) {\n            if\
+    \ (current_k + (1 << i) > n) continue;\n            Conv res = current_dp * dp_pow2[i];\n\
+    \            clamp(res);\n            unless (res[(1 << n) - 1]) {\n         \
+    \       current_k += (1 << i);\n                current_dp = res;\n          \
+    \  }\n        }\n\n        return current_k + 1;\n    }\n}\n"
   dependsOn:
   - Graph/Graph/Graph.hpp
   - template/template.hpp
@@ -299,38 +384,136 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Graph/Graph/Path.hpp
+  - Convolution/Bitwise_Or_Convolution.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
+  - Convolution/Convolution_Base.hpp
   isVerificationFile: false
-  path: Graph/Graph/Eulerian_Trail.hpp
+  path: Graph/Graph/Chromatic_Number.hpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-04-13 12:08:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-documentation_of: Graph/Graph/Eulerian_Trail.hpp
+  - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+documentation_of: Graph/Graph/Chromatic_Number.hpp
 layout: document
-title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+title: "\u5F69\u8272\u6570"
 ---
 
 ## Outline
 
-無向 Graph $G = (V, E)$ における Eulerian Trail を求める.
+無向グラフ $G = (V, E)$ における彩色数 $\chi(G)$ を求める.
 
 ## Definition
 
-* 同じ弧を通らない歩道を路という.
-* 全ての弧を通る路を Eulerian Trail という.
+$G = (V, E)$ を自己ループを持たない無向グラフとする.
+
+* $C$ を色の集合とする. $C$ が $k$ 要素であり, 以下をみたす時, $G$ は $k$ 彩色可能であるという.
+  * $c: V \to C$ が存在して, 任意の $u, v \in V$ に対して, $u, v$ が隣接しているならば, $c(u) \neq c(v)$ である.
+* グラフ $G$ の彩色に必要な最小の色数を $G$ の彩色数といい, $\chi(G)$ と書く.
 
 ## Theory
 
+### 分割問題への帰着
+
+自己ループを持たない無向グラフ $G = (V, E)$ において, $I \subset V$ について以下が成り立つ時, $I$ は独立集合であるという.
+
+* 任意の $uv \in E$ に対して, $u \not \in I$ または $v \not \in I$ が成り立つ.
+
+このとき, 以下は同値である.
+
+* (a) $G$ は $k$ 彩色可能である.
+* (b) $G$ の独立集合 $I_1, \dots, I_k$ であって, $I_1, \dots, I_k$ が $V$ の分割になるものが存在する.
+
+#### 証明
+
+##### (a) ならば (b)
+
+$C = \{C_1, \dots, C_k \}$ とする. $I_a := c^{-1}(\{C_a\})$ とすると, 以下が成り立つ.
+
+* $a \neq b$ ならば, $\{C_a\} \cap \{C_b\} = \emptyset$ である. 故に, $I_a \cap I_b = c^{-1}(\{C_a\}) \cap c^{-1}(\{C_a\}) = c^{-1}(\{C_a\} \cap \{C_b\}) = c^{-1}(\emptyset) = \emptyset$ である.
+* $I_1 \cup \dots \cup I_k = c^{-1}(\{C_1\}) \cup \dots c^{-1}(\{C_k\}) = c^{-1}(\{C_1\} \cup \dots \{C_k\}) = c^{-1}(\{C_1, \dots, C_k\}) = c^{-1}(C) = V$ になる.
+
+以上から, $I_1, \dots, I_k$ は $V$ の分割である.
+
+##### (b) ならば (a)
+
+各 $v \in V$ に対して, $c(v) = C_a \iff v \in I_a$ で定める.
+
+* $I_1, \dots, I_k$ が $V$ の独立なので, $v \in I_a$ となる $a$ がただ一つ存在する. よって, $c$ は写像になる.
+* $uv \in E$ に対して, $c(u) = C_a$ とする. つまり, $u \in I_a$ とする. このとき, $v \in I_a$ としてしまうと, $I_a$ が独立集合にならない. 故に, $v \not \in I_a$ である. よって, $c(v) \neq C_a$ である.
+* $c(V) \subset \{C_1, \dots, C_k\}$ である.
+
+よって, $c$ が $k$ 彩色になる.
+
+### 問題の緩和
+
+故に, 独立集合による分割のパーツの最小個数を求める問題に帰着することが出来た.
+
+分割という問題より, 互いに素の要素を除いた和集合に関する問題に帰着する方が楽なので, 和集合バージョンに帰着させる.
+
 以下は同値になる.
 
-* (a) $G$ は Eulerian Trail を持つ.
-* (b) 以下が全て従う.
-  * (1) $G$ における孤立点以外の任意の頂点は連結である.
-  * (2) 次数が奇数である頂点は $0$ 個または $2$ 個である.
+* (a) $G$ は $k$ 彩色可能である.
+* (c) $G$ の独立集合 $I_1, \dots, I_k$ であって, $I_1 \cup \dots \cup I_k = V$ となるものが存在する.
+
+#### 証明
+
+(a), (b) の同値性を示したことを利用して, (b), (c) の同値性を証明する.
+
+##### (b) ならば (c)
+
+$I_1, \dots, I_k$ が分割であった. 分割の条件に $I_1 \cup \dots I_k = V$ が含まれている.
+
+##### (c) ならば (b)
+
+次のようにして $J_1, \dots, J_k$ を定める.
+
+* $J_1 := I_1$.
+* $J_2 := I_2 \setminus J_1$.
+* $\dots$
+* $J_a := I_a \setminus J_{a-1}$.
+* $\dots$
+
+このようにすると, $J_1, \dots, J_k$ が $V$ の分割になる.
+
+### アルゴリズムの構築
+
+(a), (c) の特徴づけにより, 独立集合の和集合が $V$ に一致させる問題に帰着された.
+
+要するに, 以下の問題を解けば良くなった.
+
+* 以下を満たす最小の正の整数 $k$ を求めよ: 独立集合 $I_1, \dots, I_k$ に対して, $I_1 \cup \dots \cup I_k = V$.
+
+これは, 以下を利用することで解くことができる. なお, $G$ の位数を $N$ とする.
+
+* $\mathcal{I}$ を $G$ の独立集合の族とする.
+* $V$ の冪集合族 $\mathcal{P}(V)$ を $\cup$ を演算とするモノイドとする.
+* モノイド環 $P \in \Z[\mathcal{P}(V)]$ を以下で定める. ただし, $I \in \mathcal{I}$.
+  * $P(I) := \begin{cases} 1 & (I \in \mathcal{I}) \\ 0 & (I \not \in \mathcal{I}) \end{cases}$.
+* このとき, 非負整数 $k$ に対して, $P^k(V)$ は $k$ 彩色の組み合わせの数になる. 故に, 以下が同値になる.
+  * $G$ は $k$ 彩色可能である.
+  * $P^k(V) > 0$.
+* よって, $P^k(V)$ が非零になる最小の $k$ を求める問題に帰着される.
+  * $\mathcal{P}(V)$ は冪等モノイドである. そのため, $P^k$ の計算は [Bitwise Or に関する畳み込み](../../Convolution/Bitwise_Or_Convolution.hpp) を利用できる.
+  * $k$ の求め方としては以下がある.
+    * (1) $k = 1, 2, \dots, N$ の順に判定する.
+    * (2) まず, 自乗を求めることで, $k = 1, 2, 4, 8, \dots$ の順に求めた後, 二分探索で求める.
+
+Bitwise Or の計算量は (1) だと $O(N^2 2^N)$ 時間, (2) だと $O(N 2^N \log N)$ 時間になる.
+
+## Contents
+
+```cpp
+Chromatic_Number(const Graph &G)
+```
+
+* 無向グラフ $G = (V, E)$ の彩色数 $\chi(G)$ を求める.
+* **引数**
+  * $G$ : 無向グラフ
+* **計算量** : $G$ の位数とサイズを $N$ として, $O(N 2^N \log N)$ 時間.
+
 ## History
 
 |日付|内容|
-|:---:|:---|
-|2026/02/19| 無向グラフにおける Eulerian_Trail の実装|
+|:---:|:---:|
+|2026/04/13| Chromatic_Number 実装 |

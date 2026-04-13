@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -192,18 +192,21 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Union_Find/Potentilized_Union_Find.hpp\"\
-    \n\ntemplate<typename Pot>\nclass Potentilized_Union_Find {\n    int n, _group_number;\n\
-    \    vector<int> par, rank;\n    vector<Pot> pot; // P(x) = pot[x] P(par[x])\n\
-    \    vector<bool> valid;\n\n    Pot unit;\n    function<Pot(const Pot&, const\
-    \ Pot&)> add;\n    function<Pot(const Pot&, const Pot&)> diff;\n    function<Pot(const\
-    \ Pot&)> neg;\n\n    public:\n    Potentilized_Union_Find(int n, function<Pot(const\
-    \ Pot&, const Pot&)> add, const Pot &unit, const function<Pot(const Pot &)> neg):\n\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Union_Find/Potentilized_Union_Find.hpp\"\n\ntemplate<typename\
+    \ Pot>\nclass Potentilized_Union_Find {\n    int n, _group_number;\n    vector<int>\
+    \ par, rank;\n    vector<Pot> pot; // P(x) = pot[x] P(par[x])\n    vector<bool>\
+    \ valid;\n\n    Pot unit;\n    function<Pot(const Pot&, const Pot&)> add;\n  \
+    \  function<Pot(const Pot&, const Pot&)> diff;\n    function<Pot(const Pot&)>\
+    \ neg;\n\n    public:\n    Potentilized_Union_Find(int n, function<Pot(const Pot&,\
+    \ const Pot&)> add, const Pot &unit, const function<Pot(const Pot &)> neg):\n\
     \        n(n), par(vector<int>(n, -1)), rank(vector<int>(n, 0)), pot(vector<Pot>(n,\
     \ unit)), valid(vector<bool>(n, true)), _group_number(n),\n        unit(unit),\
     \ add(add), neg(neg) {\n            diff = [&add, &neg](const Pot& a, const Pot&\
@@ -300,7 +303,7 @@ data:
   isVerificationFile: false
   path: Union_Find/Potentilized_Union_Find.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp

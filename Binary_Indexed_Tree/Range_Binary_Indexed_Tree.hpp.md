@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
     title: Binary Indexed Tree (Fenwick Tree)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,40 +191,43 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"Binary_Indexed_Tree/Binary_Indexed_Tree.hpp\"\
-    \n\ntemplate<typename G>\nclass Binary_Indexed_Tree{\n    private:\n    int n;\n\
-    \    vector<G> data;\n    G zero;\n    function<G(G, G)> op;\n    function<G(G)>\
-    \ neg;\n\n    // \u521D\u671F\u5316\n    public:\n    Binary_Indexed_Tree() =\
-    \ default;\n\n    Binary_Indexed_Tree(int n, const function<G(G, G)> op, const\
-    \ G zero, const function<G(G)> neg): n(n), op(op), zero(zero), neg(neg) {\n  \
-    \      data.assign(n + 1, zero);\n    }\n\n    Binary_Indexed_Tree(const vector<G>\
-    \ &vec, const function<G(G, G)> op, const G zero, const function<G(G)> neg):\n\
-    \        Binary_Indexed_Tree(vec.size(), op, zero, neg) {\n            for (int\
-    \ k = 1; k <= n; k++){\n                data[k] = op(data[k], vec[k - 1]);\n \
-    \               int l = k + (k & (-k));\n                if (l <= n) { data[l]\
-    \ = op(data[l], data[k]); }\n            }\n        }\n\n    // \u7B2C k \u8981\
-    \u7D20\u306B x \u3092\u5DE6\u304B\u3089\u52A0\u3048\u308B.\n    void add(int k,\
-    \ G x) {\n        for (++k; k <= n; k += k & (-k)) { data[k] = op(data[k], x);\
-    \ }\n    }\n\n    // \u7B2C k \u8981\u7D20\u3092 x \u306B\u5909\u66F4\u3059\u308B\
-    .\n    void update(int k, G x) {\n        add(k, op(neg((*this)[k]), x));\n  \
-    \  }\n\n    // \u53F3\u534A\u958B\u533A\u9593 [0, k] \u306B\u304A\u3051\u308B\u7DCF\
-    \u548C\u3092\u6C42\u3081\u308B.\n    G sum(int k) const {\n        G total = zero;\n\
-    \n        for (++k; k > 0; k -= k & (-k)) { total = op(total, data[k]); }\n\n\
-    \        return total;\n    }\n\n    // \u53F3\u534A\u958B\u533A\u9593 [l, r]\
-    \ \u306B\u304A\u3051\u308B\u7DCF\u548C\u3092\u6C42\u3081\u308B.\n    G sum(int\
-    \ l, int r) const {\n        l = max(l, 0);\n        r = min(r, n - 1);\n\n  \
-    \      if (l > r) { return zero; }\n        else if (l == 0) { return sum(r);\
-    \ }\n        else { return op(sum(r), neg(sum(l - 1))); }\n    }\n\n    // \u7B2C\
-    \ k \u8981\u7D20\u3092\u53D6\u5F97\u3059\u308B.\n    inline G operator[](int k)\
-    \ const { return sum(k, k); }\n};\n\ntemplate<typename G>\nBinary_Indexed_Tree<G>\
-    \ Group_Binary_Indexed_Tree(const vector<G> &vec, G zero){\n    auto add = [](G\
-    \ x, G y) -> G { return x + y; };\n    auto inv = [](G x) -> G { return -x; };\n\
-    \    return Binary_Indexed_Tree<G>(vec, add, zero, inv);\n}\n#line 5 \"Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp\"\
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"Binary_Indexed_Tree/Binary_Indexed_Tree.hpp\"\n\ntemplate<typename\
+    \ G>\nclass Binary_Indexed_Tree{\n    private:\n    int n;\n    vector<G> data;\n\
+    \    G zero;\n    function<G(G, G)> op;\n    function<G(G)> neg;\n\n    // \u521D\
+    \u671F\u5316\n    public:\n    Binary_Indexed_Tree() = default;\n\n    Binary_Indexed_Tree(int\
+    \ n, const function<G(G, G)> op, const G zero, const function<G(G)> neg): n(n),\
+    \ op(op), zero(zero), neg(neg) {\n        data.assign(n + 1, zero);\n    }\n\n\
+    \    Binary_Indexed_Tree(const vector<G> &vec, const function<G(G, G)> op, const\
+    \ G zero, const function<G(G)> neg):\n        Binary_Indexed_Tree(vec.size(),\
+    \ op, zero, neg) {\n            for (int k = 1; k <= n; k++){\n              \
+    \  data[k] = op(data[k], vec[k - 1]);\n                int l = k + (k & (-k));\n\
+    \                if (l <= n) { data[l] = op(data[l], data[k]); }\n           \
+    \ }\n        }\n\n    // \u7B2C k \u8981\u7D20\u306B x \u3092\u5DE6\u304B\u3089\
+    \u52A0\u3048\u308B.\n    void add(int k, G x) {\n        for (++k; k <= n; k +=\
+    \ k & (-k)) { data[k] = op(data[k], x); }\n    }\n\n    // \u7B2C k \u8981\u7D20\
+    \u3092 x \u306B\u5909\u66F4\u3059\u308B.\n    void update(int k, G x) {\n    \
+    \    add(k, op(neg((*this)[k]), x));\n    }\n\n    // \u53F3\u534A\u958B\u533A\
+    \u9593 [0, k] \u306B\u304A\u3051\u308B\u7DCF\u548C\u3092\u6C42\u3081\u308B.\n\
+    \    G sum(int k) const {\n        G total = zero;\n\n        for (++k; k > 0;\
+    \ k -= k & (-k)) { total = op(total, data[k]); }\n\n        return total;\n  \
+    \  }\n\n    // \u53F3\u534A\u958B\u533A\u9593 [l, r] \u306B\u304A\u3051\u308B\u7DCF\
+    \u548C\u3092\u6C42\u3081\u308B.\n    G sum(int l, int r) const {\n        l =\
+    \ max(l, 0);\n        r = min(r, n - 1);\n\n        if (l > r) { return zero;\
+    \ }\n        else if (l == 0) { return sum(r); }\n        else { return op(sum(r),\
+    \ neg(sum(l - 1))); }\n    }\n\n    // \u7B2C k \u8981\u7D20\u3092\u53D6\u5F97\
+    \u3059\u308B.\n    inline G operator[](int k) const { return sum(k, k); }\n};\n\
+    \ntemplate<typename G>\nBinary_Indexed_Tree<G> Group_Binary_Indexed_Tree(const\
+    \ vector<G> &vec, G zero){\n    auto add = [](G x, G y) -> G { return x + y; };\n\
+    \    auto inv = [](G x) -> G { return -x; };\n    return Binary_Indexed_Tree<G>(vec,\
+    \ add, zero, inv);\n}\n#line 5 \"Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp\"\
     \n\ntemplate<typename G>\nclass Range_Binary_Indexed_Tree {\n    private:\n  \
     \  const int n;\n    const function<G(G, G)> op;\n    const G zero;\n    const\
     \ function<G(G)> neg;\n    const function<G(int, G)> mul;\n\n    Binary_Indexed_Tree<G>\
@@ -298,7 +301,7 @@ data:
   isVerificationFile: false
   path: Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/dsl/2G.test.cpp

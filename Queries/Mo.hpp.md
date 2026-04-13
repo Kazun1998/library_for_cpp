@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -186,44 +186,47 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 4 \"Queries/Mo.hpp\"\n\n\
-    class Mo {\n    private:\n    int N;\n    int query_count;\n    vector<int> left,\
-    \ right;\n\n    public:\n    Mo(const int N): N(N), query_count(0), left(0), right(0)\
-    \ {}\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\
-    \u30A8\u30EA\u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF\n  \
-    \  /// @param r \u53F3\u7AEF\n    void add_query(const int l, const int r) {\n\
-    \        left.emplace_back(l);\n        right.emplace_back(r + 1);\n        query_count++;\n\
-    \    }\n\n    /// @brief Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    ///\
-    \ @tparam ADD \u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\
-    \n    /// @tparam DEL \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\
-    \u578B\n    /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\
-    \u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\
-    \u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9)\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\
-    \ (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem\
-    \ \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570\
-    \ (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename\
-    \ DEL, typename REM>\n    void run(const ADD &add, const DEL &del, const REM &rem)\
-    \ {\n        int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count\
-    \ * 2.0 / 3.0)));\n        int bucket_count = div_ceil(N, bucket_size);\n    \
-    \    vector<vector<int>> buckets(bucket_count, vector<int>(0));\n\n        for\
-    \ (int q = 0; q < query_count; q++) {\n            int bucket_id = div_floor(left[q],\
-    \ bucket_size);\n            buckets[bucket_id].emplace_back(q);\n        }\n\n\
-    \        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id < bucket_count;\
-    \ bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n           \
-    \ if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
-    \ [&](const int p, const int q) -> bool { return right[p] < right[q]; });\n  \
-    \          } else {\n                sort(bucket.rbegin(), bucket.rend(), [&](const\
-    \ int p, const int q) -> bool { return right[p] < right[q]; });\n            }\n\
-    \n            for (const int q: bucket) {\n                while (left[q] < l)\
-    \ add(--l);\n                while (r < right[q]) add(r++);\n\n              \
-    \  while(l < left[q]) del(l++);\n                while(right[q] < r) del(--r);\n\
-    \n                rem(q);\n            }\n        }\n    }\n};\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 4 \"Queries/Mo.hpp\"\n\nclass Mo {\n    private:\n    int N;\n\
+    \    int query_count;\n    vector<int> left, right;\n\n    public:\n    Mo(const\
+    \ int N): N(N), query_count(0), left(0), right(0) {}\n\n    /// @brief \u9589\u533A\
+    \u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\u3092\u8FFD\u52A0\u3059\
+    \u308B\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n    void\
+    \ add_query(const int l, const int r) {\n        left.emplace_back(l);\n     \
+    \   right.emplace_back(r + 1);\n        query_count++;\n    }\n\n    /// @brief\
+    \ Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    /// @tparam ADD \u8981\u7D20\
+    \u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam DEL \u8981\
+    \u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam\
+    \ REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\
+    \u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\
+    \u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    ///\
+    \ @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570 (\u5F15\u6570\
+    \u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem \u30AF\u30A8\u30EA\
+    \u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\
+    \u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename DEL, typename REM>\n\
+    \    void run(const ADD &add, const DEL &del, const REM &rem) {\n        int bucket_size\
+    \ = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count * 2.0 / 3.0)));\n\
+    \        int bucket_count = div_ceil(N, bucket_size);\n        vector<vector<int>>\
+    \ buckets(bucket_count, vector<int>(0));\n\n        for (int q = 0; q < query_count;\
+    \ q++) {\n            int bucket_id = div_floor(left[q], bucket_size);\n     \
+    \       buckets[bucket_id].emplace_back(q);\n        }\n\n        int l = 0, r\
+    \ = 0;\n        for (int bucket_id = 0; bucket_id < bucket_count; bucket_id++)\
+    \ {\n            auto &bucket = buckets[bucket_id];\n            if (bucket_id\
+    \ % 2 == 0) {\n                sort(bucket.begin(), bucket.end(), [&](const int\
+    \ p, const int q) -> bool { return right[p] < right[q]; });\n            } else\
+    \ {\n                sort(bucket.rbegin(), bucket.rend(), [&](const int p, const\
+    \ int q) -> bool { return right[p] < right[q]; });\n            }\n\n        \
+    \    for (const int q: bucket) {\n                while (left[q] < l) add(--l);\n\
+    \                while (r < right[q]) add(r++);\n\n                while(l < left[q])\
+    \ del(l++);\n                while(right[q] < r) del(--r);\n\n               \
+    \ rem(q);\n            }\n        }\n    }\n};\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nclass Mo {\n   \
     \ private:\n    int N;\n    int query_count;\n    vector<int> left, right;\n\n\
     \    public:\n    Mo(const int N): N(N), query_count(0), left(0), right(0) {}\n\
@@ -268,7 +271,7 @@ data:
   isVerificationFile: false
   path: Queries/Mo.hpp
   requiredBy: []
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Queries/Mo.hpp

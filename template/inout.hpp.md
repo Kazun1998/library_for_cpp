@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Extended_Algebra.hpp
     title: Algebra/Extended_Algebra.hpp
   - icon: ':heavy_check_mark:'
@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Permutaion.hpp
     title: "\u7F6E\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Algebra/Semiring_Matrix.hpp
     title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/Bitwise_And_Convolution.hpp
     title: Convolution/Bitwise_And_Convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/Bitwise_Or_Convolution.hpp
     title: Convolution/Bitwise_Or_Convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -197,6 +197,9 @@ data:
     path: Graph/Graph/Bipartition.hpp
     title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
   - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Chromatic_Number.hpp
+    title: "\u5F69\u8272\u6570"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: Graph/Graph/Connected_Components.hpp
   - icon: ':heavy_check_mark:'
@@ -238,10 +241,10 @@ data:
   - icon: ':warning:'
     path: Integer/Digit.hpp
     title: "\u6574\u6570\u306E\u6841"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
   - icon: ':heavy_check_mark:'
@@ -253,7 +256,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
   - icon: ':heavy_check_mark:'
@@ -298,7 +301,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Bezout.hpp
     title: "Bezout \u306E\u7B49\u5F0F"
   - icon: ':heavy_check_mark:'
@@ -319,10 +322,10 @@ data:
   - icon: ':warning:'
     path: Math/XOR_Vector_Space.hpp
     title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Max_Flow/Max_Flow.hpp
     title: "\u6700\u5927\u6D41"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
   - icon: ':warning:'
@@ -331,19 +334,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Min_Cost_Flow/Min_Cost_Flow.hpp
     title: Min_Cost_Flow/Min_Cost_Flow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Garner.hpp
     title: Garner
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':warning:'
@@ -478,19 +481,19 @@ data:
   - icon: ':warning:'
     path: Summation/Summation.hpp
     title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   - icon: ':warning:'
@@ -504,7 +507,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -701,6 +704,9 @@ data:
     path: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
     title: verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+    title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -847,42 +853,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1780.test.cpp
     title: verify/yukicoder/1780.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/187.test.cpp
     title: verify/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/1984.test.cpp
     title: verify/yukicoder/1984.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
@@ -1104,6 +1110,7 @@ data:
   - Graph/Graph/Connected_Components.hpp
   - Graph/Graph/Graph.hpp
   - Graph/Graph/Enumerate_Triangles.hpp
+  - Graph/Graph/Chromatic_Number.hpp
   - Graph/Graph/Count_Spanning_Trees.hpp
   - Graph/Graph/Bipartition.hpp
   - Graph/Weighted_Digraph/Weighted_Digraph.hpp
@@ -1116,7 +1123,7 @@ data:
   - Counting/Q_Analog_Combination_Calculator.hpp
   - Others/Topological_Sort.hpp
   timestamp: '2026-01-04 22:16:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
@@ -1159,6 +1166,7 @@ data:
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+  - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Assignment_Problem.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

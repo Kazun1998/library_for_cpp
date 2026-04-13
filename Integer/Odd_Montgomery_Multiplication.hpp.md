@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -202,42 +202,45 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 3 \"Integer/Odd_Montgomery_Multiplication.hpp\"\
-    \n\nstruct Odd_Montgomery_Multiplication {\n    using u64 = uint64_t;\n    using\
-    \ u128 = __uint128_t;\n\n    /// @brief \u5270\u4F59\n    u64 mod;\n\n    ///\
-    \ @brief N = mod \u3068\u3057\u305F\u3068\u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\
-    \u305F\u3059 N'\n    u64 neg_inv;\n\n    /// @brief (2^64)^2 mod N\n    u64 r2;\n\
-    \n    Odd_Montgomery_Multiplication(u64 mod) : mod(mod) {\n        u64 inv = mod;\n\
-    \        for (int i = 0; i < 5; ++i) inv *= 2 - mod * inv;\n        neg_inv =\
-    \ -inv;\n        u128 r = -mod % mod;\n        r2 = (r * r) % mod;\n    }\n\n\
-    \    /// @brief \u30E2\u30F3\u30B4\u30E1\u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3\
-    . T * R^{-1} mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param T 0 <= T <\
-    \ N * R\n    /// @return T * R^{-1} mod N\n    u64 reduce(u128 T) const {\n  \
-    \      u64 m = u64(T) * neg_inv;\n        u64 t = (T + (u128)m * mod) >> 64;\n\
-    \        if (t >= mod) { t -= mod; }\n        return t;\n    }\n\n    /// @brief\
-    \ \u901A\u5E38\u306E\u6574\u6570 a \u3092\u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\
-    \ aR mod N \u306B\u5909\u63DB\u3059\u308B.\n    /// @param a 0 <= a < N\n    ///\
-    \ @return aR mod N\n    u64 form(u64 a) const { return reduce((u128)a * r2); }\n\
-    \n    /// @brief \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\
-    \ a, b \u306E\u7A4D\u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a \u30E2\u30F3\
-    \u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\n    /// @param b \u30E2\
-    \u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\u308C\u305F\u6570\n    /// @return\
-    \ a * b \u306E\u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\n    u64 multiply(u64\
-    \ a, u64 b) const { return reduce((u128)a * b); }\n\n    /// @brief \u901A\u5E38\
-    \u306E\u6574\u6570 a, b \u306E\u7A4D a * b mod N \u3092\u8A08\u7B97\u3059\u308B\
-    .\n    /// @param a 0 <= a < N\n    /// @param b 0 <= b < N\n    /// @return a\
-    \ * b mod N\n    u64 mod_mul(u64 a, u64 b) const { return reduce(multiply(form(a),\
-    \ form(b))); }\n\n    /// @brief a^b mod N \u3092\u8A08\u7B97\u3059\u308B.\n \
-    \   /// @param a \u57FA\u6570\n    /// @param b \u6307\u6570\n    /// @return\
-    \ a^b mod N\n    u64 modpow(u64 a, u64 b) const {\n        u64 res = form(1);\n\
-    \        u64 mont_a = form(a);\n        while (b > 0) {\n            if (b & 1)\
-    \ res = multiply(res, mont_a);\n            mont_a = multiply(mont_a, mont_a);\n\
-    \            b >>= 1;\n        }\n        return reduce(res);\n    }\n};\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 3 \"Integer/Odd_Montgomery_Multiplication.hpp\"\n\nstruct Odd_Montgomery_Multiplication\
+    \ {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\n    /// @brief\
+    \ \u5270\u4F59\n    u64 mod;\n\n    /// @brief N = mod \u3068\u3057\u305F\u3068\
+    \u304D, NN' \u2261 -1 (mod R) \u3092\u6E80\u305F\u3059 N'\n    u64 neg_inv;\n\n\
+    \    /// @brief (2^64)^2 mod N\n    u64 r2;\n\n    Odd_Montgomery_Multiplication(u64\
+    \ mod) : mod(mod) {\n        u64 inv = mod;\n        for (int i = 0; i < 5; ++i)\
+    \ inv *= 2 - mod * inv;\n        neg_inv = -inv;\n        u128 r = -mod % mod;\n\
+    \        r2 = (r * r) % mod;\n    }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u30EA\u30C0\u30AF\u30B7\u30E7\u30F3. T * R^{-1} mod N \u3092\u8A08\u7B97\
+    \u3059\u308B.\n    /// @param T 0 <= T < N * R\n    /// @return T * R^{-1} mod\
+    \ N\n    u64 reduce(u128 T) const {\n        u64 m = u64(T) * neg_inv;\n     \
+    \   u64 t = (T + (u128)m * mod) >> 64;\n        if (t >= mod) { t -= mod; }\n\
+    \        return t;\n    }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a \u3092\
+    \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE aR mod N \u306B\u5909\u63DB\u3059\u308B\
+    .\n    /// @param a 0 <= a < N\n    /// @return aR mod N\n    u64 form(u64 a)\
+    \ const { return reduce((u128)a * r2); }\n\n    /// @brief \u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u8868\u73FE\u3055\u308C\u305F\u6570 a, b \u306E\u7A4D\u3092\u8A08\u7B97\
+    \u3059\u308B.\n    /// @param a \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\u3055\
+    \u308C\u305F\u6570\n    /// @param b \u30E2\u30F3\u30B4\u30E1\u30EA\u8868\u73FE\
+    \u3055\u308C\u305F\u6570\n    /// @return a * b \u306E\u30E2\u30F3\u30B4\u30E1\
+    \u30EA\u8868\u73FE\n    u64 multiply(u64 a, u64 b) const { return reduce((u128)a\
+    \ * b); }\n\n    /// @brief \u901A\u5E38\u306E\u6574\u6570 a, b \u306E\u7A4D a\
+    \ * b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a 0 <= a < N\n   \
+    \ /// @param b 0 <= b < N\n    /// @return a * b mod N\n    u64 mod_mul(u64 a,\
+    \ u64 b) const { return reduce(multiply(form(a), form(b))); }\n\n    /// @brief\
+    \ a^b mod N \u3092\u8A08\u7B97\u3059\u308B.\n    /// @param a \u57FA\u6570\n \
+    \   /// @param b \u6307\u6570\n    /// @return a^b mod N\n    u64 modpow(u64 a,\
+    \ u64 b) const {\n        u64 res = form(1);\n        u64 mont_a = form(a);\n\
+    \        while (b > 0) {\n            if (b & 1) res = multiply(res, mont_a);\n\
+    \            mont_a = multiply(mont_a, mont_a);\n            b >>= 1;\n      \
+    \  }\n        return reduce(res);\n    }\n};\n"
   code: "#pragma once\n#include \"../template/template.hpp\"\n\nstruct Odd_Montgomery_Multiplication\
     \ {\n    using u64 = uint64_t;\n    using u128 = __uint128_t;\n\n    /// @brief\
     \ \u5270\u4F59\n    u64 mod;\n\n    /// @brief N = mod \u3068\u3057\u305F\u3068\
@@ -283,7 +286,7 @@ data:
   - Integer/Primitive_Root.hpp
   - Integer/Pollard_Rho.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
-  timestamp: '2026-04-03 00:40:01+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

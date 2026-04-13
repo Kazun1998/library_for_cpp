@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: String/Suffix_Array.hpp
     title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -191,92 +191,95 @@ data:
     \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
     \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
     \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n#line 73 \"template/template.hpp\"\n\n// exception\n\
-    #line 2 \"template/exception.hpp\"\n\nclass NotExist: public exception {\n   \
-    \ private:\n    string message;\n\n    public:\n    NotExist() : message(\"\u6C42\
-    \u3081\u3088\u3046\u3068\u3057\u3066\u3044\u305F\u3082\u306E\u306F\u5B58\u5728\
-    \u3057\u307E\u305B\u3093.\") {}\n\n    const char* what() const noexcept override\
-    \ {\n        return message.c_str();\n    }\n};\n#line 2 \"String/Suffix_Array.hpp\"\
-    \n\n#line 4 \"String/Suffix_Array.hpp\"\n\n/**\n * @brief Suffix Array \u3092\u69CB\
-    \u7BC9\u3059\u308B.\n * \n * \u30C0\u30D6\u30EA\u30F3\u30B0\u3068\u57FA\u6570\u30BD\
-    \u30FC\u30C8\u3092\u7528\u3044\u3066 O(N log N) \u3067\u69CB\u7BC9\u3059\u308B\
-    .\n * \u8FD4\u308A\u5024 sa \u306F, sa[i] \u304C\u300C\u8F9E\u66F8\u9806\u3067\
-    \ i \u756A\u76EE\u306B\u5C0F\u3055\u3044\u63A5\u5C3E\u8F9E\u306E\u958B\u59CB\u30A4\
-    \u30F3\u30C7\u30C3\u30AF\u30B9\u300D\u3068\u306A\u308B\u3088\u3046\u306A\u30B5\
-    \u30A4\u30BA N \u306E\u914D\u5217.\n * \u7A7A\u6587\u5B57\u5217\uFF08\u756A\u5175\
-    \uFF09\u306F\u5185\u90E8\u7684\u306A\u69CB\u7BC9\u904E\u7A0B\u3067\u306E\u307F\
-    \u5229\u7528\u3055\u308C\u3001\u8FD4\u308A\u5024\u306B\u306F\u542B\u307E\u308C\
-    \u306A\u3044.\n * \n * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B. std::integral\
-    \ \u30B3\u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\
-    \u308B.\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\u914D\u5217\n * @return vector<int>\
-    \ \u69CB\u7BC9\u3055\u308C\u305F Suffix Array\n */\ntemplate<integral T>\nvector<int>\
-    \ Suffix_Array(const vector<T> &A) {\n    int n = A.size();\n    // \u7A7A\u6587\
-    \u5B57\u5217\uFF08\u756A\u5175\uFF09\u3092\u542B\u3081\u305F\u30B5\u30A4\u30BA\
-    \ n+1 \u3067\u7BA1\u7406\n    vector<int> suffix_array(n + 1);\n    vector<int>\
-    \ rank(n + 1);     // \u5404\u63A5\u5C3E\u8F9E\u306E\u73FE\u5728\u306E\u30E9\u30F3\
-    \u30AF\n    vector<int> tmp_sa(n + 1);\n    vector<int> tmp_rank(n + 1);\n\n \
-    \   // 1\u6587\u5B57\u76EE\u306B\u3088\u308B\u521D\u671F\u30BD\u30FC\u30C8\n \
-    \   iota(suffix_array.begin(), suffix_array.end(), 0);\n    sort(suffix_array.begin(),\
-    \ suffix_array.end(), [&](int i, int j) {\n        // \u756A\u5175 (index n) \u3092\
-    \u6700\u5C0F\u3068\u3057\u3066\u6271\u3046\n        if (i == n) return true;\n\
-    \        if (j == n) return false;\n        return A[i] < A[j];\n    });\n\n \
-    \   rank[suffix_array[0]] = 0;\n    int r = 0;\n    for (int i = 1; i <= n; ++i)\
-    \ {\n        if (suffix_array[i - 1] == n || (suffix_array[i] != n && A[suffix_array[i\
-    \ - 1]] < A[suffix_array[i]])) r++;\n        rank[suffix_array[i]] = r;\n    }\n\
-    \    \n    // \u30C0\u30D6\u30EA\u30F3\u30B0: \u9577\u3055 k \u306E\u6BD4\u8F03\
-    \u7D50\u679C\u304B\u3089\u9577\u3055 2k \u306E\u6BD4\u8F03\u7D50\u679C\u3092\u5C0E\
-    \u51FA\u3059\u308B\n    for (int k = 1; k <= n; k <<= 1) {\n        // \u7B2C\
-    2\u30AD\u30FC (rank[i+k]) \u306B\u57FA\u3065\u3044\u3066 tmp_sa \u3092\u69CB\u6210\
-    \n        int it = 0;\n        // \u5F8C\u534A\u90E8\u5206\u304C\u5B58\u5728\u3057\
-    \u306A\u3044 (i+k > n) \u63A5\u5C3E\u8F9E\u304C\u6700\u5C0F\n        for (int\
-    \ i = n - k + 1; i <= n; ++i) tmp_sa[it++] = i;\n        // \u305D\u308C\u4EE5\
-    \u5916\u3092\u76F4\u524D\u306E suffix_array \u306E\u9806\u5E8F\uFF08\u9577\u3055\
-    \ k \u3067\u306E\u9806\u5E8F\uFF09\u3092\u5229\u7528\u3057\u3066\u4E26\u3079\u308B\
-    \n        for (int i = 0; i <= n; ++i) {\n            if (suffix_array[i] >= k)\
-    \ tmp_sa[it++] = suffix_array[i] - k;\n        }\n\n        // \u7B2C1\u30AD\u30FC\
-    \ (rank[i]) \u306B\u57FA\u3065\u3044\u3066\u8A08\u6570\u30BD\u30FC\u30C8\uFF08\
-    Counting Sort\uFF09\u3092\u884C\u3046\n        // \u3053\u308C\u306B\u3088\u308A\
-    \ (rank[i], rank[i+k]) \u306E\u30DA\u30A2\u3067\u30BD\u30FC\u30C8\u3057\u305F\u3053\
-    \u3068\u306B\u306A\u308B\n        vector<int> cnt(r + 1, 0);\n        for (int\
-    \ i = 0; i <= n; ++i) cnt[rank[i]]++;\n        for (int i = 1; i <= r; ++i) cnt[i]\
-    \ += cnt[i - 1];\n        // \u5B89\u5B9A\u30BD\u30FC\u30C8\u3092\u7DAD\u6301\u3059\
-    \u308B\u305F\u3081\u5F8C\u308D\u304B\u3089\u8D70\u67FB\n        for (int i = n;\
-    \ i >= 0; --i) suffix_array[--cnt[rank[tmp_sa[i]]]] = tmp_sa[i];\n\n        tmp_rank[suffix_array[0]]\
-    \ = 0;\n        r = 0;\n        auto first = [&](int idx) { return rank[idx];\
-    \ };\n        auto second = [&](int idx) { return (idx + k <= n) ? rank[idx +\
-    \ k] : -1; };\n        for (int i = 1; i <= n; ++i) {\n            // \u524D\u306E\
-    \u8981\u7D20\u3068 (\u7B2C1\u30AD\u30FC, \u7B2C2\u30AD\u30FC) \u306E\u30DA\u30A2\
-    \u304C\u7570\u306A\u308B\u5834\u5408\u306B\u30E9\u30F3\u30AF\u3092\u4E0A\u3052\
-    \u308B\n            unless (first(suffix_array[i - 1]) == first(suffix_array[i])\
-    \ && second(suffix_array[i - 1]) == second(suffix_array[i])) r++;\n          \
-    \  tmp_rank[suffix_array[i]] = r;\n        }\n        rank = tmp_rank;\n     \
-    \   // \u3059\u3079\u3066\u306E\u30E9\u30F3\u30AF\u304C\u7570\u306A\u308C\u3070\
-    \uFF08\u4E00\u610F\u306B\u5B9A\u307E\u308C\u3070\uFF09\u7D42\u4E86\n        if\
-    \ (r == n) break;\n    }\n\n    // \u5148\u982D\u306E\u756A\u5175 (n) \u3092\u524A\
-    \u9664\n    suffix_array.erase(suffix_array.begin());\n\n    return suffix_array;\n\
-    }\n\n/**\n * @brief \u6574\u6570\u578B\u4EE5\u5916\u306E\u8981\u7D20\u3092\u6301\
-    \u3064\u914D\u5217\u306B\u5BFE\u3057\u3066 Suffix Array \u3092\u69CB\u7BC9\u3059\
-    \u308B.\n *\n * \u5185\u90E8\u3067\u5EA7\u6A19\u5727\u7E2E\u3092\u884C\u3044,\
-    \ \u6574\u6570\u578B\u306E Suffix Array \u69CB\u7BC9\u95A2\u6570\u3092\u547C\u3073\
-    \u51FA\u3059.\n * \u8A08\u7B97\u91CF\u306F\u5EA7\u6A19\u5727\u7E2E\u3092\u542B\
-    \u3081\u3066 O(N log N) \u3068\u306A\u308B.\n *\n * @tparam T \u914D\u5217\u306E\
-    \u8981\u7D20\u306E\u578B. !std::integral \u304B\u3064 std::totally_ordered \u30B3\
-    \u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308B\
-    .\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\u914D\u5217\n * @return vector<int>\
-    \ Suffix Array\n */\ntemplate<typename T>\nrequires (!integral<T> && totally_ordered<T>)\n\
-    vector<int> Suffix_Array(const vector<T> &A) {\n    int n = A.size();\n\n    vector<int>\
-    \ idx(n);\n    iota(idx.begin(), idx.end(), 0);\n    sort(idx.begin(), idx.end(),\
-    \ [&](int i, int j) { return A[i] < A[j]; });\n\n    vector<int> B(n);\n    int\
-    \ r = 0;\n    for (int i = 0; i < n; ++i) {\n        if (i > 0 && A[idx[i - 1]]\
-    \ < A[idx[i]]) r++;\n        B[idx[i]] = r;\n    }\n    return Suffix_Array<int>(B);\n\
-    }\n\n/**\n * @brief \u6587\u5B57\u5217\u306B\u5BFE\u3057\u3066 Suffix Array \u3092\
-    \u69CB\u7BC9\u3059\u308B.\n *\n * \u5185\u90E8\u3067 vector<char> \u306B\u5909\
-    \u63DB\u3057\u3066\u51E6\u7406\u3092\u884C\u3046\u30E9\u30C3\u30D7\u95A2\u6570\
-    .\n *\n * @param S \u69CB\u7BC9\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return\
-    \ vector<int> Suffix Array\n */\nvector<int> Suffix_Array(const string &S) {\n\
-    \    return Suffix_Array<char>(vector<char>(S.begin(), S.end()));\n}\n#line 5\
-    \ \"verify/yosupo_library_checker/string/Suffix_Array.test.cpp\"\n\nint main()\
-    \ {\n    string S; cin >> S;\n    cout << Suffix_Array(S) << endl;\n}\n"
+    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
+    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
+    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
+    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
+    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
+    \    const char* what() const noexcept override {\n        return message.c_str();\n\
+    \    }\n};\n#line 2 \"String/Suffix_Array.hpp\"\n\n#line 4 \"String/Suffix_Array.hpp\"\
+    \n\n/**\n * @brief Suffix Array \u3092\u69CB\u7BC9\u3059\u308B.\n * \n * \u30C0\
+    \u30D6\u30EA\u30F3\u30B0\u3068\u57FA\u6570\u30BD\u30FC\u30C8\u3092\u7528\u3044\
+    \u3066 O(N log N) \u3067\u69CB\u7BC9\u3059\u308B.\n * \u8FD4\u308A\u5024 sa \u306F\
+    , sa[i] \u304C\u300C\u8F9E\u66F8\u9806\u3067 i \u756A\u76EE\u306B\u5C0F\u3055\u3044\
+    \u63A5\u5C3E\u8F9E\u306E\u958B\u59CB\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u300D\
+    \u3068\u306A\u308B\u3088\u3046\u306A\u30B5\u30A4\u30BA N \u306E\u914D\u5217.\n\
+    \ * \u7A7A\u6587\u5B57\u5217\uFF08\u756A\u5175\uFF09\u306F\u5185\u90E8\u7684\u306A\
+    \u69CB\u7BC9\u904E\u7A0B\u3067\u306E\u307F\u5229\u7528\u3055\u308C\u3001\u8FD4\
+    \u308A\u5024\u306B\u306F\u542B\u307E\u308C\u306A\u3044.\n * \n * @tparam T \u914D\
+    \u5217\u306E\u8981\u7D20\u306E\u578B. std::integral \u30B3\u30F3\u30BB\u30D7\u30C8\
+    \u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\
+    \u5BFE\u8C61\u306E\u914D\u5217\n * @return vector<int> \u69CB\u7BC9\u3055\u308C\
+    \u305F Suffix Array\n */\ntemplate<integral T>\nvector<int> Suffix_Array(const\
+    \ vector<T> &A) {\n    int n = A.size();\n    // \u7A7A\u6587\u5B57\u5217\uFF08\
+    \u756A\u5175\uFF09\u3092\u542B\u3081\u305F\u30B5\u30A4\u30BA n+1 \u3067\u7BA1\u7406\
+    \n    vector<int> suffix_array(n + 1);\n    vector<int> rank(n + 1);     // \u5404\
+    \u63A5\u5C3E\u8F9E\u306E\u73FE\u5728\u306E\u30E9\u30F3\u30AF\n    vector<int>\
+    \ tmp_sa(n + 1);\n    vector<int> tmp_rank(n + 1);\n\n    // 1\u6587\u5B57\u76EE\
+    \u306B\u3088\u308B\u521D\u671F\u30BD\u30FC\u30C8\n    iota(suffix_array.begin(),\
+    \ suffix_array.end(), 0);\n    sort(suffix_array.begin(), suffix_array.end(),\
+    \ [&](int i, int j) {\n        // \u756A\u5175 (index n) \u3092\u6700\u5C0F\u3068\
+    \u3057\u3066\u6271\u3046\n        if (i == n) return true;\n        if (j == n)\
+    \ return false;\n        return A[i] < A[j];\n    });\n\n    rank[suffix_array[0]]\
+    \ = 0;\n    int r = 0;\n    for (int i = 1; i <= n; ++i) {\n        if (suffix_array[i\
+    \ - 1] == n || (suffix_array[i] != n && A[suffix_array[i - 1]] < A[suffix_array[i]]))\
+    \ r++;\n        rank[suffix_array[i]] = r;\n    }\n    \n    // \u30C0\u30D6\u30EA\
+    \u30F3\u30B0: \u9577\u3055 k \u306E\u6BD4\u8F03\u7D50\u679C\u304B\u3089\u9577\u3055\
+    \ 2k \u306E\u6BD4\u8F03\u7D50\u679C\u3092\u5C0E\u51FA\u3059\u308B\n    for (int\
+    \ k = 1; k <= n; k <<= 1) {\n        // \u7B2C2\u30AD\u30FC (rank[i+k]) \u306B\
+    \u57FA\u3065\u3044\u3066 tmp_sa \u3092\u69CB\u6210\n        int it = 0;\n    \
+    \    // \u5F8C\u534A\u90E8\u5206\u304C\u5B58\u5728\u3057\u306A\u3044 (i+k > n)\
+    \ \u63A5\u5C3E\u8F9E\u304C\u6700\u5C0F\n        for (int i = n - k + 1; i <= n;\
+    \ ++i) tmp_sa[it++] = i;\n        // \u305D\u308C\u4EE5\u5916\u3092\u76F4\u524D\
+    \u306E suffix_array \u306E\u9806\u5E8F\uFF08\u9577\u3055 k \u3067\u306E\u9806\u5E8F\
+    \uFF09\u3092\u5229\u7528\u3057\u3066\u4E26\u3079\u308B\n        for (int i = 0;\
+    \ i <= n; ++i) {\n            if (suffix_array[i] >= k) tmp_sa[it++] = suffix_array[i]\
+    \ - k;\n        }\n\n        // \u7B2C1\u30AD\u30FC (rank[i]) \u306B\u57FA\u3065\
+    \u3044\u3066\u8A08\u6570\u30BD\u30FC\u30C8\uFF08Counting Sort\uFF09\u3092\u884C\
+    \u3046\n        // \u3053\u308C\u306B\u3088\u308A (rank[i], rank[i+k]) \u306E\u30DA\
+    \u30A2\u3067\u30BD\u30FC\u30C8\u3057\u305F\u3053\u3068\u306B\u306A\u308B\n   \
+    \     vector<int> cnt(r + 1, 0);\n        for (int i = 0; i <= n; ++i) cnt[rank[i]]++;\n\
+    \        for (int i = 1; i <= r; ++i) cnt[i] += cnt[i - 1];\n        // \u5B89\
+    \u5B9A\u30BD\u30FC\u30C8\u3092\u7DAD\u6301\u3059\u308B\u305F\u3081\u5F8C\u308D\
+    \u304B\u3089\u8D70\u67FB\n        for (int i = n; i >= 0; --i) suffix_array[--cnt[rank[tmp_sa[i]]]]\
+    \ = tmp_sa[i];\n\n        tmp_rank[suffix_array[0]] = 0;\n        r = 0;\n   \
+    \     auto first = [&](int idx) { return rank[idx]; };\n        auto second =\
+    \ [&](int idx) { return (idx + k <= n) ? rank[idx + k] : -1; };\n        for (int\
+    \ i = 1; i <= n; ++i) {\n            // \u524D\u306E\u8981\u7D20\u3068 (\u7B2C\
+    1\u30AD\u30FC, \u7B2C2\u30AD\u30FC) \u306E\u30DA\u30A2\u304C\u7570\u306A\u308B\
+    \u5834\u5408\u306B\u30E9\u30F3\u30AF\u3092\u4E0A\u3052\u308B\n            unless\
+    \ (first(suffix_array[i - 1]) == first(suffix_array[i]) && second(suffix_array[i\
+    \ - 1]) == second(suffix_array[i])) r++;\n            tmp_rank[suffix_array[i]]\
+    \ = r;\n        }\n        rank = tmp_rank;\n        // \u3059\u3079\u3066\u306E\
+    \u30E9\u30F3\u30AF\u304C\u7570\u306A\u308C\u3070\uFF08\u4E00\u610F\u306B\u5B9A\
+    \u307E\u308C\u3070\uFF09\u7D42\u4E86\n        if (r == n) break;\n    }\n\n  \
+    \  // \u5148\u982D\u306E\u756A\u5175 (n) \u3092\u524A\u9664\n    suffix_array.erase(suffix_array.begin());\n\
+    \n    return suffix_array;\n}\n\n/**\n * @brief \u6574\u6570\u578B\u4EE5\u5916\
+    \u306E\u8981\u7D20\u3092\u6301\u3064\u914D\u5217\u306B\u5BFE\u3057\u3066 Suffix\
+    \ Array \u3092\u69CB\u7BC9\u3059\u308B.\n *\n * \u5185\u90E8\u3067\u5EA7\u6A19\
+    \u5727\u7E2E\u3092\u884C\u3044, \u6574\u6570\u578B\u306E Suffix Array \u69CB\u7BC9\
+    \u95A2\u6570\u3092\u547C\u3073\u51FA\u3059.\n * \u8A08\u7B97\u91CF\u306F\u5EA7\
+    \u6A19\u5727\u7E2E\u3092\u542B\u3081\u3066 O(N log N) \u3068\u306A\u308B.\n *\n\
+    \ * @tparam T \u914D\u5217\u306E\u8981\u7D20\u306E\u578B. !std::integral \u304B\
+    \u3064 std::totally_ordered \u30B3\u30F3\u30BB\u30D7\u30C8\u3092\u6E80\u305F\u3059\
+    \u5FC5\u8981\u304C\u3042\u308B.\n * @param A \u69CB\u7BC9\u5BFE\u8C61\u306E\u914D\
+    \u5217\n * @return vector<int> Suffix Array\n */\ntemplate<typename T>\nrequires\
+    \ (!integral<T> && totally_ordered<T>)\nvector<int> Suffix_Array(const vector<T>\
+    \ &A) {\n    int n = A.size();\n\n    vector<int> idx(n);\n    iota(idx.begin(),\
+    \ idx.end(), 0);\n    sort(idx.begin(), idx.end(), [&](int i, int j) { return\
+    \ A[i] < A[j]; });\n\n    vector<int> B(n);\n    int r = 0;\n    for (int i =\
+    \ 0; i < n; ++i) {\n        if (i > 0 && A[idx[i - 1]] < A[idx[i]]) r++;\n   \
+    \     B[idx[i]] = r;\n    }\n    return Suffix_Array<int>(B);\n}\n\n/**\n * @brief\
+    \ \u6587\u5B57\u5217\u306B\u5BFE\u3057\u3066 Suffix Array \u3092\u69CB\u7BC9\u3059\
+    \u308B.\n *\n * \u5185\u90E8\u3067 vector<char> \u306B\u5909\u63DB\u3057\u3066\
+    \u51E6\u7406\u3092\u884C\u3046\u30E9\u30C3\u30D7\u95A2\u6570.\n *\n * @param S\
+    \ \u69CB\u7BC9\u5BFE\u8C61\u306E\u6587\u5B57\u5217\n * @return vector<int> Suffix\
+    \ Array\n */\nvector<int> Suffix_Array(const string &S) {\n    return Suffix_Array<char>(vector<char>(S.begin(),\
+    \ S.end()));\n}\n#line 5 \"verify/yosupo_library_checker/string/Suffix_Array.test.cpp\"\
+    \n\nint main() {\n    string S; cin >> S;\n    cout << Suffix_Array(S) << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n\n#include\
     \ \"../../../template/template.hpp\"\n#include \"../../../String/Suffix_Array.hpp\"\
     \n\nint main() {\n    string S; cin >> S;\n    cout << Suffix_Array(S) << endl;\n\
@@ -293,7 +296,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
   requiredBy: []
-  timestamp: '2026-04-05 14:29:47+09:00'
+  timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
