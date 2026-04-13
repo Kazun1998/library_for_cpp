@@ -10,67 +10,55 @@ namespace graph {
 
         using namespace convolution;
         using Conv = Bitwise_Or_Convolution<long long>;
-        const vector<vector<int>> adj = G.adjacency_matrix();
 
-        // Section I: dp[1][S] を求める. (S が独立集合なら 1, そうでなければ 0)
-        Conv indep(vector<long long>(1 << n, 0));
-        indep[0] = 1;
-
-        for (int S = 1; S < (1 << n); ++S) {
-            int x = lowest_bit(S); // ビットのインデックスを取得
-            int Sx = S ^ (1 << x);
-
-            if (indep[Sx] == 0) continue;
-
-            bool is_indep = true;
-            for (int y = 0; y < n; y++) {
-                if (((Sx >> y) & 1) && adj[x][y]) {
-                    is_indep = false;
-                    break;
-                }
+        vector<int> adj_mask(n, 0);
+        for (int i = 0; i < n; ++i) {
+            for (auto edge : G.incidence(i)) {
+                adj_mask[i] |= (1 << edge->target);
             }
-            if (is_indep) indep[S] = 1;
         }
 
-        // 空グラフの彩色数は 1
-        if (indep[(1 << n) - 1] == 1) return 1;
+        // Section I: 独立集合の判定 (S が独立集合なら 1, そうでなければ 0)
+        vector<long long> indep_vec(1 << n, 0);
+        indep_vec[0] = 1;
+        for (int S = 1; S < (1 << n); ++S) {
+            int x = lowest_bit(S);
+            int prev = S ^ (1 << x);
+            if (indep_vec[prev] && !(adj_mask[x] & prev)) indep_vec[S] = 1;
+        }
+
+        if (indep_vec[(1 << n) - 1]) return 1;
+        Conv indep(indep_vec);
 
         auto clamp = [&](Conv &c) {
-            for (int S = 0; S < (1 << n); ++S) {
-                c[S] = c[S] > 0 ? 1 : 0;
-            }
+            for (int S = 0; S < (1 << n); ++S) c[S] = (c[S] > 0);
         };
 
-        // Section II: k = 2, 4, 8, ... に対して, dp
-        vector<Conv> dp(2 * n, Conv());
-        dp[1] = indep;
-        int k = 1;
-        for (; 2 * k <= n; k *= 2) {
-            dp[2 * k] = dp[k] * dp[k];
-            clamp(dp[2 * k]);
-            if (dp[2 * k][(1 << n) - 1]) break;
+        // Section II: k = 2, 4, 8, ... に対してダブリング
+        vector<Conv> dp_pow2;
+        dp_pow2.push_back(indep);
+        int k = 0;
+        while ((1 << (k + 1)) <= n) {
+            Conv next = dp_pow2.back() * dp_pow2.back();
+            clamp(next);
+            if (next[(1 << n) - 1]) break;
+            dp_pow2.push_back(next);
+            k++;
         }
 
         // Section III: 二分探索によって彩色数を求める
-        Conv prev = dp[k];
-        int step = k >> 1;
-
-        for (; step > 0; step >>= 1) {
-            if (k + step > n) continue;
-
-            // prev (dp[k_current]) と dp[step] を畳み込むことで dp[k_current + step] を得る
-            Conv res = prev * dp[step];
-            
+        int current_k = (1 << k);
+        Conv current_dp = dp_pow2.back();
+        for (int i = k - 1; i >= 0; --i) {
+            if (current_k + (1 << i) > n) continue;
+            Conv res = current_dp * dp_pow2[i];
             clamp(res);
-
-            dp[k + step] = res;
-
-            unless(res[(1 << n) - 1]) {
-                k += step;
-                prev = res;
+            unless (res[(1 << n) - 1]) {
+                current_k += (1 << i);
+                current_dp = res;
             }
         }
 
-        return k + 1;
+        return current_k + 1;
     }
 }
