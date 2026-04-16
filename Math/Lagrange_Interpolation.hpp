@@ -35,3 +35,53 @@ F Lagrange_Interpolation_Point(const vector<pair<F, F>> &points, F X) {
     auto y = enumerable::collect(points, [](const auto &p) { return p.second; });
     return Lagrange_Interpolation_Point(x, y, X);
 }
+
+template<typename F>
+vector<F> Lagrange_Interpolation_Polynomial(const vector<F> &x, const vector<F> &y) {
+    assert(x.size() == y.size());
+    int n = (int)x.size();
+    if (n == 0) return {};
+
+    // Section I: m(x) = \prod (x - xs[i]) を計算
+    vector<F> m(n + 1, 0);
+    m[0] = 1;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i; j >= 0; --j) {
+            m[j + 1] += m[j];
+            m[j] *= -x[i];
+        }
+    }
+
+    // Section II: m の導関数 m' を求める.
+    vector<F> m_diff(n);
+    for (int i = 1; i <= n; ++i) {
+        m_diff[i - 1] = F(i) * m[i];
+    }
+
+    // Section III: f を求める.
+    vector<F> res(n, 0);
+    for (int i = 0; i < n; ++i) {
+        // Evaluate m'(x[i]) using Horner's method
+        F val_diff = 0;
+        for (int j = n - 1; j >= 0; --j) {
+            val_diff = val_diff * x[i] + m_diff[j];
+        }
+
+        F weight = y[i] / val_diff;
+
+        // Compute Q_i(x) = m(x) / (x - x[i]) and add weight * Q_i(x) to res
+        F q = m[n];
+        for (int j = n - 1; j >= 0; --j) {
+            res[j] += weight * q;
+            q = m[j] + x[i] * q;
+        }
+    }
+    return res;
+}
+
+template<typename F>
+vector<F> Lagrange_Interpolation_Polynomial(const vector<pair<F, F>> &points) {
+    auto x = enumerable::collect(points, [](const auto &p) { return p.first; });
+    auto y = enumerable::collect(points, [](const auto &p) { return p.second; });
+    return Lagrange_Interpolation_Polynomial(x, y);
+}
