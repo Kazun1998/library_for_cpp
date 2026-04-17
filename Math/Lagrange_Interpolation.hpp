@@ -4,6 +4,15 @@
 #include "../template/enumerable.hpp"
 #include "../Counting/Combination_Calculator.hpp"
 
+/**
+ * @brief ラグランジュ補間を用いた評価点の値の計算 (O(N^2))
+ * @details 与えられた n 個の点 (x[i], y[i]) を通る n-1 次以下の多項式 P に対し、P(X) を求める。
+ * @tparam F 体を表す型 (ModInt 等)
+ * @param x 点の x 座標のリスト (すべて異なる必要がある)
+ * @param y 点の y 座標のリスト
+ * @param X 評価点
+ * @return F P(X) の値
+ */
 template<typename F>
 F Lagrange_Interpolation_Point(const vector<F> &x, const vector<F> &y, F X) {
     assert(x.size() == y.size());
@@ -30,6 +39,14 @@ F Lagrange_Interpolation_Point(const vector<F> &x, const vector<F> &y, F X) {
     return Y;
 }
 
+/**
+ * @brief ラグランジュ補間を用いた評価点の値の計算 (O(N^2))
+ * @details points[i] = (x_i, y_i) を通る n-1 次以下の多項式 P に対し、P(X) を求める。
+ * @tparam F 体を表す型
+ * @param points 点 (x, y) のリスト
+ * @param X 評価点
+ * @return F P(X) の値
+ */
 template<typename F>
 F Lagrange_Interpolation_Point(const vector<pair<F, F>> &points, F X) {
     auto x = enumerable::collect(points, [](const auto &p) { return p.first; });
@@ -37,6 +54,14 @@ F Lagrange_Interpolation_Point(const vector<pair<F, F>> &points, F X) {
     return Lagrange_Interpolation_Point(x, y, X);
 }
 
+/**
+ * @brief ラグランジュ補間を用いた多項式の係数の決定 (O(N^2))
+ * @details 与えられた n 個の点 (x[i], y[i]) を通る n-1 次以下の多項式 P(x) = \sum res[i] * x^i を求める。
+ * @tparam F 体を表す型
+ * @param x 点の x 座標のリスト (すべて異なる必要がある)
+ * @param y 点の y 座標のリスト
+ * @return vector<F> 多項式の係数リスト res (res[i] は x^i の係数)
+ */
 template<typename F>
 vector<F> Lagrange_Interpolation_Polynomial(const vector<F> &x, const vector<F> &y) {
     assert(x.size() == y.size());
@@ -80,6 +105,13 @@ vector<F> Lagrange_Interpolation_Polynomial(const vector<F> &x, const vector<F> 
     return res;
 }
 
+/**
+ * @brief ラグランジュ補間を用いた多項式の係数の決定 (O(N^2))
+ * @details points[i] = (x_i, y_i) を通る n-1 次以下の多項式 P(x) = \sum res[i] * x^i を求める。
+ * @tparam F 体を表す型
+ * @param points 点 (x, y) のリスト
+ * @return vector<F> 多項式の係数リスト res (res[i] は x^i の係数)
+ */
 template<typename F>
 vector<F> Lagrange_Interpolation_Polynomial(const vector<pair<F, F>> &points) {
     auto x = enumerable::collect(points, [](const auto &p) { return p.first; });
@@ -87,6 +119,16 @@ vector<F> Lagrange_Interpolation_Polynomial(const vector<pair<F, F>> &points) {
     return Lagrange_Interpolation_Polynomial(x, y);
 }
 
+/**
+ * @brief 等差数列上の点におけるラグランジュ補間 (O(N))
+ * @details 多項式 P(a*i + b) = y[i] (0 <= i < |y|) を満たす P(s) を求める。
+ * @tparam F 体を表す型 (ModInt 等)
+ * @param a 等差数列の公差
+ * @param b 等差数列の初項
+ * @param y 各点における多項式の値のリスト
+ * @param s 評価点
+ * @return F P(s) の値
+ */
 template<typename F>
 F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> &y, const F s) {
     int n = (int)y.size();
@@ -127,6 +169,14 @@ F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> 
     return coef * t;
 }
 
+/**
+ * @brief 連続する整数点におけるラグランジュ補間 (O(N))
+ * @details 多項式 P(i) = y[i] (0 <= i < |y|) を満たす P(s) を求める。
+ * @tparam F 体を表す型 (ModInt 等)
+ * @param y 各点における多項式の値のリスト (x = 0, 1, ..., |y|-1)
+ * @param s 評価点
+ * @return F P(s) の値
+ */
 template<typename F>
 F Lagrange_Interpolation_Point_Arithmetic(const vector<F> &y, const F s) {
     return Lagrange_Interpolation_Point_Arithmetic<F>(1, 0, y, s);
