@@ -126,3 +126,8 @@ F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> 
 
     return coef * t;
 }
+
+template<typename F>
+F Lagrange_Interpolation_Point_Arithmetic(const vector<F> &y, const F s) {
+    return Lagrange_Interpolation_Point_Arithmetic<F>(1, 0, y, s);
+}
