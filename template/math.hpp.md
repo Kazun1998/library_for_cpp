@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/Extended_Algebra.hpp
     title: Algebra/Extended_Algebra.hpp
   - icon: ':heavy_check_mark:'
@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Algebra/Permutaion.hpp
     title: "\u7F6E\u63DB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/Semiring_Matrix.hpp
     title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -241,12 +241,15 @@ data:
   - icon: ':warning:'
     path: Integer/Digit.hpp
     title: "\u6574\u6570\u306E\u6841"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
+  - icon: ':heavy_check_mark:'
+    path: Integer/Linear_Sieve.hpp
+    title: Integer/Linear_Sieve.hpp
   - icon: ':heavy_check_mark:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
@@ -256,7 +259,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
   - icon: ':heavy_check_mark:'
@@ -301,7 +304,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Bezout.hpp
     title: "Bezout \u306E\u7B49\u5F0F"
   - icon: ':heavy_check_mark:'
@@ -322,10 +325,10 @@ data:
   - icon: ':warning:'
     path: Math/XOR_Vector_Space.hpp
     title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Max_Flow/Max_Flow.hpp
     title: "\u6700\u5927\u6D41"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Max_Flow/Project_Selection_Problem.hpp
     title: Max_Flow/Project_Selection_Problem.hpp
   - icon: ':warning:'
@@ -334,19 +337,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Min_Cost_Flow/Min_Cost_Flow.hpp
     title: Min_Cost_Flow/Min_Cost_Flow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
     title: Modulo/Composite.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Garner.hpp
     title: Garner
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Order.hpp
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':warning:'
@@ -481,19 +484,19 @@ data:
   - icon: ':warning:'
     path: Summation/Summation.hpp
     title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Rerooting.hpp
     title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree_DP.hpp
     title: "\u6728 DP"
   - icon: ':warning:'
@@ -507,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Union_Find/Potentilized_Union_Find.hpp
     title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedVerifiedWith:
@@ -764,6 +767,9 @@ data:
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/number_theory/Enumerate_Primes_2.test.cpp
+    title: verify/yosupo_library_checker/number_theory/Enumerate_Primes_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - icon: ':heavy_check_mark:'
@@ -853,42 +859,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
     title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1358.test.cpp
     title: verify/yukicoder/1358.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1780.test.cpp
     title: verify/yukicoder/1780.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/187.test.cpp
     title: verify/yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/1984.test.cpp
     title: verify/yukicoder/1984.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/math.hpp\"\n\n// \u6F14\u7B97\u5B50\ntemplate<typename\
@@ -1074,6 +1080,7 @@ data:
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Quotients.hpp
   - Integer/Smallest_Prime_Factor.hpp
+  - Integer/Linear_Sieve.hpp
   - Integer/Euler_Totient.hpp
   - Integer/Digit.hpp
   - Integer/Divisors.hpp
@@ -1181,7 +1188,7 @@ data:
   - Counting/Q_Analog_Combination_Calculator.hpp
   - Others/Topological_Sort.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/polynomial/Log.test.cpp
   - verify/yosupo_library_checker/polynomial/Multipoint_Evaluation.test.cpp
@@ -1193,6 +1200,7 @@ data:
   - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/polynomial/Exp.test.cpp
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes_2.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
