@@ -331,6 +331,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
+  - icon: ':warning:'
+    path: Math/Lagrange_Interpolation.hpp
+    title: "Lagrange \u88DC\u9593"
   - icon: ':heavy_check_mark:'
     path: Math/Montmort_Number.hpp
     title: "Montmort \u6570"
@@ -1245,6 +1248,7 @@ data:
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Calculate/Slide_Maximum.hpp
   - Math/XOR_Vector_Space.hpp
+  - Math/Lagrange_Interpolation.hpp
   - Math/Bezout.hpp
   - Math/Two_SAT.hpp
   - Math/Montmort_Number.hpp

@@ -382,6 +382,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Interval_Product.hpp
       title: "\u533A\u9593\u7A4D"
+    - icon: ':warning:'
+      path: Math/Lagrange_Interpolation.hpp
+      title: "Lagrange \u88DC\u9593"
     - icon: ':heavy_check_mark:'
       path: Math/Montmort_Number.hpp
       title: "Montmort \u6570"
