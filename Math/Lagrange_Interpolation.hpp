@@ -2,6 +2,7 @@
 
 #include "../template/template.hpp"
 #include "../template/enumerable.hpp"
+#include "../Counting/Combination_Calculator.hpp"
 
 template<typename F>
 F Lagrange_Interpolation_Point(const vector<F> &x, const vector<F> &y, F X) {
@@ -84,4 +85,44 @@ vector<F> Lagrange_Interpolation_Polynomial(const vector<pair<F, F>> &points) {
     auto x = enumerable::collect(points, [](const auto &p) { return p.first; });
     auto y = enumerable::collect(points, [](const auto &p) { return p.second; });
     return Lagrange_Interpolation_Polynomial(x, y);
+}
+
+template<typename F>
+F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> &y, const F s) {
+    int n = (int)y.size();
+    if (n == 0) return F(0);
+    if (n == 1) return y[0];
+    int d = n - 1;
+
+    Combination_Calculator<F> calc(d + 1);
+
+    // Precompute s - (a*i + b)
+    vector<F> diffs(n);
+    F cur_x = b;
+    for (int i = 0; i < n; ++i) {
+        diffs[i] = s - cur_x;
+        cur_x += a;
+    }
+
+    vector<F> prefix(n), suffix(n);
+    prefix[0] = diffs[0];
+    for (int i = 1; i < n; ++i) prefix[i] = prefix[i - 1] * diffs[i];
+    suffix[d] = diffs[d];
+    for (int i = d - 1; i >= 0; --i) suffix[i] = suffix[i + 1] * diffs[i];
+
+    // coef = (-a)^{-d}
+    F coef = (a == F(1)) ? ((d & 1) ? F(-1) : F(1)) : pow(-a, -d);
+
+    F t = 0;
+    for (int i = 0; i < n; ++i) {
+        F pre = (i == 0) ? 1 : prefix[i - 1];
+        F suf = (i == d) ? 1 : suffix[i + 1];
+
+        F alpha = pre * suf * calc.fact_inv(i) * calc.fact_inv(d - i);
+        if (is_odd(i)) alpha = -alpha;
+
+        t += y[i] * alpha;
+    }
+
+    return coef * t;
 }
