@@ -138,19 +138,25 @@ F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> 
 
     Combination_Calculator<F> calc(d + 1);
 
-    // Precompute s - (a*i + b)
-    vector<F> diffs(n);
-    F cur_x = b;
-    for (int i = 0; i < n; ++i) {
-        diffs[i] = s - cur_x;
-        cur_x += a;
+    vector<F> prefix(n), suffix(n);
+
+    // prefix[i] = \prod_{j=0}^i (s - (a*j + b))
+    {
+        F cur_x = b;
+        for (int i = 0; i < n; ++i) {
+            prefix[i] = (i == 0 ? s - cur_x : prefix[i - 1] * (s - cur_x));
+            cur_x += a;
+        }
     }
 
-    vector<F> prefix(n), suffix(n);
-    prefix[0] = diffs[0];
-    for (int i = 1; i < n; ++i) prefix[i] = prefix[i - 1] * diffs[i];
-    suffix[d] = diffs[d];
-    for (int i = d - 1; i >= 0; --i) suffix[i] = suffix[i + 1] * diffs[i];
+    // suffix[i] = \prod_{j=i}^d (s - (a*j + b))
+    {
+        F cur_x = b + a * d;
+        for (int i = d; i >= 0; --i) {
+            suffix[i] = (i == d ? s - cur_x : suffix[i + 1] * (s - cur_x));
+            cur_x -= a;
+        }
+    }
 
     // coef = (-a)^{-d}
     F coef = (a == F(1)) ? ((d & 1) ? F(-1) : F(1)) : pow(-a, -d);
