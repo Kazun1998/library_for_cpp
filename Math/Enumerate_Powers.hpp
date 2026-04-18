@@ -23,7 +23,7 @@ vector<F> Enumerate_Powers(const int n, const ll k) {
     auto spf = prime::Smallest_Prime_Factor(n);
 
     for (int x = 2; x <= n; ++x) {
-        int p = spf.smallest_prime_factor(x);
+        int p = spf[x];
         if (p == x) {
             // x が素数のときはそのまま計算
             powers[x] = pow(F(x), k);
