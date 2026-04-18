@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':warning:'
+    path: Integer/Smallest_Prime_Factor.hpp
+    title: "\u6700\u5C0F\u7D20\u56E0\u6570"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -22,19 +25,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Math/Enumerate_Powers.hpp
-    title: "\u51AA\u4E57\u306E\u5217\u6319"
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u6574\u6570 x \u306E\u6700\u5C0F\u7D20\u56E0\u6570\u3092\u8FD4\
-      \u3057\u307E\u3059\u3002"
+    document_title: "0^k, 1^k, ..., n^k \u306E\u5217\u6319"
     links: []
-  bundledCode: "#line 2 \"Integer/Smallest_Prime_Factor.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Math/Enumerate_Powers.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -197,9 +196,9 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Integer/Smallest_Prime_Factor.hpp\"\n\nnamespace prime {\n\
-    \    class Smallest_Prime_Factor {\n        private:\n        vector<ll> spf;\
-    \ // smallest prime factor\n\n        public:\n        Smallest_Prime_Factor(int\
+    \    }\n};\n#line 2 \"Integer/Smallest_Prime_Factor.hpp\"\n\n#line 4 \"Integer/Smallest_Prime_Factor.hpp\"\
+    \n\nnamespace prime {\n    class Smallest_Prime_Factor {\n        private:\n \
+    \       vector<ll> spf; // smallest prime factor\n\n        public:\n        Smallest_Prime_Factor(int\
     \ N): spf(N + 1, 1) {\n            if (N <= 1) return;\n\n            for (int\
     \ x = 2; x <= N; x += 2) spf[x] = 2;\n            for (int x = 3; x <= N; x +=\
     \ 6) spf[x] = 3;\n\n            vector<int> primes{2, 3};\n            bool parity\
@@ -220,31 +219,48 @@ data:
     \ p = spf[n];\n                int e = 0;\n                while (spf[n] == p)\
     \ {\n                    e ++;\n                    n /= p;\n                }\n\
     \n                factors.emplace_back(p, e);\n            }\n\n            return\
-    \ factors;\n        }\n    };\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace prime {\n\
-    \    class Smallest_Prime_Factor {\n        private:\n        vector<ll> spf;\
-    \ // smallest prime factor\n\n        public:\n        Smallest_Prime_Factor(int\
-    \ N): spf(N + 1, 1) {\n            if (N <= 1) return;\n\n            for (int\
-    \ x = 2; x <= N; x += 2) spf[x] = 2;\n            for (int x = 3; x <= N; x +=\
-    \ 6) spf[x] = 3;\n\n            vector<int> primes{2, 3};\n            bool parity\
-    \ = 0;\n            for (int x = 5; x <= N; x += parity ? 4 : 2, parity ^= true)\
-    \ {\n                if (spf[x] == 1) {\n                    spf[x] = x;\n   \
-    \                 primes.emplace_back(x);\n                }\n\n             \
-    \   for (int p: primes) {\n                    unless (x <= N / p) break;\n\n\
-    \                    spf[x * p] = p;\n                    if (p == spf[x]) break;\n\
-    \                }\n            }\n        }\n\n        constexpr inline int smallest_prime_factor(int\
-    \ x) const { return spf[x]; }\n        \n        /**\n         * @brief \u6574\
-    \u6570 x \u306E\u6700\u5C0F\u7D20\u56E0\u6570\u3092\u8FD4\u3057\u307E\u3059\u3002\
-    \n         */\n        constexpr inline int operator[](int x) const { return spf[x];\
-    \ }\n\n        vector<pair<long long, long long>> prime_factorization(int n) {\n\
-    \            if (n == 0)  { return vector<pair<long long, long long>>{ make_pair(0,\
-    \ 1) }; }\n\n            vector<pair<long long, long long>> factors;\n       \
-    \     if (n < 0) {\n                factors.emplace_back(-1, 1);\n           \
-    \     n = -n;\n            }\n\n            while (n > 1) {\n                int\
-    \ p = spf[n];\n                int e = 0;\n                while (spf[n] == p)\
-    \ {\n                    e ++;\n                    n /= p;\n                }\n\
-    \n                factors.emplace_back(p, e);\n            }\n\n            return\
-    \ factors;\n        }\n    };\n}\n"
+    \ factors;\n        }\n    };\n}\n#line 5 \"Math/Enumerate_Powers.hpp\"\n\n/**\n\
+    \ * @brief 0^k, 1^k, ..., n^k \u306E\u5217\u6319\n * @details \u6700\u5C0F\u7D20\
+    \u56E0\u6570 (SPF) \u3092\u7528\u3044\u3066\u30010 \u304B\u3089 n \u307E\u3067\
+    \u306E\u6574\u6570\u306E k \u4E57\u3092 O(n + \\pi(n) \\log k) \u3067\u8A08\u7B97\
+    \u3059\u308B.\n * @tparam F \u5024\u306E\u578B (modint \u306A\u3069)\n * @param\
+    \ n \u6700\u5927\u5024\n * @param k \u6307\u6570\n * @return vector<F> \u9577\u3055\
+    \ n + 1 \u306E\u914D\u5217.res[i] = i^k.\n */\ntemplate<typename F>\nvector<F>\
+    \ Enumerate_Powers(const int n, const ll k) {\n    vector<F> powers(n + 1);\n\
+    \    powers[0] = (k == 0) ? F(1) : F(0);\n\n    // \u3053\u306E\u5F8C, n >= 1\
+    \ \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u90E8\u5206\u304C\u3042\u308B\u305F\
+    \u3081, n = 0 \u3092\u4F8B\u5916\u51E6\u7406\n    if (n == 0) return powers;\n\
+    \n    powers[1] = F(1);\n    auto spf = prime::Smallest_Prime_Factor(n);\n\n \
+    \   for (int x = 2; x <= n; ++x) {\n        int p = spf[x];\n        if (p ==\
+    \ x) {\n            // x \u304C\u7D20\u6570\u306E\u3068\u304D\u306F\u305D\u306E\
+    \u307E\u307E\u8A08\u7B97\n            powers[x] = pow(F(x), k);\n        } else\
+    \ {\n            // x \u304C\u5408\u6210\u6570\u306E\u3068\u304D, x \u306E 2 \u4EE5\
+    \u4E0A x \u672A\u6E80\u306E\u7D04\u6570\u306E 1 \u3064\u3092 d \u3068\u3059\u308B\
+    \u3068,\n            // x = d * (x / d) \u3088\u308A, x^k = d^k * (x / d)^k \u3067\
+    \u3042\u308B.\n            // \u3053\u3053\u3067\u306F, d = p (\u6700\u5C0F\u7D20\
+    \u56E0\u6570) \u3068\u3057\u3066\u3044\u308B.\n            powers[x] = powers[p]\
+    \ * powers[x / p];\n        }\n    }\n    return powers;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../Integer/Smallest_Prime_Factor.hpp\"\
+    \n\n/**\n * @brief 0^k, 1^k, ..., n^k \u306E\u5217\u6319\n * @details \u6700\u5C0F\
+    \u7D20\u56E0\u6570 (SPF) \u3092\u7528\u3044\u3066\u30010 \u304B\u3089 n \u307E\
+    \u3067\u306E\u6574\u6570\u306E k \u4E57\u3092 O(n + \\pi(n) \\log k) \u3067\u8A08\
+    \u7B97\u3059\u308B.\n * @tparam F \u5024\u306E\u578B (modint \u306A\u3069)\n *\
+    \ @param n \u6700\u5927\u5024\n * @param k \u6307\u6570\n * @return vector<F>\
+    \ \u9577\u3055 n + 1 \u306E\u914D\u5217.res[i] = i^k.\n */\ntemplate<typename\
+    \ F>\nvector<F> Enumerate_Powers(const int n, const ll k) {\n    vector<F> powers(n\
+    \ + 1);\n    powers[0] = (k == 0) ? F(1) : F(0);\n\n    // \u3053\u306E\u5F8C\
+    , n >= 1 \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u90E8\u5206\u304C\u3042\u308B\
+    \u305F\u3081, n = 0 \u3092\u4F8B\u5916\u51E6\u7406\n    if (n == 0) return powers;\n\
+    \n    powers[1] = F(1);\n    auto spf = prime::Smallest_Prime_Factor(n);\n\n \
+    \   for (int x = 2; x <= n; ++x) {\n        int p = spf[x];\n        if (p ==\
+    \ x) {\n            // x \u304C\u7D20\u6570\u306E\u3068\u304D\u306F\u305D\u306E\
+    \u307E\u307E\u8A08\u7B97\n            powers[x] = pow(F(x), k);\n        } else\
+    \ {\n            // x \u304C\u5408\u6210\u6570\u306E\u3068\u304D, x \u306E 2 \u4EE5\
+    \u4E0A x \u672A\u6E80\u306E\u7D04\u6570\u306E 1 \u3064\u3092 d \u3068\u3059\u308B\
+    \u3068,\n            // x = d * (x / d) \u3088\u308A, x^k = d^k * (x / d)^k \u3067\
+    \u3042\u308B.\n            // \u3053\u3053\u3067\u306F, d = p (\u6700\u5C0F\u7D20\
+    \u56E0\u6570) \u3068\u3057\u3066\u3044\u308B.\n            powers[x] = powers[p]\
+    \ * powers[x / p];\n        }\n    }\n    return powers;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -253,18 +269,69 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Integer/Smallest_Prime_Factor.hpp
   isVerificationFile: false
-  path: Integer/Smallest_Prime_Factor.hpp
-  requiredBy:
-  - Math/Enumerate_Powers.hpp
+  path: Math/Enumerate_Powers.hpp
+  requiredBy: []
   timestamp: '2026-04-18 11:10:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Integer/Smallest_Prime_Factor.hpp
+documentation_of: Math/Enumerate_Powers.hpp
 layout: document
-title: "\u6700\u5C0F\u7D20\u56E0\u6570"
+title: "\u51AA\u4E57\u306E\u5217\u6319"
 ---
 
 ## Outline
 
-Eratosthenes の篩を使った, 各整数 $x$ に対する最小素因数の列挙を行う.
+$0^k, 1^k, \dots, n^k$ を求める.
+
+## Theory
+
+これ以降の説明では, $k \geq 0$ とする.
+
+$0 \leq x \leq n$ であるそれぞれの $x$ に対して $x^k$ を繰り返し二乗法を使って求める場合, 合計で $O(n \log k)$ 時間で求められる.
+
+このメソッドでは, 更に高速に求めることができる.
+
+$0^k, 1^k$ はそれぞれ
+
+$$ 0^k = \begin{cases} 0 & (k \neq 0) \\ \ 1 & (k = 0) \end{cases}, \quad 1^k = 1$$
+
+で求められる.
+
+$2$ 以上の整数 $x$ に対して, $x$ の昇順に $x^k$ をそれぞれ次のようにして求める.
+
+* $x$ が素数のとき: 繰り返し二乗法で直接 $x^k$ を求める.
+* $x$ が合成数のとき: $x$ の $2$ 以上 $x$ 未満の正の約数 $d$ が存在する. このとき, $x^k = d^k \cdot (x/d)^k$ が成り立つ. $d, x/d < x$ であり, $x$ の昇順に求めているため, $d^k, (x/d)^k$ は計算済みである. そのため, $x^k$ を乗算 $1$ 回で求められる.
+
+以上から, 以下のようなアルゴリズムで更に高速に求めることができる.
+
+* $x$ 以下の正の整数に対して, 篩を使って $x$ の最小素因数 $s_x$ を求める.
+* $x = 2, 3, \dots$ の順に以下を計算する.
+  * $x$ が素数である. つまり, $s_x = x$ であるとき, $x^k$ を繰り返し二乗法で直接求める.
+  * $x$ が合成数である. つまり, $s_x < x$ であるとき, $x^k = s_x^k \cdot (x/s_x)^k$ で求める.
+
+計算量は, 篩のアルゴリズムによって異なるが $\pi(n)$ を $n$ 以下の素数の個数として,
+
+* Eratosthenes の篩: $O(n \log log n + \pi(n) \log k)$ 時間.
+* 線形篩: $O(n + \pi(n) \log k)$ 時間.
+
+になる. ただし, 定数倍は Eratosthenes の篩の方が軽い.
+
+## Contents
+
+```cpp
+template<typename F>
+vector<F> Enumerate_Powers(const int n, const ll k)
+```
+
+* $0^k, 1^k, ..., n^k$ を求める.
+* **返り値**
+  * 長さ $(n+1)$ の配列. 第 $i$ 要素は $i^k$ を表す.
+* **計算量**: Eratosthenes の篩を採用しているため, $O(n \log \log n + \pi(n) \log k)$ 時間.
+
+## History 
+
+|日付|内容|
+|:---:|:---:|
+|2026/04/16| Enumerate_Powers 実装 |

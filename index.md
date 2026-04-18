@@ -336,7 +336,7 @@ data:
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
     - icon: ':warning:'
       path: Integer/Smallest_Prime_Factor.hpp
-      title: Integer/Smallest_Prime_Factor.hpp
+      title: "\u6700\u5C0F\u7D20\u56E0\u6570"
   - name: Knapsack
     pages:
     - icon: ':heavy_check_mark:'
@@ -376,6 +376,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Bezout.hpp
       title: "Bezout \u306E\u7B49\u5F0F"
+    - icon: ':warning:'
+      path: Math/Enumerate_Powers.hpp
+      title: "\u51AA\u4E57\u306E\u5217\u6319"
     - icon: ':heavy_check_mark:'
       path: Math/Floor_Linear_Sum.hpp
       title: Floor Linear Sum
