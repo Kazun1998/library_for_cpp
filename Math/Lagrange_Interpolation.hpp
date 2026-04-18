@@ -136,20 +136,17 @@ F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> 
     if (n == 1) return y[0];
     int d = n - 1;
 
-    Combination_Calculator<F> calc(d + 1);
-
-    vector<F> prefix(n), suffix(n);
-
-    // prefix[i] = \prod_{j=0}^i (s - (a*j + b))
+    // 階乗の逆元を計算
+    vector<F> inv_fact(n);
     {
-        F cur_x = b;
-        for (int i = 0; i < n; ++i) {
-            prefix[i] = (i == 0 ? s - cur_x : prefix[i - 1] * (s - cur_x));
-            cur_x += a;
-        }
+        F f = 1;
+        for (int i = 2; i <= d; ++i) f *= i;
+        inv_fact[d] = F(1) / f;
+        for (int i = d; i >= 1; --i) inv_fact[i - 1] = inv_fact[i] * i;
     }
 
-    // suffix[i] = \prod_{j=i}^d (s - (a*j + b))
+    // 右からの累積積を計算
+    vector<F> suffix(n);
     {
         F cur_x = b + a * d;
         for (int i = d; i >= 0; --i) {
@@ -162,14 +159,17 @@ F Lagrange_Interpolation_Point_Arithmetic(const F a, const F b, const vector<F> 
     F coef = (a == F(1)) ? ((d & 1) ? F(-1) : F(1)) : pow(-a, -d);
 
     F t = 0;
+    F running_prefix = 1;
+    F cur_x = b;
     for (int i = 0; i < n; ++i) {
-        F pre = (i == 0) ? 1 : prefix[i - 1];
         F suf = (i == d) ? 1 : suffix[i + 1];
 
-        F alpha = pre * suf * calc.fact_inv(i) * calc.fact_inv(d - i);
-        if (is_odd(i)) alpha = -alpha;
+        F alpha = running_prefix * suf * inv_fact[i] * inv_fact[d - i];
+        if (is_odd(i)) t -= y[i] * alpha;
+        else t += y[i] * alpha;
 
-        t += y[i] * alpha;
+        running_prefix *= (s - cur_x);
+        cur_x += a;
     }
 
     return coef * t;
