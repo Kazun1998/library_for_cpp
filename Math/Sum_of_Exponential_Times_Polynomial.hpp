@@ -62,6 +62,11 @@ F Sum_of_Exponential_Times_Polynomial(const F r, const int d, const ll n) {
 }
 
 template<typename F>
+F Sum_of_Exponential_Times_Polynomial(const F r, const int d, const ll p, const ll q) {
+    return Sum_of_Exponential_Times_Polynomial(r, d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);
+}
+
+template<typename F>
 F Sum_of_Exponential_Times_Polynomial_Limit(const F r, const int d) {
     assert(r != F(1));
 
