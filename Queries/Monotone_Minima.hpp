@@ -6,10 +6,10 @@ template<typename FUNC>
 vector<int> Monotone_Minima(const int n, const int m, const FUNC eval) {
     vector<int> res(n);
 
-    auto solve = [&](auto self, int u, int d, int l, int r) -> void {
+    auto solve = [&](auto self, const int u, const int d, const int l, const int r) -> void {
         if (u >= d) return;
 
-        int mid = (u + d) / 2;
+        const int mid = (u + d) / 2;
         int best_j = l;
         for (int j = l + 1; j < r; ++j) {
             if (eval(mid, j) < eval(mid, best_j)) {
