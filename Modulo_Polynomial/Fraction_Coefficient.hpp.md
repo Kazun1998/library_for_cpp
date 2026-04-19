@@ -36,6 +36,10 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Linear_Algebra/Predict_Nth_Term.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
+      \u306E\u4E88\u6E2C"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u7B2C $N$ \u9805"
@@ -546,6 +550,7 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Fraction_Coefficient.hpp
   requiredBy:
+  - Linear_Algebra/Predict_Nth_Term.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC

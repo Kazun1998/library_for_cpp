@@ -295,9 +295,16 @@ data:
   - icon: ':warning:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: Linear_Algebra/Field_Vector_Space.hpp
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Find_Linear_Recurrence.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':warning:'
     path: Linear_Algebra/Matrix_Space.hpp
     title: Linear_Algebra/Matrix_Space.hpp
+  - icon: ':warning:'
+    path: Linear_Algebra/Predict_Nth_Term.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
+      \u306E\u4E88\u6E2C"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
@@ -821,6 +828,9 @@ data:
     path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
+    title: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
     title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -974,6 +984,8 @@ data:
   - Binary_Search/General_Integer.hpp
   - Binary_Search/Count.hpp
   - Linear_Algebra/Field_Vector_Space.hpp
+  - Linear_Algebra/Predict_Nth_Term.hpp
+  - Linear_Algebra/Find_Linear_Recurrence.hpp
   - Linear_Algebra/Matrix_Space.hpp
   - Linear_Algebra/Reduction.hpp
   - Linear_Algebra/Rank.hpp
@@ -1169,6 +1181,7 @@ data:
   - verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/other/two_sat.test.cpp
+  - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp

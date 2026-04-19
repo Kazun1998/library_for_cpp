@@ -362,9 +362,16 @@ data:
     - icon: ':warning:'
       path: Linear_Algebra/Field_Vector_Space.hpp
       title: Linear_Algebra/Field_Vector_Space.hpp
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Find_Linear_Recurrence.hpp
+      title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
     - icon: ':warning:'
       path: Linear_Algebra/Matrix_Space.hpp
       title: Linear_Algebra/Matrix_Space.hpp
+    - icon: ':warning:'
+      path: Linear_Algebra/Predict_Nth_Term.hpp
+      title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
+        \u306E\u4E88\u6E2C"
     - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Rank.hpp
       title: Linear_Algebra/Rank.hpp
@@ -987,6 +994,9 @@ data:
       title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - name: verify/yosupo_library_checker/other
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
+      title: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
       title: verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
