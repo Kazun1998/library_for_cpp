@@ -9,11 +9,11 @@ $\displaystyle \sum_{k=0}^\infty r^k k^d$ を求める.
 
 ## Theory
 
-$|r|<1$ とする.
+$\| r \| < 1$ とする.
 
 [(等比) x (単項式) の総和](Sum_of_Exponential_Times_Polynomial.hpp) において, 定数 $C$ と $d$ 次多項式 $f$ を使って $s_n = C + r^N f(n)$ と表せること, そして, $C$ が求められるところまでは同じ.
 
-ここで, $|r| < 1$ であり, $f$ は多項式なので,
+ここで, $\| r \| < 1$ であり, $f$ は多項式なので,
 
 $$ \lim_{n \to \infty} \left(C + r^N f(n) \right) = C $$
 
