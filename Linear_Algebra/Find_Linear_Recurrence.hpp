@@ -23,24 +23,23 @@ vector<F> Find_Linear_Recurrence(const vector<F>& a) {
         for (int i = 0; i < n; ++i) {
             m++;
             F d = a[i]; // d: 現在の不一致
-            for (int j = 1; j <= l; ++j) {
-                d += c[j] * a[i - j];
-            }
+
+            for (int j = 1; j <= l; ++j) d += c[j] * a[i - j];
 
             if (d == F(0)) continue;
 
             vector<F> t = c; // 次数更新用に現在の c を保存
             F q = d / p;     // 修正係数
             if (c.size() < b.size() + m) c.resize(b.size() + m, F(0));
-            for (int j = 0; j < int(b.size()); ++j) {
-                c[j + m] -= q * b[j];
-            }
-            if (2 * l <= i) {
-                b = std::move(t);
-                l = i + 1 - l;
-                m = 0;
-                p = d;
-            }
+
+            for (int j = 0; j < int(b.size()); ++j) c[j + m] -= q * b[j];
+
+            unless (2 * l <= i) continue;
+
+            b = std::move(t);
+            l = i + 1 - l;
+            m = 0;
+            p = d;
         }
     }
 
