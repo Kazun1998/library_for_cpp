@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Math/Lagrange_Interpolation.hpp
     title: "Lagrange \u88DC\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
+    title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/original/enumerable.test.cpp
     title: verify/original/enumerable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -355,9 +364,12 @@ data:
   path: template/enumerable.hpp
   requiredBy:
   - Math/Lagrange_Interpolation.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   timestamp: '2026-01-25 00:54:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   - verify/original/enumerable.test.cpp
 documentation_of: template/enumerable.hpp
 layout: document

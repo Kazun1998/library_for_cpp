@@ -334,7 +334,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Quotients.hpp
       title: "\u5546\u306E\u5217\u6319 (Quotients)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Smallest_Prime_Factor.hpp
       title: "\u6700\u5C0F\u7D20\u56E0\u6570"
   - name: Knapsack
@@ -376,7 +376,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Bezout.hpp
       title: "Bezout \u306E\u7B49\u5F0F"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Math/Enumerate_Geometrics.hpp
+      title: Math/Enumerate_Geometrics.hpp
+    - icon: ':heavy_check_mark:'
       path: Math/Enumerate_Powers.hpp
       title: "\u51AA\u4E57\u306E\u5217\u6319"
     - icon: ':heavy_check_mark:'
@@ -385,7 +388,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Interval_Product.hpp
       title: "\u533A\u9593\u7A4D"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Lagrange_Interpolation.hpp
       title: "Lagrange \u88DC\u9593"
     - icon: ':heavy_check_mark:'
@@ -582,6 +585,12 @@ data:
       path: Summation/Counting.hpp
       title: "\u6761\u4EF6\u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44\u306E\u8A08\
         \u4E0A"
+    - icon: ':heavy_check_mark:'
+      path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
+      title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
+    - icon: ':warning:'
+      path: Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
+      title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7D1A\u6570"
     - icon: ':warning:'
       path: Summation/Summation.hpp
       title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
@@ -984,6 +993,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
       title: verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+      title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+      title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/other/two_sat.test.cpp
       title: verify/yosupo_library_checker/other/two_sat.test.cpp

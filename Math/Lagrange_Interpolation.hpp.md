@@ -29,11 +29,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
+    title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593\u3092\u7528\u3044\
       \u305F\u8A55\u4FA1\u70B9\u306E\u5024\u306E\u8A08\u7B97 (O(N^2))"
@@ -481,26 +490,29 @@ data:
     \n * @return F P(s) \u306E\u5024\n */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const\
     \ F a, const F b, const vector<F> &y, const F s) {\n    int n = (int)y.size();\n\
     \    if (n == 0) return F(0);\n    if (n == 1) return y[0];\n    int d = n - 1;\n\
-    \n    Combination_Calculator<F> calc(d + 1);\n\n    // Precompute s - (a*i + b)\n\
-    \    vector<F> diffs(n);\n    F cur_x = b;\n    for (int i = 0; i < n; ++i) {\n\
-    \        diffs[i] = s - cur_x;\n        cur_x += a;\n    }\n\n    vector<F> prefix(n),\
-    \ suffix(n);\n    prefix[0] = diffs[0];\n    for (int i = 1; i < n; ++i) prefix[i]\
-    \ = prefix[i - 1] * diffs[i];\n    suffix[d] = diffs[d];\n    for (int i = d -\
-    \ 1; i >= 0; --i) suffix[i] = suffix[i + 1] * diffs[i];\n\n    // coef = (-a)^{-d}\n\
-    \    F coef = (a == F(1)) ? ((d & 1) ? F(-1) : F(1)) : pow(-a, -d);\n\n    F t\
-    \ = 0;\n    for (int i = 0; i < n; ++i) {\n        F pre = (i == 0) ? 1 : prefix[i\
-    \ - 1];\n        F suf = (i == d) ? 1 : suffix[i + 1];\n\n        F alpha = pre\
-    \ * suf * calc.fact_inv(i) * calc.fact_inv(d - i);\n        if (is_odd(i)) alpha\
-    \ = -alpha;\n\n        t += y[i] * alpha;\n    }\n\n    return coef * t;\n}\n\n\
-    /**\n * @brief \u9023\u7D9A\u3059\u308B\u6574\u6570\u70B9\u306B\u304A\u3051\u308B\
-    \u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593 (O(N))\n * @details \u591A\u9805\
-    \u5F0F P(i) = y[i] (0 <= i < |y|) \u3092\u6E80\u305F\u3059 P(s) \u3092\u6C42\u3081\
-    \u308B\u3002\n * @tparam F \u4F53\u3092\u8868\u3059\u578B (ModInt \u7B49)\n *\
-    \ @param y \u5404\u70B9\u306B\u304A\u3051\u308B\u591A\u9805\u5F0F\u306E\u5024\u306E\
-    \u30EA\u30B9\u30C8 (x = 0, 1, ..., |y|-1)\n * @param s \u8A55\u4FA1\u70B9\n *\
-    \ @return F P(s) \u306E\u5024\n */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const\
-    \ vector<F> &y, const F s) {\n    return Lagrange_Interpolation_Point_Arithmetic<F>(1,\
-    \ 0, y, s);\n}\n"
+    \n    // \u968E\u4E57\u306E\u9006\u5143\u3092\u8A08\u7B97\n    vector<F> inv_fact(n);\n\
+    \    {\n        F f = 1;\n        for (int i = 2; i <= d; ++i) f *= i;\n     \
+    \   inv_fact[d] = F(1) / f;\n        for (int i = d; i >= 1; --i) inv_fact[i -\
+    \ 1] = inv_fact[i] * i;\n    }\n\n    // \u53F3\u304B\u3089\u306E\u7D2F\u7A4D\u7A4D\
+    \u3092\u8A08\u7B97\n    vector<F> suffix(n);\n    {\n        F cur_x = b + a *\
+    \ d;\n        for (int i = d; i >= 0; --i) {\n            suffix[i] = (i == d\
+    \ ? s - cur_x : suffix[i + 1] * (s - cur_x));\n            cur_x -= a;\n     \
+    \   }\n    }\n\n    // coef = (-a)^{-d}\n    F coef = (a == F(1)) ? ((d & 1) ?\
+    \ F(-1) : F(1)) : pow(-a, -d);\n\n    F t = 0;\n    F running_prefix = 1;\n  \
+    \  F cur_x = b;\n    for (int i = 0; i < n; ++i) {\n        F suf = (i == d) ?\
+    \ 1 : suffix[i + 1];\n\n        F alpha = running_prefix * suf * inv_fact[i] *\
+    \ inv_fact[d - i];\n        if (is_odd(i)) t -= y[i] * alpha;\n        else t\
+    \ += y[i] * alpha;\n\n        running_prefix *= (s - cur_x);\n        cur_x +=\
+    \ a;\n    }\n\n    return coef * t;\n}\n\n/**\n * @brief \u9023\u7D9A\u3059\u308B\
+    \u6574\u6570\u70B9\u306B\u304A\u3051\u308B\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\
+    \u88DC\u9593 (O(N))\n * @details \u591A\u9805\u5F0F P(i) = y[i] (0 <= i < |y|)\
+    \ \u3092\u6E80\u305F\u3059 P(s) \u3092\u6C42\u3081\u308B\u3002\n * @tparam F \u4F53\
+    \u3092\u8868\u3059\u578B (ModInt \u7B49)\n * @param y \u5404\u70B9\u306B\u304A\
+    \u3051\u308B\u591A\u9805\u5F0F\u306E\u5024\u306E\u30EA\u30B9\u30C8 (x = 0, 1,\
+    \ ..., |y|-1)\n * @param s \u8A55\u4FA1\u70B9\n * @return F P(s) \u306E\u5024\n\
+    \ */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const vector<F>\
+    \ &y, const F s) {\n    return Lagrange_Interpolation_Point_Arithmetic<F>(1, 0,\
+    \ y, s);\n}\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../template/enumerable.hpp\"\
     \n#include \"../Counting/Combination_Calculator.hpp\"\n\n/**\n * @brief \u30E9\
     \u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593\u3092\u7528\u3044\u305F\u8A55\u4FA1\
@@ -577,26 +589,29 @@ data:
     \n * @return F P(s) \u306E\u5024\n */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const\
     \ F a, const F b, const vector<F> &y, const F s) {\n    int n = (int)y.size();\n\
     \    if (n == 0) return F(0);\n    if (n == 1) return y[0];\n    int d = n - 1;\n\
-    \n    Combination_Calculator<F> calc(d + 1);\n\n    // Precompute s - (a*i + b)\n\
-    \    vector<F> diffs(n);\n    F cur_x = b;\n    for (int i = 0; i < n; ++i) {\n\
-    \        diffs[i] = s - cur_x;\n        cur_x += a;\n    }\n\n    vector<F> prefix(n),\
-    \ suffix(n);\n    prefix[0] = diffs[0];\n    for (int i = 1; i < n; ++i) prefix[i]\
-    \ = prefix[i - 1] * diffs[i];\n    suffix[d] = diffs[d];\n    for (int i = d -\
-    \ 1; i >= 0; --i) suffix[i] = suffix[i + 1] * diffs[i];\n\n    // coef = (-a)^{-d}\n\
-    \    F coef = (a == F(1)) ? ((d & 1) ? F(-1) : F(1)) : pow(-a, -d);\n\n    F t\
-    \ = 0;\n    for (int i = 0; i < n; ++i) {\n        F pre = (i == 0) ? 1 : prefix[i\
-    \ - 1];\n        F suf = (i == d) ? 1 : suffix[i + 1];\n\n        F alpha = pre\
-    \ * suf * calc.fact_inv(i) * calc.fact_inv(d - i);\n        if (is_odd(i)) alpha\
-    \ = -alpha;\n\n        t += y[i] * alpha;\n    }\n\n    return coef * t;\n}\n\n\
-    /**\n * @brief \u9023\u7D9A\u3059\u308B\u6574\u6570\u70B9\u306B\u304A\u3051\u308B\
-    \u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593 (O(N))\n * @details \u591A\u9805\
-    \u5F0F P(i) = y[i] (0 <= i < |y|) \u3092\u6E80\u305F\u3059 P(s) \u3092\u6C42\u3081\
-    \u308B\u3002\n * @tparam F \u4F53\u3092\u8868\u3059\u578B (ModInt \u7B49)\n *\
-    \ @param y \u5404\u70B9\u306B\u304A\u3051\u308B\u591A\u9805\u5F0F\u306E\u5024\u306E\
-    \u30EA\u30B9\u30C8 (x = 0, 1, ..., |y|-1)\n * @param s \u8A55\u4FA1\u70B9\n *\
-    \ @return F P(s) \u306E\u5024\n */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const\
-    \ vector<F> &y, const F s) {\n    return Lagrange_Interpolation_Point_Arithmetic<F>(1,\
-    \ 0, y, s);\n}\n"
+    \n    // \u968E\u4E57\u306E\u9006\u5143\u3092\u8A08\u7B97\n    vector<F> inv_fact(n);\n\
+    \    {\n        F f = 1;\n        for (int i = 2; i <= d; ++i) f *= i;\n     \
+    \   inv_fact[d] = F(1) / f;\n        for (int i = d; i >= 1; --i) inv_fact[i -\
+    \ 1] = inv_fact[i] * i;\n    }\n\n    // \u53F3\u304B\u3089\u306E\u7D2F\u7A4D\u7A4D\
+    \u3092\u8A08\u7B97\n    vector<F> suffix(n);\n    {\n        F cur_x = b + a *\
+    \ d;\n        for (int i = d; i >= 0; --i) {\n            suffix[i] = (i == d\
+    \ ? s - cur_x : suffix[i + 1] * (s - cur_x));\n            cur_x -= a;\n     \
+    \   }\n    }\n\n    // coef = (-a)^{-d}\n    F coef = (a == F(1)) ? ((d & 1) ?\
+    \ F(-1) : F(1)) : pow(-a, -d);\n\n    F t = 0;\n    F running_prefix = 1;\n  \
+    \  F cur_x = b;\n    for (int i = 0; i < n; ++i) {\n        F suf = (i == d) ?\
+    \ 1 : suffix[i + 1];\n\n        F alpha = running_prefix * suf * inv_fact[i] *\
+    \ inv_fact[d - i];\n        if (is_odd(i)) t -= y[i] * alpha;\n        else t\
+    \ += y[i] * alpha;\n\n        running_prefix *= (s - cur_x);\n        cur_x +=\
+    \ a;\n    }\n\n    return coef * t;\n}\n\n/**\n * @brief \u9023\u7D9A\u3059\u308B\
+    \u6574\u6570\u70B9\u306B\u304A\u3051\u308B\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\
+    \u88DC\u9593 (O(N))\n * @details \u591A\u9805\u5F0F P(i) = y[i] (0 <= i < |y|)\
+    \ \u3092\u6E80\u305F\u3059 P(s) \u3092\u6C42\u3081\u308B\u3002\n * @tparam F \u4F53\
+    \u3092\u8868\u3059\u578B (ModInt \u7B49)\n * @param y \u5404\u70B9\u306B\u304A\
+    \u3051\u308B\u591A\u9805\u5F0F\u306E\u5024\u306E\u30EA\u30B9\u30C8 (x = 0, 1,\
+    \ ..., |y|-1)\n * @param s \u8A55\u4FA1\u70B9\n * @return F P(s) \u306E\u5024\n\
+    \ */\ntemplate<typename F>\nF Lagrange_Interpolation_Point_Arithmetic(const vector<F>\
+    \ &y, const F s) {\n    return Lagrange_Interpolation_Point_Arithmetic<F>(1, 0,\
+    \ y, s);\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -609,10 +624,13 @@ data:
   - Counting/Combination_Calculator.hpp
   isVerificationFile: false
   path: Math/Lagrange_Interpolation.hpp
-  requiredBy: []
-  timestamp: '2026-04-18 01:08:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  timestamp: '2026-04-19 01:54:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
 documentation_of: Math/Lagrange_Interpolation.hpp
 layout: document
 title: "Lagrange \u88DC\u9593"
