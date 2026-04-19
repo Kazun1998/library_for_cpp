@@ -3,8 +3,8 @@
 #include "../template/template.hpp"
 #include "../Counting/Combination_Calculator.hpp"
 #include "../Math/Lagrange_Interpolation.hpp"
-#include "Enumerate_Geometrics.hpp"
-#include "Enumerate_Powers.hpp"
+#include "../Math/Enumerate_Geometrics.hpp"
+#include "../Math/Enumerate_Powers.hpp"
 
 template<typename F>
 F Sum_of_Exponential_Times_Polynomial(const F r, const int d, const ll n) {
