@@ -10,6 +10,7 @@
  * @tparam F 体の要素の型（加減乗除が定義されており、F(0), F(1), .inverse() 等を持つこと）
  * @param a 数列
  * @return vector<F> 漸化式の係数リスト
+ * @note 計算量: O(n^2) (n は a の要素数)
  */
 template <typename F>
 vector<F> Find_Linear_Recurrence(const vector<F>& a) {
