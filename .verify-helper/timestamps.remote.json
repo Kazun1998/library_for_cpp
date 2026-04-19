@@ -99,6 +99,7 @@
 "verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp": "2026-04-13 01:27:34 +0900",
+"verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp": "2026-04-19 16:49:29 +0900",
 "verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/other/Longest_Increasing_Subsequence.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp": "2026-04-19 12:32:25 +0900",
