@@ -588,7 +588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
       title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
       title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7D1A\u6570"
     - icon: ':warning:'

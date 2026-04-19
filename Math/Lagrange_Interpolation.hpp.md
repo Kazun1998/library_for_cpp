@@ -37,9 +37,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
-    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -629,7 +626,6 @@ data:
   timestamp: '2026-04-19 01:54:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
 documentation_of: Math/Lagrange_Interpolation.hpp
 layout: document

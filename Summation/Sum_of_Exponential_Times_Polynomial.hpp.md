@@ -46,9 +46,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
-    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -594,19 +591,7 @@ data:
     \ inv_r;\n    }\n\n    F T_n = Lagrange_Interpolation_Point_Arithmetic(S, F(n));\n\
     \    return C + pow(r, n) * T_n;\n}\n\ntemplate<typename F>\nF Sum_of_Exponential_Times_Polynomial(const\
     \ F r, const int d, const ll p, const ll q) {\n    return Sum_of_Exponential_Times_Polynomial(r,\
-    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n\ntemplate<typename\
-    \ F>\nF Sum_of_Exponential_Times_Polynomial_Limit(const F r, const int d) {\n\
-    \    assert(r != F(1));\n\n    vector<F> S(d + 2);\n    {\n        vector<F> powers\
-    \ = Enumerate_Powers<F>(d + 2, d);\n        F r_pow = 1;\n        S[0] = powers[0];\n\
-    \        for (int k = 1; k <= d + 1; ++k) {\n            r_pow *= r;\n       \
-    \     S[k] = S[k - 1] + powers[k] * r_pow;\n        }\n        vector<F>().swap(powers);\n\
-    \    }\n\n    F P_1 = 0; // \u591A\u9805\u5F0F P(x) \u306E x=1 \u306B\u304A\u3051\
-    \u308B\u5024\n    {\n        F comb = 1;\n        F r_pow = 1;\n        for (int\
-    \ k = 0; k <= d + 1; ++k) {\n            F term = comb * r_pow * S[d + 1 - k];\n\
-    \            is_even(k) ? P_1 += term : P_1 -= term;\n            if (k < d +\
-    \ 1) {\n                comb *= F(d + 1 - k);\n                comb /= F(k + 1);\n\
-    \                r_pow *= r;\n            }\n        }\n    }\n\n    return P_1\
-    \ / pow(1 - r, d + 1);\n}\n"
+    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../Counting/Combination_Calculator.hpp\"\
     \n#include \"../Math/Lagrange_Interpolation.hpp\"\n#include \"../Math/Enumerate_Geometrics.hpp\"\
     \n#include \"../Math/Enumerate_Powers.hpp\"\n\ntemplate<typename F>\nF Sum_of_Exponential_Times_Polynomial(const\
@@ -634,19 +619,7 @@ data:
     \ inv_r;\n    }\n\n    F T_n = Lagrange_Interpolation_Point_Arithmetic(S, F(n));\n\
     \    return C + pow(r, n) * T_n;\n}\n\ntemplate<typename F>\nF Sum_of_Exponential_Times_Polynomial(const\
     \ F r, const int d, const ll p, const ll q) {\n    return Sum_of_Exponential_Times_Polynomial(r,\
-    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n\ntemplate<typename\
-    \ F>\nF Sum_of_Exponential_Times_Polynomial_Limit(const F r, const int d) {\n\
-    \    assert(r != F(1));\n\n    vector<F> S(d + 2);\n    {\n        vector<F> powers\
-    \ = Enumerate_Powers<F>(d + 2, d);\n        F r_pow = 1;\n        S[0] = powers[0];\n\
-    \        for (int k = 1; k <= d + 1; ++k) {\n            r_pow *= r;\n       \
-    \     S[k] = S[k - 1] + powers[k] * r_pow;\n        }\n        vector<F>().swap(powers);\n\
-    \    }\n\n    F P_1 = 0; // \u591A\u9805\u5F0F P(x) \u306E x=1 \u306B\u304A\u3051\
-    \u308B\u5024\n    {\n        F comb = 1;\n        F r_pow = 1;\n        for (int\
-    \ k = 0; k <= d + 1; ++k) {\n            F term = comb * r_pow * S[d + 1 - k];\n\
-    \            is_even(k) ? P_1 += term : P_1 -= term;\n            if (k < d +\
-    \ 1) {\n                comb *= F(d + 1 - k);\n                comb /= F(k + 1);\n\
-    \                r_pow *= r;\n            }\n        }\n    }\n\n    return P_1\
-    \ / pow(1 - r, d + 1);\n}\n"
+    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -664,10 +637,9 @@ data:
   isVerificationFile: false
   path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
   requiredBy: []
-  timestamp: '2026-04-19 12:05:31+09:00'
+  timestamp: '2026-04-19 12:32:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
 documentation_of: Summation/Sum_of_Exponential_Times_Polynomial.hpp
 layout: document

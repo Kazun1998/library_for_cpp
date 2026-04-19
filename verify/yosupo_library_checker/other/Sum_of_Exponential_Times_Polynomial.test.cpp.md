@@ -638,19 +638,7 @@ data:
     \ inv_r;\n    }\n\n    F T_n = Lagrange_Interpolation_Point_Arithmetic(S, F(n));\n\
     \    return C + pow(r, n) * T_n;\n}\n\ntemplate<typename F>\nF Sum_of_Exponential_Times_Polynomial(const\
     \ F r, const int d, const ll p, const ll q) {\n    return Sum_of_Exponential_Times_Polynomial(r,\
-    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n\ntemplate<typename\
-    \ F>\nF Sum_of_Exponential_Times_Polynomial_Limit(const F r, const int d) {\n\
-    \    assert(r != F(1));\n\n    vector<F> S(d + 2);\n    {\n        vector<F> powers\
-    \ = Enumerate_Powers<F>(d + 2, d);\n        F r_pow = 1;\n        S[0] = powers[0];\n\
-    \        for (int k = 1; k <= d + 1; ++k) {\n            r_pow *= r;\n       \
-    \     S[k] = S[k - 1] + powers[k] * r_pow;\n        }\n        vector<F>().swap(powers);\n\
-    \    }\n\n    F P_1 = 0; // \u591A\u9805\u5F0F P(x) \u306E x=1 \u306B\u304A\u3051\
-    \u308B\u5024\n    {\n        F comb = 1;\n        F r_pow = 1;\n        for (int\
-    \ k = 0; k <= d + 1; ++k) {\n            F term = comb * r_pow * S[d + 1 - k];\n\
-    \            is_even(k) ? P_1 += term : P_1 -= term;\n            if (k < d +\
-    \ 1) {\n                comb *= F(d + 1 - k);\n                comb /= F(k + 1);\n\
-    \                r_pow *= r;\n            }\n        }\n    }\n\n    return P_1\
-    \ / pow(1 - r, d + 1);\n}\n#line 6 \"verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp\"\
+    \ d, q) - Sum_of_Exponential_Times_Polynomial(r, d, p - 1);\n}\n#line 6 \"verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp\"\
     \n\nusing mint = modint<998244353>;\n\nmint verify() {\n    mint r; int d; ll\
     \ n;\n    cin >> r >> d >> n;\n    return Sum_of_Exponential_Times_Polynomial(r,\
     \ d, n - 1);\n}\n\nint main() {\n    cout << verify() << endl;\n}\n"
@@ -679,7 +667,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   requiredBy: []
-  timestamp: '2026-04-19 12:05:31+09:00'
+  timestamp: '2026-04-19 12:32:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp

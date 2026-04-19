@@ -36,10 +36,13 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
+    title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp\"\
@@ -338,8 +341,9 @@ data:
   path: Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   requiredBy: []
   timestamp: '2026-04-19 12:18:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
 documentation_of: Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
 layout: document
 title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7D1A\u6570"
