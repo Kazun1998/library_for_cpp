@@ -2,7 +2,7 @@
 
 #include "../../../template/template.hpp"
 #include "../../../Algebra/modint.hpp"
-#include "../../../Summation/Sum_of_Exponential_Times_Polynomial.hpp"
+#include "../../../Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp"
 
 using mint = modint<998244353>;
 
