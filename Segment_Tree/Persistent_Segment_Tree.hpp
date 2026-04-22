@@ -7,11 +7,10 @@ class Persistent_Segment_Tree {
     private:
     struct Node {
         M x;
-        int l, r;
         Node *left_child, *right_child;
 
-        Node(M x, int l, int r) : x(x), l(l), r(r), left_child(nullptr), right_child(nullptr) {}
-        Node(M x, int l, int r, Node* left, Node* right) : x(x), l(l), r(r), left_child(left), right_child(right) {}
+        Node(M x) : x(x), left_child(nullptr), right_child(nullptr) {}
+        Node(M x, Node* left, Node* right) : x(x), left_child(left), right_child(right) {}
     };
 
     int n;
@@ -23,7 +22,7 @@ class Persistent_Segment_Tree {
 
     Node* build(const int l, const int r, const vector<M> &data) {
         // 1 要素区間を表す頂点 → 葉
-        if (r - l == 1) return new Node(data[l], l, r);
+        if (r - l == 1) return new Node(data[l]);
 
         // そうでない場合, 2 要素以上の区間なので, 左と右に分割できる.
         int m = (l + r) / 2;
@@ -31,7 +30,7 @@ class Persistent_Segment_Tree {
         Node* left = build(l, m, data);
         Node* right = build(m, r, data);
 
-        return new Node(op(left->x, right->x), l, r, left, right);
+        return new Node(op(left->x, right->x), left, right);
     }
 
     void build_up(const vector<M> &data) {
