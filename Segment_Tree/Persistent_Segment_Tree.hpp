@@ -40,4 +40,8 @@ class Persistent_Segment_Tree {
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit) {
         build_up(data);
     }
+
+    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit): n(n), op(op), unit(unit) {
+        build_up(vector<M>(n, unit));
+    }
 };
