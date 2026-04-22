@@ -37,6 +37,21 @@ class Persistent_Segment_Tree {
         roots.emplace_back(build(0, n, data));
     }
 
+    Node* _update(const Node* node, const int l, const int r, const int k, const M x) {
+        // 葉に到達した場合, 新しい値を保持するノードを作成して返す.
+        if (r - l == 1) return new Node(x);
+
+        int m = (l + r) / 2;
+        Node *left = node->left_child, *right = node->right_child;
+
+        // 更新対象のインデックスに応じて, 左または右の子を再帰的に新しく作成する
+        if (k < m) left = _update(left, l, m, k, x);
+        else right = _update(right, m, r, k, x);
+
+        // 新しく作成した子（片方）と, 既存のもう片方の子を組み合わせて,現在の高さのノードを新しく作成する
+        return new Node(op(left->x, right->x), left, right);
+    }
+
     public:
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(data.size()), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(data);
@@ -47,4 +62,16 @@ class Persistent_Segment_Tree {
     }
 
     int increment() { return version++; }
+
+    // バージョン t のセグメント木における第 k 要素を x に更新する
+    void update(const int t, const int k, const M x) {
+        assert(t <= version);
+
+        Node* root = _update(roots[t], 0, n, k, x);
+        unless(auto_increment) { roots.pop_back(); }
+
+        roots.emplace_back(root);
+    }
+
+    void update(const int k, const M x) { update(version, k, x); }
 };
