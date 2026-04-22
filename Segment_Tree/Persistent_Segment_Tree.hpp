@@ -19,6 +19,7 @@ class Persistent_Segment_Tree {
     const M unit;
     vector<Node*> roots;
     int version;
+    bool auto_increment;
 
     Node* build(const int l, const int r, const vector<M> &data) {
         // 1 要素区間を表す頂点 → 葉
@@ -38,11 +39,11 @@ class Persistent_Segment_Tree {
     }
 
     public:
-    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit), version(0) {
+    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(data.size()), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(data);
     }
 
-    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit): n(n), op(op), unit(unit), version(0) {
+    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(n), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(vector<M>(n, unit));
     }
 };
