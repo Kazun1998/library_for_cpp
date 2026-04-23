@@ -52,6 +52,22 @@ class Persistent_Segment_Tree {
         return new Node(op(left->x, right->x), left, right);
     }
 
+    // 半開区間 [l, r) を計算する. 現在見ているノードは半開区間 [a, b) を表す.
+    M _product(const Node* node, const int l, const int r, const int a, const int b) {
+        // [l, r) と [a, b) が互いに素ならば, 単位元を返す.
+        if (b <= l || r <= a) return unit;
+
+        // [a, b) が [l, r) に含まれているならば, ノードの値をそのまま返す.
+        if (l <= a && b <= r) return node->x;
+
+        int m = (a + b) / 2;
+
+        M vl = _product(node->left_child, l, r, a, m);
+        M vr = _product(node->right_child, l, r, m, b);
+
+        return op(vl, vr);
+    }
+
     public:
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(data.size()), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(data);
@@ -76,4 +92,16 @@ class Persistent_Segment_Tree {
     }
 
     void update(const int k, const M x) { update(version, k, x); }
+
+    M product(const int t, const int l, const int r) {
+        assert(t <= version);
+
+        if (auto_increment) { increment(); }
+
+        return _product(roots[t], l, r + 1, 0, n);
+    }
+
+    M product(const int l, const int r) {
+        return product(version, l, r);
+    }
 };
