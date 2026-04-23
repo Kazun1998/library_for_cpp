@@ -61,15 +61,17 @@ class Persistent_Segment_Tree {
         build_up(vector<M>(n, unit));
     }
 
-    int increment() { return version++; }
+    int increment() { roots.emplace_back(roots.back()); return version++; }
 
     // バージョン t のセグメント木における第 k 要素を x に更新する
     void update(const int t, const int k, const M x) {
         assert(t <= version);
 
         Node* root = _update(roots[t], 0, n, k, x);
-        unless(auto_increment) { roots.pop_back(); }
 
+        if (auto_increment) increment();
+
+        roots.pop_back();
         roots.emplace_back(root);
     }
 
