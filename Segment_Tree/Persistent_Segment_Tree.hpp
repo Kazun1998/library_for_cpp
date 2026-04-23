@@ -83,21 +83,20 @@ class Persistent_Segment_Tree {
     void update(const int t, const int k, const M x) {
         assert(t <= version);
 
-        Node* root = _update(roots[t], 0, n, k, x);
+        Node* new_root = _update(roots[t], 0, n, k, x);
 
-        if (auto_increment) increment();
-
-        roots.pop_back();
-        roots.emplace_back(root);
+        if (auto_increment) {
+            roots.emplace_back(new_root);
+            version++;
+        } else {
+            roots[version] = new_root;
+        }
     }
 
     void update(const int k, const M x) { update(version, k, x); }
 
     M product(const int t, const int l, const int r) {
         assert(t <= version);
-
-        if (auto_increment) { increment(); }
-
         return _product(roots[t], l, r + 1, 0, n);
     }
 
