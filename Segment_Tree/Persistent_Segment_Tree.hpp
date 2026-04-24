@@ -75,6 +75,13 @@ class Persistent_Segment_Tree {
         return op(vl, vr);
     }
 
+    M _get(const Node* node, const int l, const int r, const int k) {
+        if (r - l == 1) return node->x;
+        int m = (l + r) / 2;
+        if (k < m) return _get(node->left_child, l, m, k);
+        else return _get(node->right_child, m, r, k);
+    }
+
     public:
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(data.size()), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(data);
@@ -114,4 +121,11 @@ class Persistent_Segment_Tree {
     M product(const int l, const int r) {
         return product(version, l, r);
     }
+
+    M get(const int t, const int k) {
+        assert(t <= version);
+        return _get(roots[t], 0, n, k);
+    }
+
+    M get(const int k) { return get(version, k); }
 };
