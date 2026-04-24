@@ -17,12 +17,19 @@ class Persistent_Segment_Tree {
     const function<M(M, M)> op;
     const M unit;
     vector<Node*> roots;
+    vector<Node*> nodes_pool;
     int version;
     bool auto_increment;
 
+    Node* new_node(M x, Node* l = nullptr, Node* r = nullptr) {
+        Node* res = new Node(x, l, r);
+        nodes_pool.push_back(res);
+        return res;
+    }
+
     Node* build(const int l, const int r, const vector<M> &data) {
         // 1 要素区間を表す頂点 → 葉
-        if (r - l == 1) return new Node(data[l]);
+        if (r - l == 1) return new_node(data[l]);
 
         // そうでない場合, 2 要素以上の区間なので, 左と右に分割できる.
         int m = (l + r) / 2;
@@ -30,7 +37,7 @@ class Persistent_Segment_Tree {
         Node* left = build(l, m, data);
         Node* right = build(m, r, data);
 
-        return new Node(op(left->x, right->x), left, right);
+        return new_node(op(left->x, right->x), left, right);
     }
 
     void build_up(const vector<M> &data) {
@@ -39,7 +46,7 @@ class Persistent_Segment_Tree {
 
     Node* _update(const Node* node, const int l, const int r, const int k, const M x) {
         // 葉に到達した場合, 新しい値を保持するノードを作成して返す.
-        if (r - l == 1) return new Node(x);
+        if (r - l == 1) return new_node(x);
 
         int m = (l + r) / 2;
         Node *left = node->left_child, *right = node->right_child;
@@ -49,7 +56,7 @@ class Persistent_Segment_Tree {
         else right = _update(right, m, r, k, x);
 
         // 新しく作成した子（片方）と, 既存のもう片方の子を組み合わせて,現在の高さのノードを新しく作成する
-        return new Node(op(left->x, right->x), left, right);
+        return new_node(op(left->x, right->x), left, right);
     }
 
     // 半開区間 [l, r) を計算する. 現在見ているノードは半開区間 [a, b) を表す.
@@ -75,6 +82,10 @@ class Persistent_Segment_Tree {
 
     Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(n), op(op), unit(unit), version(0), auto_increment(auto_increment) {
         build_up(vector<M>(n, unit));
+    }
+
+    ~Persistent_Segment_Tree() {
+        for (Node* node : nodes_pool) delete node;
     }
 
     int increment() { roots.emplace_back(roots.back()); return version++; }
