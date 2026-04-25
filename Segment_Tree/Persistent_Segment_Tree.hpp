@@ -95,23 +95,32 @@ class Persistent_Segment_Tree {
         for (Node* node : nodes_pool) delete node;
     }
 
-    int increment() { roots.emplace_back(roots.back()); return version++; }
+    // バージョン t をコピーして新しいバージョンを作成し, そのインデックスを返す. 
+    // t が -1 の場合は最新のバージョンをコピーする.
+    int increment(int t = -1) {
+        if (t == -1) t = version;
+        assert(t <= version);
+        roots.emplace_back(roots[t]);
+        return ++version;
+    }
 
-    // バージョン t のセグメント木における第 k 要素を x に更新する
-    void update(const int t, const int k, const M x) {
+    // バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する.
+    // auto_increment が true の場合は新しいバージョンとして追加し, false の場合は現在の最新バージョンを上書きする.
+    int update(const int t, const int k, const M x) {
         assert(t <= version);
 
         Node* new_root = _update(roots[t], 0, n, k, x);
 
         if (auto_increment) {
             roots.emplace_back(new_root);
-            version++;
+            return ++version;
         } else {
             roots[version] = new_root;
+            return version;
         }
     }
 
-    void update(const int k, const M x) { update(version, k, x); }
+    int update(const int k, const M x) { return update(version, k, x); }
 
     M product(const int t, const int l, const int r) {
         assert(t <= version);
@@ -128,4 +137,8 @@ class Persistent_Segment_Tree {
     }
 
     M get(const int k) { return get(version, k); }
+
+    int current_version() const { return version; }
+
+    void set_auto_increment(bool b) { auto_increment = b; }
 };
