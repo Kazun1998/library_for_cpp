@@ -132,14 +132,19 @@ class Persistent_Segment_Tree {
 
     int update(const int k, const M x) { return update(version, k, x); }
 
-    int copy(const int t, const int l, const int r) {
+    // バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）する.
+    int copy(const int s, const int t, const int l, const int r) {
+        assert(s <= version);
         assert(t <= version);
-        if (n == 0 || l > r) return version;
+        if (n == 0 || l > r) return t;
         assert(0 <= l && r < n);
 
-        roots[version] = _copy(roots[version], roots[t], l, r + 1, 0, n);
-        return version;
+        roots[t] = _copy(roots[t], roots[s], l, r + 1, 0, n);
+        return t;
     }
+
+    // バージョン t の [l, r] の範囲を最新バージョンにコピーする.
+    int copy(const int t, const int l, const int r) { return copy(t, version, l, r); }
 
     // バージョン t の内容を現在の最新バージョンにそのままコピーする.
     int clone(const int t) {
