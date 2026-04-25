@@ -153,6 +153,13 @@ class Persistent_Segment_Tree {
     /// @return 最新バージョン番号
     int update(const int k, const M x) { return update(version, k, x); }
 
+    /// @brief バージョン t をその場で更新（上書き）する (update(t, t, k, x) のシノニム).
+    /// @param t 更新対象のバージョン
+    /// @param k インデックス
+    /// @param x 値
+    /// @return バージョン番号 t
+    int amend(const int t, const int k, const M x) { return update(t, t, k, x); }
+
     /// @brief バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）する.
     /// @param s コピー元のバージョン
     /// @param t コピー先のバージョン
