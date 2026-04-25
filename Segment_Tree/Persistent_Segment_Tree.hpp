@@ -63,7 +63,7 @@ class Persistent_Segment_Tree {
     // 半開区間 [l, r) を計算する. 現在見ているノードは半開区間 [a, b) を表す.
     M _product(const Node* node, const int l, const int r, const int a, const int b) const {
         // [l, r) と [a, b) が互いに素ならば, 単位元を返す.
-        if (b <= l || r <= a) return unit;
+        if (b <= l || r <= a) return identity;
         
         // [a, b) が [l, r) に含まれているならば, ノードの値をそのまま返す.
         if (l <= a && b <= r) return node->x;
@@ -103,7 +103,7 @@ class Persistent_Segment_Tree {
         build_up(data);
     }
 
-    /// @brief コンストラクタ. サイズ n, 全要素 unit で初期化する.
+    /// @brief コンストラクタ. サイズ n, 全要素 identity で初期化する.
     /// @param n 配列サイズ
     /// @param op 二項演算子
     /// @param identity 単位元
