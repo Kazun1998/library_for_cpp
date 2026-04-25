@@ -448,6 +448,9 @@ data:
     path: Segment_Tree/Lazy_Segment_Tree.hpp
     title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
   - icon: ':heavy_check_mark:'
+    path: Segment_Tree/Persistent_Segment_Tree.hpp
+    title: "\u6C38\u7D9A Segment Tree"
+  - icon: ':heavy_check_mark:'
     path: Segment_Tree/preset/Range_Add_Range_Min.hpp
     title: Segment_Tree/preset/Range_Add_Range_Min.hpp
   - icon: ':heavy_check_mark:'
@@ -680,6 +683,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
@@ -1111,6 +1117,7 @@ data:
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Semilattice_Convolution_Base.hpp
   - Convolution/Max_Convolution.hpp
+  - Segment_Tree/Persistent_Segment_Tree.hpp
   - Segment_Tree/preset/Range_Add_Range_Sum.hpp
   - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   - Segment_Tree/preset/Range_Add_Range_Min.hpp
@@ -1222,6 +1229,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp

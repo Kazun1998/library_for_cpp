@@ -532,6 +532,9 @@ data:
       path: Segment_Tree/Lazy_Segment_Tree.hpp
       title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"
     - icon: ':heavy_check_mark:'
+      path: Segment_Tree/Persistent_Segment_Tree.hpp
+      title: "\u6C38\u7D9A Segment Tree"
+    - icon: ':heavy_check_mark:'
       path: Segment_Tree/Segment_Tree.hpp
       title: Segment Tree
   - name: Segment_Tree/preset
@@ -832,6 +835,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
