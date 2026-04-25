@@ -160,28 +160,38 @@ class Persistent_Segment_Tree {
     /// @return バージョン番号 t
     int amend(const int t, const int k, const M x) { return update(t, t, k, x); }
 
+    /// @brief バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）したものをバージョン u に保存する.
+    /// @param s コピー元のバージョン
+    /// @param t コピー先のベースとなるバージョン
+    /// @param u 結果の保存先バージョン
+    /// @param l 左端 (閉区間)
+    /// @param r 右端 (閉区間)
+    /// @return バージョン u
+    int copy(const int s, const int t, const int u, const int l, const int r) {
+        assert(s <= version);
+        assert(t <= version);
+        assert(u <= version);
+        if (n == 0 || l > r) return u;
+        assert(0 <= l && r < n);
+
+        roots[u] = _copy(roots[t], roots[s], l, r + 1, 0, n);
+        return u;
+    }
+
     /// @brief バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）する.
     /// @param s コピー元のバージョン
     /// @param t コピー先のバージョン
     /// @param l 左端 (閉区間)
     /// @param r 右端 (閉区間)
     /// @return バージョン t
-    int copy(const int s, const int t, const int l, const int r) {
-        assert(s <= version);
-        assert(t <= version);
-        if (n == 0 || l > r) return t;
-        assert(0 <= l && r < n);
-
-        roots[t] = _copy(roots[t], roots[s], l, r + 1, 0, n);
-        return t;
-    }
+    int copy(const int s, const int t, const int l, const int r) { return copy(s, t, t, l, r); }
 
     /// @brief バージョン t の [l, r] の範囲を最新バージョンにコピーする.
     /// @param t コピー元のバージョン
     /// @param l 左端 (閉区間)
     /// @param r 右端 (閉区間)
     /// @return 最新バージョン番号
-    int copy(const int t, const int l, const int r) { return copy(t, version, l, r); }
+    int copy(const int t, const int l, const int r) { return copy(t, version, version, l, r); }
 
     /// @brief バージョン s の内容をバージョン t にそのままコピーする.
     /// @param s コピー元のバージョン
@@ -221,7 +231,10 @@ class Persistent_Segment_Tree {
     /// @brief バージョン t における全区間の総積を求める.
     /// @param t 取得対象のバージョン
     /// @return 全区間の総積
-    M all_product(const int t) const { return product(t, 0, n - 1); }
+    M all_product(const int t) const {
+        assert(t <= version);
+        return (n == 0 || !roots[t]) ? identity : roots[t]->x;
+    }
 
     /// @brief 最新バージョンにおける全区間の総積を求める.
     /// @return 全区間の総積

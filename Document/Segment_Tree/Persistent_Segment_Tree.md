@@ -63,14 +63,16 @@ int amend(const int t, const int k, const M x)
 ### copy
 
 ```cpp
-(1) int copy(const int s, const int t, const int l, const int r)
-(2) int copy(const int t, const int l, const int r)
+(1) int copy(const int s, const int t, const int u, const int l, const int r)
+(2) int copy(const int s, const int t, const int l, const int r)
+(3) int copy(const int t, const int l, const int r)
 ```
 
 * 閉区間 $[l, r]$ におけるノードをコピー（部分共有）する.
   * (1) バージョン $s$ における閉区間 $[l, r]$ をバージョン $t$ の閉区間 $[l, r]$ にコピーする.
   * (2) バージョン $t$ における閉区間 $[l, r]$ を最新バージョン閉区間 $[l, r]$ にコピーする.
 * **制約**
+  * 指定するバージョン $s, t, u$ が存在すること.
   * $0 \leq l \leq r \lt N$.
 * **計算量**
   * $O(\log N)$ Time.
