@@ -218,6 +218,15 @@ class Persistent_Segment_Tree {
         return product(version, l, r);
     }
 
+    /// @brief バージョン t における全区間の総積を求める.
+    /// @param t 取得対象のバージョン
+    /// @return 全区間の総積
+    M all_product(const int t) const { return product(t, 0, n - 1); }
+
+    /// @brief 最新バージョンにおける全区間の総積を求める.
+    /// @return 全区間の総積
+    M all_product() const { return all_product(version); }
+
     /// @brief バージョン t における第 k 要素の値を取得する.
     /// @param t 取得対象のバージョン
     /// @param k インデックス (0-indexed)
