@@ -116,16 +116,19 @@ class Persistent_Segment_Tree {
         return ++version;
     }
 
-    // バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する.
-    // 現在の最新バージョンを上書きする.
-    int update(const int t, const int k, const M x) {
+    // バージョン s をベースに第 k 要素を x に更新した状態を作成し, バージョン t に代入する.
+    int update(const int s, const int t, const int k, const M x) {
+        assert(s <= version);
         assert(t <= version);
         assert(0 <= k && k < n);
 
-        Node* new_root = _update(roots[t], 0, n, k, x);
-        roots[version] = new_root;
-        return version;
+        roots[t] = _update(roots[s], 0, n, k, x);
+        return t;
     }
+
+    // バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する.
+    // 現在の最新バージョンを上書きする.
+    int update(const int t, const int k, const M x) { return update(t, version, k, x); }
 
     int update(const int k, const M x) { return update(version, k, x); }
 
