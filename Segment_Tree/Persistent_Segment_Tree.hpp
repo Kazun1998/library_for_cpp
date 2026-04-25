@@ -19,7 +19,6 @@ class Persistent_Segment_Tree {
     vector<Node*> roots;
     vector<Node*> nodes_pool;
     int version;
-    bool auto_increment;
 
     Node* new_node(M x, Node* l = nullptr, Node* r = nullptr) {
         Node* res = new Node(x, l, r);
@@ -60,7 +59,7 @@ class Persistent_Segment_Tree {
     }
 
     // 半開区間 [l, r) を計算する. 現在見ているノードは半開区間 [a, b) を表す.
-    M _product(const Node* node, const int l, const int r, const int a, const int b) {
+    M _product(const Node* node, const int l, const int r, const int a, const int b) const {
         // [l, r) と [a, b) が互いに素ならば, 単位元を返す.
         if (b <= l || r <= a) return unit;
 
@@ -75,7 +74,7 @@ class Persistent_Segment_Tree {
         return op(vl, vr);
     }
 
-    M _get(const Node* node, const int l, const int r, const int k) {
+    M _get(const Node* node, const int l, const int r, const int k) const {
         if (r - l == 1) return node->x;
         int m = (l + r) / 2;
         if (k < m) return _get(node->left_child, l, m, k);
@@ -83,11 +82,11 @@ class Persistent_Segment_Tree {
     }
 
     public:
-    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(data.size()), op(op), unit(unit), version(0), auto_increment(auto_increment) {
+    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit), version(0) {
         build_up(data);
     }
 
-    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit, const bool auto_increment = true): n(n), op(op), unit(unit), version(0), auto_increment(auto_increment) {
+    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit): n(n), op(op), unit(unit), version(0) {
         build_up(vector<M>(n, unit));
     }
 
@@ -105,40 +104,34 @@ class Persistent_Segment_Tree {
     }
 
     // バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する.
-    // auto_increment が true の場合は新しいバージョンとして追加し, false の場合は現在の最新バージョンを上書きする.
+    // 現在の最新バージョンを上書きする.
     int update(const int t, const int k, const M x) {
         assert(t <= version);
 
         Node* new_root = _update(roots[t], 0, n, k, x);
-
-        if (auto_increment) {
-            roots.emplace_back(new_root);
-            return ++version;
-        } else {
-            roots[version] = new_root;
-            return version;
-        }
+        roots[version] = new_root;
+        return version;
     }
 
     int update(const int k, const M x) { return update(version, k, x); }
 
-    M product(const int t, const int l, const int r) {
+    M product(const int t, const int l, const int r) const {
         assert(t <= version);
         return _product(roots[t], l, r + 1, 0, n);
     }
 
-    M product(const int l, const int r) {
+    M product(const int l, const int r) const {
         return product(version, l, r);
     }
 
-    M get(const int t, const int k) {
+    M get(const int t, const int k) const {
         assert(t <= version);
         return _get(roots[t], 0, n, k);
     }
 
-    M get(const int k) { return get(version, k); }
+    M get(const int k) const { return get(version, k); }
+
+    M operator[](const int k) const { return get(version, k); }
 
     int current_version() const { return version; }
-
-    void set_auto_increment(bool b) { auto_increment = b; }
 };
