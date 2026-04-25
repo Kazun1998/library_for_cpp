@@ -83,6 +83,17 @@ class Persistent_Segment_Tree {
         else return _get(node->right_child, m, r, k);
     }
 
+    Node* _copy(const Node* node_curr, const Node* node_src, const int l, const int r, const int a, const int b) {
+        if (b <= l || r <= a) return const_cast<Node*>(node_curr);
+        if (l <= a && b <= r) return const_cast<Node*>(node_src);
+
+        int m = (a + b) / 2;
+        Node *left = _copy(node_curr->left_child, node_src->left_child, l, r, a, m);
+        Node *right = _copy(node_curr->right_child, node_src->right_child, l, r, m, b);
+
+        return new_node(op(left->x, right->x), left, right);
+    }
+
     public:
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit), version(0) {
         build_up(data);
@@ -117,6 +128,15 @@ class Persistent_Segment_Tree {
     }
 
     int update(const int k, const M x) { return update(version, k, x); }
+
+    int copy(const int t, const int l, const int r) {
+        assert(t <= version);
+        if (n == 0 || l > r) return version;
+        assert(0 <= l && r < n);
+
+        roots[version] = _copy(roots[version], roots[t], l, r + 1, 0, n);
+        return version;
+    }
 
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
