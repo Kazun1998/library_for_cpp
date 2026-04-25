@@ -27,6 +27,7 @@ class Persistent_Segment_Tree {
     }
 
     Node* build(const int l, const int r, const vector<M> &data) {
+        if (l >= r) return nullptr;
         // 1 要素区間を表す頂点 → 葉
         if (r - l == 1) return new_node(data[l]);
 
@@ -40,7 +41,8 @@ class Persistent_Segment_Tree {
     }
 
     void build_up(const vector<M> &data) {
-        roots.emplace_back(build(0, n, data));
+        if (n > 0) roots.emplace_back(build(0, n, data));
+        else roots.emplace_back(nullptr);
     }
 
     Node* _update(const Node* node, const int l, const int r, const int k, const M x) {
@@ -107,6 +109,7 @@ class Persistent_Segment_Tree {
     // 現在の最新バージョンを上書きする.
     int update(const int t, const int k, const M x) {
         assert(t <= version);
+        assert(0 <= k && k < n);
 
         Node* new_root = _update(roots[t], 0, n, k, x);
         roots[version] = new_root;
@@ -117,6 +120,7 @@ class Persistent_Segment_Tree {
 
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
+        if (l > r || n == 0) return unit;
         return _product(roots[t], l, r + 1, 0, n);
     }
 
@@ -126,6 +130,9 @@ class Persistent_Segment_Tree {
 
     M get(const int t, const int k) const {
         assert(t <= version);
+        if (n == 0) return unit;
+        assert(0 <= k && k < n);
+
         return _get(roots[t], 0, n, k);
     }
 
