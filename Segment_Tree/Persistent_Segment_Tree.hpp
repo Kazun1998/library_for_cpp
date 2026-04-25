@@ -146,12 +146,16 @@ class Persistent_Segment_Tree {
     // バージョン t の [l, r] の範囲を最新バージョンにコピーする.
     int copy(const int t, const int l, const int r) { return copy(t, version, l, r); }
 
-    // バージョン t の内容を現在の最新バージョンにそのままコピーする.
-    int clone(const int t) {
+    // バージョン s の内容をバージョン t にそのままコピーする.
+    int clone(const int s, const int t) {
+        assert(s <= version);
         assert(t <= version);
-        roots[version] = roots[t];
-        return version;
+        roots[t] = roots[s];
+        return t;
     }
+
+    // バージョン t の内容を現在の最新バージョンにそのままコピーする.
+    int clone(const int t) { return clone(t, version); }
 
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
