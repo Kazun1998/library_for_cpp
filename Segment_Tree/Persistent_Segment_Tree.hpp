@@ -95,10 +95,18 @@ class Persistent_Segment_Tree {
     }
 
     public:
+    /// @brief コンストラクタ. 配列 data で初期化する.
+    /// @param data 初期データ
+    /// @param op 二項演算
+    /// @param unit 単位元
     Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit), version(0) {
         build_up(data);
     }
 
+    /// @brief コンストラクタ. サイズ n, 全要素 unit で初期化する.
+    /// @param n 配列サイズ
+    /// @param op 二項演算
+    /// @param unit 単位元
     Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit): n(n), op(op), unit(unit), version(0) {
         build_up(vector<M>(n, unit));
     }
@@ -107,8 +115,9 @@ class Persistent_Segment_Tree {
         for (Node* node : nodes_pool) delete node;
     }
 
-    // バージョン t をコピーして新しいバージョンを作成し, そのインデックスを返す. 
-    // t が -1 の場合は最新のバージョンをコピーする.
+    /// @brief バージョン t をコピーして新しいバージョンを作成し, そのインデックスを返す.
+    /// @param t ベースとするバージョン (デフォルトは最新バージョン)
+    /// @return 新しいバージョン番号
     int increment(int t = -1) {
         if (t == -1) t = version;
         assert(t <= version);
@@ -116,7 +125,12 @@ class Persistent_Segment_Tree {
         return ++version;
     }
 
-    // バージョン s をベースに第 k 要素を x に更新した状態を作成し, バージョン t に代入する.
+    /// @brief バージョン s をベースに第 k 要素を x に更新した状態を作成し, バージョン t に代入する.
+    /// @param s 元のバージョン
+    /// @param t 保存先のバージョン
+    /// @param k 更新するインデックス (0-indexed)
+    /// @param x 更新後の値
+    /// @return バージョン t
     int update(const int s, const int t, const int k, const M x) {
         assert(s <= version);
         assert(t <= version);
@@ -126,13 +140,25 @@ class Persistent_Segment_Tree {
         return t;
     }
 
-    // バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する.
-    // 現在の最新バージョンを上書きする.
+    /// @brief バージョン t をベースに第 k 要素を x に更新した新しい状態を作成する. 現在の最新バージョンを上書きする.
+    /// @param t ベースとするバージョン
+    /// @param k 更新するインデックス (0-indexed)
+    /// @param x 更新後の値
+    /// @return 最新バージョン番号
     int update(const int t, const int k, const M x) { return update(t, version, k, x); }
 
+    /// @brief 最新バージョンをベースに第 k 要素を x に更新した新しい状態を作成し、最新バージョンを上書きする.
+    /// @param k 更新するインデックス (0-indexed)
+    /// @param x 更新後の値
+    /// @return 最新バージョン番号
     int update(const int k, const M x) { return update(version, k, x); }
 
-    // バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）する.
+    /// @brief バージョン s の [l, r] の範囲をバージョン t にコピー（マージ）する.
+    /// @param s コピー元のバージョン
+    /// @param t コピー先のバージョン
+    /// @param l 左端 (閉区間)
+    /// @param r 右端 (閉区間)
+    /// @return バージョン t
     int copy(const int s, const int t, const int l, const int r) {
         assert(s <= version);
         assert(t <= version);
@@ -143,10 +169,17 @@ class Persistent_Segment_Tree {
         return t;
     }
 
-    // バージョン t の [l, r] の範囲を最新バージョンにコピーする.
+    /// @brief バージョン t の [l, r] の範囲を最新バージョンにコピーする.
+    /// @param t コピー元のバージョン
+    /// @param l 左端 (閉区間)
+    /// @param r 右端 (閉区間)
+    /// @return 最新バージョン番号
     int copy(const int t, const int l, const int r) { return copy(t, version, l, r); }
 
-    // バージョン s の内容をバージョン t にそのままコピーする.
+    /// @brief バージョン s の内容をバージョン t にそのままコピーする.
+    /// @param s コピー元のバージョン
+    /// @param t コピー先のバージョン
+    /// @return バージョン t
     int clone(const int s, const int t) {
         assert(s <= version);
         assert(t <= version);
@@ -154,19 +187,34 @@ class Persistent_Segment_Tree {
         return t;
     }
 
-    // バージョン t の内容を現在の最新バージョンにそのままコピーする.
+    /// @brief バージョン t の内容を現在の最新バージョンにそのままコピーする.
+    /// @param t コピー元のバージョン
+    /// @return 最新バージョン番号
     int clone(const int t) { return clone(t, version); }
 
+    /// @brief バージョン t における [l, r] の範囲の総積を求める.
+    /// @param t 取得対象のバージョン
+    /// @param l 左端 (閉区間)
+    /// @param r 右端 (閉区間)
+    /// @return 区間の総積
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
         if (l > r || n == 0) return unit;
         return _product(roots[t], l, r + 1, 0, n);
     }
 
+    /// @brief 最新バージョンにおける [l, r] の範囲の総積を求める.
+    /// @param l 左端 (閉区間)
+    /// @param r 右端 (閉区間)
+    /// @return 区間の総積
     M product(const int l, const int r) const {
         return product(version, l, r);
     }
 
+    /// @brief バージョン t における第 k 要素の値を取得する.
+    /// @param t 取得対象のバージョン
+    /// @param k インデックス (0-indexed)
+    /// @return 要素の値
     M get(const int t, const int k) const {
         assert(t <= version);
         if (n == 0) return unit;
@@ -175,9 +223,14 @@ class Persistent_Segment_Tree {
         return _get(roots[t], 0, n, k);
     }
 
+    /// @brief 最新バージョンにおける第 k 要素の値を取得する.
+    /// @param k インデックス (0-indexed)
+    /// @return 要素の値
     M get(const int k) const { return get(version, k); }
 
+    /// @brief 最新バージョンにおける第 k 要素の値を取得する.
     M operator[](const int k) const { return get(version, k); }
 
+    /// @brief 現在の最新バージョン番号を取得する.
     int current_version() const { return version; }
 };
