@@ -15,7 +15,7 @@ class Persistent_Segment_Tree {
 
     int n;
     const function<M(M, M)> op;
-    const M unit;
+    const M identity;
     vector<Node*> roots;
     vector<Node*> nodes_pool;
     int version;
@@ -64,7 +64,7 @@ class Persistent_Segment_Tree {
     M _product(const Node* node, const int l, const int r, const int a, const int b) const {
         // [l, r) と [a, b) が互いに素ならば, 単位元を返す.
         if (b <= l || r <= a) return unit;
-
+        
         // [a, b) が [l, r) に含まれているならば, ノードの値をそのまま返す.
         if (l <= a && b <= r) return node->x;
 
@@ -97,18 +97,18 @@ class Persistent_Segment_Tree {
     public:
     /// @brief コンストラクタ. 配列 data で初期化する.
     /// @param data 初期データ
-    /// @param op 二項演算
-    /// @param unit 単位元
-    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M unit): n(data.size()), op(op), unit(unit), version(0) {
+    /// @param op 二項演算子
+    /// @param identity 単位元
+    Persistent_Segment_Tree(const vector<M> &data, const function<M(M, M)> op, const M identity): n(data.size()), op(op), identity(identity), version(0) {
         build_up(data);
     }
 
     /// @brief コンストラクタ. サイズ n, 全要素 unit で初期化する.
     /// @param n 配列サイズ
-    /// @param op 二項演算
-    /// @param unit 単位元
-    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M unit): n(n), op(op), unit(unit), version(0) {
-        build_up(vector<M>(n, unit));
+    /// @param op 二項演算子
+    /// @param identity 単位元
+    Persistent_Segment_Tree(const int n, const function<M(M, M)> op, const M identity): n(n), op(op), identity(identity), version(0) {
+        build_up(vector<M>(n, identity));
     }
 
     ~Persistent_Segment_Tree() {
@@ -199,7 +199,7 @@ class Persistent_Segment_Tree {
     /// @return 区間の総積
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
-        if (l > r || n == 0) return unit;
+        if (l > r || n == 0) return identity;
         return _product(roots[t], l, r + 1, 0, n);
     }
 
@@ -217,7 +217,7 @@ class Persistent_Segment_Tree {
     /// @return 要素の値
     M get(const int t, const int k) const {
         assert(t <= version);
-        if (n == 0) return unit;
+        if (n == 0) return identity;
         assert(0 <= k && k < n);
 
         return _get(roots[t], 0, n, k);
