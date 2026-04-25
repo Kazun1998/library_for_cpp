@@ -138,6 +138,13 @@ class Persistent_Segment_Tree {
         return version;
     }
 
+    // バージョン t の内容を現在の最新バージョンにそのままコピーする.
+    int clone(const int t) {
+        assert(t <= version);
+        roots[version] = roots[t];
+        return version;
+    }
+
     M product(const int t, const int l, const int r) const {
         assert(t <= version);
         if (l > r || n == 0) return unit;
