@@ -249,4 +249,7 @@ class Persistent_Segment_Tree {
 
     /// @brief 現在の最新バージョン番号を取得する.
     int current_version() const { return version; }
+
+    /// @brief セグメント木における要素数を取得する.
+    size_t size() const { return n; }
 };
