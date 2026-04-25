@@ -167,3 +167,9 @@ size_t size()
 * 1 つのバージョンにおける, Segment Tree の要素数を取得する.
 * **計算量**
   * $O(1)$ Time.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/04/26| Persistent_Segment_Tree 実装 |
