@@ -354,6 +354,9 @@ data:
   - name: Linear_Algebra
     pages:
     - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+      title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
+    - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Field_Matrix.hpp
       title: Linear_Algebra/Field_Matrix.hpp
     - icon: ':warning:'
@@ -933,6 +936,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp

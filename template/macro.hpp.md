@@ -287,6 +287,9 @@ data:
     path: Knapsack/Knapsack_Limitation.hpp
     title: "\u500B\u6570\u5236\u9650\u4ED8\u304D Knapsack \u554F\u984C"
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+    title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: Linear_Algebra/Field_Matrix.hpp
   - icon: ':warning:'
@@ -771,6 +774,9 @@ data:
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -983,6 +989,7 @@ data:
   - Linear_Algebra/Reduction.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Vector.hpp
+  - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
   - Linear_Algebra/Field_Matrix.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Calculate/Slide_Maximum.hpp
@@ -1210,6 +1217,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp

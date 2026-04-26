@@ -150,6 +150,9 @@ data:
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -522,6 +525,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp

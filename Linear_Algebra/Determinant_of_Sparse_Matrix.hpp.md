@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Find_Linear_Recurrence.hpp
+    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,30 +25,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
-    title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
-  - icon: ':warning:'
-    path: Linear_Algebra/Predict_Nth_Term.hpp
-    title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
-      \u306E\u4E88\u6E2C"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
-    title: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "Berlekamp-Massey\u6CD5\u306B\u3088\u308B\u6700\u77ED\u7DDA\u5F62\
-      \u6F38\u5316\u5F0F\u306E\u767A\u898B"
+    document_title: "\u758E\u884C\u5217\u306E\u884C\u5217\u5F0F\u3092\u8A08\u7B97\u3059\
+      \u308B (Wiedemann\u6CD5)"
     links: []
-  bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+  bundledCode: "#line 2 \"Linear_Algebra/Determinant_of_Sparse_Matrix.hpp\"\n\n#line\
+    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -235,36 +229,84 @@ data:
     \            l = i + 1 - l;\n            m = 0;\n            p = d;\n        }\n\
     \    }\n\n    vector<F> res;\n    res.reserve(c.size() - 1);\n    for (int i =\
     \ 1; i < int(c.size()); ++i) {\n        res.push_back(-c[i]);\n    }\n    return\
-    \ res;\n}\n"
-  code: "#pragma once\n#include \"../template/template.hpp\"\n\n/**\n * @brief Berlekamp-Massey\u6CD5\
-    \u306B\u3088\u308B\u6700\u77ED\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B\
-    \n * @details \n * \u4E0E\u3048\u3089\u308C\u305F\u6570\u5217 a \u306B\u5BFE\u3057\
-    \u3066, a[i] = \\sum_{j=1}^d c[j-1] a[i-j] \u3092\u6E80\u305F\u3059\u6700\u5C0F\
-    \u306E d \u3068\u4FC2\u6570\u5217 c \u3092\u6C42\u3081\u308B.\n * \u623B\u308A\
-    \u5024\u306F [c[0], c[1], ..., c[d-1]].\n * \n * @tparam F \u4F53\u306E\u8981\u7D20\
-    \u306E\u578B\uFF08\u52A0\u6E1B\u4E57\u9664\u304C\u5B9A\u7FA9\u3055\u308C\u3066\
-    \u304A\u308A\u3001F(0), F(1), .inverse() \u7B49\u3092\u6301\u3064\u3053\u3068\uFF09\
-    \n * @param a \u6570\u5217\n * @return vector<F> \u6F38\u5316\u5F0F\u306E\u4FC2\
-    \u6570\u30EA\u30B9\u30C8\n * @note \u8A08\u7B97\u91CF: O(n^2) (n \u306F a \u306E\
-    \u8981\u7D20\u6570)\n */\ntemplate <typename F>\nvector<F> Find_Linear_Recurrence(const\
-    \ vector<F>& a) {\n    int n = int(a.size());\n    vector<F> c = {F(1)}; // \u73FE\
-    \u5728\u306E\u7279\u6027\u591A\u9805\u5F0F\n    {\n        vector<F> b = {F(1)};\
-    \ // \u66F4\u65B0\u7528\uFF08\u904E\u53BB\u306E\u5931\u6557\u3057\u305F\uFF09\u591A\
-    \u9805\u5F0F\n        int l = 0, m = 0;     // l: \u73FE\u5728\u306E\u6F38\u5316\
-    \u5F0F\u306E\u9577\u3055, m: \u524D\u56DE\u306E\u66F4\u65B0\u304B\u3089\u306E\u30B9\
-    \u30C6\u30C3\u30D7\u6570\n        F p(1);               // p: \u524D\u56DE\u306E\
-    \u4E0D\u4E00\u81F4 (discrepancy)\n        for (int i = 0; i < n; ++i) {\n    \
-    \        m++;\n            F d = a[i]; // d: \u73FE\u5728\u306E\u4E0D\u4E00\u81F4\
-    \n\n            for (int j = 1; j <= l; ++j) d += c[j] * a[i - j];\n\n       \
-    \     if (d == F(0)) continue;\n\n            vector<F> t = c; // \u6B21\u6570\
-    \u66F4\u65B0\u7528\u306B\u73FE\u5728\u306E c \u3092\u4FDD\u5B58\n            F\
-    \ q = d / p;     // \u4FEE\u6B63\u4FC2\u6570\n            if (c.size() < b.size()\
-    \ + m) c.resize(b.size() + m, F(0));\n\n            for (int j = 0; j < int(b.size());\
-    \ ++j) c[j + m] -= q * b[j];\n\n            unless (2 * l <= i) continue;\n\n\
-    \            b = std::move(t);\n            l = i + 1 - l;\n            m = 0;\n\
-    \            p = d;\n        }\n    }\n\n    vector<F> res;\n    res.reserve(c.size()\
-    \ - 1);\n    for (int i = 1; i < int(c.size()); ++i) {\n        res.push_back(-c[i]);\n\
-    \    }\n    return res;\n}\n"
+    \ res;\n}\n#line 5 \"Linear_Algebra/Determinant_of_Sparse_Matrix.hpp\"\n\n/**\n\
+    \ * @brief \u758E\u884C\u5217\u306E\u884C\u5217\u5F0F\u3092\u8A08\u7B97\u3059\u308B\
+    \ (Wiedemann\u6CD5) \n * @tparam F \u4F53\u306E\u8981\u7D20\u306E\u578B (modint\u7B49\
+    )\n * @param N \u884C\u5217\u306E\u30B5\u30A4\u30BA\n * @param elements \u884C\
+    \u5217\u306E\u975E\u30BC\u30ED\u8981\u7D20 (row, col, value) \u306E\u30EA\u30B9\
+    \u30C8\n * @return F \u884C\u5217\u5F0F\u306E\u7D50\u679C\u3002\u884C\u5217\u304C\
+    \u975E\u6B63\u5247\u3067\u3042\u308B\u53EF\u80FD\u6027\u304C\u9AD8\u3044\u5834\
+    \u5408\u306F 0 \u3092\u8FD4\u3059\n * @note \u8A08\u7B97\u91CF: \u975E\u96F6\u8981\
+    \u7D20\u306E\u6570\u3092 K \u3068\u3057\u3066, O(N * (K + N))\n */\ntemplate<typename\
+    \ F>\nF Determinant_of_Sparse_Matrix(const int N, const vector<tuple<int, int,\
+    \ F>> &elements) {\n    static mt19937 engine(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \n    // \u30E9\u30F3\u30C0\u30E0\u306A\u30D9\u30AF\u30C8\u30EB\u3092\u751F\u6210\
+    \u3059\u308B\n    auto random_vector = [&N, &engine]() -> vector<F> {\n      \
+    \  vector<F> res(N);\n        for (int i = 0; i < N; ++i) res[i] = F(engine());\n\
+    \n        return res;\n    };\n\n    // \u5404\u6210\u5206\u304C\u975E\u30BC\u30ED\
+    \u3067\u3042\u308B\u30E9\u30F3\u30C0\u30E0\u306A\u5BFE\u89D2\u884C\u5217 D \u3068\
+    \u305D\u306E\u884C\u5217\u5F0F det(D) \u3092\u751F\u6210\u3059\u308B\n    auto\
+    \ random_diagonal_matrix = [&N, &engine]() -> pair<vector<F>, F> {\n        vector<F>\
+    \ D(N);\n\n        F det_D = 1;\n        for (int i = 0; i < N; ++i) {\n     \
+    \       do { D[i] = F(engine()); } while (D[i] == F(0));\n            det_D *=\
+    \ D[i];\n        }\n\n        return { D, det_D };\n    };\n    \n\n    // \u30D9\
+    \u30AF\u30C8\u30EB\u306E\u5185\u7A4D\u3092\u8A08\u7B97\u3059\u308B\n    auto inner\
+    \ = [&N](const vector<F> &u, const vector<F> &v) -> F {\n        F y = 0;\n  \
+    \      for (int i = 0; i < N; ++i) y += u[i] * v[i];\n        return y;\n    };\n\
+    \n    vector<F> u = random_vector();\n    vector<F> v = random_vector();\n   \
+    \ auto [D, det_D] = random_diagonal_matrix();\n\n    vector<F> y(2 * N);\n\n \
+    \   // \u6570\u5217 y_k = u^T (DA)^k v \u3092\u751F\u6210 (k = 0 ... 2N-1)\n \
+    \   y[0] = inner(u, v);\n    for (int k = 1; k < 2 * N; ++k) {\n        vector<F>\
+    \ w(N, 0);\n        for (auto [i, j, a]: elements) {\n            w[i] += a *\
+    \ v[j];\n        }\n        for (int i = 0; i < N; ++i) w[i] *= D[i]; // D \u3092\
+    \u9069\u7528\n\n        v = std::move(w);\n        y[k] = inner(u, v);\n    }\n\
+    \n    // Berlekamp-Massey \u6CD5\u306B\u3088\u308A\u6700\u77ED\u7DDA\u5F62\u6F38\
+    \u5316\u5F0F\u3092\u6C42\u3081\u308B\n    vector<F> c = Find_Linear_Recurrence(y);\n\
+    \n    // \u6700\u5C0F\u591A\u9805\u5F0F\u306E\u6B21\u6570\u304C N \u672A\u6E80\
+    \u3067\u3042\u308C\u3070\u3001\u884C\u5217\u306F\u7279\u7570\uFF08\u884C\u5217\
+    \u5F0F 0\uFF09\u3068\u307F\u306A\u3059\n    unless(c.size() == N) return F(0);\n\
+    \n    // \u6700\u5C0F\u591A\u9805\u5F0F\u306E\u5B9A\u6570\u9805\u304B\u3089 det(DA)\
+    \ \u3092\u5C0E\u51FA\n    F det_DA = is_odd(N) ? c[N - 1] : -c[N - 1];\n    return\
+    \ det_DA / det_D;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Find_Linear_Recurrence.hpp\"\
+    \n\n/**\n * @brief \u758E\u884C\u5217\u306E\u884C\u5217\u5F0F\u3092\u8A08\u7B97\
+    \u3059\u308B (Wiedemann\u6CD5) \n * @tparam F \u4F53\u306E\u8981\u7D20\u306E\u578B\
+    \ (modint\u7B49)\n * @param N \u884C\u5217\u306E\u30B5\u30A4\u30BA\n * @param\
+    \ elements \u884C\u5217\u306E\u975E\u30BC\u30ED\u8981\u7D20 (row, col, value)\
+    \ \u306E\u30EA\u30B9\u30C8\n * @return F \u884C\u5217\u5F0F\u306E\u7D50\u679C\u3002\
+    \u884C\u5217\u304C\u975E\u6B63\u5247\u3067\u3042\u308B\u53EF\u80FD\u6027\u304C\
+    \u9AD8\u3044\u5834\u5408\u306F 0 \u3092\u8FD4\u3059\n * @note \u8A08\u7B97\u91CF\
+    : \u975E\u96F6\u8981\u7D20\u306E\u6570\u3092 K \u3068\u3057\u3066, O(N * (K +\
+    \ N))\n */\ntemplate<typename F>\nF Determinant_of_Sparse_Matrix(const int N,\
+    \ const vector<tuple<int, int, F>> &elements) {\n    static mt19937 engine(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \n    // \u30E9\u30F3\u30C0\u30E0\u306A\u30D9\u30AF\u30C8\u30EB\u3092\u751F\u6210\
+    \u3059\u308B\n    auto random_vector = [&N, &engine]() -> vector<F> {\n      \
+    \  vector<F> res(N);\n        for (int i = 0; i < N; ++i) res[i] = F(engine());\n\
+    \n        return res;\n    };\n\n    // \u5404\u6210\u5206\u304C\u975E\u30BC\u30ED\
+    \u3067\u3042\u308B\u30E9\u30F3\u30C0\u30E0\u306A\u5BFE\u89D2\u884C\u5217 D \u3068\
+    \u305D\u306E\u884C\u5217\u5F0F det(D) \u3092\u751F\u6210\u3059\u308B\n    auto\
+    \ random_diagonal_matrix = [&N, &engine]() -> pair<vector<F>, F> {\n        vector<F>\
+    \ D(N);\n\n        F det_D = 1;\n        for (int i = 0; i < N; ++i) {\n     \
+    \       do { D[i] = F(engine()); } while (D[i] == F(0));\n            det_D *=\
+    \ D[i];\n        }\n\n        return { D, det_D };\n    };\n    \n\n    // \u30D9\
+    \u30AF\u30C8\u30EB\u306E\u5185\u7A4D\u3092\u8A08\u7B97\u3059\u308B\n    auto inner\
+    \ = [&N](const vector<F> &u, const vector<F> &v) -> F {\n        F y = 0;\n  \
+    \      for (int i = 0; i < N; ++i) y += u[i] * v[i];\n        return y;\n    };\n\
+    \n    vector<F> u = random_vector();\n    vector<F> v = random_vector();\n   \
+    \ auto [D, det_D] = random_diagonal_matrix();\n\n    vector<F> y(2 * N);\n\n \
+    \   // \u6570\u5217 y_k = u^T (DA)^k v \u3092\u751F\u6210 (k = 0 ... 2N-1)\n \
+    \   y[0] = inner(u, v);\n    for (int k = 1; k < 2 * N; ++k) {\n        vector<F>\
+    \ w(N, 0);\n        for (auto [i, j, a]: elements) {\n            w[i] += a *\
+    \ v[j];\n        }\n        for (int i = 0; i < N; ++i) w[i] *= D[i]; // D \u3092\
+    \u9069\u7528\n\n        v = std::move(w);\n        y[k] = inner(u, v);\n    }\n\
+    \n    // Berlekamp-Massey \u6CD5\u306B\u3088\u308A\u6700\u77ED\u7DDA\u5F62\u6F38\
+    \u5316\u5F0F\u3092\u6C42\u3081\u308B\n    vector<F> c = Find_Linear_Recurrence(y);\n\
+    \n    // \u6700\u5C0F\u591A\u9805\u5F0F\u306E\u6B21\u6570\u304C N \u672A\u6E80\
+    \u3067\u3042\u308C\u3070\u3001\u884C\u5217\u306F\u7279\u7570\uFF08\u884C\u5217\
+    \u5F0F 0\uFF09\u3068\u307F\u306A\u3059\n    unless(c.size() == N) return F(0);\n\
+    \n    // \u6700\u5C0F\u591A\u9805\u5F0F\u306E\u5B9A\u6570\u9805\u304B\u3089 det(DA)\
+    \ \u3092\u5C0E\u51FA\n    F det_DA = is_odd(N) ? c[N - 1] : -c[N - 1];\n    return\
+    \ det_DA / det_D;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -273,27 +315,140 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Linear_Algebra/Find_Linear_Recurrence.hpp
   isVerificationFile: false
-  path: Linear_Algebra/Find_Linear_Recurrence.hpp
-  requiredBy:
-  - Linear_Algebra/Predict_Nth_Term.hpp
-  - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
-  timestamp: '2026-04-19 16:49:29+09:00'
+  path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+  requiredBy: []
+  timestamp: '2026-04-26 13:38:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
-documentation_of: Linear_Algebra/Find_Linear_Recurrence.hpp
+documentation_of: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
 layout: document
-title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
+title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
 ---
 
 ## Outline
 
-線形漸化式を満たすことが保証されている列 $(a_n)$ が満たす最小次数の線形漸化式を求める.
+体 $F$ 上の疎行列 $A$ に対する行列式 $\det A$ を高速に求める.
+
+## Theory
+
+### 線形漸化式の存在
+$A$ を次数 $N$ の行列とする. また, $\boldsymbol{u}, \boldsymbol{v} \in F^N$ とする.
+
+このとき, 以下が従う.
+
+> $d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+
+**証明**
+
+Cayley-Hamilton の定理により, $c_0, c_1, \dots, c_{N-1} \in  F$ が存在して,
+
+$$ A^N = c_{N-1} A^{N-1} + \dots + c_1 A + c_0 I_N $$
+
+が成り立つ.
+
+すると,
+
+$$
+\begin{align*}
+    d_{N+k} 
+    &= \left \langle \boldsymbol{u} \mid A^{N+k} \boldsymbol{v} \right \rangle \\
+    &= \left \langle \boldsymbol{u} \mid A^k (c_{N-1} A^{N-1} + \dots + c_1 A + c_0 I_N) \boldsymbol{v} \right \rangle \\
+    &= c_{N-1}  \left \langle \boldsymbol{u} \mid A^k \cdot A^{N-1} \boldsymbol{v} \right \rangle + \dots + c_1 \left \langle \boldsymbol{u} \mid A^k \cdot A \boldsymbol{v} \right \rangle + c_0 \left \langle \boldsymbol{u} \mid A^k \cdot I_N \boldsymbol{v} \right \rangle \\
+    &= c_{N-1} \left \langle \boldsymbol{u} \mid A^{N+k-1} \boldsymbol{v} \right \rangle + \dots + c_1 \left \langle \boldsymbol{u}\mid A^{k+1} \boldsymbol{v} \right \rangle + c_0 \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle \\
+    &= c_{N-1} d_{N+k-1} + \dots + c_1 d_{N+1} + c_0 d_N
+\end{align*}
+$$
+
+である. 故に, $(d_k)$ は $N$ 次の線形漸化式
+
+$$ d_{N+k} = c_{N-1} d_{N+k-1} + \dots + c_1 d_{N+1} + c_0 d_N $$
+
+を持つ.
+
+### アルゴリズムの構築
+
+$A$ の固有多項式 $\varphi_A(t) (:= \det(t I_N - A))$ について, $0 \leq k < N$ に対して,
+
+$$ \left[t^k \right] \varphi_A = -c_k $$
+
+が成り立つ. ここで,
+
+$$ \left[t^0 \right] \varphi_A = \varphi_A(0) = \det(-A) = (-1)^N \det A $$
+
+であるため,
+
+$$ \det A = (-1)^{N+1} c_0 $$
+
+が成り立つ.
+
+故に, $(d_k)$ が満たす線形漸化式を求められれば良い.
+
+### 乱択の利用
+
+$\boldsymbol{u}, \boldsymbol{v}$ をランダムに選ぶことにする.
+
+理論上は, $(d_k)$ が満たす $N$ 次の線形漸化式を求められれば良い.
+
+これは [Find_Linear_Recurrence](Find_Linear_Recurrence.hpp) を使うことで, 最小の線形漸化式を求められる. しかし, 全ての場合で対応できるわけではない.
+
+具体的には, $A$ において, 重複した固有値がある場合, 最小の線形漸化式が縮退して, $N$ 次の線形漸化式を得られない.
+
+そのため, $A$ にあるランダムな行列 $B$ をかけて, $B$ の固有値が相異なることを期待する.
+
+$BA$ に関する行列式を上記のアルゴリズムによって得た後,
+
+$$ \det A = \dfrac{\det BA}{\det B} $$
+
+によって, $\det A$ を求められる. ただし $\det B \neq 0$ である必要がある.
+
+このアルゴリズムを使うために, $B$ として, 対角行列 $D$を使うことにする.
+
+$$ D := \operatorname{diag}(\lambda_1, \dots \lambda_N) $$
+
+とすると,
+
+$$ \det D = \lambda_1 \dots \lambda_N $$
+
+になるため,
+
+$$ \det A = \dfrac{\det DA}{\det D} $$
+
+となる. また, $D$ は対角行列なので, $A$ における非零要素の個数と, $DA$ における非零要素の個数は一致する.
+
+### 計算量について
+
+$A$ の非零要素の個数を $K$ とする. 各 $\boldsymbol{x} \in F^N$ に対して, $A \boldsymbol{x}$ は非零要素のみに着目することで, $O(K)$ 時間で求められる.
+
+ここで, $(d_k)$ は, $N$ 次の線形漸化式を持つため, `Find_Linear_Recurrence` で線形漸化式を見つけるためには, $2N$ 個の項が必要である.
+
+よって, 必要な計算とその計算量は
+
+* $\boldsymbol{u}, \boldsymbol{v}, D$ をランダムに決定する: $O(N)$ 時間.
+* $\boldsymbol{v}, DA\boldsymbol{v}, (DA)^2 \boldsymbol{v}, \dots, (DA)^{2N-1} \boldsymbol{v}$ を求める.
+  * 各 $(DA)^k \boldsymbol{v}$ の計算に $O(K + N)$ 時間かかるため, 全体で $O(NK + N^2)$ 時間.
+* 各 $k$ について $d_k = \langle \boldsymbol{u} \mid (DA)^k \boldsymbol{v} \rangle$ を求める: 各 $k$ に対して $O(N)$ 時間で, 合計 $O(N^2)$ 時間.
+* $(d_0, d_1, \dots, d_{2N-1})$ から線形漸化式を求める: $O(N^2)$ 時間.
+
+そのため, 全体の計算量は $O(N (N + K))$ 時間になる.
+
+## Contents
+
+```cpp
+template<typename F>
+F Determinant_of_Sparse_Matrix(const int N, const vector<tuple<int, int, F>> &elements)
+```
+
+* $N$ 次の疎行列における行列式を求める.
+* **入力**
+  * $N$: 行列の次数
+  * $\textrm{elements}$: 整数 $i, j$ と $F$ の元 $a \in F$ からなるトリプル $(i, j, a)$ のリスト. $(i, j, a)$ は $(i, j)$ 成分が $a$ であることを示す. そして, 残りは全て $0$.
+* **計算量**: 非零要素の個数. つまり, $\textrm{elements}$ の長さを $K$ として, $O(N (N + K))$ 時間.
 
 ## History 
 
 |日付|内容|
 |:---:|:---:|
-|2026/04/19| Find_Linear_Recurrence の実装 |
+|2026/04/26| Determinant_of_Sparse_Matrix の実装 |
