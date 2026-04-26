@@ -13,9 +13,10 @@
  */
 template<typename F>
 F Determinant_of_Sparse_Matrix(const int N, const vector<tuple<int, int, F>> &elements) {
+    static mt19937 engine(chrono::steady_clock::now().time_since_epoch().count());
+
     // ランダムなベクトルを生成する
-    auto random_vector = [&N]() -> vector<F> {
-        static mt19937 engine(chrono::steady_clock::now().time_since_epoch().count());
+    auto random_vector = [&N, &engine]() -> vector<F> {
         vector<F> res(N);
         for (int i = 0; i < N; ++i) res[i] = F(engine());
 
@@ -23,8 +24,7 @@ F Determinant_of_Sparse_Matrix(const int N, const vector<tuple<int, int, F>> &el
     };
 
     // 各成分が非ゼロであるランダムな対角行列 D とその行列式 det(D) を生成する
-    auto random_diagonal_matrix = [&N]() -> pair<vector<F>, F> {
-        static mt19937 engine(chrono::steady_clock::now().time_since_epoch().count());
+    auto random_diagonal_matrix = [&N, &engine]() -> pair<vector<F>, F> {
         vector<F> D(N);
 
         F det_D = 1;
