@@ -79,6 +79,7 @@
 "verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp": "2026-04-13 01:27:34 +0900",
+"verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp": "2026-04-26 13:38:24 +0900",
 "verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp": "2026-04-13 01:27:34 +0900",
