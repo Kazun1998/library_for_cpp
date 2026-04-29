@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Integer/Prime.hpp
+    title: Integer/Prime.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,94 +25,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Integer/Euler_Totient.hpp
-    title: "Euler's Totient \u95A2\u6570"
-  - icon: ':warning:'
-    path: Integer/Interval_Prime_Factorization.hpp
-    title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':warning:'
-    path: Integer/Interval_Sieve_of_Eratosthenes.hpp
-    title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u6570\u5224\u5B9A"
-  - icon: ':heavy_check_mark:'
-    path: Integer/Miller_Rabin_Primality_Test.hpp
-    title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':heavy_check_mark:'
-    path: Integer/Pollard_Rho.hpp
-    title: Integer/Pollard_Rho.hpp
-  - icon: ':heavy_check_mark:'
-    path: Integer/Prime_Pi.hpp
-    title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
-  - icon: ':heavy_check_mark:'
-    path: Integer/Primitive_Root.hpp
-    title: "\u539F\u59CB\u6839"
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Garner.hpp
-    title: Garner
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Order.hpp
-    title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
-  - icon: ':heavy_check_mark:'
-    path: Modulo/Tower.hpp
-    title: "\u6307\u6570\u30BF\u30EF\u30FC"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/ntl/1D.test.cpp
-    title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/187.test.cpp
-    title: verify/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/Modulo_Order.test.cpp
-    title: verify/yukicoder/Modulo_Order.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u533A\u9593 [l, r] \u5185\u306E\u3059\u3079\u3066\u306E\u6574\
+      \u6570\u306B\u5BFE\u3059\u308B\u7D20\u6570\u5224\u5B9A\u3092\u884C\u3046."
     links: []
-  bundledCode: "#line 2 \"Integer/Prime.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Integer/Interval_Sieve_of_Eratosthenes.hpp\"\n\n#line 2\
+    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -249,80 +197,71 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
-    \ {\n    public:\n    struct Iterator {\n      long long prime = 1, step = 0;\n\
-    \      long long operator*() const { return prime; }\n      Iterator& operator++()\
-    \ {\n        if (step) {\n          prime += step;\n          step = (step ==\
-    \ 2) ? 4 : 2;\n        }\n        else if (prime == 1) { prime = 2; }\n      \
-    \  else if (prime == 2) { prime = 3; }\n        else if (prime == 3) { prime =\
-    \ 5, step = 2; }\n        return *this;\n      }\n      bool operator!=(const\
-    \ Iterator&) const { return true; }\n    };\n\n    Iterator begin() const { return\
-    \ ++Iterator(); }\n    Iterator end() const { return {}; }\n    const Pseudo_Prime_Generator&\
-    \ get() const { return *this; }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
-    \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
-    \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
-    \ false; }\n\n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p\
-    \ * p > n) { break; }\n      if (n % p == 0) { return false; }\n    }\n\n    return\
-    \ true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t n, long long p)\
-    \ {\n    long long e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return\
-    \ {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long,\
-    \ long long>> prime_factorization (long long n) {\n    if (n == 0) { return {\
-    \ make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n \
-    \   if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
-    \    }\n\n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p * p\
-    \ > n) { break; }\n      long long e;\n      tie(e, n) = exponents(n, p); \n \
-    \     if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n    if (n >\
-    \ 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n  }\n\
-    \n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\u6210\
-    \u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n == 0 ||\
-    \ n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n    if (n %\
-    \ 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k] :=\
-    \ (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n  \
-    \  prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\u3092\
-    \u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x] = false;\
-    \ }\n\n    for (auto p : Pseudo_Prime_Generator()) {\n      if (p * p > n) { break;\
-    \ }\n      if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) {\
-    \ continue; }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j]\
-    \ = false; }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long\
-    \ k = 0; k < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k +\
-    \ 1); }\n    }\n\n    return primes;\n  }\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nnamespace prime {\n\
-    \  class Pseudo_Prime_Generator {\n    public:\n    struct Iterator {\n      long\
-    \ long prime = 1, step = 0;\n      long long operator*() const { return prime;\
-    \ }\n      Iterator& operator++() {\n        if (step) {\n          prime += step;\n\
-    \          step = (step == 2) ? 4 : 2;\n        }\n        else if (prime == 1)\
-    \ { prime = 2; }\n        else if (prime == 2) { prime = 3; }\n        else if\
-    \ (prime == 3) { prime = 5, step = 2; }\n        return *this;\n      }\n    \
-    \  bool operator!=(const Iterator&) const { return true; }\n    };\n\n    Iterator\
-    \ begin() const { return ++Iterator(); }\n    Iterator end() const { return {};\
-    \ }\n    const Pseudo_Prime_Generator& get() const { return *this; }\n  };\n\n\
-    \  // n \u306F\u7D20\u6570?\n  bool is_prime(long long n) {\n    if (n <= 3) {\
-    \ return n >= 2; }\n    else if (n == 5) { return true; }\n    else if ((n % 2\
-    \ == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }\n\n    for (long long\
-    \ p : Pseudo_Prime_Generator()) {\n      if (p * p > n) { break; }\n      if (n\
-    \ % p == 0) { return false; }\n    }\n\n    return true;\n  }\n\n  pair<uint64_t,\
-    \ long long> exponents(uint64_t n, long long p) {\n    long long e = 0;\n    while\
-    \ (n % p == 0) { e++, n /= p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\
-    \u5206\u89E3\n  vector<pair<long long, long long>> prime_factorization (long long\
-    \ n) {\n    if (n == 0) { return { make_pair(0, 0) }; } \n\n    vector<pair<long\
-    \ long, long long>> factors;\n    if (n < 0) {\n      factors.emplace_back(make_pair(-1,\
-    \ 1));\n      n = abs(n);\n    }\n\n    for (long long p : Pseudo_Prime_Generator())\
-    \ {\n      if (p * p > n) { break; }\n      long long e;\n      tie(e, n) = exponents(n,\
-    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
-    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
-    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
-    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
-    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
-    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
-    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
-    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
-    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
-    \ = false; }\n\n    for (auto p : Pseudo_Prime_Generator()) {\n      if (p * p\
-    \ > n) { break; }\n      if (p <= 3) { continue; }\n\n      if (!prime_flag[(p\
-    \ - 1) / 2]) { continue; }\n\n      for (auto j = (p * p - 1) / 2; j < m; j +=\
-    \ p) { prime_flag[j] = false; }\n    }\n\n    vector<long long> primes{2};\n\n\
-    \    for (long long k = 0; k < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2\
-    \ * k + 1); }\n    }\n\n    return primes;\n  }\n}\n"
+    \    }\n};\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4 \"Integer/Prime.hpp\"\n\n\
+    namespace prime {\n  class Pseudo_Prime_Generator {\n    public:\n    struct Iterator\
+    \ {\n      long long prime = 1, step = 0;\n      long long operator*() const {\
+    \ return prime; }\n      Iterator& operator++() {\n        if (step) {\n     \
+    \     prime += step;\n          step = (step == 2) ? 4 : 2;\n        }\n     \
+    \   else if (prime == 1) { prime = 2; }\n        else if (prime == 2) { prime\
+    \ = 3; }\n        else if (prime == 3) { prime = 5, step = 2; }\n        return\
+    \ *this;\n      }\n      bool operator!=(const Iterator&) const { return true;\
+    \ }\n    };\n\n    Iterator begin() const { return ++Iterator(); }\n    Iterator\
+    \ end() const { return {}; }\n    const Pseudo_Prime_Generator& get() const {\
+    \ return *this; }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long long\
+    \ n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return true;\
+    \ }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false;\
+    \ }\n\n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p * p > n)\
+    \ { break; }\n      if (n % p == 0) { return false; }\n    }\n\n    return true;\n\
+    \  }\n\n  pair<uint64_t, long long> exponents(uint64_t n, long long p) {\n   \
+    \ long long e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return {e, n};\n\
+    \  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long, long long>>\
+    \ prime_factorization (long long n) {\n    if (n == 0) { return { make_pair(0,\
+    \ 0) }; } \n\n    vector<pair<long long, long long>> factors;\n    if (n < 0)\
+    \ {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n    }\n\
+    \n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p * p > n) { break;\
+    \ }\n      long long e;\n      tie(e, n) = exponents(n, p); \n      if (e) { factors.emplace_back(make_pair(p,\
+    \ e)); }\n    }\n\n    if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n\
+    \  \n    return factors;\n  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\
+    \u30B9\u30C8\u3092\u4F5C\u6210\u3059\u308B.\n  vector<long long> prime_list(long\
+    \ long n) {\n    if (n == 0 || n == 1) { return {}; }\n    else if (n == 2) {\
+    \ return {2}; }\n\n    if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) /\
+    \ 2;\n\n    // prime_flag[k] := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool>\
+    \ prime_flag(m, true);\n    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E\
+    \ 3 \u306E\u500D\u6570\u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x\
+    \ += 3) { prime_flag[x] = false; }\n\n    for (auto p : Pseudo_Prime_Generator())\
+    \ {\n      if (p * p > n) { break; }\n      if (p <= 3) { continue; }\n\n    \
+    \  if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for (auto j = (p * p -\
+    \ 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\n    vector<long\
+    \ long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n      if (prime_flag[k])\
+    \ { primes.emplace_back(2 * k + 1); }\n    }\n\n    return primes;\n  }\n}\n#line\
+    \ 5 \"Integer/Interval_Sieve_of_Eratosthenes.hpp\"\n\n/**\n * @brief \u533A\u9593\
+    \ [l, r] \u5185\u306E\u3059\u3079\u3066\u306E\u6574\u6570\u306B\u5BFE\u3059\u308B\
+    \u7D20\u6570\u5224\u5B9A\u3092\u884C\u3046.\n * @param l \u533A\u9593\u306E\u4E0B\
+    \u9650 (0 <= l)\n * @param r \u533A\u9593\u306E\u4E0A\u9650 (l <= r)\n * @return\
+    \ vector<bool> \u623B\u308A\u5024\u306E i \u756A\u76EE\u306E\u8981\u7D20\u306F\
+    , \u5024 (l + i) \u306F\u7D20\u6570\u3067\u3042\u308B\u3068\u304D, \u305D\u3057\
+    \u3066\u305D\u306E\u6642\u306B\u9650\u3063\u3066 true.\n */\nvector<bool> Interval_Sieve_of_Eratosthenes(const\
+    \ ll l, const ll r) {\n    const ll offset = l;\n    const int size = r - l +\
+    \ 1;\n    vector<bool> is_prime(size, true);\n\n    // 0 \u3068 1 \u306E\u4F8B\
+    \u5916\n    if (l <= 0 && 0 <= r) is_prime[0 - offset] = false;\n    if (l <=\
+    \ 1 && 1 <= r) is_prime[1 - offset] = false;\n\n    for (ll p: prime::prime_list(isqrt(r)))\
+    \ {\n        for (ll x = max<ll>((l + p - 1) / p * p, p * p); x <= r; x += p)\
+    \ {\n            is_prime[x - offset] = false;\n        }\n    }\n\n    return\
+    \ is_prime;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Prime.hpp\"\
+    \n\n/**\n * @brief \u533A\u9593 [l, r] \u5185\u306E\u3059\u3079\u3066\u306E\u6574\
+    \u6570\u306B\u5BFE\u3059\u308B\u7D20\u6570\u5224\u5B9A\u3092\u884C\u3046.\n *\
+    \ @param l \u533A\u9593\u306E\u4E0B\u9650 (0 <= l)\n * @param r \u533A\u9593\u306E\
+    \u4E0A\u9650 (l <= r)\n * @return vector<bool> \u623B\u308A\u5024\u306E i \u756A\
+    \u76EE\u306E\u8981\u7D20\u306F, \u5024 (l + i) \u306F\u7D20\u6570\u3067\u3042\u308B\
+    \u3068\u304D, \u305D\u3057\u3066\u305D\u306E\u6642\u306B\u9650\u3063\u3066 true.\n\
+    \ */\nvector<bool> Interval_Sieve_of_Eratosthenes(const ll l, const ll r) {\n\
+    \    const ll offset = l;\n    const int size = r - l + 1;\n    vector<bool> is_prime(size,\
+    \ true);\n\n    // 0 \u3068 1 \u306E\u4F8B\u5916\n    if (l <= 0 && 0 <= r) is_prime[0\
+    \ - offset] = false;\n    if (l <= 1 && 1 <= r) is_prime[1 - offset] = false;\n\
+    \n    for (ll p: prime::prime_list(isqrt(r))) {\n        for (ll x = max<ll>((l\
+    \ + p - 1) / p * p, p * p); x <= r; x += p) {\n            is_prime[x - offset]\
+    \ = false;\n        }\n    }\n\n    return is_prime;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -331,35 +270,24 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Integer/Prime.hpp
   isVerificationFile: false
-  path: Integer/Prime.hpp
-  requiredBy:
-  - Integer/Primitive_Root.hpp
-  - Integer/Prime_Pi.hpp
-  - Integer/Pollard_Rho.hpp
-  - Integer/Interval_Prime_Factorization.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
-  - Integer/Euler_Totient.hpp
-  - Integer/Interval_Sieve_of_Eratosthenes.hpp
-  - Modulo/Tower.hpp
-  - Modulo/Garner.hpp
-  - Modulo/Order.hpp
-  timestamp: '2026-04-29 14:01:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - verify/yukicoder/187.test.cpp
-  - verify/yukicoder/Modulo_Order.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
-documentation_of: Integer/Prime.hpp
+  path: Integer/Interval_Sieve_of_Eratosthenes.hpp
+  requiredBy: []
+  timestamp: '2026-04-29 15:40:00+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Integer/Interval_Sieve_of_Eratosthenes.hpp
 layout: document
-redirect_from:
-- /library/Integer/Prime.hpp
-- /library/Integer/Prime.hpp.html
-title: Integer/Prime.hpp
+title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u6570\u5224\u5B9A"
 ---
+
+## Outline
+
+区間篩による連続する整数における素数判定を行う.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/04/29| Interval_Sieve_of_Eratosthenes の実装 |

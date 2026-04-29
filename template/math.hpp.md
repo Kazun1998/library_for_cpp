@@ -247,6 +247,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
+  - icon: ':warning:'
+    path: Integer/Interval_Prime_Factorization.hpp
+    title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':warning:'
+    path: Integer/Interval_Sieve_of_Eratosthenes.hpp
+    title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u6570\u5224\u5B9A"
   - icon: ':heavy_check_mark:'
     path: Integer/Linear_Sieve.hpp
     title: Integer/Linear_Sieve.hpp
@@ -1126,12 +1132,14 @@ data:
   - Integer/Prime_Pi.hpp
   - Integer/Prime.hpp
   - Integer/Pollard_Rho.hpp
+  - Integer/Interval_Prime_Factorization.hpp
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Quotients.hpp
   - Integer/Smallest_Prime_Factor.hpp
   - Integer/Linear_Sieve.hpp
   - Integer/Euler_Totient.hpp
   - Integer/Digit.hpp
+  - Integer/Interval_Sieve_of_Eratosthenes.hpp
   - Integer/Divisors.hpp
   - Integer/Odd_Montgomery_Multiplication.hpp
   - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp

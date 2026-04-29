@@ -310,6 +310,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Euler_Totient.hpp
       title: "Euler's Totient \u95A2\u6570"
+    - icon: ':warning:'
+      path: Integer/Interval_Prime_Factorization.hpp
+      title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u56E0\u6570\u5206\u89E3"
+    - icon: ':warning:'
+      path: Integer/Interval_Sieve_of_Eratosthenes.hpp
+      title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u6570\u5224\u5B9A"
     - icon: ':heavy_check_mark:'
       path: Integer/Linear_Sieve.hpp
       title: Integer/Linear_Sieve.hpp
