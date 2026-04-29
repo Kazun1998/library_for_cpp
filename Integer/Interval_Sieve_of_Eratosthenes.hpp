@@ -3,6 +3,12 @@
 #include "../template/template.hpp"
 #include "Prime.hpp"
 
+/**
+ * @brief 区間 [l, r] 内のすべての整数に対する素数判定を行う.
+ * @param l 区間の下限 (0 <= l)
+ * @param r 区間の上限 (l <= r)
+ * @return vector<bool> 戻り値の i 番目の要素は, 値 (l + i) は素数であるとき, そしてその時に限って true.
+ */
 vector<bool> Interval_Sieve_of_Eratosthenes(const ll l, const ll r) {
     const ll offset = l;
     const int size = r - l + 1;
