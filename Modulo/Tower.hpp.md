@@ -270,71 +270,74 @@ data:
     \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
     \ 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4\
     \ \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n\
-    \    private:\n    long long prime = 1, step = 0;\n\n    public:\n    long long\
-    \ get() {\n      if (step) {\n        prime += step;\n        step = 6 - step;\n\
-    \      }\n      else if (prime == 1) { prime = 2; }\n      else if (prime == 2)\
-    \ { prime = 3; }\n      else if (prime == 3) { prime = 5, step = 2; }\n\n    \
-    \  return prime;\n    }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
+    \    public:\n    struct Iterator {\n      long long prime = 1, step = 0;\n  \
+    \    long long operator*() const { return prime; }\n      Iterator& operator++()\
+    \ {\n        if (step) {\n          prime += step;\n          step = (step ==\
+    \ 2) ? 4 : 2;\n        }\n        else if (prime == 1) { prime = 2; }\n      \
+    \  else if (prime == 2) { prime = 3; }\n        else if (prime == 3) { prime =\
+    \ 5, step = 2; }\n        return *this;\n      }\n      bool operator!=(const\
+    \ Iterator&) const { return true; }\n    };\n\n    Iterator begin() const { return\
+    \ ++Iterator(); }\n    Iterator end() const { return {}; }\n    const Pseudo_Prime_Generator&\
+    \ get() const { return *this; }\n  };\n\n  // n \u306F\u7D20\u6570?\n  bool is_prime(long\
     \ long n) {\n    if (n <= 3) { return n >= 2; }\n    else if (n == 5) { return\
     \ true; }\n    else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return\
-    \ false; }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p = generator.get();\
-    \ p * p <= n; p = generator.get()) {\n      if (n % p == 0) { return false; }\n\
-    \    }\n\n    return true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t\
-    \ n, long long p) {\n    long long e = 0;\n    while (n % p == 0) { e++, n /=\
-    \ p; }\n    return {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long\
-    \ long, long long>> prime_factorization (long long n) {\n    if (n == 0) { return\
-    \ { make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n\
-    \    if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
-    \    }\n\n    Pseudo_Prime_Generator generator;\n    for (long long p =generator.get();\
-    \ p * p <= n; p = generator.get()) {\n      long long e;\n      tie(e, n) = exponents(n,\
-    \ p); \n      if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n   \
-    \ if (n > 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n\
-    \  }\n\n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\
-    \u6210\u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n\
-    \ == 0 || n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n   \
-    \ if (n % 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k]\
-    \ := (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n\
-    \    prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\
-    \u3092\u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x]\
-    \ = false; }\n\n    auto generator = Pseudo_Prime_Generator();\n    for (auto\
-    \ p = generator.get(); p * p <= n; p = generator.get()) {\n      if (p <= 3) {\
-    \ continue; }\n\n      if (!prime_flag[(p - 1) / 2]) { continue; }\n\n      for\
-    \ (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j] = false; }\n    }\n\
-    \n    vector<long long> primes{2};\n\n    for (long long k = 0; k < m; k++) {\n\
-    \      if (prime_flag[k]) { primes.emplace_back(2 * k + 1); }\n    }\n\n    return\
-    \ primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\n\nlong long Euler_Totient(long\
-    \ long N, bool mode = true) {\n    if (N == 1) { return mode ? 1 : 0; }\n\n  \
-    \  long long phi = 1;\n    for (auto &&[p, e]: prime::prime_factorization(N))\
-    \ {\n        phi *= p - 1;\n        for (int k = 0; k < e - 1; k++) { phi *= p;\
-    \ }\n    }\n\n    return phi;\n}\n#line 6 \"Modulo/Tower.hpp\"\n\nnamespace modulo\
-    \ {\n    Modulo Power_Tower(vector<ll> tower, ll m) {\n        auto helper_mod\
-    \ = [](const ll a, const ll m) -> ll { return a < 2 * m ? a : safe_mod(a, m) +\
-    \ m; };\n        auto helper_mul = [&helper_mod](const ll a, const ll b, const\
-    \ ll m) -> ll { return helper_mod(a * b, m); };\n        auto helper_power = [&helper_mul](ll\
-    \ a, ll k, const ll m) -> ll {\n            ll res = 1;\n            while (k)\
-    \ {\n                if (k & 1) { res = helper_mul(res, a, m); }\n\n         \
-    \       a = helper_mul(a, a, m);\n                k >>= 1;\n            }\n\n\
-    \            return res;\n        };\n\n        // \u518D\u5E30\u30E9\u30E0\u30C0\
-    \ (C++23 \u306E\u578B\u63A8\u8AD6\u3092\u5229\u7528)\n        auto solve = [&](auto\
-    \ self, size_t idx, ll current_m) -> ll {\n            // \u57FA\u5E95\u6761\u4EF6\
-    1: \u6CD5\u304C1\u306B\u306A\u308C\u3070\u3001\u62E1\u5F35\u30AA\u30A4\u30E9\u30FC\
-    \u306E\u6027\u8CEA\u4E0A\u3001\u4EE5\u964D\u306E\u5024\u306F\u5E38\u306B\u300C\
-    mod 1 + 1 = 1\u300D\u6271\u3044\n            if (current_m == 1) return 1;\n \
-    \           \n            // \u57FA\u5E95\u6761\u4EF62: \u30BF\u30EF\u30FC\u306E\
-    \u6700\u4E0A\u6BB5\u306B\u5230\u9054\n            if (idx == tower.size() - 1)\
-    \ return helper_mod(tower[idx], current_m);\n\n            // \u518D\u5E30\u30B9\
-    \u30C6\u30C3\u30D7:\n            // \u4E00\u3064\u4E0A\u306E\u968E\u5C64\uFF08\
-    \u6307\u6570\u90E8\u5206\uFF09\u3092\u3001phi(current_m) \u3092\u6CD5\u3068\u3057\
-    \u3066\u8A08\u7B97\n            ll phi = Euler_Totient(current_m);\n         \
-    \   ll exponent = self(self, idx + 1, phi);\n            \n            // \u73FE\
-    \u5728\u306E\u5E95\u3092\u8A08\u7B97\u3057\u305F\u6307\u6570\u3067\u7D2F\u4E57\
-    \u3059\u308B\n            return helper_power(tower[idx], exponent, current_m);\n\
-    \        };\n\n        if (tower.empty()) return Modulo(0, m); // \u30AC\u30FC\
-    \u30C9\u53E5\n        \n        // \u6700\u7D42\u7684\u306A\u7D50\u679C\u306F\u901A\
-    \u5E38\u306E mod m \u3067\u8FD4\u3059\n        return Modulo(solve(solve, 0, m),\
-    \ m);\n    }\n\n    Modulo Tetoration(ll a, ll k, ll m) {\n        // \u7279\u5225\
-    \u30B1\u30FC\u30B9\n        if (k == 0) return Modulo(1, m);\n        if (a ==\
-    \ 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
+    \ false; }\n\n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p\
+    \ * p > n) { break; }\n      if (n % p == 0) { return false; }\n    }\n\n    return\
+    \ true;\n  }\n\n  pair<uint64_t, long long> exponents(uint64_t n, long long p)\
+    \ {\n    long long e = 0;\n    while (n % p == 0) { e++, n /= p; }\n    return\
+    \ {e, n};\n  }\n\n  // \u7D20\u56E0\u6570\u5206\u89E3\n  vector<pair<long long,\
+    \ long long>> prime_factorization (long long n) {\n    if (n == 0) { return {\
+    \ make_pair(0, 0) }; } \n\n    vector<pair<long long, long long>> factors;\n \
+    \   if (n < 0) {\n      factors.emplace_back(make_pair(-1, 1));\n      n = abs(n);\n\
+    \    }\n\n    for (long long p : Pseudo_Prime_Generator()) {\n      if (p * p\
+    \ > n) { break; }\n      long long e;\n      tie(e, n) = exponents(n, p); \n \
+    \     if (e) { factors.emplace_back(make_pair(p, e)); }\n    }\n\n    if (n >\
+    \ 1) { factors.emplace_back(make_pair(n, 1)); }\n  \n    return factors;\n  }\n\
+    \n  // n \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u4F5C\u6210\
+    \u3059\u308B.\n  vector<long long> prime_list(long long n) {\n    if (n == 0 ||\
+    \ n == 1) { return {}; }\n    else if (n == 2) { return {2}; }\n\n    if (n %\
+    \ 2 == 0) { n--; }\n\n    long long m = (n + 1) / 2;\n\n    // prime_flag[k] :=\
+    \ (2k+1) \u306F\u7D20\u6570\u304B?\n    vector<bool> prime_flag(m, true);\n  \
+    \  prime_flag[0] = false;\n\n    // 9 \u4EE5\u4E0A\u306E 3 \u306E\u500D\u6570\u3092\
+    \u6D88\u3059.\n    for (long long x = 4; x < m; x += 3) { prime_flag[x] = false;\
+    \ }\n\n    for (auto p : Pseudo_Prime_Generator()) {\n      if (p * p > n) { break;\
+    \ }\n      if (p <= 3) { continue; }\n\n      if (!prime_flag[(p - 1) / 2]) {\
+    \ continue; }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j]\
+    \ = false; }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long\
+    \ k = 0; k < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k +\
+    \ 1); }\n    }\n\n    return primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\
+    \n\nlong long Euler_Totient(long long N, bool mode = true) {\n    if (N == 1)\
+    \ { return mode ? 1 : 0; }\n\n    long long phi = 1;\n    for (auto &&[p, e]:\
+    \ prime::prime_factorization(N)) {\n        phi *= p - 1;\n        for (int k\
+    \ = 0; k < e - 1; k++) { phi *= p; }\n    }\n\n    return phi;\n}\n#line 6 \"\
+    Modulo/Tower.hpp\"\n\nnamespace modulo {\n    Modulo Power_Tower(vector<ll> tower,\
+    \ ll m) {\n        auto helper_mod = [](const ll a, const ll m) -> ll { return\
+    \ a < 2 * m ? a : safe_mod(a, m) + m; };\n        auto helper_mul = [&helper_mod](const\
+    \ ll a, const ll b, const ll m) -> ll { return helper_mod(a * b, m); };\n    \
+    \    auto helper_power = [&helper_mul](ll a, ll k, const ll m) -> ll {\n     \
+    \       ll res = 1;\n            while (k) {\n                if (k & 1) { res\
+    \ = helper_mul(res, a, m); }\n\n                a = helper_mul(a, a, m);\n   \
+    \             k >>= 1;\n            }\n\n            return res;\n        };\n\
+    \n        // \u518D\u5E30\u30E9\u30E0\u30C0 (C++23 \u306E\u578B\u63A8\u8AD6\u3092\
+    \u5229\u7528)\n        auto solve = [&](auto self, size_t idx, ll current_m) ->\
+    \ ll {\n            // \u57FA\u5E95\u6761\u4EF61: \u6CD5\u304C1\u306B\u306A\u308C\
+    \u3070\u3001\u62E1\u5F35\u30AA\u30A4\u30E9\u30FC\u306E\u6027\u8CEA\u4E0A\u3001\
+    \u4EE5\u964D\u306E\u5024\u306F\u5E38\u306B\u300Cmod 1 + 1 = 1\u300D\u6271\u3044\
+    \n            if (current_m == 1) return 1;\n            \n            // \u57FA\
+    \u5E95\u6761\u4EF62: \u30BF\u30EF\u30FC\u306E\u6700\u4E0A\u6BB5\u306B\u5230\u9054\
+    \n            if (idx == tower.size() - 1) return helper_mod(tower[idx], current_m);\n\
+    \n            // \u518D\u5E30\u30B9\u30C6\u30C3\u30D7:\n            // \u4E00\u3064\
+    \u4E0A\u306E\u968E\u5C64\uFF08\u6307\u6570\u90E8\u5206\uFF09\u3092\u3001phi(current_m)\
+    \ \u3092\u6CD5\u3068\u3057\u3066\u8A08\u7B97\n            ll phi = Euler_Totient(current_m);\n\
+    \            ll exponent = self(self, idx + 1, phi);\n            \n         \
+    \   // \u73FE\u5728\u306E\u5E95\u3092\u8A08\u7B97\u3057\u305F\u6307\u6570\u3067\
+    \u7D2F\u4E57\u3059\u308B\n            return helper_power(tower[idx], exponent,\
+    \ current_m);\n        };\n\n        if (tower.empty()) return Modulo(0, m); //\
+    \ \u30AC\u30FC\u30C9\u53E5\n        \n        // \u6700\u7D42\u7684\u306A\u7D50\
+    \u679C\u306F\u901A\u5E38\u306E mod m \u3067\u8FD4\u3059\n        return Modulo(solve(solve,\
+    \ 0, m), m);\n    }\n\n    Modulo Tetoration(ll a, ll k, ll m) {\n        // \u7279\
+    \u5225\u30B1\u30FC\u30B9\n        if (k == 0) return Modulo(1, m);\n        if\
+    \ (a == 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
     \ ceil_log2(m) + 1);\n        return Power_Tower(vector<ll>(k, a), m);\n    }\n\
     }\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Modulo.hpp\"\
@@ -383,7 +386,7 @@ data:
   isVerificationFile: false
   path: Modulo/Tower.hpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-04-29 14:01:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
