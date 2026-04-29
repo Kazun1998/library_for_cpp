@@ -4,8 +4,6 @@
 #include "Prime.hpp"
 
 vector<vector<pair<ll, int>>> Interval_Prime_Factorization(ll l, ll r) {
-    assert(0 <= l && l <= r);
-
     const ll offset = l;
     const int size = r - l + 1;
 
