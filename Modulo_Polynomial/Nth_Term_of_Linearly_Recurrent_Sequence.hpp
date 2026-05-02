@@ -50,22 +50,13 @@ pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> Generating_Function_of_Li
  */
 template<typename mint>
 mint Nth_Term_of_Linearly_Recurrent_Sequence(const vector<mint> &a, const vector<mint> &c, ll n, ll offset = 0) {
-    using FPS = Fast_Power_Series<mint>;
-
-    ll d = a.size();
+    int d = a.size();
     n -= offset;
 
     if (n < 0) { return 0; }
     if (n < d) { return a[n]; }
 
-    FPS A(a, d + 1);
-    vector<mint> q(d + 1);
-    for (int i = 0; i < d + 1; i++) { q[i] = i ? -c[i - 1] : 1; }
-    auto [P, Q] = Linearly_Recurrent_Sequence_Generating_Function(a, c);
-
-    FPS Q(q, d + 1);
-    FPS P = A * Q;
-    P.poly[d] = 0;
+    auto [P, Q] = Generating_Function_of_Linearly_Recurrent_Sequence(a, c);
 
     return Fraction_Coefficient(P, Q, n);
 }
