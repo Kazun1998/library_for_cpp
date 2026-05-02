@@ -6,9 +6,7 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
-    title: "\u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\
-      \u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\
-      \u3092\u4F5C\u308B\u4FBF\u5229\u95A2\u6570"
+    title: "\u4F53\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp

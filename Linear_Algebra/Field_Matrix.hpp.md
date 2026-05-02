@@ -511,10 +511,15 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
 documentation_of: Linear_Algebra/Field_Matrix.hpp
 layout: document
-redirect_from:
-- /library/Linear_Algebra/Field_Matrix.hpp
-- /library/Linear_Algebra/Field_Matrix.hpp.html
-title: "\u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\u5927\
-  \u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\u3092\u4F5C\
-  \u308B\u4FBF\u5229\u95A2\u6570"
+title: "\u4F53\u4E0A\u306E\u884C\u5217"
 ---
+
+## Outline
+
+体 $F$ 上の行列に関する機能を提供する.
+
+## History 
+
+|日付|内容|
+|:---:|:---:|
+|2026/05/02| Block_Matrix メソッドの実装 |
