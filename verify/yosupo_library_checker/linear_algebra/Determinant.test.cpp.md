@@ -6,7 +6,9 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
-    title: Linear_Algebra/Field_Matrix.hpp
+    title: "\u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\
+      \u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\
+      \u3092\u4F5C\u308B\u4FBF\u5229\u95A2\u6570"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -347,9 +349,28 @@ data:
     \ i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\u89D2\u884C\u5217\u3092\u751F\
     \u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F> Diagonal_Matrix(vector<F>\
     \ a) {\n    int n = a.size();\n    vector<vector<F>> X(n, vector<F>(n));\n\n \
-    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n#line\
-    \ 6 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\n\n\
-    int main(){\n    int N; cin >> N;\n    Field_Matrix<modint<998244353>> A(N);\n\
+    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n\n/**\n\
+    \ * @brief \u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\
+    \u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\
+    \u3092\u4F5C\u308B\u4FBF\u5229\u95A2\u6570\n * @tparam F \u4F53\u306E\u578B\n\
+    \ * @param blocks \u884C\u5217\u306E2\u6B21\u5143\u914D\u5217\n * @return Field_Matrix<F>\
+    \ \u7D50\u5408\u3055\u308C\u305F\u884C\u5217\n */\ntemplate<typename F>\nField_Matrix<F>\
+    \ Block_Matrix(const vector<vector<Field_Matrix<F>>> &blocks) {\n    if (blocks.empty()\
+    \ || blocks[0].empty()) return Field_Matrix<F>(0, 0);\n    int total_row = 0;\n\
+    \    for (int i = 0; i < (int)blocks.size(); i++) total_row += blocks[i][0].row;\n\
+    \    int total_col = 0;\n    for (int j = 0; j < (int)blocks[0].size(); j++) total_col\
+    \ += blocks[0][j].col;\n\n    Field_Matrix<F> res(total_row, total_col);\n   \
+    \ int row_offset = 0;\n    for (int i = 0; i < (int)blocks.size(); i++) {\n  \
+    \      int col_offset = 0;\n        int block_h = blocks[i][0].row;\n        for\
+    \ (int j = 0; j < (int)blocks[i].size(); j++) {\n            const auto &B = blocks[i][j];\n\
+    \            assert(B.row == block_h); // \u540C\u3058\u884C\u5185\u306E\u30D6\
+    \u30ED\u30C3\u30AF\u306F\u9AD8\u3055\u304C\u4E00\u81F4\u3057\u3066\u3044\u308B\
+    \u5FC5\u8981\u304C\u3042\u308B\n            for (int r = 0; r < B.row; r++) {\n\
+    \                for (int c = 0; c < B.col; c++) {\n                    res[row_offset\
+    \ + r][col_offset + c] = B[r][c];\n                }\n            }\n        \
+    \    col_offset += B.col;\n        }\n        row_offset += block_h;\n    }\n\
+    \    return res;\n}\n#line 6 \"verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp\"\
+    \n\nint main(){\n    int N; cin >> N;\n    Field_Matrix<modint<998244353>> A(N);\n\
     \    cin >> A;\n    cout << Determinant(A) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\"\
     ../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\n#include\"\
@@ -369,7 +390,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-05-01 00:20:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp

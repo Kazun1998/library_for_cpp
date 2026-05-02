@@ -3,7 +3,9 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
-    title: Linear_Algebra/Field_Matrix.hpp
+    title: "\u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\
+      \u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\
+      \u3092\u4F5C\u308B\u4FBF\u5229\u95A2\u6570"
   - icon: ':warning:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
@@ -306,16 +308,35 @@ data:
     \ i) \u8981\u7D20\u304C a[i] \u3067\u3042\u308B\u5BFE\u89D2\u884C\u5217\u3092\u751F\
     \u6210\u3059\u308B.\ntemplate<typename F>\nField_Matrix<F> Diagonal_Matrix(vector<F>\
     \ a) {\n    int n = a.size();\n    vector<vector<F>> X(n, vector<F>(n));\n\n \
-    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n#line\
-    \ 5 \"Linear_Algebra/Field_Vector.hpp\"\n\n/**\n * @brief \u4F53 F \u4E0A\u306E\
-    \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306E\u5143\uFF08\u30D9\u30AF\u30C8\u30EB\
-    \uFF09\u3092\u8868\u3059\u30AF\u30E9\u30B9\n * @tparam F \u4F53\u306E\u8981\u7D20\
-    \u306E\u578B\uFF08\u52A0\u6E1B\u4E57\u9664\u304C\u5B9A\u7FA9\u3055\u308C\u3066\
-    \u304A\u308A\u3001F(0), F(1), .inverse() \u7B49\u3092\u6301\u3064\u3053\u3068\uFF09\
-    \n */\ntemplate<typename F>\nclass Field_Vector {\n    private:\n    vector<F>\
-    \ vec; ///< \u30D9\u30AF\u30C8\u30EB\u306E\u6210\u5206\u3092\u683C\u7D0D\u3059\
-    \u308B\u52D5\u7684\u914D\u5217\n\n    public:\n    /** @brief \u30C7\u30D5\u30A9\
-    \u30EB\u30C8\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF */\n    Field_Vector()\
+    \   for (int i = 0; i < n; i++) { X[i][i] = a[i]; }\n\n    return X;\n}\n\n/**\n\
+    \ * @brief \u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\u306E\
+    \u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\uFF09\
+    \u3092\u4F5C\u308B\u4FBF\u5229\u95A2\u6570\n * @tparam F \u4F53\u306E\u578B\n\
+    \ * @param blocks \u884C\u5217\u306E2\u6B21\u5143\u914D\u5217\n * @return Field_Matrix<F>\
+    \ \u7D50\u5408\u3055\u308C\u305F\u884C\u5217\n */\ntemplate<typename F>\nField_Matrix<F>\
+    \ Block_Matrix(const vector<vector<Field_Matrix<F>>> &blocks) {\n    if (blocks.empty()\
+    \ || blocks[0].empty()) return Field_Matrix<F>(0, 0);\n    int total_row = 0;\n\
+    \    for (int i = 0; i < (int)blocks.size(); i++) total_row += blocks[i][0].row;\n\
+    \    int total_col = 0;\n    for (int j = 0; j < (int)blocks[0].size(); j++) total_col\
+    \ += blocks[0][j].col;\n\n    Field_Matrix<F> res(total_row, total_col);\n   \
+    \ int row_offset = 0;\n    for (int i = 0; i < (int)blocks.size(); i++) {\n  \
+    \      int col_offset = 0;\n        int block_h = blocks[i][0].row;\n        for\
+    \ (int j = 0; j < (int)blocks[i].size(); j++) {\n            const auto &B = blocks[i][j];\n\
+    \            assert(B.row == block_h); // \u540C\u3058\u884C\u5185\u306E\u30D6\
+    \u30ED\u30C3\u30AF\u306F\u9AD8\u3055\u304C\u4E00\u81F4\u3057\u3066\u3044\u308B\
+    \u5FC5\u8981\u304C\u3042\u308B\n            for (int r = 0; r < B.row; r++) {\n\
+    \                for (int c = 0; c < B.col; c++) {\n                    res[row_offset\
+    \ + r][col_offset + c] = B[r][c];\n                }\n            }\n        \
+    \    col_offset += B.col;\n        }\n        row_offset += block_h;\n    }\n\
+    \    return res;\n}\n#line 5 \"Linear_Algebra/Field_Vector.hpp\"\n\n/**\n * @brief\
+    \ \u4F53 F \u4E0A\u306E\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306E\u5143\uFF08\u30D9\
+    \u30AF\u30C8\u30EB\uFF09\u3092\u8868\u3059\u30AF\u30E9\u30B9\n * @tparam F \u4F53\
+    \u306E\u8981\u7D20\u306E\u578B\uFF08\u52A0\u6E1B\u4E57\u9664\u304C\u5B9A\u7FA9\
+    \u3055\u308C\u3066\u304A\u308A\u3001F(0), F(1), .inverse() \u7B49\u3092\u6301\u3064\
+    \u3053\u3068\uFF09\n */\ntemplate<typename F>\nclass Field_Vector {\n    private:\n\
+    \    vector<F> vec; ///< \u30D9\u30AF\u30C8\u30EB\u306E\u6210\u5206\u3092\u683C\
+    \u7D0D\u3059\u308B\u52D5\u7684\u914D\u5217\n\n    public:\n    /** @brief \u30C7\
+    \u30D5\u30A9\u30EB\u30C8\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF */\n    Field_Vector()\
     \ = default;\n    /** @brief std::vector \u304B\u3089\u306E\u5909\u63DB\u30B3\u30F3\
     \u30B9\u30C8\u30E9\u30AF\u30BF */\n    Field_Vector(const vector<F> &_vec): vec(_vec)\
     \ {};\n    /** @brief \u6B21\u5143 n \u306E\u96F6\u30D9\u30AF\u30C8\u30EB\u3092\
@@ -416,30 +437,46 @@ data:
     \u4FBF\u5229\u95A2\u6570\n * @tparam F \u4F53\u306E\u578B\n * @param u \u30D9\u30AF\
     \u30C8\u30EB1\n * @param v \u30D9\u30AF\u30C8\u30EB2\n * @return F \u5185\u7A4D\
     \u306E\u7D50\u679C\n */\ntemplate<typename F>\nF inner(const Field_Vector<F> &u,\
-    \ const Field_Vector<F> &v) { return u.inner(v); }\n\n/**\n * @brief \u884C\u5217\
-    \ A \u306B\u3088\u308B\u30D9\u30AF\u30C8\u30EB v \u306E\u7DDA\u5F62\u5909\u63DB\
-    \uFF08\u4F5C\u7528\uFF09 Ax \u3092\u8A08\u7B97\u3059\u308B\n * @param A \u884C\
-    \u5217\n * @param v \u30D9\u30AF\u30C8\u30EB\n * @return Field_Vector<F> \u5909\
-    \u63DB\u5F8C\u306E\u30D9\u30AF\u30C8\u30EB\n */\ntemplate<typename F>\nField_Vector<F>\
-    \ Action(const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n    assert(A.col\
-    \ == v.dimension());\n\n    Field_Vector<F> res(A.row);\n    for (int i = 0; i\
-    \ < A.row; i++) {\n        for (int j = 0; j < A.col; j++) {\n            res[i]\
-    \ += A[i, j] * v[j];\n        }\n    }\n\n    return res;\n}\n#line 4 \"Linear_Algebra/Field_Vector_Space.hpp\"\
-    \n\ntemplate<typename F>\nclass Field_Vector_Space {\n    private:\n    vector<int>\
-    \ index;\n    vector<Field_Vector<F>> basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const\
-    \ int _n): n(_n) { basis.clear(); }\n    Field_Vector_Space(const int _n, const\
-    \ vector<Field_Vector<F>> &vectors): n(_n) {\n        for (Field_Vector<F> v:\
-    \ vectors) { add_vector(v); }\n    }\n\n    int dimension() const { return basis.size();\
-    \ }\n\n    bool add_vector(Field_Vector<F> &v) {\n        Field_Vector<F> w =\
-    \ projection(v);\n        if (w.is_zero()) { return false; }\n\n        int i\
-    \ = 0;\n        for (; i < n; i++) { unless(w[i] == 0) { break; } }\n\n      \
-    \  w *= w[i].inverse();\n        for (int k = 0; k < basis.size(); k++) {\n  \
-    \          basis[k] -= basis[k][i] * w;\n        }\n\n        index.emplace_back(i);\n\
-    \        basis.emplace_back(w);\n        return true;\n    }\n\n    Field_Vector<F>\
-    \ projection(const Field_Vector<F> &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n\
-    \        for (int k = 0; k < dimension(); k++) {\n            w -= w[index[k]]\
-    \ * basis[k];\n        }\n\n        return w;\n    }\n\n    vector<Field_Vector<F>>\
-    \ get_basis() const { return basis; }\n};\n"
+    \ const Field_Vector<F> &v) { return u.inner(v); }\n\n/**\n * @brief \u4E8C\u3064\
+    \u306E\u30D9\u30AF\u30C8\u30EB\u306E\u76F4\u548C\u3092\u8A08\u7B97\u3059\u308B\
+    \n * @tparam F \u4F53\u306E\u578B\n * @param u \u30D9\u30AF\u30C8\u30EB1\n * @param\
+    \ v \u30D9\u30AF\u30C8\u30EB2\n * @return Field_Vector<F> \u76F4\u548C\u306E\u7D50\
+    \u679C\n */\ntemplate<typename F>\nField_Vector<F> Direct_Sum(const Field_Vector<F>\
+    \ &u, const Field_Vector<F> &v) {\n    vector<F> res_vec;\n    res_vec.reserve(u.dimension()\
+    \ + v.dimension());\n    res_vec.insert(res_vec.end(), u.begin(), u.end());\n\
+    \    res_vec.insert(res_vec.end(), v.begin(), v.end());\n    return Field_Vector<F>(res_vec);\n\
+    }\n\n/**\n * @brief \u8907\u6570\u306E\u30D9\u30AF\u30C8\u30EB\u306E\u76F4\u548C\
+    \u3092\u8A08\u7B97\u3059\u308B\n * @tparam F \u4F53\u306E\u578B\n * @param vs\
+    \ \u30D9\u30AF\u30C8\u30EB\u306E\u30EA\u30B9\u30C8\n * @return Field_Vector<F>\
+    \ \u76F4\u548C\u306E\u7D50\u679C\n */\ntemplate<typename F>\nField_Vector<F> Direct_Sum(const\
+    \ vector<Field_Vector<F>> &vs) {\n    int total_dim = 0;\n    for (const auto\
+    \ &v : vs) total_dim += v.dimension();\n\n    vector<F> res_vec;\n    res_vec.reserve(total_dim);\n\
+    \    for (const auto &v : vs) {\n        res_vec.insert(res_vec.end(), v.begin(),\
+    \ v.end());\n    }\n    return Field_Vector<F>(res_vec);\n}\n\n/**\n * @brief\
+    \ \u884C\u5217 A \u306B\u3088\u308B\u30D9\u30AF\u30C8\u30EB v \u306E\u7DDA\u5F62\
+    \u5909\u63DB\uFF08\u4F5C\u7528\uFF09 Ax \u3092\u8A08\u7B97\u3059\u308B\n * @param\
+    \ A \u884C\u5217\n * @param v \u30D9\u30AF\u30C8\u30EB\n * @return Field_Vector<F>\
+    \ \u5909\u63DB\u5F8C\u306E\u30D9\u30AF\u30C8\u30EB\n */\ntemplate<typename F>\n\
+    Field_Vector<F> Action(const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n\
+    \    assert(A.col == v.dimension());\n\n    Field_Vector<F> res(A.row);\n    for\
+    \ (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col; j++) {\n \
+    \           res[i] += A[i, j] * v[j];\n        }\n    }\n\n    return res;\n}\n\
+    #line 4 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\ntemplate<typename F>\nclass\
+    \ Field_Vector_Space {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>>\
+    \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
+    \ { basis.clear(); }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>>\
+    \ &vectors): n(_n) {\n        for (Field_Vector<F> v: vectors) { add_vector(v);\
+    \ }\n    }\n\n    int dimension() const { return basis.size(); }\n\n    bool add_vector(Field_Vector<F>\
+    \ &v) {\n        Field_Vector<F> w = projection(v);\n        if (w.is_zero())\
+    \ { return false; }\n\n        int i = 0;\n        for (; i < n; i++) { unless(w[i]\
+    \ == 0) { break; } }\n\n        w *= w[i].inverse();\n        for (int k = 0;\
+    \ k < basis.size(); k++) {\n            basis[k] -= basis[k][i] * w;\n       \
+    \ }\n\n        index.emplace_back(i);\n        basis.emplace_back(w);\n      \
+    \  return true;\n    }\n\n    Field_Vector<F> projection(const Field_Vector<F>\
+    \ &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n        for (int\
+    \ k = 0; k < dimension(); k++) {\n            w -= w[index[k]] * basis[k];\n \
+    \       }\n\n        return w;\n    }\n\n    vector<Field_Vector<F>> get_basis()\
+    \ const { return basis; }\n};\n"
   code: "#pragma once\n\n#include\"Field_Vector.hpp\"\n\ntemplate<typename F>\nclass\
     \ Field_Vector_Space {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>>\
     \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
@@ -470,7 +507,7 @@ data:
   path: Linear_Algebra/Field_Vector_Space.hpp
   requiredBy:
   - Linear_Algebra/Matrix_Space.hpp
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-05-01 00:20:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Linear_Algebra/Field_Vector_Space.hpp
