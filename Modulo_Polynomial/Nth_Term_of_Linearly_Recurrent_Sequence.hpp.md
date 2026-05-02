@@ -51,6 +51,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u751F\u6210\u95A2\u6570\
+      \u306E\u5206\u5B50 $P$ \u3068\u5206\u6BCD $Q$ \u3092\u6C42\u3081\u308B"
     links: []
   bundledCode: "#line 2 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
     \n\n#line 2 \"Algebra/modint.hpp\"\n\n#line 2 \"template/template.hpp\"\n\nusing\
@@ -521,21 +523,77 @@ data:
     \ = p[2 * i + 1]; }\n        }\n\n        for (int i = 0; i < m; i++) { q[i] =\
     \ q[2 * i]; }\n\n        for (int i = m; i < 2 * m; i++) { p[i] = q[i] = 0; }\n\
     \n        N /= 2;\n    }\n\n    return p[0] / q[0];\n}\n#line 6 \"Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp\"\
-    \n\ntemplate<typename mint>\nmint Nth_Term_of_Linearly_Recurrent_Sequence(const\
-    \ vector<mint> &a, const vector<mint> &c, ll n, ll offset = 0) {\n    using FPS\
-    \ = Fast_Power_Series<mint>;\n\n    ll d = a.size();\n    n -= offset;\n\n   \
-    \ if (n < 0) { return 0; }\n    if (n < d) { return a[n]; }\n\n    FPS A(a, d\
-    \ + 1);\n    vector<mint> q(d + 1);\n    for (int i = 0; i < d + 1; i++) { q[i]\
-    \ = i ? -c[i - 1] : 1; }\n\n    FPS Q(q, d + 1);\n    FPS P = A * Q;\n    P.poly[d]\
-    \ = 0;\n\n    return Fraction_Coefficient(P, Q, n);\n}\n"
+    \n\n/**\n * @brief \u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u751F\u6210\u95A2\
+    \u6570\u306E\u5206\u5B50 $P$ \u3068\u5206\u6BCD $Q$ \u3092\u6C42\u3081\u308B\n\
+    \ * @details \n * $a_i = c_0 a_{i-1} + c_1 a_{i-2} + \\dots + c_{d-1} a_{i-d}$\
+    \ \u3067\u5B9A\u7FA9\u3055\u308C\u308B\u6570\u5217\u306E\u6BCD\u95A2\u6570\u3092\
+    \ $A(x) = \\sum a_i x^i = P(x)/Q(x)$ \u3068\u3059\u308B\u3002\n * \u3053\u306E\
+    \u3068\u304D\u3001$Q(x) = 1 - c_0 x - c_1 x^2 - \\dots - c_{d-1} x^d$\u3001\n\
+    \ * $P(x) = A(x)Q(x) \\pmod{x^d}$ \u3068\u306A\u308B\u3002\n * \n * @tparam mint\
+    \ \u4F53\u306E\u8981\u7D20\u306E\u578B\n * @param a \u521D\u9805\u306E\u30EA\u30B9\
+    \u30C8 [a_0, a_1, ..., a_{d-1}]\n * @param c \u6F38\u5316\u5F0F\u306E\u4FC2\u6570\
+    \ [c_0, c_1, ..., c_{d-1}]\n * @return pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>>\
+    \ {\u5206\u5B50 P, \u5206\u6BCD Q}\n */\ntemplate<typename mint>\npair<Fast_Power_Series<mint>,\
+    \ Fast_Power_Series<mint>> Generating_Function_of_Linearly_Recurrent_Sequence(const\
+    \ vector<mint> &a, const vector<mint> &c) {\n    using FPS = Fast_Power_Series<mint>;\n\
+    \n    int d = a.size();\n    FPS A(a, d + 1);\n\n    vector<mint> q(d + 1);\n\
+    \    q[0] = 1;\n    for (int i = 0; i < d; i++) q[i + 1] = -c[i];\n    FPS Q(q,\
+    \ d + 1);\n\n    FPS P = A * Q;\n    P.resize(d);\n\n    return {P, Q};\n}\n\n\
+    /**\n * @brief \u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u7B2C n \u9805\u3092\
+    \u6C42\u3081\u308B\n * @details \n * $a_i = c_0 a_{i-1} + c_1 a_{i-2} + \\dots\
+    \ + c_{d-1} a_{i-d}$ \u3067\u5B9A\u7FA9\u3055\u308C\u308B\u7DDA\u5F62\u56DE\u5E30\
+    \u6570\u5217\u306E\u7B2C $n$ \u9805\u3092\u8A08\u7B97\u3059\u308B\u3002\n * \u5185\
+    \u90E8\u3067 Bostan-Mori \u6CD5 (Fraction_Coefficient) \u3092\u4F7F\u7528\u3057\
+    \u3066\u3044\u308B\u3002\n * \n * @tparam mint \u4F53\u306E\u8981\u7D20\u306E\u578B\
+    \ (modint\u7B49)\n * @param a \u521D\u9805\u306E\u30EA\u30B9\u30C8 [a_0, a_1,\
+    \ ..., a_{d-1}] (d \u306F\u6570\u5217\u306E\u6B21\u6570)\n * @param c \u6F38\u5316\
+    \u5F0F\u306E\u4FC2\u6570 [c_0, c_1, ..., c_{d-1}]\n * @param n \u6C42\u3081\u305F\
+    \u3044\u9805\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (0-indexed)\n * @param\
+    \ offset \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u306B\u5BFE\u3059\u308B\u30AA\u30D5\
+    \u30BB\u30C3\u30C8\u3002\u5B9F\u969B\u306E\u8A08\u7B97\u3067\u306F n - offset\
+    \ \u756A\u76EE\u306E\u9805\u3092\u8FD4\u3059\u3002\n * @return mint \u7B2C n \u9805\
+    \u306E\u5024\n * @note \u8A08\u7B97\u91CF: O(d log d log n)\n */\ntemplate<typename\
+    \ mint>\nmint Nth_Term_of_Linearly_Recurrent_Sequence(const vector<mint> &a, const\
+    \ vector<mint> &c, ll n, ll offset = 0) {\n    int d = a.size();\n    n -= offset;\n\
+    \n    if (n < 0) { return 0; }\n    if (n < d) { return a[n]; }\n\n    auto [P,\
+    \ Q] = Generating_Function_of_Linearly_Recurrent_Sequence(a, c);\n\n    return\
+    \ Fraction_Coefficient(P, Q, n);\n}\n"
   code: "#pragma once\n\n#include\"../Algebra/modint.hpp\"\n#include\"Fast_Power_Series.hpp\"\
-    \n#include\"Fraction_Coefficient.hpp\"\n\ntemplate<typename mint>\nmint Nth_Term_of_Linearly_Recurrent_Sequence(const\
-    \ vector<mint> &a, const vector<mint> &c, ll n, ll offset = 0) {\n    using FPS\
-    \ = Fast_Power_Series<mint>;\n\n    ll d = a.size();\n    n -= offset;\n\n   \
-    \ if (n < 0) { return 0; }\n    if (n < d) { return a[n]; }\n\n    FPS A(a, d\
-    \ + 1);\n    vector<mint> q(d + 1);\n    for (int i = 0; i < d + 1; i++) { q[i]\
-    \ = i ? -c[i - 1] : 1; }\n\n    FPS Q(q, d + 1);\n    FPS P = A * Q;\n    P.poly[d]\
-    \ = 0;\n\n    return Fraction_Coefficient(P, Q, n);\n}\n"
+    \n#include\"Fraction_Coefficient.hpp\"\n\n/**\n * @brief \u7DDA\u5F62\u56DE\u5E30\
+    \u6570\u5217\u306E\u751F\u6210\u95A2\u6570\u306E\u5206\u5B50 $P$ \u3068\u5206\u6BCD\
+    \ $Q$ \u3092\u6C42\u3081\u308B\n * @details \n * $a_i = c_0 a_{i-1} + c_1 a_{i-2}\
+    \ + \\dots + c_{d-1} a_{i-d}$ \u3067\u5B9A\u7FA9\u3055\u308C\u308B\u6570\u5217\
+    \u306E\u6BCD\u95A2\u6570\u3092 $A(x) = \\sum a_i x^i = P(x)/Q(x)$ \u3068\u3059\
+    \u308B\u3002\n * \u3053\u306E\u3068\u304D\u3001$Q(x) = 1 - c_0 x - c_1 x^2 - \\\
+    dots - c_{d-1} x^d$\u3001\n * $P(x) = A(x)Q(x) \\pmod{x^d}$ \u3068\u306A\u308B\
+    \u3002\n * \n * @tparam mint \u4F53\u306E\u8981\u7D20\u306E\u578B\n * @param a\
+    \ \u521D\u9805\u306E\u30EA\u30B9\u30C8 [a_0, a_1, ..., a_{d-1}]\n * @param c \u6F38\
+    \u5316\u5F0F\u306E\u4FC2\u6570 [c_0, c_1, ..., c_{d-1}]\n * @return pair<Fast_Power_Series<mint>,\
+    \ Fast_Power_Series<mint>> {\u5206\u5B50 P, \u5206\u6BCD Q}\n */\ntemplate<typename\
+    \ mint>\npair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> Generating_Function_of_Linearly_Recurrent_Sequence(const\
+    \ vector<mint> &a, const vector<mint> &c) {\n    using FPS = Fast_Power_Series<mint>;\n\
+    \n    int d = a.size();\n    FPS A(a, d + 1);\n\n    vector<mint> q(d + 1);\n\
+    \    q[0] = 1;\n    for (int i = 0; i < d; i++) q[i + 1] = -c[i];\n    FPS Q(q,\
+    \ d + 1);\n\n    FPS P = A * Q;\n    P.resize(d);\n\n    return {P, Q};\n}\n\n\
+    /**\n * @brief \u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u7B2C n \u9805\u3092\
+    \u6C42\u3081\u308B\n * @details \n * $a_i = c_0 a_{i-1} + c_1 a_{i-2} + \\dots\
+    \ + c_{d-1} a_{i-d}$ \u3067\u5B9A\u7FA9\u3055\u308C\u308B\u7DDA\u5F62\u56DE\u5E30\
+    \u6570\u5217\u306E\u7B2C $n$ \u9805\u3092\u8A08\u7B97\u3059\u308B\u3002\n * \u5185\
+    \u90E8\u3067 Bostan-Mori \u6CD5 (Fraction_Coefficient) \u3092\u4F7F\u7528\u3057\
+    \u3066\u3044\u308B\u3002\n * \n * @tparam mint \u4F53\u306E\u8981\u7D20\u306E\u578B\
+    \ (modint\u7B49)\n * @param a \u521D\u9805\u306E\u30EA\u30B9\u30C8 [a_0, a_1,\
+    \ ..., a_{d-1}] (d \u306F\u6570\u5217\u306E\u6B21\u6570)\n * @param c \u6F38\u5316\
+    \u5F0F\u306E\u4FC2\u6570 [c_0, c_1, ..., c_{d-1}]\n * @param n \u6C42\u3081\u305F\
+    \u3044\u9805\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (0-indexed)\n * @param\
+    \ offset \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u306B\u5BFE\u3059\u308B\u30AA\u30D5\
+    \u30BB\u30C3\u30C8\u3002\u5B9F\u969B\u306E\u8A08\u7B97\u3067\u306F n - offset\
+    \ \u756A\u76EE\u306E\u9805\u3092\u8FD4\u3059\u3002\n * @return mint \u7B2C n \u9805\
+    \u306E\u5024\n * @note \u8A08\u7B97\u91CF: O(d log d log n)\n */\ntemplate<typename\
+    \ mint>\nmint Nth_Term_of_Linearly_Recurrent_Sequence(const vector<mint> &a, const\
+    \ vector<mint> &c, ll n, ll offset = 0) {\n    int d = a.size();\n    n -= offset;\n\
+    \n    if (n < 0) { return 0; }\n    if (n < d) { return a[n]; }\n\n    auto [P,\
+    \ Q] = Generating_Function_of_Linearly_Recurrent_Sequence(a, c);\n\n    return\
+    \ Fraction_Coefficient(P, Q, n);\n}\n"
   dependsOn:
   - Algebra/modint.hpp
   - template/template.hpp
@@ -553,7 +611,7 @@ data:
   path: Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   requiredBy:
   - Linear_Algebra/Predict_Nth_Term.hpp
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-05-03 01:03:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
