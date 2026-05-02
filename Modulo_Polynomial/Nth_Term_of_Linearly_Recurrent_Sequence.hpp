@@ -19,9 +19,9 @@
 template<typename mint>
 pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> Generating_Function_of_Linearly_Recurrent_Sequence(const vector<mint> &a, const vector<mint> &c) {
     using FPS = Fast_Power_Series<mint>;
-
-    int d = a.size();
-    FPS A(a, d + 1);
+    int d = c.size();
+    int k = a.size();
+    FPS A(a, max(d, k) + 1);
 
     vector<mint> q(d + 1);
     q[0] = 1;
@@ -50,11 +50,11 @@ pair<Fast_Power_Series<mint>, Fast_Power_Series<mint>> Generating_Function_of_Li
  */
 template<typename mint>
 mint Nth_Term_of_Linearly_Recurrent_Sequence(const vector<mint> &a, const vector<mint> &c, ll n, ll offset = 0) {
-    int d = a.size();
+    int k = a.size();
     n -= offset;
 
     if (n < 0) { return 0; }
-    if (n < d) { return a[n]; }
+    if (n < k) { return a[n]; }
 
     auto [P, Q] = Generating_Function_of_Linearly_Recurrent_Sequence(a, c);
 
