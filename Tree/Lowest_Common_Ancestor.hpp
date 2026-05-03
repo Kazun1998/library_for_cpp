@@ -3,6 +3,10 @@
 #include "../template/template.hpp"
 #include "Tree.hpp"
 
+/**
+ * @brief ダブリング（バイナリリフティング）を用いた最小共通先祖 (LCA) クエリを処理するクラス.
+ * 構築に O(N log N), 各クエリに O(log N) かかる.
+ */
 class Lowest_Common_Ancestor {
     private:
     const Tree &T;
@@ -10,6 +14,10 @@ class Lowest_Common_Ancestor {
     vector<vector<int>> upper_list;
 
     public:
+    /**
+     * @brief コンストラクタ. ダブリングテーブルを構築する.
+     * @param tree 対象となる Tree オブジェクト. 事前に seal() (is_locked() == true) されている必要がある.
+     */
     Lowest_Common_Ancestor(const Tree &tree) : T(tree) {
         assert(T.is_locked());
         int N = T.order();
@@ -35,7 +43,13 @@ class Lowest_Common_Ancestor {
         }
     }
 
-    // 頂点 x から見て k 代前の頂点を求める.
+    /**
+     * @brief 頂点 x から見て k 代前の頂点（先祖）を求める.
+     * @param x 頂点番号
+     * @param k 遡る世代数
+     * @param over true の場合, 根よりも上を指定した際に根を返す.false の場合は -1 を返す.
+     * @return 遡った先の頂点番号
+     */
     int upper(int x, int k, bool over = true) const {
         if (T.vertex_depth(x) < k) { return over ? T.get_root() : -1; }
 
@@ -46,7 +60,12 @@ class Lowest_Common_Ancestor {
         return x;
     }
 
-    // 頂点 x と頂点 y の最小共通先祖を求める.
+    /**
+     * @brief 頂点 x と頂点 y の最小共通先祖 (LCA) を求める.
+     * @param x 頂点番号 1
+     * @param y 頂点番号 2
+     * @return 最小共通先祖の頂点番号
+     */
     int lowest_common_ancestor(int x, int y) const {
         if (T.vertex_depth(x) > T.vertex_depth(y)) { swap(x, y); }
         y = upper(y, T.vertex_depth(y) - T.vertex_depth(x));
@@ -61,12 +80,24 @@ class Lowest_Common_Ancestor {
         return T.is_root(x) ? T.get_root() : T.get_parent(x);
     }
 
-    // 2 頂点 x, y 間の距離を求める.
+    /**
+     * @brief 2 頂点 x, y 間の距離（パス上のエッジ数）を求める.
+     * @param x 頂点番号 1
+     * @param y 頂点番号 2
+     * @return 2 頂点間の距離
+     */
     int distance(int x, int y) const {
         return T.vertex_depth(x) + T.vertex_depth(y) - 2 * T.vertex_depth(lowest_common_ancestor(x, y));
     }
 
-    // 頂点 u から頂点 v へ向かうパスにおいて k 番目 (0-indexed) に通る頂点を求める.
+    /**
+     * @brief 頂点 u から頂点 v へ向かう最短パスにおいて k 番目 (0-indexed) に位置する頂点を求める.
+     * @param u 始点
+     * @param v 終点
+     * @param k 頂点のインデックス (u が 0 番目)
+     * @param over パスの長さよりも大きい k が指定された場合に返す値
+     * @return 指定された位置の頂点番号
+     */
     int jump(int u, int v, int k, int over = -1) const {
         if (k == 0) { return u; }
 
