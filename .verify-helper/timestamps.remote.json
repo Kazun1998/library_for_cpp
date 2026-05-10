@@ -84,6 +84,7 @@
 "verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp": "2026-05-01 00:20:12 +0900",
 "verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp": "2026-05-01 00:20:12 +0900",
 "verify/yosupo_library_checker/linear_algebra/Rank.test.cpp": "2026-05-01 00:20:12 +0900",
+"verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp": "2026-05-11 00:01:56 +0900",
 "verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp": "2026-04-29 14:01:20 +0900",
 "verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp": "2026-04-13 01:27:34 +0900",
