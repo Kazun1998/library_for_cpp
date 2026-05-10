@@ -86,3 +86,14 @@ optional<pair<Field_Vector<F>, Field_Vector_Space<F>>> Solve_Linear_System(const
 
     return make_pair(x0, Field_Vector_Space<F>(n, ker_basis));
 }
+
+/**
+ * @brief 行列 A の核 (Kernel / Null Space) を求める
+ * @tparam F 体の型
+ * @param A 行列
+ * @return Field_Vector_Space<F> 核空間
+ */
+template<typename F>
+Field_Vector_Space<F> Kernel_Space(const Field_Matrix<F> &A) {
+    return Solve_Linear_System(A, Field_Vector<F>(A.row))->second;
+}
