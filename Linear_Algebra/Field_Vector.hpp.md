@@ -26,16 +26,22 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
-    title: Linear_Algebra/Field_Vector_Space.hpp
-  - icon: ':warning:'
-    path: Linear_Algebra/Matrix_Space.hpp
-    title: Linear_Algebra/Matrix_Space.hpp
-  _extendedVerifiedWith: []
+    title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Subspaces.hpp
+    title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Vectors.hpp
+    title: Linear_Algebra/Matrix_Vectors.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u4F53 F \u4E0A\u306E\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306E\
       \u5143\uFF08\u30D9\u30AF\u30C8\u30EB\uFF09\u3092\u8868\u3059\u30AF\u30E9\u30B9"
@@ -607,10 +613,12 @@ data:
   path: Linear_Algebra/Field_Vector.hpp
   requiredBy:
   - Linear_Algebra/Field_Vector_Space.hpp
-  - Linear_Algebra/Matrix_Space.hpp
+  - Linear_Algebra/Matrix_Vectors.hpp
+  - Linear_Algebra/Matrix_Subspaces.hpp
   timestamp: '2026-05-01 00:20:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Field_Vector.hpp
 layout: document
 title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"

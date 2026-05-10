@@ -165,6 +165,9 @@ data:
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -521,6 +524,7 @@ data:
   - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp

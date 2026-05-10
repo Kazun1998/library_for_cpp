@@ -365,18 +365,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Field_Matrix.hpp
       title: "\u4F53\u4E0A\u306E\u884C\u5217"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Field_Vector.hpp
       title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Field_Vector_Space.hpp
-      title: Linear_Algebra/Field_Vector_Space.hpp
+      title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
     - icon: ':heavy_check_mark:'
       path: Linear_Algebra/Find_Linear_Recurrence.hpp
       title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
-    - icon: ':warning:'
-      path: Linear_Algebra/Matrix_Space.hpp
-      title: Linear_Algebra/Matrix_Space.hpp
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Matrix_Subspaces.hpp
+      title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
+    - icon: ':heavy_check_mark:'
+      path: Linear_Algebra/Matrix_Vectors.hpp
+      title: Linear_Algebra/Matrix_Vectors.hpp
     - icon: ':warning:'
       path: Linear_Algebra/Predict_Nth_Term.hpp
       title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
@@ -957,6 +960,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
       title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+      title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   - name: verify/yosupo_library_checker/number_theory
     pages:
     - icon: ':heavy_check_mark:'

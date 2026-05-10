@@ -8,6 +8,9 @@ data:
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Field_Vector_Space.hpp
+    title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -32,9 +35,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Subspaces.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
-  - icon: ':heavy_check_mark:'
-    path: Linear_Algebra/Matrix_Vectors.hpp
-    title: Linear_Algebra/Matrix_Vectors.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
@@ -43,32 +43,32 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\u3059\u308B"
     links: []
-  bundledCode: "#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Linear_Algebra/Matrix_Vectors.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\
+    \n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -512,55 +512,42 @@ data:
     \       return true;\n    }\n\n    /**\n     * @brief \u90E8\u5206\u7A7A\u9593\
     \u306E\u7B49\u4FA1\u6027\u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator==(const\
     \ Field_Vector_Space &other) const {\n        return dimension() == other.dimension()\
-    \ && *this <= other;\n    }\n};\n"
-  code: "#pragma once\n\n#include\"Field_Vector.hpp\"\n\ntemplate<typename F>\nclass\
-    \ Field_Vector_Space {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>>\
-    \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
-    \ { basis.clear(); }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>>\
-    \ &vectors): n(_n) {\n        for (Field_Vector<F> v: vectors) { add_vector(v);\
-    \ }\n    }\n\n    /**\n     * @brief \u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\
-    \u3059\u308B\n     * @param n \u5168\u7A7A\u9593\u306E\u6B21\u5143\n     * @return\
-    \ Field_Vector_Space \u96F6\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8\n     */\n    static Field_Vector_Space Zero_Space(int n) {\n   \
-    \     return Field_Vector_Space(n);\n    }\n\n    /**\n     * @brief \u5168\u7A7A\
-    \u9593 F^n \u3092\u751F\u6210\u3059\u308B\n     * @param n \u6B21\u5143\n    \
-    \ * @return Field_Vector_Space \u5168\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\
-    \u30B8\u30A7\u30AF\u30C8\n     */\n    static Field_Vector_Space Full_Space(int\
-    \ n) {\n        Field_Vector_Space res(n);\n        for (int i = 0; i < n; i++)\
-    \ {\n            res.add_vector(Field_Vector<F>::Unit(n, i));\n        }\n   \
-    \     return res;\n    }\n\n    int dimension() const { return basis.size(); }\n\
-    \n    bool add_vector(const Field_Vector<F> &v) {\n        Field_Vector<F> w =\
-    \ projection(v);\n        if (w.is_zero()) { return false; }\n\n        int i\
-    \ = 0;\n        for (; i < n; i++) { unless(w[i] == 0) { break; } }\n\n      \
-    \  w *= w[i].inverse();\n        for (int k = 0; k < basis.size(); k++) {\n  \
-    \          basis[k] -= basis[k][i] * w;\n        }\n\n        index.emplace_back(i);\n\
-    \        basis.emplace_back(w);\n        return true;\n    }\n\n    Field_Vector<F>\
-    \ projection(const Field_Vector<F> &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n\
-    \        for (int k = 0; k < dimension(); k++) {\n            w -= w[index[k]]\
-    \ * basis[k];\n        }\n\n        return w;\n    }\n\n    /**\n     * @brief\
-    \ \u30D9\u30AF\u30C8\u30EB v \u304C\u3053\u306E\u90E8\u5206\u7A7A\u9593\u306B\u542B\
-    \u307E\u308C\u308B\u304B\u5224\u5B9A\u3059\u308B\n     * @param v \u5224\u5B9A\
-    \u3059\u308B\u30D9\u30AF\u30C8\u30EB\n     * @return true \u542B\u307E\u308C\u308B\
-    \u3068\u304D\n     * @return false \u542B\u307E\u308C\u306A\u3044\u3068\u304D\n\
-    \     */\n    bool contains(const Field_Vector<F> &v) const {\n        return\
-    \ projection(v).is_zero();\n    }\n\n    vector<Field_Vector<F>> get_basis() const\
-    \ { return basis; }\n\n    /**\n     * @brief 2\u3064\u306E\u90E8\u5206\u7A7A\u9593\
-    \u306E\u548C\u7A7A\u9593 V + W \u3092\u6C42\u3081\u308B\n     */\n    Field_Vector_Space\
-    \ operator+(const Field_Vector_Space &other) const {\n        assert(n == other.n);\n\
-    \        Field_Vector_Space res(*this);\n        for (const auto &v : other.basis)\
-    \ {\n            res.add_vector(v);\n        }\n        return res;\n    }\n\n\
-    \    Field_Vector_Space& operator+=(const Field_Vector_Space &other) {\n     \
-    \   assert(n == other.n);\n        for (const auto &v : other.basis) {\n     \
-    \       add_vector(v);\n        }\n        return *this;\n    }\n\n    /**\n \
-    \    * @brief \u90E8\u5206\u7A7A\u9593\u306E\u5305\u542B\u95A2\u4FC2 V \\subseteq\
-    \ W \u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator<=(const Field_Vector_Space\
-    \ &other) const {\n        assert(n == other.n);\n        for (const auto &v :\
-    \ basis) {\n            unless(other.contains(v)) return false;\n        }\n \
-    \       return true;\n    }\n\n    /**\n     * @brief \u90E8\u5206\u7A7A\u9593\
-    \u306E\u7B49\u4FA1\u6027\u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator==(const\
-    \ Field_Vector_Space &other) const {\n        return dimension() == other.dimension()\
-    \ && *this <= other;\n    }\n};\n"
+    \ && *this <= other;\n    }\n};\n#line 5 \"Linear_Algebra/Matrix_Vectors.hpp\"\
+    \n\n// A \u306E\u884C\u30D9\u30AF\u30C8\u30EB\u304B\u3089\u306A\u308B\u5217\u3092\
+    \u751F\u6210\u3059\u308B.\ntemplate<typename F>\nvector<Field_Vector<F>> Row_Vectors(const\
+    \ Field_Matrix<F> &A) {\n    vector<Field_Vector<F>> row_vectors(A.row, Field_Vector<F>(A.col));\n\
+    \    for (int i = 0; i < A.row; i++) { row_vectors[i] = Field_Vector(A.mat[i]);\
+    \ }\n\n    return row_vectors;\n}\n\n// A \u306E\u5217\u30D9\u30AF\u30C8\u30EB\
+    \u304B\u3089\u306A\u308B\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename\
+    \ F>\nvector<Field_Vector<F>> Column_Vectors(const Field_Matrix<F> &A) {\n   \
+    \ vector<vector<F>> tmp(A.col, vector<F>(A.row));\n    for (int i = 0; i < A.row;\
+    \ i++) {\n        for (int j = 0; j < A.col; j++) {\n            tmp[j][i] = A.mat[i][j];\n\
+    \        }\n    }\n\n    vector<Field_Vector<F>> column_vectors(A.col, Field_Vector<F>(A.row));\n\
+    \    for (int j = 0; j < A.col; j++) { column_vectors[j] = Field_Vector(tmp[j]);\
+    \ }\n    return column_vectors;\n}\n\ntemplate<typename F>\nField_Vector<F> operator*\
+    \ (const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n    vector<F> pre_w(A.row,\
+    \ F(0));\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
+    \ j++) {\n            pre_w[i] += A.mat[i][j] * v[j];\n        }\n    }\n\n  \
+    \  return Field_Vector(pre_w);\n}\n"
+  code: "#pragma once\n\n#include\"Field_Vector_Space.hpp\"\n#include\"Field_Matrix.hpp\"\
+    \n\n// A \u306E\u884C\u30D9\u30AF\u30C8\u30EB\u304B\u3089\u306A\u308B\u5217\u3092\
+    \u751F\u6210\u3059\u308B.\ntemplate<typename F>\nvector<Field_Vector<F>> Row_Vectors(const\
+    \ Field_Matrix<F> &A) {\n    vector<Field_Vector<F>> row_vectors(A.row, Field_Vector<F>(A.col));\n\
+    \    for (int i = 0; i < A.row; i++) { row_vectors[i] = Field_Vector(A.mat[i]);\
+    \ }\n\n    return row_vectors;\n}\n\n// A \u306E\u5217\u30D9\u30AF\u30C8\u30EB\
+    \u304B\u3089\u306A\u308B\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename\
+    \ F>\nvector<Field_Vector<F>> Column_Vectors(const Field_Matrix<F> &A) {\n   \
+    \ vector<vector<F>> tmp(A.col, vector<F>(A.row));\n    for (int i = 0; i < A.row;\
+    \ i++) {\n        for (int j = 0; j < A.col; j++) {\n            tmp[j][i] = A.mat[i][j];\n\
+    \        }\n    }\n\n    vector<Field_Vector<F>> column_vectors(A.col, Field_Vector<F>(A.row));\n\
+    \    for (int j = 0; j < A.col; j++) { column_vectors[j] = Field_Vector(tmp[j]);\
+    \ }\n    return column_vectors;\n}\n\ntemplate<typename F>\nField_Vector<F> operator*\
+    \ (const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n    vector<F> pre_w(A.row,\
+    \ F(0));\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
+    \ j++) {\n            pre_w[i] += A.mat[i][j] * v[j];\n        }\n    }\n\n  \
+    \  return Field_Vector(pre_w);\n}\n"
   dependsOn:
+  - Linear_Algebra/Field_Vector_Space.hpp
   - Linear_Algebra/Field_Vector.hpp
   - template/template.hpp
   - template/utility.hpp
@@ -571,19 +558,17 @@ data:
   - template/exception.hpp
   - Linear_Algebra/Field_Matrix.hpp
   isVerificationFile: false
-  path: Linear_Algebra/Field_Vector_Space.hpp
+  path: Linear_Algebra/Matrix_Vectors.hpp
   requiredBy:
-  - Linear_Algebra/Matrix_Vectors.hpp
   - Linear_Algebra/Matrix_Subspaces.hpp
-  timestamp: '2026-05-10 13:28:53+09:00'
+  timestamp: '2026-05-10 17:54:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
-documentation_of: Linear_Algebra/Field_Vector_Space.hpp
+documentation_of: Linear_Algebra/Matrix_Vectors.hpp
 layout: document
-title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+redirect_from:
+- /library/Linear_Algebra/Matrix_Vectors.hpp
+- /library/Linear_Algebra/Matrix_Vectors.hpp.html
+title: Linear_Algebra/Matrix_Vectors.hpp
 ---
-
-## Outline
-
-体 $F$ 上のベクトル空間に関するクラスを提供する.

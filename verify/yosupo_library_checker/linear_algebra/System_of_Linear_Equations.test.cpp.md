@@ -2,14 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Algebra/modint.hpp
+    title: Algebra/modint.hpp
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
-    title: Linear_Algebra/Field_Vector_Space.hpp
+    title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Subspaces.hpp
+    title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Vectors.hpp
+    title: Linear_Algebra/Matrix_Vectors.hpp
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Reduction.hpp
+    title: Linear_Algebra/Reduction.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -34,35 +46,38 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Linear_Algebra/Matrix_Space.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\
-    \n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
+    links:
+    - https://judge.yosupo.jp/problem/system_of_linear_equations
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -202,52 +217,94 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
-    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
-    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
-    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
-    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
-    \ col;\n\n    public:\n    Field_Matrix() = default;\n\n    Field_Matrix(int row,\
-    \ int col): row(row), col(col){\n        mat.assign(row, vector<F>(col, F()));\n\
-    \    }\n\n    Field_Matrix(int row): Field_Matrix(row, row){}\n\n    Field_Matrix(const\
-    \ vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){\n        for\
-    \ (int i = 0; i < row; i++){\n            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n\
-    \        }\n    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return\
-    \ Field_Matrix(row, col); }\n\n    static Field_Matrix Identity_Matrix(int size)\
-    \ {\n        Field_Matrix A(size);\n        for (int i = 0; i < size; i++) { A[i][i]\
-    \ = 1; }\n        return A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int,\
-    \ int> size() { return make_pair(row, col); }\n\n    // \u6B63\u65B9\u884C\u5217\
-    ?\n    bool is_square() const { return row == col; }\n\n    // \u8981\u7D20\n\
-    \    inline const vector<F> &operator[](int i) const { return mat[i]; }\n    inline\
-    \ vector<F> &operator[](int i) { return mat[i]; }\n\n    inline const F &operator[](const\
-    \ int i, const int j) const { return mat[i][j]; }\n    inline F &operator[](const\
-    \ int i, const int j) { return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const\
-    \ Field_Matrix &B) const {\n        if (row != B.row || col != B.col){ return\
-    \ false; }\n\n        for (int i = 0; i < row; i++){\n            for (int j =\
-    \ 0; j < col; j++){\n                if ((*this)[i] != B[i]) return false;\n \
-    \           }\n        }\n        return true;\n    }\n\n    bool operator!=(const\
-    \ Field_Matrix &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\
-    \u30B9\u5143\n    Field_Matrix operator-() const {\n        Field_Matrix A(row,\
-    \ col);\n        for (int i = 0; i < row; i++){\n            for (int j = 0; j\
-    \ < col; j++) A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\
-    \n    // \u52A0\u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n\
-    \        assert (row == B.row && col == B.col);\n        for (int i = 0; i < row;\
-    \ i++){\n            for (int j = 0; j < col; j++){\n                (*this)[i][j]\
-    \ += B[i][j];\n            }\n        }\n        return *this;\n    }\n\n    Field_Matrix\
-    \ operator+(const Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\
-    \n    // \u6E1B\u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n\
-    \        assert (row == B.row && col == B.col);\n        for (int i = 0; i < row;\
-    \ i++){\n            for (int j = 0; j < col; j++){\n                (*this)[i][j]\
-    \ -= B[i][j];\n            }\n        }\n        return *this;\n    }\n\n    Field_Matrix\
-    \ operator-(const Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\
-    \n    // \u4E57\u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n\
-    \        assert (col == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col,\
-    \ F()));\n\n        for (int i = 0; i < row; i++){\n            for (int k = 0;\
-    \ k < col; k++){\n                for (int j = 0; j < B.col; j++){\n         \
-    \           C[i][j] += mat[i][k] * B.mat[k][j];\n                }\n         \
-    \   }\n        }\n\n        mat.swap(C); col = B.col;\n        return *this;\n\
-    \    }\n\n    Field_Matrix operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B;\
-    \ }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
+    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\
+    \ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
+    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
+    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
+    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
+    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
+    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
+    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
+    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
+    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
+    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
+    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
+    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
+    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
+    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
+    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
+    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
+    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
+    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
+    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
+    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
+    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
+    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
+    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
+    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
+    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
+    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
+    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
+    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
+    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
+    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
+    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
+    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
+    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
+    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Linear_Algebra/Matrix_Subspaces.hpp\"\
+    \n\n#line 2 \"Linear_Algebra/Matrix_Vectors.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\
+    \n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\
+    \n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
+    \ private exception{\n    const char* what() const throw() {\n        return \"\
+    \u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\
+    \u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n\
+    \    public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n \
+    \   Field_Matrix() = default;\n\n    Field_Matrix(int row, int col): row(row),\
+    \ col(col){\n        mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int\
+    \ row): Field_Matrix(row, row){}\n\n    Field_Matrix(const vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
+    \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
+    \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const F &operator[](const int i, const int j) const\
+    \ { return mat[i][j]; }\n    inline F &operator[](const int i, const int j) {\
+    \ return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix\
+    \ &B) const {\n        if (row != B.row || col != B.col){ return false; }\n\n\
+    \        for (int i = 0; i < row; i++){\n            for (int j = 0; j < col;\
+    \ j++){\n                if ((*this)[i] != B[i]) return false;\n            }\n\
+    \        }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix\
+    \ &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n  \
+    \      for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
+    \ A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\n    // \u52A0\
+    \u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] += B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator+(const\
+    \ Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\n    // \u6E1B\
+    \u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] -= B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator-(const\
+    \ Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\n    // \u4E57\
+    \u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n        assert (col\
+    \ == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col, F()));\n\n   \
+    \     for (int i = 0; i < row; i++){\n            for (int k = 0; k < col; k++){\n\
+    \                for (int j = 0; j < B.col; j++){\n                    C[i][j]\
+    \ += mat[i][k] * B.mat[k][j];\n                }\n            }\n        }\n\n\
+    \        mat.swap(C); col = B.col;\n        return *this;\n    }\n\n    Field_Matrix\
+    \ operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }\n\n\
+    \    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
     \ F &scaler, const Field_Matrix &rhs){\n        Field_Matrix res(rhs);\n     \
     \   for (int i = 0; i < rhs.row; i++){\n            for (int j = 0; j < rhs.col;\
     \ j++) { res[i][j] *= scaler; }\n        }\n\n        return res;\n    }\n\n \
@@ -465,34 +522,48 @@ data:
     \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
     \ { basis.clear(); }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>>\
     \ &vectors): n(_n) {\n        for (Field_Vector<F> v: vectors) { add_vector(v);\
-    \ }\n    }\n\n    int dimension() const { return basis.size(); }\n\n    bool add_vector(Field_Vector<F>\
-    \ &v) {\n        Field_Vector<F> w = projection(v);\n        if (w.is_zero())\
-    \ { return false; }\n\n        int i = 0;\n        for (; i < n; i++) { unless(w[i]\
-    \ == 0) { break; } }\n\n        w *= w[i].inverse();\n        for (int k = 0;\
-    \ k < basis.size(); k++) {\n            basis[k] -= basis[k][i] * w;\n       \
-    \ }\n\n        index.emplace_back(i);\n        basis.emplace_back(w);\n      \
-    \  return true;\n    }\n\n    Field_Vector<F> projection(const Field_Vector<F>\
-    \ &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n        for (int\
-    \ k = 0; k < dimension(); k++) {\n            w -= w[index[k]] * basis[k];\n \
-    \       }\n\n        return w;\n    }\n\n    vector<Field_Vector<F>> get_basis()\
-    \ const { return basis; }\n};\n#line 5 \"Linear_Algebra/Matrix_Space.hpp\"\n\n\
-    // A \u306E\u884C\u30D9\u30AF\u30C8\u30EB\u304B\u3089\u306A\u308B\u5217\u3092\u751F\
-    \u6210\u3059\u308B.\ntemplate<typename F>\nvector<Field_Vector<F>> Row_Vectors(const\
-    \ Field_Matrix<F> &A) {\n    vector<Field_Vector<F>> row_vectors(A.row, Field_Vector<F>(A.col));\n\
-    \    for (int i = 0; i < A.row; i++) { row_vectors[i] = Field_Vector(A.mat[i]);\
-    \ }\n\n    return row_vectors;\n}\n\n// A \u306E\u5217\u30D9\u30AF\u30C8\u30EB\
-    \u304B\u3089\u306A\u308B\u5217\u3092\u751F\u6210\u3059\u308B.\ntemplate<typename\
-    \ F>\nvector<Field_Vector<F>> Column_Vectors(const Field_Matrix<F> &A) {\n   \
-    \ vector<vector<F>> tmp(A.col, vector<F>(A.row));\n    for (int i = 0; i < A.row;\
-    \ i++) {\n        for (int j = 0; j < A.col; j++) {\n            tmp[j][i] = A.mat[i][j];\n\
-    \        }\n    }\n\n    vector<Field_Vector<F>> column_vectors(A.col, Field_Vector<F>(A.row));\n\
-    \    for (int j = 0; j < A.col; j++) { column_vectors[j] = Field_Vector(tmp[j]);\
-    \ }\n    return column_vectors;\n}\n\ntemplate<typename F>\nField_Vector<F> operator*\
-    \ (const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n    vector<F> pre_w(A.row,\
-    \ F(0));\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
-    \ j++) {\n            pre_w[i] += A.mat[i][j] * v[j];\n        }\n    }\n\n  \
-    \  return Field_Vector(pre_w);\n}\n"
-  code: "#pragma once\n\n#include\"Field_Vector_Space.hpp\"\n#include\"Field_Matrix.hpp\"\
+    \ }\n    }\n\n    /**\n     * @brief \u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\
+    \u3059\u308B\n     * @param n \u5168\u7A7A\u9593\u306E\u6B21\u5143\n     * @return\
+    \ Field_Vector_Space \u96F6\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\u30B8\u30A7\
+    \u30AF\u30C8\n     */\n    static Field_Vector_Space Zero_Space(int n) {\n   \
+    \     return Field_Vector_Space(n);\n    }\n\n    /**\n     * @brief \u5168\u7A7A\
+    \u9593 F^n \u3092\u751F\u6210\u3059\u308B\n     * @param n \u6B21\u5143\n    \
+    \ * @return Field_Vector_Space \u5168\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\
+    \u30B8\u30A7\u30AF\u30C8\n     */\n    static Field_Vector_Space Full_Space(int\
+    \ n) {\n        Field_Vector_Space res(n);\n        for (int i = 0; i < n; i++)\
+    \ {\n            res.add_vector(Field_Vector<F>::Unit(n, i));\n        }\n   \
+    \     return res;\n    }\n\n    int dimension() const { return basis.size(); }\n\
+    \n    bool add_vector(const Field_Vector<F> &v) {\n        Field_Vector<F> w =\
+    \ projection(v);\n        if (w.is_zero()) { return false; }\n\n        int i\
+    \ = 0;\n        for (; i < n; i++) { unless(w[i] == 0) { break; } }\n\n      \
+    \  w *= w[i].inverse();\n        for (int k = 0; k < basis.size(); k++) {\n  \
+    \          basis[k] -= basis[k][i] * w;\n        }\n\n        index.emplace_back(i);\n\
+    \        basis.emplace_back(w);\n        return true;\n    }\n\n    Field_Vector<F>\
+    \ projection(const Field_Vector<F> &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n\
+    \        for (int k = 0; k < dimension(); k++) {\n            w -= w[index[k]]\
+    \ * basis[k];\n        }\n\n        return w;\n    }\n\n    /**\n     * @brief\
+    \ \u30D9\u30AF\u30C8\u30EB v \u304C\u3053\u306E\u90E8\u5206\u7A7A\u9593\u306B\u542B\
+    \u307E\u308C\u308B\u304B\u5224\u5B9A\u3059\u308B\n     * @param v \u5224\u5B9A\
+    \u3059\u308B\u30D9\u30AF\u30C8\u30EB\n     * @return true \u542B\u307E\u308C\u308B\
+    \u3068\u304D\n     * @return false \u542B\u307E\u308C\u306A\u3044\u3068\u304D\n\
+    \     */\n    bool contains(const Field_Vector<F> &v) const {\n        return\
+    \ projection(v).is_zero();\n    }\n\n    vector<Field_Vector<F>> get_basis() const\
+    \ { return basis; }\n\n    /**\n     * @brief 2\u3064\u306E\u90E8\u5206\u7A7A\u9593\
+    \u306E\u548C\u7A7A\u9593 V + W \u3092\u6C42\u3081\u308B\n     */\n    Field_Vector_Space\
+    \ operator+(const Field_Vector_Space &other) const {\n        assert(n == other.n);\n\
+    \        Field_Vector_Space res(*this);\n        for (const auto &v : other.basis)\
+    \ {\n            res.add_vector(v);\n        }\n        return res;\n    }\n\n\
+    \    Field_Vector_Space& operator+=(const Field_Vector_Space &other) {\n     \
+    \   assert(n == other.n);\n        for (const auto &v : other.basis) {\n     \
+    \       add_vector(v);\n        }\n        return *this;\n    }\n\n    /**\n \
+    \    * @brief \u90E8\u5206\u7A7A\u9593\u306E\u5305\u542B\u95A2\u4FC2 V \\subseteq\
+    \ W \u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator<=(const Field_Vector_Space\
+    \ &other) const {\n        assert(n == other.n);\n        for (const auto &v :\
+    \ basis) {\n            unless(other.contains(v)) return false;\n        }\n \
+    \       return true;\n    }\n\n    /**\n     * @brief \u90E8\u5206\u7A7A\u9593\
+    \u306E\u7B49\u4FA1\u6027\u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator==(const\
+    \ Field_Vector_Space &other) const {\n        return dimension() == other.dimension()\
+    \ && *this <= other;\n    }\n};\n#line 5 \"Linear_Algebra/Matrix_Vectors.hpp\"\
     \n\n// A \u306E\u884C\u30D9\u30AF\u30C8\u30EB\u304B\u3089\u306A\u308B\u5217\u3092\
     \u751F\u6210\u3059\u308B.\ntemplate<typename F>\nvector<Field_Vector<F>> Row_Vectors(const\
     \ Field_Matrix<F> &A) {\n    vector<Field_Vector<F>> row_vectors(A.row, Field_Vector<F>(A.col));\n\
@@ -508,10 +579,80 @@ data:
     \ (const Field_Matrix<F> &A, const Field_Vector<F> &v) {\n    vector<F> pre_w(A.row,\
     \ F(0));\n    for (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col;\
     \ j++) {\n            pre_w[i] += A.mat[i][j] * v[j];\n        }\n    }\n\n  \
-    \  return Field_Vector(pre_w);\n}\n"
+    \  return Field_Vector(pre_w);\n}\n#line 2 \"Linear_Algebra/Reduction.hpp\"\n\n\
+    #line 4 \"Linear_Algebra/Reduction.hpp\"\n\ntemplate<typename F>\nField_Matrix<F>\
+    \ Row_Reduce(const Field_Matrix<F> &A) {\n    if (A.row == 0) { return Field_Matrix(A);\
+    \ }\n\n    vector<vector<F>> X(A.mat);\n    for (int i = 0, j = 0; i < A.row &&\
+    \ j < A.col; j++) {\n        if(X[i][j] == 0) {\n            int p = i + 1;\n\
+    \            for (; p < A.row; p++) {\n                if (X[p][j] == 0) { continue;\
+    \ }\n\n                swap(X[p], X[i]);\n                break;\n           \
+    \ }\n\n            if (p == A.row) { continue; }\n        }\n\n        F u = X[i][j],\
+    \ u_inv = u.inverse();\n        for (int q = 0; q < A.col; q++) { X[i][q] *= u_inv;\
+    \ }\n\n        for (int p = 0; p < A.row; p++) {\n            if (p == i) { continue;\
+    \ }\n\n            F v = X[p][j];\n            for (int q = 0; q < A.col; q++)\
+    \ { X[p][q] -= v * X[i][q]; }\n        }\n\n        i++;\n    }\n\n    return\
+    \ Field_Matrix<F>(X);\n}\n#line 6 \"Linear_Algebra/Matrix_Subspaces.hpp\"\n\n\
+    /**\n * @brief \u884C\u5217 A \u306E\u884C\u7A7A\u9593 (Row Space) \u3092\u6C42\
+    \u3081\u308B\n * @tparam F \u4F53\u306E\u578B\n * @param A \u884C\u5217\n * @return\
+    \ Field_Vector_Space<F> \u884C\u7A7A\u9593\n */\ntemplate<typename F>\nField_Vector_Space<F>\
+    \ Row_Space(const Field_Matrix<F> &A) {\n    return Field_Vector_Space<F>(A.col,\
+    \ Row_Vectors(A));\n}\n\n/**\n * @brief \u884C\u5217 A \u306E\u5217\u7A7A\u9593\
+    \ (Column Space / Image) \u3092\u6C42\u3081\u308B\n * @tparam F \u4F53\u306E\u578B\
+    \n * @param A \u884C\u5217\n * @return Field_Vector_Space<F> \u5217\u7A7A\u9593\
+    \n */\ntemplate<typename F>\nField_Vector_Space<F> Column_Space(const Field_Matrix<F>\
+    \ &A) {\n    return Field_Vector_Space<F>(A.row, Column_Vectors(A));\n}\n\n/**\n\
+    \ * @brief \u7DDA\u5F62\u65B9\u7A0B\u5F0F Ax = b \u3092\u89E3\u304F\n * @tparam\
+    \ F \u4F53\u306E\u578B\n * @param A \u884C\u5217\n * @param b \u30D9\u30AF\u30C8\
+    \u30EB\n * @return std::optional<std::pair<Field_Vector<F>, Field_Vector_Space<F>>>\
+    \  {\u7279\u6B8A\u89E3, \u89E3\u7A7A\u9593\uFF08\u6838\uFF09}. \u89E3\u304C\u5B58\
+    \u5728\u3057\u306A\u3044\u5834\u5408\u306F nullopt\n */\ntemplate<typename F>\n\
+    optional<pair<Field_Vector<F>, Field_Vector_Space<F>>> Solve_Linear_System(const\
+    \ Field_Matrix<F> &A, const Field_Vector<F> &b) {\n    using Matrix = Field_Matrix<F>;\n\
+    \    using Vector = Field_Vector<F>;\n\n    assert(A.row == b.dimension());\n\n\
+    \    // A \u306F m \u884C n \u5217\n    int m = A.row, n = A.col;\n\n    // \u62E1\
+    \u5927\u4FC2\u6570\u884C\u5217 M = [A | b] \u3092\u69CB\u7BC9\n    Matrix M(m,\
+    \ n + 1);\n    for (int i = 0; i < m; i++) {\n        for (int j = 0; j < n; j++)\
+    \ M[i][j] = A[i][j];\n        M[i][n] = b[i];\n    }\n\n    // M \u306E\u884C\u57FA\
+    \u672C\u5909\u5F62 M_reduce \u3092\u5F97\u308B\n    Matrix M_reduce = Row_Reduce(M);\n\
+    \n    // \u30D4\u30DC\u30C3\u30C8\u306E\u5217\u3068\u81EA\u7531\u5909\u6570\u306E\
+    \u5217\u3092\u7279\u5B9A\n    vector<int> pivots;\n    vector<int> free_vars;\n\
+    \    int r = 0;\n    for (int j = 0; j < n; j++) {\n        if (r < m && M_reduce[r][j]\
+    \ != 0) {\n            pivots.emplace_back(j);\n            r++;\n        } else\
+    \ {\n            free_vars.push_back(j);\n        }\n    }\n\n    // \u89E3\u304C\
+    \u5B58\u5728\u3059\u308B\u304B\uFF08\u77DB\u76FE\u304C\u306A\u3044\u304B\uFF09\
+    \u306E\u30C1\u30A7\u30C3\u30AF\n    for (int i = r; i < m; i++) { unless (M_reduce[i][n]\
+    \ == 0) return nullopt; }\n\n    // \u7279\u6B8A\u89E3 x0 \u3092\u6C42\u3081\u308B\
+    .\n    Vector x0(n);\n    for (int i = 0; i < r; i++) { x0[pivots[i]] = M_reduce[i][n];\
+    \ }\n\n    // Ker A \u306E\u57FA\u5E95\u3092\u6C42\u3081\u308B.\n    vector<Vector>\
+    \ ker_basis(n - r, Vector(n));\n    for (int i = 0; i < free_vars.size(); ++i)\
+    \ ker_basis[i][free_vars[i]] = 1;\n\n    for (int i = 0; i < ker_basis.size();\
+    \ ++i) {\n        for (int j = 0; j < r; ++j) {\n            ker_basis[i][pivots[j]]\
+    \ = -M_reduce[j][free_vars[i]];\n        }\n    }\n\n\n    return make_pair(x0,\
+    \ Field_Vector_Space<F>(n, ker_basis));\n}\n\n/**\n * @brief \u884C\u5217 A \u306E\
+    \u6838 (Kernel / Null Space) \u3092\u6C42\u3081\u308B\n * @tparam F \u4F53\u306E\
+    \u578B\n * @param A \u884C\u5217\n * @return Field_Vector_Space<F> \u6838\u7A7A\
+    \u9593\n */\ntemplate<typename F>\nField_Vector_Space<F> Kernel_Space(const Field_Matrix<F>\
+    \ &A) {\n    return Solve_Linear_System(A, Field_Vector<F>(A.row))->second;\n\
+    }\n#line 6 \"verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nint main() {\n    int N, M; cin >> N >>\
+    \ M;\n    Field_Matrix<mint> A(N, M);\n    for (int i = 0; i < N; ++i) {\n   \
+    \     for (int j = 0; j < M; ++j) {\n            cin >> A[i][j];\n        }\n\
+    \    }\n\n    Field_Vector<mint> b(N); cin >> b;\n\n    auto solution = Solve_Linear_System(A,\
+    \ b);\n\n    unless (solution.has_value()) {\n        cout << -1 << endl;\n  \
+    \      return 0;\n    }\n\n    auto &[x0, Ker] = solution.value();\n\n    cout\
+    \ << Ker.dimension() << endl;\n    cout << x0 << endl;\n    for (auto &g: Ker.get_basis())\
+    \ cout << g << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n\n#include \"../../../template/template.hpp\"\n#include \"../../../Algebra/modint.hpp\"\
+    \n#include \"../../../Linear_Algebra/Matrix_Subspaces.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \nint main() {\n    int N, M; cin >> N >> M;\n    Field_Matrix<mint> A(N, M);\n\
+    \    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < M; ++j) {\n  \
+    \          cin >> A[i][j];\n        }\n    }\n\n    Field_Vector<mint> b(N); cin\
+    \ >> b;\n\n    auto solution = Solve_Linear_System(A, b);\n\n    unless (solution.has_value())\
+    \ {\n        cout << -1 << endl;\n        return 0;\n    }\n\n    auto &[x0, Ker]\
+    \ = solution.value();\n\n    cout << Ker.dimension() << endl;\n    cout << x0\
+    \ << endl;\n    for (auto &g: Ker.get_basis()) cout << g << endl;\n}\n"
   dependsOn:
-  - Linear_Algebra/Field_Vector_Space.hpp
-  - Linear_Algebra/Field_Vector.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -519,17 +660,23 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Algebra/modint.hpp
+  - Linear_Algebra/Matrix_Subspaces.hpp
+  - Linear_Algebra/Matrix_Vectors.hpp
+  - Linear_Algebra/Field_Vector_Space.hpp
+  - Linear_Algebra/Field_Vector.hpp
   - Linear_Algebra/Field_Matrix.hpp
-  isVerificationFile: false
-  path: Linear_Algebra/Matrix_Space.hpp
+  - Linear_Algebra/Reduction.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   requiredBy: []
-  timestamp: '2026-05-01 00:20:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2026-05-11 00:01:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Linear_Algebra/Matrix_Space.hpp
+documentation_of: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 layout: document
 redirect_from:
-- /library/Linear_Algebra/Matrix_Space.hpp
-- /library/Linear_Algebra/Matrix_Space.hpp.html
-title: Linear_Algebra/Matrix_Space.hpp
+- /verify/verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+- /verify/verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp.html
+title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 ---

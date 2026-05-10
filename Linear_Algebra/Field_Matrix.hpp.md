@@ -26,15 +26,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Count_Spanning_Trees.hpp
     title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
-    title: Linear_Algebra/Field_Vector_Space.hpp
-  - icon: ':warning:'
-    path: Linear_Algebra/Matrix_Space.hpp
-    title: Linear_Algebra/Matrix_Space.hpp
+    title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Subspaces.hpp
+    title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Vectors.hpp
+    title: Linear_Algebra/Matrix_Vectors.hpp
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -495,16 +501,18 @@ data:
   path: Linear_Algebra/Field_Matrix.hpp
   requiredBy:
   - Linear_Algebra/Field_Vector_Space.hpp
-  - Linear_Algebra/Matrix_Space.hpp
+  - Linear_Algebra/Matrix_Vectors.hpp
   - Linear_Algebra/Reduction.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Vector.hpp
+  - Linear_Algebra/Matrix_Subspaces.hpp
   - Graph/Graph/Count_Spanning_Trees.hpp
   timestamp: '2026-05-01 00:20:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp

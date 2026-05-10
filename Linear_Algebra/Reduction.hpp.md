@@ -27,12 +27,18 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Linear_Algebra/Matrix_Subspaces.hpp
+    title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
+    title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -363,10 +369,12 @@ data:
   path: Linear_Algebra/Reduction.hpp
   requiredBy:
   - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Matrix_Subspaces.hpp
   timestamp: '2026-05-01 00:20:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Reduction.hpp
 layout: document
 redirect_from:
