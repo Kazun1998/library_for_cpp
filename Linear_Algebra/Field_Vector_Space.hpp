@@ -65,5 +65,15 @@ class Field_Vector_Space {
         return w;
     }
 
+    /**
+     * @brief ベクトル v がこの部分空間に含まれるか判定する
+     * @param v 判定するベクトル
+     * @return true 含まれるとき
+     * @return false 含まれないとき
+     */
+    bool contains(const Field_Vector<F> &v) const {
+        return projection(v).is_zero();
+    }
+
     vector<Field_Vector<F>> get_basis() const { return basis; }
 };
