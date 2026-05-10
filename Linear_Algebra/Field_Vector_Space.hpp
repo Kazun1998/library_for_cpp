@@ -15,6 +15,28 @@ class Field_Vector_Space {
         for (Field_Vector<F> v: vectors) { add_vector(v); }
     }
 
+    /**
+     * @brief 零空間 {0} を生成する
+     * @param n 全空間の次元
+     * @return Field_Vector_Space 零空間を表すオブジェクト
+     */
+    static Field_Vector_Space Zero_Space(int n) {
+        return Field_Vector_Space(n);
+    }
+
+    /**
+     * @brief 全空間 F^n を生成する
+     * @param n 次元
+     * @return Field_Vector_Space 全空間を表すオブジェクト
+     */
+    static Field_Vector_Space Full_Space(int n) {
+        Field_Vector_Space res(n);
+        for (int i = 0; i < n; i++) {
+            res.add_vector(Field_Vector<F>::Unit(n, i));
+        }
+        return res;
+    }
+
     int dimension() const { return basis.size(); }
 
     bool add_vector(const Field_Vector<F> &v) {
