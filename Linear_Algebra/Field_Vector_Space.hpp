@@ -76,4 +76,42 @@ class Field_Vector_Space {
     }
 
     vector<Field_Vector<F>> get_basis() const { return basis; }
+
+    /**
+     * @brief 2つの部分空間の和空間 V + W を求める
+     */
+    Field_Vector_Space operator+(const Field_Vector_Space &other) const {
+        assert(n == other.n);
+        Field_Vector_Space res(*this);
+        for (const auto &v : other.basis) {
+            res.add_vector(v);
+        }
+        return res;
+    }
+
+    Field_Vector_Space& operator+=(const Field_Vector_Space &other) {
+        assert(n == other.n);
+        for (const auto &v : other.basis) {
+            add_vector(v);
+        }
+        return *this;
+    }
+
+    /**
+     * @brief 部分空間の包含関係 V \subseteq W を判定する
+     */
+    bool operator<=(const Field_Vector_Space &other) const {
+        assert(n == other.n);
+        for (const auto &v : basis) {
+            unless(other.contains(v)) return false;
+        }
+        return true;
+    }
+
+    /**
+     * @brief 部分空間の等価性を判定する
+     */
+    bool operator==(const Field_Vector_Space &other) const {
+        return dimension() == other.dimension() && *this <= other;
+    }
 };
