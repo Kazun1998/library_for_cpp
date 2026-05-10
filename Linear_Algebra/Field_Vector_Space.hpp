@@ -17,7 +17,7 @@ class Field_Vector_Space {
 
     int dimension() const { return basis.size(); }
 
-    bool add_vector(Field_Vector<F> &v) {
+    bool add_vector(const Field_Vector<F> &v) {
         Field_Vector<F> w = projection(v);
         if (w.is_zero()) { return false; }
 
