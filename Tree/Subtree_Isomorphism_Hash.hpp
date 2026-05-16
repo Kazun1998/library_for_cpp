@@ -3,7 +3,7 @@
 #include "Tree.hpp"
 #include "../Algebra/dynamic_modint.hpp"
 
-vector<int> Subtree_Isomorphism_Hash(const Tree &T, const vector<ll>& primes) {
+vector<int> Subtree_Isomorphism_Hash(const Tree &T, const vector<ll>& primes = {1000000007, 1000000009}) {
     using mint = dynamic_modint<1>;
 
     const int node_count = T.order();
