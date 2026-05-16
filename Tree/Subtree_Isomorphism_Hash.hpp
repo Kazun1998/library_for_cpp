@@ -21,14 +21,18 @@ vector<int> Subtree_Isomorphism_Hash(const Tree &T, const vector<ll>& primes = {
     auto compress_vals = [&](const auto& vals_to_compress) -> vector<int> {
         using T_val = typename std::decay<decltype(vals_to_compress[offset])>::type;
         vector<T_val> vals;
+
         vals.reserve(node_count);
         for (int i = offset; i < vector_size; ++i) vals.push_back(vals_to_compress[i]);
+
         sort(vals.begin(), vals.end());
         vals.erase(unique(vals.begin(), vals.end()), vals.end());
+
         vector<int> res(vector_size, -1);
         for (int i = offset; i < vector_size; ++i) {
             res[i] = lower_bound(vals.begin(), vals.end(), vals_to_compress[i]) - vals.begin();
         }
+
         return res;
     };
 
