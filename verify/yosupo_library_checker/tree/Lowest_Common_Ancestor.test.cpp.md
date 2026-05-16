@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Tree/Lowest_Common_Ancestor.hpp
+    title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +39,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/lca
   bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#line 2 \"Tree/Tree.hpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#line 2 \"Tree/Lowest_Common_Ancestor.hpp\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -199,119 +202,82 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N,\
-    \ _offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
-    \n    int N_bit;\n    bool locked;\n\n    public:\n    Tree(int N, int _offset\
-    \ = 0): N(N), _offset(_offset), N_bit(0) {\n        parent.assign(N + _offset,\
-    \ -1);\n        for (; (1 << N_bit) <= N; N_bit++) {}\n        locked = false;\n\
-    \    }\n\n    bool is_locked() const { return locked; }\n\n    public:\n    inline\
-    \ void set_root(const int &x) {\n        assert (!is_locked());\n        root\
-    \ = x;\n    }\n\n    inline int vector_size() const { return order() + offset();\
-    \ }\n\n    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset(), vector<int>());\n\
-    \        for (int v = offset(); v < N + offset(); v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset(), -1);\n\n        deque<int> Q{ root\
-    \ };\n        tower[0] = { root };\n        depth[root] = 0;\n\n        while\
-    \ (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\n           \
-    \ for (int y: children[x]) {\n                depth[y] = depth[x] + 1;\n     \
-    \           tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
-    \            }\n        }\n    }\n\n    public:\n    vector<int> top_down() const\
-    \ {\n        vector<int> res;\n        for (auto layer: tower) {\n           \
+    \    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree\
+    \ {\n    private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
+    \ children;\n\n    bool locked;\n\n    public:\n    Tree(int N, int _offset =\
+    \ 0): N(N), _offset(_offset) {\n        parent.assign(N + _offset, -1);\n    \
+    \    locked = false;\n    }\n\n    bool is_locked() const { return locked; }\n\
+    \n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
+    \        root = x;\n    }\n\n    inline int vector_size() const { return order()\
+    \ + offset(); }\n\n    inline int get_root() const { return root; }\n    inline\
+    \ int get_parent(const int &x) const { return parent[x]; }\n    inline vector<int>\
+    \ get_children(const int &x) const { return children[x]; }\n\n    public:\n  \
+    \  // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\
+    \u308B.\n    inline void set_parent(const int &x, const int &y) {\n        assert\
+    \ (!is_locked());\n        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\
+    \u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n\
+    \    inline void set_child(const int &x, const int &y) { set_parent(y, x); }\n\
+    \n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal() {\n     \
+    \   assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
+    \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
+    \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
+    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
+    \ + offset(), -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root\
+    \ };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n            int\
+    \ x = Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n  \
+    \              depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
+    \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
+    \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
+    \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
+    \        }\n\n        return res;\n    }\n\n    public:\n    vector<int> bottom_up()\
+    \ const {\n        vector<int> res;\n        for (auto it = tower.rbegin(); it\
+    \ != tower.rend(); ++it) {\n            const auto &layer = *it;\n           \
     \ res.insert(res.end(), layer.begin(), layer.end());\n        }\n\n        return\
-    \ res;\n    }\n\n    public:\n    vector<int> bottom_up() const {\n        vector<int>\
-    \ res;\n        for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n \
-    \           const auto &layer = *it;\n            res.insert(res.end(), layer.begin(),\
-    \ layer.end());\n        }\n\n        return res;\n    }\n\n    // 1 \u9802\u70B9\
-    \u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839?\n\
-    \    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
-    \u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
-    \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
-    \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
-    \ d = children[x].size();\n        if (is_root(x)) { d--; }\n        return d;\n\
-    \    }\n\n    // \u9802\u70B9 x \u306E\u6DF1\u3055\u3092\u6C42\u3081\u308B.\n\
-    \    inline int vertex_depth(const int &x) { return depth[x]; }\n\n    // 2 \u9802\
-    \u70B9\u306B\u95A2\u3059\u308B\u6761\u4EF6\n\n    // x \u306F y \u306E\u89AA\u304B\
-    ?\n    bool is_parent(const int &x, const int &y) const {\n        assert(is_locked());\n\
-    \        return !is_root(y) && x == parent[y];\n    }\n\n    // x \u306F y \u306E\
-    \u500B\u304B?\n    inline bool is_children(const int &x, const int &y) const {\
-    \ return is_parent(y, x); }\n\n    // x \u3068 y \u306F\u5144\u5F1F (\u89AA\u304C\
-    \u540C\u3058) \u304B?\n    bool is_brother(const int &x, const int &y) const {\n\
-    \        assert(is_locked());\n        return !is_root(x) && !is_root(y) && parent[x]\
-    \ == parent[y];\n    }\n\n    private:\n    bool has_upper_list = false;\n   \
-    \ vector<vector<int>> upper_list;\n\n    void build_upper_list() {\n        assert(is_locked());\n\
-    \n        if (has_upper_list) { return; }\n\n        has_upper_list = true;\n\n\
-    \        upper_list.assign(N_bit, vector<int>(N + offset(), -1));\n\n        //\
-    \ Step I\n        for (int i = offset(); i < N + offset(); i++) {\n          \
-    \  if (is_root(i)) { upper_list[0][i] = i; }\n            else { upper_list[0][i]\
-    \ = parent[i]; }\n        }\n\n        // Step II\n        for (int k = 1; k <\
-    \ N_bit; k++) {\n            for (int i = offset(); i < N + offset(); i++) {\n\
-    \                upper_list[k][i] = upper_list[k - 1][upper_list[k - 1][i]];\n\
-    \            }\n        }\n    }\n\n    public:\n    // \u9802\u70B9 x \u304B\u3089\
-    \u898B\u3066 k \u4EE3\u524D\u306E\u9802\u70B9\u3092\u6C42\u3081\u308B.\n    //\
-    \ vertex_depth(x) < k \u306E\u3068\u304D\u8FD4\u308A\u5024\u306F over = true \u306A\
-    \u3089\u3070 root, false \u306A\u3089\u3070, -1 \u3067\u3042\u308B.\n    int upper(int\
-    \ x, int k, bool over = true) {\n        assert(is_locked());\n\n        build_upper_list();\n\
-    \        if (vertex_depth(x) < k) { return over? root: -1; }\n\n        for(int\
-    \ b = 0; k; k >>= 1, b++){ \n            if (k & 1) { x = upper_list[b][x]; }\n\
-    \        }\n\n        return x;\n    }\n\n    public:\n    // \u9802\u70B9 x \u3068\
-    \u9802\u70B9 y \u306E\u6700\u5C0F\u5171\u901A\u5148\u7956\u3092\u6C42\u3081\u308B\
-    .\n    int lowest_common_ancestor(int x, int y) {\n        assert(is_locked());\n\
-    \n        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }\n        y =\
-    \ upper(y, vertex_depth(y) - vertex_depth(x));\n\n        if (is_root(x) || x\
-    \ == y) { return x; }\n\n        for (int k = N_bit - 1; k >= 0; k--) {\n    \
-    \        int px = upper_list[k][x], py = upper_list[k][y];\n            if (px\
-    \ != py) { x = px, y = py; }\n        }\n\n        return is_root(x) ? root :\
-    \ parent[x];\n    }\n\n    int lowest_common_ancestor_greedy(int x, int y) {\n\
-    \        assert(is_locked());\n\n        if (vertex_depth(x) > vertex_depth(y))\
-    \ { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y)) {\n   \
-    \         y = parent[y];\n        }\n\n        while (x != y) {\n            x\
-    \ = get_parent(x);\n            y = get_parent(y);\n        }\n\n        return\
-    \ x;\n    }\n\n    // 2 \u9802\u70B9 x, y \u9593\u306E\u8DDD\u96E2\u3092\u6C42\
-    \u3081\u308B.\n    int distance(int x, int y) {\n        return vertex_depth(x)\
-    \ + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));\n    }\n\
-    \n    private:\n    bool has_euler_tour_vertex = false, has_euler_tour_edge =\
-    \ false;\n\n    public:\n    vector<int> in_time, out_time;\n    vector<int> euler_tour_vertex;\n\
-    \    vector<tuple<int, int, int>> euler_tour_edge;\n\n    // Euler Tour \u306B\
-    \u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n    void calculate_euler_tour_vertex()\
-    \ {\n        if(has_euler_tour_vertex) { return; }\n\n        euler_tour_vertex.clear();\n\
-    \        in_time.assign(N + offset(), -1);\n        out_time.assign(N + offset(),\
-    \ -1);\n\n        auto dfs = [&](auto self, int x) -> void {\n            in_time[x]\
-    \ = (int)euler_tour_vertex.size();\n            euler_tour_vertex.emplace_back(x);\n\
-    \n            for (int y: children[x]) {\n                self(self, y);\n   \
-    \         }\n\n            out_time[x] = (int)euler_tour_vertex.size() - 1;\n\
-    \            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]); }\n\
-    \        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex = true;\n\
-    \    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
+    \ res;\n    }\n\n    // 1 \u9802\u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n \
+    \   public:\n\n    // x \u306F\u6839?\n    bool is_root(const int &x) const {\
+    \ return x == root; }\n\n    // x \u306F\u8449?\n    bool is_leaf(const int &x)\
+    \ const {\n        assert(is_locked());\n        return children[x].empty();\n\
+    \    }\n\n    // x \u306E\u6B21\u6570\n    int degree(const int &x) const {\n\
+    \        assert(is_locked());\n        int d = children[x].size();\n        if\
+    \ (is_root(x)) { d--; }\n        return d;\n    }\n\n    // \u9802\u70B9 x \u306E\
+    \u6DF1\u3055\u3092\u6C42\u3081\u308B.\n    inline int vertex_depth(const int &x)\
+    \ const { return depth[x]; }\n\n    // 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\
+    \u4EF6\n\n    // x \u306F y \u306E\u89AA\u304B?\n    bool is_parent(const int\
+    \ &x, const int &y) const {\n        assert(is_locked());\n        return !is_root(y)\
+    \ && x == parent[y];\n    }\n\n    // x \u306F y \u306E\u500B\u304B?\n    inline\
+    \ bool is_children(const int &x, const int &y) const { return is_parent(y, x);\
+    \ }\n\n    // x \u3068 y \u306F\u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B\
+    ?\n    bool is_brother(const int &x, const int &y) const {\n        assert(is_locked());\n\
+    \        return !is_root(x) && !is_root(y) && parent[x] == parent[y];\n    }\n\
+    \n    int lowest_common_ancestor_greedy(int x, int y) const {\n        assert(is_locked());\n\
+    \n        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }\n\n        while\
+    \ (vertex_depth(x) < vertex_depth(y)) {\n            y = parent[y];\n        }\n\
+    \n        while (x != y) {\n            x = get_parent(x);\n            y = get_parent(y);\n\
+    \        }\n\n        return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex\
+    \ = false, has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time,\
+    \ out_time;\n    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>>\
+    \ euler_tour_edge;\n\n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\
+    \u884C\u3046.\n    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex)\
+    \ { return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N\
+    \ + offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto\
+    \ dfs = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
+    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
+    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
+    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
+    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
+    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
     \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
     \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
     \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
     \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    // \u9802\u70B9 u \u304B\u3089\
-    \u9802\u70B9 v \u3078\u5411\u304B\u3046\u30D1\u30B9\u306B\u304A\u3044\u3066 k\
-    \ \u756A\u76EE (0-indexed) \u306B\u901A\u308B\u9802\u70B9 (\u30D1\u30B9\u306E\u9577\
-    \u3055\u304C k \u3088\u308A\u5927\u304D\u3044\u5834\u5408\u306F over)\n    int\
-    \ jump(int u, int v, int k, int over = -1) {\n        if (k == 0) { return u;\
-    \ }\n\n        int w = lowest_common_ancestor(u, v);\n        int dist_uw = vertex_depth(u)\
-    \ - vertex_depth(w);\n        int dist_wv = vertex_depth(v) - vertex_depth(w);\n\
-    \        int dist_uv = dist_uw + dist_wv;\n\n        if (dist_uv < k) { \n   \
-    \         return over;\n        } else if (k <= dist_uw) {\n            return\
-    \ upper(u, k);\n        } else {\n            return upper(v, dist_uv - k);\n\
-    \        }\n    }\n\n    vector<int> path(int u, int v) {\n        int w = lowest_common_ancestor_greedy(u,\
-    \ v);\n\n        vector<int> path_first{u}, path_second{v};\n\n        while (u\
-    \ != w) {\n            u = get_parent(u);\n            path_first.emplace_back(u);\n\
-    \        }\n\n        while (v != w) {\n            v = get_parent(v);\n     \
-    \       path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
+    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
+    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
+    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
+    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
+    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
+    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
     \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
     \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
     \n        return path_first;\n    }\n\n    inline int order() const { return N;\
@@ -324,20 +290,80 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 4 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
+    \ T;\n}\n#line 5 \"Tree/Lowest_Common_Ancestor.hpp\"\n\n/**\n * @brief \u30C0\u30D6\
+    \u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\u5C0F\u5171\u901A\u5148\u7956\
+    \ (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\u30AF\u30E9\u30B9.\n\
+    \ * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\u30EA\u306B O(log N) \u304B\
+    \u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n    private:\n    const Tree\
+    \ &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\n    public:\n  \
+    \  /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF. \u30C0\u30D6\
+    \u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\u308B.\n  \
+    \   * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\u30A7\
+    \u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\u3066\
+    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
+    \ Tree &tree) : T(tree) {\n        assert(T.is_locked());\n        int N = T.order();\n\
+    \        int offset = T.offset();\n\n        N_bit = 0;\n        while ((1 <<\
+    \ N_bit) <= N) { N_bit++; }\n\n        upper_list.assign(N_bit, vector<int>(N\
+    \ + offset, -1));\n\n        for (int i = offset; i < N + offset; i++) {\n   \
+    \         if (T.is_root(i)) {\n                upper_list[0][i] = i;\n       \
+    \     } else {\n                upper_list[0][i] = T.get_parent(i);\n        \
+    \    }\n        }\n\n        for (int k = 1; k < N_bit; k++) {\n            for\
+    \ (int i = offset; i < N + offset; i++) {\n                upper_list[k][i] =\
+    \ upper_list[k - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n\
+    \    /**\n     * @brief \u9802\u70B9 x \u304B\u3089\u898B\u3066 k \u4EE3\u524D\
+    \u306E\u9802\u70B9\uFF08\u5148\u7956\uFF09\u3092\u6C42\u3081\u308B.\n     * @param\
+    \ x \u9802\u70B9\u756A\u53F7\n     * @param k \u9061\u308B\u4E16\u4EE3\u6570\n\
+    \     * @param over true \u306E\u5834\u5408, \u6839\u3088\u308A\u3082\u4E0A\u3092\
+    \u6307\u5B9A\u3057\u305F\u969B\u306B\u6839\u3092\u8FD4\u3059.false \u306E\u5834\
+    \u5408\u306F -1 \u3092\u8FD4\u3059.\n     * @return \u9061\u3063\u305F\u5148\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int upper(int x, int k, bool over = true)\
+    \ const {\n        if (T.vertex_depth(x) < k) { return over ? T.get_root() : -1;\
+    \ }\n\n        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { x\
+    \ = upper_list[b][x]; }\n        }\n\n        return x;\n    }\n\n    /**\n  \
+    \   * @brief \u9802\u70B9 x \u3068\u9802\u70B9 y \u306E\u6700\u5C0F\u5171\u901A\
+    \u5148\u7956 (LCA) \u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\
+    \u53F7 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return \u6700\u5C0F\
+    \u5171\u901A\u5148\u7956\u306E\u9802\u70B9\u756A\u53F7\n     */\n    int lowest_common_ancestor(int\
+    \ x, int y) const {\n        if (T.vertex_depth(x) > T.vertex_depth(y)) { swap(x,\
+    \ y); }\n        y = upper(y, T.vertex_depth(y) - T.vertex_depth(x));\n\n    \
+    \    if (T.is_root(x) || x == y) { return x; }\n\n        for (int k = N_bit -\
+    \ 1; k >= 0; k--) {\n            int px = upper_list[k][x], py = upper_list[k][y];\n\
+    \            if (px != py) { x = px, y = py; }\n        }\n\n        return T.is_root(x)\
+    \ ? T.get_root() : T.get_parent(x);\n    }\n\n    /**\n     * @brief 2 \u9802\u70B9\
+    \ x, y \u9593\u306E\u8DDD\u96E2\uFF08\u30D1\u30B9\u4E0A\u306E\u30A8\u30C3\u30B8\
+    \u6570\uFF09\u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\u53F7\
+    \ 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return 2 \u9802\u70B9\
+    \u9593\u306E\u8DDD\u96E2\n     */\n    int distance(int x, int y) const {\n  \
+    \      return T.vertex_depth(x) + T.vertex_depth(y) - 2 * T.vertex_depth(lowest_common_ancestor(x,\
+    \ y));\n    }\n\n    /**\n     * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9\
+    \ v \u3078\u5411\u304B\u3046\u6700\u77ED\u30D1\u30B9\u306B\u304A\u3044\u3066 k\
+    \ \u756A\u76EE (0-indexed) \u306B\u4F4D\u7F6E\u3059\u308B\u9802\u70B9\u3092\u6C42\
+    \u3081\u308B.\n     * @param u \u59CB\u70B9\n     * @param v \u7D42\u70B9\n  \
+    \   * @param k \u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (u \u304C\
+    \ 0 \u756A\u76EE)\n     * @param over \u30D1\u30B9\u306E\u9577\u3055\u3088\u308A\
+    \u3082\u5927\u304D\u3044 k \u304C\u6307\u5B9A\u3055\u308C\u305F\u5834\u5408\u306B\
+    \u8FD4\u3059\u5024\n     * @return \u6307\u5B9A\u3055\u308C\u305F\u4F4D\u7F6E\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int jump(int u, int v, int k, int over\
+    \ = -1) const {\n        if (k == 0) { return u; }\n\n        int w = lowest_common_ancestor(u,\
+    \ v);\n        int dist_uw = T.vertex_depth(u) - T.vertex_depth(w);\n        int\
+    \ dist_wv = T.vertex_depth(v) - T.vertex_depth(w);\n        int dist_uv = dist_uw\
+    \ + dist_wv;\n\n        if (dist_uv < k) { return over; }\n        return (k <=\
+    \ dist_uw) ? upper(u, k) : upper(v, dist_uv - k);\n    }\n};\n#line 4 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
     \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
     \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
     \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
-    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include\"../../../Tree/Tree.hpp\"\
+    \n    Lowest_Common_Ancestor L(T);\n\n    for (int q = 0; q < Q; q++) {\n    \
+    \    int u, v; scanf(\"%d%d\", &u, &v);\n        cout << L.lowest_common_ancestor(u,\
+    \ v) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include\"../../../Tree/Lowest_Common_Ancestor.hpp\"\
     \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
     \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
     \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int u, v; scanf(\"%d%d\", &u, &v);\n\
-    \        cout << T.lowest_common_ancestor(u, v) << \"\\n\";\n    }\n}\n"
+    \n    Lowest_Common_Ancestor L(T);\n\n    for (int q = 0; q < Q; q++) {\n    \
+    \    int u, v; scanf(\"%d%d\", &u, &v);\n        cout << L.lowest_common_ancestor(u,\
+    \ v) << \"\\n\";\n    }\n}\n"
   dependsOn:
-  - Tree/Tree.hpp
+  - Tree/Lowest_Common_Ancestor.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -345,10 +371,11 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Tree/Tree.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-05-16 15:04:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp

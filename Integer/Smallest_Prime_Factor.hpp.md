@@ -268,9 +268,9 @@ data:
   isVerificationFile: false
   path: Integer/Smallest_Prime_Factor.hpp
   requiredBy:
-  - Math/Enumerate_Powers.hpp
-  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  - Math/Enumerate_Powers.hpp
   timestamp: '2026-04-18 11:10:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

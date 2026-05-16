@@ -78,8 +78,8 @@ data:
   timestamp: '2025-11-24 23:47:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
 documentation_of: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
 layout: document
 redirect_from:

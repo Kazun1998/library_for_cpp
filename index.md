@@ -622,6 +622,9 @@ data:
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'
+      path: Tree/Lowest_Common_Ancestor.hpp
+      title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"
+    - icon: ':heavy_check_mark:'
       path: Tree/Rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
     - icon: ':heavy_check_mark:'

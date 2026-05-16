@@ -2,20 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Algebra/modint.hpp
-    title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Generator.hpp
-    title: Tree/Generator.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Rerooting.hpp
-    title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Tree_DP.hpp
-    title: "\u6728 DP"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -38,40 +26,45 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+    title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+    title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
-    links:
-    - https://judge.yosupo.jp/problem/tree_path_composite_sum
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n\
-    \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    document_title: "\u30C0\u30D6\u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\u5C0F\
+      \u5171\u901A\u5148\u7956 (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\
+      \u30AF\u30E9\u30B9."
+    links: []
+  bundledCode: "#line 2 \"Tree/Lowest_Common_Ancestor.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -211,64 +204,25 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\
-    \ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
-    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
-    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
-    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
-    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
-    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
-    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
-    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
-    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
-    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
-    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
-    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
-    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
-    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
-    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
-    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
-    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4\
-    \ \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N, _offset, root;\n\
-    \    vector<int> parent;\n    vector<vector<int>> children;\n\n    bool locked;\n\
-    \n    public:\n    Tree(int N, int _offset = 0): N(N), _offset(_offset) {\n  \
-    \      parent.assign(N + _offset, -1);\n        locked = false;\n    }\n\n   \
-    \ bool is_locked() const { return locked; }\n\n    public:\n    inline void set_root(const\
-    \ int &x) {\n        assert (!is_locked());\n        root = x;\n    }\n\n    inline\
-    \ int vector_size() const { return order() + offset(); }\n\n    inline int get_root()\
-    \ const { return root; }\n    inline int get_parent(const int &x) const { return\
-    \ parent[x]; }\n    inline vector<int> get_children(const int &x) const { return\
-    \ children[x]; }\n\n    public:\n    // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\
-    \u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline void set_parent(const int\
-    \ &x, const int &y) {\n        assert (!is_locked());\n        parent[x] = y;\n\
-    \    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9\
-    \ y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const int &x, const\
-    \ int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\
-    \u308B\n    void seal() {\n        assert(!is_locked());\n\n        parent[root]\
-    \ = -1;\n        children.assign(N + offset(), vector<int>());\n        for (int\
-    \ v = offset(); v < N + offset(); v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
+    \    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree\
+    \ {\n    private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
+    \ children;\n\n    bool locked;\n\n    public:\n    Tree(int N, int _offset =\
+    \ 0): N(N), _offset(_offset) {\n        parent.assign(N + _offset, -1);\n    \
+    \    locked = false;\n    }\n\n    bool is_locked() const { return locked; }\n\
+    \n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
+    \        root = x;\n    }\n\n    inline int vector_size() const { return order()\
+    \ + offset(); }\n\n    inline int get_root() const { return root; }\n    inline\
+    \ int get_parent(const int &x) const { return parent[x]; }\n    inline vector<int>\
+    \ get_children(const int &x) const { return children[x]; }\n\n    public:\n  \
+    \  // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\
+    \u308B.\n    inline void set_parent(const int &x, const int &y) {\n        assert\
+    \ (!is_locked());\n        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\
+    \u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n\
+    \    inline void set_child(const int &x, const int &y) { set_parent(y, x); }\n\
+    \n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal() {\n     \
+    \   assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
+    \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
+    \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
     \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
     \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
@@ -338,90 +292,124 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 2 \"Tree/Generator.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>>\
-    \ adjacent, int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
-    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
-    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
-    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
-    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
-    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
-    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n#line 2 \"Tree/Rerooting.hpp\"\
-    \n\n#line 2 \"Tree/Tree_DP.hpp\"\n\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename\
-    \ X>\nvector<X> Tree_DP_from_Root(Tree &T, function<X(X, int, int)> f, const X\
-    \ alpha) {\n    vector<X> data(T.vector_size());\n\n    data[T.get_root()] = alpha;\n\
-    \n    auto dfs = [&](auto self, int x) -> void {\n        for (int y: T.get_children(x))\
-    \ {\n            data[y] = f(data[x], x, y);\n            self(self, y);\n   \
-    \     }\n    };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n\ntemplate<typename\
-    \ X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree &T, function<M(X, int, int)>\
-    \ f, function<X(M, int)> g, function<M(M, M)> merge, const M unit) {\n    vector<X>\
-    \ data(T.vector_size());\n\n    auto dfs = [&](auto self, int v) -> void {\n \
-    \       M children_product = unit;\n        for (int w: T.get_children(v)) {\n\
-    \            self(self, w);\n            children_product = merge(children_product,\
-    \ f(data[w], v, w));\n        }\n        data[v] = g(children_product, v);\n \
-    \   };\n\n    dfs(dfs, T.get_root());\n    return data;\n}\n#line 5 \"Tree/Rerooting.hpp\"\
-    \n\ntemplate<typename X, typename M>\nclass Rerooting_DP {\n    public:\n    vector<X>\
-    \ lower, upper, result;\n\n    public:\n    Rerooting_DP(Tree &T, function<M(X,\
-    \ int, int)> f, function<X(M, int)> g, function<X(M, int)> h, function<M(M, M)>\
-    \ merge, const M unit) {\n        using V = int;\n\n        // T \u306E\u9802\u70B9\
-    \ v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u5024\
-    \n        lower = Tree_DP_from_Leaf(T, f, g, merge, unit);\n        upper.resize(T.vector_size());\n\
-    \n        for (V v: T.top_down()) {\n            const auto &children_v = T.get_children(v);\n\
-    \    \n            vector<M> left{unit}, right{unit};\n            for (V c: children_v)\
-    \ {\n                left.emplace_back(merge(left.back(), f(lower[c], v, c)));\n\
-    \            }\n\n            for (auto it = children_v.rbegin(); it != children_v.rend();\
-    \ ++it) {\n                V c = *it;\n                right.emplace_back(merge(right.back(),\
-    \ f(lower[c], v, c)));\n            }\n\n            reverse(right.begin(), right.end());\n\
-    \            for (int i = 0; i < children_v.size(); i++) {\n                V\
-    \ c = children_v[i];\n                M a = merge(left[i], right[i + 1]);\n  \
-    \              M b = T.is_root(v) ? a : merge(a, f(upper[v], v, T.get_parent(v)));\n\
-    \n                upper[c] = g(b, v);\n            }\n        }\n\n        result.resize(T.vector_size());\n\
-    \        for (V v: T.top_down()) {\n            M a = T.is_root(v) ? unit : f(upper[v],\
-    \ v, T.get_parent(v));\n            for (V c: T.get_children(v)) {\n         \
-    \       a = merge(a, f(lower[c], v, c));\n            }\n\n            result[v]\
-    \ = h(a, v);\n        }\n    }\n\n    Rerooting_DP(Tree &T, function<M(X, int,\
-    \ int)> f, function<X(M, int)> g, function<M(M, M)> merge, const M unit):\n  \
-    \      Rerooting_DP(T, f, g, g, merge, unit) {}\n};\n#line 7 \"verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct X {\n    mint p;\n    int subtree_size;\n\
-    };\n\nstruct M {\n    mint q;\n    int subtree_size;\n};\n\nint main() {\n   \
-    \ int N; cin >> N;\n\n    vector<pair<int, int>> edges(N - 1);\n    vector<mint>\
-    \ a(N);\n    map<pair<int, int>, pair<mint, mint>> edge_function;\n\n    for (int\
-    \ i = 0; i < N; i++) { int x; scanf(\"%d\", &x); a[i] = mint(x); }\n    for (int\
-    \ j = 0; j < N - 1; j++) {\n        int u, v, x, y;\n        scanf(\"%d%d%d%d\"\
-    , &u, &v, &x, &y);\n        mint b(x), c(y);\n\n        if (u > v) { swap(u, v);\
-    \ }\n        edge_function[{u, v}] = { b, c };\n        edges[j] = { u, v };\n\
-    \    }\n\n    Tree T = Generate_Tree(N, edges, 0);\n\n    function<M(X, int, int)>\
-    \ f = [&edge_function](const X x, int u, int v) -> M {\n        if (u > v) { swap(u,\
-    \ v); }\n        const auto &[b, c] = edge_function[{u, v}];\n\n        return\
-    \ { b * x.p + c * x.subtree_size, x.subtree_size };\n    };\n\n    function<X(M,\
-    \ int)> g = [&a](const M s, const int v) -> X {\n        return { s.q + a[v],\
-    \ s.subtree_size + 1};\n    };\n\n    function<M(M, M)> merge = [](const M s,\
-    \ const M t) -> M {\n        return { s.q + t.q, s.subtree_size + t.subtree_size};\n\
-    \    };\n\n    Rerooting_DP<X, M> rerooting(T, f, g, merge, {0, 0});\n\n    for\
-    \ (int v = 0; v < N; v++) {\n        cout << (v ? \" \" : \"\") << rerooting.result[v].p;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
-    \n\n#include\"template/template.hpp\"\n#include\"Algebra/modint.hpp\"\n#include\"\
-    Tree/Generator.hpp\"\n#include\"Tree/Rerooting.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \nstruct X {\n    mint p;\n    int subtree_size;\n};\n\nstruct M {\n    mint q;\n\
-    \    int subtree_size;\n};\n\nint main() {\n    int N; cin >> N;\n\n    vector<pair<int,\
-    \ int>> edges(N - 1);\n    vector<mint> a(N);\n    map<pair<int, int>, pair<mint,\
-    \ mint>> edge_function;\n\n    for (int i = 0; i < N; i++) { int x; scanf(\"%d\"\
-    , &x); a[i] = mint(x); }\n    for (int j = 0; j < N - 1; j++) {\n        int u,\
-    \ v, x, y;\n        scanf(\"%d%d%d%d\", &u, &v, &x, &y);\n        mint b(x), c(y);\n\
-    \n        if (u > v) { swap(u, v); }\n        edge_function[{u, v}] = { b, c };\n\
-    \        edges[j] = { u, v };\n    }\n\n    Tree T = Generate_Tree(N, edges, 0);\n\
-    \n    function<M(X, int, int)> f = [&edge_function](const X x, int u, int v) ->\
-    \ M {\n        if (u > v) { swap(u, v); }\n        const auto &[b, c] = edge_function[{u,\
-    \ v}];\n\n        return { b * x.p + c * x.subtree_size, x.subtree_size };\n \
-    \   };\n\n    function<X(M, int)> g = [&a](const M s, const int v) -> X {\n  \
-    \      return { s.q + a[v], s.subtree_size + 1};\n    };\n\n    function<M(M,\
-    \ M)> merge = [](const M s, const M t) -> M {\n        return { s.q + t.q, s.subtree_size\
-    \ + t.subtree_size};\n    };\n\n    Rerooting_DP<X, M> rerooting(T, f, g, merge,\
-    \ {0, 0});\n\n    for (int v = 0; v < N; v++) {\n        cout << (v ? \" \" :\
-    \ \"\") << rerooting.result[v].p;\n    }\n}\n"
+    \ T;\n}\n#line 5 \"Tree/Lowest_Common_Ancestor.hpp\"\n\n/**\n * @brief \u30C0\u30D6\
+    \u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\u5C0F\u5171\u901A\u5148\u7956\
+    \ (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\u30AF\u30E9\u30B9.\n\
+    \ * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\u30EA\u306B O(log N) \u304B\
+    \u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n    private:\n    const Tree\
+    \ &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\n    public:\n  \
+    \  /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF. \u30C0\u30D6\
+    \u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\u308B.\n  \
+    \   * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\u30A7\
+    \u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\u3066\
+    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
+    \ Tree &tree) : T(tree) {\n        assert(T.is_locked());\n        int N = T.order();\n\
+    \        int offset = T.offset();\n\n        N_bit = 0;\n        while ((1 <<\
+    \ N_bit) <= N) { N_bit++; }\n\n        upper_list.assign(N_bit, vector<int>(N\
+    \ + offset, -1));\n\n        for (int i = offset; i < N + offset; i++) {\n   \
+    \         if (T.is_root(i)) {\n                upper_list[0][i] = i;\n       \
+    \     } else {\n                upper_list[0][i] = T.get_parent(i);\n        \
+    \    }\n        }\n\n        for (int k = 1; k < N_bit; k++) {\n            for\
+    \ (int i = offset; i < N + offset; i++) {\n                upper_list[k][i] =\
+    \ upper_list[k - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n\
+    \    /**\n     * @brief \u9802\u70B9 x \u304B\u3089\u898B\u3066 k \u4EE3\u524D\
+    \u306E\u9802\u70B9\uFF08\u5148\u7956\uFF09\u3092\u6C42\u3081\u308B.\n     * @param\
+    \ x \u9802\u70B9\u756A\u53F7\n     * @param k \u9061\u308B\u4E16\u4EE3\u6570\n\
+    \     * @param over true \u306E\u5834\u5408, \u6839\u3088\u308A\u3082\u4E0A\u3092\
+    \u6307\u5B9A\u3057\u305F\u969B\u306B\u6839\u3092\u8FD4\u3059.false \u306E\u5834\
+    \u5408\u306F -1 \u3092\u8FD4\u3059.\n     * @return \u9061\u3063\u305F\u5148\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int upper(int x, int k, bool over = true)\
+    \ const {\n        if (T.vertex_depth(x) < k) { return over ? T.get_root() : -1;\
+    \ }\n\n        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { x\
+    \ = upper_list[b][x]; }\n        }\n\n        return x;\n    }\n\n    /**\n  \
+    \   * @brief \u9802\u70B9 x \u3068\u9802\u70B9 y \u306E\u6700\u5C0F\u5171\u901A\
+    \u5148\u7956 (LCA) \u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\
+    \u53F7 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return \u6700\u5C0F\
+    \u5171\u901A\u5148\u7956\u306E\u9802\u70B9\u756A\u53F7\n     */\n    int lowest_common_ancestor(int\
+    \ x, int y) const {\n        if (T.vertex_depth(x) > T.vertex_depth(y)) { swap(x,\
+    \ y); }\n        y = upper(y, T.vertex_depth(y) - T.vertex_depth(x));\n\n    \
+    \    if (T.is_root(x) || x == y) { return x; }\n\n        for (int k = N_bit -\
+    \ 1; k >= 0; k--) {\n            int px = upper_list[k][x], py = upper_list[k][y];\n\
+    \            if (px != py) { x = px, y = py; }\n        }\n\n        return T.is_root(x)\
+    \ ? T.get_root() : T.get_parent(x);\n    }\n\n    /**\n     * @brief 2 \u9802\u70B9\
+    \ x, y \u9593\u306E\u8DDD\u96E2\uFF08\u30D1\u30B9\u4E0A\u306E\u30A8\u30C3\u30B8\
+    \u6570\uFF09\u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\u53F7\
+    \ 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return 2 \u9802\u70B9\
+    \u9593\u306E\u8DDD\u96E2\n     */\n    int distance(int x, int y) const {\n  \
+    \      return T.vertex_depth(x) + T.vertex_depth(y) - 2 * T.vertex_depth(lowest_common_ancestor(x,\
+    \ y));\n    }\n\n    /**\n     * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9\
+    \ v \u3078\u5411\u304B\u3046\u6700\u77ED\u30D1\u30B9\u306B\u304A\u3044\u3066 k\
+    \ \u756A\u76EE (0-indexed) \u306B\u4F4D\u7F6E\u3059\u308B\u9802\u70B9\u3092\u6C42\
+    \u3081\u308B.\n     * @param u \u59CB\u70B9\n     * @param v \u7D42\u70B9\n  \
+    \   * @param k \u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (u \u304C\
+    \ 0 \u756A\u76EE)\n     * @param over \u30D1\u30B9\u306E\u9577\u3055\u3088\u308A\
+    \u3082\u5927\u304D\u3044 k \u304C\u6307\u5B9A\u3055\u308C\u305F\u5834\u5408\u306B\
+    \u8FD4\u3059\u5024\n     * @return \u6307\u5B9A\u3055\u308C\u305F\u4F4D\u7F6E\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int jump(int u, int v, int k, int over\
+    \ = -1) const {\n        if (k == 0) { return u; }\n\n        int w = lowest_common_ancestor(u,\
+    \ v);\n        int dist_uw = T.vertex_depth(u) - T.vertex_depth(w);\n        int\
+    \ dist_wv = T.vertex_depth(v) - T.vertex_depth(w);\n        int dist_uv = dist_uw\
+    \ + dist_wv;\n\n        if (dist_uv < k) { return over; }\n        return (k <=\
+    \ dist_uw) ? upper(u, k) : upper(v, dist_uv - k);\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Tree.hpp\"\
+    \n\n/**\n * @brief \u30C0\u30D6\u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\
+    \u5C0F\u5171\u901A\u5148\u7956 (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\
+    \u308B\u30AF\u30E9\u30B9.\n * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\
+    \u30EA\u306B O(log N) \u304B\u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n\
+    \    private:\n    const Tree &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\
+    \n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    . \u30C0\u30D6\u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\
+    \u308B.\n     * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\
+    \u30A7\u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\
+    \u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
+    \ Tree &tree) : T(tree) {\n        assert(T.is_locked());\n        int N = T.order();\n\
+    \        int offset = T.offset();\n\n        N_bit = 0;\n        while ((1 <<\
+    \ N_bit) <= N) { N_bit++; }\n\n        upper_list.assign(N_bit, vector<int>(N\
+    \ + offset, -1));\n\n        for (int i = offset; i < N + offset; i++) {\n   \
+    \         if (T.is_root(i)) {\n                upper_list[0][i] = i;\n       \
+    \     } else {\n                upper_list[0][i] = T.get_parent(i);\n        \
+    \    }\n        }\n\n        for (int k = 1; k < N_bit; k++) {\n            for\
+    \ (int i = offset; i < N + offset; i++) {\n                upper_list[k][i] =\
+    \ upper_list[k - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n\
+    \    /**\n     * @brief \u9802\u70B9 x \u304B\u3089\u898B\u3066 k \u4EE3\u524D\
+    \u306E\u9802\u70B9\uFF08\u5148\u7956\uFF09\u3092\u6C42\u3081\u308B.\n     * @param\
+    \ x \u9802\u70B9\u756A\u53F7\n     * @param k \u9061\u308B\u4E16\u4EE3\u6570\n\
+    \     * @param over true \u306E\u5834\u5408, \u6839\u3088\u308A\u3082\u4E0A\u3092\
+    \u6307\u5B9A\u3057\u305F\u969B\u306B\u6839\u3092\u8FD4\u3059.false \u306E\u5834\
+    \u5408\u306F -1 \u3092\u8FD4\u3059.\n     * @return \u9061\u3063\u305F\u5148\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int upper(int x, int k, bool over = true)\
+    \ const {\n        if (T.vertex_depth(x) < k) { return over ? T.get_root() : -1;\
+    \ }\n\n        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { x\
+    \ = upper_list[b][x]; }\n        }\n\n        return x;\n    }\n\n    /**\n  \
+    \   * @brief \u9802\u70B9 x \u3068\u9802\u70B9 y \u306E\u6700\u5C0F\u5171\u901A\
+    \u5148\u7956 (LCA) \u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\
+    \u53F7 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return \u6700\u5C0F\
+    \u5171\u901A\u5148\u7956\u306E\u9802\u70B9\u756A\u53F7\n     */\n    int lowest_common_ancestor(int\
+    \ x, int y) const {\n        if (T.vertex_depth(x) > T.vertex_depth(y)) { swap(x,\
+    \ y); }\n        y = upper(y, T.vertex_depth(y) - T.vertex_depth(x));\n\n    \
+    \    if (T.is_root(x) || x == y) { return x; }\n\n        for (int k = N_bit -\
+    \ 1; k >= 0; k--) {\n            int px = upper_list[k][x], py = upper_list[k][y];\n\
+    \            if (px != py) { x = px, y = py; }\n        }\n\n        return T.is_root(x)\
+    \ ? T.get_root() : T.get_parent(x);\n    }\n\n    /**\n     * @brief 2 \u9802\u70B9\
+    \ x, y \u9593\u306E\u8DDD\u96E2\uFF08\u30D1\u30B9\u4E0A\u306E\u30A8\u30C3\u30B8\
+    \u6570\uFF09\u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\u53F7\
+    \ 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return 2 \u9802\u70B9\
+    \u9593\u306E\u8DDD\u96E2\n     */\n    int distance(int x, int y) const {\n  \
+    \      return T.vertex_depth(x) + T.vertex_depth(y) - 2 * T.vertex_depth(lowest_common_ancestor(x,\
+    \ y));\n    }\n\n    /**\n     * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9\
+    \ v \u3078\u5411\u304B\u3046\u6700\u77ED\u30D1\u30B9\u306B\u304A\u3044\u3066 k\
+    \ \u756A\u76EE (0-indexed) \u306B\u4F4D\u7F6E\u3059\u308B\u9802\u70B9\u3092\u6C42\
+    \u3081\u308B.\n     * @param u \u59CB\u70B9\n     * @param v \u7D42\u70B9\n  \
+    \   * @param k \u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (u \u304C\
+    \ 0 \u756A\u76EE)\n     * @param over \u30D1\u30B9\u306E\u9577\u3055\u3088\u308A\
+    \u3082\u5927\u304D\u3044 k \u304C\u6307\u5B9A\u3055\u308C\u305F\u5834\u5408\u306B\
+    \u8FD4\u3059\u5024\n     * @return \u6307\u5B9A\u3055\u308C\u305F\u4F4D\u7F6E\u306E\
+    \u9802\u70B9\u756A\u53F7\n     */\n    int jump(int u, int v, int k, int over\
+    \ = -1) const {\n        if (k == 0) { return u; }\n\n        int w = lowest_common_ancestor(u,\
+    \ v);\n        int dist_uw = T.vertex_depth(u) - T.vertex_depth(w);\n        int\
+    \ dist_wv = T.vertex_depth(v) - T.vertex_depth(w);\n        int dist_uv = dist_uw\
+    \ + dist_wv;\n\n        if (dist_uv < k) { return over; }\n        return (k <=\
+    \ dist_uw) ? upper(u, k) : upper(v, dist_uv - k);\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -430,21 +418,26 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Algebra/modint.hpp
-  - Tree/Generator.hpp
   - Tree/Tree.hpp
-  - Tree/Rerooting.hpp
-  - Tree/Tree_DP.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  isVerificationFile: false
+  path: Tree/Lowest_Common_Ancestor.hpp
   requiredBy: []
-  timestamp: '2026-05-03 16:08:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  timestamp: '2026-05-16 15:04:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+documentation_of: Tree/Lowest_Common_Ancestor.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp.html
-title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"
 ---
+
+## Outline
+
+木 $T$ における $2$ 頂点 $u,v $ の最近共通祖先を高速に求める.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/05/16| LCA 実装 |

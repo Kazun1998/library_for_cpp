@@ -407,8 +407,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/dpl1/1F.test.cpp
-  - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/dpl1/1H.test.cpp
+  - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/dpl1/1G.test.cpp
 documentation_of: Knapsack/Knapsack_01.hpp
 layout: document

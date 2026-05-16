@@ -398,8 +398,8 @@ data:
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/1780.test.cpp
   - verify/yukicoder/1984.test.cpp
+  - verify/yukicoder/1780.test.cpp
 documentation_of: Algebra/Extended_Algebra.hpp
 layout: document
 redirect_from:

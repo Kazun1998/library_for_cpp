@@ -332,13 +332,13 @@ data:
   isVerificationFile: false
   path: String/Longest_Common_Prefix.hpp
   requiredBy:
-  - String/Number_of_Substrings.hpp
   - String/Longest_Common_Substring.hpp
+  - String/Number_of_Substrings.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
+  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
 documentation_of: String/Longest_Common_Prefix.hpp
 layout: document
 title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\u9577\

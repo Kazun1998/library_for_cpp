@@ -306,8 +306,8 @@ data:
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
 documentation_of: Union_Find/Potentilized_Union_Find.hpp
 layout: document
 title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304D Union Find"

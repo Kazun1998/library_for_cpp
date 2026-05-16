@@ -327,8 +327,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
   - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
 documentation_of: Geometry/projection/Projection_Point_Line.hpp
 layout: document
 title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
