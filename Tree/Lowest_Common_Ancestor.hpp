@@ -4,7 +4,7 @@
 #include "Tree.hpp"
 
 /**
- * @brief ダブリング（バイナリリフティング）を用いた最小共通先祖 (LCA) クエリを処理するクラス.
+ * @brief ダブリングを用いた最小共通先祖 (LCA) クエリを処理するクラス.
  * 構築に O(N log N), 各クエリに O(log N) かかる.
  */
 class Lowest_Common_Ancestor {
