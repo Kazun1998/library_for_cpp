@@ -57,6 +57,7 @@ class Tree {
     private:
     vector<int> depth;
     vector<vector<int>> tower;
+    vector<int> _top_down, _bottom_up;
     void bfs() {
         assert(is_locked());
 
@@ -76,28 +77,25 @@ class Tree {
                 Q.push_back(y);
             }
         }
-    }
 
-    public:
-    vector<int> top_down() const {
-        vector<int> res;
-        for (auto layer: tower) {
-            res.insert(res.end(), layer.begin(), layer.end());
+        _top_down.clear();
+        _top_down.reserve(N);
+        for (const auto &layer : tower) {
+            for (int v: layer) _top_down.emplace_back(v);
         }
 
-        return res;
-    }
-
-    public:
-    vector<int> bottom_up() const {
-        vector<int> res;
+        _bottom_up.clear();
+        _bottom_up.reserve(N);
         for (auto it = tower.rbegin(); it != tower.rend(); ++it) {
-            const auto &layer = *it;
-            res.insert(res.end(), layer.begin(), layer.end());
+            for (int v: *it) _bottom_up.emplace_back(v);
         }
-
-        return res;
     }
+
+    public:
+    const vector<int>& top_down() const { return _top_down; }
+
+    public:
+    const vector<int>& bottom_up() const { return _bottom_up; }
 
     // 1 頂点に関する情報
     public:
