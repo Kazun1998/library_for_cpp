@@ -85,6 +85,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Dual_Heap.hpp
     title: Dual Heap
+  - icon: ':warning:'
+    path: Data_Structure/Interval_Set.hpp
+    title: Interval Set
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Sliding_Window_Aggregation.hpp
     title: Sliding Window Aggregation
@@ -1206,6 +1209,7 @@ data:
   - Data_Structure/Doubly_Linked_List.hpp
   - Data_Structure/Sliding_Window_Aggregation.hpp
   - Data_Structure/Best_Sum.hpp
+  - Data_Structure/Interval_Set.hpp
   - Data_Structure/Binary_Trie.hpp
   timestamp: '2026-01-04 22:16:12+09:00'
   verificationStatus: LIBRARY_ALL_AC

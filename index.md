@@ -110,6 +110,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Dual_Heap.hpp
       title: Dual Heap
+    - icon: ':warning:'
+      path: Data_Structure/Interval_Set.hpp
+      title: Interval Set
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Sliding_Window_Aggregation.hpp
       title: Sliding Window Aggregation
