@@ -19,6 +19,11 @@ class Ordered_Set {
         for (const auto& x : init_list) insert(x);
     }
 
+    template<class InputIterator>
+    Ordered_Set(InputIterator first, InputIterator last) : t() {
+        for (auto it = first; it != last; ++it) insert(*it);
+    }
+
     bool insert(const T x) {
         auto result = t.insert(x);
         return result.second;
