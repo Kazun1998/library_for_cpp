@@ -14,4 +14,9 @@ class Ordered_Set {
 
     public:
     Ordered_Set(): t() {};
+
+    bool insert(const T x) {
+        auto result = t.insert(x);
+        return result.second;
+    }
 };
