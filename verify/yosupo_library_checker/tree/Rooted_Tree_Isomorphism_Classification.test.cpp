@@ -6,6 +6,7 @@
 int main() {
     int N; cin >> N;
     Tree T(N);
+    T.set_root(0);
     for (int i = 1; i < N; ++i) {
         int p; scanf("%d", &p);
         T.set_parent(i, p);
