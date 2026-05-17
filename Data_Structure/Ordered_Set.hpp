@@ -31,4 +31,15 @@ class Ordered_Set {
     bool contains(const T x) const { return t.find(x) != t.end(); }
 
     size_t size() const { return t.size(); }
+
+    int count_less(const T x, bool equal = false) const {
+        int k = t.order_of_key(x);
+        if (equal && contains(x)) k++;
+
+        return k;
+    }
+
+    int count_more(const T x, bool equal = false) const {
+        return size() - count_less(x, !equal);
+    }
 };
