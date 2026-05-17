@@ -24,6 +24,14 @@ class Ordered_Set {
         for (auto it = first; it != last; ++it) insert(*it);
     }
 
+    template<class Container>
+    Ordered_Set(const Container& container) : t() {
+        // C++11 の範囲ベース for ループを使い、内部の要素をすべて挿入
+        for (const auto& x : container) {
+            insert(x);
+        }
+    }
+
     bool insert(const T x) {
         auto result = t.insert(x);
         return result.second;
