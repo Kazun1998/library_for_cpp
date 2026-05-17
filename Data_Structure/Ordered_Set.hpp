@@ -19,4 +19,12 @@ class Ordered_Set {
         auto result = t.insert(x);
         return result.second;
     }
+
+    bool erase(const T x) {
+        auto it = t.find(x);
+        if (it == t.end()) return false;
+
+        t.erase(it);
+        return true;
+    }
 };
