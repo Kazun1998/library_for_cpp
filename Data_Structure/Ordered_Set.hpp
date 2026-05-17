@@ -42,4 +42,19 @@ class Ordered_Set {
     int count_more(const T x, bool equal = false) const {
         return size() - count_less(x, !equal);
     }
+
+    T kth(int k) const {
+        if (k < 0) k += size();
+
+        return *t.find_by_order(k);
+    }
+
+    optional<T> safe_kth(int k) const {
+        if (k < 0) k += size();
+
+        auto it = t.find_by_order(k);
+        if (it == t.end()) return nullopt;
+
+        return *it;
+    }
 };
