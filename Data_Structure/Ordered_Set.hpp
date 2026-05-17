@@ -60,6 +60,17 @@ class Ordered_Set {
         return size() - count_less(x, !equal);
     }
 
+    int count_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
+        // 範囲が空だったら明らかに 0
+        if (l > r || (l == r && (!l_equal || !r_equal))) return 0;
+
+        // 「r 以下の個数」から「l 未満の個数」を引くことで範囲内を切り出す
+        int upper = count_less(r, r_equal);
+        int lower = count_less(l, !l_equal);
+
+        return std::max(0, upper - lower);
+    }
+
     T kth(int k) const {
         if (k < 0) k += size();
 
