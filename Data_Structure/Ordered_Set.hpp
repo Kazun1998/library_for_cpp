@@ -91,4 +91,6 @@ class Ordered_Set {
     std::optional<T> previous(const T x, bool equal = false) const {
         return safe_kth(count_less(x, equal) - 1);
     }
+
+    bool empty() const { return t.empty(); }
 };
