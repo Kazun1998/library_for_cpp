@@ -61,6 +61,9 @@ class Ordered_Set {
     T operator[](int k) { return kth(k); }
     T operator[](int k) const { return kth(k); }
 
+    T kth_min(int k) const { return kth(k); }
+    T kth_max(int k) const { return kth(-(k + 1)); }
+
     T min() const { return kth(0); }
     T max() const { return kth(-1); }
 
