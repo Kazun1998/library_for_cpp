@@ -89,6 +89,9 @@ data:
     path: Data_Structure/Interval_Set.hpp
     title: Interval Set
   - icon: ':heavy_check_mark:'
+    path: Data_Structure/Ordered_Set.hpp
+    title: "\u9806\u5E8F\u4ED8\u304D\u96C6\u5408"
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Sliding_Window_Aggregation.hpp
     title: Sliding Window Aggregation
   - icon: ':heavy_check_mark:'
@@ -690,8 +693,14 @@ data:
     path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
     title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
@@ -1268,6 +1277,7 @@ data:
   - Data_Structure/Sliding_Window_Aggregation.hpp
   - Data_Structure/Best_Sum.hpp
   - Data_Structure/Interval_Set.hpp
+  - Data_Structure/Ordered_Set.hpp
   - Data_Structure/Binary_Trie.hpp
   timestamp: '2026-04-03 00:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -1286,6 +1296,7 @@ data:
   - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   - verify/yosupo_library_checker/other/Kth_term_of_Linearly_Recurrent_Sequence.test.cpp
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
+  - verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
   - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
@@ -1294,6 +1305,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp

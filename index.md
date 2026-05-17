@@ -114,6 +114,9 @@ data:
       path: Data_Structure/Interval_Set.hpp
       title: Interval Set
     - icon: ':heavy_check_mark:'
+      path: Data_Structure/Ordered_Set.hpp
+      title: "\u9806\u5E8F\u4ED8\u304D\u96C6\u5408"
+    - icon: ':heavy_check_mark:'
       path: Data_Structure/Sliding_Window_Aggregation.hpp
       title: Sliding Window Aggregation
   - name: Functional_Graph
@@ -839,8 +842,14 @@ data:
       path: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
       title: verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
