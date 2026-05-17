@@ -27,4 +27,6 @@ class Ordered_Set {
         t.erase(it);
         return true;
     }
+
+    bool contains(const T x) const { return t.find(x) != t.end(); }
 };
