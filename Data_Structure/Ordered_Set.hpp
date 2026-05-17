@@ -29,4 +29,6 @@ class Ordered_Set {
     }
 
     bool contains(const T x) const { return t.find(x) != t.end(); }
+
+    size_t size() const { return t.size(); }
 };
