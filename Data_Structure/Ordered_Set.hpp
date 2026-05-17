@@ -15,6 +15,10 @@ class Ordered_Set {
     public:
     Ordered_Set(): t() {};
 
+    Ordered_Set(std::initializer_list<T> init_list) : t() {
+        for (const auto& x : init_list) insert(x);
+    }
+
     bool insert(const T x) {
         auto result = t.insert(x);
         return result.second;
