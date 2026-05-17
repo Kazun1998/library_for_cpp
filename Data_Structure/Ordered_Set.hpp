@@ -93,4 +93,5 @@ class Ordered_Set {
     }
 
     bool empty() const { return t.empty(); }
+    void clear() { t.clear(); }
 };
