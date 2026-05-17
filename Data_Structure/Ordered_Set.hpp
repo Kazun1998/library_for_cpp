@@ -100,7 +100,9 @@ class Ordered_Set {
     }
 
     std::optional<T> previous(const T x, bool equal = false) const {
-        return safe_kth(count_less(x, equal) - 1);
+        int rank = count_less(x, equal) - 1;
+        if (rank < 0) return std::nullopt;
+        return safe_kth(rank);
     }
 
     bool empty() const { return t.empty(); }
