@@ -60,4 +60,12 @@ class Ordered_Set {
 
     T min() const { return kth(0); }
     T max() const { return kth(-1); }
+
+    std::optional<T> next(const T x, bool equal = false) const {
+        return safe_kth(count_less(x, !equal));
+    }
+
+    std::optional<T> previous(const T x, bool equal = false) const {
+        return safe_kth(count_less(x, equal) - 1);
+    }
 };
