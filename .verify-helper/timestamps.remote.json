@@ -125,6 +125,7 @@
 "verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp": "2026-05-16 17:32:06 +0900",
 "verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp": "2026-05-16 17:32:06 +0900",
+"verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp": "2026-05-17 11:53:28 +0900",
 "verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp": "2026-05-16 17:32:06 +0900",
 "verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp": "2026-05-16 17:32:06 +0900",
 "verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp": "2026-05-16 17:32:06 +0900",
