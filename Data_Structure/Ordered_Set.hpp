@@ -57,4 +57,7 @@ class Ordered_Set {
 
         return *it;
     }
+
+    T min() const { return kth(0); }
+    T max() const { return kth(-1); }
 };
