@@ -224,21 +224,21 @@ data:
     \        for (int v = offset(); v < N + offset(); v++) {\n            unless(is_root(v))\
     \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
     \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset(), -1);\n\n        deque<int> Q{ root\
-    \ };\n        tower[0] = { root };\n        depth[root] = 0;\n\n        while\
-    \ (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\n           \
-    \ for (int y: children[x]) {\n                depth[y] = depth[x] + 1;\n     \
-    \           tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
-    \            }\n        }\n    }\n\n    public:\n    vector<int> top_down() const\
-    \ {\n        vector<int> res;\n        for (auto layer: tower) {\n           \
-    \ res.insert(res.end(), layer.begin(), layer.end());\n        }\n\n        return\
-    \ res;\n    }\n\n    public:\n    vector<int> bottom_up() const {\n        vector<int>\
-    \ res;\n        for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n \
-    \           const auto &layer = *it;\n            res.insert(res.end(), layer.begin(),\
-    \ layer.end());\n        }\n\n        return res;\n    }\n\n    // 1 \u9802\u70B9\
-    \u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839?\n\
-    \    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
+    \ tower;\n    vector<int> _top_down, _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\
+    \n        tower.assign(N, {});\n        depth.assign(N + offset(), -1);\n\n  \
+    \      deque<int> Q{ root };\n        tower[0] = { root };\n        depth[root]\
+    \ = 0;\n\n        while (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\
+    \n            for (int y: children[x]) {\n                depth[y] = depth[x]\
+    \ + 1;\n                tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
+    \            }\n        }\n\n        _top_down.clear();\n        _top_down.reserve(N);\n\
+    \        for (const auto &layer : tower) {\n            for (int v: layer) _top_down.emplace_back(v);\n\
+    \        }\n\n        _bottom_up.clear();\n        _bottom_up.reserve(N);\n  \
+    \      for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n          \
+    \  for (int v: *it) _bottom_up.emplace_back(v);\n        }\n    }\n\n    public:\n\
+    \    const vector<int>& top_down() const { return _top_down; }\n\n    public:\n\
+    \    const vector<int>& bottom_up() const { return _bottom_up; }\n\n    // 1 \u9802\
+    \u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839\
+    ?\n    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
     \u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
     \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
     \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
@@ -326,7 +326,7 @@ data:
   isVerificationFile: false
   path: Tree/Generator.hpp
   requiredBy: []
-  timestamp: '2026-05-03 16:08:55+09:00'
+  timestamp: '2026-05-16 17:32:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/763.test.cpp

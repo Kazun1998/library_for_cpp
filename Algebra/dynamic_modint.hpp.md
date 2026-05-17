@@ -22,7 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Tree/Subtree_Isomorphism_Hash.hpp
+    title: "\u90E8\u5206\u6728\u30CF\u30C3\u30B7\u30E5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
+    title: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -297,10 +303,12 @@ data:
   - template/exception.hpp
   isVerificationFile: false
   path: Algebra/dynamic_modint.hpp
-  requiredBy: []
+  requiredBy:
+  - Tree/Subtree_Isomorphism_Hash.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp

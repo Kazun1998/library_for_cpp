@@ -225,47 +225,48 @@ data:
     \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
     \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
     \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
-    \    vector<int> depth;\n    vector<vector<int>> tower;\n    void bfs() {\n  \
-    \      assert(is_locked());\n\n        tower.assign(N, {});\n        depth.assign(N\
-    \ + offset(), -1);\n\n        deque<int> Q{ root };\n        tower[0] = { root\
-    \ };\n        depth[root] = 0;\n\n        while (!Q.empty()){\n            int\
-    \ x = Q.front(); Q.pop_front();\n\n            for (int y: children[x]) {\n  \
-    \              depth[y] = depth[x] + 1;\n                tower[depth[y]].emplace_back(y);\n\
-    \                Q.push_back(y);\n            }\n        }\n    }\n\n    public:\n\
-    \    vector<int> top_down() const {\n        vector<int> res;\n        for (auto\
-    \ layer: tower) {\n            res.insert(res.end(), layer.begin(), layer.end());\n\
-    \        }\n\n        return res;\n    }\n\n    public:\n    vector<int> bottom_up()\
-    \ const {\n        vector<int> res;\n        for (auto it = tower.rbegin(); it\
-    \ != tower.rend(); ++it) {\n            const auto &layer = *it;\n           \
-    \ res.insert(res.end(), layer.begin(), layer.end());\n        }\n\n        return\
-    \ res;\n    }\n\n    // 1 \u9802\u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n \
-    \   public:\n\n    // x \u306F\u6839?\n    bool is_root(const int &x) const {\
-    \ return x == root; }\n\n    // x \u306F\u8449?\n    bool is_leaf(const int &x)\
-    \ const {\n        assert(is_locked());\n        return children[x].empty();\n\
-    \    }\n\n    // x \u306E\u6B21\u6570\n    int degree(const int &x) const {\n\
-    \        assert(is_locked());\n        int d = children[x].size();\n        if\
-    \ (is_root(x)) { d--; }\n        return d;\n    }\n\n    // \u9802\u70B9 x \u306E\
-    \u6DF1\u3055\u3092\u6C42\u3081\u308B.\n    inline int vertex_depth(const int &x)\
-    \ const { return depth[x]; }\n\n    // 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\
-    \u4EF6\n\n    // x \u306F y \u306E\u89AA\u304B?\n    bool is_parent(const int\
-    \ &x, const int &y) const {\n        assert(is_locked());\n        return !is_root(y)\
-    \ && x == parent[y];\n    }\n\n    // x \u306F y \u306E\u500B\u304B?\n    inline\
-    \ bool is_children(const int &x, const int &y) const { return is_parent(y, x);\
-    \ }\n\n    // x \u3068 y \u306F\u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B\
-    ?\n    bool is_brother(const int &x, const int &y) const {\n        assert(is_locked());\n\
-    \        return !is_root(x) && !is_root(y) && parent[x] == parent[y];\n    }\n\
-    \n    int lowest_common_ancestor_greedy(int x, int y) const {\n        assert(is_locked());\n\
-    \n        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }\n\n        while\
-    \ (vertex_depth(x) < vertex_depth(y)) {\n            y = parent[y];\n        }\n\
-    \n        while (x != y) {\n            x = get_parent(x);\n            y = get_parent(y);\n\
-    \        }\n\n        return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex\
-    \ = false, has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time,\
-    \ out_time;\n    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>>\
-    \ euler_tour_edge;\n\n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\
-    \u884C\u3046.\n    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex)\
-    \ { return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N\
-    \ + offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto\
-    \ dfs = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
+    \    vector<int> depth;\n    vector<vector<int>> tower;\n    vector<int> _top_down,\
+    \ _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
+    \ {});\n        depth.assign(N + offset(), -1);\n\n        deque<int> Q{ root\
+    \ };\n        tower[0] = { root };\n        depth[root] = 0;\n\n        while\
+    \ (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\n           \
+    \ for (int y: children[x]) {\n                depth[y] = depth[x] + 1;\n     \
+    \           tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
+    \            }\n        }\n\n        _top_down.clear();\n        _top_down.reserve(N);\n\
+    \        for (const auto &layer : tower) {\n            for (int v: layer) _top_down.emplace_back(v);\n\
+    \        }\n\n        _bottom_up.clear();\n        _bottom_up.reserve(N);\n  \
+    \      for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n          \
+    \  for (int v: *it) _bottom_up.emplace_back(v);\n        }\n    }\n\n    public:\n\
+    \    const vector<int>& top_down() const { return _top_down; }\n\n    public:\n\
+    \    const vector<int>& bottom_up() const { return _bottom_up; }\n\n    // 1 \u9802\
+    \u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839\
+    ?\n    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
+    \u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
+    \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
+    \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
+    \ d = children[x].size();\n        if (is_root(x)) { d--; }\n        return d;\n\
+    \    }\n\n    // \u9802\u70B9 x \u306E\u6DF1\u3055\u3092\u6C42\u3081\u308B.\n\
+    \    inline int vertex_depth(const int &x) const { return depth[x]; }\n\n    //\
+    \ 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\u4EF6\n\n    // x \u306F y \u306E\
+    \u89AA\u304B?\n    bool is_parent(const int &x, const int &y) const {\n      \
+    \  assert(is_locked());\n        return !is_root(y) && x == parent[y];\n    }\n\
+    \n    // x \u306F y \u306E\u500B\u304B?\n    inline bool is_children(const int\
+    \ &x, const int &y) const { return is_parent(y, x); }\n\n    // x \u3068 y \u306F\
+    \u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B?\n    bool is_brother(const int\
+    \ &x, const int &y) const {\n        assert(is_locked());\n        return !is_root(x)\
+    \ && !is_root(y) && parent[x] == parent[y];\n    }\n\n    int lowest_common_ancestor_greedy(int\
+    \ x, int y) const {\n        assert(is_locked());\n\n        if (vertex_depth(x)\
+    \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
+    \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
+    \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
+    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
+    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
+    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
+    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
+    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
+    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
+    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
+    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
     \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
     \ {\n                self(self, y);\n            }\n\n            out_time[x]\
     \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
@@ -363,7 +364,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-05-03 16:08:55+09:00'
+  timestamp: '2026-05-16 17:32:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp

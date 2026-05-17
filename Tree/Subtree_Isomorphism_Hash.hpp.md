@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Tree/Lowest_Common_Ancestor.hpp
-    title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"
+    path: Algebra/dynamic_modint.hpp
+    title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
     path: Tree/Tree.hpp
     title: Tree/Tree.hpp
@@ -29,17 +29,16 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
+    title: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
-    links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#line 2 \"Tree/Lowest_Common_Ancestor.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"Tree/Subtree_Isomorphism_Hash.hpp\"\n\n#line 2 \"Tree/Tree.hpp\"\
     \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
@@ -202,33 +201,32 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree\
-    \ {\n    private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
-    \ children;\n\n    bool locked;\n\n    public:\n    Tree(int N, int _offset =\
-    \ 0): N(N), _offset(_offset) {\n        parent.assign(N + _offset, -1);\n    \
-    \    locked = false;\n    }\n\n    bool is_locked() const { return locked; }\n\
-    \n    public:\n    inline void set_root(const int &x) {\n        assert (!is_locked());\n\
-    \        root = x;\n    }\n\n    inline int vector_size() const { return order()\
-    \ + offset(); }\n\n    inline int get_root() const { return root; }\n    inline\
-    \ int get_parent(const int &x) const { return parent[x]; }\n    inline vector<int>\
-    \ get_children(const int &x) const { return children[x]; }\n\n    public:\n  \
-    \  // \u9802\u70B9 x \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\
-    \u308B.\n    inline void set_parent(const int &x, const int &y) {\n        assert\
-    \ (!is_locked());\n        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\
-    \u5B50\u306E\u4E00\u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n\
-    \    inline void set_child(const int &x, const int &y) { set_parent(y, x); }\n\
-    \n    // \u6728\u3092\u78BA\u5B9A\u3055\u305B\u308B\n    void seal() {\n     \
-    \   assert(!is_locked());\n\n        parent[root] = -1;\n        children.assign(N\
-    \ + offset(), vector<int>());\n        for (int v = offset(); v < N + offset();\
-    \ v++) {\n            unless(is_root(v)) { children[parent[v]].emplace_back(v);\
-    \ }\n        }\n\n        locked = true;\n        bfs();\n    }\n\n    private:\n\
-    \    vector<int> depth;\n    vector<vector<int>> tower;\n    vector<int> _top_down,\
-    \ _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\n        tower.assign(N,\
-    \ {});\n        depth.assign(N + offset(), -1);\n\n        deque<int> Q{ root\
-    \ };\n        tower[0] = { root };\n        depth[root] = 0;\n\n        while\
-    \ (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\n           \
-    \ for (int y: children[x]) {\n                depth[y] = depth[x] + 1;\n     \
-    \           tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
+    \    }\n};\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N,\
+    \ _offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
+    \n    bool locked;\n\n    public:\n    Tree(int N, int _offset = 0): N(N), _offset(_offset)\
+    \ {\n        parent.assign(N + _offset, -1);\n        locked = false;\n    }\n\
+    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
+    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
+    \    }\n\n    inline int vector_size() const { return order() + offset(); }\n\n\
+    \    inline int get_root() const { return root; }\n    inline int get_parent(const\
+    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
+    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
+    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
+    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
+    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
+    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
+    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
+    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
+    \   parent[root] = -1;\n        children.assign(N + offset(), vector<int>());\n\
+    \        for (int v = offset(); v < N + offset(); v++) {\n            unless(is_root(v))\
+    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
+    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
+    \ tower;\n    vector<int> _top_down, _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\
+    \n        tower.assign(N, {});\n        depth.assign(N + offset(), -1);\n\n  \
+    \      deque<int> Q{ root };\n        tower[0] = { root };\n        depth[root]\
+    \ = 0;\n\n        while (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\
+    \n            for (int y: children[x]) {\n                depth[y] = depth[x]\
+    \ + 1;\n                tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
     \            }\n        }\n\n        _top_down.clear();\n        _top_down.reserve(N);\n\
     \        for (const auto &layer : tower) {\n            for (int v: layer) _top_down.emplace_back(v);\n\
     \        }\n\n        _bottom_up.clear();\n        _bottom_up.reserve(N);\n  \
@@ -291,80 +289,119 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 5 \"Tree/Lowest_Common_Ancestor.hpp\"\n\n/**\n * @brief \u30C0\u30D6\
-    \u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\u5C0F\u5171\u901A\u5148\u7956\
-    \ (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\u30AF\u30E9\u30B9.\n\
-    \ * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\u30EA\u306B O(log N) \u304B\
-    \u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n    private:\n    const Tree\
-    \ &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\n    public:\n  \
-    \  /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF. \u30C0\u30D6\
-    \u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\u308B.\n  \
-    \   * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\u3066\
-    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
-    \ Tree &tree) : T(tree) {\n        assert(T.is_locked());\n        int N = T.order();\n\
-    \        int offset = T.offset();\n\n        N_bit = 0;\n        while ((1 <<\
-    \ N_bit) <= N) { N_bit++; }\n\n        upper_list.assign(N_bit, vector<int>(N\
-    \ + offset, -1));\n\n        for (int i = offset; i < N + offset; i++) {\n   \
-    \         if (T.is_root(i)) {\n                upper_list[0][i] = i;\n       \
-    \     } else {\n                upper_list[0][i] = T.get_parent(i);\n        \
-    \    }\n        }\n\n        for (int k = 1; k < N_bit; k++) {\n            for\
-    \ (int i = offset; i < N + offset; i++) {\n                upper_list[k][i] =\
-    \ upper_list[k - 1][upper_list[k - 1][i]];\n            }\n        }\n    }\n\n\
-    \    /**\n     * @brief \u9802\u70B9 x \u304B\u3089\u898B\u3066 k \u4EE3\u524D\
-    \u306E\u9802\u70B9\uFF08\u5148\u7956\uFF09\u3092\u6C42\u3081\u308B.\n     * @param\
-    \ x \u9802\u70B9\u756A\u53F7\n     * @param k \u9061\u308B\u4E16\u4EE3\u6570\n\
-    \     * @param over true \u306E\u5834\u5408, \u6839\u3088\u308A\u3082\u4E0A\u3092\
-    \u6307\u5B9A\u3057\u305F\u969B\u306B\u6839\u3092\u8FD4\u3059.false \u306E\u5834\
-    \u5408\u306F -1 \u3092\u8FD4\u3059.\n     * @return \u9061\u3063\u305F\u5148\u306E\
-    \u9802\u70B9\u756A\u53F7\n     */\n    int upper(int x, int k, bool over = true)\
-    \ const {\n        if (T.vertex_depth(x) < k) { return over ? T.get_root() : -1;\
-    \ }\n\n        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { x\
-    \ = upper_list[b][x]; }\n        }\n\n        return x;\n    }\n\n    /**\n  \
-    \   * @brief \u9802\u70B9 x \u3068\u9802\u70B9 y \u306E\u6700\u5C0F\u5171\u901A\
-    \u5148\u7956 (LCA) \u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\
-    \u53F7 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return \u6700\u5C0F\
-    \u5171\u901A\u5148\u7956\u306E\u9802\u70B9\u756A\u53F7\n     */\n    int lowest_common_ancestor(int\
-    \ x, int y) const {\n        if (T.vertex_depth(x) > T.vertex_depth(y)) { swap(x,\
-    \ y); }\n        y = upper(y, T.vertex_depth(y) - T.vertex_depth(x));\n\n    \
-    \    if (T.is_root(x) || x == y) { return x; }\n\n        for (int k = N_bit -\
-    \ 1; k >= 0; k--) {\n            int px = upper_list[k][x], py = upper_list[k][y];\n\
-    \            if (px != py) { x = px, y = py; }\n        }\n\n        return T.is_root(x)\
-    \ ? T.get_root() : T.get_parent(x);\n    }\n\n    /**\n     * @brief 2 \u9802\u70B9\
-    \ x, y \u9593\u306E\u8DDD\u96E2\uFF08\u30D1\u30B9\u4E0A\u306E\u30A8\u30C3\u30B8\
-    \u6570\uFF09\u3092\u6C42\u3081\u308B.\n     * @param x \u9802\u70B9\u756A\u53F7\
-    \ 1\n     * @param y \u9802\u70B9\u756A\u53F7 2\n     * @return 2 \u9802\u70B9\
-    \u9593\u306E\u8DDD\u96E2\n     */\n    int distance(int x, int y) const {\n  \
-    \      return T.vertex_depth(x) + T.vertex_depth(y) - 2 * T.vertex_depth(lowest_common_ancestor(x,\
-    \ y));\n    }\n\n    /**\n     * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9\
-    \ v \u3078\u5411\u304B\u3046\u6700\u77ED\u30D1\u30B9\u306B\u304A\u3044\u3066 k\
-    \ \u756A\u76EE (0-indexed) \u306B\u4F4D\u7F6E\u3059\u308B\u9802\u70B9\u3092\u6C42\
-    \u3081\u308B.\n     * @param u \u59CB\u70B9\n     * @param v \u7D42\u70B9\n  \
-    \   * @param k \u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 (u \u304C\
-    \ 0 \u756A\u76EE)\n     * @param over \u30D1\u30B9\u306E\u9577\u3055\u3088\u308A\
-    \u3082\u5927\u304D\u3044 k \u304C\u6307\u5B9A\u3055\u308C\u305F\u5834\u5408\u306B\
-    \u8FD4\u3059\u5024\n     * @return \u6307\u5B9A\u3055\u308C\u305F\u4F4D\u7F6E\u306E\
-    \u9802\u70B9\u756A\u53F7\n     */\n    int jump(int u, int v, int k, int over\
-    \ = -1) const {\n        if (k == 0) { return u; }\n\n        int w = lowest_common_ancestor(u,\
-    \ v);\n        int dist_uw = T.vertex_depth(u) - T.vertex_depth(w);\n        int\
-    \ dist_wv = T.vertex_depth(v) - T.vertex_depth(w);\n        int dist_uv = dist_uw\
-    \ + dist_wv;\n\n        if (dist_uv < k) { return over; }\n        return (k <=\
-    \ dist_uw) ? upper(u, k) : upper(v, dist_uv - k);\n    }\n};\n#line 4 \"verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp\"\
-    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
-    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
-    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    Lowest_Common_Ancestor L(T);\n\n    for (int q = 0; q < Q; q++) {\n    \
-    \    int u, v; scanf(\"%d%d\", &u, &v);\n        cout << L.lowest_common_ancestor(u,\
-    \ v) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include\"../../../Tree/Lowest_Common_Ancestor.hpp\"\
-    \n\nint main () {\n    int N, Q; cin >> N >> Q;\n    vector<int> p(N);\n    auto\
-    \ T = Tree(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n    \
-    \    scanf(\"%d\", &p[i]);\n        T.set_parent(i, p[i]);\n    }\n\n    T.seal();\n\
-    \n    Lowest_Common_Ancestor L(T);\n\n    for (int q = 0; q < Q; q++) {\n    \
-    \    int u, v; scanf(\"%d%d\", &u, &v);\n        cout << L.lowest_common_ancestor(u,\
-    \ v) << \"\\n\";\n    }\n}\n"
+    \ T;\n}\n#line 2 \"Algebra/dynamic_modint.hpp\"\n\n#line 4 \"Algebra/dynamic_modint.hpp\"\
+    \n\ntemplate<int id>\nclass dynamic_modint {\n    public:\n    uint64_t x;\n \
+    \   static int _mod;\n\n    static void set_mod(const int m) { _mod = m; } \n\
+    \    static int mod() { return _mod; }\n\n    public:\n    static dynamic_modint\
+    \ raw(int v) {\n        dynamic_modint a;\n        a.x = v;\n        return a;\n\
+    \    }\n\n    // \u521D\u671F\u5316\n    constexpr dynamic_modint(): x(0) {}\n\
+    \    constexpr dynamic_modint(int64_t a) {\n        int64_t w = (int64_t)(a) %\
+    \ mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
+    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    dynamic_modint operator-() const { return\
+    \ dynamic_modint(-x); }\n\n    // \u52A0\u6CD5\n    dynamic_modint& operator+=(const\
+    \ dynamic_modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return\
+    \ *this;\n    }\n\n    friend dynamic_modint operator+(const dynamic_modint &x,\
+    \ const dynamic_modint &y) { return dynamic_modint(x) += y; }\n\n    // \u6E1B\
+    \u6CD5\n    dynamic_modint& operator-=(const dynamic_modint &b){\n        if ((x\
+    \ += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
+    \ dynamic_modint operator-(const dynamic_modint &x, const dynamic_modint &y) {\
+    \ return dynamic_modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    dynamic_modint&\
+    \ operator*=(const dynamic_modint &b){\n        (x *= b.x) %= mod();\n       \
+    \ return *this;\n    }\n\n    friend dynamic_modint operator*(const dynamic_modint\
+    \ &x, const dynamic_modint &y) { return dynamic_modint(x) *= y; }\n    friend\
+    \ dynamic_modint operator*(const int &x, const dynamic_modint &y) { return dynamic_modint(x)\
+    \ *= y; }\n    friend dynamic_modint operator*(const ll &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) *= y; }\n\n    // \u9664\u6CD5\n    dynamic_modint&\
+    \ operator/=(const dynamic_modint &b){ return (*this) *= b.inverse(); }\n\n  \
+    \  friend dynamic_modint operator/(const dynamic_modint &x, const dynamic_modint\
+    \ &y) { return dynamic_modint(x) /= y; }\n\n    dynamic_modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return dynamic_modint(s);\n    }\n\n    // \u6BD4\u8F03\
+    \n    friend bool operator==(const dynamic_modint &a, const dynamic_modint &b)\
+    \ { return (a.x == b.x); }\n    friend bool operator==(const dynamic_modint &a,\
+    \ const int &b) { return a.x == safe_mod(b, mod()); }\n    friend bool operator!=(const\
+    \ dynamic_modint &a, const dynamic_modint &b) { return (a.x != b.x); }\n\n   \
+    \ // \u5165\u529B\n    friend istream &operator>>(istream &is, dynamic_modint\
+    \ &a) {\n        int64_t x;\n        is >> x;\n        a.x = (x % mod() + mod())\
+    \ % mod();\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
+    \ &operator<<(ostream &os, const dynamic_modint &a) { return os << a.x; }\n\n\
+    \    bool is_zero() const { return x == 0; }\n    bool is_member(ll a) const {\
+    \ return x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<int id>\nint dynamic_modint<id>::_mod\
+    \ = 0;\n\ntemplate<int id>\ndynamic_modint<id> pow(dynamic_modint<id> x, long\
+    \ long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    auto res =\
+    \ dynamic_modint<id>(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *=\
+    \ x; }\n        x *= x;\n    }\n\n    return res;\n}\n\n#line 5 \"Tree/Subtree_Isomorphism_Hash.hpp\"\
+    \n\nvector<int> Subtree_Isomorphism_Hash(const Tree &T, const vector<ll>& primes\
+    \ = {1000000007, 1000000009}) {\n    using mint = dynamic_modint<1>;\n\n    const\
+    \ int node_count = T.order();\n    const int vector_size = T.vector_size();\n\
+    \    const int offset = T.offset();\n\n    vector<vector<int>> combined_ids(vector_size);\n\
+    \    for (int i = offset; i < vector_size; ++i) {\n        combined_ids[i].reserve(primes.size());\n\
+    \    }\n\n    // \u4E71\u6570\u751F\u6210\u5668\u306F\u4E00\u5EA6\u3060\u3051\u521D\
+    \u671F\u5316\n    static mt19937_64 gen(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \n    auto compress_vals = [&](const auto& vals_to_compress) -> vector<int> {\n\
+    \        using T_val = typename std::decay<decltype(vals_to_compress[offset])>::type;\n\
+    \        vector<T_val> vals;\n\n        vals.reserve(node_count);\n        for\
+    \ (int i = offset; i < vector_size; ++i) vals.push_back(vals_to_compress[i]);\n\
+    \n        sort(vals.begin(), vals.end());\n        vals.erase(unique(vals.begin(),\
+    \ vals.end()), vals.end());\n\n        vector<int> res(vector_size, -1);\n   \
+    \     for (int i = offset; i < vector_size; ++i) {\n            res[i] = lower_bound(vals.begin(),\
+    \ vals.end(), vals_to_compress[i]) - vals.begin();\n        }\n\n        return\
+    \ res;\n    };\n\n    auto generate_seeds = [&](int count, ll prime) {\n     \
+    \   vector<mint> seeds(count + 1);\n        for (int d = 0; d <= count; ++d) {\n\
+    \            seeds[d] = mint(static_cast<long long>(gen() % prime));\n       \
+    \ }\n        return seeds;\n    };\n\n    vector<int> height(vector_size, 0);\n\
+    \    for (int x : T.bottom_up()) {\n        for (int y : T.get_children(x)) {\n\
+    \            if (height[x] < height[y] + 1) height[x] = height[y] + 1;\n     \
+    \   }\n    }\n\n    auto calculate_ranks = [&](ll prime) {\n        mint::set_mod(prime);\n\
+    \        vector<mint> hash(vector_size, mint(1));\n\n        auto seeds = generate_seeds(node_count,\
+    \ prime);\n\n        for (int x: T.bottom_up()) {\n            mint a = seeds[height[x]];\n\
+    \            for (auto y : T.get_children(x)) {\n                hash[x] = hash[x]\
+    \ * (a + hash[y]);\n            }\n        }\n\n        vector<uint64_t> hash_raw(vector_size);\n\
+    \        for (int i = offset; i < vector_size; ++i) hash_raw[i] = hash[i].x;\n\
+    \        return compress_vals(hash_raw);\n    };\n\n    for (ll prime : primes)\
+    \ {\n        auto ranks = calculate_ranks(prime);\n        for (int i = offset;\
+    \ i < vector_size; i++) {\n            combined_ids[i].push_back(ranks[i]);\n\
+    \        }\n    }\n\n    // \u3059\u3079\u3066\u306E\u30D7\u30E9\u30A4\u30E0\u3067\
+    \u306E ID \u3092\u7D71\u5408\u3057\u3066\u5EA7\u6A19\u5727\u7E2E\n    return compress_vals(combined_ids);\n\
+    }\n"
+  code: "#pragma once\n\n#include \"Tree.hpp\"\n#include \"../Algebra/dynamic_modint.hpp\"\
+    \n\nvector<int> Subtree_Isomorphism_Hash(const Tree &T, const vector<ll>& primes\
+    \ = {1000000007, 1000000009}) {\n    using mint = dynamic_modint<1>;\n\n    const\
+    \ int node_count = T.order();\n    const int vector_size = T.vector_size();\n\
+    \    const int offset = T.offset();\n\n    vector<vector<int>> combined_ids(vector_size);\n\
+    \    for (int i = offset; i < vector_size; ++i) {\n        combined_ids[i].reserve(primes.size());\n\
+    \    }\n\n    // \u4E71\u6570\u751F\u6210\u5668\u306F\u4E00\u5EA6\u3060\u3051\u521D\
+    \u671F\u5316\n    static mt19937_64 gen(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \n    auto compress_vals = [&](const auto& vals_to_compress) -> vector<int> {\n\
+    \        using T_val = typename std::decay<decltype(vals_to_compress[offset])>::type;\n\
+    \        vector<T_val> vals;\n\n        vals.reserve(node_count);\n        for\
+    \ (int i = offset; i < vector_size; ++i) vals.push_back(vals_to_compress[i]);\n\
+    \n        sort(vals.begin(), vals.end());\n        vals.erase(unique(vals.begin(),\
+    \ vals.end()), vals.end());\n\n        vector<int> res(vector_size, -1);\n   \
+    \     for (int i = offset; i < vector_size; ++i) {\n            res[i] = lower_bound(vals.begin(),\
+    \ vals.end(), vals_to_compress[i]) - vals.begin();\n        }\n\n        return\
+    \ res;\n    };\n\n    auto generate_seeds = [&](int count, ll prime) {\n     \
+    \   vector<mint> seeds(count + 1);\n        for (int d = 0; d <= count; ++d) {\n\
+    \            seeds[d] = mint(static_cast<long long>(gen() % prime));\n       \
+    \ }\n        return seeds;\n    };\n\n    vector<int> height(vector_size, 0);\n\
+    \    for (int x : T.bottom_up()) {\n        for (int y : T.get_children(x)) {\n\
+    \            if (height[x] < height[y] + 1) height[x] = height[y] + 1;\n     \
+    \   }\n    }\n\n    auto calculate_ranks = [&](ll prime) {\n        mint::set_mod(prime);\n\
+    \        vector<mint> hash(vector_size, mint(1));\n\n        auto seeds = generate_seeds(node_count,\
+    \ prime);\n\n        for (int x: T.bottom_up()) {\n            mint a = seeds[height[x]];\n\
+    \            for (auto y : T.get_children(x)) {\n                hash[x] = hash[x]\
+    \ * (a + hash[y]);\n            }\n        }\n\n        vector<uint64_t> hash_raw(vector_size);\n\
+    \        for (int i = offset; i < vector_size; ++i) hash_raw[i] = hash[i].x;\n\
+    \        return compress_vals(hash_raw);\n    };\n\n    for (ll prime : primes)\
+    \ {\n        auto ranks = calculate_ranks(prime);\n        for (int i = offset;\
+    \ i < vector_size; i++) {\n            combined_ids[i].push_back(ranks[i]);\n\
+    \        }\n    }\n\n    // \u3059\u3079\u3066\u306E\u30D7\u30E9\u30A4\u30E0\u3067\
+    \u306E ID \u3092\u7D71\u5408\u3057\u3066\u5EA7\u6A19\u5727\u7E2E\n    return compress_vals(combined_ids);\n\
+    }\n"
   dependsOn:
-  - Tree/Lowest_Common_Ancestor.hpp
+  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -372,17 +409,58 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Tree/Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - Algebra/dynamic_modint.hpp
+  isVerificationFile: false
+  path: Tree/Subtree_Isomorphism_Hash.hpp
   requiredBy: []
-  timestamp: '2026-05-16 17:32:06+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  timestamp: '2026-05-16 22:59:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
+documentation_of: Tree/Subtree_Isomorphism_Hash.hpp
 layout: document
-redirect_from:
-- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-- /verify/verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp.html
-title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+title: "\u90E8\u5206\u6728\u30CF\u30C3\u30B7\u30E5"
 ---
+
+## Outline
+
+根付き木 $(T, r)$ における部分根付き木に関するハッシュを作成して, 同値類で分割する.
+
+## Theory
+
+以下のように記号を定義する.
+
+* 木 $T$ を $T = (V, E)$ とする.
+* $T$ の位数を $n$ とする.
+* $v \in V$ に対して, 以下を定義する.
+  * 頂点 $v$ を根とする部分木の高さを $h_v$ とする.
+  * 頂点 $v$ の子全体の集合を $\textrm{ch}(v)$ とする.
+
+頂点 $v$ に対するハッシュ関数 $\eta_v \in \mathbb{F}_p[x_0, x_1, \dots, x_{n-1}]$ を以下で定義する.
+
+$$ \eta_v := \prod_{w \in \textrm{ch}(v)} (x_{h_v} + \eta_w)$$
+
+で定める.
+
+このとき, $v, w \in V$ に対して, 以下は同値になる.
+
+* 頂点 $v$ を根とする部分木と頂点 $w$ を根とする部分木は同型である.
+* $\eta_v = \eta_w$.
+
+そのため, 多項式 $\eta_v$ が一致するかどうかを判定する方法は時間計算量的に厳しいが, 式の値による評価で非常に高い確率でのハッシュによる一致判定を行うことができる.
+
+素数 $p$ に対して, ランダムに $a_0, \dots, a_{n-1} \in \mathbb{F}_p$ を選び, $\eta_v(a_0, \dots, a_{n-1})$ を評価することで一致判定に持ち込む.
+
+そして, 各 $v \in V$ に対して $\eta_v$ の総次数は高々 $n$ なので, Schwartz–Zippel lemma より, $\eta_v \neq \eta_w$ であるのにも関わらず, ランダムに $a_0, \dots, a_{n-1} \in \mathbb{F}_p$ を選んだ際に
+
+$$ \eta_v(a_0, \dots, a_{n-1}) = \eta_w(a_0, \dots, a_{n-1})$$
+
+となる確率は高々 $\frac{n}{p}$ である.
+
+$1$ つの素数に対しての判定だと, 誕生日のパラドックスより不安が残るが, 複数個の素数に対して判定を行うことで, 不本意な衝突を避けることができる.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/05/16| LCA 実装 |

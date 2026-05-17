@@ -628,6 +628,9 @@ data:
       path: Tree/Rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
     - icon: ':heavy_check_mark:'
+      path: Tree/Subtree_Isomorphism_Hash.hpp
+      title: "\u90E8\u5206\u6728\u30CF\u30C3\u30B7\u30E5"
+    - icon: ':heavy_check_mark:'
       path: Tree/Subtree_Monoid_Vertex_Query.hpp
       title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
     - icon: ':heavy_check_mark:'
@@ -1098,6 +1101,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
       title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
+      title: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
       title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
