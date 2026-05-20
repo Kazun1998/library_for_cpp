@@ -34,7 +34,10 @@ class Ordered_Multiset {
         }
     }
 
-    bool insert(const T x) {}
+    bool insert(const T x) {
+        t.insert({x, id++});
+        return true;
+    }
 
     bool erase(const T x) {}
 
