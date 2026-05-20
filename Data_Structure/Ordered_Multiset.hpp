@@ -97,5 +97,5 @@ class Ordered_Multiset {
     }
 
     bool empty() const { return t.empty(); }
-    void clear() { t.clear(); }
+    void clear() { t.clear(); id = 0; }
 };
