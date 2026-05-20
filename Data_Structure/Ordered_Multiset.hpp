@@ -88,9 +88,13 @@ class Ordered_Multiset {
     T min() const { return kth(0); }
     T max() const { return kth(-1); }
 
-    std::optional<T> next(const T x, bool equal = false) const {}
+    std::optional<T> next(const T x, bool equal = false) const {
+        return safe_kth(count_less(x, !equal));
+    }
 
-    std::optional<T> previous(const T x, bool equal = false) const {}
+    std::optional<T> previous(const T x, bool equal = false) const {
+        return safe_kth(count_less(x, equal) - 1);
+    }
 
     bool empty() const { return t.empty(); }
     void clear() { t.clear(); }
