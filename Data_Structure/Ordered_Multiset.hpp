@@ -48,11 +48,22 @@ class Ordered_Multiset {
 
     size_t size() const { return t.size(); }
 
-    int count_less(const T x, bool equal = false) const {}
+    int count_less(const T x, bool equal = false) const {
+        if (equal) return t.order_of_key({x, id});
+        else return t.order_of_key({x, -1});
+    }
 
-    int count_more(const T x, bool equal = false) const {}
+    int count_more(const T x, bool equal = false) const {
+        return size() - count_less(x, !equal);
+    }
 
-    int count_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {}
+    int count_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
+        if (l > r || (l == r && (!l_equal || !r_equal))) return 0;
+
+        int upper = count_less(r, r_equal);
+        int lower = count_less(l, !l_equal);
+        return std::max(0, upper - lower);
+    }
 
     T kth(int k) const {}
 
