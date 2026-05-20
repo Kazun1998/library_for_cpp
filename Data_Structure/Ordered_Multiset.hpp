@@ -43,7 +43,7 @@ class Ordered_Multiset {
 
     bool contains(const T x) const {}
 
-    size_t size() const {}
+    size_t size() const { return t.size(); }
 
     int count_less(const T x, bool equal = false) const {}
 
