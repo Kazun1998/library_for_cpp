@@ -39,7 +39,15 @@ class Ordered_Multiset {
         return true;
     }
 
-    bool erase(const T x) {}
+    bool erase(const T x) {
+        auto it = t.lower_bound({x, -1});
+        if (it != t.end() && it->first == x) {
+            t.erase(it);
+            return true;
+        }
+
+        return false;
+    }
 
     bool contains(const T x) const {
         auto it = t.lower_bound({x, -1});
