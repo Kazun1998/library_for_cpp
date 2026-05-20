@@ -15,19 +15,19 @@ class Ordered_Multiset {
     int id = 0;
 
     public:
-    Ordered_Set(): t(), id(0) {};
+    Ordered_Multiset(): t(), id(0) {};
 
-    Ordered_Set(std::initializer_list<T> init_list) : t(), id(0) {
+    Ordered_Multiset(std::initializer_list<T> init_list) : t(), id(0) {
         for (const auto& x : init_list) insert(x);
     }
 
     template<class Iterator>
-    Ordered_Set(Iterator first, Iterator last) : t(), id(0) {
+    Ordered_Multiset(Iterator first, Iterator last) : t(), id(0) {
         for (auto it = first; it != last; ++it) insert(*it);
     }
 
     template<class Container>
-    Ordered_Set(const Container& container) : t(), id(0) {
+    Ordered_Multiset(const Container& container) : t(), id(0) {
         // C++11 の範囲ベース for ループを使い、内部の要素をすべて挿入
         for (const auto& x : container) {
             insert(x);
