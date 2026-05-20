@@ -12,21 +12,22 @@ class Ordered_Multiset {
     typedef tree<Key, null_type, less<Key>, rb_tree_tag, tree_order_statistics_node_update> order_tree;
 
     order_tree t;
+    int id = 0;
 
     public:
-    Ordered_Set(): t() {};
+    Ordered_Set(): t(), id(0) {};
 
-    Ordered_Set(std::initializer_list<T> init_list) : t() {
+    Ordered_Set(std::initializer_list<T> init_list) : t(), id(0) {
         for (const auto& x : init_list) insert(x);
     }
 
     template<class Iterator>
-    Ordered_Set(Iterator first, Iterator last) : t() {
+    Ordered_Set(Iterator first, Iterator last) : t(), id(0) {
         for (auto it = first; it != last; ++it) insert(*it);
     }
 
     template<class Container>
-    Ordered_Set(const Container& container) : t() {
+    Ordered_Set(const Container& container) : t(), id(0) {
         // C++11 の範囲ベース for ループを使い、内部の要素をすべて挿入
         for (const auto& x : container) {
             insert(x);
