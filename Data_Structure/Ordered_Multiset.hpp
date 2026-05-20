@@ -65,9 +65,19 @@ class Ordered_Multiset {
         return std::max(0, upper - lower);
     }
 
-    T kth(int k) const {}
+    T kth(int k) const {
+        if (k < 0) k += size();
+        return t.find_by_order(k)->first;
+    }
 
-    optional<T> safe_kth(int k) const {}
+    optional<T> safe_kth(int k) const {
+        if (k < 0) k += size();
+
+        auto it = t.find_by_order(k);
+        if (it == t.end()) return nullopt;
+
+        return it->first;
+    }
 
     T operator[](int k) { return kth(k); }
     T operator[](int k) const { return kth(k); }
