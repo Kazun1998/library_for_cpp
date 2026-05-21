@@ -65,6 +65,10 @@ class Ordered_Multiset {
         return size() - count_less(x, !equal);
     }
 
+    int count(const T x) const {
+        return count_less(x, true) - count_less(x, false);
+    }
+
     int count_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
         if (l > r || (l == r && (!l_equal || !r_equal))) return 0;
 
