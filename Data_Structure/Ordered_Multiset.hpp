@@ -15,6 +15,8 @@ class Ordered_Multiset {
     int id = 0;
 
     public:
+    // コンストラクタ
+
     Ordered_Multiset(): t(), id(0) {};
 
     Ordered_Multiset(std::initializer_list<T> init_list) : t(), id(0) {
@@ -34,6 +36,8 @@ class Ordered_Multiset {
         }
     }
 
+    // 挿入系メソッド
+
     /// @brief x を挿入する
     /// @param x 挿入値
     /// @return 変化があれば true というルールだが, 多重集合としているので必ず true になる.
@@ -41,6 +45,8 @@ class Ordered_Multiset {
         t.insert({x, id++});
         return true;
     }
+
+    // 削除系メソッド
 
     /// @brief x が存在するならば, x を 1 個消す.
     /// @param x 削除値
@@ -87,6 +93,8 @@ class Ordered_Multiset {
     /// @return 元の個数
     size_t size() const { return t.size(); }
 
+    // カウント系メソッド
+
     /// @brief x 未満の元の個数を求める.
     /// @param x 基準値
     /// @param equal `true` にすると, 「未満」が「以下」になる.
@@ -125,6 +133,8 @@ class Ordered_Multiset {
         return std::max(0, upper - lower);
     }
 
+    // インデックス系メソッド
+
     /// @brief k (0-indexed) 番目の値を求める.
     /// @param k 番号
     /// @return k 番目の値
@@ -157,6 +167,8 @@ class Ordered_Multiset {
     /// @return 最小値
     T max() const { return kth(-1); }
 
+    // 隣接要素系メソッド
+
     /// @brief x より大きい最小の値を求める.
     /// @param x 基準値
     /// @param equal `true` にすると, 「より大きい」が「以上」になる.
@@ -172,6 +184,8 @@ class Ordered_Multiset {
     std::optional<T> previous(const T x, bool equal = false) const {
         return safe_kth(count_less(x, equal) - 1);
     }
+
+    // その他
 
     /// @return 空集合?
     bool empty() const { return t.empty(); }
