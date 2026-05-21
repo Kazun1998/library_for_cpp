@@ -55,6 +55,26 @@ class Ordered_Multiset {
         return false;
     }
 
+    /// @brief x を消せるだけ消す.
+    /// @param x 削除値
+    /// @return 削除した x の個数.
+    int discard(const T x) {
+        if (!contains(x)) return 0;
+
+        order_tree tail, more;
+
+        // x 以上を tail に移動
+        t.split({x, -1}, tail);
+
+        // x より大きい要素を more に移動. tail には x だけが残る.
+        tail.split({x, id}, more);
+
+        // t と more が x ではない要素
+        t.join(more);
+
+        return tail.size();;
+    }
+
     /// @brief x が含まれているか?
     /// @param x 判定値
     /// @return x が 1 個以上含まれているならば true.
@@ -103,26 +123,6 @@ class Ordered_Multiset {
         int upper = count_less(r, r_equal);
         int lower = count_less(l, !l_equal);
         return std::max(0, upper - lower);
-    }
-
-    /// @brief x を消せるだけ消す.
-    /// @param x 削除値
-    /// @return 削除した x の個数.
-    int discard(const T x) {
-        if (!contains(x)) return 0;
-
-        order_tree tail, more;
-
-        // x 以上を tail に移動
-        t.split({x, -1}, tail);
-
-        // x より大きい要素を more に移動. tail には x だけが残る.
-        tail.split({x, id}, more);
-
-        // t と more が x ではない要素
-        t.join(more);
-
-        return tail.size();;
     }
 
     /// @brief k (0-indexed) 番目の値を求める.
