@@ -77,6 +77,23 @@ class Ordered_Multiset {
         return std::max(0, upper - lower);
     }
 
+    int discard(const T x) {
+        if (!contains(x)) return 0;
+
+        order_tree tail, more;
+
+        // x 以上を tail に移動
+        t.split({x, -1}, tail);
+
+        // x より大きい要素を more に移動. tail には x だけが残る.
+        tail.split({x, id}, more);
+
+        // t と more が x ではない要素
+        t.join(more);
+
+        return tail.size();;
+    }
+
     T kth(int k) const {
         if (k < 0) k += size();
         return t.find_by_order(k)->first;
