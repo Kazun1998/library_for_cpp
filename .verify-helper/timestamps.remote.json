@@ -51,6 +51,7 @@
 "verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp": "2026-01-12 13:35:13 +0900",
 "verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp": "2026-04-13 01:27:34 +0900",
+"verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp": "2026-05-23 18:55:50 +0900",
 "verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp": "2026-04-26 00:54:06 +0900",
 "verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp": "2026-04-13 01:27:34 +0900",
 "verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp": "2026-04-13 01:27:34 +0900",
