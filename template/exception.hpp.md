@@ -88,6 +88,9 @@ data:
   - icon: ':warning:'
     path: Data_Structure/Interval_Set.hpp
     title: Interval Set
+  - icon: ':warning:'
+    path: Data_Structure/Ordered_Multiset.hpp
+    title: "\u9806\u5E8F\u4ED8\u304D\u591A\u91CD\u96C6\u5408"
   - icon: ':heavy_check_mark:'
     path: Data_Structure/Ordered_Set.hpp
     title: "\u9806\u5E8F\u4ED8\u304D\u96C6\u5408"
@@ -1166,6 +1169,7 @@ data:
   - Graph/Graph/Count_Spanning_Trees.hpp
   - Graph/Graph/Path.hpp
   - Data_Structure/Dual_Heap.hpp
+  - Data_Structure/Ordered_Multiset.hpp
   - Data_Structure/AVL_Tree.hpp
   - Data_Structure/Doubly_Linked_List.hpp
   - Data_Structure/Sliding_Window_Aggregation.hpp
