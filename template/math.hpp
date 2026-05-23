@@ -103,6 +103,8 @@ ll intpow(ll x, ll y){
     return a;
 }
 
+ll pow(ll x, ll y) { return intpow(x, y); }
+
 // x の y 乗を z で割った余りを求める.
 template<typename T, integral U>
 T modpow(T x, U y, T z) {
