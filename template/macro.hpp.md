@@ -456,7 +456,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Others/Topological_Sort.hpp
     title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Queries/Mo.hpp
     title: Mo
   - icon: ':heavy_check_mark:'
@@ -713,6 +713,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
@@ -1217,6 +1220,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp

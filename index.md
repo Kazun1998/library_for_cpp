@@ -538,7 +538,7 @@ data:
       title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
   - name: Queries
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Queries/Mo.hpp
       title: Mo
   - name: Segment_Tree
@@ -865,6 +865,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
       title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
