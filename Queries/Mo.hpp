@@ -20,6 +20,15 @@ class Mo {
         query_count++;
     }
 
+    /// @brief 半開区間 [l, r) に関するクエリを追加する
+    /// @param l 左端 (inclusive)
+    /// @param r 右端 (exclusive)
+    void add_range(const int l, const int r) {
+        left.emplace_back(l);
+        right.emplace_back(r);
+        query_count++;
+    }
+
     /// @brief Mo's algorithm を実行する
     /// @tparam ADD 要素を追加する関数の型
     /// @tparam DEL 要素を削除する関数の型
@@ -35,7 +44,7 @@ class Mo {
 
         for (int q = 0; q < query_count; q++) {
             int bucket_id = div_floor(left[q], bucket_size);
-            buckets[bucket_id].emplace_back(q);
+            buckets[min(bucket_count - 1, bucket_id)].emplace_back(q);
         }
 
         int l = 0, r = 0;
