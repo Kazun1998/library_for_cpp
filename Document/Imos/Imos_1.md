@@ -12,7 +12,7 @@ documentation_of: //Imos/Imos_1.hpp
 
 ### 累積和作用素と差分作用素
 
-可換環 $A$ 上の列の集合を $\mathcal{A}$ とする. $\mathcal{A}$ 上の作用素 $S: \mathcal{A} \to \mathcal{A}$ を $\bm{x} = (x_i) \in \mathcal{A}$ に対して,
+可換環 $A$ 上の列の集合を $\mathcal{A}$ とする. $\mathcal{A}$ 上の作用素 $S: \mathcal{A} \to \mathcal{A}$ を $\boldsymbol{x} = (x_i) \in \mathcal{A}$ に対して,
 
 $$ S \boldsymbol{x} := \left(\sum_{p=0}^i x_p \right) $$
 
