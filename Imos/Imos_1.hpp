@@ -8,8 +8,15 @@ class Imos_1 {
     std::vector<T> lazy;
     int n;
 
+    bool push(const int t, const int x) {
+        if (!(0 <= t && t < n)) return false;
+
+        lazy[t] += x;
+        return true;
+    }
+
     public:
-    Imos_1(const int n) : n(n), lazy(n + 1, 0) {}
+    Imos_1(const int n) : n(n), lazy(n, 0) {}
 
     /// @brief 閉区間 [l, r] の各要素に x を加算
     /// @param l 左端
@@ -24,9 +31,9 @@ class Imos_1 {
         
         // 丸め込んだ結果、逆転 or 範囲外なら何もしない
         if (l > r || l >= n || r < 0) return;
-
-        lazy[l] += x;
-        lazy[r + 1] -= x; // クリップされているため、r + 1 <= n は常に満たされる
+    
+        push(l, x);
+        push(r + 1, -x);
     }
 
     /// @brief 閉区間 [l, r] の各要素に 1 を加算
@@ -38,7 +45,7 @@ class Imos_1 {
     std::vector<T> cumulate() {
         if (n == 0) return std::vector<T>();
 
-        std::vector<T> res(lazy.begin(), lazy.begin() + n);
+        std::vector<T> res(lazy.begin(), lazy.end());
         for (int i = 1; i < n; ++i) res[i] += res[i - 1];
 
         return res;
