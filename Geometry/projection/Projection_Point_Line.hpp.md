@@ -326,8 +326,8 @@ data:
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/1B.test.cpp
   - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
   - verify/aizu_online_judge/cgl/1A.test.cpp
 documentation_of: Geometry/projection/Projection_Point_Line.hpp
 layout: document

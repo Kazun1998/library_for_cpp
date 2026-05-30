@@ -391,9 +391,9 @@ data:
   isVerificationFile: false
   path: Graph/Digraph/Digraph.hpp
   requiredBy:
+  - Graph/Digraph/Path.hpp
   - Graph/Digraph/Strongly_Connected_Components.hpp
   - Graph/Digraph/Eulerian_Trail.hpp
-  - Graph/Digraph/Path.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

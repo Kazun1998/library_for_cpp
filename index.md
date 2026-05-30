@@ -312,6 +312,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Graph/Weighted_Graph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
+  - name: Imos
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Imos/Imos_1.hpp
+      title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 0 \u6B21)"
+    - icon: ':heavy_check_mark:'
+      path: Imos/Imos_2.hpp
+      title: "\u3044\u3082\u3059\u6CD5 (2 \u6B21\u5143 0 \u6B21)"
+    - icon: ':warning:'
+      path: Imos/Linear_Imos_1.hpp
+      title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 1 \u6B21)"
   - name: Integer
     pages:
     - icon: ':warning:'
@@ -781,6 +792,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/dsl/3D.test.cpp
       title: verify/aizu_online_judge/dsl/3D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/5A.test.cpp
+      title: verify/aizu_online_judge/dsl/5A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/dsl/5B.test.cpp
+      title: verify/aizu_online_judge/dsl/5B.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
     - icon: ':heavy_check_mark:'

@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Tree/Tree.hpp
-    title: Tree/Tree.hpp
-  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -28,21 +25,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-    title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/763.test.cpp
-    title: verify/yukicoder/763.test.cpp
+    path: verify/aizu_online_judge/dsl/5B.test.cpp
+    title: verify/aizu_online_judge/dsl/5B.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u7D2F\u7A4D\u548C\u3092\u8A08\u7B97\u3057\u3066\u7D50\u679C\u3092\
+      \u8FD4\u3059 (\u7D2F\u7A4D\u548C\u4F5C\u7528\u7D20 S \u306E\u9069\u7528)"
     links: []
-  bundledCode: "#line 2 \"Tree/Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
-    using namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+  bundledCode: "#line 2 \"Imos/Imos_2.hpp\"\n\n#line 2 \"template/template.hpp\"\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
     \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
     \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
@@ -204,118 +197,71 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N,\
-    \ _offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
-    \n    bool locked;\n\n    public:\n    Tree(int N, int _offset = 0): N(N), _offset(_offset)\
-    \ {\n        parent.assign(N + _offset, -1);\n        locked = false;\n    }\n\
-    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
-    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
-    \    }\n\n    inline int vector_size() const { return order() + offset(); }\n\n\
-    \    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset(), vector<int>());\n\
-    \        for (int v = offset(); v < N + offset(); v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    vector<int> _top_down, _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\
-    \n        tower.assign(N, {});\n        depth.assign(N + offset(), -1);\n\n  \
-    \      deque<int> Q{ root };\n        tower[0] = { root };\n        depth[root]\
-    \ = 0;\n\n        while (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\
-    \n            for (int y: children[x]) {\n                depth[y] = depth[x]\
-    \ + 1;\n                tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
-    \            }\n        }\n\n        _top_down.clear();\n        _top_down.reserve(N);\n\
-    \        for (const auto &layer : tower) {\n            for (int v: layer) _top_down.emplace_back(v);\n\
-    \        }\n\n        _bottom_up.clear();\n        _bottom_up.reserve(N);\n  \
-    \      for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n          \
-    \  for (int v: *it) _bottom_up.emplace_back(v);\n        }\n    }\n\n    public:\n\
-    \    const vector<int>& top_down() const { return _top_down; }\n\n    public:\n\
-    \    const vector<int>& bottom_up() const { return _bottom_up; }\n\n    // 1 \u9802\
-    \u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839\
-    ?\n    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
-    \u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
-    \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
-    \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
-    \ d = children[x].size();\n        if (is_root(x)) { d--; }\n        return d;\n\
-    \    }\n\n    // \u9802\u70B9 x \u306E\u6DF1\u3055\u3092\u6C42\u3081\u308B.\n\
-    \    inline int vertex_depth(const int &x) const { return depth[x]; }\n\n    //\
-    \ 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\u4EF6\n\n    // x \u306F y \u306E\
-    \u89AA\u304B?\n    bool is_parent(const int &x, const int &y) const {\n      \
-    \  assert(is_locked());\n        return !is_root(y) && x == parent[y];\n    }\n\
-    \n    // x \u306F y \u306E\u500B\u304B?\n    inline bool is_children(const int\
-    \ &x, const int &y) const { return is_parent(y, x); }\n\n    // x \u3068 y \u306F\
-    \u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B?\n    bool is_brother(const int\
-    \ &x, const int &y) const {\n        assert(is_locked());\n        return !is_root(x)\
-    \ && !is_root(y) && parent[x] == parent[y];\n    }\n\n    int lowest_common_ancestor_greedy(int\
-    \ x, int y) const {\n        assert(is_locked());\n\n        if (vertex_depth(x)\
-    \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
-    \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
-    \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 2 \"Tree/Generator.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>>\
-    \ adjacent, int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
-    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
-    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
-    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
-    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
-    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
-    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n"
-  code: "#include\"Tree.hpp\"\n\nTree Generate_Tree(int N, vector<vector<int>> adjacent,\
-    \ int root, int offset = 0) {\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + offset, false); seen[root] = true;\n    deque<int>\
-    \ Q{root};\n\n    while(!Q.empty()) {\n        int v = Q.back(); Q.pop_back();\n\
-    \        for (int w: adjacent[v]) {\n            if (seen[w]) { continue; }\n\n\
-    \            seen[w] = true;\n            T.set_child(v, w);\n            Q.push_back(w);\n\
-    \        }\n    }\n\n    T.seal();\n    return T;\n}\n\nTree Generate_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adjacent(N + offset, vector<int>());\n    for (auto &&[u, v]: edges) {\n   \
-    \     adjacent[u].emplace_back(v);\n        adjacent[v].emplace_back(u);\n   \
-    \ }\n\n    return Generate_Tree(N, adjacent, root, offset);\n}\n"
+    \    }\n};\n#line 4 \"Imos/Imos_2.hpp\"\n\n#line 7 \"Imos/Imos_2.hpp\"\n\ntemplate\
+    \ <typename T>\nclass Imos_2 {\n    private:\n    // \u5DEE\u5206\u914D\u5217\
+    \ (h+1 x w+1 \u306B\u3059\u308B\u3053\u3068\u3067\u5883\u754C\u5916\u53C2\u7167\
+    \u3092\u56DE\u907F)\n    std::vector<std::vector<T>> lazy;\n    int h, w;\n\n\
+    \    bool push(const int i, const int j, const T x) {\n        if (!(0 <= i &&\
+    \ i <= h)) return false;\n        if (!(0 <= j && j <= w)) return false;\n\n \
+    \       lazy[i][j] += x;\n        return true;\n    }\n\n    public:\n    Imos_2(const\
+    \ int h, const int w): lazy(h + 1, std::vector<T>(w + 1, T())), h(h), w(w) {}\n\
+    \n    // \u9589\u533A\u9593 [u, d] x [l, r] \u3078\u306E\u5024 x \u306E\u52A0\u7B97\
+    \ (4\u70B9\u66F4\u65B0)\n    void add(int u, int d, int l, int r, const T x) {\n\
+    \        // \u7BC4\u56F2\u306E\u6B63\u898F\u5316\n        u = std::max(0, u);\
+    \ l = std::max(0, l);\n        d = std::min(h - 1, d); r = std::min(w - 1, r);\n\
+    \        if (u > d || l > r) return;\n\n        push(u, l, x);\n        push(u,\
+    \ r + 1, -x);\n        push(d + 1, l, -x);\n        push(d + 1, r + 1, x);\n \
+    \   }\n\n    // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024 1 \u3067\u306E\u52A0\u7B97\
+    \n    void add(const int u, const int d, const int l, const int r) { \n      \
+    \  add(u, d, l, r, T(1)); \n    }\n\n    /// @brief \u7D2F\u7A4D\u548C\u3092\u8A08\
+    \u7B97\u3057\u3066\u7D50\u679C\u3092\u8FD4\u3059 (\u7D2F\u7A4D\u548C\u4F5C\u7528\
+    \u7D20 S \u306E\u9069\u7528)\n    std::vector<std::vector<T>> cumulate() {\n \
+    \       std::vector<std::vector<T>> res = lazy;\n        \n        // \u5217\u65B9\
+    \u5411 (y) \u306E\u7D2F\u7A4D\u548C\n        for (int i = 0; i < h; ++i) {\n \
+    \           for (int j = 1; j < w; ++j) {\n                res[i][j] += res[i][j\
+    \ - 1];\n            }\n        }\n        // \u884C\u65B9\u5411 (x) \u306E\u7D2F\
+    \u7A4D\u548C\n        for (int i = 1; i < h; ++i) {\n            for (int j =\
+    \ 0; j < w; ++j) {\n                res[i][j] += res[i - 1][j];\n            }\n\
+    \        }\n        \n        // \u7D50\u679C\u306F h x w \u306E\u30B5\u30A4\u30BA\
+    \u306B\u5207\u308A\u8A70\u3081\u3066\u8FD4\u3059\n        res.resize(h);\n   \
+    \     for(auto& row : res) row.resize(w);\n        return res;\n    }\n\n    ///\
+    \ @brief \u5185\u90E8\u72B6\u614B\u3092\u30AF\u30EA\u30A2\u3057\u3066\u3001\u518D\
+    \u5EA6 add \u3067\u304D\u308B\u72B6\u614B\u306B\u3059\u308B\n    void clear()\
+    \ {\n        for (int i = 0; i <= h; ++i) {\n            std::fill(lazy[i].begin(),\
+    \ lazy[i].end(), T(0));\n        }\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\n#include <vector>\n\
+    #include <algorithm>\n\ntemplate <typename T>\nclass Imos_2 {\n    private:\n\
+    \    // \u5DEE\u5206\u914D\u5217 (h+1 x w+1 \u306B\u3059\u308B\u3053\u3068\u3067\
+    \u5883\u754C\u5916\u53C2\u7167\u3092\u56DE\u907F)\n    std::vector<std::vector<T>>\
+    \ lazy;\n    int h, w;\n\n    bool push(const int i, const int j, const T x) {\n\
+    \        if (!(0 <= i && i <= h)) return false;\n        if (!(0 <= j && j <=\
+    \ w)) return false;\n\n        lazy[i][j] += x;\n        return true;\n    }\n\
+    \n    public:\n    Imos_2(const int h, const int w): lazy(h + 1, std::vector<T>(w\
+    \ + 1, T())), h(h), w(w) {}\n\n    // \u9589\u533A\u9593 [u, d] x [l, r] \u3078\
+    \u306E\u5024 x \u306E\u52A0\u7B97 (4\u70B9\u66F4\u65B0)\n    void add(int u, int\
+    \ d, int l, int r, const T x) {\n        // \u7BC4\u56F2\u306E\u6B63\u898F\u5316\
+    \n        u = std::max(0, u); l = std::max(0, l);\n        d = std::min(h - 1,\
+    \ d); r = std::min(w - 1, r);\n        if (u > d || l > r) return;\n\n       \
+    \ push(u, l, x);\n        push(u, r + 1, -x);\n        push(d + 1, l, -x);\n \
+    \       push(d + 1, r + 1, x);\n    }\n\n    // \u30C7\u30D5\u30A9\u30EB\u30C8\
+    \u5024 1 \u3067\u306E\u52A0\u7B97\n    void add(const int u, const int d, const\
+    \ int l, const int r) { \n        add(u, d, l, r, T(1)); \n    }\n\n    /// @brief\
+    \ \u7D2F\u7A4D\u548C\u3092\u8A08\u7B97\u3057\u3066\u7D50\u679C\u3092\u8FD4\u3059\
+    \ (\u7D2F\u7A4D\u548C\u4F5C\u7528\u7D20 S \u306E\u9069\u7528)\n    std::vector<std::vector<T>>\
+    \ cumulate() {\n        std::vector<std::vector<T>> res = lazy;\n        \n  \
+    \      // \u5217\u65B9\u5411 (y) \u306E\u7D2F\u7A4D\u548C\n        for (int i\
+    \ = 0; i < h; ++i) {\n            for (int j = 1; j < w; ++j) {\n            \
+    \    res[i][j] += res[i][j - 1];\n            }\n        }\n        // \u884C\u65B9\
+    \u5411 (x) \u306E\u7D2F\u7A4D\u548C\n        for (int i = 1; i < h; ++i) {\n \
+    \           for (int j = 0; j < w; ++j) {\n                res[i][j] += res[i\
+    \ - 1][j];\n            }\n        }\n        \n        // \u7D50\u679C\u306F\
+    \ h x w \u306E\u30B5\u30A4\u30BA\u306B\u5207\u308A\u8A70\u3081\u3066\u8FD4\u3059\
+    \n        res.resize(h);\n        for(auto& row : res) row.resize(w);\n      \
+    \  return res;\n    }\n\n    /// @brief \u5185\u90E8\u72B6\u614B\u3092\u30AF\u30EA\
+    \u30A2\u3057\u3066\u3001\u518D\u5EA6 add \u3067\u304D\u308B\u72B6\u614B\u306B\u3059\
+    \u308B\n    void clear() {\n        for (int i = 0; i <= h; ++i) {\n         \
+    \   std::fill(lazy[i].begin(), lazy[i].end(), T(0));\n        }\n    }\n};\n"
   dependsOn:
-  - Tree/Tree.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -324,18 +270,181 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Tree/Generator.hpp
+  path: Imos/Imos_2.hpp
   requiredBy: []
-  timestamp: '2026-05-16 17:32:06+09:00'
+  timestamp: '2026-05-28 01:19:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - verify/yukicoder/763.test.cpp
-documentation_of: Tree/Generator.hpp
+  - verify/aizu_online_judge/dsl/5B.test.cpp
+documentation_of: Imos/Imos_2.hpp
 layout: document
-redirect_from:
-- /library/Tree/Generator.hpp
-- /library/Tree/Generator.hpp.html
-title: Tree/Generator.hpp
+title: "\u3044\u3082\u3059\u6CD5 (2 \u6B21\u5143 0 \u6B21)"
 ---
+
+## Outline
+
+2 次元いもす法を行うためのクラス.
+
+## Theory
+
+[1 次元バージョン](Imos_1.hpp) の記号を引き継ぐことにする.
+
+$2$ 次元いもす法は, 以下の問いを高速に答えることができる. これ以降, $\otimes$ で線形写像やベクトルのテンソル積を表すことにする.
+
+> $Q$ 個の $u_q \leq d_q, l_q \leq r_q$ を満たす非負整数の組 $(u_q, d_q, l_q, r_q)$ と $\alpha_q \in A$ が与えられる.
+>
+> このとき, $\displaystyle \sum_{q=1}^Q \alpha_q \left(\sum_{\substack{u_q \leq i \leq d_q \\ l_q \leq j \leq r_q}} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)$ の $0 \leq i < H, 0 \leq j < W$ における項を求めろ.
+
+愚直な方法だと, $O(NHQ)$ 時間になるが, いもす法を使うことによって, $O(NH+Q)$ 時間に短縮できる.
+
+$$
+\begin{align*}
+\sum_{\substack{u \leq i \leq d \\ l \leq j \leq r}} \boldsymbol{e}_i \otimes \boldsymbol{e}_j
+&= \sum_{i=u}^d \left( \sum_{j=l}^r \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right) \\
+&= \sum_{i=u}^d \left(\boldsymbol{e}_i \otimes \left( \sum_{j=l}^r \boldsymbol{e}_j \right) \right) \\
+&= \left(\sum_{i=u}^d \boldsymbol{e}_i \right) \otimes \left( \sum_{j=l}^r \boldsymbol{e}_j \right) \\
+&= \left(S(\boldsymbol{e}_u - \boldsymbol{e}_{d+1}) \right) \otimes \left(S(\boldsymbol{e}_l - \boldsymbol{e}_{r+1}) \right) \\
+&= (S \otimes S) \left(\left(\boldsymbol{e}_u - \boldsymbol{e}_{d+1} \right) \otimes \left( \boldsymbol{e}_l - \boldsymbol{e}_{r+1} \right) \right) \\
+&= (S \otimes S) \left(\boldsymbol{e}_u \otimes \boldsymbol{e}_l - \boldsymbol{e}_u \otimes \boldsymbol{e}_{r+1} - \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_l + \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_{r+1} \right) \\
+\end{align*}
+$$
+
+である. よって,
+
+$$
+\begin{align*}
+\sum_{q=1}^Q \alpha_q \left(\sum_{\substack{u_q \leq i \leq d_q \\ l_q \leq j \leq r_q}} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)
+&= \sum_{q=1}^Q \alpha_q (S \otimes S) \left(\boldsymbol{e}_u \otimes \boldsymbol{e}_l - \boldsymbol{e}_u \otimes \boldsymbol{e}_{r+1} - \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_l + \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_{r+1} \right) \\
+&= \sum_{q=1}^Q (S \otimes S) \left(\alpha_q \boldsymbol{e}_u \otimes \boldsymbol{e}_l - \alpha_q \boldsymbol{e}_u \otimes \boldsymbol{e}_{r+1} - \alpha_q \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_l + \alpha_q \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_{r+1} \right) \\
+\end{align*}
+$$
+
+となる.
+
+$S$ の中身は $4Q$ 個の項の和である.
+
+ここから, $S \otimes S$ の計算を行う.
+
+$$ \sum_{q=1}^Q (S \otimes S) \left(\alpha_q \boldsymbol{e}_u \otimes \boldsymbol{e}_l - \alpha_q \boldsymbol{e}_u \otimes \boldsymbol{e}_{r+1} - \alpha_q \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_l + \alpha_q \boldsymbol{e}_{d+1} \otimes \boldsymbol{e}_{r+1} \right) = \sum_{i,j} \beta_{i,j} \boldsymbol{e}_i \otimes \boldsymbol{e}_j $$
+
+と書くことができる.
+
+$$ S \otimes S = (S \otimes I)(I \otimes S)$$
+
+であることに注意する.
+
+各 $i, j$ に対して,
+
+$$
+\begin{align*}
+  (I \otimes S)(\boldsymbol{e}_i \otimes \boldsymbol{e}_j)
+  &= (I \boldsymbol{e}_i) \otimes (S \boldsymbol{e}_j) \\
+  &= \boldsymbol{e}_i \otimes \sum_{q \geq j} \boldsymbol{e}_q \\
+  &= \sum_{q \geq j }\boldsymbol{e}_i \otimes  \boldsymbol{e}_q
+\end{align*}
+$$
+
+である.
+
+よって,
+
+$$
+\begin{align*}
+  (I \otimes S)\left(\sum_{i,j} \beta_{i,j} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)
+  &= \sum_{i,j} \beta_{i,j} (I \otimes S) \left(\boldsymbol{e}_i \otimes \boldsymbol{e}_j \right) \\
+  &= \sum_{i,j} \beta_{i,j} \sum_{q \geq j} \boldsymbol{e}_i \otimes  \boldsymbol{e}_q \\
+  &= \sum_{i,j} \left(\sum_{q=0}^j \beta_{i,q} \right) \boldsymbol{e}_i \otimes \boldsymbol{e}_j \\
+\end{align*}
+$$
+
+である.
+
+$$ \gamma_{i,j} := \sum_{q=0}^j \beta_{i,q} $$
+
+とおく.
+
+同様にして,
+
+$$\begin{align*}
+  (I \otimes S) \left( \sum_{i, j} \gamma_{i,j} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)
+  &= \sum_{i,j} \gamma_{i,j} (I \otimes S) \left(\boldsymbol{e}_i \otimes \boldsymbol{e}_j \right) \\
+  &= \sum_{i,j} \left(\sum_{p=0}^i \gamma_{p,j} \right) \left(\boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)
+\end{align*}$$
+
+となる.
+
+ここで,
+
+$$ \sum_{p=0}^i \gamma_{i,j} = \sum_{p=0}^i \sum_{q=0}^j \beta_{i,j} $$
+
+である.
+
+よって, $2$ 次元累積和とは,
+
+$$ \left(\beta_{i,j} \right) \mapsto \left(\sum_{p=0}^i \sum_{q=0}^j \beta_{i,j} \right) $$
+
+とする変換である.
+
+この変換は $(S \otimes I), (I \otimes S)$ を連続して計算することによって, $O(HW)$ 時間で求められる.
+
+
+## Contents
+
+### Constructor
+
+```cpp
+Imos_2(const int h, const int w)
+```
+
+* サイズ $h \times w$ の 2 次元いもす法オブジェクトを生成する.
+* **引数**
+  * $h$: 縦方向の要素数
+  * $w$: 横方向の要素数
+* **計算量** : $O(hw)$ 時間.
+
+### add
+
+```cpp
+void add(int u, int d, int l, int r, const T x)
+void add(const int u, const int d, const int l, const int r)
+```
+
+* 閉区間 $[u, d] \times [l, r]$ の各要素に加算を行う.
+* 引数の範囲が $[0, h-1] \times [0, w-1]$ の範囲外にある場合は, 自動的に $[0, h-1] \times [0, w-1]$ の範囲にクリップ（丸め込み）される. クリップされた結果, 閉区間が正しく構成できない場合 (例: $u > d$ または $l > r$ または範囲外) は何も行わない.
+* **引数**
+  * (1) (引数が5つの場合)
+    * $u$: 閉区間の上端
+    * $d$: 閉区間の下端
+    * $l$: 閉区間の左端
+    * $r$: 閉区間の右端
+    * $x$: 加算値
+  * (2) (引数が4つの場合)
+    * $u$: 閉区間の上端
+    * $d$: 閉区間の下端
+    * $l$: 閉区間の左端
+    * $r$: 閉区間の右端
+* **計算量** : $O(1)$ 時間.
+
+### cumulate
+
+```cpp
+std::vector<std::vector<T>> cumulate()
+```
+
+* これまでの加算クエリの結果を累積し, 各要素の最終的な値からなるサイズ $h \times w$ の 2 次元配列を生成・返却する.
+* **計算量** : $O(hw)$ 時間.
+
+### clear
+
+```cpp
+void clear()
+```
+
+* 内部の差分配列を $0$ で初期化し, 再度 `add` を行えるようにクリアする.
+* **計算量** : $O(hw)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/05/30| いもす法 (2 次元 0 次) の実装 |

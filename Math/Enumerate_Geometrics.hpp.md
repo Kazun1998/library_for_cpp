@@ -225,13 +225,13 @@ data:
   isVerificationFile: false
   path: Math/Enumerate_Geometrics.hpp
   requiredBy:
-  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   timestamp: '2026-04-19 00:48:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
 documentation_of: Math/Enumerate_Geometrics.hpp
 layout: document
 redirect_from:

@@ -550,8 +550,8 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Fraction_Coefficient.hpp
   requiredBy:
-  - Linear_Algebra/Predict_Nth_Term.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Linear_Algebra/Predict_Nth_Term.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

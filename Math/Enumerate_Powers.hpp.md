@@ -285,13 +285,13 @@ data:
   isVerificationFile: false
   path: Math/Enumerate_Powers.hpp
   requiredBy:
-  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   timestamp: '2026-04-18 11:10:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
 documentation_of: Math/Enumerate_Powers.hpp
 layout: document
 title: "\u51AA\u4E57\u306E\u5217\u6319"

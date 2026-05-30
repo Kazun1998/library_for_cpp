@@ -276,8 +276,8 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Find_Linear_Recurrence.hpp
   requiredBy:
-  - Linear_Algebra/Predict_Nth_Term.hpp
   - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+  - Linear_Algebra/Predict_Nth_Term.hpp
   timestamp: '2026-04-19 16:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

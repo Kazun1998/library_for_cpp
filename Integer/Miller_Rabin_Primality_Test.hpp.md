@@ -367,14 +367,14 @@ data:
   isVerificationFile: false
   path: Integer/Miller_Rabin_Primality_Test.hpp
   requiredBy:
-  - Integer/Pollard_Rho.hpp
   - Integer/Primitive_Root.hpp
+  - Integer/Pollard_Rho.hpp
   timestamp: '2026-04-29 14:01:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
 documentation_of: Integer/Miller_Rabin_Primality_Test.hpp
 layout: document
 title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"

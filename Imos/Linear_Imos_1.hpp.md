@@ -23,19 +23,15 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-    title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u9589\u533A\u9593 [l, r] \u306E\u5404\u8981\u7D20 i \u306B\u5BFE\
+      \u3057\u3001\u4E00\u6B21\u5F0F a * (i - l) + b \u3092\u52A0\u7B97\u3059\u308B"
     links: []
-  bundledCode: "#line 2 \"Math/Floor_Linear_Sum.hpp\"\n\n#line 2 \"template/template.hpp\"\
+  bundledCode: "#line 2 \"Imos/Linear_Imos_1.hpp\"\n\n#line 2 \"template/template.hpp\"\
     \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -198,33 +194,122 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Math/Floor_Linear_Sum.hpp\"\n\ntemplate<typename T>\nT Floor_Linear_Sum(T\
-    \ a, T b, T m, T n) {\n    T total = 0;\n    T x, y;\n    while (true) {\n   \
-    \     total += (n - 1) * n / 2 *  div_floor(a, m);\n        a = safe_mod(a, m);\n\
-    \n        total += n * div_floor(b, m);\n        b = safe_mod(b, m);\n\n     \
-    \   y = div_floor(a * n + b, m);\n        x = b - y * m;\n\n        if (y == 0)\
-    \ { return total; }\n\n        total += (n + div_floor(x, a)) * y;\n        tie(a,\
-    \ b, m, n) = make_tuple(m, safe_mod(x, a), a, y);\n    }\n}\n\ntemplate<typename\
-    \ T>\nT Floor_Linear_Sum(T a, T b, T m, T l, T r) {\n    return Floor_Linear_Sum(a,\
-    \ a * l + b, m, r - l + 1);\n}\n\ntemplate<typename T>\nT Min_of_Mod_of_Linear(T\
-    \ a, T b, T m, T n) {\n    T l = 0, r = m;\n    T target = Floor_Linear_Sum(a,\
-    \ b, m, n);\n    while (r - l > 1) {\n        T x = l + (r - l) / 2;\n       \
-    \ if (target == Floor_Linear_Sum(a, b - x, m, n)) {\n            l = x;\n    \
-    \    } else {\n            r = x;\n        }\n    }\n\n    return l;\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\ntemplate<typename\
-    \ T>\nT Floor_Linear_Sum(T a, T b, T m, T n) {\n    T total = 0;\n    T x, y;\n\
-    \    while (true) {\n        total += (n - 1) * n / 2 *  div_floor(a, m);\n  \
-    \      a = safe_mod(a, m);\n\n        total += n * div_floor(b, m);\n        b\
-    \ = safe_mod(b, m);\n\n        y = div_floor(a * n + b, m);\n        x = b - y\
-    \ * m;\n\n        if (y == 0) { return total; }\n\n        total += (n + div_floor(x,\
-    \ a)) * y;\n        tie(a, b, m, n) = make_tuple(m, safe_mod(x, a), a, y);\n \
-    \   }\n}\n\ntemplate<typename T>\nT Floor_Linear_Sum(T a, T b, T m, T l, T r)\
-    \ {\n    return Floor_Linear_Sum(a, a * l + b, m, r - l + 1);\n}\n\ntemplate<typename\
-    \ T>\nT Min_of_Mod_of_Linear(T a, T b, T m, T n) {\n    T l = 0, r = m;\n    T\
-    \ target = Floor_Linear_Sum(a, b, m, n);\n    while (r - l > 1) {\n        T x\
-    \ = l + (r - l) / 2;\n        if (target == Floor_Linear_Sum(a, b - x, m, n))\
-    \ {\n            l = x;\n        } else {\n            r = x;\n        }\n   \
-    \ }\n\n    return l;\n}"
+    \    }\n};\n#line 4 \"Imos/Linear_Imos_1.hpp\"\n\ntemplate <typename T>\nclass\
+    \ Linear_Imos_1 {\n    private:\n    std::vector<T> slope;\n    std::vector<T>\
+    \ intercept;\n    int n;\n\n    void push(int t, T a, T b) {\n        if (!(0\
+    \ <= t && t <= n)) return;\n        intercept[t] += a;\n        slope[t] += b;\n\
+    \    }\n\n    public:\n    Linear_Imos_1(const int n) : n(n), slope(n + 1, 0),\
+    \ intercept(n + 1, 0) {}\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306E\u5404\
+    \u8981\u7D20 i \u306B\u5BFE\u3057\u3001\u4E00\u6B21\u5F0F a * (i - l) + b \u3092\
+    \u52A0\u7B97\u3059\u308B\n    /// @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\
+    \u306E\u3088\u3046\u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += b, I[l + 1]\
+    \ += a + b, I[l + 2] += 2a + b, ..., I[r] += (r - l)a + b\n    /// @param l \u5DE6\
+    \u7AEF\n    /// @param r \u53F3\u7AEF\n    /// @param a \u50BE\u304D (\u516C\u5DEE\
+    )\n    /// @param b \u5B9A\u6570\u9805 (\u521D\u9805)\n    void add(int l, int\
+    \ r, const T a, const T b) {\n        if (l > r) return;\n\n        // \u7BC4\u56F2\
+    \u306E\u4E38\u3081\u8FBC\u307F\n        if (l < 0) l = 0;\n        if (r >= n)\
+    \ r = n - 1;\n        if (l > r || l >= n || r < 0) return;\n\n        // a(i\
+    \ - l) + b = a*i + (b - a*l)\n        push(l, b - a * l, a);\n        push(r +\
+    \ 1, -(b - a * l), -a);\n    }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306E\
+    \u5404\u8981\u7D20\u306B\u5B9A\u6570 x \u3092\u52A0\u7B97\u3059\u308B\n    ///\
+    \ @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\u306E\u3088\u3046\u306B\u52A0\
+    \u7B97\u3059\u308B.\n    /// I[l] += x, I[l + 1] += x, ..., I[r] += x\n    ///\
+    \ @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n    /// @param x \u52A0\
+    \u7B97\u5024\n    void add(int l, int r, const T x) { add(l, r, 0, x); }\n\n \
+    \   /// @brief \u9589\u533A\u9593 [l, r] \u306E\u5404\u8981\u7D20 i \u306B\u5BFE\
+    \u3057\u3001(i - l) + 1 \u3092\u52A0\u7B97\u3059\u308B (1, 2, 3, ... \u306E\u7B49\
+    \u5DEE\u6570\u5217)\n    /// @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\u306E\
+    \u3088\u3046\u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += 1, I[l + 1] += 2,\
+    \ ..., I[r] += (r - l) + 1\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\
+    \u7AEF\n    void add(int l, int r) { add(l, r, T(1), T(1)); }\n\n    /// @brief\
+    \ \u9589\u533A\u9593 [l, l + 2m] \u306B\u30C6\u30F3\u30C8\u578B\uFF08\u5C71\u578B\
+    \uFF09\u306E\u7B49\u5DEE\u6570\u5217\u3092\u52A0\u7B97\u3059\u308B\n    /// @details\
+    \ \u9589\u533A\u9593 [l, l + 2m] \u306B\u6B21\u306E\u3088\u3046\u306B\u5C71\u578B\
+    \u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += a, I[l + 1] += a + b, I[l + 2]\
+    \ += a + 2b, ..., I[l + m] += a + mb\n    /// I[l + m + 1] += a + (m - 1)b, I[l\
+    \ + m + 2] += a + (m - 2)b, ..., I[l + 2m - 1] += a + b, I[l + 2m] += a\n    ///\
+    \ @param l \u5DE6\u7AEF\n    /// @param m \u9802\u70B9\u307E\u3067\u306E\u8DDD\
+    \u96E2 (\u5C71\u306E\u88FE\u91CE\u306E\u9577\u3055)\n    /// @param a \u88FE\u91CE\
+    \u306E\u958B\u59CB\u5024\n    /// @param b \u50BE\u304D (\u516C\u5DEE)\n    void\
+    \ add_tent(int l, int m, const T a, const T b) {\n        if (m < 0) return;\n\
+    \        add(l, l + m, b, a);\n        add(l + m + 1, l + 2 * m, -b, a + (m -\
+    \ 1) * b);\n    }\n\n    /// @brief \u9589\u533A\u9593 [t, t + m - 1] \u3078\u306E\
+    \u4E00\u69D8\u306A a \u306E\u52A0\u7B97\u3092\u3001t = l, l + 1, ..., l + k -\
+    \ 1 \u306B\u3064\u3044\u3066\u884C\u3046\n    /// @param l \u64CD\u4F5C\u306E\u59CB\
+    \u70B9\n    /// @param k \u64CD\u4F5C\u306E\u56DE\u6570\n    /// @param m 1 \u56DE\
+    \u306E\u64CD\u4F5C\u3067\u52A0\u7B97\u3059\u308B\u9805\u306E\u6570\n    /// @param\
+    \ a \u52A0\u7B97\u3059\u308B\u5024\n    void add_slide_multiple(int l, int k,\
+    \ int m, const T a) {\n        if (k <= 0 || m <= 0) return;\n        int s =\
+    \ std::min(k, m), lb = std::max(k, m);\n        add(l, l + s - 1, a, a);\n   \
+    \     add(l + s, l + lb - 1, (T)s * a);\n        add(l + lb, l + k + m - 2, -a,\
+    \ (T)(s - 1) * a);\n    }\n\n    inline int size() const { return n; }\n\n   \
+    \ /// @brief \u7D2F\u7A4D\u548C\u3092\u8A08\u7B97\u3059\u308B\n    std::vector<T>\
+    \ cumulate() {\n        if (n == 0) return std::vector<T>();\n\n        std::vector<T>\
+    \ res(n);\n        T s = 0, ic = 0;\n        for (int i = 0; i < n; ++i) {\n \
+    \           s += slope[i];\n            ic += intercept[i];\n            res[i]\
+    \ = s * i + ic;\n        }\n\n        return res;\n    }\n\n    /// @brief \u5185\
+    \u90E8\u72B6\u614B\u3092\u30AF\u30EA\u30A2\u3057\u3066\u3001\u518D\u5EA6 add \u3067\
+    \u304D\u308B\u72B6\u614B\u306B\u3059\u308B\n    void clear() {\n        std::fill(slope.begin(),\
+    \ slope.end(), T(0));\n        std::fill(intercept.begin(), intercept.end(), T(0));\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\ntemplate <typename\
+    \ T>\nclass Linear_Imos_1 {\n    private:\n    std::vector<T> slope;\n    std::vector<T>\
+    \ intercept;\n    int n;\n\n    void push(int t, T a, T b) {\n        if (!(0\
+    \ <= t && t <= n)) return;\n        intercept[t] += a;\n        slope[t] += b;\n\
+    \    }\n\n    public:\n    Linear_Imos_1(const int n) : n(n), slope(n + 1, 0),\
+    \ intercept(n + 1, 0) {}\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306E\u5404\
+    \u8981\u7D20 i \u306B\u5BFE\u3057\u3001\u4E00\u6B21\u5F0F a * (i - l) + b \u3092\
+    \u52A0\u7B97\u3059\u308B\n    /// @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\
+    \u306E\u3088\u3046\u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += b, I[l + 1]\
+    \ += a + b, I[l + 2] += 2a + b, ..., I[r] += (r - l)a + b\n    /// @param l \u5DE6\
+    \u7AEF\n    /// @param r \u53F3\u7AEF\n    /// @param a \u50BE\u304D (\u516C\u5DEE\
+    )\n    /// @param b \u5B9A\u6570\u9805 (\u521D\u9805)\n    void add(int l, int\
+    \ r, const T a, const T b) {\n        if (l > r) return;\n\n        // \u7BC4\u56F2\
+    \u306E\u4E38\u3081\u8FBC\u307F\n        if (l < 0) l = 0;\n        if (r >= n)\
+    \ r = n - 1;\n        if (l > r || l >= n || r < 0) return;\n\n        // a(i\
+    \ - l) + b = a*i + (b - a*l)\n        push(l, b - a * l, a);\n        push(r +\
+    \ 1, -(b - a * l), -a);\n    }\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306E\
+    \u5404\u8981\u7D20\u306B\u5B9A\u6570 x \u3092\u52A0\u7B97\u3059\u308B\n    ///\
+    \ @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\u306E\u3088\u3046\u306B\u52A0\
+    \u7B97\u3059\u308B.\n    /// I[l] += x, I[l + 1] += x, ..., I[r] += x\n    ///\
+    \ @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n    /// @param x \u52A0\
+    \u7B97\u5024\n    void add(int l, int r, const T x) { add(l, r, 0, x); }\n\n \
+    \   /// @brief \u9589\u533A\u9593 [l, r] \u306E\u5404\u8981\u7D20 i \u306B\u5BFE\
+    \u3057\u3001(i - l) + 1 \u3092\u52A0\u7B97\u3059\u308B (1, 2, 3, ... \u306E\u7B49\
+    \u5DEE\u6570\u5217)\n    /// @details \u9589\u533A\u9593 [l, r] \u306B\u6B21\u306E\
+    \u3088\u3046\u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += 1, I[l + 1] += 2,\
+    \ ..., I[r] += (r - l) + 1\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\
+    \u7AEF\n    void add(int l, int r) { add(l, r, T(1), T(1)); }\n\n    /// @brief\
+    \ \u9589\u533A\u9593 [l, l + 2m] \u306B\u30C6\u30F3\u30C8\u578B\uFF08\u5C71\u578B\
+    \uFF09\u306E\u7B49\u5DEE\u6570\u5217\u3092\u52A0\u7B97\u3059\u308B\n    /// @details\
+    \ \u9589\u533A\u9593 [l, l + 2m] \u306B\u6B21\u306E\u3088\u3046\u306B\u5C71\u578B\
+    \u306B\u52A0\u7B97\u3059\u308B.\n    /// I[l] += a, I[l + 1] += a + b, I[l + 2]\
+    \ += a + 2b, ..., I[l + m] += a + mb\n    /// I[l + m + 1] += a + (m - 1)b, I[l\
+    \ + m + 2] += a + (m - 2)b, ..., I[l + 2m - 1] += a + b, I[l + 2m] += a\n    ///\
+    \ @param l \u5DE6\u7AEF\n    /// @param m \u9802\u70B9\u307E\u3067\u306E\u8DDD\
+    \u96E2 (\u5C71\u306E\u88FE\u91CE\u306E\u9577\u3055)\n    /// @param a \u88FE\u91CE\
+    \u306E\u958B\u59CB\u5024\n    /// @param b \u50BE\u304D (\u516C\u5DEE)\n    void\
+    \ add_tent(int l, int m, const T a, const T b) {\n        if (m < 0) return;\n\
+    \        add(l, l + m, b, a);\n        add(l + m + 1, l + 2 * m, -b, a + (m -\
+    \ 1) * b);\n    }\n\n    /// @brief \u9589\u533A\u9593 [t, t + m - 1] \u3078\u306E\
+    \u4E00\u69D8\u306A a \u306E\u52A0\u7B97\u3092\u3001t = l, l + 1, ..., l + k -\
+    \ 1 \u306B\u3064\u3044\u3066\u884C\u3046\n    /// @param l \u64CD\u4F5C\u306E\u59CB\
+    \u70B9\n    /// @param k \u64CD\u4F5C\u306E\u56DE\u6570\n    /// @param m 1 \u56DE\
+    \u306E\u64CD\u4F5C\u3067\u52A0\u7B97\u3059\u308B\u9805\u306E\u6570\n    /// @param\
+    \ a \u52A0\u7B97\u3059\u308B\u5024\n    void add_slide_multiple(int l, int k,\
+    \ int m, const T a) {\n        if (k <= 0 || m <= 0) return;\n        int s =\
+    \ std::min(k, m), lb = std::max(k, m);\n        add(l, l + s - 1, a, a);\n   \
+    \     add(l + s, l + lb - 1, (T)s * a);\n        add(l + lb, l + k + m - 2, -a,\
+    \ (T)(s - 1) * a);\n    }\n\n    inline int size() const { return n; }\n\n   \
+    \ /// @brief \u7D2F\u7A4D\u548C\u3092\u8A08\u7B97\u3059\u308B\n    std::vector<T>\
+    \ cumulate() {\n        if (n == 0) return std::vector<T>();\n\n        std::vector<T>\
+    \ res(n);\n        T s = 0, ic = 0;\n        for (int i = 0; i < n; ++i) {\n \
+    \           s += slope[i];\n            ic += intercept[i];\n            res[i]\
+    \ = s * i + ic;\n        }\n\n        return res;\n    }\n\n    /// @brief \u5185\
+    \u90E8\u72B6\u614B\u3092\u30AF\u30EA\u30A2\u3057\u3066\u3001\u518D\u5EA6 add \u3067\
+    \u304D\u308B\u72B6\u614B\u306B\u3059\u308B\n    void clear() {\n        std::fill(slope.begin(),\
+    \ slope.end(), T(0));\n        std::fill(intercept.begin(), intercept.end(), T(0));\n\
+    \    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -234,52 +319,136 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Math/Floor_Linear_Sum.hpp
+  path: Imos/Linear_Imos_1.hpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
-  - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
-documentation_of: Math/Floor_Linear_Sum.hpp
+  timestamp: '2026-05-30 18:39:39+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Imos/Linear_Imos_1.hpp
 layout: document
-title: Floor Linear Sum
+title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 1 \u6B21)"
 ---
 
 ## Outline
 
-$\displaystyle \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \right \rfloor$ を高速に求める.
+1 次元いもす法 (1 次) を行うためのクラス.
+特定の区間へ一括して一次式（等差数列）の加算を行うクエリを多数処理した後, 最後に累積和をとることで, 各要素の最終的な値を高速に求めることができる.
 
 ## Theory
 
-$\displaystyle T(A, B, M, N) := \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \right \rfloor$ とする.
+閉区間 $[l, r]$ の各要素 $i$ に対して一次式 $f(i) = a(i - l) + b$ を加算する操作を考える.
+これは, 式を変形すると以下のように表せる.
 
-### Section I
+$$ f(i) = a \cdot i + (b - a \cdot l) $$
 
-$A, B$ について, 以下が成り立つ.
+そのため, 定数項の部分と, 傾きの部分をそれぞれ $1$ 次元 $0$ 次の基本的ないもす法で計算し, それらの結果を統合すれば $1$ 次元 $1$ 次も解くことができる.
 
-$$\begin{align*}
-T(A \pm M, B, M, N)
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{(A \pm M) k + B}{M} \right \rfloor \\
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \pm k \right \rfloor \\
-&= \sum_{k=0}^{N-1} \left(\left \lfloor \dfrac{A k + B}{M} \right \rfloor \pm k \right) \\
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \right \rfloor \pm \sum_{k=0}^{N-1} k \\
-&= T(A, B, M, N) \pm \dfrac{N(N-1)}{2} \\
-\end{align*}$$
+## Contents
 
-$$\begin{align*}
-T(A, B \pm M, M, N)
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + (B \pm M)}{M} \right \rfloor \\
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \pm 1 \right \rfloor \\
-&= \sum_{k=0}^{N-1} \left(\left \lfloor \dfrac{A k + B}{M} \right \rfloor \pm 1 \right) \\
-&= \sum_{k=0}^{N-1} \left \lfloor \dfrac{A k + B}{M} \right \rfloor \pm \sum_{k=0}^{N-1} 1 \\
-&= T(A, B, M, N) \pm N \\
-\end{align*}$$
+### Constructor
 
-よって, $0 \leq A \lt M, 0 \leq B \lt M$ の範囲のみを考えれば良い.
+```cpp
+Linear_Imos_1(const int n)
+```
 
-### Section II
+* サイズ $n$ の 1 次元いもす法 (1 次) オブジェクトを生成する.
+* **引数**
+  * $n$: 要素数
+* **計算量** : $O(n)$ 時間.
 
-$\displaystyle f(k) := \left \lfloor \dfrac{Ak+B}{M} \right \rfloor$ とおく.
+### add
 
-$\displaystyle r := \left \lfloor \dfrac{AN+B}{M} \right \rfloor$ とする. $y = 0, 1, \dots, r$ に対して, $f(k) = y$ となる $k~(0 \leq k \lt N)$ の個数を $c_y$ とおく.
+```cpp
+void add(int l, int r, const T a, const T b)
+void add(int l, int r, const T x)
+void add(int l, int r)
+```
+
+* 閉区間 $[l, r]$ の各要素に対して等差数列または定数の加算を行う.
+* **注意**
+  * 引数の範囲が $[0, n-1]$ の範囲外にある場合は, 自動的に $[0, n-1]$ の範囲にクリップ（丸め込み）される.
+  * クリップされた結果, 閉区間が正しく構成できない場合 (例: $l > r$ または範囲外) は何も行わない.
+* **引数**
+  * (1) (引数が4つの場合)
+    * $l$: 閉区間の左端
+    * $r$: 閉区間の右端
+    * $a$: 傾き (公差)
+    * $b$: 定数項 (初項)
+    * ※ 各要素 $i \in [l, r]$ に対して $a(i - l) + b$ を加算する.
+  * (2) (引数が3つの場合)
+    * $l$: 閉区間の左端
+    * $r$: 閉区間の右端
+    * $x$: 加算値
+    * ※ 各要素 $i \in [l, r]$ に対して $x$ を加算する (`add(l, r, 0, x)` と同等).
+  * (3) (引数が2つの場合)
+    * $l$: 閉区間の左端
+    * $r$: 閉区間の右端
+    * ※ 各要素 $i \in [l, r]$ に対して $(i - l) + 1$ を加算する (`add(l, r, 1, 1)` と同等).
+* **計算量** : $O(1)$ 時間.
+
+### add_tent
+
+```cpp
+void add_tent(int l, int m, const T a, const T b)
+```
+
+* 閉区間 $[l, l + 2m]$ に左端が $l$ で裾野の長さが $m$ である, 以下で定義されるテント型 (山型) 関数 $t(i)$ を加算する.
+
+$$ t(i) := \begin{cases}
+  a + (i - l)b & (l \leq i \leq l + m) \\
+  a + (l + 2m - i)b & (l + m < i \leq i + 2m) \\
+  0 & (\textrm{otherwise})
+\end{cases}$$
+
+* 要するに, $(\underbrace{0, 0, \dots, 0}_l, a, a + b, a+2b, \dots, a + mb, a+(m-1)b, \dots, a+2b, a+b, a, 0, \dots, 0)$ を加算する.
+* **引数**
+  * $l$: 閉区間の左端
+  * $m$: 頂点までの距離 (山の裾野の長さ)
+  * $a$: 裾野の開始値 (初項)
+  * $b$: 傾き (公差)
+* **計算量** : $O(1)$ 時間.
+
+### add_slide_multiple
+
+```cpp
+void add_slide_multiple(int l, int k, int m, const T a)
+```
+
+* 閉区間 $[t, t + m - 1]$ への一様な $a$ の加算を, $t = l, l + 1, \dots, l + k - 1$ について行う.
+* **引数**
+  * $l$: 操作の始点
+  * $k$: 操作の回数
+  * $m$: 1回あたりの操作で加算する項の数
+  * $a$: 加算する値
+* **計算量** : $O(1)$ 時間.
+
+### size
+
+```cpp
+int size() const
+```
+
+* オブジェクトのサイズ $n$ を返す.
+* **計算量** : $O(1)$ 時間.
+
+### cumulate
+
+```cpp
+std::vector<T> cumulate()
+```
+
+* これまでの加算クエリの結果を累積し, 各要素の最終的な値からなるサイズ $n$ の配列を生成・返却する.
+* **計算量** : $O(n)$ 時間.
+
+### clear
+
+```cpp
+void clear()
+```
+
+* 内部状態をクリアして, 再度 `add` できる状態にする.
+* **計算量** : $O(n)$ 時間.
+
+|日付|内容|
+|:---:|:---|
+|2026/05/30| いもす法 (1 次元 1 次) の実装 |

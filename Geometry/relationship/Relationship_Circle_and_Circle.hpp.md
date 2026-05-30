@@ -309,8 +309,8 @@ data:
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7A.test.cpp
   - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/7A.test.cpp
 documentation_of: Geometry/relationship/Relationship_Circle_and_Circle.hpp
 layout: document
 redirect_from:

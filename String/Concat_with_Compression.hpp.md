@@ -245,8 +245,8 @@ data:
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
+  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
 documentation_of: String/Concat_with_Compression.hpp
 layout: document
 redirect_from:

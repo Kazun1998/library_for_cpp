@@ -370,22 +370,22 @@ data:
   isVerificationFile: false
   path: Modulo/Modulo.hpp
   requiredBy:
-  - Modulo/Solve.hpp
-  - Modulo/Order.hpp
   - Modulo/Sqrt.hpp
-  - Modulo/Tower.hpp
-  - Modulo/Garner.hpp
   - Modulo/Composite.hpp
+  - Modulo/Garner.hpp
+  - Modulo/Order.hpp
+  - Modulo/Tower.hpp
+  - Modulo/Solve.hpp
   - Modulo/Discrete_Log.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - verify/yukicoder/187.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yukicoder/2558.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
 documentation_of: Modulo/Modulo.hpp
 layout: document
 redirect_from:

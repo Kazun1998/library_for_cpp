@@ -304,20 +304,20 @@ data:
   isVerificationFile: false
   path: Convolution/Semilattice_Convolution_Base.hpp
   requiredBy:
-  - Convolution/Max_Convolution.hpp
-  - Convolution/Lcm_Convolution.hpp
-  - Convolution/Min_Convolution.hpp
-  - Convolution/Gcd_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
-  - Convolution/Bitwise_Or_Convolution.hpp
   - Graph/Graph/Chromatic_Number.hpp
+  - Convolution/Bitwise_Or_Convolution.hpp
+  - Convolution/Lcm_Convolution.hpp
+  - Convolution/Max_Convolution.hpp
+  - Convolution/Min_Convolution.hpp
+  - Convolution/Bitwise_And_Convolution.hpp
+  - Convolution/Gcd_Convolution.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+  - verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
-  - verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
-  - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
 documentation_of: Convolution/Semilattice_Convolution_Base.hpp
 layout: document
 title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"

@@ -268,14 +268,14 @@ data:
   isVerificationFile: false
   path: Integer/Smallest_Prime_Factor.hpp
   requiredBy:
-  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   - Math/Enumerate_Powers.hpp
   timestamp: '2026-04-18 11:10:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
 documentation_of: Integer/Smallest_Prime_Factor.hpp
 layout: document
 title: "\u6700\u5C0F\u7D20\u56E0\u6570"
