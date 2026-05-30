@@ -67,6 +67,19 @@ class Linear_Imos_1 {
         add(l + m + 1, l + 2 * m, -b, a + (m - 1) * b);
     }
 
+    /// @brief 閉区間 [t, t + m - 1] への一様な a の加算を、t = l, l + 1, ..., l + k - 1 について行う
+    /// @param l 操作の始点
+    /// @param k 操作の回数
+    /// @param m 1 回の操作で加算する項の数
+    /// @param a 加算する値
+    void add_slide_multiple(int l, int k, int m, const T a) {
+        if (k <= 0 || m <= 0) return;
+        int s = std::min(k, m), lb = std::max(k, m);
+        add(l, l + s - 1, a, a);
+        add(l + s, l + lb - 1, (T)s * a);
+        add(l + lb, l + k + m - 2, -a, (T)(s - 1) * a);
+    }
+
     inline int size() const { return n; }
 
     /// @brief 累積和を計算する
