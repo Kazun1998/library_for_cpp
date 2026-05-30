@@ -18,7 +18,9 @@ class Linear_Imos_1 {
     public:
     Linear_Imos_1(const int n) : n(n), slope(n + 1, 0), intercept(n + 1, 0) {}
 
-    /// @brief 閉区間 [l, r] の各要素 i に対し、a * (i - l) + b を加算
+    /// @brief 閉区間 [l, r] の各要素 i に対し、一次式 a * (i - l) + b を加算する
+    /// @details 閉区間 [l, r] に次のように加算する.
+    /// I[l] += b, I[l + 1] += a + b, I[l + 2] += 2a + b, ..., I[r] += (r - l)a + b
     /// @param l 左端
     /// @param r 右端
     /// @param a 傾き (公差)
@@ -36,11 +38,34 @@ class Linear_Imos_1 {
         push(r + 1, -(b - a * l), -a);
     }
 
-    /// @brief 閉区間 [l, r] に定数 x を加算
+    /// @brief 閉区間 [l, r] の各要素に定数 x を加算する
+    /// @details 閉区間 [l, r] に次のように加算する.
+    /// I[l] += x, I[l + 1] += x, ..., I[r] += x
+    /// @param l 左端
+    /// @param r 右端
+    /// @param x 加算値
     void add(int l, int r, const T x) { add(l, r, 0, x); }
 
-    /// @brief 閉区間 [l, r] に 1, 2, 3, ... (公差1, 初項1) を加算
+    /// @brief 閉区間 [l, r] の各要素 i に対し、(i - l) + 1 を加算する (1, 2, 3, ... の等差数列)
+    /// @details 閉区間 [l, r] に次のように加算する.
+    /// I[l] += 1, I[l + 1] += 2, ..., I[r] += (r - l) + 1
+    /// @param l 左端
+    /// @param r 右端
     void add(int l, int r) { add(l, r, T(1), T(1)); }
+
+    /// @brief 閉区間 [l, l + 2m] にテント型（山型）の等差数列を加算する
+    /// @details 閉区間 [l, l + 2m] に次のように山型に加算する.
+    /// I[l] += a, I[l + 1] += a + b, I[l + 2] += a + 2b, ..., I[l + m] += a + mb
+    /// I[l + m + 1] += a + (m - 1)b, I[l + m + 2] += a + (m - 2)b, ..., I[l + 2m - 1] += a + b, I[l + 2m] += a
+    /// @param l 左端
+    /// @param m 頂点までの距離 (山の裾野の長さ)
+    /// @param a 裾野の開始値
+    /// @param b 傾き (公差)
+    void add_tent(int l, int m, const T a, const T b) {
+        if (m < 0) return;
+        add(l, l + m, b, a);
+        add(l + m + 1, l + 2 * m, -b, a + (m - 1) * b);
+    }
 
     inline int size() const { return n; }
 
