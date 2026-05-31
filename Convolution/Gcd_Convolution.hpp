@@ -1,10 +1,10 @@
-#include"Commutative_Idempotent_Monoid_Convolution_Base.hpp"
+#include "Semilattice_Convolution_Base.hpp"
 
 namespace convolution {
     template<typename R>
-    class Gcd_Convolution: public Commutative_Idempotent_Monoid_Convolution_Base<R> {
+    class Gcd_Convolution: public Semilattice_Convolution_Base<R> {
         using Base = Convolution_Base<R>;
-        using ImplBase = Commutative_Idempotent_Monoid_Convolution_Base<R>;
+        using ImplBase = Semilattice_Convolution_Base<R>;
         using ImplBase::ImplBase;
 
         // 加法 (+)

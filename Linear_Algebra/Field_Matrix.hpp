@@ -15,13 +15,15 @@ class Field_Matrix{
     int row, col;
 
     public:
+    Field_Matrix() = default;
+
     Field_Matrix(int row, int col): row(row), col(col){
         mat.assign(row, vector<F>(col, F()));
     }
 
     Field_Matrix(int row): Field_Matrix(row, row){}
 
-    Field_Matrix(vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){
+    Field_Matrix(const vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){
         for (int i = 0; i < row; i++){
             copy(ele[i].begin(), ele[i].end(), mat[i].begin());
         }
@@ -44,6 +46,9 @@ class Field_Matrix{
     // 要素
     inline const vector<F> &operator[](int i) const { return mat[i]; }
     inline vector<F> &operator[](int i) { return mat[i]; }
+
+    inline const F &operator[](const int i, const int j) const { return mat[i][j]; }
+    inline F &operator[](const int i, const int j) { return mat[i][j]; }
 
     // 比較
     bool operator==(const Field_Matrix &B) const {
@@ -102,7 +107,7 @@ class Field_Matrix{
         for (int i = 0; i < row; i++){
             for (int k = 0; k < col; k++){
                 for (int j = 0; j < B.col; j++){
-                    C[i][j] += (*this)[i][k] * B[k][j];
+                    C[i][j] += mat[i][k] * B.mat[k][j];
                 }
             }
         }
@@ -278,6 +283,15 @@ F Determinant(const Field_Matrix<F> &A){
     return det;
 }
 
+// トレース
+template<typename F>
+F Trace(const Field_Matrix<F> &A) {
+    assert (A.is_square());
+    F tr = F(0);
+    for (int i = 0; i < A.row; i++) tr += A[i, i];
+    return tr;
+}
+
 // 第 (i, i) 要素が a[i] である対角行列を生成する.
 template<typename F>
 Field_Matrix<F> Diagonal_Matrix(vector<F> a) {
@@ -287,4 +301,38 @@ Field_Matrix<F> Diagonal_Matrix(vector<F> a) {
     for (int i = 0; i < n; i++) { X[i][i] = a[i]; }
 
     return X;
+}
+
+/**
+ * @brief 複数の行列を並べて一つの大きな行列（ブロック行列）を作る便利関数
+ * @tparam F 体の型
+ * @param blocks 行列の2次元配列
+ * @return Field_Matrix<F> 結合された行列
+ */
+template<typename F>
+Field_Matrix<F> Block_Matrix(const vector<vector<Field_Matrix<F>>> &blocks) {
+    if (blocks.empty() || blocks[0].empty()) return Field_Matrix<F>(0, 0);
+    int total_row = 0;
+    for (int i = 0; i < (int)blocks.size(); i++) total_row += blocks[i][0].row;
+    int total_col = 0;
+    for (int j = 0; j < (int)blocks[0].size(); j++) total_col += blocks[0][j].col;
+
+    Field_Matrix<F> res(total_row, total_col);
+    int row_offset = 0;
+    for (int i = 0; i < (int)blocks.size(); i++) {
+        int col_offset = 0;
+        int block_h = blocks[i][0].row;
+        for (int j = 0; j < (int)blocks[i].size(); j++) {
+            const auto &B = blocks[i][j];
+            assert(B.row == block_h); // 同じ行内のブロックは高さが一致している必要がある
+            for (int r = 0; r < B.row; r++) {
+                for (int c = 0; c < B.col; c++) {
+                    res[row_offset + r][col_offset + c] = B[r][c];
+                }
+            }
+            col_offset += B.col;
+        }
+        row_offset += block_h;
+    }
+    return res;
 }

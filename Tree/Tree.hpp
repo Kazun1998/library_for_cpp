@@ -8,13 +8,11 @@ class Tree {
     vector<int> parent;
     vector<vector<int>> children;
 
-    int N_bit;
     bool locked;
 
     public:
-    Tree(int N, int _offset = 0): N(N), _offset(_offset), N_bit(0) {
+    Tree(int N, int _offset = 0): N(N), _offset(_offset) {
         parent.assign(N + _offset, -1);
-        for (; (1 << N_bit) <= N; N_bit++) {}
         locked = false;
     }
 
@@ -59,6 +57,7 @@ class Tree {
     private:
     vector<int> depth;
     vector<vector<int>> tower;
+    vector<int> _top_down, _bottom_up;
     void bfs() {
         assert(is_locked());
 
@@ -78,28 +77,25 @@ class Tree {
                 Q.push_back(y);
             }
         }
-    }
 
-    public:
-    vector<int> top_down() const {
-        vector<int> res;
-        for (auto layer: tower) {
-            res.insert(res.end(), layer.begin(), layer.end());
+        _top_down.clear();
+        _top_down.reserve(N);
+        for (const auto &layer : tower) {
+            for (int v: layer) _top_down.emplace_back(v);
         }
 
-        return res;
-    }
-
-    public:
-    vector<int> bottom_up() const {
-        vector<int> res;
+        _bottom_up.clear();
+        _bottom_up.reserve(N);
         for (auto it = tower.rbegin(); it != tower.rend(); ++it) {
-            const auto &layer = *it;
-            res.insert(res.end(), layer.begin(), layer.end());
+            for (int v: *it) _bottom_up.emplace_back(v);
         }
-
-        return res;
     }
+
+    public:
+    const vector<int>& top_down() const { return _top_down; }
+
+    public:
+    const vector<int>& bottom_up() const { return _bottom_up; }
 
     // 1 頂点に関する情報
     public:
@@ -122,7 +118,7 @@ class Tree {
     }
 
     // 頂点 x の深さを求める.
-    inline int vertex_depth(const int &x) { return depth[x]; }
+    inline int vertex_depth(const int &x) const { return depth[x]; }
 
     // 2 頂点に関する条件
 
@@ -141,68 +137,7 @@ class Tree {
         return !is_root(x) && !is_root(y) && parent[x] == parent[y];
     }
 
-    private:
-    bool has_upper_list = false;
-    vector<vector<int>> upper_list;
-
-    void build_upper_list() {
-        assert(is_locked());
-
-        if (has_upper_list) { return; }
-
-        has_upper_list = true;
-
-        upper_list.assign(N_bit, vector<int>(N + offset(), -1));
-
-        // Step I
-        for (int i = offset(); i < N + offset(); i++) {
-            if (is_root(i)) { upper_list[0][i] = i; }
-            else { upper_list[0][i] = parent[i]; }
-        }
-
-        // Step II
-        for (int k = 1; k < N_bit; k++) {
-            for (int i = offset(); i < N + offset(); i++) {
-                upper_list[k][i] = upper_list[k - 1][upper_list[k - 1][i]];
-            }
-        }
-    }
-
-    public:
-    // 頂点 x から見て k 代前の頂点を求める.
-    // vertex_depth(x) < k のとき返り値は over = true ならば root, false ならば, -1 である.
-    int upper(int x, int k, bool over = true) {
-        assert(is_locked());
-
-        build_upper_list();
-        if (vertex_depth(x) < k) { return over? root: -1; }
-
-        for(int b = 0; k; k >>= 1, b++){ 
-            if (k & 1) { x = upper_list[b][x]; }
-        }
-
-        return x;
-    }
-
-    public:
-    // 頂点 x と頂点 y の最小共通先祖を求める.
-    int lowest_common_ancestor(int x, int y) {
-        assert(is_locked());
-
-        if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
-        y = upper(y, vertex_depth(y) - vertex_depth(x));
-
-        if (is_root(x) || x == y) { return x; }
-
-        for (int k = N_bit - 1; k >= 0; k--) {
-            int px = upper_list[k][x], py = upper_list[k][y];
-            if (px != py) { x = px, y = py; }
-        }
-
-        return is_root(x) ? root : parent[x];
-    }
-
-    int lowest_common_ancestor_greedy(int x, int y) {
+    int lowest_common_ancestor_greedy(int x, int y) const {
         assert(is_locked());
 
         if (vertex_depth(x) > vertex_depth(y)) { swap(x, y); }
@@ -217,11 +152,6 @@ class Tree {
         }
 
         return x;
-    }
-
-    // 2 頂点 x, y 間の距離を求める.
-    int distance(int x, int y) {
-        return vertex_depth(x) + vertex_depth(y) - 2 * vertex_depth(lowest_common_ancestor(x, y));
     }
 
     private:
@@ -272,25 +202,7 @@ class Tree {
         has_euler_tour_edge = true;
     }
 
-    // 頂点 u から頂点 v へ向かうパスにおいて k 番目 (0-indexed) に通る頂点 (パスの長さが k より大きい場合は over)
-    int jump(int u, int v, int k, int over = -1) {
-        if (k == 0) { return u; }
-
-        int w = lowest_common_ancestor(u, v);
-        int dist_uw = vertex_depth(u) - vertex_depth(w);
-        int dist_wv = vertex_depth(v) - vertex_depth(w);
-        int dist_uv = dist_uw + dist_wv;
-
-        if (dist_uv < k) { 
-            return over;
-        } else if (k <= dist_uw) {
-            return upper(u, k);
-        } else {
-            return upper(v, dist_uv - k);
-        }
-    }
-
-    vector<int> path(int u, int v) {
+    vector<int> path(int u, int v) const {
         int w = lowest_common_ancestor_greedy(u, v);
 
         vector<int> path_first{u}, path_second{v};

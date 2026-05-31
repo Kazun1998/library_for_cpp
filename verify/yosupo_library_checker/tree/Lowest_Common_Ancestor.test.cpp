@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#include"../../../Tree/Tree.hpp"
+#include"../../../Tree/Lowest_Common_Ancestor.hpp"
 
 int main () {
     int N, Q; cin >> N >> Q;
@@ -15,8 +15,10 @@ int main () {
 
     T.seal();
 
+    Lowest_Common_Ancestor L(T);
+
     for (int q = 0; q < Q; q++) {
         int u, v; scanf("%d%d", &u, &v);
-        cout << T.lowest_common_ancestor(u, v) << "\n";
+        cout << L.lowest_common_ancestor(u, v) << "\n";
     }
 }
