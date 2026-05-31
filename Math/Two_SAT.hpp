@@ -1,5 +1,8 @@
 #include"../template/template.hpp"
 
+/**
+ * @brief 2-SAT (2-Satisfiability Problem) を強連結成分分解を用いて解くクラス.
+ */
 class Two_SAT {
     int N;
     int id_number;
@@ -55,22 +58,72 @@ class Two_SAT {
         return I;
     }
 
+    /// @brief 現在の変数の数を返す.
+    /// @return 変数の数
     inline int variable_number() { return N; }
+
+    /// @brief 制約 (X_i = f) => (X_j = g) を追加する.
+    /// @param i 変数 i
+    /// @param f 変数 i の真偽
+    /// @param j 変数 j
+    /// @param g 変数 j の真偽
     void add_imply(int i, bool f, int j, int g) { add_imply(f ? i : ~i, g ? j : ~j); }
+
+    /// @brief リテラル i => リテラル j という制約を追加する.
+    /// @details ~i とすることでリテラルの否定を指定できる.
+    /// @param i 始点となるリテラル
+    /// @param j 終点となるリテラル
     void add_imply(int i, int j) {
         add_clause(i, j);
         add_clause(~j, ~i);
     }
 
+    
+    /// @brief (X_i = f) or (X_j = g) という制約を追加する.
+    /// @param i 変数 i
+    /// @param f 変数 i の真偽
+    /// @param j 変数 j
+    /// @param g 変数 j の真偽
     inline void add_or(int i, bool f, int j, bool g) { add_imply(i, !f, j, g); }
+
+    /// @brief リテラル i or リテラル j という制約を追加する.
+    /// @param i リテラル i
+    /// @param j リテラル j
     inline void add_or(int i, int j) { add_imply(~i, j); }
+
+    /// @brief not ((X_i = f) and (X_j = g)) という制約を追加する.
+    /// @param i 変数 i
+    /// @param f 変数 i の真偽
+    /// @param j 変数 j
+    /// @param g 変数 j の真偽
     inline void add_nand(int i, bool f, int j, bool g) { add_imply(i, f, j, !g); }
+
+    /// @brief リテラル i nand リテラル j という制約を追加する.
+    /// @param i リテラル i
+    /// @param j リテラル j
     inline void add_nand(int i, int j) { add_imply(i, ~j); }
+
+    /// @brief X_i = X_j という制約を追加する.
+    /// @param i 変数 i
+    /// @param j 変数 j
     inline void add_equal(int i, int j) { add_imply(i, j); add_imply(j, i); }
+
+    /// @brief X_i != X_j という制約を追加する.
+    /// @param i 変数 i
+    /// @param j 変数 j
     inline void add_not_equal(int i, int j) { add_equal(i, ~j); }
+
+    /// @brief X_i = True という制約を追加する.
+    /// @param i 変数 i
     inline void set_true(int i) { add_clause(~i, i); }
+
+    /// @brief X_i = False という制約を追加する.
+    /// @param i 変数 i
     inline void set_false(int i) { add_clause(i, ~i); }
 
+    /// @brief 2-SAT を解き、充足可能性を判定する.
+    /// @details 強連結成分分解を用いて O(N + M) (M は制約数) で計算する.
+    /// @return 充足可能であれば true, 不可能であれば false.
     bool solve() {
         order.clear();
         used.assign(2 * N, false);
