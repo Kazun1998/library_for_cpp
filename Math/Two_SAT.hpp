@@ -121,6 +121,22 @@ class Two_SAT {
     /// @param i 変数 i
     inline void set_false(int i) { add_clause(i, ~i); }
 
+    /// @brief リテラルの集合のうち、真になるものが高々 1 つであるという制約を追加する.
+    /// @details 変数 k 個に対し、補助変数を k-1 個導入することで O(k) の辺数で実現する.
+    /// @param literals リテラルのリスト (~i で否定)    
+    void add_at_most_one(const vector<int>& literals) {
+        int n = (int)literals.size();
+        if (n <= 1) return;
+        vector<int> s = add_variables(n - 1);
+        for (int i = 0; i < n - 1; i++) {
+            add_imply(literals[i], s[i]);
+            add_imply(s[i], ~literals[i + 1]);
+            if (i > 0) {
+                add_imply(s[i - 1], s[i]);
+            }
+        }
+    }
+
     /// @brief 2-SAT を解き、充足可能性を判定する.
     /// @details 強連結成分分解を用いて O(N + M) (M は制約数) で計算する.
     /// @return 充足可能であれば true, 不可能であれば false.
