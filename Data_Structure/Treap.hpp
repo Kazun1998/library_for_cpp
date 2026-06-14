@@ -61,6 +61,21 @@ class Treap {
 
     public:
     Treap(): mt(std::random_device{}()) {}
+
+    Treap(std::initializer_list<T> init_list) : Treap() {
+        for (const auto& x : init_list) insert(x);
+    }
+
+    template<class Iterator>
+    Treap(Iterator first, Iterator last) : Treap() {
+        for (auto it = first; it != last; ++it) insert(*it);
+    }
+
+    template<class Container>
+    Treap(const Container& container) : Treap() {
+        for (const auto& x : container) insert(x);
+    }
+
     ~Treap() { clear(root); }
 
     int size() const { return get_size(root); }
