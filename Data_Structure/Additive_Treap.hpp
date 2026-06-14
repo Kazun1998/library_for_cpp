@@ -283,6 +283,28 @@ class Additive_Treap {
         return sum_all() - sum_first(size() - k);
     }
 
+    /// @brief 累積和が target 以上となる最初の要素のインデックスを返す.
+    /// @note 全ての要素が非負であることを前提とする.
+    int bisect_by_sum(T target) const {
+        if (target <= T(0)) return 0;
+        if (target > sum_all()) return size();
+        Node* cur = root;
+        int idx = 0;
+        while (cur) {
+            T left_w = get_weight(cur->left);
+            if (target <= left_w) {
+                cur = cur->left;
+            } else if (target <= left_w + cur->key) {
+                return idx + get_size(cur->left);
+            } else {
+                target -= (left_w + cur->key);
+                idx += get_size(cur->left) + 1;
+                cur = cur->right;
+            }
+        }
+        return size();
+    }
+
     /// @brief k 番目 (0-indexed) のキーを取得する.
     T kth(int k) const {
         if (k < 0) k += size();
