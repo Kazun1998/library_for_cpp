@@ -66,4 +66,25 @@ class Treap {
 
         root = merge(less, more);
     }
+
+    /// @brief 昇順で k 番目 (0-indexed) のキーを取得する.
+    /// @param k インデックス (負の値の場合は後ろから数える)
+    T kth_element(int k) const {
+        if (k < 0) k += size();
+        if (k < 0 || k >= size()) throw std::out_of_range("Treap::kth_element : Index out of range.");
+
+        Node* node = root;
+        loop {
+            int left_size = get_size(node->left);
+            if (k < left_size) {
+                node = node->left;
+            } else if (k == left_size) {
+                break;
+            } else {
+                k -= left_size + 1;
+                node = node->right;
+            }
+        }
+        return node->key;
+    }
 };
