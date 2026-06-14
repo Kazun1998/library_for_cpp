@@ -78,7 +78,9 @@ class Treap {
 
     ~Treap() { clear(root); }
 
-    int size() const { return get_size(root); }
+    size_t size() const { return get_size(root); }
+
+    bool empty() const { return size() == 0; }
 
     static Node* merge(Node* first, Node* second) {
         if (!first || !second) return first ? first : second;
@@ -104,27 +106,29 @@ class Treap {
         }
     }
 
-    void insert(T key) {
+    bool insert(const T key) {
+        if (contains(key)) return false;
         Node *less, *more;
         split(root, key, less, more);
         root = merge(merge(less, new Node(key, mt())), more);
+        return true;
     }
 
-    void erase(T key) {
+    bool erase(const T key) {
+        if (!contains(key)) return false;
         Node *less, *mid, *more;
         split(root, key, less, mid);
         split(mid, key + 1, mid, more);
-
         clear(mid);
-
         root = merge(less, more);
+        return true;
     }
 
     /// @brief Treap を空にする.
     void clear() { clear(root); root = nullptr; }
 
     /// @brief キーが含まれているか判定する.
-    bool contains(const T &key) const {
+    bool contains(const T key) const {
         Node* cur = root;
         while (cur) {
             if (cur->key == key) return true;
@@ -133,38 +137,24 @@ class Treap {
         return false;
     }
 
-    /// @brief key より大きい（または以上）キーのうち最小のものを求める.
-    T next(const T &key, bool equal = true) const {
-        const Node *res = next_inner(key, equal);
-        if (!res) throw std::out_of_range("Treap::next : Successor not found.");
-        return res->key;
+    /// @brief x より大きい（または以上）キーのうち最小のものを求める.
+    std::optional<T> next(const T x, bool equal = false) const {
+        const Node *res = next_inner(x, equal);
+        return res ? std::make_optional(res->key) : std::nullopt;
     }
 
-    /// @brief key より大きい（または以上）キーのうち最小のものを求める. 存在しない場合は default_value を返す.
-    T next(const T &key, const T &default_value, bool equal = true) const {
-        const Node *res = next_inner(key, equal);
-        return res ? res->key : default_value;
+    /// @brief x 未満（または以下）のキーのうち最大のものを求める.
+    std::optional<T> previous(const T x, bool equal = false) const {
+        const Node *res = previous_inner(x, equal);
+        return res ? std::make_optional(res->key) : std::nullopt;
     }
 
-    /// @brief key 未満（または以下）のキーのうち最大のものを求める.
-    T previous(const T &key, bool equal = true) const {
-        const Node *res = previous_inner(key, equal);
-        if (!res) throw std::out_of_range("Treap::previous : Predecessor not found.");
-        return res->key;
-    }
-
-    /// @brief key 未満（または以下）のキーのうち最大のものを求める. 存在しない場合は default_value を返す.
-    T previous(const T &key, const T &default_value, bool equal = true) const {
-        const Node *res = previous_inner(key, equal);
-        return res ? res->key : default_value;
-    }
-
-    /// @brief key 未満の要素の数を求める.
-    int less_count(const T &key, bool equal = false) const {
+    /// @brief x 未満の元の個数を求める.
+    int count_less(const T x, bool equal = false) const {
         Node* cur = root;
         int res = 0;
         while (cur) {
-            bool condition = equal ? (cur->key <= key) : (cur->key < key);
+            bool condition = equal ? (cur->key <= x) : (cur->key < x);
             if (condition) {
                 res += get_size(cur->left) + 1;
                 cur = cur->right;
@@ -175,16 +165,23 @@ class Treap {
         return res;
     }
 
-    /// @brief key より大きい要素の数を求める.
-    int more_count(const T &key, bool equal = false) const {
-        return size() - less_count(key, !equal);
+    /// @brief x より大きい元の個数を求める.
+    int count_more(const T x, bool equal = false) const {
+        return size() - count_less(x, !equal);
     }
 
-    /// @brief 昇順で k 番目 (0-indexed) のキーを取得する.
-    /// @param k インデックス (負の値の場合は後ろから数える)
-    T kth_element(int k) const {
+    /// @brief l 以上 r 未満の元の数を求める.
+    int count_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
+        if (l > r || (l == r && (!l_equal || !r_equal))) return 0;
+        int upper = count_less(r, r_equal);
+        int lower = count_less(l, !l_equal);
+        return std::max(0, upper - lower);
+    }
+
+    /// @brief k 番目 (0-indexed) のキーを取得する.
+    T kth(int k) const {
         if (k < 0) k += size();
-        if (k < 0 || k >= size()) throw std::out_of_range("Treap::kth_element : Index out of range.");
+        if (k < 0 || k >= (int)size()) throw std::out_of_range("Treap::kth : Index out of range.");
 
         Node* node = root;
         loop {
@@ -200,4 +197,19 @@ class Treap {
         }
         return node->key;
     }
+
+    std::optional<T> safe_kth(int k) const {
+        if (k < 0) k += size();
+        if (k < 0 || k >= (int)size()) return std::nullopt;
+        return kth(k);
+    }
+
+    T operator[](int k) { return kth(k); }
+    T operator[](int k) const { return kth(k); }
+
+    T kth_min(int k) const { return kth(k); }
+    T kth_max(int k) const { return kth(-(k + 1)); }
+
+    T min() const { return kth(0); }
+    T max() const { return kth(-1); }
 };
