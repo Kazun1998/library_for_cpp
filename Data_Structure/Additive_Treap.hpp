@@ -258,6 +258,31 @@ class Additive_Treap {
         return std::max(0, upper - lower);
     }
 
+    /// @brief 先頭 k 個の要素の総和を求める.
+    T sum_first(int k) const {
+        if (k <= 0) return T(0);
+        if (k >= (int)size()) return sum_all();
+        Node* cur = root;
+        T res = T(0);
+        while (cur) {
+            int left_size = get_size(cur->left);
+            if (k <= left_size) {
+                cur = cur->left;
+            } else {
+                res += get_weight(cur->left) + cur->key;
+                k -= left_size + 1;
+                if (k <= 0) break;
+                cur = cur->right;
+            }
+        }
+        return res;
+    }
+
+    /// @brief 末尾 k 個の要素の総和を求める.
+    T sum_last(int k) const {
+        return sum_all() - sum_first(size() - k);
+    }
+
     /// @brief k 番目 (0-indexed) のキーを取得する.
     T kth(int k) const {
         if (k < 0) k += size();
