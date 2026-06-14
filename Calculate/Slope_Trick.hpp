@@ -10,4 +10,8 @@ class Slope_Trick {
 
     public:
     Slope_Trick(): negative(), positive(), f_min(0) {}
+
+    /// @brief 定数 a を加算する.
+    /// @param a 
+    void add_const(const T &a) { return f_min += a; }
 };
