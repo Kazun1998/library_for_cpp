@@ -283,6 +283,12 @@ class Additive_Treap {
         return sum_all() - sum_first(size() - k);
     }
 
+    /// @brief 下位 k 個の要素の総和を求める (sum_first のエイリアス).
+    T worst_sum(int k) const { return sum_first(k); }
+
+    /// @brief 上位 k 個の要素の総和を求める (sum_last のエイリアス).
+    T best_sum(int k) const { return sum_last(k); }
+
     /// @brief 累積和が target 以上となる最初の要素のインデックスを返す.
     /// @note 全ての要素が非負であることを前提とする.
     int bisect_by_sum(T target) const {
