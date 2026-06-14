@@ -22,8 +22,46 @@ class Treap {
         return node;
     }
 
+    void clear(Node* node) {
+        if (!node) return;
+        clear(node->left);
+        clear(node->right);
+        delete node;
+    }
+
+    const Node* next_inner(const T &key, bool equal) const {
+        const Node *res = nullptr;
+        const Node *cur = root;
+        while (cur) {
+            bool condition = equal ? (key <= cur->key) : (key < cur->key);
+            if (condition) {
+                res = cur;
+                cur = cur->left;
+            } else {
+                cur = cur->right;
+            }
+        }
+        return res;
+    }
+
+    const Node* previous_inner(const T &key, bool equal) const {
+        const Node *res = nullptr;
+        const Node *cur = root;
+        while (cur) {
+            bool condition = equal ? (key >= cur->key) : (key > cur->key);
+            if (condition) {
+                res = cur;
+                cur = cur->right;
+            } else {
+                cur = cur->left;
+            }
+        }
+        return res;
+    }
+
     public:
     Treap(): mt(std::random_device{}()) {}
+    ~Treap() { clear(root); }
 
     int size() const { return get_size(root); }
 
@@ -62,9 +100,69 @@ class Treap {
         split(root, key, less, mid);
         split(mid, key + 1, mid, more);
 
-        if (mid) delete mid;
+        clear(mid);
 
         root = merge(less, more);
+    }
+
+    /// @brief Treap を空にする.
+    void clear() { clear(root); root = nullptr; }
+
+    /// @brief キーが含まれているか判定する.
+    bool contains(const T &key) const {
+        Node* cur = root;
+        while (cur) {
+            if (cur->key == key) return true;
+            cur = (key < cur->key) ? cur->left : cur->right;
+        }
+        return false;
+    }
+
+    /// @brief key より大きい（または以上）キーのうち最小のものを求める.
+    T next(const T &key, bool equal = true) const {
+        const Node *res = next_inner(key, equal);
+        if (!res) throw std::out_of_range("Treap::next : Successor not found.");
+        return res->key;
+    }
+
+    /// @brief key より大きい（または以上）キーのうち最小のものを求める. 存在しない場合は default_value を返す.
+    T next(const T &key, const T &default_value, bool equal = true) const {
+        const Node *res = next_inner(key, equal);
+        return res ? res->key : default_value;
+    }
+
+    /// @brief key 未満（または以下）のキーのうち最大のものを求める.
+    T previous(const T &key, bool equal = true) const {
+        const Node *res = previous_inner(key, equal);
+        if (!res) throw std::out_of_range("Treap::previous : Predecessor not found.");
+        return res->key;
+    }
+
+    /// @brief key 未満（または以下）のキーのうち最大のものを求める. 存在しない場合は default_value を返す.
+    T previous(const T &key, const T &default_value, bool equal = true) const {
+        const Node *res = previous_inner(key, equal);
+        return res ? res->key : default_value;
+    }
+
+    /// @brief key 未満の要素の数を求める.
+    int less_count(const T &key, bool equal = false) const {
+        Node* cur = root;
+        int res = 0;
+        while (cur) {
+            bool condition = equal ? (cur->key <= key) : (cur->key < key);
+            if (condition) {
+                res += get_size(cur->left) + 1;
+                cur = cur->right;
+            } else {
+                cur = cur->left;
+            }
+        }
+        return res;
+    }
+
+    /// @brief key より大きい要素の数を求める.
+    int more_count(const T &key, bool equal = false) const {
+        return size() - less_count(key, !equal);
     }
 
     /// @brief 昇順で k 番目 (0-indexed) のキーを取得する.
