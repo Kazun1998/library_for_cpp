@@ -225,25 +225,25 @@ class Additive_Treap {
     }
 
     /// @brief x 未満（または以下）の元の総和を求める.
-    T sum_less(const T x, bool equal = false) const {
+    T less_sum(const T x, bool equal = false) const {
         return query(x, equal).second;
     }
 
     /// @brief x より大きい（または以上）の元の総和を求める.
-    T sum_more(const T x, bool equal = false) const {
-        return sum_all() - sum_less(x, !equal);
+    T more_sum(const T x, bool equal = false) const {
+        return all_sum() - less_sum(x, !equal);
     }
 
     /// @brief l 以上 r 未満の元の総和を求める.
-    T sum_range(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
+    T range_sum(const T l, const T r, bool l_equal = true, bool r_equal = false) const {
         if (l > r || (l == r && (!l_equal || !r_equal))) return T(0);
-        T upper = sum_less(r, r_equal);
-        T lower = sum_less(l, !l_equal);
+        T upper = less_sum(r, r_equal);
+        T lower = less_sum(l, !l_equal);
         return upper - lower;
     }
 
     /// @brief 全ての元の総和を求める.
-    T sum_all() const { return get_weight(root); }
+    T all_sum() const { return get_weight(root); }
 
     /// @brief x より大きい元の個数を求める.
     int count_more(const T x, bool equal = false) const {
@@ -259,9 +259,9 @@ class Additive_Treap {
     }
 
     /// @brief 先頭 k 個の要素の総和を求める.
-    T sum_first(int k) const {
+    T first_sum(int k) const {
         if (k <= 0) return T(0);
-        if (k >= (int)size()) return sum_all();
+        if (k >= (int)size()) return all_sum();
         Node* cur = root;
         T res = T(0);
         while (cur) {
@@ -279,21 +279,21 @@ class Additive_Treap {
     }
 
     /// @brief 末尾 k 個の要素の総和を求める.
-    T sum_last(int k) const {
-        return sum_all() - sum_first(size() - k);
+    T last_sum(int k) const {
+        return all_sum() - first_sum(size() - k);
     }
 
     /// @brief 下位 k 個の要素の総和を求める (sum_first のエイリアス).
-    T worst_sum(int k) const { return sum_first(k); }
+    T worst_sum(int k) const { return first_sum(k); }
 
     /// @brief 上位 k 個の要素の総和を求める (sum_last のエイリアス).
-    T best_sum(int k) const { return sum_last(k); }
+    T best_sum(int k) const { return last_sum(k); }
 
     /// @brief 累積和が target 以上となる最初の要素のインデックスを返す.
     /// @note 全ての要素が非負であることを前提とする.
     int bisect_by_sum(T target) const {
         if (target <= T(0)) return 0;
-        if (target > sum_all()) return size();
+        if (target > all_sum()) return size();
         Node* cur = root;
         int idx = 0;
         while (cur) {
