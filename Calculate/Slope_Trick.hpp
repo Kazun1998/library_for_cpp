@@ -12,6 +12,10 @@ class Slope_Trick {
     Slope_Trick(): negative(), positive(), f_min(0) {}
 
     /// @brief 定数 a を加算する.
-    /// @param a 
+    /// @param a
     void add_const(const T &a) { return f_min += a; }
+
+    /// @brief この関数の最小値を得る.
+    /// @return
+    T get_min() const { return f_min; }
 };
