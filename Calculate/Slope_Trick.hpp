@@ -27,4 +27,13 @@ class Slope_Trick {
         negative.insert(a);
         positive.insert(negative.pop_max());
     }
+
+    void add_a_minus_x(const T &a) {
+        unless (positive.empty()) {
+            f_min += max(T(0), a - positive.min());
+        }
+
+        positive.insert(a);
+        negative.insert(positive.pop_min());
+    }
 };
