@@ -345,4 +345,16 @@ class Additive_Treap {
 
     T min() const { return kth(0); }
     T max() const { return kth(-1); }
+
+    T pop_min() {
+        T res = min();
+        erase(res);
+        return res;
+    }
+
+    T pop_max() {
+        T res = max();
+        erase(res);
+        return res;
+    }
 };
