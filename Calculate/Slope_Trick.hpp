@@ -60,4 +60,17 @@ class Slope_Trick {
 
         return res;
     }
+
+    // calculate min_{l <= x <= r} f(x)
+    T calculate_min(const T &l, const T &r) const {
+        if (!negative.empty() && r < negative.max()) {
+            return calculate_at(r);
+        }
+
+        if (!positive.empty() && l > positive.min()) {
+            return calculate_at(l);
+        }
+
+        return f_min;
+    }
 };
