@@ -36,4 +36,9 @@ class Slope_Trick {
         positive.insert(a);
         negative.insert(positive.pop_min());
     }
+
+    void add_abs(const T &a) {
+        add_x_minus_a(a);
+        add_a_minus_x(a);
+    }
 };
