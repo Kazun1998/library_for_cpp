@@ -41,4 +41,23 @@ class Slope_Trick {
         add_x_minus_a(a);
         add_a_minus_x(a);
     }
+
+    // calculate f(x)
+    T calculate_at(const T &x) const {
+        T res = f_min;
+
+        unless (negative.empty()) {
+            T sum_l = negative.more_sum(x, false);
+            int count_l = negative.count_more(x, false);
+            res += sum_l - count_l * x;
+        }
+
+        unless (positive.empty()) {
+            T sum_r = positive.less_sum(x, false);
+            int count_r = positive.count_less(x, false);
+            res += count_r * x - sum_r;
+        }
+
+        return res;
+    }
 };
