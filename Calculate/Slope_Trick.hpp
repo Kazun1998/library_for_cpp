@@ -18,4 +18,13 @@ class Slope_Trick {
     /// @brief この関数の最小値を得る.
     /// @return
     T get_min() const { return f_min; }
+
+    void add_x_minus_a(const T &a) {
+        unless (negative.empty()) {
+            f_min += max(T(0), negative.max() - a);
+        }
+
+        negative.insert(a);
+        positive.insert(negative.pop_max());
+    }
 };
