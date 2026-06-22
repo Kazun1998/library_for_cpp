@@ -46,8 +46,8 @@ class Slope_Trick {
         if (positive.contains(a)) {
             positive.erase(a);
         } else {
+            negative.insert(positive.pop_min());
             negative.erase(a);
-            positive.insert(negative.pop_max());
         }
 
         unless (negative.empty()) {
@@ -59,8 +59,8 @@ class Slope_Trick {
         if (negative.contains(a)) {
             negative.erase(a);
         } else {
+            positive.insert(negative.pop_max());
             positive.erase(a);
-            negative.insert(positive.pop_min());
         }
 
         unless (positive.empty()) {
