@@ -42,6 +42,37 @@ class Slope_Trick {
         add_a_minus_x(a);
     }
 
+    void sub_x_minus_a(const T &a) {
+        if (positive.contains(a)) {
+            positive.erase(a);
+        } else {
+            negative.erase(a);
+            positive.insert(negative.pop_max());
+        }
+
+        unless (negative.empty()) {
+            f_min -= max(T(0), negative.max() - a);
+        }
+    }
+
+    void sub_a_minus_x(const T &a) {
+        if (negative.contains(a)) {
+            negative.erase(a);
+        } else {
+            positive.erase(a);
+            negative.insert(positive.pop_min());
+        }
+
+        unless (positive.empty()) {
+            f_min -= max(T(0), a - positive.min());
+        }
+    }
+
+    void sub_abs(const T &a) {
+        sub_x_minus_a(a);
+        sub_a_minus_x(a);
+    }
+
     // calculate f(x)
     T calculate_at(const T &x) const {
         T res = f_min;
