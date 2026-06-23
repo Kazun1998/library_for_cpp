@@ -92,6 +92,8 @@ class Slope_Trick {
         return res;
     }
 
+    T operator()(const T &x) const { return calculate_at(x); }
+
     // calculate min_{l <= x <= r} f(x)
     T calculate_min(const T &l, const T &r) const {
         if (!negative.empty() && r < negative.max()) {
