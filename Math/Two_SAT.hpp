@@ -78,7 +78,6 @@ class Two_SAT {
         add_clause(~j, ~i);
     }
 
-    
     /// @brief (X_i = f) or (X_j = g) という制約を追加する.
     /// @param i 変数 i
     /// @param f 変数 i の真偽
@@ -123,7 +122,7 @@ class Two_SAT {
 
     /// @brief リテラルの集合のうち、真になるものが高々 1 つであるという制約を追加する.
     /// @details 変数 k 個に対し、補助変数を k-1 個導入することで O(k) の辺数で実現する.
-    /// @param literals リテラルのリスト (~i で否定)    
+    /// @param literals リテラルのリスト (~i で否定)
     void add_at_most_one(const vector<int>& literals) {
         int n = (int)literals.size();
         if (n <= 1) return;
