@@ -136,6 +136,18 @@ class Two_SAT {
         }
     }
 
+    void add_at_most_one(const vector<pair<int, bool>> &literals) {
+        int n = (int)literals.size();
+        if (n <= 1) return;
+        vector<int> converted_literals(n);
+        for (int i = 0; i < n; ++i) {
+            auto &[v, f] = literals[i];
+            converted_literals[i] = f ? v : ~v;
+        }
+
+        add_at_most_one(converted_literals);
+    }
+
     /// @brief 2-SAT を解き、充足可能性を判定する.
     /// @details 強連結成分分解を用いて O(N + M) (M は制約数) で計算する.
     /// @return 充足可能であれば true, 不可能であれば false.
