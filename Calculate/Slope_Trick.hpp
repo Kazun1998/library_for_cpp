@@ -106,4 +106,19 @@ class Slope_Trick {
 
         return f_min;
     }
+
+    // l <= x <= r において f(x) が最小値をとる区間 [a, b] を求める
+    std::pair<T, T> argmin(const T &l, const T &r) const {
+        assert(l <= r);
+        T L_opt = negative.empty() ? l : negative.max();
+        T R_opt = positive.empty() ? r : positive.min();
+
+        if (r < L_opt) {
+            return {r, r};
+        }
+        if (l > R_opt) {
+            return {l, l};
+        }
+        return {std::max(l, L_opt), std::min(r, R_opt)};
+    }
 };
