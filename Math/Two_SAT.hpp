@@ -126,6 +126,7 @@ class Two_SAT {
     void add_at_most_one(const vector<int>& literals) {
         int n = (int)literals.size();
         if (n <= 1) return;
+
         vector<int> s = add_variables(n - 1);
         for (int i = 0; i < n - 1; i++) {
             add_imply(literals[i], s[i]);
@@ -136,6 +137,8 @@ class Two_SAT {
         }
     }
 
+    /// @brief リテラルの集合のうち、真になるものが高々 1 つであるという制約を追加する.
+    /// @param literals リテラルのリスト ((i, f) の形のペアのベクトルであり, (i, f) は X_i = f であることを意味する)
     void add_at_most_one(const vector<pair<int, bool>> &literals) {
         int n = (int)literals.size();
         if (n <= 1) return;
