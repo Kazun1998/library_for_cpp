@@ -392,8 +392,8 @@ data:
   timestamp: '2026-04-29 14:01:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
   - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
 documentation_of: Integer/Pollard_Rho.hpp
 layout: document
 redirect_from:

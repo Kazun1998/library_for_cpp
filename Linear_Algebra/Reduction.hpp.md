@@ -368,13 +368,13 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Reduction.hpp
   requiredBy:
-  - Linear_Algebra/Matrix_Subspaces.hpp
   - Linear_Algebra/Rank.hpp
+  - Linear_Algebra/Matrix_Subspaces.hpp
   timestamp: '2026-05-01 00:20:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Reduction.hpp
 layout: document
 redirect_from:

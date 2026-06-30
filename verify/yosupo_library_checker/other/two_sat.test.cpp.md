@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Math/Two_SAT.hpp
-    title: Math/Two_SAT.hpp
+    title: 2-SAT
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -199,57 +199,102 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Math/Two_SAT.hpp\"\n\nclass Two_SAT{\n    public:\n    vector<vector<int>>\
-    \ arc,rev;\n    bool satisfiable;\n    vector<bool> answer;\n\n    private:\n\
-    \    int N;\n\n    public:\n    Two_SAT(int N): N(N) {\n        arc.resize(2 *\
-    \ N);\n        rev.resize(2 * N);\n    }\n\n    public:\n    // \u9802\u70B9\u3092\
-    \ 1 \u500B\u8FFD\u52A0\u3059\u308B.\n    int add_variable() {\n        int id\
-    \ = N;\n        arc.emplace_back(vector<int>()); arc.emplace_back(vector<int>());\n\
-    \        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n \
-    \       N++;\n\n        return id;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\
-    \u8FFD\u52A0\u3059\u308B.\n    vector<int> add_variables(int k = 1) {\n      \
-    \  vector<int> I;\n        for (; k > 0; k--){ I.emplace_back(add_variable());\
-    \ }\n        return I;\n    }\n\n    public:\n    inline int variable_number()\
-    \ { return N; }\n\n    private:\n    inline int var_to_index(const int v) const\
-    \ { return max(2 * v, 2 * (-v - 1) + 1); }\n\n    private:\n    // \u5F27 X[i]\
-    \ => X[j] \u3092\u8FFD\u52A0\u3059\u308B.\n    // \u305F\u3060\u3057, X[~i] =\
-    \ not X[i] \u3068\u3059\u308B.\n    void add_clause(int i, int j) {\n        int\
-    \ p = var_to_index(i), q = var_to_index(j);\n        arc[p].emplace_back(q);\n\
-    \        rev[q].emplace_back(p);\n    }\n\n    public:\n    // \u7BC0 (X[i] =\
-    \ f) => (X[j] = g) \u3092\u8FFD\u52A0\u3059\u308B.\n    void add_imply(int i,\
-    \ bool f, int j, int g) { add_imply(f ? i: ~i, g ? j: ~j); }\n\n    void add_imply(int\
-    \ i, int j) {\n        add_clause(i, j);\n        add_clause(~j, ~i);\n    }\n\
-    \n    public:\n    // (X[i] = f) or (X[j] = g) \u3092\u8FFD\u52A0\u3059\u308B\
-    .\n    inline void add_or(int i, bool f, int j, bool g) { add_imply(i, !f, j,\
-    \ g); }\n    inline void add_or(int i, int j) { add_imply(~i, j); }\n\n    public:\n\
-    \    // not ((X[i] = f) and (X[j] = g)) \u3092\u8FFD\u52A0\u3059\u308B.\n    inline\
-    \ void add_nand(int i, bool f, int j, bool g) { add_imply(i, f, j, !g); }\n  \
-    \  inline void add_nand(int i, int j) { add_imply(i, ~j); }\n\n    public:\n \
-    \   // X[i] = X[j] \u3092\u8FFD\u52A0\u3059\u308B.\n    inline void add_equal(int\
-    \ i, int j) { add_imply(i, j); add_imply(j, i); }\n\n    public:\n    // X[i]\
-    \ != X[j] \u3092\u8FFD\u52A0\u3059\u308B.\n    inline void add_not_equal(int i,\
-    \ int j) { add_equal(i, ~j); }\n\n    public:\n    // X[i] = True \u3068\u3059\
-    \u308B.\n    inline void set_true(int i) { add_clause(~i, i); }\n\n    public:\n\
-    \    // X[i]=False \u3068\u3059\u308B.\n    inline void set_false(int i) {add_clause(i,\
-    \ ~i); }\n\n    // \u4EE5\u4E0B, 2-SAT \u3092\u89E3\u304F\u305F\u3081\u306E\u5F37\
-    \u9023\u7D50\u6210\u5206\u5206\u89E3\u306B\u95A2\u3059\u308B\u30E1\u30BD\u30C3\
-    \u30C9\u305F\u3061\n    private:\n    int id_number;\n    vector<int> id;\n  \
-    \  vector<int> order; vector<bool> used;\n\n    public:\n    bool solve() {\n\
-    \        order.clear();\n        used.assign(2 * N, false);\n\n        for (int\
-    \ i = 0; i < 2 * N; i++){\n            if (!used[i]) { dfs1(i); }\n        }\n\
-    \n        reverse(order.begin(), order.end());\n        id.assign(2 * N, -1);\n\
-    \n        id_number = 0;\n        for (int v: order){\n            unless(id[v]\
-    \ == -1) { continue; }\n\n            dfs2(v);\n            id_number++;\n   \
-    \     }\n\n        answer.assign(N, false);\n        for (int i = 0; i < N; i++){\n\
-    \            if (id[2 * i] == id[2 * i + 1]){\n                answer.clear();\n\
-    \                return satisfiable=false;\n            }\n\n            answer[i]\
+    \    }\n};\n#line 2 \"Math/Two_SAT.hpp\"\n\n/**\n * @brief 2-SAT (2-Satisfiability\
+    \ Problem) \u3092\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3092\u7528\u3044\u3066\
+    \u89E3\u304F\u30AF\u30E9\u30B9.\n */\nclass Two_SAT {\n    int N;\n    int id_number;\n\
+    \    vector<int> id, order;\n    vector<bool> used;\n\n    inline int var_to_index(const\
+    \ int v) const { return max(2 * v, 2 * (-v - 1) + 1); }\n\n    // \u5F27 X[i]\
+    \ => X[j] \u3092\u8FFD\u52A0\u3059\u308B. \u305F\u3060\u3057, X[~i] = not X[i]\
+    \ \u3068\u3059\u308B.\n    void add_clause(int i, int j) {\n        int p = var_to_index(i),\
+    \ q = var_to_index(j);\n        arc[p].emplace_back(q);\n        rev[q].emplace_back(p);\n\
+    \    }\n\n    void dfs1(int v) {\n        used[v] = true;\n        for (int w\
+    \ : arc[v]) {\n            unless(used[w]) { dfs1(w); }\n        }\n        order.emplace_back(v);\n\
+    \    }\n\n    void dfs2(int v) {\n        id[v] = id_number;\n        for (auto\
+    \ w : rev[v]) {\n            if (id[w] == -1) { dfs2(w); }\n        }\n    }\n\
+    \n    public:\n    vector<vector<int>> arc, rev;\n    bool satisfiable;\n    vector<bool>\
+    \ answer;\n\n    Two_SAT(int N): N(N) {\n        arc.resize(2 * N);\n        rev.resize(2\
+    \ * N);\n    }\n\n    int add_variable() {\n        int id = N;\n        arc.emplace_back(vector<int>());\
+    \ arc.emplace_back(vector<int>());\n        rev.emplace_back(vector<int>()); rev.emplace_back(vector<int>());\n\
+    \        N++;\n\n        return id;\n    }\n\n    vector<int> add_variables(int\
+    \ k = 1) {\n        vector<int> I;\n        for (; k > 0; k--) { I.emplace_back(add_variable());\
+    \ }\n        return I;\n    }\n\n    /// @brief \u73FE\u5728\u306E\u5909\u6570\
+    \u306E\u6570\u3092\u8FD4\u3059.\n    /// @return \u5909\u6570\u306E\u6570\n  \
+    \  inline int variable_number() { return N; }\n\n    /// @brief \u5236\u7D04 (X_i\
+    \ = f) => (X_j = g) \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u5909\u6570\
+    \ i\n    /// @param f \u5909\u6570 i \u306E\u771F\u507D\n    /// @param j \u5909\
+    \u6570 j\n    /// @param g \u5909\u6570 j \u306E\u771F\u507D\n    void add_imply(int\
+    \ i, bool f, int j, int g) { add_imply(f ? i : ~i, g ? j : ~j); }\n\n    /// @brief\
+    \ \u30EA\u30C6\u30E9\u30EB i => \u30EA\u30C6\u30E9\u30EB j \u3068\u3044\u3046\u5236\
+    \u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @details ~i \u3068\u3059\u308B\u3053\
+    \u3068\u3067\u30EA\u30C6\u30E9\u30EB\u306E\u5426\u5B9A\u3092\u6307\u5B9A\u3067\
+    \u304D\u308B.\n    /// @param i \u59CB\u70B9\u3068\u306A\u308B\u30EA\u30C6\u30E9\
+    \u30EB\n    /// @param j \u7D42\u70B9\u3068\u306A\u308B\u30EA\u30C6\u30E9\u30EB\
+    \n    void add_imply(int i, int j) {\n        add_clause(i, j);\n        add_clause(~j,\
+    \ ~i);\n    }\n\n    /// @brief (X_i = f) or (X_j = g) \u3068\u3044\u3046\u5236\
+    \u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u5909\u6570 i\n    ///\
+    \ @param f \u5909\u6570 i \u306E\u771F\u507D\n    /// @param j \u5909\u6570 j\n\
+    \    /// @param g \u5909\u6570 j \u306E\u771F\u507D\n    inline void add_or(int\
+    \ i, bool f, int j, bool g) { add_imply(i, !f, j, g); }\n\n    /// @brief \u30EA\
+    \u30C6\u30E9\u30EB i or \u30EA\u30C6\u30E9\u30EB j \u3068\u3044\u3046\u5236\u7D04\
+    \u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u30EA\u30C6\u30E9\u30EB i\n\
+    \    /// @param j \u30EA\u30C6\u30E9\u30EB j\n    inline void add_or(int i, int\
+    \ j) { add_imply(~i, j); }\n\n    /// @brief not ((X_i = f) and (X_j = g)) \u3068\
+    \u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u5909\
+    \u6570 i\n    /// @param f \u5909\u6570 i \u306E\u771F\u507D\n    /// @param j\
+    \ \u5909\u6570 j\n    /// @param g \u5909\u6570 j \u306E\u771F\u507D\n    inline\
+    \ void add_nand(int i, bool f, int j, bool g) { add_imply(i, f, j, !g); }\n\n\
+    \    /// @brief \u30EA\u30C6\u30E9\u30EB i nand \u30EA\u30C6\u30E9\u30EB j \u3068\
+    \u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u30EA\
+    \u30C6\u30E9\u30EB i\n    /// @param j \u30EA\u30C6\u30E9\u30EB j\n    inline\
+    \ void add_nand(int i, int j) { add_imply(i, ~j); }\n\n    /// @brief X_i = X_j\
+    \ \u3068\u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param\
+    \ i \u5909\u6570 i\n    /// @param j \u5909\u6570 j\n    inline void add_equal(int\
+    \ i, int j) { add_imply(i, j); add_imply(j, i); }\n\n    /// @brief X_i != X_j\
+    \ \u3068\u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param\
+    \ i \u5909\u6570 i\n    /// @param j \u5909\u6570 j\n    inline void add_not_equal(int\
+    \ i, int j) { add_equal(i, ~j); }\n\n    /// @brief X_i = True \u3068\u3044\u3046\
+    \u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param i \u5909\u6570 i\n\
+    \    inline void set_true(int i) { add_clause(~i, i); }\n\n    /// @brief X_i\
+    \ = False \u3068\u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    ///\
+    \ @param i \u5909\u6570 i\n    inline void set_false(int i) { add_clause(i, ~i);\
+    \ }\n\n    /// @brief \u30EA\u30C6\u30E9\u30EB\u306E\u96C6\u5408\u306E\u3046\u3061\
+    \u3001\u771F\u306B\u306A\u308B\u3082\u306E\u304C\u9AD8\u3005 1 \u3064\u3067\u3042\
+    \u308B\u3068\u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @details\
+    \ \u5909\u6570 k \u500B\u306B\u5BFE\u3057\u3001\u88DC\u52A9\u5909\u6570\u3092\
+    \ k-1 \u500B\u5C0E\u5165\u3059\u308B\u3053\u3068\u3067 O(k) \u306E\u8FBA\u6570\
+    \u3067\u5B9F\u73FE\u3059\u308B.\n    /// @param literals \u30EA\u30C6\u30E9\u30EB\
+    \u306E\u30EA\u30B9\u30C8 (~i \u3067\u5426\u5B9A)\n    void add_at_most_one(const\
+    \ vector<int>& literals) {\n        int n = (int)literals.size();\n        if\
+    \ (n <= 1) return;\n\n        vector<int> s = add_variables(n - 1);\n        for\
+    \ (int i = 0; i < n - 1; i++) {\n            add_imply(literals[i], s[i]);\n \
+    \           add_imply(s[i], ~literals[i + 1]);\n            if (i > 0) {\n   \
+    \             add_imply(s[i - 1], s[i]);\n            }\n        }\n    }\n\n\
+    \    /// @brief \u30EA\u30C6\u30E9\u30EB\u306E\u96C6\u5408\u306E\u3046\u3061\u3001\
+    \u771F\u306B\u306A\u308B\u3082\u306E\u304C\u9AD8\u3005 1 \u3064\u3067\u3042\u308B\
+    \u3068\u3044\u3046\u5236\u7D04\u3092\u8FFD\u52A0\u3059\u308B.\n    /// @param\
+    \ literals \u30EA\u30C6\u30E9\u30EB\u306E\u30EA\u30B9\u30C8 ((i, f) \u306E\u5F62\
+    \u306E\u30DA\u30A2\u306E\u30D9\u30AF\u30C8\u30EB\u3067\u3042\u308A, (i, f) \u306F\
+    \ X_i = f \u3067\u3042\u308B\u3053\u3068\u3092\u610F\u5473\u3059\u308B)\n    void\
+    \ add_at_most_one(const vector<pair<int, bool>> &literals) {\n        int n =\
+    \ (int)literals.size();\n        if (n <= 1) return;\n        vector<int> converted_literals(n);\n\
+    \        for (int i = 0; i < n; ++i) {\n            auto &[v, f] = literals[i];\n\
+    \            converted_literals[i] = f ? v : ~v;\n        }\n\n        add_at_most_one(converted_literals);\n\
+    \    }\n\n    /// @brief 2-SAT \u3092\u89E3\u304D\u3001\u5145\u8DB3\u53EF\u80FD\
+    \u6027\u3092\u5224\u5B9A\u3059\u308B.\n    /// @details \u5F37\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3\u3092\u7528\u3044\u3066 O(N + M) (M \u306F\u5236\u7D04\u6570\
+    ) \u3067\u8A08\u7B97\u3059\u308B.\n    /// @return \u5145\u8DB3\u53EF\u80FD\u3067\
+    \u3042\u308C\u3070 true, \u4E0D\u53EF\u80FD\u3067\u3042\u308C\u3070 false.\n \
+    \   bool solve() {\n        order.clear();\n        used.assign(2 * N, false);\n\
+    \        for (int i = 0; i < 2 * N; i++) {\n            if (!used[i]) { dfs1(i);\
+    \ }\n        }\n\n        reverse(order.begin(), order.end());\n        id.assign(2\
+    \ * N, -1);\n\n        id_number = 0;\n        for (int v : order) {\n       \
+    \     unless(id[v] == -1) { continue; }\n\n            dfs2(v);\n            id_number++;\n\
+    \        }\n\n        answer.assign(N, false);\n        for (int i = 0; i < N;\
+    \ i++) {\n            if (id[2 * i] == id[2 * i + 1]) {\n                answer.clear();\n\
+    \                return satisfiable = false;\n            }\n\n            answer[i]\
     \ = (id[2 * i] > id[2 * i + 1]);\n        }\n\n        return satisfiable = true;\n\
-    \    }\n\n    private:\n    void dfs1(int v){\n        used[v] = true;\n     \
-    \   for (int w: arc[v]){\n            unless (used[w]) { dfs1(w); }\n        }\n\
-    \        order.emplace_back(v);\n    }\n\n    void dfs2(int v){\n        id[v]\
-    \ = id_number;\n        for (auto w: rev[v]){\n            if (id[w] == -1) {\
-    \ dfs2(w); }\n        }\n    }\n};\n#line 5 \"verify/yosupo_library_checker/other/two_sat.test.cpp\"\
-    \n\nint main(){\n    string p, cnf; cin >> p >> cnf;\n    int N, M; cin >> N >>\
+    \    }\n};\n#line 5 \"verify/yosupo_library_checker/other/two_sat.test.cpp\"\n\
+    \nint main(){\n    string p, cnf; cin >> p >> cnf;\n    int N, M; cin >> N >>\
     \ M;\n    Two_SAT T(N + 1);\n\n    for (int j = 1; j <= M; j++){\n        int\
     \ a, b, zero;\n        bool f, g;\n        scanf(\"%d%d%d\", &a, &b, &zero);\n\
     \n        if (a > 0) { f = true; }\n        else { a = -a, f = false; }\n\n  \
@@ -282,7 +327,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/other/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
+  timestamp: '2026-07-01 00:11:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/other/two_sat.test.cpp

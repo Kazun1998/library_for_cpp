@@ -313,17 +313,17 @@ data:
   isVerificationFile: false
   path: Counting/Combination_Calculator.hpp
   requiredBy:
+  - Counting/Q_Analog_Combination_Calculator.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   - Math/Lagrange_Interpolation.hpp
-  - Counting/Q_Analog_Combination_Calculator.hpp
   timestamp: '2026-04-13 01:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
 documentation_of: Counting/Combination_Calculator.hpp
 layout: document
 title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\u7684\

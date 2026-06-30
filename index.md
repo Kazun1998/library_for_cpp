@@ -442,7 +442,7 @@ data:
       title: "Stern Brocot \u6728"
     - icon: ':heavy_check_mark:'
       path: Math/Two_SAT.hpp
-      title: Math/Two_SAT.hpp
+      title: 2-SAT
     - icon: ':warning:'
       path: Math/XOR_Vector_Space.hpp
       title: "XOR \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"

@@ -276,13 +276,13 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Find_Linear_Recurrence.hpp
   requiredBy:
-  - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
   - Linear_Algebra/Predict_Nth_Term.hpp
+  - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
   timestamp: '2026-04-19 16:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
+  - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
 documentation_of: Linear_Algebra/Find_Linear_Recurrence.hpp
 layout: document
 title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
