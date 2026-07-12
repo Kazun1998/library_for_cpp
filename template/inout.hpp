@@ -24,13 +24,6 @@ ostream &operator<<(ostream &os, const pair<T, U> &P){
 }
 
 template<typename T>
-vector<T> vector_input(int N, int index){
-    vector<T> X(N+index);
-    for (int i=index; i<index+N; i++) cin >> X[i];
-    return X;
-}
-
-template<typename T>
 istream &operator>>(istream &is, vector<T> &X){
     for (auto &x: X) { is >> x; }
     return is;
