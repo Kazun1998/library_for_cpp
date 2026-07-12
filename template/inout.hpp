@@ -1,4 +1,7 @@
 // 入出力
+#include <type_traits>
+#include <string>
+
 template<class... T>
 void input(T&... a){ (cin >> ... >> a); }
 
@@ -29,38 +32,14 @@ istream &operator>>(istream &is, vector<T> &X){
     return is;
 }
 
-template<typename T>
-ostream &operator<<(ostream &os, const vector<T> &X){
-    int s = (int)X.size();
-    for (int i = 0; i < s; i++) { os << (i ? " " : "") << X[i]; }
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const unordered_set<T> &S){
-    int i = 0;
-    for (T a: S) {os << (i ? " ": "") << a; i++;}
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const set<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const unordered_multiset<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const multiset<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
+template<typename T, typename U = typename T::iterator>
+typename std::enable_if<!std::is_same<T, std::string>::value, ostream&>::type
+operator<<(ostream &os, const T &container){
+    bool is_first = true;
+    for (const auto &x : container) {
+        os << (is_first ? "" : " ") << x;
+        is_first = false;
+    }
     return os;
 }
 
