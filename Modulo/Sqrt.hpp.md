@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "Legendre \u8A18\u53F7 (A/p) \u3092\u6C42\u3081\u308B."
     links: []
@@ -131,70 +131,71 @@ data:
     \ isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\u3081\u308B (N < 0 \u306E\u3068\
     \u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const ll &N) {\n    ll x =\
     \ isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line 64 \"template/template.hpp\"\
-    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\ntemplate<class...\
-    \ T>\nvoid input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\\
-    n\"; }\n\ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&...\
-    \ b){\n    cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\
-    \\n\";\n}\n\ntemplate<typename T, typename U>\nistream &operator>>(istream &is,\
-    \ pair<T, U> &P){\n    is >> P.first >> P.second;\n    return is;\n}\n\ntemplate<typename\
-    \ T, typename U>\nostream &operator<<(ostream &os, const pair<T, U> &P){\n   \
-    \ os << P.first << \" \" << P.second;\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nvector<T> vector_input(int N, int index){\n    vector<T> X(N+index);\n \
-    \   for (int i=index; i<index+N; i++) cin >> X[i];\n    return X;\n}\n\ntemplate<typename\
-    \ T>\nistream &operator>>(istream &is, vector<T> &X){\n    for (auto &x: X) {\
-    \ is >> x; }\n    return is;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const vector<T> &X){\n    int s = (int)X.size();\n    for (int i = 0; i\
-    \ < s; i++) { os << (i ? \" \" : \"\") << X[i]; }\n    return os;\n}\n\ntemplate<typename\
-    \ T>\nostream &operator<<(ostream &os, const unordered_set<T> &S){\n    int i\
-    \ = 0;\n    for (T a: S) {os << (i ? \" \": \"\") << a; i++;}\n    return os;\n\
-    }\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const set<T> &S){\n\
-    \    int i = 0;\n    for (T a: S) { os << (i ? \" \": \"\") << a; i++; }\n   \
-    \ return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream &os, const\
-    \ unordered_multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nostream &operator<<(ostream\
-    \ &os, const multiset<T> &S){\n    int i = 0;\n    for (T a: S) { os << (i ? \"\
-    \ \": \"\") << a; i++; }\n    return os;\n}\n\ntemplate<typename T>\nstd::vector<T>\
-    \ input_vector(size_t n, size_t offset = 0) {\n    std::vector<T> res;\n    //\
-    \ \u6700\u521D\u306B\u5FC5\u8981\u306A\u5168\u5BB9\u91CF\u3092\u78BA\u4FDD\uFF08\
-    \u518D\u78BA\u4FDD\u3092\u9632\u3050\uFF09\n    res.reserve(n + offset);\n   \
-    \ // offset \u5206\u3092\u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3067\u57CB\u3081\
-    \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\
-    \    \n    for (size_t i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin\
-    \ >> el)) break;\n        res.push_back(std::move(el));\n    }\n    return res;\n\
-    }\n#line 67 \"template/template.hpp\"\n\n// macro\n#line 2 \"template/macro.hpp\"\
-    \n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
-    #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
-    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
-    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
-    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
-    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
-    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
-    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
-    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
-    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
-    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
-    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
-    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
-    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\
-    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x\
-    \ \u306E bit legnth \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x\
-    \ == 0) { return 0; }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n\
-    }\n\n// \u975E\u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\n\
-    ll popcount(ll x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\
-    \u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\n\
-    ll floor_log2(ll x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570\
-    \ x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll\
-    \ x) { return bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\
-    \u53D6\u5F97\u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n\
-    // x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\
-    \u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll\
-    \ x, int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x\
-    \ & 1;\n        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\
-    \u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return\
-    \ get_bits(x, bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\
-    \u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\
-    \u529B\u3059\u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x));\
-    \ }\n#line 73 \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
+    \n\n// inout\n#line 1 \"template/inout.hpp\"\n// \u5165\u51FA\u529B\n#line 4 \"\
+    template/inout.hpp\"\n\ntemplate<class... T>\nvoid input(T&... a){ (cin >> ...\
+    \ >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\ntemplate<class T, class... Ts>\n\
+    void print(const T& a, const Ts&... b){\n    cout << a;\n    (cout << ... << (cout\
+    \ << \" \", b));\n    cout << \"\\n\";\n}\n\ntemplate<typename T, typename U>\n\
+    istream &operator>>(istream &is, pair<T, U> &P){\n    is >> P.first >> P.second;\n\
+    \    return is;\n}\n\ntemplate<typename T, typename U>\nostream &operator<<(ostream\
+    \ &os, const pair<T, U> &P){\n    os << P.first << \" \" << P.second;\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nistream &operator>>(istream &is, vector<T> &X){\n\
+    \    for (auto &x: X) { is >> x; }\n    return is;\n}\n\ntemplate<typename T,\
+    \ typename U = typename T::iterator>\ntypename std::enable_if<!std::is_same<T,\
+    \ std::string>::value, ostream&>::type\noperator<<(ostream &os, const T &container){\n\
+    \    bool is_first = true;\n    for (const auto &x : container) {\n        os\
+    \ << (is_first ? \"\" : \" \") << x;\n        is_first = false;\n    }\n    return\
+    \ os;\n}\n\ntemplate<typename T>\nstd::vector<T> input_vector(int n, int offset\
+    \ = 0) {\n    std::vector<T> res;\n    // \u6700\u521D\u306B\u5FC5\u8981\u306A\
+    \u5168\u5BB9\u91CF\u3092\u78BA\u4FDD\uFF08\u518D\u78BA\u4FDD\u3092\u9632\u3050\
+    \uFF09\n    res.reserve(n + offset);\n    // offset \u5206\u3092\u30C7\u30D5\u30A9\
+    \u30EB\u30C8\u5024\u3067\u57CB\u3081\u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\
+    \n    res.assign(offset, T());\n\n    for (int i = 0; i < n; ++i) {\n        T\
+    \ el;\n        if (!(std::cin >> el)) break;\n        res.push_back(std::move(el));\n\
+    \    }\n    return res;\n}\n\n#line 63 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\
+    \uFF1A\u30B5\u30A4\u30BA n \u306E 1 \u6B21\u5143 vector \u3092\u4F5C\u308B\ntemplate<typename\
+    \ T>\nauto make_multi_dimensional_vector(int n) {\n    return std::vector<T>(n);\n\
+    }\n\n// 2. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA n \u3067\u521D\u671F\u5024 val\
+    \ \u3092\u6301\u3064 1 \u6B21\u5143 vector \u3092\u4F5C\u308B\uFF08\u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\uFF09\ntemplate<typename T>\nauto make_multi_dimensional_vector(int\
+    \ n, T val) {\n    return std::vector<T>(n, val);\n}\n\n// 3. \u518D\u5E30\uFF1A\
+    \u6B21\u5143\u3092\u524A\u308B\ntemplate<typename T, typename... Args>\nauto make_multi_dimensional_vector(int\
+    \ n, Args... args) {\n    auto inner = make_multi_dimensional_vector<T>(args...);\n\
+    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 67 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
+    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
+    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
+    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
+    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
+    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
+    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
+    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
+    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
+    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
+    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
+    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
+    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
+    \ foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\n\n// bitop\n\
+    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
+    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
+    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
+    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
+    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
+    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
+    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
+    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
+    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
+    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
+    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
+    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
+    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
+    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
+    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
+    \ bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\
+    \u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\
+    \u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x)); }\n#line 73\
+    \ \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
     \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
@@ -320,8 +321,8 @@ data:
   isVerificationFile: false
   path: Modulo/Sqrt.hpp
   requiredBy: []
-  timestamp: '2026-04-13 01:27:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-07-12 23:06:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
 documentation_of: Modulo/Sqrt.hpp

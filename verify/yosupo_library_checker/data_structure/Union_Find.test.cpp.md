@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Union_Find/Union_Find.hpp
     title: Union Find
   _extendedRequiredBy: []
