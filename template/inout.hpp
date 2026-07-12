@@ -44,17 +44,18 @@ operator<<(ostream &os, const T &container){
 }
 
 template<typename T>
-std::vector<T> input_vector(size_t n, size_t offset = 0) {
+std::vector<T> input_vector(int n, int offset = 0) {
     std::vector<T> res;
     // 最初に必要な全容量を確保（再確保を防ぐ）
     res.reserve(n + offset);
     // offset 分をデフォルト値で埋める（特別 indexed 用）
     res.assign(offset, T());
-    
-    for (size_t i = 0; i < n; ++i) {
+
+    for (int i = 0; i < n; ++i) {
         T el;
         if (!(std::cin >> el)) break;
         res.push_back(std::move(el));
     }
     return res;
 }
+
