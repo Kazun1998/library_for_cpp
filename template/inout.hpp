@@ -59,3 +59,23 @@ std::vector<T> input_vector(int n, int offset = 0) {
     return res;
 }
 
+#include <vector>
+
+// 1. 終端：サイズ n の 1 次元 vector を作る
+template<typename T>
+auto make_multi_dimensional_vector(int n) {
+    return std::vector<T>(n);
+}
+
+// 2. 終端：サイズ n で初期値 val を持つ 1 次元 vector を作る（オーバーロード）
+template<typename T>
+auto make_multi_dimensional_vector(int n, T val) {
+    return std::vector<T>(n, val);
+}
+
+// 3. 再帰：次元を削る
+template<typename T, typename... Args>
+auto make_multi_dimensional_vector(int n, Args... args) {
+    auto inner = make_multi_dimensional_vector<T>(args...);
+    return std::vector<decltype(inner)>(n, inner);
+}
