@@ -1,54 +1,54 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Counting/Combination_Calculator.hpp
     title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
       \u7684\u306A\u8A08\u7B97"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Smallest_Prime_Factor.hpp
     title: "\u6700\u5C0F\u7D20\u56E0\u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Enumerate_Geometrics.hpp
     title: Math/Enumerate_Geometrics.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Enumerate_Powers.hpp
     title: "\u51AA\u4E57\u306E\u5217\u6319"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Lagrange_Interpolation.hpp
     title: "Lagrange \u88DC\u9593"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/enumerable.hpp
     title: enumerable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Summation/Sum_of_Exponential_Times_Polynomial.hpp\"\n\n\
@@ -639,7 +639,7 @@ data:
   path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
   requiredBy: []
   timestamp: '2026-07-12 23:06:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
 documentation_of: Summation/Sum_of_Exponential_Times_Polynomial.hpp

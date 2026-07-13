@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Prefix.hpp
     title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
       \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Substring.hpp
     title: "Longest Common Substring (\u6700\u9577\u5171\u901A\u90E8\u5206\u6587\u5B57\
       \u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Number_of_Substrings.hpp
     title: "\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\u985E\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
     title: verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
     title: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
     title: verify/yosupo_library_checker/string/Suffix_Array.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Suffix Array \u3092\u69CB\u7BC9\u3059\u308B."
     links: []
@@ -387,7 +387,7 @@ data:
   - String/Longest_Common_Substring.hpp
   - String/Longest_Common_Prefix.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Suffix_Array.test.cpp
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp

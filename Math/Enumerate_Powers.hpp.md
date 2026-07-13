@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Smallest_Prime_Factor.hpp
     title: "\u6700\u5C0F\u7D20\u56E0\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
     title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
     title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7D1A\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "0^k, 1^k, ..., n^k \u306E\u5217\u6319"
     links: []
@@ -289,7 +289,7 @@ data:
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp

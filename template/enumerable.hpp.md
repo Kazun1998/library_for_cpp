@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Lagrange_Interpolation.hpp
     title: "Lagrange \u88DC\u9593"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
     title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/original/enumerable.test.cpp
     title: verify/original/enumerable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\u6570\
       \u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\u3044\
@@ -363,7 +363,7 @@ data:
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Math/Lagrange_Interpolation.hpp
   timestamp: '2026-01-25 00:54:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   - verify/original/enumerable.test.cpp

@@ -1,45 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Concat_with_Compression.hpp
     title: String/Concat_with_Compression.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Longest_Common_Prefix.hpp
     title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\
       \u9577\u5171\u901A\u63A5\u982D\u8F9E)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/Suffix_Array.hpp
     title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
     title: verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u914D\u5217 A \u306E\u9023\u7D9A\u90E8\u5206\u5217\u306E\u7A2E\
       \u985E\u6570\u3092\u6C42\u3081\u308B."
@@ -388,7 +388,7 @@ data:
   path: String/Number_of_Substrings.hpp
   requiredBy: []
   timestamp: '2026-07-12 23:06:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
 documentation_of: String/Number_of_Substrings.hpp

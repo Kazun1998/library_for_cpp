@@ -5,9 +5,6 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
-    path: template/concepts.hpp
-    title: template/concepts.hpp
-  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
   - icon: ':heavy_check_mark:'
@@ -31,33 +28,31 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u6709\u5411\u8FBA\u306B\u30E2\u30CE\u30A4\u30C9\u306E\u91CD\u307F\
-      \u3092\u4E57\u305B\u305F Functional Graph \u3092\u751F\u6210\u3059\u308B."
     links: []
-  bundledCode: "#line 2 \"Functional_Graph/Monoid_Functional_Graph.hpp\"\n\n#line\
-    \ 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Queries/Monotone_Minima.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -198,83 +193,25 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"template/concepts.hpp\"\n\n// \u5358\u9805\u6F14\u7B97\u5B50\
-    \u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate <typename Op, typename X>\nconcept Unary_Operator_Concept\
-    \ = requires(Op op, const X &x) {\n    { op(x) } -> std::convertible_to<X>;\n\
-    };\n\n// \u4E8C\u9805\u6F14\u7B97\u5B50\u30B3\u30F3\u30BB\u30D7\u30C8\ntemplate\
-    \ <typename Op, typename X>\nconcept Binary_Operator_Concept = requires(Op op,const\
-    \ X &x, const X &y) {\n    { op(x, y) } -> std::convertible_to<X>;\n};\n\n// \u30E2\
-    \u30CE\u30A4\u30C9\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u4E8C\u9805\u6F14\u7B97\
-    \ + \u5358\u4F4D\u5143\ntemplate <typename M, auto op, auto identity>\nconcept\
-    \ Monoid_Concept = \n    Binary_Operator_Concept<decltype(op), M>\n    && std::convertible_to<decltype(identity),\
-    \ M>;\n\n// \u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u30E2\u30CE\u30A4\u30C9\
-    \ + \u9006\u5143\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
-    \ Group_Concept = \n    Monoid_Concept<G, op, identity>\n    && Unary_Operator_Concept<decltype(inv),\
-    \ G>;\n\n// \u9806\u5E8F\u7FA4\u30B3\u30F3\u30BB\u30D7\u30C8\n// \u7FA4 + \u5168\
-    \u9806\u5E8F\ntemplate <typename G, auto op, auto identity, auto inv>\nconcept\
-    \ Totally_Ordered_Group_Concept = \n    Group_Concept<G, op, identity, inv>\n\
-    \    && totally_ordered<G>;\n\n// \u30CF\u30C3\u30B7\u30E5\u53EF\u80FD\u30B3\u30F3\
-    \u30BB\u30D7\u30C8\ntemplate<typename T>\nconcept Hashable = requires(T x) {\n\
-    \    { hash<T>{}(x) } -> convertible_to<size_t>;\n};\n#line 5 \"Functional_Graph/Monoid_Functional_Graph.hpp\"\
-    \n\ntemplate <typename M, auto op, auto identity>\nrequires Monoid_Concept<M,\
-    \ op, identity>\nclass Monoid_Functional_Graph {\n    private:\n    int N;\n \
-    \   long long K;\n    vector<vector<int>> to;\n    vector<vector<M>> weight;\n\
-    \n    public:\n    /// @brief \u6709\u5411\u8FBA\u306B\u30E2\u30CE\u30A4\u30C9\
-    \u306E\u91CD\u307F\u3092\u4E57\u305B\u305F Functional Graph \u3092\u751F\u6210\
-    \u3059\u308B.\n    /// @param N \u9802\u70B9\u6570\n    /// @param K \u8A08\u7B97\
-    \u306B\u5FC5\u8981\u306A\u6700\u5927\u306E\u79FB\u52D5\u56DE\u6570\n    Monoid_Functional_Graph(int\
-    \ N, long long K) : N(N), K(K) {\n        to.assign(1, vector<int>(N));\n    \
-    \    for (int i = 0; i < N; ++i) { to[0][i] = i; }\n        weight.assign(1, vector<M>(N,\
-    \ identity));\n    }\n\n    /// @brief \u91CD\u307F x \u3067\u6709\u5411\u8FBA\
-    \ source -> target \u3092\u8A2D\u5B9A\u3059\u308B.\n    /// @param source \u59CB\
-    \u70B9\n    /// @param target \u7D42\u70B9\n    /// @param x \u91CD\u307F\n  \
-    \  void set_arc(int source, int target, M x) {\n        to[0][source] = target;\n\
-    \        weight[0][source] = x;\n    }\n\n    /// @brief Functional Graph \u3092\
-    \u78BA\u5B9A\u3055\u305B\u308B.\n    void build() {\n        long long k = K >>\
-    \ 1;\n        while (k > 0) {\n            int h = to.size() - 1;\n          \
-    \  vector<int> next_to(N);\n            vector<M> next_weight(N);\n\n        \
-    \    for (int i = 0; i < N; ++i) {\n                int p = to[h][i];\n      \
-    \          next_to[i] = to[h][p];\n                next_weight[i] = op(weight[h][p],\
-    \ weight[h][i]);\n            }\n\n            to.emplace_back(next_to);\n   \
-    \         weight.emplace_back(next_weight);\n            k >>= 1;\n        }\n\
-    \    }\n\n    /// @brief \u9802\u70B9 v \u304B\u3089 k \u56DE\u79FB\u52D5\u3057\
-    \u305F\u3068\u304D\u306E\u7D2F\u7A4D\u91CD\u307F\u3092\u6C42\u3081\u308B.\n  \
-    \  /// @param v \u59CB\u70B9\n    /// @param k \u79FB\u52D5\u56DE\u6570\n    ///\
-    \ @return \u7D2F\u7A4D\u91CD\u307F\n    M calculate(int v, long long k) {\n  \
-    \      M x = identity;\n        for (int h = 0; k > 0 && h < (int)to.size(); ++h)\
-    \ {\n            if (k & 1) {\n                x = op(weight[h][v], x);\n    \
-    \            v = to[h][v];\n            }\n            k >>= 1;\n        }\n \
-    \       return x;\n    }\n};\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../template/concepts.hpp\"\
-    \n\ntemplate <typename M, auto op, auto identity>\nrequires Monoid_Concept<M,\
-    \ op, identity>\nclass Monoid_Functional_Graph {\n    private:\n    int N;\n \
-    \   long long K;\n    vector<vector<int>> to;\n    vector<vector<M>> weight;\n\
-    \n    public:\n    /// @brief \u6709\u5411\u8FBA\u306B\u30E2\u30CE\u30A4\u30C9\
-    \u306E\u91CD\u307F\u3092\u4E57\u305B\u305F Functional Graph \u3092\u751F\u6210\
-    \u3059\u308B.\n    /// @param N \u9802\u70B9\u6570\n    /// @param K \u8A08\u7B97\
-    \u306B\u5FC5\u8981\u306A\u6700\u5927\u306E\u79FB\u52D5\u56DE\u6570\n    Monoid_Functional_Graph(int\
-    \ N, long long K) : N(N), K(K) {\n        to.assign(1, vector<int>(N));\n    \
-    \    for (int i = 0; i < N; ++i) { to[0][i] = i; }\n        weight.assign(1, vector<M>(N,\
-    \ identity));\n    }\n\n    /// @brief \u91CD\u307F x \u3067\u6709\u5411\u8FBA\
-    \ source -> target \u3092\u8A2D\u5B9A\u3059\u308B.\n    /// @param source \u59CB\
-    \u70B9\n    /// @param target \u7D42\u70B9\n    /// @param x \u91CD\u307F\n  \
-    \  void set_arc(int source, int target, M x) {\n        to[0][source] = target;\n\
-    \        weight[0][source] = x;\n    }\n\n    /// @brief Functional Graph \u3092\
-    \u78BA\u5B9A\u3055\u305B\u308B.\n    void build() {\n        long long k = K >>\
-    \ 1;\n        while (k > 0) {\n            int h = to.size() - 1;\n          \
-    \  vector<int> next_to(N);\n            vector<M> next_weight(N);\n\n        \
-    \    for (int i = 0; i < N; ++i) {\n                int p = to[h][i];\n      \
-    \          next_to[i] = to[h][p];\n                next_weight[i] = op(weight[h][p],\
-    \ weight[h][i]);\n            }\n\n            to.emplace_back(next_to);\n   \
-    \         weight.emplace_back(next_weight);\n            k >>= 1;\n        }\n\
-    \    }\n\n    /// @brief \u9802\u70B9 v \u304B\u3089 k \u56DE\u79FB\u52D5\u3057\
-    \u305F\u3068\u304D\u306E\u7D2F\u7A4D\u91CD\u307F\u3092\u6C42\u3081\u308B.\n  \
-    \  /// @param v \u59CB\u70B9\n    /// @param k \u79FB\u52D5\u56DE\u6570\n    ///\
-    \ @return \u7D2F\u7A4D\u91CD\u307F\n    M calculate(int v, long long k) {\n  \
-    \      M x = identity;\n        for (int h = 0; k > 0 && h < (int)to.size(); ++h)\
-    \ {\n            if (k & 1) {\n                x = op(weight[h][v], x);\n    \
-    \            v = to[h][v];\n            }\n            k >>= 1;\n        }\n \
-    \       return x;\n    }\n};\n"
+    \    }\n};\n#line 4 \"Queries/Monotone_Minima.hpp\"\n\ntemplate<typename FUNC>\n\
+    vector<int> Monotone_Minima(const int n, const int m, const FUNC eval) {\n   \
+    \ vector<int> res(n);\n\n    auto solve = [&](auto self, const int u, const int\
+    \ d, const int l, const int r) -> void {\n        if (u >= d) return;\n\n    \
+    \    const int mid = (u + d) / 2;\n        int best_j = l;\n        for (int j\
+    \ = l + 1; j < r; ++j) {\n            if (eval(mid, j) < eval(mid, best_j)) {\n\
+    \                best_j = j;\n            }\n        }\n        res[mid] = best_j;\n\
+    \n        self(self, u, mid, l, best_j + 1);\n        self(self, mid + 1, d, best_j,\
+    \ r);\n    };\n\n    solve(solve, 0, n, 0, m);\n    return res;\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\ntemplate<typename\
+    \ FUNC>\nvector<int> Monotone_Minima(const int n, const int m, const FUNC eval)\
+    \ {\n    vector<int> res(n);\n\n    auto solve = [&](auto self, const int u, const\
+    \ int d, const int l, const int r) -> void {\n        if (u >= d) return;\n\n\
+    \        const int mid = (u + d) / 2;\n        int best_j = l;\n        for (int\
+    \ j = l + 1; j < r; ++j) {\n            if (eval(mid, j) < eval(mid, best_j))\
+    \ {\n                best_j = j;\n            }\n        }\n        res[mid] =\
+    \ best_j;\n\n        self(self, u, mid, l, best_j + 1);\n        self(self, mid\
+    \ + 1, d, best_j, r);\n    };\n\n    solve(solve, 0, n, 0, m);\n    return res;\n\
+    }\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -283,24 +220,50 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - template/concepts.hpp
   isVerificationFile: false
-  path: Functional_Graph/Monoid_Functional_Graph.hpp
+  path: Queries/Monotone_Minima.hpp
   requiredBy: []
-  timestamp: '2026-07-12 23:06:47+09:00'
+  timestamp: '2026-07-12 23:23:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Functional_Graph/Monoid_Functional_Graph.hpp
+documentation_of: Queries/Monotone_Minima.hpp
 layout: document
-title: "Monoid \u91CD\u307F\u4ED8\u304D Functional Graph"
+title: Monotone Minima
 ---
 
 ## Outline
 
-弧に Monoid $M$ の重みが付いた Funtional Graph に関する構造の決定及び, パスの重みの総積を行う.
+Monotone Minima な $2$ 変数関数 $f(i, j)$ について, 各 $i$ に対する $\displaystyle \min \left(\operatorname*{argmin}_j f(i, j) \right)$ を求める.
+
+## Definition
+
+$Y$ を全順序集合とする.
+
+$f: \\{0, 1, \dots, n - 1 \\} \times \\{0, 1, \dots, m - 1 \\} \to Y$ が Monotone Minima を満たすとは,
+
+$$ \min \left(\operatorname*{argmin}_{0 \leq j < m} f(0, j) \right) \leq \min \left(\operatorname*{argmin}_{0 \leq j < m} f(1, j) \right) \leq \dots \leq \min \left(\operatorname*{argmin}_{0 \leq j < m} f(n-1, j) \right)$$
+
+を満たすことである.
+
+## Contents
+
+### constructor
+
+```cpp
+template<typename FUNC>
+vector<int> Monotone_Minima(const int n, const int m, const FUNC eval)
+```
+
+* Monotone Minima である関数 `eval` について, 各 $i~(0 \leq i < n)$ に対する $\displaystyle \min \left(\operatorname*{argmin}_{0 \leq j < m} f(i, j) \right)$ を求める.
+* **引数**
+  * $n$: 第 $1$ 引数の範囲
+  * $m$: 第 $2$ 引数の範囲
+  * `eval`: Monotone Minima 関数
+* **計算量**
+  * $O(n + m \log n)$ 時間
 
 ## History
 
 |日付|内容|
 |:---:|:---:|
-|2026/02/22| Monoid_Functional_Graph クラスの実装 |
+|2026/07/13| Monotone_Minima 実装 |
