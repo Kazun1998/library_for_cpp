@@ -371,7 +371,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: Knapsack/Base.hpp
-      title: Knapsack/Base.hpp
+      title: "Knapsack \u554F\u984C\u306E Base \u30AF\u30E9\u30B9"
     - icon: ':heavy_check_mark:'
       path: Knapsack/Knapsack_01.hpp
       title: "0-1 Knapsack \u554F\u984C"
