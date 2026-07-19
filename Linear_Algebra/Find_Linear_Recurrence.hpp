@@ -3,10 +3,10 @@
 
 /**
  * @brief Berlekamp-Massey法による最短線形漸化式の発見
- * @details 
+ * @details
  * 与えられた数列 a に対して, a[i] = \sum_{j=1}^d c[j-1] a[i-j] を満たす最小の d と係数列 c を求める.
  * 戻り値は [c[0], c[1], ..., c[d-1]].
- * 
+ *
  * @tparam F 体の要素の型（加減乗除が定義されており、F(0), F(1), .inverse() 等を持つこと）
  * @param a 数列
  * @return vector<F> 漸化式の係数リスト
