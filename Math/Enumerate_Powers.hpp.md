@@ -286,8 +286,8 @@ data:
   isVerificationFile: false
   path: Math/Enumerate_Powers.hpp
   requiredBy:
-  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

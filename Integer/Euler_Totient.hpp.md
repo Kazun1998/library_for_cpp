@@ -274,8 +274,8 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Integer/Euler_Totient.hpp
 layout: document

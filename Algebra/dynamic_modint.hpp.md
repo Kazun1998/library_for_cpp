@@ -310,9 +310,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/Montmort_Number.test.cpp
 documentation_of: Algebra/dynamic_modint.hpp
 layout: document
 redirect_from:

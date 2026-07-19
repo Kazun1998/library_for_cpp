@@ -420,9 +420,9 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/dsl/2G_2.test.cpp
-  - verify/aizu_online_judge/dsl/2H.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+  - verify/aizu_online_judge/dsl/2H.test.cpp
+  - verify/aizu_online_judge/dsl/2G_2.test.cpp
 documentation_of: Segment_Tree/Lazy_Segment_Tree.hpp
 layout: document
 title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"

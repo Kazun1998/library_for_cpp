@@ -340,8 +340,8 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/4A.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
 documentation_of: Geometry/utility/Convex_Hull.hpp
 layout: document
 redirect_from:

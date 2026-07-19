@@ -314,10 +314,10 @@ data:
   isVerificationFile: false
   path: Counting/Combination_Calculator.hpp
   requiredBy:
-  - Counting/Q_Analog_Combination_Calculator.hpp
-  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Math/Lagrange_Interpolation.hpp
+  - Counting/Q_Analog_Combination_Calculator.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

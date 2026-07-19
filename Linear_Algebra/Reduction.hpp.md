@@ -369,8 +369,8 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Reduction.hpp
   requiredBy:
-  - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Matrix_Subspaces.hpp
+  - Linear_Algebra/Rank.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
