@@ -318,6 +318,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Graph/Weighted_Graph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
+  - name: Heuristic
+    pages:
+    - icon: ':warning:'
+      path: Heuristic/Random.hpp
+      title: Heuristic/Random.hpp
+    - icon: ':warning:'
+      path: Heuristic/Simulated_Annealing.hpp
+      title: Heuristic/Simulated_Annealing.hpp
+    - icon: ':warning:'
+      path: Heuristic/Timer.hpp
+      title: "\u30BF\u30A4\u30DE\u30FC\u306E\u7D4C\u904E\u6642\u9593\u3092 0 \u306B\
+        \u3059\u308B."
   - name: Imos
     pages:
     - icon: ':heavy_check_mark:'
