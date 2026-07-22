@@ -341,6 +341,10 @@ data:
     - icon: ':warning:'
       path: Imos/Linear_Imos_1.hpp
       title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 1 \u6B21)"
+    - icon: ':warning:'
+      path: Imos/Sparse_Imos_1.hpp
+      title: "\u758E\u306A\u5834\u5408\u306E\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143\
+        \ 0 \u6B21)"
   - name: Integer
     pages:
     - icon: ':warning:'

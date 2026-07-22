@@ -267,6 +267,10 @@ data:
     path: Imos/Linear_Imos_1.hpp
     title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 1 \u6B21)"
   - icon: ':warning:'
+    path: Imos/Sparse_Imos_1.hpp
+    title: "\u758E\u306A\u5834\u5408\u306E\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143\
+      \ 0 \u6B21)"
+  - icon: ':warning:'
     path: Integer/Digit.hpp
     title: "\u6574\u6570\u306E\u6841"
   - icon: ':heavy_check_mark:'
@@ -1179,6 +1183,7 @@ data:
   - Convolution/Min_Convolution.hpp
   - Imos/Imos_2.hpp
   - Imos/Linear_Imos_1.hpp
+  - Imos/Sparse_Imos_1.hpp
   - Imos/Imos_1.hpp
   - Summation/Counting.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
