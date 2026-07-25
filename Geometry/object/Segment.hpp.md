@@ -296,8 +296,8 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/2B.test.cpp
   - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/2B.test.cpp
 documentation_of: Geometry/object/Segment.hpp
 layout: document
 redirect_from:

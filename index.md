@@ -108,6 +108,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Binary_Trie.hpp
       title: "Binary Trie \u6728"
+    - icon: ':warning:'
+      path: Data_Structure/Bucket_List.hpp
+      title: Bucket_List
     - icon: ':heavy_check_mark:'
       path: Data_Structure/Disjoint_Sparse_Table.hpp
       title: Disjoint Sparse Table

@@ -288,14 +288,14 @@ data:
   isVerificationFile: false
   path: Convolution/Convolution_Base.hpp
   requiredBy:
-  - Convolution/Gcd_Convolution.hpp
-  - Convolution/Semilattice_Convolution_Base.hpp
-  - Convolution/Max_Convolution.hpp
-  - Convolution/Lcm_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
+  - Graph/Graph/Chromatic_Number.hpp
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
-  - Graph/Graph/Chromatic_Number.hpp
+  - Convolution/Bitwise_And_Convolution.hpp
+  - Convolution/Gcd_Convolution.hpp
+  - Convolution/Lcm_Convolution.hpp
+  - Convolution/Max_Convolution.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

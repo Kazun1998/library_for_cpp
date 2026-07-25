@@ -360,13 +360,13 @@ data:
   isVerificationFile: false
   path: template/enumerable.hpp
   requiredBy:
-  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Math/Lagrange_Interpolation.hpp
+  - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   timestamp: '2026-01-25 00:54:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
   - verify/original/enumerable.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
 documentation_of: template/enumerable.hpp
 layout: document
 title: enumerable

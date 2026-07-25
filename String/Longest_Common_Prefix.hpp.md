@@ -338,8 +338,8 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
   - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
+  - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
 documentation_of: String/Longest_Common_Prefix.hpp
 layout: document
 title: "Longest Common Prefix (\u63A5\u5C3E\u8F9E\u306B\u304A\u3051\u308B\u6700\u9577\

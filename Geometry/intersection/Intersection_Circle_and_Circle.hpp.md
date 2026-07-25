@@ -310,14 +310,14 @@ data:
   isVerificationFile: false
   path: Geometry/intersection/Intersection_Circle_and_Circle.hpp
   requiredBy:
-  - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
   - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
 documentation_of: Geometry/intersection/Intersection_Circle_and_Circle.hpp
 layout: document
 redirect_from:

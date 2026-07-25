@@ -318,11 +318,11 @@ data:
   isVerificationFile: false
   path: Geometry/object/Triangle.hpp
   requiredBy:
-  - Geometry/triangle_center/Circumcenter.hpp
-  - Geometry/triangle_center/Centroid.hpp
-  - Geometry/triangle_center/Incenter.hpp
-  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Incenter.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
+  - Geometry/triangle_center/Incircle.hpp
+  - Geometry/triangle_center/Centroid.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

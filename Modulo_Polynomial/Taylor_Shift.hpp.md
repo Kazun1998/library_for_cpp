@@ -560,8 +560,8 @@ data:
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Stirling_Number_of_the_First_Kind.test.cpp
+  - verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
 documentation_of: Modulo_Polynomial/Taylor_Shift.hpp
 layout: document
 title: Taylor Shift

@@ -394,8 +394,8 @@ data:
   isVerificationFile: false
   path: Algebra/Extended_Algebra.hpp
   requiredBy:
-  - Max_Flow/Project_Selection_Problem.hpp
   - Algebra/Semiring_Matrix.hpp
+  - Max_Flow/Project_Selection_Problem.hpp
   timestamp: '2026-07-12 23:06:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
