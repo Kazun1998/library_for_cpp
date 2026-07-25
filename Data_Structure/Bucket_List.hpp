@@ -2,6 +2,8 @@
 
 #include "../template/template.hpp"
 
+// Thanks to: https://github.com/tatyam-prime/SortedSet/blob/main/BucketList.py
+
 template<typename T>
 class Bucket_List {
     using Bucket = vector<T>;
