@@ -5,7 +5,7 @@ documentation_of: //Rolling_Hash/Rolling_Hash_Mersenne.hpp
 
 ## Outline
 
-Mersenne 数の剰余体に関する Rolling_Hash に関する基底クラスを提供する
+Mersenne 数 $2^{61} - 1$ の剰余体に関する Rolling_Hash に関する基底クラスを提供する
 
 ## History
 
