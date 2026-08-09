@@ -37,8 +37,8 @@ namespace rolling_hash {
         int find(const string &X, int start) const { return find(to_vector(X), start); }
         int find(const string &X) const { return find(to_vector(X), 0); }
 
-        int rfind(const string &X, int start) const { return rfind(to_vector(X), start); }
-        int rfind(const string &X) const { return rfind(to_vector(X), 0); }
+        int rfind(const string &X, int pos) const { return rfind(to_vector(X), pos); }
+        int rfind(const string &X) const { return rfind(to_vector(X), this->size()); }
     };
 
     // static な mod() と, 剰余を表すメンバ x を持つ型 (modint 想定)
@@ -149,10 +149,11 @@ namespace rolling_hash {
             return -1;
         }
 
+        // pos: 開始位置が pos 以下であるような出現のうち, 最も右側にあるものを探す (std::string::rfind と同じ仕様)
         template<typename X>
-        int rfind_impl(const X &pattern, int start) const {
+        int rfind_impl(const X &pattern, int pos) const {
             P alpha = hashing(pattern);
-            for (int i = size() - (int)pattern.size(); i >= start; --i) {
+            for (int i = min(pos, size() - (int)pattern.size()); i >= 0; --i) {
                 if (alpha == get(i, i + pattern.size())) return i;
             }
 
@@ -171,9 +172,9 @@ namespace rolling_hash {
         int find(const vector<T> &X) const { return find_impl(X, 0); }
 
         template<typename T>
-        int rfind(const vector<T> &X, int start) const { return rfind_impl(X, start); }
+        int rfind(const vector<T> &X, int pos) const { return rfind_impl(X, pos); }
         template<typename T>
-        int rfind(const vector<T> &X) const { return rfind_impl(X, 0); }
+        int rfind(const vector<T> &X) const { return rfind_impl(X, size()); }
 
         template<typename T>
         int index(const vector<T> &X, int start) const {
@@ -194,8 +195,8 @@ namespace rolling_hash {
         int find(const string &X, int start) const { return find_impl(X, start); }
         int find(const string &X) const { return find_impl(X, 0); }
 
-        int rfind(const string &X, int start) const { return rfind_impl(X, start); }
-        int rfind(const string &X) const { return rfind_impl(X, 0); }
+        int rfind(const string &X, int pos) const { return rfind_impl(X, pos); }
+        int rfind(const string &X) const { return rfind_impl(X, size()); }
 
         int index(const string &X, int start) const {
             int i = find(X, start);

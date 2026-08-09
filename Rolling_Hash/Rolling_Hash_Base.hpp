@@ -85,15 +85,16 @@ namespace rolling_hash {
 
         int find(const vector<F> &X) const { return find(X, 0); }
 
-        int rfind(const vector<F> &X, int start) const {
+        /// @brief 開始位置が pos 以下であるような X の出現のうち, 最も右側にあるものの位置を求める (std::string::rfind と同じ仕様)
+        int rfind(const vector<F> &X, int pos) const {
             F alpha = hashing(X);
-            for (int i = size() - (int)X.size(); i >= start; --i) {
+            for (int i = min(pos, size() - (int)X.size()); i >= 0; --i) {
                 if (alpha == get(i, i + X.size())) return i;
             }
 
             return -1;
         }
 
-        int rfind(const vector<F> &X) const { return rfind(X, 0); }
+        int rfind(const vector<F> &X) const { return rfind(X, size()); }
     };
 } // namespace rolling_hash

@@ -64,9 +64,9 @@ namespace rolling_hash {
         int find(const vector<T> &X) const { return find(to_vector(X), 0); }
 
         template<typename T>
-        int rfind(const vector<T> &X, int start) const { return rfind(to_vector(X), start); }
+        int rfind(const vector<T> &X, int pos) const { return rfind(to_vector(X), pos); }
         template<typename T>
-        int rfind(const vector<T> &X) const { return rfind(to_vector(X), 0); }
+        int rfind(const vector<T> &X) const { return rfind(to_vector(X), size()); }
 
         // 文字列用オーバーロード
         Rolling_Hash_Mersenne(const string &S, const ull base): Rolling_Hash_Mersenne(to_vector(S), base) {}
@@ -77,7 +77,7 @@ namespace rolling_hash {
         int find(const string &X, int start) const { return find(to_vector(X), start); }
         int find(const string &X) const { return find(to_vector(X), 0); }
 
-        int rfind(const string &X, int start) const { return rfind(to_vector(X), start); }
-        int rfind(const string &X) const { return rfind(to_vector(X), 0); }
+        int rfind(const string &X, int pos) const { return rfind(to_vector(X), pos); }
+        int rfind(const string &X) const { return rfind(to_vector(X), size()); }
     };
 } // namespace rolling_hash
