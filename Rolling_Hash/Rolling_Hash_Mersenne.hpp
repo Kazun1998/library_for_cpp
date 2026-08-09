@@ -5,9 +5,9 @@
 
 namespace rolling_hash {
     /// @brief mod (2^61 - 1) 上で計算するローリングハッシュ
-    class Mersenne_Rolling_Hash : public Rolling_Hash_Base<unsigned long long, Mersenne_Rolling_Hash> {
+    class Rolling_Hash_Mersenne : public Rolling_Hash_Base<unsigned long long, Rolling_Hash_Mersenne> {
         using ull = unsigned long long;
-        using Base = Rolling_Hash_Base<ull, Mersenne_Rolling_Hash>;
+        using Base = Rolling_Hash_Base<ull, Rolling_Hash_Mersenne>;
         friend Base;
 
         static constexpr ull Mod = 0x1fffffffffffffff;
@@ -51,7 +51,7 @@ namespace rolling_hash {
         using Base::rfind;
 
         template<typename T>
-        Mersenne_Rolling_Hash(const vector<T> &X, const ull base): Base(base) { this->build(to_vector(X)); }
+        Rolling_Hash_Mersenne(const vector<T> &X, const ull base): Base(base) { this->build(to_vector(X)); }
 
         template<typename T>
         int count(const vector<T> &X, int start) const { return count(to_vector(X), start); }
@@ -69,7 +69,7 @@ namespace rolling_hash {
         int rfind(const vector<T> &X) const { return rfind(to_vector(X), 0); }
 
         // 文字列用オーバーロード
-        Mersenne_Rolling_Hash(const string &S, const ull base): Mersenne_Rolling_Hash(to_vector(S), base) {}
+        Rolling_Hash_Mersenne(const string &S, const ull base): Rolling_Hash_Mersenne(to_vector(S), base) {}
 
         int count(const string &X, int start) const { return count(to_vector(X), start); }
         int count(const string &X) const { return count(to_vector(X), 0); }
