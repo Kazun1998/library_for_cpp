@@ -587,6 +587,18 @@ data:
     - icon: ':warning:'
       path: Queries/Monotone_Minima.hpp
       title: Monotone Minima
+  - name: Rolling_Hash
+    pages:
+    - icon: ':warning:'
+      path: Rolling_Hash/Rolling_Hash.hpp
+      title: "\u5270\u4F59\u4F53\u306B\u95A2\u3059\u308B Rolling Hash"
+    - icon: ':warning:'
+      path: Rolling_Hash/Rolling_Hash_Base.hpp
+      title: "Rolling Hash \u57FA\u5E95\u30AF\u30E9\u30B9"
+    - icon: ':warning:'
+      path: Rolling_Hash/Rolling_Hash_Mersenne.hpp
+      title: "Mersenne \u6570\u306E\u5270\u4F59\u4F53\u306B\u95A2\u3059\u308B Rolling\
+        \ Hash"
   - name: Segment_Tree
     pages:
     - icon: ':heavy_check_mark:'
