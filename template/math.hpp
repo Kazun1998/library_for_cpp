@@ -93,9 +93,9 @@ bool is_non_positive(const T &x) { return x <= 0; }
 // 指数に関する関数
 
 // x の y 乗を求める.
-ll intpow(ll x, ll y){
+constexpr ll intpow(ll x, ll y) {
     ll a = 1;
-    while (y){
+    while (y) {
         if (y & 1) { a *= x; }
         x *= x;
         y >>= 1;
@@ -103,7 +103,7 @@ ll intpow(ll x, ll y){
     return a;
 }
 
-ll pow(ll x, ll y) { return intpow(x, y); }
+constexpr ll pow(ll x, ll y) { return intpow(x, y); }
 
 // x の y 乗を z で割った余りを求める.
 template<typename T, integral U>
