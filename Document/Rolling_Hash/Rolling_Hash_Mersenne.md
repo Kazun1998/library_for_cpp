@@ -1,5 +1,5 @@
 ---
-title: Mersenne 数の剰余体に関する Rolling_Hash
+title: Mersenne 数の剰余体に関する Rolling Hash
 documentation_of: //Rolling_Hash/Rolling_Hash_Mersenne.hpp
 ---
 

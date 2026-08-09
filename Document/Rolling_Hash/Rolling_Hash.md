@@ -1,5 +1,5 @@
 ---
-title: 剰余体に関する Rolling_Hash
+title: 剰余体に関する Rolling Hash
 documentation_of: //Rolling_Hash/Rolling_Hash.hpp
 ---
 
