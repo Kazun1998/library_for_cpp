@@ -54,11 +54,10 @@ class Cyclic_Imos_1 {
     void add_forward(const int l, const int k, const T x) {
         if (n == 0 || k <= 0) return;
 
-        if (k >= n) {
-            add(0, n - 1, x);
-        } else {
-            add(l, l + k - 1, x);
-        }
+        // q : 円環を何周分加算するか, m : 端数として加算する要素数
+        const int q = k / n, m = k % n;
+        if (q > 0) add(0, n - 1, x * q);
+        if (m > 0) add(l, l + m - 1, x);
     }
 
     /// @brief 周長 n の円環上で, r, r - 1, ..., r - (k - 1) の各要素に x を加算する
@@ -68,11 +67,10 @@ class Cyclic_Imos_1 {
     void add_back(const int r, const int k, const T x) {
         if (n == 0 || k <= 0) return;
 
-        if (k >= n) {
-            add(0, n - 1, x);
-        } else {
-            add(r - k + 1, r, x);
-        }
+        // q : 円環を何周分加算するか, m : 端数として加算する要素数
+        const int q = k / n, m = k % n;
+        if (q > 0) add(0, n - 1, x * q);
+        if (m > 0) add(r - m + 1, r, x);
     }
 
     /// @brief 累積和を計算する
