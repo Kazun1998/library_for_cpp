@@ -21,7 +21,7 @@ T General_Binary_Increase_Search_Integer(T L, T R, const auto& cond, T default_v
 
     // 探索パート
     while (R - L > 1) {
-        T C = L + (R - L) / 2;
+        T C = midpoint(L, R);
         cond(C) ? R = C : L = C;
     }
 
@@ -48,7 +48,7 @@ T General_Binary_Decrease_Search_Integer(T L, T R, const auto& cond, T default_v
 
     // 探索パート
     while (R - L > 1) {
-        T C = L + (R - L) / 2;
+        T C = midpoint(L, R);
         cond(C) ? L = C : R = C;
     }
 
