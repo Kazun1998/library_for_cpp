@@ -25,7 +25,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
-    title: Modulo/Composite.hpp
+    title: "\u5270\u4F59\u985E\u306E\u5408\u6210"
   - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
@@ -37,7 +37,7 @@ data:
     title: "\u5270\u4F59\u985E\u306E\u6307\u6570"
   - icon: ':warning:'
     path: Modulo/Solve.hpp
-    title: Modulo/Solve.hpp
+    title: "\u5408\u540C\u65B9\u7A0B\u5F0F"
   - icon: ':heavy_check_mark:'
     path: Modulo/Sqrt.hpp
     title: "\u5E73\u65B9\u6839 mod"
@@ -372,22 +372,22 @@ data:
   isVerificationFile: false
   path: Modulo/Modulo.hpp
   requiredBy:
-  - Modulo/Garner.hpp
-  - Modulo/Tower.hpp
-  - Modulo/Solve.hpp
-  - Modulo/Order.hpp
-  - Modulo/Composite.hpp
   - Modulo/Discrete_Log.hpp
+  - Modulo/Solve.hpp
+  - Modulo/Composite.hpp
+  - Modulo/Garner.hpp
+  - Modulo/Order.hpp
+  - Modulo/Tower.hpp
   - Modulo/Sqrt.hpp
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
+  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/187.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - verify/yosupo_library_checker/number_theory/Sqrt_Mod.test.cpp
-  - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
 documentation_of: Modulo/Modulo.hpp
 layout: document
 redirect_from:

@@ -298,8 +298,8 @@ data:
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
+  - verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
 documentation_of: Data_Structure/Ordered_Set.hpp
 layout: document
 title: "\u9806\u5E8F\u4ED8\u304D\u96C6\u5408"

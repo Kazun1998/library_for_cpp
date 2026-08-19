@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Modulo/Composite.hpp
-    title: Modulo/Composite.hpp
+    title: "\u5270\u4F59\u985E\u306E\u5408\u6210"
   - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
@@ -264,9 +264,9 @@ data:
     \ }\n\n        auto res = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n    \
     \        if (n & 1) { res *= x; }\n            x *= x;\n        }\n\n        return\
     \ res;\n    }\n}\n#line 4 \"Modulo/Composite.hpp\"\n\nnamespace modulo {\n   \
-    \ class IncompatibleModuloComposite : public exception {\n      public: // public\u306B\
-    \u6307\u5B9A\n      const char* what() const noexcept override { return \"\u5408\
-    \u6210\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\"; }\n    };\n\n    Modulo Composite(Modulo\
+    \ class IncompatibleModuloComposite : public std::exception {\n        public:\n\
+    \        const char* what() const noexcept override { return \"\u5408\u6210\u304C\
+    \u5B58\u5728\u3057\u307E\u305B\u3093\"; }\n    };\n\n    Modulo Composite(Modulo\
     \ A, Modulo B) {\n        ll a = A.a, n = A.n;\n        ll b = B.a, m = B.n;\n\
     \        ll d = b - a;\n        ll g = gcd(n, m);\n\n        if (d % g) { throw\
     \ IncompatibleModuloComposite(); }\n\n        n /= g; m /= g; d /= g;\n\n    \
@@ -282,35 +282,41 @@ data:
     \        NoSolutionException(const std::string& message) : std::runtime_error(message)\
     \ {}\n    };\n\n    // \u7DDA\u5F62\u5408\u540C\u65B9\u7A0B\u5F0F ax \u2261 b\
     \ (mod m) \u3092\u89E3\u304F.\n    Modulo Solve_Congruence_Equation(ll a, ll b,\
-    \ ll m) {\n        if (m == 0) { throw \"m = 0 \u306F\u7981\u6B62\u3067\u3059\"\
-    ; }\n\n        ll g = gcd(a, m);\n\n        // \u89E3\u306E\u5B58\u5728\u5224\u5B9A\
-    \n        if (b % g) { throw NoSolutionException(\"\u89E3\u304C\u5B58\u5728\u3057\
-    \u307E\u305B\u3093.\"); }\n\n        a /= g; b /= g; m /= g;\n\n        return\
-    \ Modulo(a, m).inverse() * Modulo(b, m);\n    }\n\n    // ax \u2261 b (mod m)\
-    \ \u306E\u5F62\u306E\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u304B\u3089\u306A\
-    \u308B\u9023\u7ACB\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u3092\u89E3\u304F\
-    .\n    // equations \u306F (a, b, m) \u306E\u5F62\u304B\u3089\u306A\u308B\u30BF\
-    \u30D7\u30EB\u306E\u5217.\n    Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll,\
+    \ ll m) {\n        if (m == 0) { throw std::invalid_argument(\"m = 0 \u306F\u7981\
+    \u6B62\u3067\u3059\"); }\n\n        ll g = gcd(a, m);\n\n        // \u89E3\u306E\
+    \u5B58\u5728\u5224\u5B9A\n        if (b % g) { throw NoSolutionException(\"\u89E3\
+    \u304C\u5B58\u5728\u3057\u307E\u305B\u3093.\"); }\n\n        a /= g; b /= g; m\
+    \ /= g;\n\n        return Modulo(a, m).inverse() * Modulo(b, m);\n    }\n\n  \
+    \  // ax \u2261 b (mod m) \u306E\u5F62\u306E\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\
+    \u5F0F\u304B\u3089\u306A\u308B\u9023\u7ACB\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\
+    \u5F0F\u3092\u89E3\u304F.\n    // equations \u306F (a, b, m) \u306E\u5F62\u304B\
+    \u3089\u306A\u308B\u30BF\u30D7\u30EB\u306E\u5217.\n    Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll,\
     \ ll, ll>> equations) {\n        Modulo ans(0, 1);\n        for (auto &&[a, b,\
-    \ m]: equations) {\n            ans = Composite(ans, Solve_Congruence_Equation(a,\
-    \ b, m));\n        }\n\n        return ans;\n    } \n}\n"
+    \ m]: equations) {\n            try {\n                ans = Composite(ans, Solve_Congruence_Equation(a,\
+    \ b, m));\n            } catch (const IncompatibleModuloComposite&) {\n      \
+    \          throw NoSolutionException(\"\u9023\u7ACB\u5408\u540C\u65B9\u7A0B\u5F0F\
+    \u306E\u89E3\u304C\u5B58\u5728\u3057\u307E\u305B\u3093.\");\n            }\n \
+    \       }\n\n        return ans;\n    }\n}\n"
   code: "#include\"../template/template.hpp\"\n#include\"Composite.hpp\"\n\n\nnamespace\
     \ modulo {\n    class NoSolutionException : public std::runtime_error {\n    public:\n\
     \        NoSolutionException(const std::string& message) : std::runtime_error(message)\
     \ {}\n    };\n\n    // \u7DDA\u5F62\u5408\u540C\u65B9\u7A0B\u5F0F ax \u2261 b\
     \ (mod m) \u3092\u89E3\u304F.\n    Modulo Solve_Congruence_Equation(ll a, ll b,\
-    \ ll m) {\n        if (m == 0) { throw \"m = 0 \u306F\u7981\u6B62\u3067\u3059\"\
-    ; }\n\n        ll g = gcd(a, m);\n\n        // \u89E3\u306E\u5B58\u5728\u5224\u5B9A\
-    \n        if (b % g) { throw NoSolutionException(\"\u89E3\u304C\u5B58\u5728\u3057\
-    \u307E\u305B\u3093.\"); }\n\n        a /= g; b /= g; m /= g;\n\n        return\
-    \ Modulo(a, m).inverse() * Modulo(b, m);\n    }\n\n    // ax \u2261 b (mod m)\
-    \ \u306E\u5F62\u306E\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u304B\u3089\u306A\
-    \u308B\u9023\u7ACB\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\u5F0F\u3092\u89E3\u304F\
-    .\n    // equations \u306F (a, b, m) \u306E\u5F62\u304B\u3089\u306A\u308B\u30BF\
-    \u30D7\u30EB\u306E\u5217.\n    Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll,\
+    \ ll m) {\n        if (m == 0) { throw std::invalid_argument(\"m = 0 \u306F\u7981\
+    \u6B62\u3067\u3059\"); }\n\n        ll g = gcd(a, m);\n\n        // \u89E3\u306E\
+    \u5B58\u5728\u5224\u5B9A\n        if (b % g) { throw NoSolutionException(\"\u89E3\
+    \u304C\u5B58\u5728\u3057\u307E\u305B\u3093.\"); }\n\n        a /= g; b /= g; m\
+    \ /= g;\n\n        return Modulo(a, m).inverse() * Modulo(b, m);\n    }\n\n  \
+    \  // ax \u2261 b (mod m) \u306E\u5F62\u306E\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\
+    \u5F0F\u304B\u3089\u306A\u308B\u9023\u7ACB\u7DDA\u5F62\u9023\u7ACB\u5408\u540C\
+    \u5F0F\u3092\u89E3\u304F.\n    // equations \u306F (a, b, m) \u306E\u5F62\u304B\
+    \u3089\u306A\u308B\u30BF\u30D7\u30EB\u306E\u5217.\n    Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll,\
     \ ll, ll>> equations) {\n        Modulo ans(0, 1);\n        for (auto &&[a, b,\
-    \ m]: equations) {\n            ans = Composite(ans, Solve_Congruence_Equation(a,\
-    \ b, m));\n        }\n\n        return ans;\n    } \n}"
+    \ m]: equations) {\n            try {\n                ans = Composite(ans, Solve_Congruence_Equation(a,\
+    \ b, m));\n            } catch (const IncompatibleModuloComposite&) {\n      \
+    \          throw NoSolutionException(\"\u9023\u7ACB\u5408\u540C\u65B9\u7A0B\u5F0F\
+    \u306E\u89E3\u304C\u5B58\u5728\u3057\u307E\u305B\u3093.\");\n            }\n \
+    \       }\n\n        return ans;\n    }\n}"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -324,13 +330,113 @@ data:
   isVerificationFile: false
   path: Modulo/Solve.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-08-19 23:40:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Modulo/Solve.hpp
 layout: document
-redirect_from:
-- /library/Modulo/Solve.hpp
-- /library/Modulo/Solve.hpp.html
-title: Modulo/Solve.hpp
+title: "\u5408\u540C\u65B9\u7A0B\u5F0F"
 ---
+
+## Outline
+
+整数 $a, b$ と正の整数 $m$ に対して, $x$ の方程式
+
+$$ ax \equiv b \pmod{m} $$
+
+を解く.
+
+## Theory
+
+### 合同方程式
+
+$g := \gcd(a, m)$ とする.
+
+このとき, 任意の整数 $x$ に対して, $ax$ を $m$ で割った余りは必ず $g$ の倍数になる. そのため, $b$ が $g$ の倍数であることが必要である. この必要条件を満たさないならば, この方程式は解なしになる.
+
+これ以降, $b$ は $g$ の倍数であるとする.
+
+$a, b, m$ をそれぞれ $g$ で割った $a', b', m'$ について,
+
+$$ ax \equiv b \pmod{m} \iff a'x \equiv b' \pmod{m'} $$
+
+が成り立つ.
+
+$a', m'$ は互いに素なので, $a'$ は $\pmod{m'}$ 上で可逆である. その可逆元を $(a')^{-1}$ と書くことにすると,
+
+$$ a'x \equiv b' \pmod{m'} \iff x \equiv (a')^{-1} b' \pmod{m'} $$
+
+である.
+
+よって,
+
+$$ ax \equiv b \pmod{m} \iff x \equiv (a')^{-1} b' \pmod{m'} $$
+
+となる.
+
+この解法におけるボトルネックは $g$ を求める部分と $(a')^{-1}$ を求める部分であるが, どちらも (拡張) Euclid の互除法を使うことにより, $O(\log m)$ 時間で求められる.
+
+### 連立合同方程式
+
+連立合同方程式
+
+$$ a_i x \equiv b_i \pmod{m_i} \quad (i = 1, \dots, k) $$
+
+を解く.
+
+まず各 $i$ について, 方程式
+
+$$ a_i x \equiv b_i \pmod{m_i} $$
+
+を解き,
+
+$$ x \equiv c_i \pmod{m_i'} $$
+
+の形に変形する.
+
+すると, [剰余類の合成](Composite.hpp) を使うことができるため, 合成によって連立合同方程式の解を
+
+$$ x \equiv c \pmod{m}$$
+
+の形で表すことができる.
+
+ただし, もとの方程式に $1$ つでも解なしがあるならば, 連立系も解なしになる.
+
+また, それぞれの方程式において解があったとしても, $m_1', \dots, m_k'$ が互いに素とは限らないため, 合成の際に法どうしが両立しない (矛盾する) 場合は解なしとなる.
+
+## Contents
+
+### Solve_Congruence_Equation
+
+```cpp
+Modulo Solve_Congruence_Equation(ll a, ll b, ll m)
+```
+
+* 線形合同方程式 $ax \equiv b \pmod{m}$ を解き, 解を `Modulo` 型として返す.
+* **例外**
+    * 解が存在しない場合, `NoSolutionException` を送出する.
+    * $m = 0$ の場合, 例外を送出する.
+* **計算量**: $O(\log m)$ 時間.
+
+### Solve_System_of_Congruence_Equations
+
+```cpp
+Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll, ll, ll>> equations)
+```
+
+* $(a_i, b_i, m_i)$ の列 `equations` に対して, 連立線形合同方程式
+
+$$ a_i x \equiv b_i \pmod{m_i} \quad (i = 1, \dots, k) $$
+
+  を解き, 解を `Modulo` 型として返す.
+* **例外**
+  * 連立線形合同方程式の解が存在しないとき ($1$ つでも方程式単体が解なし, または合成の際に法どうしが両立しない場合), `NoSolutionException` を送出する.
+  * $m_i = 0$ となる方程式が含まれる場合, `std::invalid_argument` を送出する.
+* **計算量**: $k$ を `equations` の要素数, $M := \max(m_1, \dots, m_k)$ として, $O(k \log M)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/08/19| document 作成 |
+|2025/08/22| Solve 系関数作成 |
