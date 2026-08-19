@@ -1,17 +1,19 @@
 #include"../template/template.hpp"
 
-// [L, R] 上で広義単調増加な条件 cond に対して, cond(x) が True になる最小の整数 x を二分探索で求める.
-// Args
-// T L: 下限
-// T R: 上限
-// function<bool(T)> cond: [L, R] 上広義単調増加な条件
-// T default_value: cond(R) が False の時の返り値
+
+/// @brief [L, R] 上で広義単調増加な条件 cond に対して, cond(x) が true になる最小の整数 x を二分探索で求める.
+/// @tparam T 整数型
+/// @param L: 下端
+/// @param R: 上端
+/// @param cond: [L, R] 上広義単調増加な条件
+/// @param default_value: cond(R) が false の時の返り値
+/// @return cond(x) が true になる最小の整数 x. ただし, cond(R) が false の場合は default_value を返す.
 template<typename T>
 T General_Binary_Increase_Search_Integer(T L, T R, const function<bool(T)> cond, T default_value) {
     // 例外ケースの処理
-    // R でも False → 異常値
+    // R でも false → 異常値
     unless(cond(R)) { return default_value; }
-    // L にて True → L
+    // L にて true → L
     if(cond(L)) { return L; }
 
     // 探索パート
@@ -23,18 +25,19 @@ T General_Binary_Increase_Search_Integer(T L, T R, const function<bool(T)> cond,
     return R;
 }
 
-// [L, R] 上で広義単調減少な条件 cond に対して, cond(x) が True になる最大の整数 x を二分探索で求める.
-// Args
-// T L: 下限
-// T R: 上限
-// function<bool(T)> cond: [L, R] 上広義単調減少な条件
-// T default_value: cond(L) が False の時の返り値
+/// @brief [L, R] 上で広義単調減少な条件 cond に対して, cond(x) が true になる最大の整数 x を二分探索で求める.
+/// @tparam T 整数型
+/// @param L: 下端
+/// @param R: 上端
+/// @param cond: [L, R] 上広義単調減少な条件
+/// @param default_value: cond(L) が false の時の返り値
+/// @return cond(x) が true になる最大の整数 x. ただし, cond(L) が false の場合は default_value を返す.
 template<typename T>
 T General_Binary_Decrease_Search_Integer(T L, T R, const function<bool(T)> cond, T default_value) {
     // 例外ケースの処理
-    // L でも False → 異常値
+    // L でも false → 異常値
     unless(cond(L)) { return default_value; }
-    // R にて True → R
+    // R にて true → R
     if(cond(R)) { return R; }
 
     // 探索パート
