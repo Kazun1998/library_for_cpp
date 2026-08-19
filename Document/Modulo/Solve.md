@@ -95,7 +95,8 @@ $$ a_i x \equiv b_i \pmod{m_i} \quad (i = 1, \dots, k) $$
 
   を解き, 解を `Modulo` 型として返す.
 * **例外**
-  * 連立線形合同方程式の解が存在しないとき, 例外を送出する.
+  * 連立線形合同方程式の解が存在しないとき ($1$ つでも方程式単体が解なし, または合成の際に法どうしが両立しない場合), `NoSolutionException` を送出する.
+  * $m_i = 0$ となる方程式が含まれる場合, `std::invalid_argument` を送出する.
 * **計算量**: $k$ を `equations` の要素数, $M := \max(m_1, \dots, m_k)$ として, $O(k \log M)$ 時間.
 
 ## History
