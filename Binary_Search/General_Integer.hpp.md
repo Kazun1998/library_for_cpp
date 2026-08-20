@@ -28,6 +28,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "[L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\
+      \u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C true \u306B\u306A\
+      \u308B\u6700\u5C0F\u306E\u6574\u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\
+      \u3081\u308B."
     links: []
   bundledCode: "#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
     #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
@@ -193,56 +197,78 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Binary_Search/General_Integer.hpp\"\n\n// [L, R] \u4E0A\u3067\
-    \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\
-    \u3066, cond(x) \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x\
-    \ \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\
-    \u9650\n// T R: \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\
-    \u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6\n// T default_value: cond(R) \u304C\
-    \ False \u306E\u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Increase_Search_Integer(T\
-    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
-    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 False \u2192 \u7570\
-    \u5E38\u5024\n    unless(cond(R)) { return default_value; }\n    // L \u306B\u3066\
-    \ True \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
-    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
-    \ ? R = C : L = C;\n    }\n\n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
-    \u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
-    \ \u304C True \u306B\u306A\u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
-    \u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R:\
-    \ \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\
-    \u6E1B\u5C11\u306A\u6761\u4EF6\n// T default_value: cond(L) \u304C False \u306E\
-    \u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Decrease_Search_Integer(T\
-    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
-    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\
-    \u5E38\u5024\n    unless(cond(L)) { return default_value; }\n    // R \u306B\u3066\
-    \ True \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
-    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
-    \ ? L = C : R = C;\n    }\n\n    return L;\n}\n"
-  code: "#include\"../template/template.hpp\"\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
-    \u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
-    \ \u304C True \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
-    \u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R:\
-    \ \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\
-    \u5897\u52A0\u306A\u6761\u4EF6\n// T default_value: cond(R) \u304C False \u306E\
-    \u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Increase_Search_Integer(T\
-    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
-    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 False \u2192 \u7570\
-    \u5E38\u5024\n    unless(cond(R)) { return default_value; }\n    // L \u306B\u3066\
-    \ True \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
-    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
-    \ ? R = C : L = C;\n    }\n\n    return R;\n}\n\n// [L, R] \u4E0A\u3067\u5E83\u7FA9\
-    \u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x)\
-    \ \u304C True \u306B\u306A\u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\u4E8C\u5206\
-    \u63A2\u7D22\u3067\u6C42\u3081\u308B.\n// Args\n// T L: \u4E0B\u9650\n// T R:\
-    \ \u4E0A\u9650\n// function<bool(T)> cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\
-    \u6E1B\u5C11\u306A\u6761\u4EF6\n// T default_value: cond(L) \u304C False \u306E\
-    \u6642\u306E\u8FD4\u308A\u5024\ntemplate<typename T>\nT General_Binary_Decrease_Search_Integer(T\
-    \ L, T R, const function<bool(T)> cond, T default_value) {\n    // \u4F8B\u5916\
-    \u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 False \u2192 \u7570\
-    \u5E38\u5024\n    unless(cond(L)) { return default_value; }\n    // R \u306B\u3066\
-    \ True \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\
-    \u30C8\n    while (R - L > 1) {\n        T C = L + (R - L) / 2;\n        cond(C)\
-    \ ? L = C : R = C;\n    }\n\n    return L;\n}\n"
+    \    }\n};\n#line 2 \"Binary_Search/General_Integer.hpp\"\n\n\n/// @brief [L,\
+    \ R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\
+    \u5BFE\u3057\u3066, cond(x) \u304C true \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\
+    \u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n/// @tparam\
+    \ T \u6574\u6570\u578B\n/// @param L: \u4E0B\u7AEF\n/// @param R: \u4E0A\u7AEF\
+    \n/// @param cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\
+    \u4EF6. T \u3092\u53D7\u3051\u53D6\u308A bool \u3092\u8FD4\u3059\u547C\u3073\u51FA\
+    \u3057\u53EF\u80FD\u306A\u5024.\n/// @param default_value: cond(R) \u304C false\
+    \ \u306E\u6642\u306E\u8FD4\u308A\u5024\n/// @return cond(x) \u304C true \u306B\
+    \u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x. \u305F\u3060\u3057, cond(R) \u304C\
+    \ false \u306E\u5834\u5408\u306F default_value \u3092\u8FD4\u3059.\n/// @note\
+    \ L <= R \u3067\u3042\u308B\u3053\u3068\u3092\u524D\u63D0\u3068\u3059\u308B.\n\
+    template<typename T>\nT General_Binary_Increase_Search_Integer(T L, T R, const\
+    \ auto& cond, T default_value) {\n    assert(L <= R);\n\n    // \u4F8B\u5916\u30B1\
+    \u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 false \u2192 \u7570\u5E38\
+    \u5024\n    unless(cond(R)) { return default_value; }\n    // L \u306B\u3066 true\
+    \ \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\
+    \n    while (R - L > 1) {\n        T C = midpoint(L, R);\n        cond(C) ? R\
+    \ = C : L = C;\n    }\n\n    return R;\n}\n\n/// @brief [L, R] \u4E0A\u3067\u5E83\
+    \u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066\
+    , cond(x) \u304C true \u306B\u306A\u308B\u6700\u5927\u306E\u6574\u6570 x \u3092\
+    \u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n/// @tparam T \u6574\u6570\u578B\
+    \n/// @param L: \u4E0B\u7AEF\n/// @param R: \u4E0A\u7AEF\n/// @param cond: [L,\
+    \ R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6. T \u3092\u53D7\
+    \u3051\u53D6\u308A bool \u3092\u8FD4\u3059\u547C\u3073\u51FA\u3057\u53EF\u80FD\
+    \u306A\u5024.\n/// @param default_value: cond(L) \u304C false \u306E\u6642\u306E\
+    \u8FD4\u308A\u5024\n/// @return cond(x) \u304C true \u306B\u306A\u308B\u6700\u5927\
+    \u306E\u6574\u6570 x. \u305F\u3060\u3057, cond(L) \u304C false \u306E\u5834\u5408\
+    \u306F default_value \u3092\u8FD4\u3059.\n/// @note L <= R \u3067\u3042\u308B\u3053\
+    \u3068\u3092\u524D\u63D0\u3068\u3059\u308B.\ntemplate<typename T>\nT General_Binary_Decrease_Search_Integer(T\
+    \ L, T R, const auto& cond, T default_value) {\n    assert(L <= R);\n\n    //\
+    \ \u4F8B\u5916\u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 false\
+    \ \u2192 \u7570\u5E38\u5024\n    unless(cond(L)) { return default_value; }\n \
+    \   // R \u306B\u3066 true \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\
+    \u7D22\u30D1\u30FC\u30C8\n    while (R - L > 1) {\n        T C = midpoint(L, R);\n\
+    \        cond(C) ? L = C : R = C;\n    }\n\n    return L;\n}\n"
+  code: "#include\"../template/template.hpp\"\n\n\n/// @brief [L, R] \u4E0A\u3067\u5E83\
+    \u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066\
+    , cond(x) \u304C true \u306B\u306A\u308B\u6700\u5C0F\u306E\u6574\u6570 x \u3092\
+    \u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n/// @tparam T \u6574\u6570\u578B\
+    \n/// @param L: \u4E0B\u7AEF\n/// @param R: \u4E0A\u7AEF\n/// @param cond: [L,\
+    \ R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\u6761\u4EF6. T \u3092\u53D7\
+    \u3051\u53D6\u308A bool \u3092\u8FD4\u3059\u547C\u3073\u51FA\u3057\u53EF\u80FD\
+    \u306A\u5024.\n/// @param default_value: cond(R) \u304C false \u306E\u6642\u306E\
+    \u8FD4\u308A\u5024\n/// @return cond(x) \u304C true \u306B\u306A\u308B\u6700\u5C0F\
+    \u306E\u6574\u6570 x. \u305F\u3060\u3057, cond(R) \u304C false \u306E\u5834\u5408\
+    \u306F default_value \u3092\u8FD4\u3059.\n/// @note L <= R \u3067\u3042\u308B\u3053\
+    \u3068\u3092\u524D\u63D0\u3068\u3059\u308B.\ntemplate<typename T>\nT General_Binary_Increase_Search_Integer(T\
+    \ L, T R, const auto& cond, T default_value) {\n    assert(L <= R);\n\n    //\
+    \ \u4F8B\u5916\u30B1\u30FC\u30B9\u306E\u51E6\u7406\n    // R \u3067\u3082 false\
+    \ \u2192 \u7570\u5E38\u5024\n    unless(cond(R)) { return default_value; }\n \
+    \   // L \u306B\u3066 true \u2192 L\n    if(cond(L)) { return L; }\n\n    // \u63A2\
+    \u7D22\u30D1\u30FC\u30C8\n    while (R - L > 1) {\n        T C = midpoint(L, R);\n\
+    \        cond(C) ? R = C : L = C;\n    }\n\n    return R;\n}\n\n/// @brief [L,\
+    \ R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\u4EF6 cond \u306B\
+    \u5BFE\u3057\u3066, cond(x) \u304C true \u306B\u306A\u308B\u6700\u5927\u306E\u6574\
+    \u6570 x \u3092\u4E8C\u5206\u63A2\u7D22\u3067\u6C42\u3081\u308B.\n/// @tparam\
+    \ T \u6574\u6570\u578B\n/// @param L: \u4E0B\u7AEF\n/// @param R: \u4E0A\u7AEF\
+    \n/// @param cond: [L, R] \u4E0A\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11\u306A\u6761\
+    \u4EF6. T \u3092\u53D7\u3051\u53D6\u308A bool \u3092\u8FD4\u3059\u547C\u3073\u51FA\
+    \u3057\u53EF\u80FD\u306A\u5024.\n/// @param default_value: cond(L) \u304C false\
+    \ \u306E\u6642\u306E\u8FD4\u308A\u5024\n/// @return cond(x) \u304C true \u306B\
+    \u306A\u308B\u6700\u5927\u306E\u6574\u6570 x. \u305F\u3060\u3057, cond(L) \u304C\
+    \ false \u306E\u5834\u5408\u306F default_value \u3092\u8FD4\u3059.\n/// @note\
+    \ L <= R \u3067\u3042\u308B\u3053\u3068\u3092\u524D\u63D0\u3068\u3059\u308B.\n\
+    template<typename T>\nT General_Binary_Decrease_Search_Integer(T L, T R, const\
+    \ auto& cond, T default_value) {\n    assert(L <= R);\n\n    // \u4F8B\u5916\u30B1\
+    \u30FC\u30B9\u306E\u51E6\u7406\n    // L \u3067\u3082 false \u2192 \u7570\u5E38\
+    \u5024\n    unless(cond(L)) { return default_value; }\n    // R \u306B\u3066 true\
+    \ \u2192 R\n    if(cond(R)) { return R; }\n\n    // \u63A2\u7D22\u30D1\u30FC\u30C8\
+    \n    while (R - L > 1) {\n        T C = midpoint(L, R);\n        cond(C) ? L\
+    \ = C : R = C;\n    }\n\n    return L;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -254,13 +280,99 @@ data:
   isVerificationFile: false
   path: Binary_Search/General_Integer.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-08-20 00:54:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Binary_Search/General_Integer.hpp
 layout: document
-redirect_from:
-- /library/Binary_Search/General_Integer.hpp
-- /library/Binary_Search/General_Integer.hpp.html
-title: Binary_Search/General_Integer.hpp
+title: "\u6574\u6570\u4E0A\u306E\u4E8C\u5206\u63A2\u7D22\u306B\u3088\u308B\u5883\u76EE\
+  \u306E\u8A08\u7B97"
 ---
+
+## Outline
+
+整数 $x$ に関する条件 $\operatorname{cond}(x)$ について, 以下を求める.
+
+* $\operatorname{cond}$ が単調増加の場合 : $\operatorname{cond}(x)=\mathbb{T}$ になるような最小の整数 $x$.
+* $\operatorname{cond}$ が単調減少の場合 : $\operatorname{cond}(x)=\mathbb{T}$ になるような最大の整数 $x$.
+
+## Definition
+
+$\mathbb{Z}$ 上の条件 $\operatorname{cond}: \mathbb{Z} \to \\{\mathbb{T}, \mathbb{F}\\}$ について, 以下を定義する.
+
+* 以下を満たすとき, $\operatorname{cond}$ は単調増加であるという
+  * $\forall x \in \mathbb{Z};\,\operatorname{cond}(x) = \mathbb{T} \Rightarrow \left(\forall y \geq x;\, \operatorname{cond}(y)=\mathbb{T} \right)$.
+* 以下を満たすとき, $\operatorname{cond}$ は単調減少であるという
+  * $\forall x \in \mathbb{Z};\,\operatorname{cond}(x) = \mathbb{F} \Rightarrow \left(\forall y \geq x;\,\operatorname{cond}(y)=\mathbb{F} \right)$.
+* $\operatorname{cond}$ が単調増加または単調減少であるとき, $\operatorname{cond}$ は単調であるという.
+
+## Theory
+
+単調増加である $\operatorname{cond}$ に対して, $\operatorname{cond}(x) = \mathbb{T}$ となる最小の $x \in \mathbb{Z}$ を $X$ として, $X$ を求める.
+
+このとき, 以下のアルゴリズムを適用させることで高速に求められる.
+
+1. $L_0, R_0 \in \mathbb{Z}$ を $\operatorname{cond}(L_0) = \mathbb{F}, \operatorname{cond}(R_0) = \mathbb{T}$ であるとする. このとき, 単調性から, $L_0 \lt X \leq R_0$ が保証されている.
+2. $L \gets L_0, R \gets R_0$ とする.
+3. $R - L > 1$ である限り, 以下を繰り返し行う.
+    * $C:=\left \lfloor \dfrac{L+R}{2} \right \rfloor$ とする.
+    * $\operatorname{cond}(C)=\mathbb{T}$ ならば, $L \lt X \leq C$ であることが分かる. よって, $R \gets C$ とする.
+    * $\operatorname{cond}(C)=\mathbb{F}$ ならば, $C \lt X \leq R$ であることが分かる. よって, $L \gets C$ とする.
+4. イテレートの条件と初期値の定め方から, ここに来たときは $R - L = 1$ である. よって, $L \lt X \leq R$ となる整数 $X$ は $X = R$ に限られる. 従って, $R$ を出力すれば良い.
+
+このアルゴリズムにおいて, イテレート $1$ 回で $(R-L)$ はもともとの約半分になる.
+
+よって, $X$ を $O(\log (R-L))$ 回のイテレートで求められ, $\operatorname{cond}$ の $1$ 回当たりの計算量を $O(K)$ とすると, 合計で $O(K \log(R-L))$ 時間で $X$ を求められる.
+
+## Contents
+
+$\textrm{cond}$ の時間計算量を $O(K)$ 時間とする.
+
+### General_Binary_Increase_Search_Integer
+
+```cpp
+template<typename T>
+T General_Binary_Increase_Search_Integer(T L, T R, const auto& cond, T default_value)
+```
+
+* $[L, R]$ 上で単調増加な条件 $\mathrm{cond}$ に対し, $\mathrm{cond}(x)$ が真となる最小の整数 $x$ を二分探索で求める.
+* **引数**
+  * $L$ : 探索範囲の下端.
+  * $R$ : 探索範囲の上端.
+  * $\textrm{cond}$: $[L, R]$ 上の単調増加な関数.
+  * `default_value`: $\mathrm{cond}(R)$ が偽のときの返り値.
+* **返り値**
+  * $\mathrm{cond}(R)$ が偽の場合は `default_value` である.
+  * そうでない場合は $\mathrm{cond}(x)$ が真となる最小の整数 $x \in [L, R]$ である.
+* **制約**
+  * $L \leq R$.
+* **計算量**
+  * $O(K \log(R - L))$ 時間.
+
+### General_Binary_Decrease_Search_Integer
+
+```cpp
+template<typename T>
+T General_Binary_Decrease_Search_Integer(T L, T R, const auto& cond, T default_value)
+```
+
+* $[L, R]$ 上で単調減少な条件 $\mathrm{cond}$ に対し, $\mathrm{cond}(x)$ が真となる最大の整数 $x$ を二分探索で求める.
+* **引数**
+  * $L$ : 探索範囲の下端.
+  * $R$ : 探索範囲の上端.
+  * $\textrm{cond}$ : $[L, R]$ 上の単調減少な関数.
+  * `default_value`: $\mathrm{cond}(L)$ が偽のときの返り値.
+* **返り値**
+  * $\mathrm{cond}(L)$ が偽の場合は `default_value` である.
+  * そうでない場合は $\mathrm{cond}(x)$ が真となる最大の整数 $x \in [L, R]$ である.
+* **制約**
+  * $L \leq R$.
+* **計算量**
+  * $O(K \log(R - L))$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---:|
+|2026/08/20| document の作成 |
+|2025/09/24| 整数上の二分探索 実装 |

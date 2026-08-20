@@ -42,7 +42,8 @@ data:
       title: Binary_Search/Count.hpp
     - icon: ':warning:'
       path: Binary_Search/General_Integer.hpp
-      title: Binary_Search/General_Integer.hpp
+      title: "\u6574\u6570\u4E0A\u306E\u4E8C\u5206\u63A2\u7D22\u306B\u3088\u308B\u5883\
+        \u76EE\u306E\u8A08\u7B97"
     - icon: ':warning:'
       path: Binary_Search/General_Real.hpp
       title: "\u5B9F\u6570\u4E0A\u306E\u4E8C\u5206\u63A2\u7D22\u306B\u3088\u308B\u5883\
