@@ -588,6 +588,9 @@ data:
     - icon: ':warning:'
       path: Queries/Monotone_Minima.hpp
       title: Monotone Minima
+    - icon: ':warning:'
+      path: Queries/Two_Pointers.hpp
+      title: "\u5C3A\u53D6\u308A\u6CD5"
   - name: Rolling_Hash
     pages:
     - icon: ':warning:'

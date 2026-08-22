@@ -493,6 +493,9 @@ data:
     path: Queries/Monotone_Minima.hpp
     title: Monotone Minima
   - icon: ':warning:'
+    path: Queries/Two_Pointers.hpp
+    title: "\u5C3A\u53D6\u308A\u6CD5"
+  - icon: ':warning:'
     path: Rolling_Hash/Rolling_Hash.hpp
     title: "\u5270\u4F59\u4F53\u306B\u95A2\u3059\u308B Rolling Hash"
   - icon: ':warning:'
@@ -1156,6 +1159,7 @@ data:
   - String/Longest_Common_Prefix.hpp
   - String/Suffix_Array.hpp
   - String/Concat_with_Compression.hpp
+  - Queries/Two_Pointers.hpp
   - Queries/Mo.hpp
   - Queries/Monotone_Minima.hpp
   - Modulo/Modulo.hpp
