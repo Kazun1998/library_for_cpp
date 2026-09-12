@@ -52,6 +52,77 @@ class Trie {
     /// @param vec 
     constexpr void insert(const vector<T> &vec) { insert(vec, root); }
 
+    // erase
+
+    /// @brief Trie 木から vec を削除する. ただし, 削除の開始位置は node から. 登録されていなければ何もせず false を返す.
+    /// @param vec
+    /// @param node
+    bool erase(const vector<T> &vec, Node *node) {
+        if (count(vec, node) == 0) { return false; }
+
+        vector<Node*> path = {node};
+        for (const T &x: vec) {
+            node = node->next[x];
+            path.emplace_back(node);
+        }
+
+        node->terminal_count--;
+        for (Node *node: path) { node->prefix_count--; }
+
+        for (size_t i = path.size() - 1; i >= 1; i--) {
+            Node *cur = path[i];
+            Node *par = path[i - 1];
+            if (cur->prefix_count > 0) { break; }
+
+            par->next.erase(cur->item);
+            delete cur;
+        }
+
+        return true;
+    }
+
+    /// @brief Trie 木から vec を削除する. 登録されていなければ何もせず false を返す.
+    /// @param vec
+    bool erase(const vector<T> &vec) { return erase(vec, root); }
+
+    // discard
+
+    /// @brief Trie 木に登録されている vec をすべて削除する. ただし, 削除の開始位置は node から.
+    /// @param vec
+    /// @param node
+    /// @return 削除した個数.
+    size_t discard(const vector<T> &vec, Node *node) {
+        Node *final_node = get(vec, node);
+        if (final_node == nullptr || final_node->terminal_count == 0) { return 0; }
+
+        const size_t cnt = final_node->terminal_count;
+
+        vector<Node*> path = {node};
+        for (const T &x: vec) {
+            node = node->next[x];
+            path.emplace_back(node);
+        }
+
+        node->terminal_count = 0;
+        for (Node *n: path) { n->prefix_count -= cnt; }
+
+        for (size_t i = path.size() - 1; i >= 1; i--) {
+            Node *cur = path[i];
+            Node *par = path[i - 1];
+            if (cur->prefix_count > 0) { break; }
+
+            par->next.erase(cur->item);
+            delete cur;
+        }
+
+        return cnt;
+    }
+
+    /// @brief Trie 木に登録されている vec をすべて削除する.
+    /// @param vec
+    /// @return 削除した個数.
+    size_t discard(const vector<T> &vec) { return discard(vec, root); }
+
     // count
 
     /// @brief Trie 木に登録されている vec の数を求める. ただし, 検索の開始位置は node から.
@@ -123,6 +194,12 @@ class Trie {
     // for string
     constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(), str.end()), node); }
     constexpr void insert(const string &str) { insert(str, root); }
+
+    bool erase(const string &str, Node *node) { return erase(vector<char>(str.begin(), str.end()), node); }
+    bool erase(const string &str) { return erase(str, root); }
+
+    size_t discard(const string &str, Node *node) { return discard(vector<char>(str.begin(), str.end()), node); }
+    size_t discard(const string &str) { return discard(str, root); }
 
     constexpr size_t count(const string &str, Node *node) { return count(vector<char>(str.begin(), str.end()), node); }
     constexpr size_t count(const string &str) { return count(str, root); }
