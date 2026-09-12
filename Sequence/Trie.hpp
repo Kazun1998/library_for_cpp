@@ -21,24 +21,21 @@ class Trie {
 
     public:
     Node *root;
-    vector<Node*> nodes;
 
     Trie() {
         root = new Node(T(), true);
-        nodes.emplace_back(root);
     }
 
     // insert
 
     /// @brief Trie 木に vec を挿入する. ただし, 挿入の開始位置は node から.
-    /// @param vec 
-    /// @param node 
+    /// @param vec
+    /// @param node
     void insert(const vector<T> &vec, Node *node) {
         node->prefix_count++;
         for (T x: vec) {
             if (!node->contains(x)) {
                 node->next[x] = new Node(x);
-                nodes.emplace_back(node->next[x]);
             }
 
             node = node->next[x];
@@ -126,8 +123,8 @@ class Trie {
     // count
 
     /// @brief Trie 木に登録されている vec の数を求める. ただし, 検索の開始位置は node から.
-    /// @param vec 
-    /// @param node 
+    /// @param vec
+    /// @param node
     size_t count(const vector<T> &vec, Node *node) {
         Node *final_node = get(vec, node);
         return final_node != nullptr ? final_node->terminal_count : 0;
@@ -222,6 +219,6 @@ class Trie {
     constexpr bool search_prefixed(const string &str, Node *node) { return search_prefixed(vector<char>(str.begin(), str.end()), node); }
     constexpr bool search_prefixed(const string &str) { return search_prefixed(str, root); }
 
-    constexpr Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(), str.end())); }
+    constexpr Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(), str.end()), node); }
     constexpr Node* get(const string &str) { return get(str, root); }
 };
