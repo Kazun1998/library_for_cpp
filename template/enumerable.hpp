@@ -10,6 +10,7 @@
 #include <optional>
 #include <stdexcept>
 #include <utility>
+#include <concepts>
 
 namespace enumerable {
     /// @brief コンテナの各要素に関数を適用し、その結果を新しい `std::vector` として返す。
@@ -96,7 +97,7 @@ namespace enumerable {
         auto end = std::end(container);
         if (it == end) throw std::runtime_error("enumerable::inject: container is empty");
         // 値のコピーを作成してアキュムレータとする
-        auto result = *it; 
+        auto result = *it;
         ++it;
         for (; it != end; ++it) {
             result = std::invoke(func, result, *it);
@@ -107,22 +108,49 @@ namespace enumerable {
     /// @brief すべての要素が条件を満たすか判定する。
     /// Ruby の `Enumerable#all?` に相当します。
     template <typename Container, typename Pred>
+    requires std::invocable<Pred, typename Container::const_reference>
     bool all_of(const Container& container, Pred pred) {
         return std::all_of(std::begin(container), std::end(container), pred);
+    }
+
+    /// @brief すべての要素が指定した値と一致するか判定する。
+    /// Ruby の `Enumerable#all?(pattern)` に相当します。
+    template <typename Container, typename T>
+    requires (!std::invocable<T, typename Container::const_reference>)
+    bool all_of(const Container& container, const T& val) {
+        return std::all_of(std::begin(container), std::end(container), [&val](const auto& element) { return element == val; });
     }
 
     /// @brief いずれかの要素が条件を満たすか判定する。
     /// Ruby の `Enumerable#any?` に相当します。
     template <typename Container, typename Pred>
+    requires std::invocable<Pred, typename Container::const_reference>
     bool any_of(const Container& container, Pred pred) {
         return std::any_of(std::begin(container), std::end(container), pred);
+    }
+
+    /// @brief いずれかの要素が指定した値と一致するか判定する。
+    /// Ruby の `Enumerable#any?(pattern)` に相当します。
+    template <typename Container, typename T>
+    requires (!std::invocable<T, typename Container::const_reference>)
+    bool any_of(const Container& container, const T& val) {
+        return std::any_of(std::begin(container), std::end(container), [&val](const auto& element) { return element == val; });
     }
 
     /// @brief すべての要素が条件を満たさないか判定する。
     /// Ruby の `Enumerable#none?` に相当します。
     template <typename Container, typename Pred>
+    requires std::invocable<Pred, typename Container::const_reference>
     bool none_of(const Container& container, Pred pred) {
         return std::none_of(std::begin(container), std::end(container), pred);
+    }
+
+    /// @brief すべての要素が指定した値と一致しないか判定する。
+    /// Ruby の `Enumerable#none?(pattern)` に相当します。
+    template <typename Container, typename T>
+    requires (!std::invocable<T, typename Container::const_reference>)
+    bool none_of(const Container& container, const T& val) {
+        return std::none_of(std::begin(container), std::end(container), [&val](const auto& element) { return element == val; });
     }
 
     /// @brief 指定した値が含まれているか判定する。
@@ -196,7 +224,7 @@ namespace enumerable {
     auto sort_by(const Container& container, Func func) {
         using T = typename Container::value_type;
         using Key = std::decay_t<std::invoke_result_t<Func, typename Container::const_reference>>;
-        
+
         std::vector<std::pair<Key, T>> pairs;
         if constexpr (requires { std::size(container); }) {
             pairs.reserve(std::size(container));
