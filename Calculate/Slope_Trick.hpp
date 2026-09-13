@@ -3,6 +3,8 @@
 
 #include "../Data_Structure/Additive_Treap.hpp"
 
+/// @brief 区分線形凸関数 f(x) を管理するデータ構造 (Slope Trick).
+/// @tparam T 座標・値の型 (加算・比較・max が定義された数値型を想定)
 template<typename T>
 class Slope_Trick {
     Additive_Treap<T> negative, positive;
@@ -19,6 +21,8 @@ class Slope_Trick {
     /// @return
     T get_min() const { return f_min; }
 
+    /// @brief f(x) を f(x) + max(0, x - a) に更新する.
+    /// @param a
     void add_x_minus_a(const T &a) {
         unless (negative.empty()) {
             f_min += max(T(0), negative.max() - a);
@@ -28,6 +32,8 @@ class Slope_Trick {
         positive.insert(negative.pop_max());
     }
 
+    /// @brief f(x) を f(x) + max(0, a - x) に更新する.
+    /// @param a
     void add_a_minus_x(const T &a) {
         unless (positive.empty()) {
             f_min += max(T(0), a - positive.min());
@@ -37,11 +43,15 @@ class Slope_Trick {
         negative.insert(positive.pop_min());
     }
 
+    /// @brief f(x) を f(x) + |x - a| に更新する.
+    /// @param a
     void add_abs(const T &a) {
         add_x_minus_a(a);
         add_a_minus_x(a);
     }
 
+    /// @brief add_x_minus_a(a) の逆操作. 対応する add_x_minus_a(a) 済みの状態でのみ正しく動作する.
+    /// @param a
     void sub_x_minus_a(const T &a) {
         if (positive.contains(a)) {
             positive.erase(a);
@@ -55,6 +65,8 @@ class Slope_Trick {
         }
     }
 
+    /// @brief add_a_minus_x(a) の逆操作. 対応する add_a_minus_x(a) 済みの状態でのみ正しく動作する.
+    /// @param a
     void sub_a_minus_x(const T &a) {
         if (negative.contains(a)) {
             negative.erase(a);
@@ -68,12 +80,16 @@ class Slope_Trick {
         }
     }
 
+    /// @brief add_abs(a) の逆操作. 対応する add_abs(a) 済みの状態でのみ正しく動作する.
+    /// @param a
     void sub_abs(const T &a) {
         sub_x_minus_a(a);
         sub_a_minus_x(a);
     }
 
-    // calculate f(x)
+    /// @brief f(x) の値を計算する.
+    /// @param x
+    /// @return f(x)
     T calculate_at(const T &x) const {
         T res = f_min;
 
@@ -92,9 +108,15 @@ class Slope_Trick {
         return res;
     }
 
+    /// @brief calculate_at(x) と同じ.
+    /// @param x
+    /// @return f(x)
     T operator()(const T &x) const { return calculate_at(x); }
 
-    // calculate min_{l <= x <= r} f(x)
+    /// @brief 区間 [l, r] における f(x) の最小値 min_{l <= x <= r} f(x) を求める.
+    /// @param l
+    /// @param r
+    /// @return min_{l <= x <= r} f(x)
     T calculate_min(const T &l, const T &r) const {
         if (!negative.empty() && r < negative.max()) {
             return calculate_at(r);
@@ -107,7 +129,10 @@ class Slope_Trick {
         return f_min;
     }
 
-    // l <= x <= r において f(x) が最小値をとる区間 [a, b] を求める
+    /// @brief l <= x <= r において f(x) が最小値をとる区間 [a, b] を求める.
+    /// @param l
+    /// @param r
+    /// @return f(x) が最小値をとる区間 [a, b]
     std::pair<T, T> argmin(const T &l, const T &r) const {
         assert(l <= r);
         T L_opt = negative.empty() ? l : negative.max();
