@@ -1,13 +1,13 @@
-#pragma one
+#pragma once
 
-#include"../template/template.hpp"
-#include"../template/concepts.hpp"
+#include "../template/template.hpp"
+#include "../template/concepts.hpp"
 
-template<Hashable T>
-class Trie {
+template<typename T> requires totally_ordered<T>
+class Ordered_Trie {
     struct Node {
         T item;
-        unordered_map<T, Node*> next;
+        map<T, Node*> next;
         size_t terminal_count, prefix_count;
         bool is_root;
 
@@ -22,7 +22,7 @@ class Trie {
     public:
     Node *root;
 
-    Trie() {
+    Ordered_Trie() {
         root = new Node(T(), true);
     }
 
@@ -46,7 +46,7 @@ class Trie {
     }
 
     /// @brief Trie 木に vec を挿入する.
-    /// @param vec 
+    /// @param vec
     void insert(const vector<T> &vec) { insert(vec, root); }
 
     // erase
@@ -188,6 +188,137 @@ class Trie {
     // size
     size_t size() const { return root->prefix_count; }
 
+    // order statistics
+
+    /// @brief 辞書順で node 以下 k 番目 (0-indexed) に小さい列を求める. ただし, node からの相対順位で数える.
+    /// @param k
+    /// @param node
+    vector<T> find_by_order(size_t k, Node *node) {
+        assert(k < node->prefix_count);
+
+        vector<T> res;
+        while (true) {
+            if (k < node->terminal_count) { return res; }
+            k -= node->terminal_count;
+
+            for (const auto &[x, child]: node->next) {
+                if (k < child->prefix_count) {
+                    res.emplace_back(x);
+                    node = child;
+                    goto next_node;
+                }
+
+                k -= child->prefix_count;
+            }
+
+            assert(false);
+            next_node:;
+        }
+    }
+
+    /// @brief 辞書順で k 番目 (0-indexed) に小さい列を求める.
+    /// @param k
+    vector<T> find_by_order(size_t k) { return find_by_order(k, root); }
+
+    /// @brief vec より真に辞書順で小さい列の個数を求める. ただし, 検索の開始位置は node から.
+    /// @param vec
+    /// @param node
+    size_t order_of_key(const vector<T> &vec, Node *node) {
+        size_t res = 0;
+        for (const T &x: vec) {
+            res += node->terminal_count;
+
+            for (auto it = node->next.begin(); it != node->next.end() && it->first < x; ++it) {
+                res += it->second->prefix_count;
+            }
+
+            if (!node->contains(x)) { return res; }
+            node = node->next[x];
+        }
+
+        return res;
+    }
+
+    /// @brief vec より真に辞書順で小さい列の個数を求める.
+    /// @param vec
+    size_t order_of_key(const vector<T> &vec) { return order_of_key(vec, root); }
+
+    /// @brief vec より辞書順で小さい列の個数を求める. ただし, 検索の開始位置は node から.
+    /// @param vec
+    /// @param node
+    /// @param equal true のとき vec 自身と等しい列も個数に含める.
+    size_t count_less(const vector<T> &vec, Node *node, bool equal = false) {
+        return order_of_key(vec, node) + (equal ? count(vec, node) : 0);
+    }
+
+    /// @brief vec より辞書順で小さい列の個数を求める.
+    /// @param vec
+    /// @param equal true のとき vec 自身と等しい列も個数に含める.
+    size_t count_less(const vector<T> &vec, bool equal = false) { return count_less(vec, root, equal); }
+
+    /// @brief vec より辞書順で大きい列の個数を求める. ただし, 検索の開始位置は node から.
+    /// @param vec
+    /// @param node
+    /// @param equal true のとき vec 自身と等しい列も個数に含める.
+    size_t count_more(const vector<T> &vec, Node *node, bool equal = false) {
+        return node->prefix_count - order_of_key(vec, node) - (equal ? 0 : count(vec, node));
+    }
+
+    /// @brief vec より辞書順で大きい列の個数を求める.
+    /// @param vec
+    /// @param equal true のとき vec 自身と等しい列も個数に含める.
+    size_t count_more(const vector<T> &vec, bool equal = false) { return count_more(vec, root, equal); }
+
+    /// @brief 登録されている列の中で辞書順最小の列を求める.
+    optional<vector<T>> min() {
+        if (root->prefix_count == 0) { return nullopt; }
+
+        Node *node = root;
+        vector<T> res;
+        while (node->terminal_count == 0) {
+            auto it = node->next.begin();
+            res.emplace_back(it->first);
+            node = it->second;
+        }
+
+        return res;
+    }
+
+    /// @brief 登録されている列の中で辞書順最大の列を求める.
+    optional<vector<T>> max() {
+        if (root->prefix_count == 0) { return nullopt; }
+
+        Node *node = root;
+        vector<T> res;
+        while (!node->next.empty()) {
+            auto it = node->next.rbegin();
+            res.emplace_back(it->first);
+            node = it->second;
+        }
+
+        return res;
+    }
+
+    /// @brief 登録されている列の中で vec より辞書順で大きい最小の列 (successor) を求める.
+    /// @param vec
+    /// @param equal true のとき vec 自身も候補に含める (vec 以上で最小の列を求める).
+    optional<vector<T>> next(const vector<T> &vec, bool equal = false) {
+        size_t idx = order_of_key(vec) + (equal ? 0 : count(vec));
+        if (idx >= size()) { return nullopt; }
+
+        return find_by_order(idx);
+    }
+
+    /// @brief 登録されている列の中で vec より辞書順で小さい最大の列 (predecessor) を求める.
+    /// @param vec
+    /// @param equal true のとき vec 自身も候補に含める (vec 以下で最大の列を求める).
+    optional<vector<T>> prev(const vector<T> &vec, bool equal = false) {
+        size_t idx = order_of_key(vec) + (equal ? count(vec) : 0);
+        if (idx == 0) { return nullopt; }
+
+        return find_by_order(idx - 1);
+    }
+
     // for string
     void insert(const string &str, Node *node) { insert(vector<char>(str.begin(), str.end()), node); }
     void insert(const string &str) { insert(str, root); }
@@ -221,4 +352,16 @@ class Trie {
 
     Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(), str.end()), node); }
     Node* get(const string &str) { return get(str, root); }
+
+    size_t order_of_key(const string &str, Node *node) { return order_of_key(vector<char>(str.begin(), str.end()), node); }
+    size_t order_of_key(const string &str) { return order_of_key(str, root); }
+
+    size_t count_less(const string &str, Node *node, bool equal = false) { return count_less(vector<char>(str.begin(), str.end()), node, equal); }
+    size_t count_less(const string &str, bool equal = false) { return count_less(str, root, equal); }
+
+    size_t count_more(const string &str, Node *node, bool equal = false) { return count_more(vector<char>(str.begin(), str.end()), node, equal); }
+    size_t count_more(const string &str, bool equal = false) { return count_more(str, root, equal); }
+
+    optional<vector<char>> next(const string &str, bool equal = false) { return next(vector<char>(str.begin(), str.end()), equal); }
+    optional<vector<char>> prev(const string &str, bool equal = false) { return prev(vector<char>(str.begin(), str.end()), equal); }
 };
