@@ -44,6 +44,9 @@ data:
     path: Calculate/Slide_Maximum.hpp
     title: "\u30B9\u30E9\u30A4\u30C9\u6700\u5927\u5024"
   - icon: ':heavy_check_mark:'
+    path: Calculate/Slope_Trick.hpp
+    title: Slope Trick
+  - icon: ':heavy_check_mark:'
     path: Convolution/Bitwise_And_Convolution.hpp
     title: Convolution/Bitwise_And_Convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +81,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Data_Structure/AVL_Tree.hpp
     title: "Adelson-Velskii-Landis \u6728"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Additive_Treap.hpp
     title: "key \u3092 1 \u3064\u524A\u9664\u3059\u308B."
   - icon: ':warning:'
@@ -99,7 +102,7 @@ data:
   - icon: ':warning:'
     path: Data_Structure/Interval_Set.hpp
     title: Interval Set
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Data_Structure/Ordered_Multiset.hpp
     title: "\u9806\u5E8F\u4ED8\u304D\u591A\u91CD\u96C6\u5408"
   - icon: ':heavy_check_mark:'
@@ -1032,6 +1035,9 @@ data:
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/2654.test.cpp
+    title: verify/yukicoder/2654.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/3166.test.cpp
     title: verify/yukicoder/3166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1079,6 +1085,7 @@ data:
   path: template/macro.hpp
   requiredBy:
   - Calculate/Slide_Maximum.hpp
+  - Calculate/Slope_Trick.hpp
   - Min_Cost_Flow/Min_Cost_Flow.hpp
   - Min_Cost_Flow/Bipartite_Weighted_Matching.hpp
   - Math/Interval_Product.hpp
@@ -1323,6 +1330,7 @@ data:
   - verify/yukicoder/3166.test.cpp
   - verify/yukicoder/1358.test.cpp
   - verify/yukicoder/2558.test.cpp
+  - verify/yukicoder/2654.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yukicoder/187.test.cpp
   - verify/yukicoder/763.test.cpp

@@ -23,10 +23,13 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/2654.test.cpp
+    title: verify/yukicoder/2654.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "x \u3092\u633F\u5165\u3059\u308B"
     links: []
@@ -405,8 +408,9 @@ data:
   path: Data_Structure/Ordered_Multiset.hpp
   requiredBy: []
   timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/2654.test.cpp
 documentation_of: Data_Structure/Ordered_Multiset.hpp
 layout: document
 title: "\u9806\u5E8F\u4ED8\u304D\u591A\u91CD\u96C6\u5408"

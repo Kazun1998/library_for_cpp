@@ -22,11 +22,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Calculate/Slope_Trick.hpp
+    title: Slope Trick
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/2654.test.cpp
+    title: verify/yukicoder/2654.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "key \u3092 1 \u3064\u524A\u9664\u3059\u308B."
     links: []
@@ -531,10 +537,12 @@ data:
   - template/exception.hpp
   isVerificationFile: false
   path: Data_Structure/Additive_Treap.hpp
-  requiredBy: []
+  requiredBy:
+  - Calculate/Slope_Trick.hpp
   timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/2654.test.cpp
 documentation_of: Data_Structure/Additive_Treap.hpp
 layout: document
 redirect_from:
