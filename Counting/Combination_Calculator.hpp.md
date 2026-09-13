@@ -324,8 +324,8 @@ data:
   verifiedWith:
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Binomial_Coefficient_Prime_Mod.test.cpp
+  - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
 documentation_of: Counting/Combination_Calculator.hpp
 layout: document
 title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\u7684\

@@ -374,8 +374,8 @@ data:
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
 documentation_of: Integer/Miller_Rabin_Primality_Test.hpp
 layout: document

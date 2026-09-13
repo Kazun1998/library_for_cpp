@@ -221,155 +221,217 @@ data:
     \       unordered_map<T, Node*> next;\n        size_t terminal_count, prefix_count;\n\
     \        bool is_root;\n\n        Node(): Node(T()) {}\n        Node(const T &item,\
     \ const bool is_root = false): item(item), terminal_count(0), prefix_count(0),\
-    \ is_root(is_root) {}\n\n        constexpr bool contains(const T &x) const { return\
-    \ next.find(x) != next.end(); }\n\n        inline Node* dig(const T x) { return\
-    \ contains(x) ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\
-    \    vector<Node*> nodes;\n\n    Trie() {\n        root = new Node(T(), true);\n\
-    \        nodes.emplace_back(root);\n    }\n\n    // insert\n\n    /// @brief Trie\
-    \ \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\u5165\
-    \u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n\
-    \    /// @param node \n    void insert(const vector<T> &vec, Node *node) {\n \
-    \       node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
-    \ {\n                node->next[x] = new Node(x);\n                nodes.emplace_back(node->next[x]);\n\
-    \            }\n\n            node = node->next[x];\n            node->prefix_count++;\n\
-    \        }\n\n        node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\
-    \u306B vec \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    constexpr\
-    \ void insert(const vector<T> &vec) { insert(vec, root); }\n\n    // count\n\n\
-    \    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec\
-    \ \u306E\u6570\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u691C\u7D22\u306E\
-    \u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n    ///\
-    \ @param node \n    size_t count(const vector<T> &vec, Node *node) {\n       \
-    \ Node *final_node = get(vec, node);\n        return final_node != nullptr ? final_node->terminal_count\
-    \ : 0;\n    }\n\n    constexpr size_t count(const vector<T> &vec) { return count(vec,\
-    \ root); }\n\n    // count_prefixing\n    size_t count_prefixing(const vector<T>\
-    \ &vec, Node *node, bool equal = true) {\n        Node *final_node = get(vec,\
-    \ node);\n        if (final_node == nullptr) { return 0; }\n\n        return equal\
-    \ ? node->prefix_count : node->prefix_count - node->terminal_count;\n    }\n\n\
-    \    constexpr size_t count_prefixing(const vector<T> &vec, bool equal = true)\
-    \ { return count_prefixing(vec, root, equal); }\n\n    // count_prefixed\n   \
-    \ size_t count_prefixed(const vector<T> &vec, Node *node, bool equal = true) {\n\
-    \        size_t res = node->terminal_count;\n        for (T x: vec) {\n      \
-    \      if(!node->contains(x)) { return res; }\n\n            node = node->next[x];\n\
-    \            res += node->terminal_count;\n        }\n\n        return equal ?\
-    \ res : res - node->terminal_count;\n    }\n\n    constexpr size_t count_prefixed(const\
-    \ vector<T> &vec, bool equal = true) { return count_prefixed(vec, root, equal);\
-    \ }\n\n    // contains\n    constexpr bool contains(const vector<T> &vec, Node\
-    \ *node) { return count(vec, node) > 0; }\n    constexpr bool contains(const vector<T>\
-    \ &vec) { return contains(vec, root); }\n\n    // search\n    constexpr bool search(const\
-    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    constexpr bool\
-    \ search(const vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n\
-    \    constexpr bool search_prefixing(const vector<T> &vec, Node *node) { return\
-    \ count_prefixing(vec, node) > 0; }\n    constexpr bool search_prefixing(const\
-    \ vector<T> &vec) { return search_prefixing(vec, root); }\n\n    // search_prefixed\n\
-    \    constexpr bool search_prefixed(const vector<T> &vec, Node *node) { return\
-    \ count_prefixed(vec, node) > 0; }\n    constexpr bool search_prefixed(const vector<T>\
-    \ &vec) { return search_prefixed(vec, root); }\n\n    constexpr Node* get_root()\
+    \ is_root(is_root) {}\n\n        bool contains(const T &x) const { return next.find(x)\
+    \ != next.end(); }\n\n        inline Node* dig(const T x) { return contains(x)\
+    \ ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\n    Trie()\
+    \ {\n        root = new Node(T(), true);\n    }\n\n    // insert\n\n    /// @brief\
+    \ Trie \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\
+    \u5165\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param\
+    \ vec\n    /// @param node\n    void insert(const vector<T> &vec, Node *node)\
+    \ {\n        node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
+    \ {\n                node->next[x] = new Node(x);\n            }\n\n         \
+    \   node = node->next[x];\n            node->prefix_count++;\n        }\n\n  \
+    \      node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\u306B vec\
+    \ \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    void insert(const\
+    \ vector<T> &vec) { insert(vec, root); }\n\n    // erase\n\n    /// @brief Trie\
+    \ \u6728\u304B\u3089 vec \u3092\u524A\u9664\u3059\u308B. \u305F\u3060\u3057, \u524A\
+    \u9664\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089. \u767B\u9332\u3055\
+    \u308C\u3066\u3044\u306A\u3051\u308C\u3070\u4F55\u3082\u305B\u305A false \u3092\
+    \u8FD4\u3059.\n    /// @param vec\n    /// @param node\n    bool erase(const vector<T>\
+    \ &vec, Node *node) {\n        if (count(vec, node) == 0) { return false; }\n\n\
+    \        vector<Node*> path = {node};\n        for (const T &x: vec) {\n     \
+    \       node = node->next[x];\n            path.emplace_back(node);\n        }\n\
+    \n        node->terminal_count--;\n        for (Node *node: path) { node->prefix_count--;\
+    \ }\n\n        for (size_t i = path.size() - 1; i >= 1; i--) {\n            Node\
+    \ *cur = path[i];\n            Node *par = path[i - 1];\n            if (cur->prefix_count\
+    \ > 0) { break; }\n\n            par->next.erase(cur->item);\n            delete\
+    \ cur;\n        }\n\n        return true;\n    }\n\n    /// @brief Trie \u6728\
+    \u304B\u3089 vec \u3092\u524A\u9664\u3059\u308B. \u767B\u9332\u3055\u308C\u3066\
+    \u3044\u306A\u3051\u308C\u3070\u4F55\u3082\u305B\u305A false \u3092\u8FD4\u3059\
+    .\n    /// @param vec\n    bool erase(const vector<T> &vec) { return erase(vec,\
+    \ root); }\n\n    // discard\n\n    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\
+    \u308C\u3066\u3044\u308B vec \u3092\u3059\u3079\u3066\u524A\u9664\u3059\u308B\
+    . \u305F\u3060\u3057, \u524A\u9664\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\
+    \u3089.\n    /// @param vec\n    /// @param node\n    /// @return \u524A\u9664\
+    \u3057\u305F\u500B\u6570.\n    size_t discard(const vector<T> &vec, Node *node)\
+    \ {\n        Node *final_node = get(vec, node);\n        if (final_node == nullptr\
+    \ || final_node->terminal_count == 0) { return 0; }\n\n        const size_t cnt\
+    \ = final_node->terminal_count;\n\n        vector<Node*> path = {node};\n    \
+    \    for (const T &x: vec) {\n            node = node->next[x];\n            path.emplace_back(node);\n\
+    \        }\n\n        node->terminal_count = 0;\n        for (Node *n: path) {\
+    \ n->prefix_count -= cnt; }\n\n        for (size_t i = path.size() - 1; i >= 1;\
+    \ i--) {\n            Node *cur = path[i];\n            Node *par = path[i - 1];\n\
+    \            if (cur->prefix_count > 0) { break; }\n\n            par->next.erase(cur->item);\n\
+    \            delete cur;\n        }\n\n        return cnt;\n    }\n\n    /// @brief\
+    \ Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec \u3092\u3059\
+    \u3079\u3066\u524A\u9664\u3059\u308B.\n    /// @param vec\n    /// @return \u524A\
+    \u9664\u3057\u305F\u500B\u6570.\n    size_t discard(const vector<T> &vec) { return\
+    \ discard(vec, root); }\n\n    // count\n\n    /// @brief Trie \u6728\u306B\u767B\
+    \u9332\u3055\u308C\u3066\u3044\u308B vec \u306E\u6570\u3092\u6C42\u3081\u308B\
+    . \u305F\u3060\u3057, \u691C\u7D22\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\
+    \u3089.\n    /// @param vec\n    /// @param node\n    size_t count(const vector<T>\
+    \ &vec, Node *node) {\n        Node *final_node = get(vec, node);\n        return\
+    \ final_node != nullptr ? final_node->terminal_count : 0;\n    }\n\n    size_t\
+    \ count(const vector<T> &vec) { return count(vec, root); }\n\n    // count_prefixing\n\
+    \    size_t count_prefixing(const vector<T> &vec, Node *node, bool equal = true)\
+    \ {\n        Node *final_node = get(vec, node);\n        if (final_node == nullptr)\
+    \ { return 0; }\n\n        return equal ? node->prefix_count : node->prefix_count\
+    \ - node->terminal_count;\n    }\n\n    size_t count_prefixing(const vector<T>\
+    \ &vec, bool equal = true) { return count_prefixing(vec, root, equal); }\n\n \
+    \   // count_prefixed\n    size_t count_prefixed(const vector<T> &vec, Node *node,\
+    \ bool equal = true) {\n        size_t res = node->terminal_count;\n        for\
+    \ (T x: vec) {\n            if(!node->contains(x)) { return res; }\n\n       \
+    \     node = node->next[x];\n            res += node->terminal_count;\n      \
+    \  }\n\n        return equal ? res : res - node->terminal_count;\n    }\n\n  \
+    \  size_t count_prefixed(const vector<T> &vec, bool equal = true) { return count_prefixed(vec,\
+    \ root, equal); }\n\n    // contains\n    bool contains(const vector<T> &vec,\
+    \ Node *node) { return count(vec, node) > 0; }\n    bool contains(const vector<T>\
+    \ &vec) { return contains(vec, root); }\n\n    // search\n    bool search(const\
+    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    bool search(const\
+    \ vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n \
+    \   bool search_prefixing(const vector<T> &vec, Node *node) { return count_prefixing(vec,\
+    \ node) > 0; }\n    bool search_prefixing(const vector<T> &vec) { return search_prefixing(vec,\
+    \ root); }\n\n    // search_prefixed\n    bool search_prefixed(const vector<T>\
+    \ &vec, Node *node) { return count_prefixed(vec, node) > 0; }\n    bool search_prefixed(const\
+    \ vector<T> &vec) { return search_prefixed(vec, root); }\n\n    Node* get_root()\
     \ { return root; }\n    Node* get(const vector<T> &vec, Node *node) {\n      \
     \  for (T x: vec) {\n            node = node->dig(x);\n            if (node ==\
-    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    constexpr\
-    \ Node* get(const vector<T> &vec) { return get(vec, root); }\n\n    // size\n\
-    \    constexpr const size_t size() const { return root->prefix_count; }\n\n  \
-    \  // for string\n    constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr void insert(const string &str) { insert(str,\
-    \ root); }\n\n    constexpr size_t count(const string &str, Node *node) { return\
-    \ count(vector<char>(str.begin(), str.end()), node); }\n    constexpr size_t count(const\
-    \ string &str) { return count(str, root); }\n\n    constexpr size_t count_prefixing(const\
-    \ string &str, Node *node) { return count_prefixing(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr size_t count_prefixing(const string &str)\
-    \ { return count_prefixing(str, root); }\n\n    constexpr size_t count_prefixed(const\
+    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    Node* get(const\
+    \ vector<T> &vec) { return get(vec, root); }\n\n    // size\n    size_t size()\
+    \ const { return root->prefix_count; }\n\n    // for string\n    void insert(const\
+    \ string &str, Node *node) { insert(vector<char>(str.begin(), str.end()), node);\
+    \ }\n    void insert(const string &str) { insert(str, root); }\n\n    bool erase(const\
+    \ string &str, Node *node) { return erase(vector<char>(str.begin(), str.end()),\
+    \ node); }\n    bool erase(const string &str) { return erase(str, root); }\n\n\
+    \    size_t discard(const string &str, Node *node) { return discard(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    size_t discard(const string &str) { return discard(str,\
+    \ root); }\n\n    size_t count(const string &str, Node *node) { return count(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    size_t count(const string &str) { return count(str,\
+    \ root); }\n\n    size_t count_prefixing(const string &str, Node *node) { return\
+    \ count_prefixing(vector<char>(str.begin(), str.end()), node); }\n    size_t count_prefixing(const\
+    \ string &str) { return count_prefixing(str, root); }\n\n    size_t count_prefixed(const\
     \ string &str, Node *node) { return count_prefixed(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr size_t count_prefixed(const string &str) { return count_prefixed(str,\
-    \ root); }\n\n    constexpr bool contains(const string &str, Node *node) { return\
-    \ contains(vector<char>(str.begin(), str.end()), node); }\n    constexpr bool\
-    \ contains(const string &str) { return contains(str, root); }\n\n    constexpr\
-    \ bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr bool search(const string &str) { return\
-    \ search(str, root); }\n\n    constexpr bool search_prefixing(const string &str,\
-    \ Node *node) { return search_prefixing(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr bool search_prefixing(const string &str) { return search_prefixing(str,\
-    \ root); }\n\n    constexpr bool search_prefixed(const string &str, Node *node)\
-    \ { return search_prefixed(vector<char>(str.begin(), str.end()), node); }\n  \
-    \  constexpr bool search_prefixed(const string &str) { return search_prefixed(str,\
-    \ root); }\n\n    constexpr Node* get(const string &str, Node *node) { return\
-    \ get(vector<char>(str.begin(), str.end())); }\n    constexpr Node* get(const\
-    \ string &str) { return get(str, root); }\n};\n"
+    \ node); }\n    size_t count_prefixed(const string &str) { return count_prefixed(str,\
+    \ root); }\n\n    bool contains(const string &str, Node *node) { return contains(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool contains(const string &str) { return contains(str,\
+    \ root); }\n\n    bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool search(const string &str) { return search(str,\
+    \ root); }\n\n    bool search_prefixing(const string &str, Node *node) { return\
+    \ search_prefixing(vector<char>(str.begin(), str.end()), node); }\n    bool search_prefixing(const\
+    \ string &str) { return search_prefixing(str, root); }\n\n    bool search_prefixed(const\
+    \ string &str, Node *node) { return search_prefixed(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool search_prefixed(const string &str) { return search_prefixed(str,\
+    \ root); }\n\n    Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    Node* get(const string &str) { return get(str, root);\
+    \ }\n};\n"
   code: "#pragma one\n\n#include\"../template/template.hpp\"\n#include\"../template/concepts.hpp\"\
     \n\ntemplate<Hashable T>\nclass Trie {\n    struct Node {\n        T item;\n \
     \       unordered_map<T, Node*> next;\n        size_t terminal_count, prefix_count;\n\
     \        bool is_root;\n\n        Node(): Node(T()) {}\n        Node(const T &item,\
     \ const bool is_root = false): item(item), terminal_count(0), prefix_count(0),\
-    \ is_root(is_root) {}\n\n        constexpr bool contains(const T &x) const { return\
-    \ next.find(x) != next.end(); }\n\n        inline Node* dig(const T x) { return\
-    \ contains(x) ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\
-    \    vector<Node*> nodes;\n\n    Trie() {\n        root = new Node(T(), true);\n\
-    \        nodes.emplace_back(root);\n    }\n\n    // insert\n\n    /// @brief Trie\
-    \ \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\u5165\
-    \u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n\
-    \    /// @param node \n    void insert(const vector<T> &vec, Node *node) {\n \
-    \       node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
-    \ {\n                node->next[x] = new Node(x);\n                nodes.emplace_back(node->next[x]);\n\
-    \            }\n\n            node = node->next[x];\n            node->prefix_count++;\n\
-    \        }\n\n        node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\
-    \u306B vec \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    constexpr\
-    \ void insert(const vector<T> &vec) { insert(vec, root); }\n\n    // count\n\n\
-    \    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec\
-    \ \u306E\u6570\u3092\u6C42\u3081\u308B. \u305F\u3060\u3057, \u691C\u7D22\u306E\
-    \u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param vec \n    ///\
-    \ @param node \n    size_t count(const vector<T> &vec, Node *node) {\n       \
-    \ Node *final_node = get(vec, node);\n        return final_node != nullptr ? final_node->terminal_count\
-    \ : 0;\n    }\n\n    constexpr size_t count(const vector<T> &vec) { return count(vec,\
-    \ root); }\n\n    // count_prefixing\n    size_t count_prefixing(const vector<T>\
-    \ &vec, Node *node, bool equal = true) {\n        Node *final_node = get(vec,\
-    \ node);\n        if (final_node == nullptr) { return 0; }\n\n        return equal\
-    \ ? node->prefix_count : node->prefix_count - node->terminal_count;\n    }\n\n\
-    \    constexpr size_t count_prefixing(const vector<T> &vec, bool equal = true)\
-    \ { return count_prefixing(vec, root, equal); }\n\n    // count_prefixed\n   \
-    \ size_t count_prefixed(const vector<T> &vec, Node *node, bool equal = true) {\n\
-    \        size_t res = node->terminal_count;\n        for (T x: vec) {\n      \
-    \      if(!node->contains(x)) { return res; }\n\n            node = node->next[x];\n\
-    \            res += node->terminal_count;\n        }\n\n        return equal ?\
-    \ res : res - node->terminal_count;\n    }\n\n    constexpr size_t count_prefixed(const\
-    \ vector<T> &vec, bool equal = true) { return count_prefixed(vec, root, equal);\
-    \ }\n\n    // contains\n    constexpr bool contains(const vector<T> &vec, Node\
-    \ *node) { return count(vec, node) > 0; }\n    constexpr bool contains(const vector<T>\
-    \ &vec) { return contains(vec, root); }\n\n    // search\n    constexpr bool search(const\
-    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    constexpr bool\
-    \ search(const vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n\
-    \    constexpr bool search_prefixing(const vector<T> &vec, Node *node) { return\
-    \ count_prefixing(vec, node) > 0; }\n    constexpr bool search_prefixing(const\
-    \ vector<T> &vec) { return search_prefixing(vec, root); }\n\n    // search_prefixed\n\
-    \    constexpr bool search_prefixed(const vector<T> &vec, Node *node) { return\
-    \ count_prefixed(vec, node) > 0; }\n    constexpr bool search_prefixed(const vector<T>\
-    \ &vec) { return search_prefixed(vec, root); }\n\n    constexpr Node* get_root()\
+    \ is_root(is_root) {}\n\n        bool contains(const T &x) const { return next.find(x)\
+    \ != next.end(); }\n\n        inline Node* dig(const T x) { return contains(x)\
+    \ ? next[x] : nullptr; }\n    };\n\n    public:\n    Node *root;\n\n    Trie()\
+    \ {\n        root = new Node(T(), true);\n    }\n\n    // insert\n\n    /// @brief\
+    \ Trie \u6728\u306B vec \u3092\u633F\u5165\u3059\u308B. \u305F\u3060\u3057, \u633F\
+    \u5165\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089.\n    /// @param\
+    \ vec\n    /// @param node\n    void insert(const vector<T> &vec, Node *node)\
+    \ {\n        node->prefix_count++;\n        for (T x: vec) {\n            if (!node->contains(x))\
+    \ {\n                node->next[x] = new Node(x);\n            }\n\n         \
+    \   node = node->next[x];\n            node->prefix_count++;\n        }\n\n  \
+    \      node->terminal_count++;\n    }\n\n    /// @brief Trie \u6728\u306B vec\
+    \ \u3092\u633F\u5165\u3059\u308B.\n    /// @param vec \n    void insert(const\
+    \ vector<T> &vec) { insert(vec, root); }\n\n    // erase\n\n    /// @brief Trie\
+    \ \u6728\u304B\u3089 vec \u3092\u524A\u9664\u3059\u308B. \u305F\u3060\u3057, \u524A\
+    \u9664\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\u3089. \u767B\u9332\u3055\
+    \u308C\u3066\u3044\u306A\u3051\u308C\u3070\u4F55\u3082\u305B\u305A false \u3092\
+    \u8FD4\u3059.\n    /// @param vec\n    /// @param node\n    bool erase(const vector<T>\
+    \ &vec, Node *node) {\n        if (count(vec, node) == 0) { return false; }\n\n\
+    \        vector<Node*> path = {node};\n        for (const T &x: vec) {\n     \
+    \       node = node->next[x];\n            path.emplace_back(node);\n        }\n\
+    \n        node->terminal_count--;\n        for (Node *node: path) { node->prefix_count--;\
+    \ }\n\n        for (size_t i = path.size() - 1; i >= 1; i--) {\n            Node\
+    \ *cur = path[i];\n            Node *par = path[i - 1];\n            if (cur->prefix_count\
+    \ > 0) { break; }\n\n            par->next.erase(cur->item);\n            delete\
+    \ cur;\n        }\n\n        return true;\n    }\n\n    /// @brief Trie \u6728\
+    \u304B\u3089 vec \u3092\u524A\u9664\u3059\u308B. \u767B\u9332\u3055\u308C\u3066\
+    \u3044\u306A\u3051\u308C\u3070\u4F55\u3082\u305B\u305A false \u3092\u8FD4\u3059\
+    .\n    /// @param vec\n    bool erase(const vector<T> &vec) { return erase(vec,\
+    \ root); }\n\n    // discard\n\n    /// @brief Trie \u6728\u306B\u767B\u9332\u3055\
+    \u308C\u3066\u3044\u308B vec \u3092\u3059\u3079\u3066\u524A\u9664\u3059\u308B\
+    . \u305F\u3060\u3057, \u524A\u9664\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\
+    \u3089.\n    /// @param vec\n    /// @param node\n    /// @return \u524A\u9664\
+    \u3057\u305F\u500B\u6570.\n    size_t discard(const vector<T> &vec, Node *node)\
+    \ {\n        Node *final_node = get(vec, node);\n        if (final_node == nullptr\
+    \ || final_node->terminal_count == 0) { return 0; }\n\n        const size_t cnt\
+    \ = final_node->terminal_count;\n\n        vector<Node*> path = {node};\n    \
+    \    for (const T &x: vec) {\n            node = node->next[x];\n            path.emplace_back(node);\n\
+    \        }\n\n        node->terminal_count = 0;\n        for (Node *n: path) {\
+    \ n->prefix_count -= cnt; }\n\n        for (size_t i = path.size() - 1; i >= 1;\
+    \ i--) {\n            Node *cur = path[i];\n            Node *par = path[i - 1];\n\
+    \            if (cur->prefix_count > 0) { break; }\n\n            par->next.erase(cur->item);\n\
+    \            delete cur;\n        }\n\n        return cnt;\n    }\n\n    /// @brief\
+    \ Trie \u6728\u306B\u767B\u9332\u3055\u308C\u3066\u3044\u308B vec \u3092\u3059\
+    \u3079\u3066\u524A\u9664\u3059\u308B.\n    /// @param vec\n    /// @return \u524A\
+    \u9664\u3057\u305F\u500B\u6570.\n    size_t discard(const vector<T> &vec) { return\
+    \ discard(vec, root); }\n\n    // count\n\n    /// @brief Trie \u6728\u306B\u767B\
+    \u9332\u3055\u308C\u3066\u3044\u308B vec \u306E\u6570\u3092\u6C42\u3081\u308B\
+    . \u305F\u3060\u3057, \u691C\u7D22\u306E\u958B\u59CB\u4F4D\u7F6E\u306F node \u304B\
+    \u3089.\n    /// @param vec\n    /// @param node\n    size_t count(const vector<T>\
+    \ &vec, Node *node) {\n        Node *final_node = get(vec, node);\n        return\
+    \ final_node != nullptr ? final_node->terminal_count : 0;\n    }\n\n    size_t\
+    \ count(const vector<T> &vec) { return count(vec, root); }\n\n    // count_prefixing\n\
+    \    size_t count_prefixing(const vector<T> &vec, Node *node, bool equal = true)\
+    \ {\n        Node *final_node = get(vec, node);\n        if (final_node == nullptr)\
+    \ { return 0; }\n\n        return equal ? node->prefix_count : node->prefix_count\
+    \ - node->terminal_count;\n    }\n\n    size_t count_prefixing(const vector<T>\
+    \ &vec, bool equal = true) { return count_prefixing(vec, root, equal); }\n\n \
+    \   // count_prefixed\n    size_t count_prefixed(const vector<T> &vec, Node *node,\
+    \ bool equal = true) {\n        size_t res = node->terminal_count;\n        for\
+    \ (T x: vec) {\n            if(!node->contains(x)) { return res; }\n\n       \
+    \     node = node->next[x];\n            res += node->terminal_count;\n      \
+    \  }\n\n        return equal ? res : res - node->terminal_count;\n    }\n\n  \
+    \  size_t count_prefixed(const vector<T> &vec, bool equal = true) { return count_prefixed(vec,\
+    \ root, equal); }\n\n    // contains\n    bool contains(const vector<T> &vec,\
+    \ Node *node) { return count(vec, node) > 0; }\n    bool contains(const vector<T>\
+    \ &vec) { return contains(vec, root); }\n\n    // search\n    bool search(const\
+    \ vector<T> &vec, Node *node) { return contains(vec, node); }\n    bool search(const\
+    \ vector<T> &vec) { return search(vec, root); }\n\n    // search_prefixing\n \
+    \   bool search_prefixing(const vector<T> &vec, Node *node) { return count_prefixing(vec,\
+    \ node) > 0; }\n    bool search_prefixing(const vector<T> &vec) { return search_prefixing(vec,\
+    \ root); }\n\n    // search_prefixed\n    bool search_prefixed(const vector<T>\
+    \ &vec, Node *node) { return count_prefixed(vec, node) > 0; }\n    bool search_prefixed(const\
+    \ vector<T> &vec) { return search_prefixed(vec, root); }\n\n    Node* get_root()\
     \ { return root; }\n    Node* get(const vector<T> &vec, Node *node) {\n      \
     \  for (T x: vec) {\n            node = node->dig(x);\n            if (node ==\
-    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    constexpr\
-    \ Node* get(const vector<T> &vec) { return get(vec, root); }\n\n    // size\n\
-    \    constexpr const size_t size() const { return root->prefix_count; }\n\n  \
-    \  // for string\n    constexpr void insert(const string &str, Node *node) { insert(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr void insert(const string &str) { insert(str,\
-    \ root); }\n\n    constexpr size_t count(const string &str, Node *node) { return\
-    \ count(vector<char>(str.begin(), str.end()), node); }\n    constexpr size_t count(const\
-    \ string &str) { return count(str, root); }\n\n    constexpr size_t count_prefixing(const\
-    \ string &str, Node *node) { return count_prefixing(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr size_t count_prefixing(const string &str)\
-    \ { return count_prefixing(str, root); }\n\n    constexpr size_t count_prefixed(const\
+    \ nullptr) { break; }\n        }\n\n        return node;\n    }\n\n    Node* get(const\
+    \ vector<T> &vec) { return get(vec, root); }\n\n    // size\n    size_t size()\
+    \ const { return root->prefix_count; }\n\n    // for string\n    void insert(const\
+    \ string &str, Node *node) { insert(vector<char>(str.begin(), str.end()), node);\
+    \ }\n    void insert(const string &str) { insert(str, root); }\n\n    bool erase(const\
+    \ string &str, Node *node) { return erase(vector<char>(str.begin(), str.end()),\
+    \ node); }\n    bool erase(const string &str) { return erase(str, root); }\n\n\
+    \    size_t discard(const string &str, Node *node) { return discard(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    size_t discard(const string &str) { return discard(str,\
+    \ root); }\n\n    size_t count(const string &str, Node *node) { return count(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    size_t count(const string &str) { return count(str,\
+    \ root); }\n\n    size_t count_prefixing(const string &str, Node *node) { return\
+    \ count_prefixing(vector<char>(str.begin(), str.end()), node); }\n    size_t count_prefixing(const\
+    \ string &str) { return count_prefixing(str, root); }\n\n    size_t count_prefixed(const\
     \ string &str, Node *node) { return count_prefixed(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr size_t count_prefixed(const string &str) { return count_prefixed(str,\
-    \ root); }\n\n    constexpr bool contains(const string &str, Node *node) { return\
-    \ contains(vector<char>(str.begin(), str.end()), node); }\n    constexpr bool\
-    \ contains(const string &str) { return contains(str, root); }\n\n    constexpr\
-    \ bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
-    \ str.end()), node); }\n    constexpr bool search(const string &str) { return\
-    \ search(str, root); }\n\n    constexpr bool search_prefixing(const string &str,\
-    \ Node *node) { return search_prefixing(vector<char>(str.begin(), str.end()),\
-    \ node); }\n    constexpr bool search_prefixing(const string &str) { return search_prefixing(str,\
-    \ root); }\n\n    constexpr bool search_prefixed(const string &str, Node *node)\
-    \ { return search_prefixed(vector<char>(str.begin(), str.end()), node); }\n  \
-    \  constexpr bool search_prefixed(const string &str) { return search_prefixed(str,\
-    \ root); }\n\n    constexpr Node* get(const string &str, Node *node) { return\
-    \ get(vector<char>(str.begin(), str.end())); }\n    constexpr Node* get(const\
-    \ string &str) { return get(str, root); }\n};\n"
+    \ node); }\n    size_t count_prefixed(const string &str) { return count_prefixed(str,\
+    \ root); }\n\n    bool contains(const string &str, Node *node) { return contains(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool contains(const string &str) { return contains(str,\
+    \ root); }\n\n    bool search(const string &str, Node *node) { return search(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool search(const string &str) { return search(str,\
+    \ root); }\n\n    bool search_prefixing(const string &str, Node *node) { return\
+    \ search_prefixing(vector<char>(str.begin(), str.end()), node); }\n    bool search_prefixing(const\
+    \ string &str) { return search_prefixing(str, root); }\n\n    bool search_prefixed(const\
+    \ string &str, Node *node) { return search_prefixed(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    bool search_prefixed(const string &str) { return search_prefixed(str,\
+    \ root); }\n\n    Node* get(const string &str, Node *node) { return get(vector<char>(str.begin(),\
+    \ str.end()), node); }\n    Node* get(const string &str) { return get(str, root);\
+    \ }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -382,7 +444,7 @@ data:
   isVerificationFile: false
   path: Sequence/Trie.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-09-13 02:07:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Sequence/Trie.hpp

@@ -338,9 +338,9 @@ data:
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yukicoder/763.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - verify/yukicoder/763.test.cpp
 documentation_of: Tree/Tree_DP.hpp
 layout: document
 title: "\u6728 DP"

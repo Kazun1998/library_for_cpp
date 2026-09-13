@@ -448,8 +448,8 @@ data:
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
   - verify/yosupo_library_checker/number_theory/Stern-Brocot_Tree.test.cpp
+  - verify/yosupo_library_checker/number_theory/Rational_Approximation.test.cpp
 documentation_of: Math/Stern_Brocot_Tree.hpp
 layout: document
 title: "Stern Brocot \u6728"
