@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: Binary_Search/Count.hpp
     title: Binary_Search/Count.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Binary_Search/General_Integer.hpp
     title: "\u6574\u6570\u4E0A\u306E\u4E8C\u5206\u63A2\u7D22\u306B\u3088\u308B\u5883\
       \u76EE\u306E\u8A08\u7B97"
@@ -264,6 +264,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Prim.hpp
     title: "Prim \u6CD5"
+  - icon: ':warning:'
+    path: Imos/Cyclic_Imos_1.hpp
+    title: "\u5468\u9577 n \u306E\u5186\u74B0\u4E0A\u3067, l \u304B\u3089 r \u307E\
+      \u3067 (l \u304B\u3089\u6642\u8A08\u56DE\u308A\u306B r \u307E\u3067) \u306E\u5404\
+      \u8981\u7D20\u306B x \u3092\u52A0\u7B97\u3059\u308B"
   - icon: ':heavy_check_mark:'
     path: Imos/Imos_1.hpp
     title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 0 \u6B21)"
@@ -273,6 +278,11 @@ data:
   - icon: ':warning:'
     path: Imos/Linear_Imos_1.hpp
     title: "\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143 1 \u6B21)"
+  - icon: ':heavy_check_mark:'
+    path: Imos/Sparse_Cyclic_Imos_1.hpp
+    title: "\u5468\u9577 n \u306E\u5186\u74B0\u4E0A\u3067, l \u304B\u3089 r \u307E\
+      \u3067 (l \u304B\u3089\u6642\u8A08\u56DE\u308A\u306B r \u307E\u3067) \u306E\u5404\
+      \u8981\u7D20\u306B x \u3092\u52A0\u7B97\u3059\u308B"
   - icon: ':warning:'
     path: Imos/Sparse_Imos_1.hpp
     title: "\u758E\u306A\u5834\u5408\u306E\u3044\u3082\u3059\u6CD5 (1 \u6B21\u5143\
@@ -1027,6 +1037,9 @@ data:
     path: verify/yukicoder/2558.test.cpp
     title: verify/yukicoder/2558.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/3166.test.cpp
+    title: verify/yukicoder/3166.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/763.test.cpp
     title: verify/yukicoder/763.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1166,8 +1179,10 @@ data:
   - Functional_Graph/Monoid_Functional_Graph.hpp
   - Functional_Graph/Functional_Graph.hpp
   - Imos/Imos_2.hpp
+  - Imos/Sparse_Cyclic_Imos_1.hpp
   - Imos/Imos_1.hpp
   - Imos/Linear_Imos_1.hpp
+  - Imos/Cyclic_Imos_1.hpp
   - Imos/Sparse_Imos_1.hpp
   - Modulo_Polynomial/Bell_Number.hpp
   - Modulo_Polynomial/Numeric_Theory_Translation.hpp
@@ -1319,6 +1334,7 @@ data:
   - verify/original/Permutation.test.cpp
   - verify/original/Functional_Graph.test.cpp
   - verify/original/Fraction.test.cpp
+  - verify/yukicoder/3166.test.cpp
   - verify/yukicoder/1358.test.cpp
   - verify/yukicoder/2558.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp

@@ -23,10 +23,13 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/3166.test.cpp
+    title: verify/yukicoder/3166.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "[L, R] \u4E0A\u3067\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u306A\
       \u6761\u4EF6 cond \u306B\u5BFE\u3057\u3066, cond(x) \u304C true \u306B\u306A\
@@ -281,8 +284,9 @@ data:
   path: Binary_Search/General_Integer.hpp
   requiredBy: []
   timestamp: '2026-08-20 00:54:34+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verify/yukicoder/3166.test.cpp
 documentation_of: Binary_Search/General_Integer.hpp
 layout: document
 title: "\u6574\u6570\u4E0A\u306E\u4E8C\u5206\u63A2\u7D22\u306B\u3088\u308B\u5883\u76EE\
