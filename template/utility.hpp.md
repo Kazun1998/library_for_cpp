@@ -535,6 +535,9 @@ data:
     path: Sequence/Longest_Increasing_Subsequence.hpp
     title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
   - icon: ':warning:'
+    path: Sequence/Ordered_Trie.hpp
+    title: "\u9806\u5E8F\u4ED8\u304D Trie \u6728"
+  - icon: ':warning:'
     path: Sequence/Run_Length_Encoding.hpp
     title: "\u9023\u9577\u5727\u7E2E (Run Length Encoding)"
   - icon: ':warning:'
@@ -1093,6 +1096,7 @@ data:
   - Max_Flow/Project_Selection_Problem.hpp
   - Max_Flow/Max_Flow.hpp
   - Sequence/Longest_Increasing_Subsequence.hpp
+  - Sequence/Ordered_Trie.hpp
   - Sequence/Trie.hpp
   - Sequence/Z_Algorithm.hpp
   - Sequence/Cartesian_Tree.hpp

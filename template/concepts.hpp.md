@@ -15,6 +15,9 @@ data:
     path: Math/Interval_Product.hpp
     title: "\u533A\u9593\u7A4D"
   - icon: ':warning:'
+    path: Sequence/Ordered_Trie.hpp
+    title: "\u9806\u5E8F\u4ED8\u304D Trie \u6728"
+  - icon: ':warning:'
     path: Sequence/Trie.hpp
     title: "Trie \u6728"
   - icon: ':warning:'
@@ -81,6 +84,7 @@ data:
   path: template/concepts.hpp
   requiredBy:
   - Math/Interval_Product.hpp
+  - Sequence/Ordered_Trie.hpp
   - Sequence/Trie.hpp
   - Data_Structure/Best_Sum.hpp
   - Data_Structure/Sliding_Window_Aggregation.hpp
