@@ -26,24 +26,24 @@ data:
   bundledCode: "#line 2 \"template/enumerable.hpp\"\n\n#include <vector>\n#include\
     \ <functional>\n#include <type_traits>\n#include <iterator>\n#include <algorithm>\n\
     #include <map>\n#include <set>\n#include <optional>\n#include <stdexcept>\n#include\
-    \ <utility>\n\nnamespace enumerable {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\
-    \u306E\u5404\u8981\u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\u3057\u3001\u305D\
-    \u306E\u7D50\u679C\u3092\u65B0\u3057\u3044 `std::vector` \u3068\u3057\u3066\u8FD4\
-    \u3059\u3002\n    ///\n    /// Ruby \u306E `Enumerable#collect` (\u307E\u305F\u306F\
-    \ `map`) \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E `std::transform`\
-    \ \u306B\u4F3C\u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\
-    \u3057\u3066\u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\u3057\u3066\u8FD4\
-    \u3059\u70B9\u304C\u7570\u306A\u308A\u307E\u3059\u3002\n    /// @tparam Container\
-    \ \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\u30F3\u30C6\u30CA\u306E\
-    \u578B (e.g., std::vector<T>)\u3002\n    /// @tparam Func \u5404\u8981\u7D20\u306B\
-    \u9069\u7528\u3059\u308B\u95A2\u6570\u306E\u578B\u3002\n    /// @param container\
-    \ \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\u3002\n    /// @param func \u5404\
-    \u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069)\u3002\n    /// @return \u95A2\
-    \u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\u7D0D\u3057\u305F\u65B0\u3057\
-    \u3044 `std::vector`\u3002\n    template <typename Container, typename Func>\n\
-    \    auto collect(const Container& container, const Func& func) {\n        using\
-    \ ResultType = std::invoke_result_t<Func, typename Container::const_reference>;\n\
+    \ <utility>\n#include <concepts>\n\nnamespace enumerable {\n    /// @brief \u30B3\
+    \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\
+    \u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\u3044 `std::vector` \u3068\
+    \u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby \u306E `Enumerable#collect`\
+    \ (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E\
+    \ `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\
+    \u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\
+    \u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\u3059\u3002\n   \
+    \ /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\
+    \u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    /// @tparam Func\
+    \ \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\u578B\u3002\
+    \n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\u3002\n\
+    \    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\
+    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069)\u3002\
+    \n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\u7D0D\
+    \u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename Container,\
+    \ typename Func>\n    auto collect(const Container& container, const Func& func)\
+    \ {\n        using ResultType = std::invoke_result_t<Func, typename Container::const_reference>;\n\
     \        std::vector<ResultType> result;\n        if constexpr (requires { std::size(container);\
     \ }) {\n            result.reserve(std::size(container));\n        }\n       \
     \ for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
@@ -102,45 +102,68 @@ data:
     \   if (it == end) throw std::runtime_error(\"enumerable::inject: container is\
     \ empty\");\n        // \u5024\u306E\u30B3\u30D4\u30FC\u3092\u4F5C\u6210\u3057\
     \u3066\u30A2\u30AD\u30E5\u30E0\u30EC\u30FC\u30BF\u3068\u3059\u308B\n        auto\
-    \ result = *it; \n        ++it;\n        for (; it != end; ++it) {\n         \
-    \   result = std::invoke(func, result, *it);\n        }\n        return result;\n\
+    \ result = *it;\n        ++it;\n        for (; it != end; ++it) {\n          \
+    \  result = std::invoke(func, result, *it);\n        }\n        return result;\n\
     \    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\u4EF6\
     \u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E\
     \ `Enumerable#all?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template <typename\
-    \ Container, typename Pred>\n    bool all_of(const Container& container, Pred\
-    \ pred) {\n        return std::all_of(std::begin(container), std::end(container),\
-    \ pred);\n    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\
-    \u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n   \
-    \ /// Ruby \u306E `Enumerable#any?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
-    \n    template <typename Container, typename Pred>\n    bool any_of(const Container&\
-    \ container, Pred pred) {\n        return std::any_of(std::begin(container), std::end(container),\
-    \ pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\
-    \u4EF6\u3092\u6E80\u305F\u3055\u306A\u3044\u304B\u5224\u5B9A\u3059\u308B\u3002\
-    \n    /// Ruby \u306E `Enumerable#none?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
-    \n    template <typename Container, typename Pred>\n    bool none_of(const Container&\
-    \ container, Pred pred) {\n        return std::none_of(std::begin(container),\
-    \ std::end(container), pred);\n    }\n\n    /// @brief \u6307\u5B9A\u3057\u305F\
-    \u5024\u304C\u542B\u307E\u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B\
-    \u3002\n    /// Ruby \u306E `Enumerable#include?` (\u307E\u305F\u306F `member?`)\
+    \ Container, typename Pred>\n    requires std::invocable<Pred, typename Container::const_reference>\n\
+    \    bool all_of(const Container& container, Pred pred) {\n        return std::all_of(std::begin(container),\
+    \ std::end(container), pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\
+    \u8981\u7D20\u304C\u6307\u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3059\u308B\
+    \u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#all?(pattern)`\
     \ \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template <typename Container,\
-    \ typename T>\n    bool include(const Container& container, const T& val) {\n\
-    \        return std::find(std::begin(container), std::end(container), val) !=\
-    \ std::end(container);\n    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\u305F\
-    \u3059\u6700\u521D\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\n    /// Ruby \u306E\
-    \ `Enumerable#find` (\u307E\u305F\u306F `detect`) \u306B\u76F8\u5F53\u3057\u307E\
-    \u3059\u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\u5834\u5408\u306F std::nullopt\
-    \ \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template <typename Container, typename\
-    \ Pred>\n    auto find(const Container& container, Pred pred) -> std::optional<typename\
-    \ Container::value_type> {\n        auto it = std::find_if(std::begin(container),\
-    \ std::end(container), pred);\n        if (it != std::end(container)) return *it;\n\
-    \        return std::nullopt;\n    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\
-    \u305F\u3059\u6700\u521D\u306E\u8981\u7D20\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9\u3092\u8FD4\u3059\u3002\n    /// Ruby \u306E `Enumerable#find_index` \u306B\
+    \ typename T>\n    requires (!std::invocable<T, typename Container::const_reference>)\n\
+    \    bool all_of(const Container& container, const T& val) {\n        return std::all_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\u6761\
+    \u4EF6\u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby\
+    \ \u306E `Enumerable#any?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template\
+    \ <typename Container, typename Pred>\n    requires std::invocable<Pred, typename\
+    \ Container::const_reference>\n    bool any_of(const Container& container, Pred\
+    \ pred) {\n        return std::any_of(std::begin(container), std::end(container),\
+    \ pred);\n    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\
+    \u6307\u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3059\u308B\u304B\u5224\u5B9A\
+    \u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#any?(pattern)` \u306B\u76F8\
+    \u5F53\u3057\u307E\u3059\u3002\n    template <typename Container, typename T>\n\
+    \    requires (!std::invocable<T, typename Container::const_reference>)\n    bool\
+    \ any_of(const Container& container, const T& val) {\n        return std::any_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\u4EF6\
+    \u3092\u6E80\u305F\u3055\u306A\u3044\u304B\u5224\u5B9A\u3059\u308B\u3002\n   \
+    \ /// Ruby \u306E `Enumerable#none?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
+    \n    template <typename Container, typename Pred>\n    requires std::invocable<Pred,\
+    \ typename Container::const_reference>\n    bool none_of(const Container& container,\
+    \ Pred pred) {\n        return std::none_of(std::begin(container), std::end(container),\
+    \ pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6307\
+    \u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3057\u306A\u3044\u304B\u5224\u5B9A\
+    \u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#none?(pattern)` \u306B\u76F8\
+    \u5F53\u3057\u307E\u3059\u3002\n    template <typename Container, typename T>\n\
+    \    requires (!std::invocable<T, typename Container::const_reference>)\n    bool\
+    \ none_of(const Container& container, const T& val) {\n        return std::none_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u6307\u5B9A\u3057\u305F\u5024\u304C\u542B\u307E\u308C\
+    \u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#include?`\
+    \ (\u307E\u305F\u306F `member?`) \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n\
+    \    template <typename Container, typename T>\n    bool include(const Container&\
+    \ container, const T& val) {\n        return std::find(std::begin(container),\
+    \ std::end(container), val) != std::end(container);\n    }\n\n    /// @brief \u6761\
+    \u4EF6\u3092\u6E80\u305F\u3059\u6700\u521D\u306E\u8981\u7D20\u3092\u8FD4\u3059\
+    \u3002\n    /// Ruby \u306E `Enumerable#find` (\u307E\u305F\u306F `detect`) \u306B\
     \u76F8\u5F53\u3057\u307E\u3059\u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\
     \u5834\u5408\u306F std::nullopt \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template\
-    \ <typename Container, typename Pred>\n    std::optional<size_t> find_index(const\
-    \ Container& container, Pred pred) {\n        auto it = std::find_if(std::begin(container),\
-    \ std::end(container), pred);\n        if (it != std::end(container)) return std::distance(std::begin(container),\
+    \ <typename Container, typename Pred>\n    auto find(const Container& container,\
+    \ Pred pred) -> std::optional<typename Container::value_type> {\n        auto\
+    \ it = std::find_if(std::begin(container), std::end(container), pred);\n     \
+    \   if (it != std::end(container)) return *it;\n        return std::nullopt;\n\
+    \    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u521D\u306E\
+    \u8981\u7D20\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u8FD4\u3059\u3002\
+    \n    /// Ruby \u306E `Enumerable#find_index` \u306B\u76F8\u5F53\u3057\u307E\u3059\
+    \u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\u5834\u5408\u306F std::nullopt\
+    \ \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template <typename Container, typename\
+    \ Pred>\n    std::optional<size_t> find_index(const Container& container, Pred\
+    \ pred) {\n        auto it = std::find_if(std::begin(container), std::end(container),\
+    \ pred);\n        if (it != std::end(container)) return std::distance(std::begin(container),\
     \ it);\n        return std::nullopt;\n    }\n\n    /// @brief \u6761\u4EF6\u3092\
     \u6E80\u305F\u3059\u8981\u7D20\u306E\u6570\u3092\u8FD4\u3059\u3002\n    /// Ruby\
     \ \u306E `Enumerable#count` (\u30D6\u30ED\u30C3\u30AF\u4ED8\u304D) \u306B\u76F8\
@@ -173,7 +196,7 @@ data:
     \u3057\u307E\u3059\u3002\n    template <typename Container, typename Func>\n \
     \   auto sort_by(const Container& container, Func func) {\n        using T = typename\
     \ Container::value_type;\n        using Key = std::decay_t<std::invoke_result_t<Func,\
-    \ typename Container::const_reference>>;\n        \n        std::vector<std::pair<Key,\
+    \ typename Container::const_reference>>;\n\n        std::vector<std::pair<Key,\
     \ T>> pairs;\n        if constexpr (requires { std::size(container); }) {\n  \
     \          pairs.reserve(std::size(container));\n        }\n        for (const\
     \ auto& element : container) {\n            pairs.emplace_back(std::invoke(func,\
@@ -192,26 +215,26 @@ data:
     \            }\n        }\n        return result;\n    }\n\n} // namespace enumerable\n"
   code: "#pragma once\n\n#include <vector>\n#include <functional>\n#include <type_traits>\n\
     #include <iterator>\n#include <algorithm>\n#include <map>\n#include <set>\n#include\
-    \ <optional>\n#include <stdexcept>\n#include <utility>\n\nnamespace enumerable\
-    \ {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\
-    \u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\
-    \u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby\
-    \ \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\
-    \u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\
-    \u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector`\
-    \ \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\
-    \u3059\u3002\n    /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\
-    \u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    ///\
-    \ @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\
-    \u578B\u3002\n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\
-    \u3002\n    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\
-    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069\
-    )\u3002\n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\
-    \u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename\
-    \ Container, typename Func>\n    auto collect(const Container& container, const\
-    \ Func& func) {\n        using ResultType = std::invoke_result_t<Func, typename\
-    \ Container::const_reference>;\n        std::vector<ResultType> result;\n    \
-    \    if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
+    \ <optional>\n#include <stdexcept>\n#include <utility>\n#include <concepts>\n\n\
+    namespace enumerable {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\
+    \u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\
+    \u3092\u65B0\u3057\u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n\
+    \    ///\n    /// Ruby \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`)\
+    \ \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\
+    \u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\
+    \u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\
+    \u304C\u7570\u306A\u308A\u307E\u3059\u3002\n    /// @tparam Container \u30A4\u30C6\
+    \u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g.,\
+    \ std::vector<T>)\u3002\n    /// @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\
+    \u3059\u308B\u95A2\u6570\u306E\u578B\u3002\n    /// @param container \u5BFE\u8C61\
+    \u306E\u30B3\u30F3\u30C6\u30CA\u3002\n    /// @param func \u5404\u8981\u7D20\u306B\
+    \u9069\u7528\u3059\u308B\u95A2\u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\
+    \u30E0\u30C0\u5F0F\u306A\u3069)\u3002\n    /// @return \u95A2\u6570\u306E\u9069\
+    \u7528\u7D50\u679C\u3092\u683C\u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\
+    \n    template <typename Container, typename Func>\n    auto collect(const Container&\
+    \ container, const Func& func) {\n        using ResultType = std::invoke_result_t<Func,\
+    \ typename Container::const_reference>;\n        std::vector<ResultType> result;\n\
+    \        if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
     \        }\n        for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
     \ element));\n        }\n        return result;\n    }\n\n    /// @brief \u30B3\
     \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u5BFE\u3057\u3066\u8FF0\u8A9E\
@@ -268,45 +291,68 @@ data:
     \   if (it == end) throw std::runtime_error(\"enumerable::inject: container is\
     \ empty\");\n        // \u5024\u306E\u30B3\u30D4\u30FC\u3092\u4F5C\u6210\u3057\
     \u3066\u30A2\u30AD\u30E5\u30E0\u30EC\u30FC\u30BF\u3068\u3059\u308B\n        auto\
-    \ result = *it; \n        ++it;\n        for (; it != end; ++it) {\n         \
-    \   result = std::invoke(func, result, *it);\n        }\n        return result;\n\
+    \ result = *it;\n        ++it;\n        for (; it != end; ++it) {\n          \
+    \  result = std::invoke(func, result, *it);\n        }\n        return result;\n\
     \    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\u4EF6\
     \u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E\
     \ `Enumerable#all?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template <typename\
-    \ Container, typename Pred>\n    bool all_of(const Container& container, Pred\
-    \ pred) {\n        return std::all_of(std::begin(container), std::end(container),\
-    \ pred);\n    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\
-    \u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n   \
-    \ /// Ruby \u306E `Enumerable#any?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
-    \n    template <typename Container, typename Pred>\n    bool any_of(const Container&\
-    \ container, Pred pred) {\n        return std::any_of(std::begin(container), std::end(container),\
-    \ pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\
-    \u4EF6\u3092\u6E80\u305F\u3055\u306A\u3044\u304B\u5224\u5B9A\u3059\u308B\u3002\
-    \n    /// Ruby \u306E `Enumerable#none?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
-    \n    template <typename Container, typename Pred>\n    bool none_of(const Container&\
-    \ container, Pred pred) {\n        return std::none_of(std::begin(container),\
-    \ std::end(container), pred);\n    }\n\n    /// @brief \u6307\u5B9A\u3057\u305F\
-    \u5024\u304C\u542B\u307E\u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B\
-    \u3002\n    /// Ruby \u306E `Enumerable#include?` (\u307E\u305F\u306F `member?`)\
+    \ Container, typename Pred>\n    requires std::invocable<Pred, typename Container::const_reference>\n\
+    \    bool all_of(const Container& container, Pred pred) {\n        return std::all_of(std::begin(container),\
+    \ std::end(container), pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\
+    \u8981\u7D20\u304C\u6307\u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3059\u308B\
+    \u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#all?(pattern)`\
     \ \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template <typename Container,\
-    \ typename T>\n    bool include(const Container& container, const T& val) {\n\
-    \        return std::find(std::begin(container), std::end(container), val) !=\
-    \ std::end(container);\n    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\u305F\
-    \u3059\u6700\u521D\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\n    /// Ruby \u306E\
-    \ `Enumerable#find` (\u307E\u305F\u306F `detect`) \u306B\u76F8\u5F53\u3057\u307E\
-    \u3059\u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\u5834\u5408\u306F std::nullopt\
-    \ \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template <typename Container, typename\
-    \ Pred>\n    auto find(const Container& container, Pred pred) -> std::optional<typename\
-    \ Container::value_type> {\n        auto it = std::find_if(std::begin(container),\
-    \ std::end(container), pred);\n        if (it != std::end(container)) return *it;\n\
-    \        return std::nullopt;\n    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\
-    \u305F\u3059\u6700\u521D\u306E\u8981\u7D20\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9\u3092\u8FD4\u3059\u3002\n    /// Ruby \u306E `Enumerable#find_index` \u306B\
+    \ typename T>\n    requires (!std::invocable<T, typename Container::const_reference>)\n\
+    \    bool all_of(const Container& container, const T& val) {\n        return std::all_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\u6761\
+    \u4EF6\u3092\u6E80\u305F\u3059\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby\
+    \ \u306E `Enumerable#any?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n    template\
+    \ <typename Container, typename Pred>\n    requires std::invocable<Pred, typename\
+    \ Container::const_reference>\n    bool any_of(const Container& container, Pred\
+    \ pred) {\n        return std::any_of(std::begin(container), std::end(container),\
+    \ pred);\n    }\n\n    /// @brief \u3044\u305A\u308C\u304B\u306E\u8981\u7D20\u304C\
+    \u6307\u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3059\u308B\u304B\u5224\u5B9A\
+    \u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#any?(pattern)` \u306B\u76F8\
+    \u5F53\u3057\u307E\u3059\u3002\n    template <typename Container, typename T>\n\
+    \    requires (!std::invocable<T, typename Container::const_reference>)\n    bool\
+    \ any_of(const Container& container, const T& val) {\n        return std::any_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6761\u4EF6\
+    \u3092\u6E80\u305F\u3055\u306A\u3044\u304B\u5224\u5B9A\u3059\u308B\u3002\n   \
+    \ /// Ruby \u306E `Enumerable#none?` \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\
+    \n    template <typename Container, typename Pred>\n    requires std::invocable<Pred,\
+    \ typename Container::const_reference>\n    bool none_of(const Container& container,\
+    \ Pred pred) {\n        return std::none_of(std::begin(container), std::end(container),\
+    \ pred);\n    }\n\n    /// @brief \u3059\u3079\u3066\u306E\u8981\u7D20\u304C\u6307\
+    \u5B9A\u3057\u305F\u5024\u3068\u4E00\u81F4\u3057\u306A\u3044\u304B\u5224\u5B9A\
+    \u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#none?(pattern)` \u306B\u76F8\
+    \u5F53\u3057\u307E\u3059\u3002\n    template <typename Container, typename T>\n\
+    \    requires (!std::invocable<T, typename Container::const_reference>)\n    bool\
+    \ none_of(const Container& container, const T& val) {\n        return std::none_of(std::begin(container),\
+    \ std::end(container), [&val](const auto& element) { return element == val; });\n\
+    \    }\n\n    /// @brief \u6307\u5B9A\u3057\u305F\u5024\u304C\u542B\u307E\u308C\
+    \u3066\u3044\u308B\u304B\u5224\u5B9A\u3059\u308B\u3002\n    /// Ruby \u306E `Enumerable#include?`\
+    \ (\u307E\u305F\u306F `member?`) \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002\n\
+    \    template <typename Container, typename T>\n    bool include(const Container&\
+    \ container, const T& val) {\n        return std::find(std::begin(container),\
+    \ std::end(container), val) != std::end(container);\n    }\n\n    /// @brief \u6761\
+    \u4EF6\u3092\u6E80\u305F\u3059\u6700\u521D\u306E\u8981\u7D20\u3092\u8FD4\u3059\
+    \u3002\n    /// Ruby \u306E `Enumerable#find` (\u307E\u305F\u306F `detect`) \u306B\
     \u76F8\u5F53\u3057\u307E\u3059\u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\
     \u5834\u5408\u306F std::nullopt \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template\
-    \ <typename Container, typename Pred>\n    std::optional<size_t> find_index(const\
-    \ Container& container, Pred pred) {\n        auto it = std::find_if(std::begin(container),\
-    \ std::end(container), pred);\n        if (it != std::end(container)) return std::distance(std::begin(container),\
+    \ <typename Container, typename Pred>\n    auto find(const Container& container,\
+    \ Pred pred) -> std::optional<typename Container::value_type> {\n        auto\
+    \ it = std::find_if(std::begin(container), std::end(container), pred);\n     \
+    \   if (it != std::end(container)) return *it;\n        return std::nullopt;\n\
+    \    }\n\n    /// @brief \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u521D\u306E\
+    \u8981\u7D20\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u8FD4\u3059\u3002\
+    \n    /// Ruby \u306E `Enumerable#find_index` \u306B\u76F8\u5F53\u3057\u307E\u3059\
+    \u3002\n    /// \u898B\u3064\u304B\u3089\u306A\u3044\u5834\u5408\u306F std::nullopt\
+    \ \u3092\u8FD4\u3057\u307E\u3059\u3002\n    template <typename Container, typename\
+    \ Pred>\n    std::optional<size_t> find_index(const Container& container, Pred\
+    \ pred) {\n        auto it = std::find_if(std::begin(container), std::end(container),\
+    \ pred);\n        if (it != std::end(container)) return std::distance(std::begin(container),\
     \ it);\n        return std::nullopt;\n    }\n\n    /// @brief \u6761\u4EF6\u3092\
     \u6E80\u305F\u3059\u8981\u7D20\u306E\u6570\u3092\u8FD4\u3059\u3002\n    /// Ruby\
     \ \u306E `Enumerable#count` (\u30D6\u30ED\u30C3\u30AF\u4ED8\u304D) \u306B\u76F8\
@@ -339,7 +385,7 @@ data:
     \u3057\u307E\u3059\u3002\n    template <typename Container, typename Func>\n \
     \   auto sort_by(const Container& container, Func func) {\n        using T = typename\
     \ Container::value_type;\n        using Key = std::decay_t<std::invoke_result_t<Func,\
-    \ typename Container::const_reference>>;\n        \n        std::vector<std::pair<Key,\
+    \ typename Container::const_reference>>;\n\n        std::vector<std::pair<Key,\
     \ T>> pairs;\n        if constexpr (requires { std::size(container); }) {\n  \
     \          pairs.reserve(std::size(container));\n        }\n        for (const\
     \ auto& element : container) {\n            pairs.emplace_back(std::invoke(func,\
@@ -362,7 +408,7 @@ data:
   requiredBy:
   - Math/Lagrange_Interpolation.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
-  timestamp: '2026-01-25 00:54:13+09:00'
+  timestamp: '2026-09-13 12:27:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/original/enumerable.test.cpp
@@ -382,4 +428,5 @@ Ruby における Enumerable に関するメソッドの中で, 特に有用で�
 
 |日付|内容|
 |:---:|:---|
+|2026/09/13| `all_of`, `any_of`, `none_of` において, 値の存在判定の機能を追加|
 |2026/01/25| enumerable 系のメソッドを一括実装 |
