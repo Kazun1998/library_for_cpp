@@ -13,6 +13,9 @@ class Range_Min_Segment_Tree : public Segment_Tree<T> {
 
     void update(int k, T x) { Segment_Tree<T>::update(k, x); }
 
+    // 第 k 要素を取得する
+    T get(int k) { return Segment_Tree<T>::get(k); }
+
     // 区間 [l, r] の最小値を求める
     T min(int l, int r) { return this->product(l, r); }
 };
