@@ -31,4 +31,12 @@ class Range_Decomposer {
     /// @param i 要素の位置.
     /// @return (depth, start, end) のリスト.
     virtual vector<tuple<int, int, int>> ancestors(int i) const = 0;
+
+    /// @brief 構造全体に存在するノードの総数を返す.
+    virtual int node_count() const = 0;
+
+    /// @brief ノード (depth, start) を [0, node_count()) の一意な添字に変換する.
+    /// @param depth ノードの深さ.
+    /// @param start ノードが担当する区間の左端.
+    virtual int node_index(int depth, int start) const = 0;
 };

@@ -69,4 +69,17 @@ class Sqrt_Decomposer : public Range_Decomposer {
         auto [bs, be] = block_range(i / block_size);
         return {{1, i, i + 1}, {0, bs, be}};
     }
+
+    /// @brief ノードの総数 (ブロック数 + 単独要素数) を返す.
+    int node_count() const override {
+        int block_count = (n + block_size - 1) / block_size;
+        return block_count + n;
+    }
+
+    /// @brief ノード (depth, start) を一意な添字に変換する.
+    /// depth=0 (ブロック) は [0, block_count), depth=1 (単独要素) は [block_count, block_count + n) に割り当てる.
+    int node_index(int depth, int start) const override {
+        int block_count = (n + block_size - 1) / block_size;
+        return (depth == 0) ? (start / block_size) : (block_count + start);
+    }
 };
