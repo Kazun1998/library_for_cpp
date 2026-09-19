@@ -15,26 +15,47 @@ class Interval_Query {
     vector<State> state;
 
     function<State(const vector<T> &)> build_state;
+    function<State(vector<State> &)> merge_children;
     function<void(State &, int, const T &, const T &)> on_update;
+
+    /// @brief ノード (depth, start, end) の状態を, 子ノードから再帰的に構築する.
+    State build(int depth, int l, int r) {
+        auto ch = decomposer->children(depth, l);
+
+        State s;
+        if (ch.empty()) {
+            vector<T> sub(data.begin() + l, data.begin() + r);
+            s = build_state(sub);
+        } else {
+            vector<State> child_states;
+            child_states.reserve(ch.size());
+            for (auto [cd, cl, cr] : ch) { child_states.push_back(build(cd, cl, cr)); }
+            s = merge_children(child_states);
+        }
+
+        state[decomposer->node_index(depth, l)] = s;
+        return s;
+    }
 
     public:
     /// @brief コンストラクタ.
     /// @param data 初期値.
     /// @param decomposer 区間分解を担当するオブジェクト.
-    /// @param build_state ノードの初期状態を, そのノードが担当する要素列から作る関数.
+    /// @param build_state 葉ノード (子を持たないノード) の状態を, 担当する要素列から作る関数.
+    /// @param merge_children 子ノードの状態のリストから, 親ノードの状態を作る関数.
     /// @param on_update 要素 i が before から after に変化したときに, ノードの状態を更新する関数.
     Interval_Query(
         const vector<T> &data,
         unique_ptr<Range_Decomposer> decomposer,
         function<State(const vector<T> &)> build_state,
+        function<State(vector<State> &)> merge_children,
         function<void(State &, int, const T &, const T &)> on_update
     ):
         n(data.size()), data(data), decomposer(move(decomposer)),
         state(this->decomposer->node_count()),
-        build_state(move(build_state)), on_update(move(on_update)) {
+        build_state(move(build_state)), merge_children(move(merge_children)), on_update(move(on_update)) {
         for (auto [depth, l, r] : this->decomposer->all_nodes()) {
-            vector<T> sub(this->data.begin() + l, this->data.begin() + r);
-            state[this->decomposer->node_index(depth, l)] = this->build_state(sub);
+            if (depth == 0) { build(depth, l, r); }
         }
     }
 

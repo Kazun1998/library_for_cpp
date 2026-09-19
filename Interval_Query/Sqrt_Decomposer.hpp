@@ -82,4 +82,14 @@ class Sqrt_Decomposer : public Range_Decomposer {
         int block_count = (n + block_size - 1) / block_size;
         return (depth == 0) ? (start / block_size) : (block_count + start);
     }
+
+    /// @brief ノード (depth, start) の子ノードを列挙する. ブロックの子は各単独要素, 単独要素は葉 (子なし).
+    vector<tuple<int, int, int>> children(int depth, int start) const override {
+        vector<tuple<int, int, int>> res;
+        if (depth != 0) { return res; }
+
+        auto [bs, be] = block_range(start / block_size);
+        for (int i = bs; i < be; i++) { res.emplace_back(1, i, i + 1); }
+        return res;
+    }
 };

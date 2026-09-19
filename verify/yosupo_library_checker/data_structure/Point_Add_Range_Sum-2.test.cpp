@@ -19,6 +19,11 @@ vector<ll> verify() {
             for (ll v: sub) { s += v; }
             return s;
         },
+        [](vector<State> &children) {
+            State s = 0;
+            for (const State &c: children) { s += c; }
+            return s;
+        },
         [](State &s, int, const ll &before, const ll &after) {
             s += after - before;
         }

@@ -39,4 +39,9 @@ class Range_Decomposer {
     /// @param depth ノードの深さ.
     /// @param start ノードが担当する区間の左端.
     virtual int node_index(int depth, int start) const = 0;
+
+    /// @brief ノード (depth, start) の子ノードを列挙する. 子を持たない場合 (葉) は空を返す.
+    /// @param depth ノードの深さ.
+    /// @param start ノードが担当する区間の左端.
+    virtual vector<tuple<int, int, int>> children(int depth, int start) const = 0;
 };
