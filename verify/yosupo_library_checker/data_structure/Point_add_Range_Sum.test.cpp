@@ -16,7 +16,7 @@ vector<ll> verify() {
         int t; scanf("%d", &t);
         if (t == 0) {
             int p; ll x; scanf("%d%lld", &p, &x);
-            S.update(p, S.get(p) + x);
+            S.update(p, S[p] + x);
         } else {
             int l, r; scanf("%d%d", &l, &r);
             ans.emplace_back(S.sum(l, r - 1));
