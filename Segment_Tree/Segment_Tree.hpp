@@ -38,6 +38,8 @@ class Segment_Tree{
     // 第 k 要素を取得する
     M get(int k) { return data[k + n]; }
 
+    M operator[](int k) { return get(k); }
+
     // 第 l 要素から第 r 要素までの総積を求める
     M product(int l, int r){
         l += n; r += n + 1;

@@ -16,6 +16,8 @@ class Range_Min_Segment_Tree : public Segment_Tree<T> {
     // 第 k 要素を取得する
     T get(int k) { return Segment_Tree<T>::get(k); }
 
+    T operator[](int k) { return get(k); }
+
     // 区間 [l, r] の最小値を求める
     T min(int l, int r) { return this->product(l, r); }
 };
