@@ -53,6 +53,7 @@
 "verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp": "2026-01-12 13:35:13 +0900",
+"verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp": "2026-09-19 23:38:37 +0900",
 "verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp": "2026-08-09 00:58:25 +0900",
