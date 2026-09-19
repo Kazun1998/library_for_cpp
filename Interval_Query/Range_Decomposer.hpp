@@ -22,4 +22,13 @@ class Range_Decomposer {
     /// @param r 区間の右端.
     /// @return (depth, start, end) のリスト. depth の意味は派生クラスに依存する.
     virtual vector<tuple<int, int, int>> decompose(int l, int r) const = 0;
+
+    /// @brief 構造全体に存在する全ノードを列挙する.
+    /// @return (depth, start, end) のリスト.
+    virtual vector<tuple<int, int, int>> all_nodes() const = 0;
+
+    /// @brief 要素 i を含む全てのノードを列挙する.
+    /// @param i 要素の位置.
+    /// @return (depth, start, end) のリスト.
+    virtual vector<tuple<int, int, int>> ancestors(int i) const = 0;
 };
