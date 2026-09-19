@@ -7,22 +7,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
-    links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\n\ntemplate<typename\
-    \ M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M> data;\n   \
-    \ const function<M(M, M)> op;\n    const M unit;\n\n    public:\n    Segment_Tree(int\
-    \ size, const function<M(M, M)> op, const M unit): n(), op(op), unit(unit) {\n\
-    \        int m = 1;\n        while (m < size) { m *= 2; }\n\n        n = m;\n\
-    \        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const vector<M>\
-    \ &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
+    links: []
+  bundledCode: "#line 2 \"Segment_Tree/preset/Range_Max.hpp\"\n\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\
+    \n\ntemplate<typename M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M>\
+    \ data;\n    const function<M(M, M)> op;\n    const M unit;\n\n    public:\n \
+    \   Segment_Tree(int size, const function<M(M, M)> op, const M unit): n(), op(op),\
+    \ unit(unit) {\n        int m = 1;\n        while (m < size) { m *= 2; }\n\n \
+    \       n = m;\n        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const\
+    \ vector<M> &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
     \ op, unit) {\n            for (int k = 0; k < vec.size(); k++) { data[k + n]\
     \ = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { recalc(k); }\n  \
     \      }\n\n    private:\n    void recalc(int k) { data[k] = op(data[k << 1],\
@@ -55,32 +50,38 @@ data:
     \ 1;\n                if (cond(op(data[r], sm))) {\n                    sm = op(data[r],\
     \ sm);\n                    r--;\n                }\n            }\n         \
     \   return r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n#line 8 \"verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp\"\
-    \n\nint main(){\n    int N, Q; cin >> N >> Q;\n    vector<int> a(N);\n    for\
-    \ (int i = 0; i < N; i++) { cin >> a[i]; }\n\n    auto op = [](int x, int y) ->\
-    \ int { return min(x, y); };\n    int unit = numeric_limits<int>::max();\n\n \
-    \   Segment_Tree<int> S(a, op, unit);\n\n    for (; Q; Q--) {\n        int l,\
-    \ r;\n        scanf(\"%d%d\", &l, &r);\n        cout << S.product(l, r - 1) <<\
-    \ \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#include\"../../../Segment_Tree/Segment_Tree.hpp\"\n\
-    \nint main(){\n    int N, Q; cin >> N >> Q;\n    vector<int> a(N);\n    for (int\
-    \ i = 0; i < N; i++) { cin >> a[i]; }\n\n    auto op = [](int x, int y) -> int\
-    \ { return min(x, y); };\n    int unit = numeric_limits<int>::max();\n\n    Segment_Tree<int>\
-    \ S(a, op, unit);\n\n    for (; Q; Q--) {\n        int l, r;\n        scanf(\"\
-    %d%d\", &l, &r);\n        cout << S.product(l, r - 1) << \"\\n\";\n    }\n}\n"
+    \    }\n};\n#line 4 \"Segment_Tree/preset/Range_Max.hpp\"\n\ntemplate<typename\
+    \ T>\nclass Range_Max_Segment_Tree : public Segment_Tree<T> {\n    static T op(T\
+    \ x, T y) { return x < y ? y : x; }\n\n    public:\n    Range_Max_Segment_Tree(int\
+    \ n, T unit) : Segment_Tree<T>(n, op, unit) {}\n\n    Range_Max_Segment_Tree(const\
+    \ vector<T> &vec, T unit) : Segment_Tree<T>(vec, op, unit) {}\n\n    void update(int\
+    \ k, T x) { Segment_Tree<T>::update(k, x); }\n\n    // \u7B2C k \u8981\u7D20\u3092\
+    \u53D6\u5F97\u3059\u308B\n    T get(int k) { return Segment_Tree<T>::get(k); }\n\
+    \n    T operator[](int k) { return get(k); }\n\n    // \u533A\u9593 [l, r] \u306E\
+    \u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n    T max(int l, int r) { return this->product(l,\
+    \ r); }\n};\n"
+  code: "#pragma once\n\n#include \"../Segment_Tree.hpp\"\n\ntemplate<typename T>\n\
+    class Range_Max_Segment_Tree : public Segment_Tree<T> {\n    static T op(T x,\
+    \ T y) { return x < y ? y : x; }\n\n    public:\n    Range_Max_Segment_Tree(int\
+    \ n, T unit) : Segment_Tree<T>(n, op, unit) {}\n\n    Range_Max_Segment_Tree(const\
+    \ vector<T> &vec, T unit) : Segment_Tree<T>(vec, op, unit) {}\n\n    void update(int\
+    \ k, T x) { Segment_Tree<T>::update(k, x); }\n\n    // \u7B2C k \u8981\u7D20\u3092\
+    \u53D6\u5F97\u3059\u308B\n    T get(int k) { return Segment_Tree<T>::get(k); }\n\
+    \n    T operator[](int k) { return get(k); }\n\n    // \u533A\u9593 [l, r] \u306E\
+    \u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n    T max(int l, int r) { return this->product(l,\
+    \ r); }\n};\n"
   dependsOn:
   - Segment_Tree/Segment_Tree.hpp
-  isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  isVerificationFile: false
+  path: Segment_Tree/preset/Range_Max.hpp
   requiredBy: []
   timestamp: '2026-09-20 00:02:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+documentation_of: Segment_Tree/preset/Range_Max.hpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+- /library/Segment_Tree/preset/Range_Max.hpp
+- /library/Segment_Tree/preset/Range_Max.hpp.html
+title: Segment_Tree/preset/Range_Max.hpp
 ---

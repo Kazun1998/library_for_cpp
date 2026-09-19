@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Algebra/modint.hpp
-    title: Algebra/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: Segment_Tree/Segment_Tree.hpp
     title: Segment Tree
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Sum.hpp
+    title: Segment_Tree/preset/Range_Sum.hpp
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -35,13 +35,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    - https://judge.yosupo.jp/problem/point_add_range_sum
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n\
+    #line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
+    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
     #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
     \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
     \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
@@ -204,52 +204,13 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\
-    \ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
-    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
-    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
-    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
-    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
-    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
-    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
-    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
-    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
-    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
-    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
-    \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
-    \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
-    \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
-    \ x == (a % mod() + mod()) % mod(); }\n};\n\ntemplate<typename T>\nstruct is_modint\
-    \ : std::false_type {};\n\ntemplate<int M>\nstruct is_modint<modint<M>> : std::true_type\
-    \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
-    \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
-    \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\
-    \n\ntemplate<typename M>\nclass Segment_Tree{\n    private:\n    int n;\n    vector<M>\
-    \ data;\n    const function<M(M, M)> op;\n    const M unit;\n\n    public:\n \
-    \   Segment_Tree(int size, const function<M(M, M)> op, const M unit): n(), op(op),\
-    \ unit(unit) {\n        int m = 1;\n        while (m < size) { m *= 2; }\n\n \
-    \       n = m;\n        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const\
-    \ vector<M> &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
+    \    }\n};\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\n\ntemplate<typename M>\n\
+    class Segment_Tree{\n    private:\n    int n;\n    vector<M> data;\n    const\
+    \ function<M(M, M)> op;\n    const M unit;\n\n    public:\n    Segment_Tree(int\
+    \ size, const function<M(M, M)> op, const M unit): n(), op(op), unit(unit) {\n\
+    \        int m = 1;\n        while (m < size) { m *= 2; }\n\n        n = m;\n\
+    \        data.assign(2 * n, unit);\n    }\n\n    Segment_Tree(const vector<M>\
+    \ &vec, const function<M(M, M)> op, const M unit): \n        Segment_Tree(vec.size(),\
     \ op, unit) {\n            for (int k = 0; k < vec.size(); k++) { data[k + n]\
     \ = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { recalc(k); }\n  \
     \      }\n\n    private:\n    void recalc(int k) { data[k] = op(data[k << 1],\
@@ -282,33 +243,34 @@ data:
     \ 1;\n                if (cond(op(data[r], sm))) {\n                    sm = op(data[r],\
     \ sm);\n                    r--;\n                }\n            }\n         \
     \   return r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\nusing M = pair<mint, mint>;\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<M> f(N);\n    for (int i = 0; i\
-    \ < N; i++) {\n        int a, b; scanf(\"%d%d\", &a, &b);\n        f[i] = {a,\
-    \ b};\n    }\n\n    auto op = [](M f, M g) -> M {\n        mint a = f.first *\
-    \ g.first;\n        mint b = g.first * f.second + g.second;\n        return {\
-    \ a, b };\n    };\n\n    M unit = {1, 0};\n\n    Segment_Tree<M> S(f, op, unit);\n\
-    \n    for (int q = 0; q < Q; q++) {\n        int t;  scanf(\"%d\", &t);\n    \
-    \    if (t == 0) {\n            int p, c, d; scanf(\"%d%d%d\", &p, &c, &d);\n\
-    \            S.update(p, {c, d});\n        } else if (t == 1) {\n            int\
-    \ l, r, x; scanf(\"%d%d%d\", &l, &r, &x);\n            M h = S.product(l, r -\
-    \ 1);\n            cout << h.first * x + h.second << \"\\n\";\n        }\n   \
-    \ }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Algebra/modint.hpp\"\
-    \n#include\"../../../Segment_Tree/Segment_Tree.hpp\"\n\nusing mint = modint<998244353>;\n\
-    using M = pair<mint, mint>;\n\nint main() {\n    int N, Q; cin >> N >> Q;\n  \
-    \  vector<M> f(N);\n    for (int i = 0; i < N; i++) {\n        int a, b; scanf(\"\
-    %d%d\", &a, &b);\n        f[i] = {a, b};\n    }\n\n    auto op = [](M f, M g)\
-    \ -> M {\n        mint a = f.first * g.first;\n        mint b = g.first * f.second\
-    \ + g.second;\n        return { a, b };\n    };\n\n    M unit = {1, 0};\n\n  \
-    \  Segment_Tree<M> S(f, op, unit);\n\n    for (int q = 0; q < Q; q++) {\n    \
-    \    int t;  scanf(\"%d\", &t);\n        if (t == 0) {\n            int p, c,\
-    \ d; scanf(\"%d%d%d\", &p, &c, &d);\n            S.update(p, {c, d});\n      \
-    \  } else if (t == 1) {\n            int l, r, x; scanf(\"%d%d%d\", &l, &r, &x);\n\
-    \            M h = S.product(l, r - 1);\n            cout << h.first * x + h.second\
-    \ << \"\\n\";\n        }\n    }\n}\n"
+    \    }\n};\n#line 2 \"Segment_Tree/preset/Range_Sum.hpp\"\n\n#line 4 \"Segment_Tree/preset/Range_Sum.hpp\"\
+    \n\ntemplate<typename T>\nclass Range_Sum_Segment_Tree : public Segment_Tree<T>\
+    \ {\n    static T op(T x, T y) { return x + y; }\n\n    public:\n    Range_Sum_Segment_Tree(int\
+    \ n) : Segment_Tree<T>(n, op, T(0)) {}\n\n    Range_Sum_Segment_Tree(const vector<T>\
+    \ &vec) : Segment_Tree<T>(vec, op, T(0)) {}\n\n    void update(int k, T x) { Segment_Tree<T>::update(k,\
+    \ x); }\n\n    // \u7B2C k \u8981\u7D20\u3092\u53D6\u5F97\u3059\u308B\n    T get(int\
+    \ k) { return Segment_Tree<T>::get(k); }\n\n    T operator[](int k) { return get(k);\
+    \ }\n\n    // \u533A\u9593 [l, r] \u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B\n\
+    \    T sum(int l, int r) { return this->product(l, r); }\n};\n#line 6 \"verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp\"\
+    \n\nvector<ll> verify() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n\
+    \    for (int i = 0; i < N; i++) { cin >> a[i]; }\n\n    Range_Sum_Segment_Tree<ll>\
+    \ S(a);\n\n    vector<ll> ans;\n    for (; Q; Q--) {\n        int t; scanf(\"\
+    %d\", &t);\n        if (t == 0) {\n            int p; ll x; scanf(\"%d%lld\",\
+    \ &p, &x);\n            S.update(p, S[p] + x);\n        } else {\n           \
+    \ int l, r; scanf(\"%d%d\", &l, &r);\n            ans.emplace_back(S.sum(l, r\
+    \ - 1));\n        }\n    }\n\n    return ans;\n}\n\nint main(){\n    for (ll val:\
+    \ verify()) {\n        cout << val << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
+    \n#include \"../../../template/template.hpp\"\n#include \"../../../Segment_Tree/Segment_Tree.hpp\"\
+    \n#include \"../../../Segment_Tree/preset/Range_Sum.hpp\"\n\nvector<ll> verify()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i\
+    \ < N; i++) { cin >> a[i]; }\n\n    Range_Sum_Segment_Tree<ll> S(a);\n\n    vector<ll>\
+    \ ans;\n    for (; Q; Q--) {\n        int t; scanf(\"%d\", &t);\n        if (t\
+    \ == 0) {\n            int p; ll x; scanf(\"%d%lld\", &p, &x);\n            S.update(p,\
+    \ S[p] + x);\n        } else {\n            int l, r; scanf(\"%d%d\", &l, &r);\n\
+    \            ans.emplace_back(S.sum(l, r - 1));\n        }\n    }\n\n    return\
+    \ ans;\n}\n\nint main(){\n    for (ll val: verify()) {\n        cout << val <<\
+    \ \"\\n\";\n    }\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -317,18 +279,18 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Algebra/modint.hpp
   - Segment_Tree/Segment_Tree.hpp
+  - Segment_Tree/preset/Range_Sum.hpp
   isVerificationFile: true
-  path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  path: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
   requiredBy: []
-  timestamp: '2026-09-20 00:02:15+09:00'
+  timestamp: '2026-09-20 00:02:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+documentation_of: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
 layout: document
 redirect_from:
-- /verify/verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
-- /verify/verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp.html
-title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+- /verify/verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp.html
+title: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
 ---

@@ -768,6 +768,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
     title: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
   - icon: ':heavy_check_mark:'
@@ -779,6 +782,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
     title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
@@ -1472,7 +1478,9 @@ data:
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
+  - verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp

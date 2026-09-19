@@ -640,6 +640,15 @@ data:
       path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
       title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\
         \u306B\u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+    - icon: ':warning:'
+      path: Segment_Tree/preset/Range_Max.hpp
+      title: Segment_Tree/preset/Range_Max.hpp
+    - icon: ':heavy_check_mark:'
+      path: Segment_Tree/preset/Range_Min.hpp
+      title: Segment_Tree/preset/Range_Min.hpp
+    - icon: ':heavy_check_mark:'
+      path: Segment_Tree/preset/Range_Sum.hpp
+      title: Segment_Tree/preset/Range_Sum.hpp
   - name: Sequence
     pages:
     - icon: ':heavy_check_mark:'
@@ -933,6 +942,9 @@ data:
       path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
       title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
       title: verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
     - icon: ':heavy_check_mark:'
@@ -947,6 +959,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
       title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
+      title: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
       title: verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp

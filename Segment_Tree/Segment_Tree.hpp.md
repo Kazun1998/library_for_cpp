@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Segment_Tree/preset/Range_Max.hpp
+    title: Segment_Tree/preset/Range_Max.hpp
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Min.hpp
+    title: Segment_Tree/preset/Range_Min.hpp
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Sum.hpp
+    title: Segment_Tree/preset/Range_Sum.hpp
   - icon: ':heavy_check_mark:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
@@ -10,8 +19,14 @@ data:
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
     title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
@@ -33,7 +48,9 @@ data:
     \ data[k << 1 | 1]); }\n\n    public:\n    // \u7B2C k \u8981\u7D20\u3092 x \u306B\
     \u66F4\u65B0\u3059\u308B\n    void update(int k, M x) {\n        k += n;\n   \
     \     data[k] = x;\n\n        for (k >>= 1; k; k >>= 1) { recalc(k); }\n    }\n\
-    \n    // \u7B2C l \u8981\u7D20\u304B\u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\
+    \n    // \u7B2C k \u8981\u7D20\u3092\u53D6\u5F97\u3059\u308B\n    M get(int k)\
+    \ { return data[k + n]; }\n\n    M operator[](int k) { return get(k); }\n\n  \
+    \  // \u7B2C l \u8981\u7D20\u304B\u3089\u7B2C r \u8981\u7D20\u307E\u3067\u306E\
     \u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n    M product(int l, int r){\n        l\
     \ += n; r += n + 1;\n        M vl = unit, vr = unit;\n        while (l < r){\n\
     \            if (l & 1){\n                vl = op(vl, data[l]);\n            \
@@ -70,41 +87,48 @@ data:
     \ k) { data[k] = op(data[k << 1], data[k << 1 | 1]); }\n\n    public:\n    //\
     \ \u7B2C k \u8981\u7D20\u3092 x \u306B\u66F4\u65B0\u3059\u308B\n    void update(int\
     \ k, M x) {\n        k += n;\n        data[k] = x;\n\n        for (k >>= 1; k;\
-    \ k >>= 1) { recalc(k); }\n    }\n\n    // \u7B2C l \u8981\u7D20\u304B\u3089\u7B2C\
-    \ r \u8981\u7D20\u307E\u3067\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n    M\
-    \ product(int l, int r){\n        l += n; r += n + 1;\n        M vl = unit, vr\
-    \ = unit;\n        while (l < r){\n            if (l & 1){\n                vl\
-    \ = op(vl, data[l]);\n                l++;\n            }\n\n            if (r\
-    \ & 1){\n                r--;\n                vr = op(data[r], vr);\n       \
-    \     }\n\n            l >>= 1; r >>= 1;\n        }\n\n        return op(vl, vr);\n\
-    \    }\n\n    template<typename Func>\n    int max_right(int l, const Func &cond)\
-    \ {\n        assert(cond(unit));\n        if (l == n) return n;\n\n        l +=\
-    \ n;\n        M sm = unit;\n        do {\n            while (l % 2 == 0) l >>=\
-    \ 1;\n\n            if (cond(op(sm, data[l]))) {\n                sm = op(sm ,data[l]);\n\
-    \                ++l;\n                continue;\n            }\n\n          \
-    \  while (l < n) {\n                l = l << 1;\n                if (cond(op(sm,\
-    \ data[l]))) {\n                    sm = op(sm, data[l]);\n                  \
-    \  ++l;\n                }\n            }\n            return l - n;\n       \
-    \ } while ((l & -l) != l);\n        return n;\n    }\n\n    template<typename\
-    \ Func>\n    int min_left(int r, const Func &cond) {\n        assert(cond(unit));\n\
-    \        if (r == 0) return 0;\n\n        r += n;\n        M sm = unit;\n    \
-    \    do {\n            r--;\n            while (r > 1 && (r % 2)) r >>= 1;\n\n\
-    \            if (cond(op(data[r], sm))) {\n                sm = op(data[r], sm);\n\
-    \                continue;\n            }\n\n            while (r < n) {\n   \
-    \             r = (r << 1) | 1;\n                if (cond(op(data[r], sm))) {\n\
-    \                    sm = op(data[r], sm);\n                    r--;\n       \
-    \         }\n            }\n            return r + 1 - n;\n\n        } while ((r\
-    \ & -r) != r);\n        return 0;\n    }\n};\n"
+    \ k >>= 1) { recalc(k); }\n    }\n\n    // \u7B2C k \u8981\u7D20\u3092\u53D6\u5F97\
+    \u3059\u308B\n    M get(int k) { return data[k + n]; }\n\n    M operator[](int\
+    \ k) { return get(k); }\n\n    // \u7B2C l \u8981\u7D20\u304B\u3089\u7B2C r \u8981\
+    \u7D20\u307E\u3067\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n    M product(int\
+    \ l, int r){\n        l += n; r += n + 1;\n        M vl = unit, vr = unit;\n \
+    \       while (l < r){\n            if (l & 1){\n                vl = op(vl, data[l]);\n\
+    \                l++;\n            }\n\n            if (r & 1){\n            \
+    \    r--;\n                vr = op(data[r], vr);\n            }\n\n          \
+    \  l >>= 1; r >>= 1;\n        }\n\n        return op(vl, vr);\n    }\n\n    template<typename\
+    \ Func>\n    int max_right(int l, const Func &cond) {\n        assert(cond(unit));\n\
+    \        if (l == n) return n;\n\n        l += n;\n        M sm = unit;\n    \
+    \    do {\n            while (l % 2 == 0) l >>= 1;\n\n            if (cond(op(sm,\
+    \ data[l]))) {\n                sm = op(sm ,data[l]);\n                ++l;\n\
+    \                continue;\n            }\n\n            while (l < n) {\n   \
+    \             l = l << 1;\n                if (cond(op(sm, data[l]))) {\n    \
+    \                sm = op(sm, data[l]);\n                    ++l;\n           \
+    \     }\n            }\n            return l - n;\n        } while ((l & -l) !=\
+    \ l);\n        return n;\n    }\n\n    template<typename Func>\n    int min_left(int\
+    \ r, const Func &cond) {\n        assert(cond(unit));\n        if (r == 0) return\
+    \ 0;\n\n        r += n;\n        M sm = unit;\n        do {\n            r--;\n\
+    \            while (r > 1 && (r % 2)) r >>= 1;\n\n            if (cond(op(data[r],\
+    \ sm))) {\n                sm = op(data[r], sm);\n                continue;\n\
+    \            }\n\n            while (r < n) {\n                r = (r << 1) |\
+    \ 1;\n                if (cond(op(data[r], sm))) {\n                    sm = op(data[r],\
+    \ sm);\n                    r--;\n                }\n            }\n         \
+    \   return r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Segment_Tree/Segment_Tree.hpp
   requiredBy:
+  - Segment_Tree/preset/Range_Max.hpp
+  - Segment_Tree/preset/Range_Sum.hpp
+  - Segment_Tree/preset/Range_Min.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
-  timestamp: '2026-01-12 13:35:13+09:00'
+  timestamp: '2026-09-20 00:02:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
 documentation_of: Segment_Tree/Segment_Tree.hpp
 layout: document
