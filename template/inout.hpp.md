@@ -538,6 +538,9 @@ data:
     path: Segment_Tree/Persistent_Segment_Tree.hpp
     title: "\u6C38\u7D9A Segment Tree"
   - icon: ':heavy_check_mark:'
+    path: Segment_Tree/Segment_Tree.hpp
+    title: Segment Tree
+  - icon: ':heavy_check_mark:'
     path: Segment_Tree/preset/Range_Add_Range_Min.hpp
     title: Segment_Tree/preset/Range_Add_Range_Min.hpp
   - icon: ':heavy_check_mark:'
@@ -547,6 +550,15 @@ data:
     path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
     title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\u306B\
       \u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+  - icon: ':warning:'
+    path: Segment_Tree/preset/Range_Max.hpp
+    title: Segment_Tree/preset/Range_Max.hpp
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Min.hpp
+    title: Segment_Tree/preset/Range_Min.hpp
+  - icon: ':heavy_check_mark:'
+    path: Segment_Tree/preset/Range_Sum.hpp
+    title: Segment_Tree/preset/Range_Sum.hpp
   - icon: ':heavy_check_mark:'
     path: Sequence/Cartesian_Tree.hpp
     title: "i \u306E\u5DE6\u306E\u5B50\u3068\u3057\u3066 j \u3092\u8A2D\u5B9A\u3059\
@@ -797,6 +809,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
     title: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
@@ -1217,11 +1232,15 @@ data:
   - Linear_Algebra/Field_Vector_Space.hpp
   - Linear_Algebra/Field_Vector.hpp
   - Segment_Tree/Dual_Segment_Tree.hpp
+  - Segment_Tree/Segment_Tree.hpp
   - Segment_Tree/Lazy_Segment_Tree.hpp
   - Segment_Tree/Persistent_Segment_Tree.hpp
   - Segment_Tree/preset/Range_Add_Range_Sum.hpp
+  - Segment_Tree/preset/Range_Max.hpp
+  - Segment_Tree/preset/Range_Sum.hpp
   - Segment_Tree/preset/Range_Composite_Range_Sum.hpp
   - Segment_Tree/preset/Range_Add_Range_Min.hpp
+  - Segment_Tree/preset/Range_Min.hpp
   - Binary_Search/Value.hpp
   - Binary_Search/Count.hpp
   - Binary_Search/General_Integer.hpp
@@ -1447,6 +1466,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
+  - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
