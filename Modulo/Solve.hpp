@@ -10,7 +10,7 @@ namespace modulo {
 
     // 線形合同方程式 ax ≡ b (mod m) を解く.
     Modulo Solve_Congruence_Equation(ll a, ll b, ll m) {
-        if (m == 0) { throw "m = 0 は禁止です"; }
+        if (m == 0) { throw std::invalid_argument("m = 0 は禁止です"); }
 
         ll g = gcd(a, m);
 
@@ -27,9 +27,13 @@ namespace modulo {
     Modulo Solve_System_of_Congruence_Equations(vector<tuple<ll, ll, ll>> equations) {
         Modulo ans(0, 1);
         for (auto &&[a, b, m]: equations) {
-            ans = Composite(ans, Solve_Congruence_Equation(a, b, m));
+            try {
+                ans = Composite(ans, Solve_Congruence_Equation(a, b, m));
+            } catch (const IncompatibleModuloComposite&) {
+                throw NoSolutionException("連立合同方程式の解が存在しません.");
+            }
         }
 
         return ans;
-    } 
+    }
 }

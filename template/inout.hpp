@@ -1,4 +1,7 @@
 // 入出力
+#include <type_traits>
+#include <string>
+
 template<class... T>
 void input(T&... a){ (cin >> ... >> a); }
 
@@ -24,65 +27,55 @@ ostream &operator<<(ostream &os, const pair<T, U> &P){
 }
 
 template<typename T>
-vector<T> vector_input(int N, int index){
-    vector<T> X(N+index);
-    for (int i=index; i<index+N; i++) cin >> X[i];
-    return X;
-}
-
-template<typename T>
 istream &operator>>(istream &is, vector<T> &X){
     for (auto &x: X) { is >> x; }
     return is;
 }
 
-template<typename T>
-ostream &operator<<(ostream &os, const vector<T> &X){
-    int s = (int)X.size();
-    for (int i = 0; i < s; i++) { os << (i ? " " : "") << X[i]; }
+template<typename T, typename U = typename T::iterator>
+typename std::enable_if<!std::is_same<T, std::string>::value, ostream&>::type
+operator<<(ostream &os, const T &container){
+    bool is_first = true;
+    for (const auto &x : container) {
+        os << (is_first ? "" : " ") << x;
+        is_first = false;
+    }
     return os;
 }
 
 template<typename T>
-ostream &operator<<(ostream &os, const unordered_set<T> &S){
-    int i = 0;
-    for (T a: S) {os << (i ? " ": "") << a; i++;}
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const set<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const unordered_multiset<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
-    return os;
-}
-
-template<typename T>
-ostream &operator<<(ostream &os, const multiset<T> &S){
-    int i = 0;
-    for (T a: S) { os << (i ? " ": "") << a; i++; }
-    return os;
-}
-
-template<typename T>
-std::vector<T> input_vector(size_t n, size_t offset = 0) {
+std::vector<T> input_vector(int n, int offset = 0) {
     std::vector<T> res;
     // 最初に必要な全容量を確保（再確保を防ぐ）
     res.reserve(n + offset);
     // offset 分をデフォルト値で埋める（特別 indexed 用）
     res.assign(offset, T());
-    
-    for (size_t i = 0; i < n; ++i) {
+
+    for (int i = 0; i < n; ++i) {
         T el;
         if (!(std::cin >> el)) break;
         res.push_back(std::move(el));
     }
     return res;
+}
+
+#include <vector>
+
+// 1. 終端：サイズ n の 1 次元 vector を作る
+template<typename T>
+auto make_multi_dimensional_vector(int n) {
+    return std::vector<T>(n);
+}
+
+// 2. 終端：サイズ n で初期値 val を持つ 1 次元 vector を作る（オーバーロード）
+template<typename T>
+auto make_multi_dimensional_vector(int n, T val) {
+    return std::vector<T>(n, val);
+}
+
+// 3. 再帰：次元を削る
+template<typename T, typename... Args>
+auto make_multi_dimensional_vector(int n, Args... args) {
+    auto inner = make_multi_dimensional_vector<T>(args...);
+    return std::vector<decltype(inner)>(n, inner);
 }
