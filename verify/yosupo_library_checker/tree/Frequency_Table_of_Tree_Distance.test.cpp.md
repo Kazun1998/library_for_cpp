@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Tree/Centroid_Decomposition.hpp
+    title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
+  - icon: ':heavy_check_mark:'
+    path: Tree/Tree.hpp
+    title: Tree/Tree.hpp
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -22,82 +28,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Tree/Centroid_Decomposition.hpp
-    title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
-  - icon: ':heavy_check_mark:'
-    path: Tree/Generator.hpp
-    title: Tree/Generator.hpp
-  - icon: ':heavy_check_mark:'
-    path: Tree/Lowest_Common_Ancestor.hpp
-    title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"
-  - icon: ':heavy_check_mark:'
-    path: Tree/Rerooting.hpp
-    title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting DP)"
-  - icon: ':heavy_check_mark:'
-    path: Tree/Subtree_Isomorphism_Hash.hpp
-    title: "\u90E8\u5206\u6728\u30CF\u30C3\u30B7\u30E5"
-  - icon: ':heavy_check_mark:'
-    path: Tree/Subtree_Monoid_Vertex_Query.hpp
-    title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
-  - icon: ':heavy_check_mark:'
-    path: Tree/Tree_DP.hpp
-    title: "\u6728 DP"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
-    title: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-    title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-    title: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
-    title: verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-    title: verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-    title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-    title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/yukicoder/763.test.cpp
-    title: verify/yukicoder/763.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Tree/Tree.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
-    using namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
-    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
-    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
-    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
-    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
-    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
-    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
+    links:
+    - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \n\n#line 2 \"Tree/Centroid_Decomposition.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -239,97 +205,8 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree {\n    private:\n    int N,\
-    \ _offset, root;\n    vector<int> parent;\n    vector<vector<int>> children;\n\
-    \n    bool locked;\n\n    public:\n    Tree(int N, int _offset = 0): N(N), _offset(_offset)\
-    \ {\n        parent.assign(N + _offset, -1);\n        locked = false;\n    }\n\
-    \n    bool is_locked() const { return locked; }\n\n    public:\n    inline void\
-    \ set_root(const int &x) {\n        assert (!is_locked());\n        root = x;\n\
-    \    }\n\n    inline int vector_size() const { return order() + offset(); }\n\n\
-    \    inline int get_root() const { return root; }\n    inline int get_parent(const\
-    \ int &x) const { return parent[x]; }\n    inline vector<int> get_children(const\
-    \ int &x) const { return children[x]; }\n\n    public:\n    // \u9802\u70B9 x\
-    \ \u306E\u89AA\u3092\u9802\u70B9 y \u306B\u8A2D\u5B9A\u3059\u308B.\n    inline\
-    \ void set_parent(const int &x, const int &y) {\n        assert (!is_locked());\n\
-    \        parent[x] = y;\n    }\n\n    // \u9802\u70B9 x \u306E\u5B50\u306E\u4E00\
-    \u3064\u306B\u9802\u70B9 y \u3092\u8A2D\u5B9A\u3059\u308B.\n    inline void set_child(const\
-    \ int &x, const int &y) { set_parent(y, x); }\n\n    // \u6728\u3092\u78BA\u5B9A\
-    \u3055\u305B\u308B\n    void seal() {\n        assert(!is_locked());\n\n     \
-    \   parent[root] = -1;\n        children.assign(N + offset(), vector<int>());\n\
-    \        for (int v = offset(); v < N + offset(); v++) {\n            unless(is_root(v))\
-    \ { children[parent[v]].emplace_back(v); }\n        }\n\n        locked = true;\n\
-    \        bfs();\n    }\n\n    private:\n    vector<int> depth;\n    vector<vector<int>>\
-    \ tower;\n    vector<int> _top_down, _bottom_up;\n    void bfs() {\n        assert(is_locked());\n\
-    \n        tower.assign(N, {});\n        depth.assign(N + offset(), -1);\n\n  \
-    \      deque<int> Q{ root };\n        tower[0] = { root };\n        depth[root]\
-    \ = 0;\n\n        while (!Q.empty()){\n            int x = Q.front(); Q.pop_front();\n\
-    \n            for (int y: children[x]) {\n                depth[y] = depth[x]\
-    \ + 1;\n                tower[depth[y]].emplace_back(y);\n                Q.push_back(y);\n\
-    \            }\n        }\n\n        _top_down.clear();\n        _top_down.reserve(N);\n\
-    \        for (const auto &layer : tower) {\n            for (int v: layer) _top_down.emplace_back(v);\n\
-    \        }\n\n        _bottom_up.clear();\n        _bottom_up.reserve(N);\n  \
-    \      for (auto it = tower.rbegin(); it != tower.rend(); ++it) {\n          \
-    \  for (int v: *it) _bottom_up.emplace_back(v);\n        }\n    }\n\n    public:\n\
-    \    const vector<int>& top_down() const { return _top_down; }\n\n    public:\n\
-    \    const vector<int>& bottom_up() const { return _bottom_up; }\n\n    // 1 \u9802\
-    \u70B9\u306B\u95A2\u3059\u308B\u60C5\u5831\n    public:\n\n    // x \u306F\u6839\
-    ?\n    bool is_root(const int &x) const { return x == root; }\n\n    // x \u306F\
-    \u8449?\n    bool is_leaf(const int &x) const {\n        assert(is_locked());\n\
-    \        return children[x].empty();\n    }\n\n    // x \u306E\u6B21\u6570\n \
-    \   int degree(const int &x) const {\n        assert(is_locked());\n        int\
-    \ d = children[x].size();\n        if (is_root(x)) { d--; }\n        return d;\n\
-    \    }\n\n    // \u9802\u70B9 x \u306E\u6DF1\u3055\u3092\u6C42\u3081\u308B.\n\
-    \    inline int vertex_depth(const int &x) const { return depth[x]; }\n\n    //\
-    \ 2 \u9802\u70B9\u306B\u95A2\u3059\u308B\u6761\u4EF6\n\n    // x \u306F y \u306E\
-    \u89AA\u304B?\n    bool is_parent(const int &x, const int &y) const {\n      \
-    \  assert(is_locked());\n        return !is_root(y) && x == parent[y];\n    }\n\
-    \n    // x \u306F y \u306E\u500B\u304B?\n    inline bool is_children(const int\
-    \ &x, const int &y) const { return is_parent(y, x); }\n\n    // x \u3068 y \u306F\
-    \u5144\u5F1F (\u89AA\u304C\u540C\u3058) \u304B?\n    bool is_brother(const int\
-    \ &x, const int &y) const {\n        assert(is_locked());\n        return !is_root(x)\
-    \ && !is_root(y) && parent[x] == parent[y];\n    }\n\n    int lowest_common_ancestor_greedy(int\
-    \ x, int y) const {\n        assert(is_locked());\n\n        if (vertex_depth(x)\
-    \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
-    \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
-    \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n"
-  code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nclass Tree {\n  \
-    \  private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
+    \    }\n};\n#line 2 \"Tree/Tree.hpp\"\n\n#line 4 \"Tree/Tree.hpp\"\n\nclass Tree\
+    \ {\n    private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
     \ children;\n\n    bool locked;\n\n    public:\n    Tree(int N, int _offset =\
     \ 0): N(N), _offset(_offset) {\n        parent.assign(N + _offset, -1);\n    \
     \    locked = false;\n    }\n\n    bool is_locked() const { return locked; }\n\
@@ -417,8 +294,158 @@ data:
     \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
     \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
     \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n"
+    \ T;\n}\n#line 5 \"Tree/Centroid_Decomposition.hpp\"\n\nclass Centroid_Decomposition\
+    \ {\n    private:\n    int N, _offset;\n    vector<vector<int>> adj;\n    vector<int>\
+    \ centroid_parent, centroid_depth;\n    vector<int> decomposition_order;\n   \
+    \ vector<bool> removed;\n    vector<int> subtree_size;\n    vector<vector<int>>\
+    \ component_vertices;\n\n    private:\n    // Tree \u30AA\u30D6\u30B8\u30A7\u30AF\
+    \u30C8\u3092 (\u89AA, \u5B50) \u306E\u8FBA\u30EA\u30B9\u30C8\u306B\u5909\u63DB\
+    \u3059\u308B.\n    static vector<pair<int, int>> to_edges(const Tree &tree) {\n\
+    \        assert(tree.is_locked());\n\n        vector<pair<int, int>> edges;\n\
+    \        for (int v = tree.offset(); v < tree.order() + tree.offset(); v++) {\n\
+    \            for (int c: tree.get_children(v)) { edges.emplace_back(v, c); }\n\
+    \        }\n        return edges;\n    }\n\n    public:\n    /**\n     * @brief\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF. \u91CD\u5FC3\u5206\u89E3\u3092\u69CB\
+    \u7BC9\u3059\u308B.\n     * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\
+    \u30D6\u30B8\u30A7\u30AF\u30C8. \u4E8B\u524D\u306B seal() \u3057\u3066\u3044\u308B\
+    \u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Centroid_Decomposition(const Tree\
+    \ &tree): Centroid_Decomposition(tree.order(), to_edges(tree), tree.offset())\
+    \ {}\n\n    Centroid_Decomposition(int N, const vector<pair<int, int>> &edges,\
+    \ int offset = 0): N(N), _offset(offset) {\n        adj.assign(N + offset, {});\n\
+    \        for (auto &[u, v]: edges) {\n            adj[u].emplace_back(v);\n  \
+    \          adj[v].emplace_back(u);\n        }\n\n        centroid_parent.assign(N\
+    \ + offset, -1);\n        centroid_depth.assign(N + offset, -1);\n        removed.assign(N\
+    \ + offset, false);\n        subtree_size.assign(N + offset, 0);\n        component_vertices.assign(N\
+    \ + offset, {});\n        decomposition_order.reserve(N);\n\n        build(offset,\
+    \ -1, 0);\n    }\n\n    private:\n    // x \u3092\u6839\u3068\u3059\u308B (removed\
+    \ \u306A\u9802\u70B9\u3092\u9664\u3044\u305F) \u90E8\u5206\u6728\u306E\u30B5\u30A4\
+    \u30BA\u3092\u8A08\u7B97\u3059\u308B.\n    int calculate_subtree_size(int x, int\
+    \ p) {\n        subtree_size[x] = 1;\n        for (int y: adj[x]) {\n        \
+    \    if (y == p || removed[y]) { continue; }\n            subtree_size[x] += calculate_subtree_size(y,\
+    \ x);\n        }\n        return subtree_size[x];\n    }\n\n    // x \u3092\u542B\
+    \u3080\u9023\u7D50\u6210\u5206 (\u30B5\u30A4\u30BA total) \u306E\u91CD\u5FC3\u3092\
+    \u6C42\u3081\u308B.\n    int find_centroid(int x, int p, int total) {\n      \
+    \  for (int y: adj[x]) {\n            if (y == p || removed[y]) { continue; }\n\
+    \            if (subtree_size[y] > total / 2) {\n                subtree_size[x]\
+    \ = total - subtree_size[y];\n                return find_centroid(y, x, total);\n\
+    \            }\n        }\n        return x;\n    }\n\n    // x \u3092\u6839\u3068\
+    \u3059\u308B (removed \u306A\u9802\u70B9\u3092\u9664\u3044\u305F) \u90E8\u5206\
+    \u6728\u306E\u9802\u70B9\u4E00\u89A7\u3092 out \u306B\u96C6\u3081\u308B.\n   \
+    \ void collect_component(int x, int p, vector<int> &out) {\n        out.emplace_back(x);\n\
+    \        for (int y: adj[x]) {\n            if (y == p || removed[y]) { continue;\
+    \ }\n            collect_component(y, x, out);\n        }\n    }\n\n    void build(int\
+    \ start, int parent_centroid, int depth) {\n        int total = calculate_subtree_size(start,\
+    \ -1);\n        int c = find_centroid(start, -1, total);\n\n        centroid_parent[c]\
+    \ = parent_centroid;\n        centroid_depth[c] = depth;\n        decomposition_order.emplace_back(c);\n\
+    \n        component_vertices[c].reserve(total);\n        collect_component(c,\
+    \ -1, component_vertices[c]);\n\n        removed[c] = true;\n        for (int\
+    \ y: adj[c]) {\n            unless(removed[y]) { build(y, c, depth + 1); }\n \
+    \       }\n    }\n\n    public:\n    // \u91CD\u5FC3\u6728\u4E0A\u3067\u306E x\
+    \ \u306E\u89AA (x \u304C\u6839\u306A\u3089 -1).\n    inline int get_centroid_parent(const\
+    \ int &x) const { return centroid_parent[x]; }\n\n    // \u91CD\u5FC3\u6728\u4E0A\
+    \u3067\u306E x \u306E\u6DF1\u3055 (\u6700\u521D\u306B\u53D6\u308A\u9664\u304B\u308C\
+    \u305F\u9802\u70B9\u304C\u6DF1\u3055 0).\n    inline int get_centroid_depth(const\
+    \ int &x) const { return centroid_depth[x]; }\n\n    // \u91CD\u5FC3\u3092\u53D6\
+    \u308A\u9664\u3044\u305F\u9806\u756A (= \u91CD\u5FC3\u6728\u3092\u6DF1\u3055\u306E\
+    \u6D45\u3044\u65B9\u304B\u3089\u4E26\u3079\u305F\u3082\u306E).\n    const vector<int>&\
+    \ order() const { return decomposition_order; }\n\n    // \u91CD\u5FC3\u6728\u306E\
+    \u6839.\n    inline int get_root() const { return decomposition_order.front();\
+    \ }\n\n    // \u91CD\u5FC3 x \u304C\u53D6\u308A\u9664\u304B\u308C\u305F\u969B\u306B\
+    \u5C5E\u3057\u3066\u3044\u305F\u9023\u7D50\u6210\u5206\u306E\u9802\u70B9\u4E00\
+    \u89A7 (x \u81EA\u8EAB\u3092\u542B\u3080).\n    inline const vector<int>& get_component(const\
+    \ int &x) const { return component_vertices[x]; }\n\n    inline int vertex_size()\
+    \ const { return N; }\n    inline int offset() const { return _offset; }\n};\n\
+    #line 4 \"verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp\"\
+    \n\nvector<ll> verify() {\n    int N; cin >> N;\n\n    vector<pair<int, int>>\
+    \ edges(N - 1);\n    for (auto &[u, v]: edges) {\n        cin >> u >> v;\n   \
+    \ }\n\n    vector<vector<int>> adj(N);\n    for (auto &[u, v]: edges) {\n    \
+    \    adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n    }\n\n    Centroid_Decomposition\
+    \ CD(N, edges);\n    vector<bool> removed(N, false);\n\n    vector<ll> answer(N,\
+    \ 0);\n\n    // c \u3092\u6839\u3068\u3059\u308B (removed \u3067\u306A\u3044)\
+    \ \u9023\u7D50\u6210\u5206\u306B\u3064\u3044\u3066,\n    // c \u304B\u3089\u306E\
+    \u8DDD\u96E2\u306E\u30EA\u30B9\u30C8\u3092 depths \u306B\u8FFD\u52A0\u3059\u308B\
+    .\n    auto collect_depths = [&](int c) {\n        vector<int> depths;\n     \
+    \   auto dfs = [&](auto self, int x, int p, int d) -> void {\n            depths.emplace_back(d);\n\
+    \            for (int y: adj[x]) {\n                if (y == p || removed[y])\
+    \ { continue; }\n                self(self, y, x, d + 1);\n            }\n   \
+    \     };\n        dfs(dfs, c, -1, 0);\n        return depths;\n    };\n\n    //\
+    \ depths (\u5148\u982D\u304C\u8DDD\u96E2 0 \u306E c \u81EA\u8EAB) \u304B\u3089\
+    \n    // \u300Cc \u3092\u7D4C\u7531\u3059\u308B 2 \u9802\u70B9\u9593\u306E\u8DDD\
+    \u96E2\u306E\u500B\u6570\u300D\u3092 answer \u306B\u52A0\u7B97\u3059\u308B.\n\
+    \    // sign = +1 \u306A\u3089\u52A0\u7B97, -1 \u306A\u3089\u6E1B\u7B97 (\u5305\
+    \u9664\u539F\u7406: \u5168\u4F53 - \u5404\u5B50\u90E8\u5206\u6728\u5185\u306E\u307F\
+    \u3067\u5B8C\u7D50\u3059\u308B\u5206).\n    auto add_pair_counts = [&](const vector<int>\
+    \ &depths, int sign) {\n        vector<ll> cnt(depths.empty() ? 0 : *max_element(depths.begin(),\
+    \ depths.end()) + 1, 0);\n        for (int d: depths) { cnt[d]++; }\n\n      \
+    \  // \u8DDD\u96E2\u306E\u548C (i + j) \u3054\u3068\u306B\u30DA\u30A2\u6570\u3092\
+    \u7573\u307F\u8FBC\u3080 (O(K^2) \u3067\u5341\u5206\u5C0F\u3055\u3044).\n    \
+    \    for (int i = 0; i < (int)cnt.size(); i++) {\n            if (cnt[i] == 0)\
+    \ { continue; }\n            for (int j = i; j < (int)cnt.size(); j++) {\n   \
+    \             if (cnt[j] == 0) { continue; }\n                ll pairs;\n    \
+    \            if (i == j) {\n                    pairs = cnt[i] * (cnt[i] - 1)\
+    \ / 2;\n                } else {\n                    pairs = cnt[i] * cnt[j];\n\
+    \                }\n                int dist = i + j;\n                if (dist\
+    \ < (int)answer.size()) {\n                    answer[dist] += sign * pairs;\n\
+    \                }\n            }\n        }\n    };\n\n    for (int c: CD.order())\
+    \ {\n        // c \u3092\u542B\u3080\u9023\u7D50\u6210\u5206\u5168\u4F53\u3067\
+    \u306E\u30DA\u30A2 (c \u3092\u901A\u308B\u3082\u306E) \u3092\u6570\u3048\u308B\
+    .\n        auto depths_all = collect_depths(c);\n        add_pair_counts(depths_all,\
+    \ +1);\n\n        // \u5B50\u3054\u3068\u306E\u90E8\u5206\u6728\u5185\u3067\u5B8C\
+    \u7D50\u3059\u308B\u30DA\u30A2\u3092\u9664\u304F (2 \u91CD\u306B\u6570\u3048\u306A\
+    \u3044\u3088\u3046\u306B\u3059\u308B).\n        removed[c] = true;\n        for\
+    \ (int y: adj[c]) {\n            if (removed[y]) { continue; }\n            auto\
+    \ depths_child = collect_depths(y);\n            for (int &d: depths_child) {\
+    \ d += 1; }\n            add_pair_counts(depths_child, -1);\n        }\n    }\n\
+    \n    return answer;\n}\n\nint main () {\n    vector<ll> answer = verify();\n\
+    \    for (int v = 1; v < (int)answer.size(); v++) {\n        cout << answer[v]\
+    \ << (v + 1 < (int)answer.size() ? \" \" : \"\\n\");\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \n\n#include\"../../../Tree/Centroid_Decomposition.hpp\"\n\nvector<ll> verify()\
+    \ {\n    int N; cin >> N;\n\n    vector<pair<int, int>> edges(N - 1);\n    for\
+    \ (auto &[u, v]: edges) {\n        cin >> u >> v;\n    }\n\n    vector<vector<int>>\
+    \ adj(N);\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
+    \        adj[v].emplace_back(u);\n    }\n\n    Centroid_Decomposition CD(N, edges);\n\
+    \    vector<bool> removed(N, false);\n\n    vector<ll> answer(N, 0);\n\n    //\
+    \ c \u3092\u6839\u3068\u3059\u308B (removed \u3067\u306A\u3044) \u9023\u7D50\u6210\
+    \u5206\u306B\u3064\u3044\u3066,\n    // c \u304B\u3089\u306E\u8DDD\u96E2\u306E\
+    \u30EA\u30B9\u30C8\u3092 depths \u306B\u8FFD\u52A0\u3059\u308B.\n    auto collect_depths\
+    \ = [&](int c) {\n        vector<int> depths;\n        auto dfs = [&](auto self,\
+    \ int x, int p, int d) -> void {\n            depths.emplace_back(d);\n      \
+    \      for (int y: adj[x]) {\n                if (y == p || removed[y]) { continue;\
+    \ }\n                self(self, y, x, d + 1);\n            }\n        };\n   \
+    \     dfs(dfs, c, -1, 0);\n        return depths;\n    };\n\n    // depths (\u5148\
+    \u982D\u304C\u8DDD\u96E2 0 \u306E c \u81EA\u8EAB) \u304B\u3089\n    // \u300C\
+    c \u3092\u7D4C\u7531\u3059\u308B 2 \u9802\u70B9\u9593\u306E\u8DDD\u96E2\u306E\u500B\
+    \u6570\u300D\u3092 answer \u306B\u52A0\u7B97\u3059\u308B.\n    // sign = +1 \u306A\
+    \u3089\u52A0\u7B97, -1 \u306A\u3089\u6E1B\u7B97 (\u5305\u9664\u539F\u7406: \u5168\
+    \u4F53 - \u5404\u5B50\u90E8\u5206\u6728\u5185\u306E\u307F\u3067\u5B8C\u7D50\u3059\
+    \u308B\u5206).\n    auto add_pair_counts = [&](const vector<int> &depths, int\
+    \ sign) {\n        vector<ll> cnt(depths.empty() ? 0 : *max_element(depths.begin(),\
+    \ depths.end()) + 1, 0);\n        for (int d: depths) { cnt[d]++; }\n\n      \
+    \  // \u8DDD\u96E2\u306E\u548C (i + j) \u3054\u3068\u306B\u30DA\u30A2\u6570\u3092\
+    \u7573\u307F\u8FBC\u3080 (O(K^2) \u3067\u5341\u5206\u5C0F\u3055\u3044).\n    \
+    \    for (int i = 0; i < (int)cnt.size(); i++) {\n            if (cnt[i] == 0)\
+    \ { continue; }\n            for (int j = i; j < (int)cnt.size(); j++) {\n   \
+    \             if (cnt[j] == 0) { continue; }\n                ll pairs;\n    \
+    \            if (i == j) {\n                    pairs = cnt[i] * (cnt[i] - 1)\
+    \ / 2;\n                } else {\n                    pairs = cnt[i] * cnt[j];\n\
+    \                }\n                int dist = i + j;\n                if (dist\
+    \ < (int)answer.size()) {\n                    answer[dist] += sign * pairs;\n\
+    \                }\n            }\n        }\n    };\n\n    for (int c: CD.order())\
+    \ {\n        // c \u3092\u542B\u3080\u9023\u7D50\u6210\u5206\u5168\u4F53\u3067\
+    \u306E\u30DA\u30A2 (c \u3092\u901A\u308B\u3082\u306E) \u3092\u6570\u3048\u308B\
+    .\n        auto depths_all = collect_depths(c);\n        add_pair_counts(depths_all,\
+    \ +1);\n\n        // \u5B50\u3054\u3068\u306E\u90E8\u5206\u6728\u5185\u3067\u5B8C\
+    \u7D50\u3059\u308B\u30DA\u30A2\u3092\u9664\u304F (2 \u91CD\u306B\u6570\u3048\u306A\
+    \u3044\u3088\u3046\u306B\u3059\u308B).\n        removed[c] = true;\n        for\
+    \ (int y: adj[c]) {\n            if (removed[y]) { continue; }\n            auto\
+    \ depths_child = collect_depths(y);\n            for (int &d: depths_child) {\
+    \ d += 1; }\n            add_pair_counts(depths_child, -1);\n        }\n    }\n\
+    \n    return answer;\n}\n\nint main () {\n    vector<ll> answer = verify();\n\
+    \    for (int v = 1; v < (int)answer.size(); v++) {\n        cout << answer[v]\
+    \ << (v + 1 < (int)answer.size() ? \" \" : \"\\n\");\n    }\n}\n"
   dependsOn:
+  - Tree/Centroid_Decomposition.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -426,31 +453,17 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Tree/Tree.hpp
-  requiredBy:
-  - Tree/Subtree_Isomorphism_Hash.hpp
-  - Tree/Rerooting.hpp
-  - Tree/Lowest_Common_Ancestor.hpp
-  - Tree/Centroid_Decomposition.hpp
-  - Tree/Subtree_Monoid_Vertex_Query.hpp
-  - Tree/Tree_DP.hpp
-  - Tree/Generator.hpp
-  timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/yukicoder/763.test.cpp
-  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
-  - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
-documentation_of: Tree/Tree.hpp
+  - Tree/Tree.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+  requiredBy: []
+  timestamp: '2026-09-20 18:46:46+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
 layout: document
 redirect_from:
-- /library/Tree/Tree.hpp
-- /library/Tree/Tree.hpp.html
-title: Tree/Tree.hpp
+- /verify/verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+- /verify/verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp.html
+title: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
 ---

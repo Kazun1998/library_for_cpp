@@ -56,6 +56,9 @@ data:
     path: Convolution/Convolution_Base.hpp
     title: "\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
+    path: Convolution/Double_Add_Convolution.hpp
+    title: Convolution/Double_Add_Convolution.hpp
+  - icon: ':heavy_check_mark:'
     path: Convolution/Gcd_Convolution.hpp
     title: Convolution/Gcd_Convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -612,6 +615,9 @@ data:
     path: Summation/Summation.hpp
     title: "\u7279\u6B8A\u306A\u6570\u5217\u306E\u7DCF\u548C"
   - icon: ':heavy_check_mark:'
+    path: Tree/Centroid_Decomposition.hpp
+    title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
@@ -749,6 +755,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1E.test.cpp
     title: verify/aizu_online_judge/ntl/1E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Double_Add_Convolution.test.cpp
+    title: verify/original/Double_Add_Convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/original/Fraction.test.cpp
     title: verify/original/Fraction.test.cpp
@@ -1041,6 +1050,9 @@ data:
     path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
     title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+    title: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
     title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1259,6 +1271,7 @@ data:
   - Modulo/Solve.hpp
   - Modulo/Composite.hpp
   - Convolution/Bitwise_And_Convolution.hpp
+  - Convolution/Double_Add_Convolution.hpp
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
   - Convolution/Semilattice_Convolution_Base.hpp
@@ -1412,6 +1425,7 @@ data:
   - Tree/Rerooting.hpp
   - Tree/Tree.hpp
   - Tree/Lowest_Common_Ancestor.hpp
+  - Tree/Centroid_Decomposition.hpp
   - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Tree/Tree_DP.hpp
   - Tree/Generator.hpp
@@ -1464,6 +1478,7 @@ data:
   - verify/original/Permutation.test.cpp
   - verify/original/Functional_Graph.test.cpp
   - verify/original/Fraction.test.cpp
+  - verify/original/Double_Add_Convolution.test.cpp
   - verify/yukicoder/3166.test.cpp
   - verify/yukicoder/1358.test.cpp
   - verify/yukicoder/2558.test.cpp
@@ -1543,6 +1558,7 @@ data:
   - verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
   - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp

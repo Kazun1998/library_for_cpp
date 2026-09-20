@@ -74,6 +74,9 @@ data:
       path: Convolution/Convolution_Base.hpp
       title: "\u7573\u307F\u8FBC\u307F"
     - icon: ':heavy_check_mark:'
+      path: Convolution/Double_Add_Convolution.hpp
+      title: Convolution/Double_Add_Convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: Convolution/Gcd_Convolution.hpp
       title: Convolution/Gcd_Convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -724,6 +727,9 @@ data:
   - name: Tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: Tree/Centroid_Decomposition.hpp
+      title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
+    - icon: ':heavy_check_mark:'
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'
@@ -906,6 +912,9 @@ data:
       title: verify/aizu_online_judge/ntl/1E.test.cpp
   - name: verify/original
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Double_Add_Convolution.test.cpp
+      title: verify/original/Double_Add_Convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/Fraction.test.cpp
       title: verify/original/Fraction.test.cpp
@@ -1230,6 +1239,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
       title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+      title: verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
       title: verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
