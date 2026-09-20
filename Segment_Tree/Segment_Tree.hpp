@@ -2,16 +2,16 @@
 
 #include "../template/template.hpp"
 
-template<typename M>
+template<typename M, typename Op = function<M(M, M)>>
 class Segment_Tree{
     private:
     int n;
     vector<M> data;
-    const function<M(M, M)> op;
+    const Op op;
     const M unit;
 
     public:
-    Segment_Tree(int size, const function<M(M, M)> op, const M unit): n(), op(op), unit(unit) {
+    Segment_Tree(int size, Op op, const M unit): n(), op(op), unit(unit) {
         int m = 1;
         while (m < size) { m *= 2; }
 
@@ -19,7 +19,7 @@ class Segment_Tree{
         data.assign(2 * n, unit);
     }
 
-    Segment_Tree(const vector<M> &vec, const function<M(M, M)> op, const M unit): 
+    Segment_Tree(const vector<M> &vec, Op op, const M unit):
         Segment_Tree(vec.size(), op, unit) {
             for (int k = 0; k < vec.size(); k++) { data[k + n] = vec[k]; }
             for (int k = n - 1; k > 0; k--) { recalc(k); }
@@ -120,3 +120,9 @@ class Segment_Tree{
         return 0;
     }
 };
+
+template<typename M, typename Op>
+Segment_Tree(int, Op, M) -> Segment_Tree<M, Op>;
+
+template<typename M, typename Op>
+Segment_Tree(const vector<M> &, Op, M) -> Segment_Tree<M, Op>;
