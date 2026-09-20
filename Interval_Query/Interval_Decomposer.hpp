@@ -3,16 +3,16 @@
 #include "../template/template.hpp"
 
 /// @brief 区間 [0, N) に対するクエリ区間分解の抽象基底クラス.
-class Range_Decomposer {
+class Interval_Decomposer {
     protected:
     int n;
 
     public:
     /// @brief コンストラクタ.
     /// @param n 全体の要素数.
-    explicit Range_Decomposer(int n): n(n) {}
+    explicit Interval_Decomposer(int n): n(n) {}
 
-    virtual ~Range_Decomposer() = default;
+    virtual ~Interval_Decomposer() = default;
 
     /// @brief 全体の要素数を返す.
     int size() const { return n; }

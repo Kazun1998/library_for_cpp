@@ -1,6 +1,6 @@
 ---
-title: Range Decomposer
-documentation_of: //Interval_Query/Range_Decomposer.hpp
+title: Interval Decomposer
+documentation_of: //Interval_Query/Interval_Decomposer.hpp
 ---
 
 ## Outline
@@ -29,7 +29,7 @@ $$ [l, r) = I_1 \sqcup \dots \sqcup I_k $$
 ### Constructer
 
 ```cpp
-explicit Range_Decomposer(int n)
+explicit Interval_Decomposer(int n)
 ```
 
 - 全体の要素数が `n` であるような区間 $[0, n)$ に対する分解器を構築する (抽象基底クラスなので, 実際には派生クラスのコンストラクタを通して呼ばれる).

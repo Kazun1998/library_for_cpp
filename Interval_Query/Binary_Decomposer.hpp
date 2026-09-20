@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Range_Decomposer.hpp"
+#include "Interval_Decomposer.hpp"
 
 /// @brief セグメント木型 (二分木) による区間分解. 根 [0, n) を depth=0 とし, mid = l + (r-l)/2 で再帰的に二分する.
-class Binary_Decomposer : public Range_Decomposer {
+class Binary_Decomposer : public Interval_Decomposer {
     private:
     vector<tuple<int, int, int>> nodes;
     unordered_map<long long, int> index_map;
@@ -38,7 +38,7 @@ class Binary_Decomposer : public Range_Decomposer {
     public:
     /// @brief コンストラクタ.
     /// @param n 全体の要素数.
-    explicit Binary_Decomposer(int n): Range_Decomposer(n) {
+    explicit Binary_Decomposer(int n): Interval_Decomposer(n) {
         if (n > 0) { build(0, n, 0); }
     }
 

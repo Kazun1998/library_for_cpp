@@ -5,9 +5,9 @@ documentation_of: //Interval_Query/Interval_Query.hpp
 
 ## Outline
 
-[Range_Decomposer](Range_Decomposer.hpp) による区間分解を用いて, 要素の列 $A = (A_0, A_1, \dots, A_{N-1})$ ( $A_i \in T$ ) に対する一点更新・区間クエリを行う汎用クラス.
+[Interval_Decomposer](Interval_Decomposer.hpp) による区間分解を用いて, 要素の列 $A = (A_0, A_1, \dots, A_{N-1})$ ( $A_i \in T$ ) に対する一点更新・区間クエリを行う汎用クラス.
 
-`Range_Decomposer` の各ノードは, `State` 型の内部状態を1つ持つ. 状態は以下の2つの関数から構築される.
+`Interval_Decomposer` の各ノードは, `State` 型の内部状態を1つ持つ. 状態は以下の2つの関数から構築される.
 
 * `build_state`: 葉ノード (担当する要素が1個) の状態を, その要素から作る.
 * `merge_children`: 内部ノードの状態を, その子ノードの状態のリストから作る.
@@ -16,7 +16,7 @@ documentation_of: //Interval_Query/Interval_Query.hpp
 
 ## Contents
 
-以下, $N$ を要素数とする. 最大の深さ $D$, および `update`/`query` で参照するノード数 $\alpha$ のオーダーは, 用いる `Range_Decomposer` によって次のように変わる.
+以下, $N$ を要素数とする. 最大の深さ $D$, および `update`/`query` で参照するノード数 $\alpha$ のオーダーは, 用いる `Interval_Decomposer` によって次のように変わる.
 
 | | [平方分割](Sqrt_Decomposer.hpp) | [二分木分割](Binary_Decomposer.hpp) |
 |---|---|---|
@@ -29,7 +29,7 @@ documentation_of: //Interval_Query/Interval_Query.hpp
 ```cpp
 Interval_Query(
     const vector<T> &data,
-    unique_ptr<Range_Decomposer> decomposer,
+    unique_ptr<Interval_Decomposer> decomposer,
     function<State(const vector<T> &)> build_state,
     function<State(vector<State> &)> merge_children,
     function<void(State &, int, const T &, const T &)> on_update

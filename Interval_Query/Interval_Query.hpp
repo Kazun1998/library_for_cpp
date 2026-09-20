@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Range_Decomposer.hpp"
+#include "Interval_Decomposer.hpp"
 
-/// @brief Range_Decomposer による区間分解を用いて, 一点更新・区間クエリを行う汎用クラス.
+/// @brief Interval_Decomposer による区間分解を用いて, 一点更新・区間クエリを行う汎用クラス.
 /// @tparam T 要素の型.
 /// @tparam State 各ノードが持つ内部状態の型 (例: map, 集計値など).
 template <typename T, typename State>
@@ -10,7 +10,7 @@ class Interval_Query {
     private:
     int n;
     vector<T> data;
-    unique_ptr<Range_Decomposer> decomposer;
+    unique_ptr<Interval_Decomposer> decomposer;
 
     vector<State> state;
 
@@ -46,7 +46,7 @@ class Interval_Query {
     /// @param on_update 要素 i が before から after に変化したときに, ノードの状態を更新する関数.
     Interval_Query(
         const vector<T> &data,
-        unique_ptr<Range_Decomposer> decomposer,
+        unique_ptr<Interval_Decomposer> decomposer,
         function<State(const vector<T> &)> build_state,
         function<State(vector<State> &)> merge_children,
         function<void(State &, int, const T &, const T &)> on_update

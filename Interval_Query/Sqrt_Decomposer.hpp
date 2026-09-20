@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Range_Decomposer.hpp"
+#include "Interval_Decomposer.hpp"
 
 /// @brief 平方分割による区間分解. ブロック全体を depth=0, 端の単独要素を depth=1 として列挙する.
-class Sqrt_Decomposer : public Range_Decomposer {
+class Sqrt_Decomposer : public Interval_Decomposer {
     private:
     int block_size;
 
@@ -17,7 +17,7 @@ class Sqrt_Decomposer : public Range_Decomposer {
     public:
     /// @brief コンストラクタ.
     /// @param n 全体の要素数.
-    explicit Sqrt_Decomposer(int n): Range_Decomposer(n), block_size(max<int>(1, isqrt(n))) {}
+    explicit Sqrt_Decomposer(int n): Interval_Decomposer(n), block_size(max<int>(1, isqrt(n))) {}
 
     /// @brief 半開区間 [l, r) を計算に必要な部分区間へ分解する.
     /// @param l 区間の左端.

@@ -5,7 +5,7 @@ documentation_of: //Interval_Query/Binary_Decomposer.hpp
 
 ## Outline
 
-[Range_Decomposer](Range_Decomposer.hpp) をセグメント木型 (二分木) の分割によって実装したもの. 根を区間 $[0, N)$, 深さ $0$ のノードとし, ノード $[l, r)$ ( $r - l > 1$ ) は, $\mathrm{mid} = l + \lfloor (r - l) / 2 \rfloor$ を用いて,
+[Interval_Decomposer](Interval_Decomposer.hpp) をセグメント木型 (二分木) の分割によって実装したもの. 根を区間 $[0, N)$, 深さ $0$ のノードとし, ノード $[l, r)$ ( $r - l > 1$ ) は, $\mathrm{mid} = l + \lfloor (r - l) / 2 \rfloor$ を用いて,
 
 * 左の子: $[l, \mathrm{mid})$, 深さ $+1$.
 * 右の子: $[\mathrm{mid}, r)$, 深さ $+1$.

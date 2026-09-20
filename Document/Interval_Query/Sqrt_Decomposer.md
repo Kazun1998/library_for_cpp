@@ -5,7 +5,7 @@ documentation_of: //Interval_Query/Sqrt_Decomposer.hpp
 
 ## Outline
 
-[Range_Decomposer](Range_Decomposer.hpp) を平方分割によって実装したもの. ブロックサイズ $B = \max(1, \lfloor \sqrt{N} \rfloor)$ とし,
+[Interval_Decomposer](Interval_Decomposer.hpp) を平方分割によって実装したもの. ブロックサイズ $B = \max(1, \lfloor \sqrt{N} \rfloor)$ とし,
 
 * 深さ $0$: 各ブロック (長さ $B$ 以下の区間 $B$ 個程度) を担当するノード.
 * 深さ $1$: 各単独要素 $\{i\}$ を担当するノード (深さ $0$ のノードの葉).
