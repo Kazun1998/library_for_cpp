@@ -16,6 +16,21 @@ namespace modulo {
         constexpr Modulo(): a(0), n(1) {}
         constexpr Modulo(const long long a, const long long n): a((a % n + n) % n), n(n) {}
 
+        // 10進文字列(long long に収まらない巨大数も可)からの初期化
+        constexpr Modulo(const string &s, const long long n): n(n) {
+            size_t i = 0;
+            long long sign = 1;
+            if (!s.empty() && (s[0] == '+' || s[0] == '-')) {
+                sign = (s[0] == '-') ? -1 : 1;
+                i = 1;
+            }
+
+            long long val = 0;
+            for (; i < s.size(); ++i) { val = (val * 10 + (s[i] - '0')) % n; }
+
+            a = (sign * val % n + n) % n;
+        }
+
         // マイナス元
         constexpr Modulo operator-() const { return Modulo(-a, n); }
 
