@@ -331,6 +331,18 @@ data:
     path: Integer/Smallest_Prime_Factor.hpp
     title: "\u6700\u5C0F\u7D20\u56E0\u6570"
   - icon: ':heavy_check_mark:'
+    path: Interval_Query/Binary_Decomposer.hpp
+    title: "\u4E8C\u5206\u6728\u5206\u5272"
+  - icon: ':heavy_check_mark:'
+    path: Interval_Query/Interval_Decomposer.hpp
+    title: Interval Decomposer
+  - icon: ':heavy_check_mark:'
+    path: Interval_Query/Interval_Query.hpp
+    title: Interval Query
+  - icon: ':heavy_check_mark:'
+    path: Interval_Query/Sqrt_Decomposer.hpp
+    title: "\u5E73\u65B9\u5206\u5272"
+  - icon: ':heavy_check_mark:'
     path: Knapsack/Base.hpp
     title: "Knapsack \u554F\u984C\u306E Base \u30AF\u30E9\u30B9"
   - icon: ':heavy_check_mark:'
@@ -768,6 +780,9 @@ data:
     path: verify/yosupo_library_checker/data_structure/Ordered_Set_3.test.cpp
     title: verify/yosupo_library_checker/data_structure/Ordered_Set_3.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Point_Add_Range_Sum-2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Point_Add_Range_Sum-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
     title: verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -794,6 +809,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency-2.test.cpp
+    title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency-2.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
     title: verify/yosupo_library_checker/data_structure/Static_Range_Frequency.test.cpp
@@ -1279,6 +1297,10 @@ data:
   - Geometry/intersection/Intersection_Segment_and_Segment.hpp
   - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/projection/Projection_Point_Line.hpp
+  - Interval_Query/Interval_Decomposer.hpp
+  - Interval_Query/Binary_Decomposer.hpp
+  - Interval_Query/Sqrt_Decomposer.hpp
+  - Interval_Query/Interval_Query.hpp
   - Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
   - Knapsack/Knapsack_Limitation.hpp
   - Knapsack/Knapsack_01.hpp
@@ -1391,6 +1413,7 @@ data:
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
   - verify/yosupo_library_checker/data_structure/Queue_Operate_All_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_Add_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set_3.test.cpp
   - verify/yosupo_library_checker/data_structure/Double-Ended_Priority_Queue.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set_2.test.cpp
@@ -1398,6 +1421,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Ordered_Set.test.cpp
   - verify/yosupo_library_checker/data_structure/Static_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Frequency-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Set_Xor-Min.test.cpp
   - verify/yosupo_library_checker/data_structure/Range_Affine_Point_Get.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
