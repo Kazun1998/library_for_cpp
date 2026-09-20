@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../template/template.hpp"
+
 template<typename M>
 class Segment_Tree{
     private:
