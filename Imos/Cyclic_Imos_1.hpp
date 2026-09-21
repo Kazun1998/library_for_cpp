@@ -1,6 +1,6 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Imos/Cyclic_Imos_1.hpp
-
 #pragma once
+
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Imos/Cyclic_Imos_1.hpp
 
 #include "../template/template.hpp"
 
