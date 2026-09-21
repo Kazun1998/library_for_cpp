@@ -1,6 +1,6 @@
 ---
 title: 行列が作る空間
-documentation_of: //Linear_Algebra/Matrix_Subspaces.hpp
+documentation_of: //Linear_Algebra/Matrix_Subspace.hpp
 ---
 
 ## Outline
