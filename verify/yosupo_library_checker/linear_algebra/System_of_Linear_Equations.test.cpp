@@ -2,7 +2,7 @@
 
 #include "../../../template/template.hpp"
 #include "../../../Algebra/modint.hpp"
-#include "../../../Linear_Algebra/Matrix_Subspaces.hpp"
+#include "../../../Linear_Algebra/Matrix_Subspace.hpp"
 
 using mint = modint<998244353>;
 
