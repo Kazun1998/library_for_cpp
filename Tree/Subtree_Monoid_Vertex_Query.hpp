@@ -8,7 +8,7 @@ template<typename M>
 class Subtree_Monoid_Vertex_Query {
     private:
     Tree T;
-    unique_ptr<Segment_Tree<M>> S;
+    unique_ptr<Segment_Tree<M, function<M(M, M)>>> S;
 
     public:
     Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree) {
@@ -22,7 +22,7 @@ class Subtree_Monoid_Vertex_Query {
             first[T.in_time[v]] = data[v];
         }
 
-        S = make_unique<Segment_Tree<M>>(first, op, unit);
+        S = make_unique<Segment_Tree<M, function<M(M, M)>>>(first, op, unit);
     }
 
     /*

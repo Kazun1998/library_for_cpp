@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/jump_on_tree"
 
 #include"../../../template/template.hpp"
-#include"../../../Tree/Tree.hpp"
+#include"../../../Tree/Lowest_Common_Ancestor.hpp"
 
 int main() {
     int N, Q; cin >> N >> Q;
@@ -14,9 +14,11 @@ int main() {
     }
 
     Tree T = Construct_Tree(N, edges, 0);
+    Lowest_Common_Ancestor L(T);
+
     for (int q = 0; q < Q; q++) {
         int s, t, i;
         scanf("%d%d%d", &s, &t, &i);
-        cout << T.jump(s, t, i) << "\n";
+        cout << L.jump(s, t, i) << "\n";
     }
 }
