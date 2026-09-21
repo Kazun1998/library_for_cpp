@@ -6,7 +6,7 @@ data:
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
-    title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+    title: "\u6570\u30D9\u30AF\u30C8\u30EB"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
@@ -33,7 +33,7 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Linear_Algebra/Matrix_Subspaces.hpp
+    path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -562,7 +562,7 @@ data:
   isVerificationFile: false
   path: Linear_Algebra/Matrix_Vectors.hpp
   requiredBy:
-  - Linear_Algebra/Matrix_Subspaces.hpp
+  - Linear_Algebra/Matrix_Subspace.hpp
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

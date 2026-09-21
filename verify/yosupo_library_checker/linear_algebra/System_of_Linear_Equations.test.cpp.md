@@ -9,12 +9,12 @@ data:
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
-    title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+    title: "\u6570\u30D9\u30AF\u30C8\u30EB"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - icon: ':heavy_check_mark:'
-    path: Linear_Algebra/Matrix_Subspaces.hpp
+    path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Vectors.hpp
@@ -258,7 +258,7 @@ data:
     \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
     \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
     \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Linear_Algebra/Matrix_Subspaces.hpp\"\
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Linear_Algebra/Matrix_Subspace.hpp\"\
     \n\n#line 2 \"Linear_Algebra/Matrix_Vectors.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\
     \n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\
     \n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError:\
@@ -593,9 +593,9 @@ data:
     \ }\n\n        for (int p = 0; p < A.row; p++) {\n            if (p == i) { continue;\
     \ }\n\n            F v = X[p][j];\n            for (int q = 0; q < A.col; q++)\
     \ { X[p][q] -= v * X[i][q]; }\n        }\n\n        i++;\n    }\n\n    return\
-    \ Field_Matrix<F>(X);\n}\n#line 6 \"Linear_Algebra/Matrix_Subspaces.hpp\"\n\n\
-    /**\n * @brief \u884C\u5217 A \u306E\u884C\u7A7A\u9593 (Row Space) \u3092\u6C42\
-    \u3081\u308B\n * @tparam F \u4F53\u306E\u578B\n * @param A \u884C\u5217\n * @return\
+    \ Field_Matrix<F>(X);\n}\n#line 6 \"Linear_Algebra/Matrix_Subspace.hpp\"\n\n/**\n\
+    \ * @brief \u884C\u5217 A \u306E\u884C\u7A7A\u9593 (Row Space) \u3092\u6C42\u3081\
+    \u308B\n * @tparam F \u4F53\u306E\u578B\n * @param A \u884C\u5217\n * @return\
     \ Field_Vector_Space<F> \u884C\u7A7A\u9593\n */\ntemplate<typename F>\nField_Vector_Space<F>\
     \ Row_Space(const Field_Matrix<F> &A) {\n    return Field_Vector_Space<F>(A.col,\
     \ Row_Vectors(A));\n}\n\n/**\n * @brief \u884C\u5217 A \u306E\u5217\u7A7A\u9593\
@@ -646,7 +646,7 @@ data:
     \ cout << g << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n\n#include \"../../../template/template.hpp\"\n#include \"../../../Algebra/modint.hpp\"\
-    \n#include \"../../../Linear_Algebra/Matrix_Subspaces.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \n#include \"../../../Linear_Algebra/Matrix_Subspace.hpp\"\n\nusing mint = modint<998244353>;\n\
     \nint main() {\n    int N, M; cin >> N >> M;\n    Field_Matrix<mint> A(N, M);\n\
     \    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < M; ++j) {\n  \
     \          cin >> A[i][j];\n        }\n    }\n\n    Field_Vector<mint> b(N); cin\
@@ -663,7 +663,7 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   - Algebra/modint.hpp
-  - Linear_Algebra/Matrix_Subspaces.hpp
+  - Linear_Algebra/Matrix_Subspace.hpp
   - Linear_Algebra/Matrix_Vectors.hpp
   - Linear_Algebra/Field_Vector_Space.hpp
   - Linear_Algebra/Field_Vector.hpp
@@ -672,7 +672,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-09-21 23:11:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp

@@ -362,7 +362,7 @@ data:
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
-    title: "\u6570\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
+    title: "\u6570\u30D9\u30AF\u30C8\u30EB"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
@@ -370,7 +370,7 @@ data:
     path: Linear_Algebra/Find_Linear_Recurrence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':heavy_check_mark:'
-    path: Linear_Algebra/Matrix_Subspaces.hpp
+    path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
   - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Vectors.hpp
@@ -1237,9 +1237,9 @@ data:
   - Linear_Algebra/Find_Linear_Recurrence.hpp
   - Linear_Algebra/Predict_Nth_Term.hpp
   - Linear_Algebra/Field_Matrix.hpp
-  - Linear_Algebra/Matrix_Subspaces.hpp
   - Linear_Algebra/Matrix_Vectors.hpp
   - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+  - Linear_Algebra/Matrix_Subspace.hpp
   - Linear_Algebra/Reduction.hpp
   - Linear_Algebra/Rank.hpp
   - Linear_Algebra/Field_Vector_Space.hpp
