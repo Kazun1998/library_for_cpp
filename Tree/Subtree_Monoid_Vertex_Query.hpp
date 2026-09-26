@@ -1,25 +1,27 @@
 #pragma once
 
-#include"../template/template.hpp"
-#include"Tree.hpp"
-#include"../Segment_Tree/Segment_Tree.hpp"
+#include "../template/template.hpp"
+#include "Tree.hpp"
+#include "Euler_Tour.hpp"
+#include "../Segment_Tree/Segment_Tree.hpp"
 
 template<typename M>
 class Subtree_Monoid_Vertex_Query {
     private:
     Tree T;
+    Euler_Tour ET;
     unique_ptr<Segment_Tree<M, function<M(M, M)>>> S;
 
     public:
-    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree) {
-        T.calculate_euler_tour_vertex();
+    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M> &data, const function<M(M, M)> op, const M unit): T(tree), ET(T) {
+        ET.calculate_euler_tour_vertex();
 
         // NEXT: 遅延セグメント木に対応 + Segment Tree のベクトルのサイズを下げる.
 
         int n = T.order();
         vector<M> first(2 * n);
         for (int v = T.offset(); v < T.vector_size(); v++) {
-            first[T.in_time[v]] = data[v];
+            first[ET.in_time[v]] = data[v];
         }
 
         S = make_unique<Segment_Tree<M, function<M(M, M)>>>(first, op, unit);
@@ -31,7 +33,7 @@ class Subtree_Monoid_Vertex_Query {
     @param x 変更後の `M` の頂点 `v` における値
     */
     void update(const int &v, const M &x) {
-        S->update(T.in_time[v], x);
+        S->update(ET.in_time[v], x);
     }
 
     /*
@@ -40,6 +42,6 @@ class Subtree_Monoid_Vertex_Query {
     @returns 頂点 `v` を根とする部分木に関する総積
     */
     M query(const int &v) {
-        return S->product(T.in_time[v], T.out_time[v]);
+        return S->product(ET.in_time[v], ET.out_time[v]);
     }
 };
