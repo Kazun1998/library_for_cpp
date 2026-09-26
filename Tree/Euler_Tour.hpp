@@ -68,6 +68,12 @@ class Euler_Tour {
         return make_pair(in_time[x], out_time[x]);
     }
 
+    // 頂点 x の部分木に含まれる辺が, euler_tour_edge 上で対応する半開区間 [l, r) を返す.
+    pair<int, int> edge_range(const int &x) {
+        calculate_euler_tour_edge();
+        return make_pair(in_time[x], out_time[x]);
+    }
+
     // x は y の祖先 (自分自身も含む) か?
     bool is_ancestor(const int &x, const int &y) {
         calculate_euler_tour_vertex();
