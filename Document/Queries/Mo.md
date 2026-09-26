@@ -20,8 +20,9 @@ Mo アルゴリズムに関する計算を行う.
 - $A$ は $Q$ 個のクエリにおいて固定である.
 - $Q$ 個のクエリが先読みできる.
 - $F(L, R)$ が求まっているとき, そこから $F(L \pm 1, R), F(L, R \pm 1)$ が高速に ($O(\alpha)$ 時間で) 求める.
+- $F(L, R)$ の値の保存 (回答の記録) が $O(\beta)$ 時間で行える.
 
-このとき, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を全て合計でで $O(\alpha N \sqrt{Q})$ Time で求めることが出来る.
+このとき, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を全て合計で $O(\alpha N \sqrt{Q} + \beta Q)$ Time で求めることが出来る.
 
 ## Contents
 
@@ -61,7 +62,7 @@ void run(const ADD &add, const DEL &del, const REM &rem)
     * `add`: 要素が追加される時の処理 (引数は追加する要素の列におけるインデックス).
     * `del`: 要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
     * `rem`: 結果を保存するときの処理 (引数はクエリのインデックス).
-* **計算量**: クエリの数を $Q$ 個, `add`, `del` の計算量を $O(\alpha)$ 時間として, 合計 $O(\alpha N \sqrt{Q})$ 時間.
+* **計算量**: クエリの数を $Q$ 個, `add`, `del` の計算量を $O(\alpha)$ 時間, `rem` の計算量を $O(\beta)$ 時間として, 合計 $O(\alpha N \sqrt{Q} + \beta Q)$ 時間.
 * 内部的には, 下記の左右分離版に対して `run(add, add, del, del, rem)` を呼び出す.
 
 ### run (左右分離版)
@@ -78,7 +79,7 @@ void run(const ADD_L &add_left, const ADD_R &add_right, const DEL_L &del_left, c
     * `del_left`: 左端の要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
     * `del_right`: 右端の要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
     * `rem`: 結果を保存するときの処理 (引数はクエリのインデックス).
-* **計算量**: クエリの数を $Q$ 個, `add_left`, `add_right`, `del_left`, `del_right` の計算量を $O(\alpha)$ 時間として, 合計 $O(\alpha N \sqrt{Q})$ 時間.
+* **計算量**: クエリの数を $Q$ 個, `add_left`, `add_right`, `del_left`, `del_right` の計算量を $O(\alpha)$ 時間, `rem` の計算量を $O(\beta)$ 時間として, 合計 $O(\alpha N \sqrt{Q} + \beta Q)$ 時間.
 
 ## History
 
