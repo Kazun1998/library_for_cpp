@@ -9,6 +9,8 @@ class Mo {
     vector<int> left, right;
 
     public:
+    /// @brief Mo's algorithm を扱うクエリ列を初期化する
+    /// @param N 列の要素数(添字は [0, N) の範囲を想定)
     Mo(const int N): N(N), query_count(0), left(0), right(0) {}
 
     /// @brief 閉区間 [l, r] に関するクエリを追加する
