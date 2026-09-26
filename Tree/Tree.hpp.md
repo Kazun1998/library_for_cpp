@@ -27,6 +27,9 @@ data:
     path: Tree/Centroid_Decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
   - icon: ':heavy_check_mark:'
+    path: Tree/Euler_Tour.hpp
+    title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC (Euler Tour)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Generator.hpp
     title: Tree/Generator.hpp
   - icon: ':heavy_check_mark:'
@@ -292,42 +295,24 @@ data:
     \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
     \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
     \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n"
+    \    return x;\n    }\n\n    vector<int> path(int u, int v) const {\n        int\
+    \ w = lowest_common_ancestor_greedy(u, v);\n\n        vector<int> path_first{u},\
+    \ path_second{v};\n\n        while (u != w) {\n            u = get_parent(u);\n\
+    \            path_first.emplace_back(u);\n        }\n\n        while (v != w)\
+    \ {\n            v = get_parent(v);\n            path_second.emplace_back(v);\n\
+    \        }\n\n        path_second.pop_back();\n        reverse(path_second.begin(),\
+    \ path_second.end());\n\n        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()),\
+    \ make_move_iterator(path_second.end()));\n\n        return path_first;\n    }\n\
+    \n    inline int order() const { return N; }\n    inline int offset() const {\
+    \ return _offset; }\n};\n\nTree Construct_Tree(int N, vector<pair<int, int>> edges,\
+    \ int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset, vector<int>());\n\
+    \    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n\
+    \    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\n    vector<bool> seen(N\
+    \ + 1, false);\n    seen[root] = true;\n    vector<int> stack({root});\n\n   \
+    \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
+    \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
+    \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\nclass Tree {\n  \
     \  private:\n    int N, _offset, root;\n    vector<int> parent;\n    vector<vector<int>>\
     \ children;\n\n    bool locked;\n\n    public:\n    Tree(int N, int _offset =\
@@ -382,42 +367,24 @@ data:
     \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
     \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
     \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n"
+    \    return x;\n    }\n\n    vector<int> path(int u, int v) const {\n        int\
+    \ w = lowest_common_ancestor_greedy(u, v);\n\n        vector<int> path_first{u},\
+    \ path_second{v};\n\n        while (u != w) {\n            u = get_parent(u);\n\
+    \            path_first.emplace_back(u);\n        }\n\n        while (v != w)\
+    \ {\n            v = get_parent(v);\n            path_second.emplace_back(v);\n\
+    \        }\n\n        path_second.pop_back();\n        reverse(path_second.begin(),\
+    \ path_second.end());\n\n        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()),\
+    \ make_move_iterator(path_second.end()));\n\n        return path_first;\n    }\n\
+    \n    inline int order() const { return N; }\n    inline int offset() const {\
+    \ return _offset; }\n};\n\nTree Construct_Tree(int N, vector<pair<int, int>> edges,\
+    \ int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset, vector<int>());\n\
+    \    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n\
+    \    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\n    vector<bool> seen(N\
+    \ + 1, false);\n    seen[root] = true;\n    vector<int> stack({root});\n\n   \
+    \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
+    \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
+    \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -429,24 +396,25 @@ data:
   isVerificationFile: false
   path: Tree/Tree.hpp
   requiredBy:
-  - Tree/Subtree_Isomorphism_Hash.hpp
-  - Tree/Rerooting.hpp
+  - Tree/Euler_Tour.hpp
   - Tree/Lowest_Common_Ancestor.hpp
-  - Tree/Centroid_Decomposition.hpp
-  - Tree/Subtree_Monoid_Vertex_Query.hpp
-  - Tree/Tree_DP.hpp
   - Tree/Generator.hpp
-  timestamp: '2026-08-09 00:58:25+09:00'
+  - Tree/Tree_DP.hpp
+  - Tree/Subtree_Isomorphism_Hash.hpp
+  - Tree/Centroid_Decomposition.hpp
+  - Tree/Rerooting.hpp
+  - Tree/Subtree_Monoid_Vertex_Query.hpp
+  timestamp: '2026-09-26 23:42:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/763.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
+  - verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
+  - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
+  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
-  - verify/yosupo_library_checker/tree/Frequency_Table_of_Tree_Distance.test.cpp
-  - verify/yosupo_library_checker/tree/Rooted_Tree_Isomorphism_Classification.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
-  - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - verify/yukicoder/763.test.cpp
 documentation_of: Tree/Tree.hpp
 layout: document
 redirect_from:

@@ -262,47 +262,30 @@ data:
     \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
     \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
     \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 4 \"Tree/Tree_DP.hpp\"\n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree\
-    \ &T, function<X(X, int, int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\
-    \n    data[T.get_root()] = alpha;\n\n    auto dfs = [&](auto self, int x) -> void\
-    \ {\n        for (int y: T.get_children(x)) {\n            data[y] = f(data[x],\
-    \ x, y);\n            self(self, y);\n        }\n    };\n\n    dfs(dfs, T.get_root());\n\
-    \    return data;\n}\n\ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree\
+    \    return x;\n    }\n\n    vector<int> path(int u, int v) const {\n        int\
+    \ w = lowest_common_ancestor_greedy(u, v);\n\n        vector<int> path_first{u},\
+    \ path_second{v};\n\n        while (u != w) {\n            u = get_parent(u);\n\
+    \            path_first.emplace_back(u);\n        }\n\n        while (v != w)\
+    \ {\n            v = get_parent(v);\n            path_second.emplace_back(v);\n\
+    \        }\n\n        path_second.pop_back();\n        reverse(path_second.begin(),\
+    \ path_second.end());\n\n        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()),\
+    \ make_move_iterator(path_second.end()));\n\n        return path_first;\n    }\n\
+    \n    inline int order() const { return N; }\n    inline int offset() const {\
+    \ return _offset; }\n};\n\nTree Construct_Tree(int N, vector<pair<int, int>> edges,\
+    \ int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset, vector<int>());\n\
+    \    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n\
+    \    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\n    vector<bool> seen(N\
+    \ + 1, false);\n    seen[root] = true;\n    vector<int> stack({root});\n\n   \
+    \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
+    \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
+    \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n#line 4 \"Tree/Tree_DP.hpp\"\
+    \n\ntemplate<typename X>\nvector<X> Tree_DP_from_Root(Tree &T, function<X(X, int,\
+    \ int)> f, const X alpha) {\n    vector<X> data(T.vector_size());\n\n    data[T.get_root()]\
+    \ = alpha;\n\n    auto dfs = [&](auto self, int x) -> void {\n        for (int\
+    \ y: T.get_children(x)) {\n            data[y] = f(data[x], x, y);\n         \
+    \   self(self, y);\n        }\n    };\n\n    dfs(dfs, T.get_root());\n    return\
+    \ data;\n}\n\ntemplate<typename X, typename M>\nvector<X> Tree_DP_from_Leaf(Tree\
     \ &T, function<M(X, int, int)> f, function<X(M, int)> g, function<M(M, M)> merge,\
     \ const M unit) {\n    vector<X> data(T.vector_size());\n\n    auto dfs = [&](auto\
     \ self, int v) -> void {\n        M children_product = unit;\n        for (int\
@@ -335,12 +318,12 @@ data:
   path: Tree/Tree_DP.hpp
   requiredBy:
   - Tree/Rerooting.hpp
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-09-26 23:42:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yukicoder/763.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Diameter.test.cpp
   - verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
+  - verify/yukicoder/763.test.cpp
 documentation_of: Tree/Tree_DP.hpp
 layout: document
 title: "\u6728 DP"

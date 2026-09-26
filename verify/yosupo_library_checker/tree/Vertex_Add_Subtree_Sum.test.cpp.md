@@ -5,6 +5,9 @@ data:
     path: Segment_Tree/Segment_Tree.hpp
     title: Segment Tree
   - icon: ':heavy_check_mark:'
+    path: Tree/Euler_Tour.hpp
+    title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC (Euler Tour)"
+  - icon: ':heavy_check_mark:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
   - icon: ':heavy_check_mark:'
@@ -262,42 +265,61 @@ data:
     \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
     \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
     \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
+    \    return x;\n    }\n\n    vector<int> path(int u, int v) const {\n        int\
+    \ w = lowest_common_ancestor_greedy(u, v);\n\n        vector<int> path_first{u},\
+    \ path_second{v};\n\n        while (u != w) {\n            u = get_parent(u);\n\
+    \            path_first.emplace_back(u);\n        }\n\n        while (v != w)\
+    \ {\n            v = get_parent(v);\n            path_second.emplace_back(v);\n\
+    \        }\n\n        path_second.pop_back();\n        reverse(path_second.begin(),\
+    \ path_second.end());\n\n        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()),\
+    \ make_move_iterator(path_second.end()));\n\n        return path_first;\n    }\n\
+    \n    inline int order() const { return N; }\n    inline int offset() const {\
+    \ return _offset; }\n};\n\nTree Construct_Tree(int N, vector<pair<int, int>> edges,\
+    \ int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset, vector<int>());\n\
+    \    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n\
+    \    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\n    vector<bool> seen(N\
+    \ + 1, false);\n    seen[root] = true;\n    vector<int> stack({root});\n\n   \
+    \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
+    \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
+    \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n#line 2 \"Tree/Euler_Tour.hpp\"\
+    \n\n#line 5 \"Tree/Euler_Tour.hpp\"\n\n// \u8FBA (x, y) \u304C\u30AA\u30A4\u30E9\
+    \u30FC\u30C4\u30A2\u30FC\u4E0A\u3067\u89AA\u2192\u5B50 (Forward) \u304B\u5B50\u2192\
+    \u89AA (Backward) \u304B\u3092\u8868\u3059.\nenum class Euler_Tour_Edge_Direction\
+    \ { Forward = 1, Backward = -1 };\n\nclass Euler_Tour {\n    private:\n    const\
+    \ Tree &T;\n\n    bool has_euler_tour_vertex = false, has_euler_tour_edge = false;\n\
+    \n    public:\n    vector<int> in_time, out_time;\n    vector<int> euler_tour_vertex;\n\
+    \    vector<tuple<int, int, Euler_Tour_Edge_Direction>> euler_tour_edge;\n\n \
+    \   Euler_Tour(const Tree &T): T(T) {\n        assert(T.is_locked());\n    }\n\
+    \n    // Euler Tour (\u9802\u70B9) \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\
+    \u3046.\n    void calculate_euler_tour_vertex() {\n        if (has_euler_tour_vertex)\
+    \ { return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(T.vector_size(),\
+    \ -1);\n        out_time.assign(T.vector_size(), -1);\n\n        auto dfs = [&](auto\
+    \ self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
+    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: T.get_children(x))\
     \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
+    \ = (int)euler_tour_vertex.size() - 1;\n            unless(T.is_root(x)) { euler_tour_vertex.emplace_back(T.get_parent(x));\
+    \ }\n        };\n\n        dfs(dfs, T.get_root());\n\n        has_euler_tour_vertex\
+    \ = true;\n    }\n\n    // Euler Tour (\u8FBA) \u306B\u95A2\u3059\u308B\u8A08\u7B97\
+    \u3092\u884C\u3046.\n    void calculate_euler_tour_edge() {\n        if (has_euler_tour_edge)\
     \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
+    \n        for (int t = 0; t < 2 * (T.order() - 1); t++) {\n            int x =\
+    \ euler_tour_vertex[t], y = euler_tour_vertex[t + 1];\n            auto k = (x\
+    \ == T.get_parent(y)) ? Euler_Tour_Edge_Direction::Forward : Euler_Tour_Edge_Direction::Backward;\n\
     \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\n\n#line 4 \"Segment_Tree/Segment_Tree.hpp\"\
+    \        has_euler_tour_edge = true;\n    }\n\n    // \u9802\u70B9 x \u306E\u90E8\
+    \u5206\u6728\u304C, \u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u5217\u4E0A\u3067\
+    \u5BFE\u5FDC\u3059\u308B\u533A\u9593 [in_time[x], out_time[x]] \u3092\u8FD4\u3059\
+    .\n    pair<int, int> subtree_range(const int &x) {\n        calculate_euler_tour_vertex();\n\
+    \        return make_pair(in_time[x], out_time[x]);\n    }\n\n    // \u9802\u70B9\
+    \ x \u306E\u90E8\u5206\u6728\u306B\u542B\u307E\u308C\u308B\u8FBA\u304C, euler_tour_edge\
+    \ \u4E0A\u3067\u5BFE\u5FDC\u3059\u308B\u534A\u958B\u533A\u9593 [l, r) \u3092\u8FD4\
+    \u3059.\n    pair<int, int> edge_range(const int &x) {\n        calculate_euler_tour_edge();\n\
+    \        return make_pair(in_time[x], out_time[x]);\n    }\n\n    // x \u306F\
+    \ y \u306E\u7956\u5148 (\u81EA\u5206\u81EA\u8EAB\u3082\u542B\u3080) \u304B?\n\
+    \    bool is_ancestor(const int &x, const int &y) {\n        calculate_euler_tour_vertex();\n\
+    \        return in_time[x] <= in_time[y] && out_time[y] <= out_time[x];\n    }\n\
+    };\n#line 2 \"Segment_Tree/Segment_Tree.hpp\"\n\n#line 4 \"Segment_Tree/Segment_Tree.hpp\"\
     \n\ntemplate<typename M, typename Op = function<M(M, M)>>\nclass Segment_Tree{\n\
     \    private:\n    int n;\n    vector<M> data;\n    const Op op;\n    const M\
     \ unit;\n\n    public:\n    Segment_Tree(int size, Op op, const M unit): n(),\
@@ -338,31 +360,31 @@ data:
     \ r + 1 - n;\n\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\
     \ntemplate<typename M, typename Op>\nSegment_Tree(int, Op, M) -> Segment_Tree<M,\
     \ Op>;\n\ntemplate<typename M, typename Op>\nSegment_Tree(const vector<M> &, Op,\
-    \ M) -> Segment_Tree<M, Op>;\n#line 6 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\
+    \ M) -> Segment_Tree<M, Op>;\n#line 7 \"Tree/Subtree_Monoid_Vertex_Query.hpp\"\
     \n\ntemplate<typename M>\nclass Subtree_Monoid_Vertex_Query {\n    private:\n\
-    \    Tree T;\n    unique_ptr<Segment_Tree<M, function<M(M, M)>>> S;\n\n    public:\n\
-    \    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M> &data, const function<M(M,\
-    \ M)> op, const M unit): T(tree) {\n        T.calculate_euler_tour_vertex();\n\
-    \n        // NEXT: \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306B\u5BFE\
-    \u5FDC + Segment Tree \u306E\u30D9\u30AF\u30C8\u30EB\u306E\u30B5\u30A4\u30BA\u3092\
-    \u4E0B\u3052\u308B.\n\n        int n = T.order();\n        vector<M> first(2 *\
-    \ n);\n        for (int v = T.offset(); v < T.vector_size(); v++) {\n        \
-    \    first[T.in_time[v]] = data[v];\n        }\n\n        S = make_unique<Segment_Tree<M,\
-    \ function<M(M, M)>>>(first, op, unit);\n    }\n\n    /*\n    @brief \u9802\u70B9\
-    \ `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B.\n    @param v \u9802\u70B9\n\
-    \    @param x \u5909\u66F4\u5F8C\u306E `M` \u306E\u9802\u70B9 `v` \u306B\u304A\
-    \u3051\u308B\u5024\n    */\n    void update(const int &v, const M &x) {\n    \
-    \    S->update(T.in_time[v], x);\n    }\n\n    /*\n    @brief \u9802\u70B9 `v`\
-    \ \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\
-    \u7A4D\u3092\u6C42\u3081\u308B.\n    @param v \u90E8\u5206\u6728\u306E\u9802\u70B9\
-    \n    @returns \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\
-    \u306B\u95A2\u3059\u308B\u7DCF\u7A4D\n    */\n    M query(const int &v) {\n  \
-    \      return S->product(T.in_time[v], T.out_time[v]);\n    }\n};\n#line 4 \"\
-    verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp\"\n\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N); cin >> a;\n\n    Tree\
-    \ T(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n        int\
-    \ p; cin >> p;\n        T.set_parent(i, p);\n    }\n\n    T.seal();\n\n    auto\
-    \ add = [](const ll &x, const ll &y) -> ll { return x + y; };\n    Subtree_Monoid_Vertex_Query<ll>\
+    \    Tree T;\n    Euler_Tour ET;\n    unique_ptr<Segment_Tree<M, function<M(M,\
+    \ M)>>> S;\n\n    public:\n    Subtree_Monoid_Vertex_Query(Tree &tree, const vector<M>\
+    \ &data, const function<M(M, M)> op, const M unit): T(tree), ET(T) {\n       \
+    \ ET.calculate_euler_tour_vertex();\n\n        // NEXT: \u9045\u5EF6\u30BB\u30B0\
+    \u30E1\u30F3\u30C8\u6728\u306B\u5BFE\u5FDC + Segment Tree \u306E\u30D9\u30AF\u30C8\
+    \u30EB\u306E\u30B5\u30A4\u30BA\u3092\u4E0B\u3052\u308B.\n\n        int n = T.order();\n\
+    \        vector<M> first(2 * n);\n        for (int v = T.offset(); v < T.vector_size();\
+    \ v++) {\n            first[ET.in_time[v]] = data[v];\n        }\n\n        S\
+    \ = make_unique<Segment_Tree<M, function<M(M, M)>>>(first, op, unit);\n    }\n\
+    \n    /*\n    @brief \u9802\u70B9 `v` \u3092 `x` \u306B\u5909\u66F4\u3059\u308B\
+    .\n    @param v \u9802\u70B9\n    @param x \u5909\u66F4\u5F8C\u306E `M` \u306E\
+    \u9802\u70B9 `v` \u306B\u304A\u3051\u308B\u5024\n    */\n    void update(const\
+    \ int &v, const M &x) {\n        S->update(ET.in_time[v], x);\n    }\n\n    /*\n\
+    \    @brief \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\u306B\
+    \u95A2\u3059\u308B\u7DCF\u7A4D\u3092\u6C42\u3081\u308B.\n    @param v \u90E8\u5206\
+    \u6728\u306E\u9802\u70B9\n    @returns \u9802\u70B9 `v` \u3092\u6839\u3068\u3059\
+    \u308B\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u7DCF\u7A4D\n    */\n    M query(const\
+    \ int &v) {\n        return S->product(ET.in_time[v], ET.out_time[v]);\n    }\n\
+    };\n#line 4 \"verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp\"\
+    \n\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> a(N); cin >> a;\n\
+    \n    Tree T(N);\n\n    T.set_root(0);\n    for (int i = 1; i < N; i++) {\n  \
+    \      int p; cin >> p;\n        T.set_parent(i, p);\n    }\n\n    T.seal();\n\
+    \n    auto add = [](const ll &x, const ll &y) -> ll { return x + y; };\n    Subtree_Monoid_Vertex_Query<ll>\
     \ X(T, a, add, 0LL);\n\n    for (int q = 0; q < Q; q++) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int u; ll x;\n            cin >> u\
     \ >> x;\n            a[u] += x;\n            X.update(u, a[u]);\n        } else\
@@ -389,11 +411,12 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   - Tree/Tree.hpp
+  - Tree/Euler_Tour.hpp
   - Segment_Tree/Segment_Tree.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
   requiredBy: []
-  timestamp: '2026-09-20 10:37:35+09:00'
+  timestamp: '2026-09-26 23:48:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp

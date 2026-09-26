@@ -258,52 +258,34 @@ data:
     \ > vertex_depth(y)) { swap(x, y); }\n\n        while (vertex_depth(x) < vertex_depth(y))\
     \ {\n            y = parent[y];\n        }\n\n        while (x != y) {\n     \
     \       x = get_parent(x);\n            y = get_parent(y);\n        }\n\n    \
-    \    return x;\n    }\n\n    private:\n    bool has_euler_tour_vertex = false,\
-    \ has_euler_tour_edge = false;\n\n    public:\n    vector<int> in_time, out_time;\n\
-    \    vector<int> euler_tour_vertex;\n    vector<tuple<int, int, int>> euler_tour_edge;\n\
-    \n    // Euler Tour \u306B\u95A2\u3059\u308B\u8A08\u7B97\u3092\u884C\u3046.\n\
-    \    void calculate_euler_tour_vertex() {\n        if(has_euler_tour_vertex) {\
-    \ return; }\n\n        euler_tour_vertex.clear();\n        in_time.assign(N +\
-    \ offset(), -1);\n        out_time.assign(N + offset(), -1);\n\n        auto dfs\
-    \ = [&](auto self, int x) -> void {\n            in_time[x] = (int)euler_tour_vertex.size();\n\
-    \            euler_tour_vertex.emplace_back(x);\n\n            for (int y: children[x])\
-    \ {\n                self(self, y);\n            }\n\n            out_time[x]\
-    \ = (int)euler_tour_vertex.size() - 1;\n            unless(is_root(x)) { euler_tour_vertex.emplace_back(parent[x]);\
-    \ }\n        };\n\n        dfs(dfs, root);\n\n        has_euler_tour_vertex =\
-    \ true;\n    }\n\n    void calculate_euler_tour_edge() {\n        if(has_euler_tour_edge)\
-    \ { return; }\n\n        calculate_euler_tour_vertex();\n        euler_tour_edge.clear();\n\
-    \n        for (int t = 0; t < 2 * (N - 1); t++) {\n            int x = euler_tour_vertex[t],\
-    \ y = euler_tour_vertex[t + 1];\n            int k = (x == parent[y]) ? 1 : -1;\n\
-    \            euler_tour_edge.emplace_back(make_tuple(x, y, k));\n        }\n\n\
-    \        has_euler_tour_edge = true;\n    }\n\n    vector<int> path(int u, int\
-    \ v) const {\n        int w = lowest_common_ancestor_greedy(u, v);\n\n       \
-    \ vector<int> path_first{u}, path_second{v};\n\n        while (u != w) {\n   \
-    \         u = get_parent(u);\n            path_first.emplace_back(u);\n      \
-    \  }\n\n        while (v != w) {\n            v = get_parent(v);\n           \
-    \ path_second.emplace_back(v);\n        }\n\n        path_second.pop_back();\n\
-    \        reverse(path_second.begin(), path_second.end());\n\n        path_first.insert(path_first.end(),\
-    \ make_move_iterator(path_second.begin()), make_move_iterator(path_second.end()));\n\
-    \n        return path_first;\n    }\n\n    inline int order() const { return N;\
-    \ }\n    inline int offset() const { return _offset; }\n};\n\nTree Construct_Tree(int\
-    \ N, vector<pair<int, int>> edges, int root, int offset = 0) {\n    vector<vector<int>>\
-    \ adj(N + offset, vector<int>());\n    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n\
-    \        adj[v].emplace_back(u);\n    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\
-    \n    vector<bool> seen(N + 1, false);\n    seen[root] = true;\n    vector<int>\
-    \ stack({root});\n\n    until(stack.empty()) {\n        int v = stack.back();\n\
-    \        stack.pop_back();\n\n        for (int w: adj[v]) {\n            if (seen[w])\
-    \ { continue; }\n\n            seen[w] = true;\n            T.set_parent(w, v);\n\
-    \            stack.emplace_back(w);\n        }\n    }\n\n    T.seal();\n    return\
-    \ T;\n}\n#line 5 \"Tree/Lowest_Common_Ancestor.hpp\"\n\n/**\n * @brief \u30C0\u30D6\
-    \u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\u5C0F\u5171\u901A\u5148\u7956\
-    \ (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\u30AF\u30E9\u30B9.\n\
-    \ * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\u30EA\u306B O(log N) \u304B\
-    \u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n    private:\n    const Tree\
-    \ &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\n    public:\n  \
-    \  /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF. \u30C0\u30D6\
-    \u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\u308B.\n  \
-    \   * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\u3066\
-    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
+    \    return x;\n    }\n\n    vector<int> path(int u, int v) const {\n        int\
+    \ w = lowest_common_ancestor_greedy(u, v);\n\n        vector<int> path_first{u},\
+    \ path_second{v};\n\n        while (u != w) {\n            u = get_parent(u);\n\
+    \            path_first.emplace_back(u);\n        }\n\n        while (v != w)\
+    \ {\n            v = get_parent(v);\n            path_second.emplace_back(v);\n\
+    \        }\n\n        path_second.pop_back();\n        reverse(path_second.begin(),\
+    \ path_second.end());\n\n        path_first.insert(path_first.end(), make_move_iterator(path_second.begin()),\
+    \ make_move_iterator(path_second.end()));\n\n        return path_first;\n    }\n\
+    \n    inline int order() const { return N; }\n    inline int offset() const {\
+    \ return _offset; }\n};\n\nTree Construct_Tree(int N, vector<pair<int, int>> edges,\
+    \ int root, int offset = 0) {\n    vector<vector<int>> adj(N + offset, vector<int>());\n\
+    \    for (auto &[u, v]: edges) {\n        adj[u].emplace_back(v);\n        adj[v].emplace_back(u);\n\
+    \    }\n\n    Tree T(N, offset);\n    T.set_root(root);\n\n    vector<bool> seen(N\
+    \ + 1, false);\n    seen[root] = true;\n    vector<int> stack({root});\n\n   \
+    \ until(stack.empty()) {\n        int v = stack.back();\n        stack.pop_back();\n\
+    \n        for (int w: adj[v]) {\n            if (seen[w]) { continue; }\n\n  \
+    \          seen[w] = true;\n            T.set_parent(w, v);\n            stack.emplace_back(w);\n\
+    \        }\n    }\n\n    T.seal();\n    return T;\n}\n#line 5 \"Tree/Lowest_Common_Ancestor.hpp\"\
+    \n\n/**\n * @brief \u30C0\u30D6\u30EA\u30F3\u30B0\u3092\u7528\u3044\u305F\u6700\
+    \u5C0F\u5171\u901A\u5148\u7956 (LCA) \u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\
+    \u308B\u30AF\u30E9\u30B9.\n * \u69CB\u7BC9\u306B O(N log N), \u5404\u30AF\u30A8\
+    \u30EA\u306B O(log N) \u304B\u304B\u308B.\n */\nclass Lowest_Common_Ancestor {\n\
+    \    private:\n    const Tree &T;\n    int N_bit;\n    vector<vector<int>> upper_list;\n\
+    \n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    . \u30C0\u30D6\u30EA\u30F3\u30B0\u30C6\u30FC\u30D6\u30EB\u3092\u69CB\u7BC9\u3059\
+    \u308B.\n     * @param tree \u5BFE\u8C61\u3068\u306A\u308B Tree \u30AA\u30D6\u30B8\
+    \u30A7\u30AF\u30C8. \u4E8B\u524D\u306B seal() (is_locked() == true) \u3055\u308C\
+    \u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\u308B.\n     */\n    Lowest_Common_Ancestor(const\
     \ Tree &tree) : T(tree) {\n        assert(T.is_locked());\n        int N = T.order();\n\
     \        int offset = T.offset();\n\n        N_bit = 0;\n        while ((1 <<\
     \ N_bit) <= N) { N_bit++; }\n\n        upper_list.assign(N_bit, vector<int>(N\
@@ -378,7 +360,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-09-26 23:42:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp

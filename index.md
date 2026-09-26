@@ -730,6 +730,9 @@ data:
       path: Tree/Centroid_Decomposition.hpp
       title: "\u91CD\u5FC3\u5206\u89E3 (Centroid Decomposition)"
     - icon: ':heavy_check_mark:'
+      path: Tree/Euler_Tour.hpp
+      title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC (Euler Tour)"
+    - icon: ':heavy_check_mark:'
       path: Tree/Generator.hpp
       title: Tree/Generator.hpp
     - icon: ':heavy_check_mark:'

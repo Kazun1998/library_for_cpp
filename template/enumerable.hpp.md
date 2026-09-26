@@ -406,8 +406,8 @@ data:
   isVerificationFile: false
   path: template/enumerable.hpp
   requiredBy:
-  - Math/Lagrange_Interpolation.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
+  - Math/Lagrange_Interpolation.hpp
   timestamp: '2026-09-13 12:27:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

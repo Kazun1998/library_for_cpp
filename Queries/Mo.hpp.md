@@ -31,8 +31,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\
-      \u30EA\u3092\u8FFD\u52A0\u3059\u308B"
+    document_title: "Mo's algorithm \u3092\u6271\u3046\u30AF\u30A8\u30EA\u5217\u3092\
+      \u521D\u671F\u5316\u3059\u308B"
     links: []
   bundledCode: "#line 2 \"Queries/Mo.hpp\"\n\n#line 2 \"template/template.hpp\"\n\n\
     using namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
@@ -200,48 +200,80 @@ data:
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 4 \"Queries/Mo.hpp\"\n\nclass Mo {\n    private:\n    int N;\n\
-    \    int query_count;\n    vector<int> left, right;\n\n    public:\n    Mo(const\
-    \ int N): N(N), query_count(0), left(0), right(0) {}\n\n    /// @brief \u9589\u533A\
-    \u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\u3092\u8FFD\u52A0\u3059\
-    \u308B\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n    void\
-    \ add_query(const int l, const int r) {\n        left.emplace_back(l);\n     \
-    \   right.emplace_back(r + 1);\n        query_count++;\n    }\n\n    /// @brief\
-    \ \u534A\u958B\u533A\u9593 [l, r) \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\u3092\
-    \u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF (inclusive)\n    /// @param\
-    \ r \u53F3\u7AEF (exclusive)\n    void add_range(const int l, const int r) {\n\
-    \        left.emplace_back(l);\n        right.emplace_back(r);\n        query_count++;\n\
-    \    }\n\n    /// @brief Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    ///\
-    \ @tparam ADD \u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\
-    \n    /// @tparam DEL \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\
+    \    int query_count;\n    vector<int> left, right;\n\n    public:\n    /// @brief\
+    \ Mo's algorithm \u3092\u6271\u3046\u30AF\u30A8\u30EA\u5217\u3092\u521D\u671F\u5316\
+    \u3059\u308B\n    /// @param N \u5217\u306E\u8981\u7D20\u6570(\u6DFB\u5B57\u306F\
+    \ [0, N) \u306E\u7BC4\u56F2\u3092\u60F3\u5B9A)\n    Mo(const int N): N(N), query_count(0),\
+    \ left(0), right(0) {}\n\n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u95A2\
+    \u3059\u308B\u30AF\u30A8\u30EA\u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l\
+    \ \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\n    void add_query(const int l,\
+    \ const int r) {\n        left.emplace_back(l);\n        right.emplace_back(r\
+    \ + 1);\n        query_count++;\n    }\n\n    /// @brief \u534A\u958B\u533A\u9593\
+    \ [l, r) \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\u3092\u8FFD\u52A0\u3059\u308B\
+    \n    /// @param l \u5DE6\u7AEF (inclusive)\n    /// @param r \u53F3\u7AEF (exclusive)\n\
+    \    void add_range(const int l, const int r) {\n        left.emplace_back(l);\n\
+    \        right.emplace_back(r);\n        query_count++;\n    }\n\n    /// @brief\
+    \ Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\n    /// @tparam ADD \u8981\u7D20\
+    \u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam DEL \u8981\
+    \u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam\
+    \ REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\
+    \u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\
+    \u95A2\u6570 (\u5F15\u6570\u306F\u8FFD\u52A0\u3059\u308B\u8981\u7D20\u306E\u5217\
+    \u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param\
+    \ del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\
+    \u524A\u9664\u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem \u30AF\u30A8\u30EA\u306E\u56DE\
+    \u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30AF\u30A8\
+    \u30EA ID)\n    template<typename ADD, typename DEL, typename REM>\n    void run(const\
+    \ ADD &add, const DEL &del, const REM &rem) {\n        run(add, add, del, del,\
+    \ rem);\n    }\n\n    /// @brief Mo's algorithm \u3092\u5B9F\u884C\u3059\u308B\
+    (\u5DE6\u53F3\u3067\u8FFD\u52A0\u30FB\u524A\u9664\u306E\u51E6\u7406\u3092\u5225\
+    \u3005\u306B\u6307\u5B9A\u3059\u308B)\n    /// @tparam ADD_L \u5DE6\u7AEF\u3092\
+    \u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam ADD_R \u53F3\
+    \u7AEF\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @tparam\
+    \ DEL_L \u5DE6\u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\u578B\n \
+    \   /// @tparam DEL_R \u53F3\u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\u306E\
     \u578B\n    /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\
-    \u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add \u8981\u7D20\u3092\u8FFD\
-    \u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9)\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\
-    \ (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param rem\
-    \ \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570\
-    \ (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename\
-    \ DEL, typename REM>\n    void run(const ADD &add, const DEL &del, const REM &rem)\
-    \ {\n        int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count\
-    \ * 2.0 / 3.0)));\n        int bucket_count = div_ceil(N, bucket_size);\n    \
-    \    vector<vector<int>> buckets(bucket_count, vector<int>(0));\n\n        for\
-    \ (int q = 0; q < query_count; q++) {\n            int bucket_id = div_floor(left[q],\
-    \ bucket_size);\n            buckets[min(bucket_count - 1, bucket_id)].emplace_back(q);\n\
-    \        }\n\n        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id\
-    \ < bucket_count; bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n\
-    \            if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
-    \ [&](const int p, const int q) -> bool { return right[p] < right[q]; });\n  \
-    \          } else {\n                sort(bucket.rbegin(), bucket.rend(), [&](const\
-    \ int p, const int q) -> bool { return right[p] < right[q]; });\n            }\n\
-    \n            for (const int q: bucket) {\n                while (left[q] < l)\
-    \ add(--l);\n                while (r < right[q]) add(r++);\n\n              \
-    \  while(l < left[q]) del(l++);\n                while(right[q] < r) del(--r);\n\
+    \u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add_left \u5DE6\u7AEF\u3092\
+    \u8FFD\u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u8FFD\u52A0\u3059\u308B\
+    \u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\
+    \u30B9)\n    /// @param add_right \u53F3\u7AEF\u3092\u8FFD\u52A0\u3059\u308B\u95A2\
+    \u6570 (\u5F15\u6570\u306F\u8FFD\u52A0\u3059\u308B\u8981\u7D20\u306E\u5217\u306B\
+    \u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param del_left\
+    \ \u5DE6\u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u524A\
+    \u9664\u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9)\n    /// @param del_right \u53F3\u7AEF\u3092\u524A\u9664\
+    \u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u524A\u9664\u3059\u308B\u8981\u7D20\
+    \u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n  \
+    \  /// @param rem \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\
+    \u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename\
+    \ ADD_L, typename ADD_R, typename DEL_L, typename DEL_R, typename REM>\n    void\
+    \ run(const ADD_L &add_left, const ADD_R &add_right, const DEL_L &del_left, const\
+    \ DEL_R &del_right, const REM &rem) {\n        int bucket_size = max<int>(1, 1.0\
+    \ * N / max<double>(1.0, sqrt(query_count * 2.0 / 3.0)));\n        int bucket_count\
+    \ = div_ceil(N, bucket_size);\n        vector<vector<int>> buckets(bucket_count,\
+    \ vector<int>(0));\n\n        for (int q = 0; q < query_count; q++) {\n      \
+    \      int bucket_id = div_floor(left[q], bucket_size);\n            buckets[min(bucket_count\
+    \ - 1, bucket_id)].emplace_back(q);\n        }\n\n        int l = 0, r = 0;\n\
+    \        for (int bucket_id = 0; bucket_id < bucket_count; bucket_id++) {\n  \
+    \          auto &bucket = buckets[bucket_id];\n            if (bucket_id % 2 ==\
+    \ 0) {\n                sort(bucket.begin(), bucket.end(), [&](const int p, const\
+    \ int q) -> bool { return right[p] < right[q]; });\n            } else {\n   \
+    \             sort(bucket.rbegin(), bucket.rend(), [&](const int p, const int\
+    \ q) -> bool { return right[p] < right[q]; });\n            }\n\n            for\
+    \ (const int q: bucket) {\n                while (left[q] < l) add_left(--l);\n\
+    \                while (r < right[q]) add_right(r++);\n\n                while(l\
+    \ < left[q]) del_left(l++);\n                while(right[q] < r) del_right(--r);\n\
     \n                rem(q);\n            }\n        }\n    }\n};\n"
   code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nclass Mo {\n   \
     \ private:\n    int N;\n    int query_count;\n    vector<int> left, right;\n\n\
-    \    public:\n    Mo(const int N): N(N), query_count(0), left(0), right(0) {}\n\
-    \n    /// @brief \u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\
-    \u30EA\u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF\n    /// @param\
-    \ r \u53F3\u7AEF\n    void add_query(const int l, const int r) {\n        left.emplace_back(l);\n\
+    \    public:\n    /// @brief Mo's algorithm \u3092\u6271\u3046\u30AF\u30A8\u30EA\
+    \u5217\u3092\u521D\u671F\u5316\u3059\u308B\n    /// @param N \u5217\u306E\u8981\
+    \u7D20\u6570(\u6DFB\u5B57\u306F [0, N) \u306E\u7BC4\u56F2\u3092\u60F3\u5B9A)\n\
+    \    Mo(const int N): N(N), query_count(0), left(0), right(0) {}\n\n    /// @brief\
+    \ \u9589\u533A\u9593 [l, r] \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\u3092\u8FFD\
+    \u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\u7AEF\
+    \n    void add_query(const int l, const int r) {\n        left.emplace_back(l);\n\
     \        right.emplace_back(r + 1);\n        query_count++;\n    }\n\n    ///\
     \ @brief \u534A\u958B\u533A\u9593 [l, r) \u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA\
     \u3092\u8FFD\u52A0\u3059\u308B\n    /// @param l \u5DE6\u7AEF (inclusive)\n  \
@@ -252,27 +284,54 @@ data:
     \u6570\u306E\u578B\n    /// @tparam DEL \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
     \u95A2\u6570\u306E\u578B\n    /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\
     \u3092\u51E6\u7406\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add \u8981\
-    \u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9)\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\
-    \u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n\
-    \    /// @param rem \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\
-    \u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename\
-    \ ADD, typename DEL, typename REM>\n    void run(const ADD &add, const DEL &del,\
-    \ const REM &rem) {\n        int bucket_size = max<int>(1, 1.0 * N / max<double>(1.0,\
-    \ sqrt(query_count * 2.0 / 3.0)));\n        int bucket_count = div_ceil(N, bucket_size);\n\
-    \        vector<vector<int>> buckets(bucket_count, vector<int>(0));\n\n      \
-    \  for (int q = 0; q < query_count; q++) {\n            int bucket_id = div_floor(left[q],\
-    \ bucket_size);\n            buckets[min(bucket_count - 1, bucket_id)].emplace_back(q);\n\
-    \        }\n\n        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id\
-    \ < bucket_count; bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n\
-    \            if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
+    \u7D20\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u8FFD\u52A0\
+    \u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9)\n    /// @param del \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
+    \u95A2\u6570 (\u5F15\u6570\u306F\u524A\u9664\u3059\u308B\u8981\u7D20\u306E\u5217\
+    \u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param\
+    \ rem \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\
+    \u6570 (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n    template<typename ADD, typename\
+    \ DEL, typename REM>\n    void run(const ADD &add, const DEL &del, const REM &rem)\
+    \ {\n        run(add, add, del, del, rem);\n    }\n\n    /// @brief Mo's algorithm\
+    \ \u3092\u5B9F\u884C\u3059\u308B(\u5DE6\u53F3\u3067\u8FFD\u52A0\u30FB\u524A\u9664\
+    \u306E\u51E6\u7406\u3092\u5225\u3005\u306B\u6307\u5B9A\u3059\u308B)\n    /// @tparam\
+    \ ADD_L \u5DE6\u7AEF\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\u578B\n \
+    \   /// @tparam ADD_R \u53F3\u7AEF\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570\u306E\
+    \u578B\n    /// @tparam DEL_L \u5DE6\u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\
+    \u6570\u306E\u578B\n    /// @tparam DEL_R \u53F3\u7AEF\u3092\u524A\u9664\u3059\
+    \u308B\u95A2\u6570\u306E\u578B\n    /// @tparam REM \u30AF\u30A8\u30EA\u306E\u56DE\
+    \u7B54\u3092\u51E6\u7406\u3059\u308B\u95A2\u6570\u306E\u578B\n    /// @param add_left\
+    \ \u5DE6\u7AEF\u3092\u8FFD\u52A0\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u8FFD\
+    \u52A0\u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9)\n    /// @param add_right \u53F3\u7AEF\u3092\u8FFD\u52A0\
+    \u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u8FFD\u52A0\u3059\u308B\u8981\u7D20\
+    \u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n  \
+    \  /// @param del_left \u5DE6\u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\u6570\
+    \ (\u5F15\u6570\u306F\u524A\u9664\u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\
+    \u3051\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9)\n    /// @param del_right \u53F3\
+    \u7AEF\u3092\u524A\u9664\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u524A\u9664\
+    \u3059\u308B\u8981\u7D20\u306E\u5217\u306B\u304A\u3051\u308B\u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9)\n    /// @param rem \u30AF\u30A8\u30EA\u306E\u56DE\u7B54\u3092\
+    \u51E6\u7406\u3059\u308B\u95A2\u6570 (\u5F15\u6570\u306F\u30AF\u30A8\u30EA ID)\n\
+    \    template<typename ADD_L, typename ADD_R, typename DEL_L, typename DEL_R,\
+    \ typename REM>\n    void run(const ADD_L &add_left, const ADD_R &add_right, const\
+    \ DEL_L &del_left, const DEL_R &del_right, const REM &rem) {\n        int bucket_size\
+    \ = max<int>(1, 1.0 * N / max<double>(1.0, sqrt(query_count * 2.0 / 3.0)));\n\
+    \        int bucket_count = div_ceil(N, bucket_size);\n        vector<vector<int>>\
+    \ buckets(bucket_count, vector<int>(0));\n\n        for (int q = 0; q < query_count;\
+    \ q++) {\n            int bucket_id = div_floor(left[q], bucket_size);\n     \
+    \       buckets[min(bucket_count - 1, bucket_id)].emplace_back(q);\n        }\n\
+    \n        int l = 0, r = 0;\n        for (int bucket_id = 0; bucket_id < bucket_count;\
+    \ bucket_id++) {\n            auto &bucket = buckets[bucket_id];\n           \
+    \ if (bucket_id % 2 == 0) {\n                sort(bucket.begin(), bucket.end(),\
     \ [&](const int p, const int q) -> bool { return right[p] < right[q]; });\n  \
     \          } else {\n                sort(bucket.rbegin(), bucket.rend(), [&](const\
     \ int p, const int q) -> bool { return right[p] < right[q]; });\n            }\n\
     \n            for (const int q: bucket) {\n                while (left[q] < l)\
-    \ add(--l);\n                while (r < right[q]) add(r++);\n\n              \
-    \  while(l < left[q]) del(l++);\n                while(right[q] < r) del(--r);\n\
-    \n                rem(q);\n            }\n        }\n    }\n};\n"
+    \ add_left(--l);\n                while (r < right[q]) add_right(r++);\n\n   \
+    \             while(l < left[q]) del_left(l++);\n                while(right[q]\
+    \ < r) del_right(--r);\n\n                rem(q);\n            }\n        }\n\
+    \    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -284,7 +343,7 @@ data:
   isVerificationFile: false
   path: Queries/Mo.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-09-27 01:21:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Static_Range_Count_Distinct.test.cpp
@@ -310,8 +369,9 @@ Mo アルゴリズムに関する計算を行う.
 - $A$ は $Q$ 個のクエリにおいて固定である.
 - $Q$ 個のクエリが先読みできる.
 - $F(L, R)$ が求まっているとき, そこから $F(L \pm 1, R), F(L, R \pm 1)$ が高速に ($O(\alpha)$ 時間で) 求める.
+- $F(L, R)$ の値の保存 (回答の記録) が $O(\beta)$ 時間で行える.
 
-このとき, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を全て合計でで $O(\alpha N \sqrt{Q})$ Time で求めることが出来る.
+このとき, $F(L_1, R_1), \dots, F(L_Q, R_Q)$ を全て合計で $O(\alpha N \sqrt{Q} + \beta Q)$ Time で求めることが出来る.
 
 ## Contents
 
@@ -329,24 +389,50 @@ Mo(const int N)
 void add_query(const int l, const int r)
 ```
 
-* **閉区間** $[l, r]$ に対するクエリを追加する.
+* **閉区間** $[l, r]$ に対するクエリを追加する ($0 \le l \le r < N$ を想定).
 
-### run
+### add_range
+
+```cpp
+void add_range(const int l, const int r)
+```
+
+* **半開区間** $[l, r)$ に対するクエリを追加する ($0 \le l \le r \le N$ を想定).
+
+### run (共通版)
 
 ```cpp
 template<typename ADD, typename DEL, typename REM>
 void run(const ADD &add, const DEL &del, const REM &rem)
 ```
 
-* 予約された閉区間に対する Mo アルゴリズムを実行する.
+* 予約されたクエリに対する Mo アルゴリズムを実行する.
 * **引数**
-    * `add`: 要素が追加される時の処理 (引数は数列のインデックス).
-    * `del`: 要素が削除される時の処理 (引数は数列のインデックス).
+    * `add`: 要素が追加される時の処理 (引数は追加する要素の列におけるインデックス).
+    * `del`: 要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
     * `rem`: 結果を保存するときの処理 (引数はクエリのインデックス).
-* **計算量**: クエリの数を $Q$ 個, `add`, `del` の計算量を $O(\alpha)$ 時間として, 合計 $O(\alpha N \sqrt{Q})$ 時間.
+* **計算量**: クエリの数を $Q$ 個, `add`, `del` の計算量を $O(\alpha)$ 時間, `rem` の計算量を $O(\beta)$ 時間として, 合計 $O(\alpha N \sqrt{Q} + \beta Q)$ 時間.
+* 内部的には, 下記の左右分離版に対して `run(add, add, del, del, rem)` を呼び出す.
+
+### run (左右分離版)
+
+```cpp
+template<typename ADD_L, typename ADD_R, typename DEL_L, typename DEL_R, typename REM>
+void run(const ADD_L &add_left, const ADD_R &add_right, const DEL_L &del_left, const DEL_R &del_right, const REM &rem)
+```
+
+* 予約されたクエリに対する Mo アルゴリズムを実行する. 左端・右端の追加/削除処理をそれぞれ別に指定できる.
+* **引数**
+    * `add_left`: 左端の要素が追加される時の処理 (引数は追加する要素の列におけるインデックス).
+    * `add_right`: 右端の要素が追加される時の処理 (引数は追加する要素の列におけるインデックス).
+    * `del_left`: 左端の要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
+    * `del_right`: 右端の要素が削除される時の処理 (引数は削除する要素の列におけるインデックス).
+    * `rem`: 結果を保存するときの処理 (引数はクエリのインデックス).
+* **計算量**: クエリの数を $Q$ 個, `add_left`, `add_right`, `del_left`, `del_right` の計算量を $O(\alpha)$ 時間, `rem` の計算量を $O(\beta)$ 時間として, 合計 $O(\alpha N \sqrt{Q} + \beta Q)$ 時間.
 
 ## History
 
 |日付|内容|
 |:---:|:---:|
+|2026/09/27| 左右で `add`/`del` を分けられる `run` を追加 |
 |2026/01/25| Mo クラスの実装 |

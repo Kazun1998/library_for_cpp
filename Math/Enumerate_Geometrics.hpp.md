@@ -232,8 +232,8 @@ data:
   timestamp: '2026-08-09 00:58:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
+  - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial_Limit.test.cpp
 documentation_of: Math/Enumerate_Geometrics.hpp
 layout: document
 redirect_from:
