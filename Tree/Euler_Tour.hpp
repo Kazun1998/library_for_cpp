@@ -3,6 +3,9 @@
 #include "../template/template.hpp"
 #include "Tree.hpp"
 
+// 辺 (x, y) がオイラーツアー上で親→子 (Forward) か子→親 (Backward) かを表す.
+enum class Euler_Tour_Edge_Direction { Forward = 1, Backward = -1 };
+
 class Euler_Tour {
     private:
     const Tree &T;
@@ -12,7 +15,7 @@ class Euler_Tour {
     public:
     vector<int> in_time, out_time;
     vector<int> euler_tour_vertex;
-    vector<tuple<int, int, int>> euler_tour_edge;
+    vector<tuple<int, int, Euler_Tour_Edge_Direction>> euler_tour_edge;
 
     Euler_Tour(const Tree &T): T(T) {
         assert(T.is_locked());
@@ -52,7 +55,7 @@ class Euler_Tour {
 
         for (int t = 0; t < 2 * (T.order() - 1); t++) {
             int x = euler_tour_vertex[t], y = euler_tour_vertex[t + 1];
-            int k = (x == T.get_parent(y)) ? 1 : -1;
+            auto k = (x == T.get_parent(y)) ? Euler_Tour_Edge_Direction::Forward : Euler_Tour_Edge_Direction::Backward;
             euler_tour_edge.emplace_back(make_tuple(x, y, k));
         }
 
