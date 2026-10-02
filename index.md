@@ -85,9 +85,15 @@ data:
     - icon: ':warning:'
       path: Convolution/Max_Convolution.hpp
       title: Convolution/Max_Convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/Max_Plus_Convolution_Concave.hpp
+      title: "\u51F9\u5217\u540C\u58EB\u306E max-plus \u7573\u307F\u8FBC\u307F"
     - icon: ':warning:'
       path: Convolution/Min_Convolution.hpp
       title: Convolution/Min_Convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/Min_Plus_Convolution_Convex.hpp
+      title: "\u51F8\u5217\u540C\u58EB\u306E min-plus \u7573\u307F\u8FBC\u307F"
     - icon: ':heavy_check_mark:'
       path: Convolution/Semilattice_Convolution_Base.hpp
       title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
@@ -944,6 +950,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
       title: verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
+      title: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
+      title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
   - name: verify/yosupo_library_checker/data_structure
     pages:
     - icon: ':heavy_check_mark:'
