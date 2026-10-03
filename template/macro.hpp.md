@@ -77,6 +77,10 @@ data:
     path: Convolution/Min_Plus_Convolution_Convex.hpp
     title: "\u51F8\u5217\u540C\u58EB\u306E min-plus \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
+    path: Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+    title: "\u51F8\u5217\u3068\u4EFB\u610F\u306E\u5217\u306E min-plus \u7573\u307F\
+      \u8FBC\u307F"
+  - icon: ':heavy_check_mark:'
     path: Convolution/Semilattice_Convolution_Base.hpp
     title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
@@ -795,6 +799,9 @@ data:
     path: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
     title: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
+    title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
     title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1334,6 +1341,7 @@ data:
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
+  - Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
   - Convolution/Min_Plus_Convolution_Convex.hpp
   - Convolution/Double_Add_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -1396,6 +1404,7 @@ data:
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
   - verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
+  - verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
   - verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
   - verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp

@@ -2,6 +2,10 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+    title: "\u51F8\u5217\u3068\u4EFB\u610F\u306E\u5217\u306E min-plus \u7573\u307F\
+      \u8FBC\u307F"
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -25,34 +29,38 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Queries/Monotone_Minima.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
-    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
-    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
-    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
-    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
-    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
-    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
-    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
-    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
-    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
-    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
-    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
-    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
-    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
-    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
-    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
+    links:
+    - https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
+  bundledCode: "#line 1 \"verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
+    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
+    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
+    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
+    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
+    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
+    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
+    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
+    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
+    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
+    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
+    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
+    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -194,25 +202,43 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Queries/Monotone_Minima.hpp\"\n\ntemplate<typename FUNC>\n\
-    vector<int> Monotone_Minima(const int n, const int m, const FUNC eval) {\n   \
-    \ vector<int> res(n);\n\n    auto solve = [&](auto self, const int u, const int\
-    \ d, const int l, const int r) -> void {\n        if (u >= d) return;\n\n    \
-    \    const int mid = (u + d) / 2;\n        int best_j = l;\n        for (int j\
-    \ = l + 1; j < r; ++j) {\n            if (eval(mid, j) < eval(mid, best_j)) {\n\
-    \                best_j = j;\n            }\n        }\n        res[mid] = best_j;\n\
-    \n        self(self, u, mid, l, best_j + 1);\n        self(self, mid + 1, d, best_j,\
-    \ r);\n    };\n\n    solve(solve, 0, n, 0, m);\n    return res;\n}\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\ntemplate<typename\
-    \ FUNC>\nvector<int> Monotone_Minima(const int n, const int m, const FUNC eval)\
-    \ {\n    vector<int> res(n);\n\n    auto solve = [&](auto self, const int u, const\
-    \ int d, const int l, const int r) -> void {\n        if (u >= d) return;\n\n\
-    \        const int mid = (u + d) / 2;\n        int best_j = l;\n        for (int\
-    \ j = l + 1; j < r; ++j) {\n            if (eval(mid, j) < eval(mid, best_j))\
-    \ {\n                best_j = j;\n            }\n        }\n        res[mid] =\
-    \ best_j;\n\n        self(self, u, mid, l, best_j + 1);\n        self(self, mid\
-    \ + 1, d, best_j, r);\n    };\n\n    solve(solve, 0, n, 0, m);\n    return res;\n\
-    }\n"
+    \    }\n};\n#line 2 \"Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp\"\n\
+    \n#line 4 \"Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp\"\n\nnamespace\
+    \ convolution {\n    // (min, +) \u7573\u307F\u8FBC\u307F (\u51F8 \xD7 \u4EFB\u610F\
+    )\n    template<typename G>\n    class Min_Plus_Convolution_Convex_Arbitrary {\n\
+    \    public:\n        /// @brief \u4E0B\u306B\u51F8\u306A f \u3068\u4EFB\u610F\
+    \u306E g \u306B\u5BFE\u3057\u3066, min-plus \u7573\u307F\u8FBC\u307F h[k] := min_{i\
+    \ + j = k} (f[i] + g[j]) \u3092\u6C42\u3081\u308B.\n        /// @param f \u4E0B\
+    \u306B\u51F8\u306A G \u4E0A\u306E\u5217\n        /// @param g (\u4EFB\u610F\u306E\
+    ) G \u4E0A\u306E\u5217\n        static vector<G> convolve(const vector<G> &f,\
+    \ const vector<G> &g) {\n            int n = f.size(), m = g.size();\n\n     \
+    \       // \u7A7A\u5217\u306E\u7573\u307F\u8FBC\u307F\u306F\u7A7A\u5217\n    \
+    \        if ((n == 0) || (m == 0)) return {};\n\n            vector<G> h(n + m\
+    \ - 1);\n\n            // k in [kl, kr) \u306B\u3064\u3044\u3066, h[k] \u3092\u4E0E\
+    \u3048\u308B j \u306F [jl, jr) \u306B\u5B58\u5728\u3059\u308B.\n            auto\
+    \ run = [&](auto self, const int kl, const int kr, const int jl, const int jr)\
+    \ -> void {\n                if (kl >= kr) return;\n\n                int k =\
+    \ (kl + kr) / 2;\n\n                // j \u306F 0 <= j < m \u304B\u3064 0 <= k\
+    \ - j < n \u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308B.\n          \
+    \      int best_j = max(jl, k - n + 1);\n                h[k] = f[k - best_j]\
+    \ + g[best_j];\n                for (int j = best_j + 1; j < min({jr, k + 1, m});\
+    \ ++j) {\n                    if (chmin(h[k], f[k - j] + g[j])) {\n          \
+    \              best_j = j;\n                    }\n                }\n\n     \
+    \           self(self, kl, k, jl, best_j + 1);\n                self(self, k +\
+    \ 1, kr, best_j, jr);\n            };\n\n            run(run, 0, n + m - 1, 0,\
+    \ m);\n            return h;\n        }\n    };\n}\n#line 5 \"verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp\"\
+    \n\nvector<int> verify() {\n    int N, M; cin >> N >> M;\n    vector<int> a(N),\
+    \ b(M);\n\n    for (int i = 0; i < N; ++i) {\n        scanf(\"%d\", &a[i]);\n\
+    \    }\n\n    for (int j = 0; j < M; ++j) {\n        scanf(\"%d\", &b[j]);\n \
+    \   }\n\n    return convolution::Min_Plus_Convolution_Convex_Arbitrary<int>::convolve(a,\
+    \ b);\n}\n\nint main() {\n    cout << verify() << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
+    \n\n#include \"../../../template/template.hpp\"\n#include \"../../../Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp\"\
+    \n\nvector<int> verify() {\n    int N, M; cin >> N >> M;\n    vector<int> a(N),\
+    \ b(M);\n\n    for (int i = 0; i < N; ++i) {\n        scanf(\"%d\", &a[i]);\n\
+    \    }\n\n    for (int j = 0; j < M; ++j) {\n        scanf(\"%d\", &b[j]);\n \
+    \   }\n\n    return convolution::Min_Plus_Convolution_Convex_Arbitrary<int>::convolve(a,\
+    \ b);\n}\n\nint main() {\n    cout << verify() << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -221,66 +247,17 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  isVerificationFile: false
-  path: Queries/Monotone_Minima.hpp
+  - Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+  isVerificationFile: true
+  path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2026-10-03 12:42:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Queries/Monotone_Minima.hpp
+documentation_of: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
 layout: document
-title: Monotone Minima
+redirect_from:
+- /verify/verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
+- /verify/verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp.html
+title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
 ---
-
-## Outline
-
-Monotone Minima な $2$ 変数関数 $f(i, j)$ について, 各 $i$ に対する $\displaystyle \min \left(\operatorname*{argmin}_j f(i, j) \right)$ を求める.
-
-## Definition
-
-$Y$ を全順序集合とする.
-
-$f: \\{0, 1, \dots, n - 1 \\} \times \\{0, 1, \dots, m - 1 \\} \to Y$ が Monotone Minima を満たすとは,
-
-$$ \min \left(\operatorname*{argmin}_{0 \leq j < m} f(0, j) \right) \leq \min \left(\operatorname*{argmin}_{0 \leq j < m} f(1, j) \right) \leq \dots \leq \min \left(\operatorname*{argmin}_{0 \leq j < m} f(n-1, j) \right)$$
-
-を満たすことである.
-
-## Theory
-
-Monotone Minima を満たす関数は, [2 変数関数における単調性](/library_for_cpp/Monge.html) で扱う Monotone 行列 ($f(i, j)$ を第 $i$ 行第 $j$ 列の成分とみなしたもの) に他ならない. 以下の条件は, いずれも Monotone Minima を満たすための十分条件である.
-
-* Monge 行列である. すなわち, 任意の $i_1 < i_2$, $j_1 < j_2$ に対して, $f(i_1, j_1) + f(i_2, j_2) \leq f(i_1, j_2) + f(i_2, j_1)$ を満たす.
-* 全単調行列である. (Monge 行列ならば全単調行列である.)
-
-これらの証明や, 関係の詳細は [2 変数関数における単調性](/library_for_cpp/Monge.html) を参照すること.
-
-### Example
-
-下に凸な列 $f$ と任意の列 $g$ に対して, $f(k - j) + g(j)$ は Monge 行列であるため, $(\min, +)$ 畳み込みを Monotone Minima によって計算できる.
-
-* [Min_Plus_Convolution_Convex_Arbitrary](/library_for_cpp/Convolution/Min_Plus_Convolution_Convex_Arbitrary.html)
-
-## Contents
-
-### constructor
-
-```cpp
-template<typename FUNC>
-vector<int> Monotone_Minima(const int n, const int m, const FUNC eval)
-```
-
-* Monotone Minima である関数 `eval` について, 各 $i~(0 \leq i < n)$ に対する $\displaystyle \min \left(\operatorname*{argmin}_{0 \leq j < m} f(i, j) \right)$ を求める.
-* **引数**
-  * $n$: 第 $1$ 引数の範囲
-  * $m$: 第 $2$ 引数の範囲
-  * `eval`: Monotone Minima 関数
-* **計算量**
-  * $O(n + m \log n)$ 時間
-
-## History
-
-|日付|内容|
-|:---:|:---:|
-|2026/07/13| Monotone_Minima 実装 |
-|2026/10/03| Monge 行列, 全単調行列との関係をドキュメントに追記 |

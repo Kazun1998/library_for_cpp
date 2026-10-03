@@ -95,6 +95,10 @@ data:
       path: Convolution/Min_Plus_Convolution_Convex.hpp
       title: "\u51F8\u5217\u540C\u58EB\u306E min-plus \u7573\u307F\u8FBC\u307F"
     - icon: ':heavy_check_mark:'
+      path: Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+      title: "\u51F8\u5217\u3068\u4EFB\u610F\u306E\u5217\u306E min-plus \u7573\u307F\
+        \u8FBC\u307F"
+    - icon: ':heavy_check_mark:'
       path: Convolution/Semilattice_Convolution_Base.hpp
       title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
   - name: Counting
@@ -954,6 +958,9 @@ data:
       path: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
       title: verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp
     - icon: ':heavy_check_mark:'
+      path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
+      title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp
+    - icon: ':heavy_check_mark:'
       path: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
       title: verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp
   - name: verify/yosupo_library_checker/data_structure
@@ -1306,3 +1313,6 @@ data:
       title: verify/yukicoder/Modulo_Order.test.cpp
 layout: toppage
 ---
+## Documents
+
+- [2 変数関数における単調性](/library_for_cpp/Monge.html)
