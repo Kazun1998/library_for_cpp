@@ -313,5 +313,23 @@ class Interval_Set {
         erase(l, r, [](T, T, V){}, [](T, T, V){});
     }
 
+    /// @brief 保持している全ての右半開区間を, 左端の昇順に並べたベクトルとして取得する.
+    /// @return 各要素は (l, r) であり, 右半開区間 [l, r) を表す.
+    vector<pair<T, T>> get_intervals() const {
+        vector<pair<T, T>> res;
+        res.reserve(intervals.size());
+        for (const auto &node: intervals) { res.emplace_back(node.l, node.r); }
+        return res;
+    }
+
+    /// @brief 保持している全ての右半開区間を, 紐づいている値と共に, 左端の昇順に並べたベクトルとして取得する.
+    /// @return 各要素は (l, r, val) であり, 右半開区間 [l, r) に値 val が紐づいていることを表す.
+    vector<tuple<T, T, V>> get_intervals_with_value() const {
+        vector<tuple<T, T, V>> res;
+        res.reserve(intervals.size());
+        for (const auto &[l, r, val]: intervals) { res.emplace_back(l, r, val); }
+        return res;
+    }
+
     constexpr size_t size() const { return set_size; }
 };
