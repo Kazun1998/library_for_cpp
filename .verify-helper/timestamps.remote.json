@@ -43,6 +43,7 @@
 "verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp": "2026-08-09 00:58:25 +0900",
 "verify/yosupo_library_checker/convolution/Max_Plus_Convolution_Concave_Concave.test.cpp": "2026-10-03 01:33:11 +0900",
+"verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Arbitrary.test.cpp": "2026-10-03 12:42:38 +0900",
 "verify/yosupo_library_checker/convolution/Min_Plus_Convolution_Convex_Convex.test.cpp": "2026-10-03 01:26:59 +0900",
 "verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp": "2025-11-18 00:49:33 +0900",
 "verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp": "2026-08-09 00:58:25 +0900",
