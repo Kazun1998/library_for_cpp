@@ -220,6 +220,41 @@ template<typename F>
 F inner(const Field_Vector<F> &u, const Field_Vector<F> &v) { return u.inner(v); }
 
 /**
+ * @brief 二つのベクトルの直和を計算する
+ * @tparam F 体の型
+ * @param u ベクトル1
+ * @param v ベクトル2
+ * @return Field_Vector<F> 直和の結果
+ */
+template<typename F>
+Field_Vector<F> Direct_Sum(const Field_Vector<F> &u, const Field_Vector<F> &v) {
+    vector<F> res_vec;
+    res_vec.reserve(u.dimension() + v.dimension());
+    res_vec.insert(res_vec.end(), u.begin(), u.end());
+    res_vec.insert(res_vec.end(), v.begin(), v.end());
+    return Field_Vector<F>(res_vec);
+}
+
+/**
+ * @brief 複数のベクトルの直和を計算する
+ * @tparam F 体の型
+ * @param vs ベクトルのリスト
+ * @return Field_Vector<F> 直和の結果
+ */
+template<typename F>
+Field_Vector<F> Direct_Sum(const vector<Field_Vector<F>> &vs) {
+    int total_dim = 0;
+    for (const auto &v : vs) total_dim += v.dimension();
+
+    vector<F> res_vec;
+    res_vec.reserve(total_dim);
+    for (const auto &v : vs) {
+        res_vec.insert(res_vec.end(), v.begin(), v.end());
+    }
+    return Field_Vector<F>(res_vec);
+}
+
+/**
  * @brief 行列 A によるベクトル v の線形変換（作用） Ax を計算する
  * @param A 行列
  * @param v ベクトル

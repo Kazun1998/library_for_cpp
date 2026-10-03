@@ -302,3 +302,37 @@ Field_Matrix<F> Diagonal_Matrix(vector<F> a) {
 
     return X;
 }
+
+/**
+ * @brief 複数の行列を並べて一つの大きな行列（ブロック行列）を作る便利関数
+ * @tparam F 体の型
+ * @param blocks 行列の2次元配列
+ * @return Field_Matrix<F> 結合された行列
+ */
+template<typename F>
+Field_Matrix<F> Block_Matrix(const vector<vector<Field_Matrix<F>>> &blocks) {
+    if (blocks.empty() || blocks[0].empty()) return Field_Matrix<F>(0, 0);
+    int total_row = 0;
+    for (int i = 0; i < (int)blocks.size(); i++) total_row += blocks[i][0].row;
+    int total_col = 0;
+    for (int j = 0; j < (int)blocks[0].size(); j++) total_col += blocks[0][j].col;
+
+    Field_Matrix<F> res(total_row, total_col);
+    int row_offset = 0;
+    for (int i = 0; i < (int)blocks.size(); i++) {
+        int col_offset = 0;
+        int block_h = blocks[i][0].row;
+        for (int j = 0; j < (int)blocks[i].size(); j++) {
+            const auto &B = blocks[i][j];
+            assert(B.row == block_h); // 同じ行内のブロックは高さが一致している必要がある
+            for (int r = 0; r < B.row; r++) {
+                for (int c = 0; c < B.col; c++) {
+                    res[row_offset + r][col_offset + c] = B[r][c];
+                }
+            }
+            col_offset += B.col;
+        }
+        row_offset += block_h;
+    }
+    return res;
+}

@@ -23,7 +23,7 @@ int main() {
 
     M unit = {1, 0};
 
-    Segment_Tree<M> S(f, op, unit);
+    Segment_Tree S(f, op, unit);
 
     for (int q = 0; q < Q; q++) {
         int t;  scanf("%d", &t);

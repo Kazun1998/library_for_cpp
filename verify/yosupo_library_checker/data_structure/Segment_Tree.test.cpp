@@ -14,7 +14,7 @@ int main(){
     auto op = [](int x, int y) -> int { return min(x, y); };
     int unit = numeric_limits<int>::max();
 
-    Segment_Tree<int> S(a, op, unit);
+    Segment_Tree S(a, op, unit);
 
     for (; Q; Q--) {
         int l, r;

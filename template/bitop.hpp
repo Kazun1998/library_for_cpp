@@ -32,3 +32,6 @@ vector<int> get_bits(ll x, int k) {
 
 // x のビット列を取得する.
 vector<int> get_bits(ll x) { return get_bits(x, bit_length(x)); }
+
+// x に立っているなんかしらのビットの番号を出力する.
+ll lowest_bit(const ll x) { return floor_log2(x & (-x)); }

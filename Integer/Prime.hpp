@@ -4,21 +4,26 @@
 
 namespace prime {
   class Pseudo_Prime_Generator {
-    private:
-    long long prime = 1, step = 0;
-
     public:
-    long long get() {
-      if (step) {
-        prime += step;
-        step = 6 - step;
+    struct Iterator {
+      long long prime = 1, step = 0;
+      long long operator*() const { return prime; }
+      Iterator& operator++() {
+        if (step) {
+          prime += step;
+          step = (step == 2) ? 4 : 2;
+        }
+        else if (prime == 1) { prime = 2; }
+        else if (prime == 2) { prime = 3; }
+        else if (prime == 3) { prime = 5, step = 2; }
+        return *this;
       }
-      else if (prime == 1) { prime = 2; }
-      else if (prime == 2) { prime = 3; }
-      else if (prime == 3) { prime = 5, step = 2; }
+      bool operator!=(const Iterator&) const { return true; }
+    };
 
-      return prime;
-    }
+    Iterator begin() const { return ++Iterator(); }
+    Iterator end() const { return {}; }
+    const Pseudo_Prime_Generator& get() const { return *this; }
   };
 
   // n は素数?
@@ -27,8 +32,8 @@ namespace prime {
     else if (n == 5) { return true; }
     else if ((n % 2 == 0) || (n % 3 == 0) || (n % 5 == 0)) { return false; }
 
-    Pseudo_Prime_Generator generator;
-    for (long long p = generator.get(); p * p <= n; p = generator.get()) {
+    for (long long p : Pseudo_Prime_Generator()) {
+      if (p * p > n) { break; }
       if (n % p == 0) { return false; }
     }
 
@@ -51,8 +56,8 @@ namespace prime {
       n = abs(n);
     }
 
-    Pseudo_Prime_Generator generator;
-    for (long long p =generator.get(); p * p <= n; p = generator.get()) {
+    for (long long p : Pseudo_Prime_Generator()) {
+      if (p * p > n) { break; }
       long long e;
       tie(e, n) = exponents(n, p); 
       if (e) { factors.emplace_back(make_pair(p, e)); }
@@ -79,8 +84,8 @@ namespace prime {
     // 9 以上の 3 の倍数を消す.
     for (long long x = 4; x < m; x += 3) { prime_flag[x] = false; }
 
-    auto generator = Pseudo_Prime_Generator();
-    for (auto p = generator.get(); p * p <= n; p = generator.get()) {
+    for (auto p : Pseudo_Prime_Generator()) {
+      if (p * p > n) { break; }
       if (p <= 3) { continue; }
 
       if (!prime_flag[(p - 1) / 2]) { continue; }
