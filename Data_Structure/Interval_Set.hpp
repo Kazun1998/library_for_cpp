@@ -6,7 +6,8 @@
 
 template<typename T, class V = ll>
 class Interval_Set {
-    struct Node {
+    public:
+    struct Interval {
         T l, r;
         V val;
 
@@ -14,25 +15,26 @@ class Interval_Set {
         /// @param l 左端
         /// @param r 右端
         /// @param val 紐づける要素
-        Node (const T &l, const T &r, const V &val): l(l), r(r), val(val) {};
+        Interval (const T &l, const T &r, const V &val): l(l), r(r), val(val) {};
 
         /// @brief p はこの右半開区間に含まれるか?
-        /// @param p 
+        /// @param p
         constexpr bool contains(const T &p) const { return l <= p && p < r; }
 
-        constexpr bool operator<(const Node &rhs) const {
+        constexpr bool operator<(const Interval &rhs) const {
             if (l != rhs.l) { return l < rhs.l; }
             return r < rhs.r;
         }
 
-        friend ostream& operator<<(ostream &os, const Node &node) {
+        friend ostream& operator<<(ostream &os, const Interval &node) {
             return os << "([" << node.l << ", " << node.r << "): " << node.val << ")";
         }
     };
 
+    private:
     const V nil; // デフォルト値
     size_t set_size;
-    set<Node> intervals;
+    set<Interval> intervals;
 
     template<class ADDFUNC>
     void add_update(const ADDFUNC &add, const T l, const T r, const V &val) {
@@ -53,13 +55,13 @@ class Interval_Set {
     Interval_Set(const V &nil): nil(nil), set_size(0) {}
 
     // iterators
-    constexpr typename set<Node>::iterator begin() { return intervals.begin(); }
-    constexpr typename set<Node>::iterator end() { return intervals.end(); }
+    constexpr typename set<Interval>::iterator begin() { return intervals.begin(); }
+    constexpr typename set<Interval>::iterator end() { return intervals.end(); }
 
     /// @brief p を含む区間のイテレータを求める (存在しない場合は, end() が返り値).
     /// @param p 
-    constexpr typename set<Node>::iterator get(const T &p) const {
-        auto it = intervals.upper_bound(Node(p, numeric_limits<T>::max(), 0));
+    constexpr typename set<Interval>::iterator get(const T &p) const {
+        auto it = intervals.upper_bound(Interval(p, numeric_limits<T>::max(), 0));
         if (it == intervals.begin()) { return intervals.end(); }
 
         // ここに来る it は, p を含む区間の次の区間なので, 1 個戻す.
@@ -70,11 +72,11 @@ class Interval_Set {
 
     /// @brief p 以上である最小の要素を含んでいる区間のイテレータを求める.
     /// @param p
-    constexpr typename set<Node>::iterator lower_bound(const T &p) {
+    constexpr typename set<Interval>::iterator lower_bound(const T &p) {
         auto it = get(p);
 
         if (it != intervals.end()) { return it; }
-        return intervals.upper_bound(Node(p, numeric_limits<T>::max(), 0));
+        return intervals.upper_bound(Interval(p, numeric_limits<T>::max(), 0));
     }
 
     /// @brief p を含むか?
@@ -109,7 +111,7 @@ class Interval_Set {
     V operator[](const T &p) const { return get_value(p); }
 
     constexpr T get_mex(const T &p = 0) {
-        auto it = intervals.upper_bound(Node(p, numeric_limits<T>::max(), 0));
+        auto it = intervals.upper_bound(Interval(p, numeric_limits<T>::max(), 0));
         if (it == intervals.begin()) { return p; }
 
         it = prev(it);
@@ -128,7 +130,7 @@ class Interval_Set {
     void update(T l, T r, const V &val, const ADDFUNC &add, const DELFUNC &del) {
         // 新しく追加または更新する区間 [l, r) の開始点 l 以上で最も近い区間を見つける.
         // これにより,既存の区間との重複チェックを開始する適切な位置を特定する.
-        auto it = intervals.lower_bound(Node(l, 0, val));
+        auto it = intervals.lower_bound(Interval(l, 0, val));
 
         // 新しい区間 [l, r) と重なる可能性のある既存の区間を全て処理する.
         // it->l <= r は,現在の区間 it の左端が新しい区間 [l, r) の右端 r 以下であることを示す.
@@ -163,7 +165,7 @@ class Interval_Set {
                 } else {
                     // 値が異なる場合は,現在の区間 [it->l, it->r) を新しい区間によって二分割する.
                     // [it->l, r) の部分は新しい区間によって上書きされるため,[r, it->r) の部分のみが残る.
-                    Node node = *it;
+                    Interval node = *it;
                     del_update(del, it->l, it->r, it->val); // 既存区間を削除 (del 関数で差分を通知)
                     it = intervals.erase(it);
                     // 残りの区間 [r, node.r) を挿入する.
@@ -204,7 +206,7 @@ class Interval_Set {
                         add_update(add, it->l, it->r, it->val); // 追加された区間を通知 (add 関数で差分を通知)
                         it = prev(it); // イテレータを元に戻す
                     }
-                    Node node = *it;
+                    Interval node = *it;
                     del_update(del, it->l, it->r, it->val); // 既存区間を削除 (del 関数で差分を通知)
                     it = intervals.erase(it);
                     // 残りの区間 [node.l, l) を挿入する.
@@ -254,7 +256,7 @@ class Interval_Set {
     void erase(T l, T r, const ADDFUNC &add, const DELFUNC &del) {
         // 削除しようとしている区間 [l, r) の開始点 l 以上で最も近い区間を見つける.
         // これにより,既存の区間との重複チェックを開始する適切な位置を特定する.
-        auto it = intervals.lower_bound(Node(l, 0, V()));
+        auto it = intervals.lower_bound(Interval(l, 0, V()));
 
         // 新しい区間 [l, r) と重なる可能性のある既存の区間を全て処理する.
         // it->l <= r は,現在の区間 it の左端が削除区間 [l, r) の右端 r 以下であることを示す.
@@ -273,7 +275,7 @@ class Interval_Set {
                 // Case 2: 削除区間 [l, r) が現在の区間 [it->l, it->r) の一部と重なる場合
                 // (l <= it->l < r < it->r が確定)
                 // 現在の区間は [it->l, r) が削除され,[r, it->r) の部分が残るため,分割される.
-                Node node = *it;
+                Interval node = *it;
                 del_update(del, it->l, it->r, it->val); // 既存区間を削除 (del 関数で差分を通知)
                 it = intervals.erase(it);
                 // 残りの区間 [r, node.r) を挿入する.
@@ -300,7 +302,7 @@ class Interval_Set {
                 }
                 // 左側の区間の元の部分 [it->l, it->r) を削除し,
                 // 新しい区間 [node.l, l) を挿入する.
-                Node node = *it;
+                Interval node = *it;
                 del_update(del, it->l, it->r, it->val); // 既存区間を削除 (del 関数で差分を通知)
                 it = intervals.erase(it);
                 it = intervals.emplace_hint(it, node.l, l, node.val);
@@ -313,22 +315,10 @@ class Interval_Set {
         erase(l, r, [](T, T, V){}, [](T, T, V){});
     }
 
-    /// @brief 保持している全ての右半開区間を, 左端の昇順に並べたベクトルとして取得する.
-    /// @return 各要素は (l, r) であり, 右半開区間 [l, r) を表す.
-    vector<pair<T, T>> get_intervals() const {
-        vector<pair<T, T>> res;
-        res.reserve(intervals.size());
-        for (const auto &node: intervals) { res.emplace_back(node.l, node.r); }
-        return res;
-    }
-
-    /// @brief 保持している全ての右半開区間を, 紐づいている値と共に, 左端の昇順に並べたベクトルとして取得する.
-    /// @return 各要素は (l, r, val) であり, 右半開区間 [l, r) に値 val が紐づいていることを表す.
-    vector<tuple<T, T, V>> get_intervals_with_value() const {
-        vector<tuple<T, T, V>> res;
-        res.reserve(intervals.size());
-        for (const auto &[l, r, val]: intervals) { res.emplace_back(l, r, val); }
-        return res;
+    /// @brief 保持している全ての区間を, 左端の昇順に並べたベクトルとして取得する.
+    /// @return 各要素 Interval は, 右半開区間 [l, r) と, それに紐づいている値 val を持つ.
+    vector<Interval> get_intervals() const {
+        return vector<Interval>(intervals.begin(), intervals.end());
     }
 
     constexpr size_t size() const { return set_size; }
