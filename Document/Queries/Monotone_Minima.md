@@ -17,6 +17,21 @@ $$ \min \left(\operatorname*{argmin}_{0 \leq j < m} f(0, j) \right) \leq \min \l
 
 を満たすことである.
 
+## Theory
+
+Monotone Minima を満たす関数は, [2 変数関数における単調性](/library_for_cpp/Monge.html) で扱う Monotone 行列 ($f(i, j)$ を第 $i$ 行第 $j$ 列の成分とみなしたもの) に他ならない. 以下の条件は, いずれも Monotone Minima を満たすための十分条件である.
+
+* Monge 行列である. すなわち, 任意の $i_1 < i_2$, $j_1 < j_2$ に対して, $f(i_1, j_1) + f(i_2, j_2) \leq f(i_1, j_2) + f(i_2, j_1)$ を満たす.
+* 全単調行列である. (Monge 行列ならば全単調行列である.)
+
+これらの証明や, 関係の詳細は [2 変数関数における単調性](/library_for_cpp/Monge.html) を参照すること.
+
+### Example
+
+下に凸な列 $f$ と任意の列 $g$ に対して, $f(k - j) + g(j)$ は Monge 行列であるため, $(\min, +)$ 畳み込みを Monotone Minima によって計算できる.
+
+* [Min_Plus_Convolution_Convex_Arbitrary](/library_for_cpp/Convolution/Min_Plus_Convolution_Convex_Arbitrary.html)
+
 ## Contents
 
 ### constructor
@@ -39,3 +54,4 @@ vector<int> Monotone_Minima(const int n, const int m, const FUNC eval)
 |日付|内容|
 |:---:|:---:|
 |2026/07/13| Monotone_Minima 実装 |
+|2026/10/03| Monge 行列, 全単調行列との関係をドキュメントに追記 |
