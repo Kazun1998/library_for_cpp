@@ -38,17 +38,17 @@ documentation_of: //Data_Structure/Interval_Set.hpp
 ### begin / end
 
 ```cpp
-constexpr typename set<Node>::iterator begin()
-constexpr typename set<Node>::iterator end()
+constexpr typename set<Interval>::iterator begin()
+constexpr typename set<Interval>::iterator end()
 ```
 
-* 内部で管理している区間集合（`std::set<Node>`）のイテレータを返す.
-* イテレータをデリファレンスすることで `Node` オブジェクトが得られ、`it->l` (左端), `it->r` (右端), `it->val` (値) にアクセスできる.
+* 内部で管理している区間集合（`std::set<Interval>`）のイテレータを返す.
+* イテレータをデリファレンスすることで `Interval` オブジェクトが得られ、`it->l` (左端), `it->r` (右端), `it->val` (値) にアクセスできる.
 
 ### get
 
 ```cpp
-constexpr typename set<Node>::iterator get(const T &p) const
+constexpr typename set<Interval>::iterator get(const T &p) const
 ```
 
 * 点 $p$ を含む区間のイテレータを求める.
@@ -57,7 +57,7 @@ constexpr typename set<Node>::iterator get(const T &p) const
 ### lower_bound
 
 ```cpp
-constexpr typename set<Node>::iterator lower_bound(const T &p)
+constexpr typename set<Interval>::iterator lower_bound(const T &p)
 ```
 
 * 点 $p$ を含む区間、または $p$ より右側にある最初の区間のイテレータを求める.
