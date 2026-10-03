@@ -47,7 +47,7 @@ $$ A(k, j) + A(k', j') \leq A(k, j') + A(k', j) $$
 
 以上より, $A(k, j)$ ($f$ の添字が範囲外になる $(k, j)$ では $+\infty$ とする) は Monotone Minima を満たす. よって, 各 $k$ に対する $j^*(k)$ は [Monotone Minima](../Queries/Monotone_Minima.hpp) によって求めることができる.
 
-$j^*(k)$ が求まれば, $h(k) = f(k - j^*(k)) + g(j^*(k))$ である. 全体の計算量は, 行数が $n + m - 1$ であることから, $O((n + m) \log (n + m))$ 時間である.
+$j^{\*}(k)$ が求まれば, $h(k) = f(k - j^{\*}(k)) + g(j^{\*}(k))$ である. 全体の計算量は, 行数が $n + m - 1$ であることから, $O((n + m) \log (n + m))$ 時間である.
 
 ## Contents
 
