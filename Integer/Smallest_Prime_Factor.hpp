@@ -32,6 +32,11 @@ namespace prime {
         }
 
         constexpr inline int smallest_prime_factor(int x) const { return spf[x]; }
+        
+        /**
+         * @brief 整数 x の最小素因数を返します。
+         */
+        constexpr inline int operator[](int x) const { return spf[x]; }
 
         vector<pair<long long, long long>> prime_factorization(int n) {
             if (n == 0)  { return vector<pair<long long, long long>>{ make_pair(0, 1) }; }

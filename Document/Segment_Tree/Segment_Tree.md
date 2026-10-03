@@ -50,3 +50,41 @@ M S.product(int l, int r)
   * $0 \leq l \leq r \lt N$.
 * **注意点**
   * $l \leq r$ でないとき, 返り値は単位元 $e_M$ になる.
+
+### max_right
+
+```cpp
+int max_right(int l, const Func &cond)
+```
+
+* $M$ の部分集合 $T$ を $T := \{x \in M \mid \textrm{cond}(x)\}$ で定義する. このとき, 以下の条件を両方満たす $r$ (のいずれか 1 つ) 返す.
+  * $r = l$ もしくは $A_l * A_{l + 1} * \dots * A_{r-1} \in T$.
+  * $r = N$ もしくは $A_l * A_{l + 1} * \dots * A_r \not \in T$.
+* $\textrm{cond}$ が単調だとすれば, $A_l * A_{l + 1} \dots * A_{r - 1} \in T$ となる最大の $r$ と解釈することが可能である.
+* **制約**
+  * $e_M \in T$.
+* **計算量**
+  * $O(\log N)$ 時間.
+
+### min_left
+
+```cpp
+int min_left(int r, const Func &cond)
+```
+
+* $M$ の部分集合 $T$ を $T := \{x \in M \mid \textrm{cond}(x)\}$ で定義する. このとき, 以下の条件を両方満たす $l$ (のいずれか 1 つ) 返す.
+  * $l = r$ もしくは $A_l * A_{l + 1} * \dots * A_{r-1} \in T$.
+  * $l = 0$ もしくは $A_{l-1} * A_l * \dots * A_{r-1} \not \in T$.
+* $\textrm{cond}$ が単調だとすれば, $A_l * A_{l + 1} \dots * A_{r - 1} \in T$ となる最大の $l$ と解釈することが可能である.
+* **制約**
+  * $e_M \in T$.
+* **計算量**
+  * $O(\log N)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/01/12|max_right, min_left の実装|
+|2025/10/30|初期化の際に発生していた, 配列外参照バグの修正|
+|2025/08/15|Segment_Tree 実装|

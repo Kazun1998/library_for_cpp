@@ -3,9 +3,9 @@
 #include"Modulo.hpp"
 
 namespace modulo {
-    class IncompatibleModuloComposite : public exception {
-      public: // publicに指定
-      const char* what() const noexcept override { return "合成が存在しません"; }
+    class IncompatibleModuloComposite : public std::exception {
+        public:
+        const char* what() const noexcept override { return "合成が存在しません"; }
     };
 
     Modulo Composite(Modulo A, Modulo B) {
