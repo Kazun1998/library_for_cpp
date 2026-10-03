@@ -198,59 +198,59 @@ data:
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 4 \"Data_Structure/Interval_Set.hpp\"\n\n// Reference: https://github.com/drken1215/algorithm/blob/master/DataStructure/intervals_management.cpp\n\
-    \ntemplate<typename T, class V = ll>\nclass Interval_Set {\n    struct Node {\n\
-    \        T l, r;\n        V val;\n\n        /// @brief \u5024 val \u304C\u7D10\
-    \u3065\u3044\u3066\u3044\u308B, \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\u751F\
-    \u6210\u3059\u308B.\n        /// @param l \u5DE6\u7AEF\n        /// @param r \u53F3\
-    \u7AEF\n        /// @param val \u7D10\u3065\u3051\u308B\u8981\u7D20\n        Node\
-    \ (const T &l, const T &r, const V &val): l(l), r(r), val(val) {};\n\n       \
-    \ /// @brief p \u306F\u3053\u306E\u53F3\u534A\u958B\u533A\u9593\u306B\u542B\u307E\
-    \u308C\u308B\u304B?\n        /// @param p \n        constexpr bool contains(const\
-    \ T &p) const { return l <= p && p < r; }\n\n        constexpr bool operator<(const\
-    \ Node &rhs) const {\n            if (l != rhs.l) { return l < rhs.l; }\n    \
-    \        return r < rhs.r;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Node &node) {\n            return os << \"([\" << node.l << \", \"\
-    \ << node.r << \"): \" << node.val << \")\";\n        }\n    };\n\n    const V\
-    \ nil; // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\n    size_t set_size;\n    set<Node>\
-    \ intervals;\n\n    template<class ADDFUNC>\n    void add_update(const ADDFUNC\
-    \ &add, const T l, const T r, const V &val) {\n        add(l, r, val);\n     \
-    \   set_size += r - l;\n    }\n\n    template<class DELFUNC>\n    void del_update(const\
-    \ DELFUNC &del, const T l, const T r, const V &val) {\n        del(l, r, val);\n\
-    \        set_size -= r - l;\n    }\n\n    public:\n    Interval_Set(): Interval_Set(V())\
-    \ {}\n\n    // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3092 nil \u3068\u3057\u3066\
-    , Interval Set \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u3092\u751F\u6210\u3059\u308B\
-    .\n    Interval_Set(const V &nil): nil(nil), set_size(0) {}\n\n    // iterators\n\
-    \    constexpr typename set<Node>::iterator begin() { return intervals.begin();\
-    \ }\n    constexpr typename set<Node>::iterator end() { return intervals.end();\
-    \ }\n\n    /// @brief p \u3092\u542B\u3080\u533A\u9593\u306E\u30A4\u30C6\u30EC\
-    \u30FC\u30BF\u3092\u6C42\u3081\u308B (\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
-    \u306F, end() \u304C\u8FD4\u308A\u5024).\n    /// @param p \n    constexpr typename\
-    \ set<Node>::iterator get(const T &p) const {\n        auto it = intervals.upper_bound(Node(p,\
-    \ numeric_limits<T>::max(), 0));\n        if (it == intervals.begin()) { return\
-    \ intervals.end(); }\n\n        // \u3053\u3053\u306B\u6765\u308B it \u306F, p\
-    \ \u3092\u542B\u3080\u533A\u9593\u306E\u6B21\u306E\u533A\u9593\u306A\u306E\u3067\
-    , 1 \u500B\u623B\u3059.\n        it = prev(it);\n\n        return it->contains(p)\
-    \ ? it : intervals.end();\n    }\n\n    /// @brief p \u4EE5\u4E0A\u3067\u3042\u308B\
-    \u6700\u5C0F\u306E\u8981\u7D20\u3092\u542B\u3093\u3067\u3044\u308B\u533A\u9593\
-    \u306E\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u6C42\u3081\u308B.\n    /// @param\
-    \ p\n    constexpr typename set<Node>::iterator lower_bound(const T &p) {\n  \
-    \      auto it = get(p);\n\n        if (it != intervals.end()) { return it; }\n\
-    \        return intervals.upper_bound(Node(p, numeric_limits<T>::max(), 0));\n\
-    \    }\n\n    /// @brief p \u3092\u542B\u3080\u304B?\n    /// @param p\n    constexpr\
-    \ bool covered(const T &p) {\n        return get(p) != intervals.end();\n    }\n\
-    \n    /// @brief \u533A\u9593 [l, r) \u3092\u542B\u3080\u304B?\n    /// @param\
-    \ l \n    /// @param r \n    constexpr bool covered(const T &l, const T &r) {\n\
-    \        assert(l <= r);\n\n        if (l == r) { return true; }\n\n        auto\
-    \ it = get(l);\n        return it != intervals.end() && r <= it->r;\n    }\n\n\
-    \    constexpr bool same(const T &p, const T &q) {\n        return covered(p)\
-    \ && covered(q) && get(p) == get(q);\n    }\n\n    /// @brief p \u3092\u542B\u3080\
-    \u53F3\u534A\u958B\u533A\u9593\u306B\u7D10\u3065\u3044\u3066\u3044\u308B\u5024\
-    \u3092\u6C42\u3081\u308B (\u305D\u306E\u3088\u3046\u306A\u53F3\u534A\u958B\u533A\
-    \u9593\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F nil \u304C\u8FD4\u308A\
-    \u5024)\n    /// @param p \n    constexpr V get_value(const T &p) const {\n  \
-    \      auto it = get(p);\n        return it != intervals.end() ? it->val : nil;\n\
-    \    }\n\n    V operator[](const T &p) const { return get_value(p); }\n\n    constexpr\
-    \ T get_mex(const T &p = 0) {\n        auto it = intervals.upper_bound(Node(p,\
+    \ntemplate<typename T, class V = ll>\nclass Interval_Set {\n    public:\n    struct\
+    \ Interval {\n        T l, r;\n        V val;\n\n        /// @brief \u5024 val\
+    \ \u304C\u7D10\u3065\u3044\u3066\u3044\u308B, \u53F3\u534A\u958B\u533A\u9593 [l,\
+    \ r) \u3092\u751F\u6210\u3059\u308B.\n        /// @param l \u5DE6\u7AEF\n    \
+    \    /// @param r \u53F3\u7AEF\n        /// @param val \u7D10\u3065\u3051\u308B\
+    \u8981\u7D20\n        Interval (const T &l, const T &r, const V &val): l(l), r(r),\
+    \ val(val) {};\n\n        /// @brief p \u306F\u3053\u306E\u53F3\u534A\u958B\u533A\
+    \u9593\u306B\u542B\u307E\u308C\u308B\u304B?\n        /// @param p\n        constexpr\
+    \ bool contains(const T &p) const { return l <= p && p < r; }\n\n        constexpr\
+    \ bool operator<(const Interval &rhs) const {\n            if (l != rhs.l) { return\
+    \ l < rhs.l; }\n            return r < rhs.r;\n        }\n\n        friend ostream&\
+    \ operator<<(ostream &os, const Interval &node) {\n            return os << \"\
+    ([\" << node.l << \", \" << node.r << \"): \" << node.val << \")\";\n        }\n\
+    \    };\n\n    private:\n    const V nil; // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\
+    \n    size_t set_size;\n    set<Interval> intervals;\n\n    template<class ADDFUNC>\n\
+    \    void add_update(const ADDFUNC &add, const T l, const T r, const V &val) {\n\
+    \        add(l, r, val);\n        set_size += r - l;\n    }\n\n    template<class\
+    \ DELFUNC>\n    void del_update(const DELFUNC &del, const T l, const T r, const\
+    \ V &val) {\n        del(l, r, val);\n        set_size -= r - l;\n    }\n\n  \
+    \  public:\n    Interval_Set(): Interval_Set(V()) {}\n\n    // \u30C7\u30D5\u30A9\
+    \u30EB\u30C8\u5024\u3092 nil \u3068\u3057\u3066, Interval Set \u30A4\u30F3\u30B9\
+    \u30BF\u30F3\u30B9\u3092\u751F\u6210\u3059\u308B.\n    Interval_Set(const V &nil):\
+    \ nil(nil), set_size(0) {}\n\n    // iterators\n    constexpr typename set<Interval>::iterator\
+    \ begin() { return intervals.begin(); }\n    constexpr typename set<Interval>::iterator\
+    \ end() { return intervals.end(); }\n\n    /// @brief p \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u6C42\u3081\u308B (\u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408\u306F, end() \u304C\u8FD4\u308A\u5024).\n    ///\
+    \ @param p \n    constexpr typename set<Interval>::iterator get(const T &p) const\
+    \ {\n        auto it = intervals.upper_bound(Interval(p, numeric_limits<T>::max(),\
+    \ 0));\n        if (it == intervals.begin()) { return intervals.end(); }\n\n \
+    \       // \u3053\u3053\u306B\u6765\u308B it \u306F, p \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u6B21\u306E\u533A\u9593\u306A\u306E\u3067, 1 \u500B\u623B\u3059.\n\
+    \        it = prev(it);\n\n        return it->contains(p) ? it : intervals.end();\n\
+    \    }\n\n    /// @brief p \u4EE5\u4E0A\u3067\u3042\u308B\u6700\u5C0F\u306E\u8981\
+    \u7D20\u3092\u542B\u3093\u3067\u3044\u308B\u533A\u9593\u306E\u30A4\u30C6\u30EC\
+    \u30FC\u30BF\u3092\u6C42\u3081\u308B.\n    /// @param p\n    constexpr typename\
+    \ set<Interval>::iterator lower_bound(const T &p) {\n        auto it = get(p);\n\
+    \n        if (it != intervals.end()) { return it; }\n        return intervals.upper_bound(Interval(p,\
+    \ numeric_limits<T>::max(), 0));\n    }\n\n    /// @brief p \u3092\u542B\u3080\
+    \u304B?\n    /// @param p\n    constexpr bool covered(const T &p) {\n        return\
+    \ get(p) != intervals.end();\n    }\n\n    /// @brief \u533A\u9593 [l, r) \u3092\
+    \u542B\u3080\u304B?\n    /// @param l \n    /// @param r \n    constexpr bool\
+    \ covered(const T &l, const T &r) {\n        assert(l <= r);\n\n        if (l\
+    \ == r) { return true; }\n\n        auto it = get(l);\n        return it != intervals.end()\
+    \ && r <= it->r;\n    }\n\n    constexpr bool same(const T &p, const T &q) {\n\
+    \        return covered(p) && covered(q) && get(p) == get(q);\n    }\n\n    ///\
+    \ @brief p \u3092\u542B\u3080\u53F3\u534A\u958B\u533A\u9593\u306B\u7D10\u3065\u3044\
+    \u3066\u3044\u308B\u5024\u3092\u6C42\u3081\u308B (\u305D\u306E\u3088\u3046\u306A\
+    \u53F3\u534A\u958B\u533A\u9593\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
+    \u306F nil \u304C\u8FD4\u308A\u5024)\n    /// @param p \n    constexpr V get_value(const\
+    \ T &p) const {\n        auto it = get(p);\n        return it != intervals.end()\
+    \ ? it->val : nil;\n    }\n\n    V operator[](const T &p) const { return get_value(p);\
+    \ }\n\n    constexpr T get_mex(const T &p = 0) {\n        auto it = intervals.upper_bound(Interval(p,\
     \ numeric_limits<T>::max(), 0));\n        if (it == intervals.begin()) { return\
     \ p; }\n\n        it = prev(it);\n\n        return it->contains(p) ? it->r : p;\n\
     \    }\n\n    /// @brief val \u304C\u7D10\u3065\u3044\u305F, \u53F3\u534A\u958B\
@@ -275,21 +275,21 @@ data:
     \u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65E2\u5B58\u306E\u533A\u9593\
     \u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\u30AF\u3092\u958B\u59CB\u3059\u308B\
     \u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\u5B9A\u3059\u308B.\n        auto it\
-    \ = intervals.lower_bound(Node(l, 0, val));\n\n        // \u65B0\u3057\u3044\u533A\
-    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\u65E2\
-    \u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n        //\
-    \ it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\u304C\
-    \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end() &&\
-    \ it->l <= r) {\n            // Case 0: \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\
-    \u7AEF r \u304C\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l \u3068\
-    \u4E00\u81F4\u3059\u308B\u5834\u5408\n            // \u304B\u3064,\u5024\u3082\
-    \u540C\u3058\u5834\u5408\u306F\u533A\u9593\u3092\u7D50\u5408\u3059\u308B.\n  \
-    \          // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\
-    \u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\
-    \u308B.\n            if (r == it->l) {\n                if (it->val == val) {\n\
-    \                    r = it->r; // \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\u7AEF\
-    \u3092\u62E1\u5F35\n                    del_update(del, it->l, it->r, it->val);\
+    \ = intervals.lower_bound(Interval(l, 0, val));\n\n        // \u65B0\u3057\u3044\
+    \u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\
+    \u65E2\u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n  \
+    \      // it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\
+    \u304C\u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\
+    \u3042\u308B\u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end()\
+    \ && it->l <= r) {\n            // Case 0: \u65B0\u3057\u3044\u533A\u9593\u306E\
+    \u53F3\u7AEF r \u304C\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l\
+    \ \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            // \u304B\u3064,\u5024\
+    \u3082\u540C\u3058\u5834\u5408\u306F\u533A\u9593\u3092\u7D50\u5408\u3059\u308B\
+    .\n            // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\
+    \u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\
+    \u3051\u308B.\n            if (r == it->l) {\n                if (it->val == val)\
+    \ {\n                    r = it->r; // \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\
+    \u7AEF\u3092\u62E1\u5F35\n                    del_update(del, it->l, it->r, it->val);\
     \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
     \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
     \       }\n                break;\n            }\n\n            // Case 1: \u73FE\
@@ -319,230 +319,238 @@ data:
     \                  // [it->l, r) \u306E\u90E8\u5206\u306F\u65B0\u3057\u3044\u533A\
     \u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\u308C\u308B\u305F\u3081\
     ,[r, it->r) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\u308B.\n              \
-    \      Node node = *it;\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \           // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(it, r, node.r, node.val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                }\n            }\n        }\n\n        //\
-    \ \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\u3059\u3050\
-    \u5DE6\u306B\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\u30A7\u30C3\
-    \u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65B0\u3057\u3044\
-    \u533A\u9593\u3068\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\u306E\u7D50\u5408\
-    \u3084\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it != intervals.begin())\
-    \ {\n            it = prev(it); // \u5DE6\u5074\u306E\u533A\u9593\u3092\u53D6\u5F97\
-    \n            // Case 3: \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u306E\u53F3\
-    \u7AEF it->r \u304C\u65B0\u3057\u3044\u533A\u9593\u306E\u5DE6\u7AEF l \u3068\u4E00\
-    \u81F4\u3059\u308B\u5834\u5408\n            if (it->r == l) {\n              \
-    \  if (it->val == val) {\n                    // \u5024\u304C\u540C\u3058\u5834\
-    \u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\u5408\u3057,\u65B0\u3057\u3044\u533A\
-    \u9593\u306E\u5DE6\u7AEF\u3092\u62E1\u5F35\u3059\u308B.\n                    l\
-    \ = it->l;\n                    del_update(del, it->l, it->r, it->val); // \u65E2\
-    \u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\
-    \u901A\u77E5)\n                    it = intervals.erase(it);\n               \
-    \ }\n            } else if (l < it->r) {\n                // Case 4: \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u65B0\u3057\u3044\u533A\u9593 [l, r)\
-    \ \u3068\u91CD\u306A\u308B\u5834\u5408\n                // (it->l < l < it->r\
-    \ \u304C\u78BA\u5B9A)\n                if (it->val == val) {\n               \
-    \     // \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\
-    \u5408\u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u7BC4\u56F2\u3092\u62E1\u5F35\
-    \u3059\u308B.\n                    l = min(l, it->l);\n                    r =\
-    \ max(r, it->r);\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \       } else {\n                    // \u5024\u304C\u7570\u306A\u308B\u5834\u5408\
-    \u306F,\u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u3092\u65B0\u3057\u3044\u533A\
-    \u9593\u306B\u3088\u3063\u3066\u4E8C\u5206\u5272\u3059\u308B.\n              \
-    \      // [it->l, l) \u306E\u90E8\u5206\u3068 [l, it->r) \u306E\u90E8\u5206\u306B\
-    \u5206\u3051\u3089\u308C,\n                    // \u5F8C\u8005\u306F\u65B0\u3057\
-    \u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\u308C\u308B\
-    \u305F\u3081,[it->l, l) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\u308B.\n  \
-    \                  if (r < it->r) { // \u65B0\u3057\u3044\u533A\u9593\u304C\u5DE6\
-    \u5074\u306E\u533A\u9593\u306E\u4E00\u90E8\u3092\u30AB\u30D0\u30FC\u3059\u308B\
-    \u5834\u5408\n                        // \u5DE6\u5074\u306E\u533A\u9593\u306E\u6B8B\
-    \u308A\u306E\u90E8\u5206 [r, it->r) \u3092\u633F\u5165\n                     \
-    \   it = intervals.emplace_hint(next(it), r, it->r, it->val);\n              \
-    \          add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\
-    \u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\
-    \u901A\u77E5)\n                        it = prev(it); // \u30A4\u30C6\u30EC\u30FC\
-    \u30BF\u3092\u5143\u306B\u623B\u3059\n                    }\n                \
-    \    Node node = *it;\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \           // \u6B8B\u308A\u306E\u533A\u9593 [node.l, l) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(it, node.l, l, node.val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                }\n            }\n        }\n\n        //\
-    \ \u9069\u5207\u306A\u4F4D\u7F6E\u306B\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u8ABF\
-    \u6574\u3059\u308B.\n        if (it != intervals.end()) { it = next(it); }\n\n\
-    \        // \u6700\u7D42\u7684\u306B\u78BA\u5B9A\u3057\u305F\u65B0\u3057\u3044\
-    \u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n        it = intervals.emplace_hint(it,\
-    \ l, r, val);\n        add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\
-    \u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\
-    \u5206\u3092\u901A\u77E5)\n    }\n\n    void update(const T &l, const T &r, const\
-    \ V &val) {\n        update(l, r, val, [](T, T, V){}, [](T, T, V){});\n    }\n\
-    \n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\u8FFD\u52A0\u307E\
-    \u305F\u306F\u66F4\u65B0\u3059\u308B. \u305D\u306E\u969B, \u767A\u751F\u3059\u308B\
-    \u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B.\n    ///\
-    \        \u3053\u306E\u95A2\u6570\u306F,\u65B0\u3057\u3044\u533A\u9593 [l, r)\
-    \ \u3068\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\u3092\u9069\u5207\
-    \u306B\u51E6\u7406\u3057,\u5FC5\u8981\u306B\u5FDC\u3058\u3066\u533A\u9593\u306E\
-    \u7D50\u5408,\u5206\u5272,\u524A\u9664\u3092\u884C\u3046.\n    /// @param l \u5DE6\
-    \u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B\u533A\u9593\u306E\
-    \u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\
-    \u65B0\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\
-    \u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570\
-    : T left, T right, V value)\n    /// @param del \u524A\u9664\u5DEE\u5206\u304C\
-    \u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406 (\u5F15\u6570: T left,\
-    \ T right, V value)\n    template<class ADDFUNC, class DELFUNC>\n    void insert(T\
-    \ l, T r, const ADDFUNC &add, const DELFUNC &del) {\n        update(l, r, V(),\
-    \ add, del);\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\
-    \u633F\u5165\u3059\u308B.\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\
-    \u7AEF\n    void insert(const T &l, const T &r) {\n        update(l, r, V(), [](T,\
-    \ T, V){}, [](T, T, V){});\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593\
-    \ [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u524A\u9664\
-    \u3059\u308B.\u305D\u306E\u969B,\u767A\u751F\u3059\u308B\u5DEE\u5206\u3092 add,\
-    \ del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B.\n    ///        \u3053\u306E\
-    \u95A2\u6570\u306F,\u6307\u5B9A\u3055\u308C\u305F\u533A\u9593 [l, r) \u3068\u91CD\
-    \u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u524A\u9664\u3057,\u5FC5\u8981\
-    \u306B\u5FDC\u3058\u3066\u65E2\u5B58\u306E\u533A\u9593\u3092\u5206\u5272\u3059\
-    \u308B.\n    /// @param l \u5DE6\u7AEF (\u524A\u9664\u3059\u308B\u533A\u9593\u306E\
-    \u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u524A\u9664\u3059\u308B\u533A\u9593\
-    \u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\u5DEE\u5206\u304C\u767A\u751F\
-    \u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570: T left, T right, V value)\
-    \ - \u5206\u5272\u306B\u3088\u308A\u4E00\u90E8\u304C\u6B8B\u308B\u5834\u5408\u306B\
-    \u547C\u3070\u308C\u308B\n    /// @param del \u524A\u9664\u5DEE\u5206\u304C\u767A\
-    \u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406 (\u5F15\u6570: T left, T right,\
-    \ V value)\n    template<class ADDFUNC, class DELFUNC>\n    void erase(T l, T\
-    \ r, const ADDFUNC &add, const DELFUNC &del) {\n        // \u524A\u9664\u3057\u3088\
-    \u3046\u3068\u3057\u3066\u3044\u308B\u533A\u9593 [l, r) \u306E\u958B\u59CB\u70B9\
-    \ l \u4EE5\u4E0A\u3067\u6700\u3082\u8FD1\u3044\u533A\u9593\u3092\u898B\u3064\u3051\
-    \u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65E2\u5B58\u306E\u533A\u9593\
-    \u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\u30AF\u3092\u958B\u59CB\u3059\u308B\
-    \u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\u5B9A\u3059\u308B.\n        auto it\
-    \ = intervals.lower_bound(Node(l, 0, V()));\n\n        // \u65B0\u3057\u3044\u533A\
-    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\u65E2\
-    \u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n        //\
-    \ it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\u304C\
-    \u524A\u9664\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end() && it->l\
-    \ < r) { // it->l < r: \u524A\u9664\u533A\u9593\u304C\u73FE\u5728\u306E\u533A\u9593\
-    \u3068\u91CD\u306A\u3063\u3066\u3044\u308B\u9593\n            // Case 0: \u73FE\
-    \u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l \u304C\u524A\u9664\u533A\u9593\
-    \u306E\u53F3\u7AEF r \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            //\
-    \ \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\
-    \u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\u308B.\n \
-    \           if (it->l == r) { break; }\n\n            // Case 1: \u73FE\u5728\u306E\
-    \u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u306B\u5B8C\
-    \u5168\u306B\u542B\u307E\u308C\u308B\u304B,\n            // \u307E\u305F\u306F\
-    ,\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF r \u3067\u7D42\u308F\u308B\u5834\u5408\
-    \ (it->r <= r)\n            // \u3053\u306E\u533A\u9593\u306F\u5B8C\u5168\u306B\
-    \u524A\u9664\u3055\u308C\u308B.\n            if (it->r <= r) {\n             \
-    \   del_update(del, it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\
-    \u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n              \
-    \  it = intervals.erase(it);\n            } else {\n                // Case 2:\
-    \ \u524A\u9664\u533A\u9593 [l, r) \u304C\u73FE\u5728\u306E\u533A\u9593 [it->l,\
-    \ it->r) \u306E\u4E00\u90E8\u3068\u91CD\u306A\u308B\u5834\u5408\n            \
-    \    // (l <= it->l < r < it->r \u304C\u78BA\u5B9A)\n                // \u73FE\
-    \u5728\u306E\u533A\u9593\u306F [it->l, r) \u304C\u524A\u9664\u3055\u308C,[r, it->r)\
-    \ \u306E\u90E8\u5206\u304C\u6B8B\u308B\u305F\u3081,\u5206\u5272\u3055\u308C\u308B\
-    .\n                Node node = *it;\n                del_update(del, it->l, it->r,\
+    \      Interval node = *it;\n                    del_update(del, it->l, it->r,\
     \ it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\
-    \u5DEE\u5206\u3092\u901A\u77E5)\n                it = intervals.erase(it);\n \
-    \               // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\u5165\
-    \u3059\u308B.\n                it = intervals.emplace_hint(it, r, node.r, node.val);\n\
-    \                add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\
-    \u533A\u9593\u3068\u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\
-    \u30D7\u3092\u629C\u3051\u308B.\n                break;\n            }\n     \
-    \   }\n\n        // \u524A\u9664\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                    // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\
+    \u5165\u3059\u308B.\n                    it = intervals.emplace_hint(it, r, node.r,\
+    \ node.val);\n                    add_update(add, it->l, it->r, it->val); // \u8FFD\
+    \u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                }\n            }\n        }\n\
+    \n        // \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\
     \u3059\u3050\u5DE6\u306B\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\
-    \u30A7\u30C3\u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u5DE6\
-    \u5074\u306E\u65E2\u5B58\u533A\u9593\u304C\u524A\u9664\u533A\u9593\u3068\u91CD\
-    \u306A\u308B\u5834\u5408\u306E\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n  \
-    \      if (it != intervals.begin()) {\n            it = prev(it); // \u5DE6\u5074\
-    \u306E\u533A\u9593\u3092\u53D6\u5F97\n            if (l < it->r) { // \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3068\
-    \u91CD\u306A\u308B\u5834\u5408\n                // (it->l < l < it->r \u304C\u78BA\
-    \u5B9A)\n                if (r < it->r) {\n                    // \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3092\
-    \u5B8C\u5168\u306B\u542B\u3080\u5834\u5408\n                    // [it->l, l)\
-    \ \u3068 [r, it->r) \u306E2\u3064\u306E\u533A\u9593\u306B\u5206\u5272\u3055\u308C\
-    \u308B.\n                    // \u307E\u305A [r, it->r) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(next(it), r, it->r, it->val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = prev(it); // \u30A4\u30C6\u30EC\u30FC\
-    \u30BF\u3092\u5143\u306B\u623B\u3059\n                }\n                // \u5DE6\
-    \u5074\u306E\u533A\u9593\u306E\u5143\u306E\u90E8\u5206 [it->l, it->r) \u3092\u524A\
-    \u9664\u3057,\n                // \u65B0\u3057\u3044\u533A\u9593 [node.l, l) \u3092\
-    \u633F\u5165\u3059\u308B.\n                Node node = *it;\n                del_update(del,\
+    \u30A7\u30C3\u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65B0\
+    \u3057\u3044\u533A\u9593\u3068\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\u306E\
+    \u7D50\u5408\u3084\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it\
+    \ != intervals.begin()) {\n            it = prev(it); // \u5DE6\u5074\u306E\u533A\
+    \u9593\u3092\u53D6\u5F97\n            // Case 3: \u5DE6\u5074\u306E\u533A\u9593\
+    \ [it->l, it->r) \u306E\u53F3\u7AEF it->r \u304C\u65B0\u3057\u3044\u533A\u9593\
+    \u306E\u5DE6\u7AEF l \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            if\
+    \ (it->r == l) {\n                if (it->val == val) {\n                    //\
+    \ \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\u5408\
+    \u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u5DE6\u7AEF\u3092\u62E1\u5F35\u3059\
+    \u308B.\n                    l = it->l;\n                    del_update(del, it->l,\
+    \ it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                }\n            } else if (l < it->r) {\n                // Case\
+    \ 4: \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u304C\u65B0\u3057\u3044\u533A\
+    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u5834\u5408\n                // (it->l\
+    \ < l < it->r \u304C\u78BA\u5B9A)\n                if (it->val == val) {\n   \
+    \                 // \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\
+    \u3092\u7D50\u5408\u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u7BC4\u56F2\u3092\
+    \u62E1\u5F35\u3059\u308B.\n                    l = min(l, it->l);\n          \
+    \          r = max(r, it->r);\n                    del_update(del, it->l, it->r,\
+    \ it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                } else {\n                    // \u5024\u304C\u7570\u306A\u308B\
+    \u5834\u5408\u306F,\u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u3092\u65B0\u3057\
+    \u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E8C\u5206\u5272\u3059\u308B.\n  \
+    \                  // [it->l, l) \u306E\u90E8\u5206\u3068 [l, it->r) \u306E\u90E8\
+    \u5206\u306B\u5206\u3051\u3089\u308C,\n                    // \u5F8C\u8005\u306F\
+    \u65B0\u3057\u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\
+    \u308C\u308B\u305F\u3081,[it->l, l) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\
+    \u308B.\n                    if (r < it->r) { // \u65B0\u3057\u3044\u533A\u9593\
+    \u304C\u5DE6\u5074\u306E\u533A\u9593\u306E\u4E00\u90E8\u3092\u30AB\u30D0\u30FC\
+    \u3059\u308B\u5834\u5408\n                        // \u5DE6\u5074\u306E\u533A\u9593\
+    \u306E\u6B8B\u308A\u306E\u90E8\u5206 [r, it->r) \u3092\u633F\u5165\n         \
+    \               it = intervals.emplace_hint(next(it), r, it->r, it->val);\n  \
+    \                      add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\
+    \u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\
+    \u5206\u3092\u901A\u77E5)\n                        it = prev(it); // \u30A4\u30C6\
+    \u30EC\u30FC\u30BF\u3092\u5143\u306B\u623B\u3059\n                    }\n    \
+    \                Interval node = *it;\n                    del_update(del, it->l,\
+    \ it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                    // \u6B8B\u308A\u306E\u533A\u9593 [node.l, l) \u3092\u633F\
+    \u5165\u3059\u308B.\n                    it = intervals.emplace_hint(it, node.l,\
+    \ l, node.val);\n                    add_update(add, it->l, it->r, it->val); //\
+    \ \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                }\n            }\n    \
+    \    }\n\n        // \u9069\u5207\u306A\u4F4D\u7F6E\u306B\u30A4\u30C6\u30EC\u30FC\
+    \u30BF\u3092\u8ABF\u6574\u3059\u308B.\n        if (it != intervals.end()) { it\
+    \ = next(it); }\n\n        // \u6700\u7D42\u7684\u306B\u78BA\u5B9A\u3057\u305F\
+    \u65B0\u3057\u3044\u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n      \
+    \  it = intervals.emplace_hint(it, l, r, val);\n        add_update(add, it->l,\
+    \ it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5\
+    \ (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n    }\n\n    void update(const\
+    \ T &l, const T &r, const V &val) {\n        update(l, r, val, [](T, T, V){},\
+    \ [](T, T, V){});\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l,\
+    \ r) \u3092\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B. \u305D\u306E\
+    \u969B, \u767A\u751F\u3059\u308B\u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\
+    \u51E6\u7406\u3059\u308B.\n    ///        \u3053\u306E\u95A2\u6570\u306F,\u65B0\
+    \u3057\u3044\u533A\u9593 [l, r) \u3068\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\
+    \u91CD\u8907\u3092\u9069\u5207\u306B\u51E6\u7406\u3057,\u5FC5\u8981\u306B\u5FDC\
+    \u3058\u3066\u533A\u9593\u306E\u7D50\u5408,\u5206\u5272,\u524A\u9664\u3092\u884C\
+    \u3046.\n    /// @param l \u5DE6\u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\
+    \u3059\u308B\u533A\u9593\u306E\u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u8FFD\
+    \u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF\
+    )\n    /// @param add \u8FFD\u52A0\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\
+    \u306E\u51E6\u7406 (\u5F15\u6570: T left, T right, V value)\n    /// @param del\
+    \ \u524A\u9664\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\
+    \u7406 (\u5F15\u6570: T left, T right, V value)\n    template<class ADDFUNC, class\
+    \ DELFUNC>\n    void insert(T l, T r, const ADDFUNC &add, const DELFUNC &del)\
+    \ {\n        update(l, r, V(), add, del);\n    }\n\n    /// @brief \u53F3\u534A\
+    \u958B\u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n    /// @param l \u5DE6\
+    \u7AEF\n    /// @param r \u53F3\u7AEF\n    void insert(const T &l, const T &r)\
+    \ {\n        update(l, r, V(), [](T, T, V){}, [](T, T, V){});\n    }\n\n    ///\
+    \ @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\
+    \u306E\u533A\u9593\u3092\u524A\u9664\u3059\u308B.\u305D\u306E\u969B,\u767A\u751F\
+    \u3059\u308B\u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B\
+    .\n    ///        \u3053\u306E\u95A2\u6570\u306F,\u6307\u5B9A\u3055\u308C\u305F\
+    \u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\
+    \u524A\u9664\u3057,\u5FC5\u8981\u306B\u5FDC\u3058\u3066\u65E2\u5B58\u306E\u533A\
+    \u9593\u3092\u5206\u5272\u3059\u308B.\n    /// @param l \u5DE6\u7AEF (\u524A\u9664\
+    \u3059\u308B\u533A\u9593\u306E\u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u524A\
+    \u9664\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\
+    \u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570\
+    : T left, T right, V value) - \u5206\u5272\u306B\u3088\u308A\u4E00\u90E8\u304C\
+    \u6B8B\u308B\u5834\u5408\u306B\u547C\u3070\u308C\u308B\n    /// @param del \u524A\
+    \u9664\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406\
+    \ (\u5F15\u6570: T left, T right, V value)\n    template<class ADDFUNC, class\
+    \ DELFUNC>\n    void erase(T l, T r, const ADDFUNC &add, const DELFUNC &del) {\n\
+    \        // \u524A\u9664\u3057\u3088\u3046\u3068\u3057\u3066\u3044\u308B\u533A\
+    \u9593 [l, r) \u306E\u958B\u59CB\u70B9 l \u4EE5\u4E0A\u3067\u6700\u3082\u8FD1\u3044\
+    \u533A\u9593\u3092\u898B\u3064\u3051\u308B.\n        // \u3053\u308C\u306B\u3088\
+    \u308A,\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\
+    \u30AF\u3092\u958B\u59CB\u3059\u308B\u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\
+    \u5B9A\u3059\u308B.\n        auto it = intervals.lower_bound(Interval(l, 0, V()));\n\
+    \n        // \u65B0\u3057\u3044\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\
+    \u80FD\u6027\u306E\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u5168\u3066\
+    \u51E6\u7406\u3059\u308B.\n        // it->l <= r \u306F,\u73FE\u5728\u306E\u533A\
+    \u9593 it \u306E\u5DE6\u7AEF\u304C\u524A\u9664\u533A\u9593 [l, r) \u306E\u53F3\
+    \u7AEF r \u4EE5\u4E0B\u3067\u3042\u308B\u3053\u3068\u3092\u793A\u3059.\n     \
+    \   while (it != intervals.end() && it->l < r) { // it->l < r: \u524A\u9664\u533A\
+    \u9593\u304C\u73FE\u5728\u306E\u533A\u9593\u3068\u91CD\u306A\u3063\u3066\u3044\
+    \u308B\u9593\n            // Case 0: \u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\
+    \u7AEF it->l \u304C\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF r \u3068\u4E00\u81F4\
+    \u3059\u308B\u5834\u5408\n            // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\
+    \u533A\u9593\u3068\u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\
+    \u30D7\u3092\u629C\u3051\u308B.\n            if (it->l == r) { break; }\n\n  \
+    \          // Case 1: \u73FE\u5728\u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\
+    \u9664\u533A\u9593 [l, r) \u306B\u5B8C\u5168\u306B\u542B\u307E\u308C\u308B\u304B\
+    ,\n            // \u307E\u305F\u306F,\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF\
+    \ r \u3067\u7D42\u308F\u308B\u5834\u5408 (it->r <= r)\n            // \u3053\u306E\
+    \u533A\u9593\u306F\u5B8C\u5168\u306B\u524A\u9664\u3055\u308C\u308B.\n        \
+    \    if (it->r <= r) {\n                del_update(del, it->l, it->r, it->val);\
+    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
+    \u3092\u901A\u77E5)\n                it = intervals.erase(it);\n            }\
+    \ else {\n                // Case 2: \u524A\u9664\u533A\u9593 [l, r) \u304C\u73FE\
+    \u5728\u306E\u533A\u9593 [it->l, it->r) \u306E\u4E00\u90E8\u3068\u91CD\u306A\u308B\
+    \u5834\u5408\n                // (l <= it->l < r < it->r \u304C\u78BA\u5B9A)\n\
+    \                // \u73FE\u5728\u306E\u533A\u9593\u306F [it->l, r) \u304C\u524A\
+    \u9664\u3055\u308C,[r, it->r) \u306E\u90E8\u5206\u304C\u6B8B\u308B\u305F\u3081\
+    ,\u5206\u5272\u3055\u308C\u308B.\n                Interval node = *it;\n     \
+    \           del_update(del, it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\
+    \u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n  \
+    \              it = intervals.erase(it);\n                // \u6B8B\u308A\u306E\
+    \u533A\u9593 [r, node.r) \u3092\u633F\u5165\u3059\u308B.\n                it =\
+    \ intervals.emplace_hint(it, r, node.r, node.val);\n                add_update(add,\
+    \ it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\
+    \u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n              \
+    \  // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\u91CD\
+    \u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\u308B\
+    .\n                break;\n            }\n        }\n\n        // \u524A\u9664\
+    \u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\u3059\u3050\u5DE6\u306B\u3042\u308B\
+    \u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\u30A7\u30C3\u30AF\u3059\u308B.\n  \
+    \      // \u3053\u308C\u306B\u3088\u308A,\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\
+    \u304C\u524A\u9664\u533A\u9593\u3068\u91CD\u306A\u308B\u5834\u5408\u306E\u5206\
+    \u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it != intervals.begin()) {\n\
+    \            it = prev(it); // \u5DE6\u5074\u306E\u533A\u9593\u3092\u53D6\u5F97\
+    \n            if (l < it->r) { // \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r)\
+    \ \u304C\u524A\u9664\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u5834\u5408\n\
+    \                // (it->l < l < it->r \u304C\u78BA\u5B9A)\n                if\
+    \ (r < it->r) {\n                    // \u5DE6\u5074\u306E\u533A\u9593 [it->l,\
+    \ it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3092\u5B8C\u5168\u306B\u542B\u3080\
+    \u5834\u5408\n                    // [it->l, l) \u3068 [r, it->r) \u306E2\u3064\
+    \u306E\u533A\u9593\u306B\u5206\u5272\u3055\u308C\u308B.\n                    //\
+    \ \u307E\u305A [r, it->r) \u3092\u633F\u5165\u3059\u308B.\n                  \
+    \  it = intervals.emplace_hint(next(it), r, it->r, it->val);\n               \
+    \     add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\
+    \u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\
+    \u77E5)\n                    it = prev(it); // \u30A4\u30C6\u30EC\u30FC\u30BF\u3092\
+    \u5143\u306B\u623B\u3059\n                }\n                // \u5DE6\u5074\u306E\
+    \u533A\u9593\u306E\u5143\u306E\u90E8\u5206 [it->l, it->r) \u3092\u524A\u9664\u3057\
+    ,\n                // \u65B0\u3057\u3044\u533A\u9593 [node.l, l) \u3092\u633F\u5165\
+    \u3059\u308B.\n                Interval node = *it;\n                del_update(del,\
     \ it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\
     \u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                it = intervals.erase(it);\n\
     \                it = intervals.emplace_hint(it, node.l, l, node.val);\n     \
     \           add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\
     \u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\
     \u901A\u77E5)\n            }\n        }\n    }\n\n    void erase(const T &l, const\
-    \ T &r) {\n        erase(l, r, [](T, T, V){}, [](T, T, V){});\n    }\n\n    constexpr\
-    \ size_t size() const { return set_size; }\n};\n"
+    \ T &r) {\n        erase(l, r, [](T, T, V){}, [](T, T, V){});\n    }\n\n    ///\
+    \ @brief \u4FDD\u6301\u3057\u3066\u3044\u308B\u5168\u3066\u306E\u533A\u9593\u3092\
+    , \u5DE6\u7AEF\u306E\u6607\u9806\u306B\u4E26\u3079\u305F\u30D9\u30AF\u30C8\u30EB\
+    \u3068\u3057\u3066\u53D6\u5F97\u3059\u308B.\n    /// @return \u5404\u8981\u7D20\
+    \ Interval \u306F, \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3068, \u305D\u308C\u306B\
+    \u7D10\u3065\u3044\u3066\u3044\u308B\u5024 val \u3092\u6301\u3064.\n    vector<Interval>\
+    \ get_intervals() const {\n        return vector<Interval>(intervals.begin(),\
+    \ intervals.end());\n    }\n\n    constexpr size_t size() const { return set_size;\
+    \ }\n};\n"
   code: "#pragma once\n\n#include\"../template/template.hpp\"\n\n// Reference: https://github.com/drken1215/algorithm/blob/master/DataStructure/intervals_management.cpp\n\
-    \ntemplate<typename T, class V = ll>\nclass Interval_Set {\n    struct Node {\n\
-    \        T l, r;\n        V val;\n\n        /// @brief \u5024 val \u304C\u7D10\
-    \u3065\u3044\u3066\u3044\u308B, \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\u751F\
-    \u6210\u3059\u308B.\n        /// @param l \u5DE6\u7AEF\n        /// @param r \u53F3\
-    \u7AEF\n        /// @param val \u7D10\u3065\u3051\u308B\u8981\u7D20\n        Node\
-    \ (const T &l, const T &r, const V &val): l(l), r(r), val(val) {};\n\n       \
-    \ /// @brief p \u306F\u3053\u306E\u53F3\u534A\u958B\u533A\u9593\u306B\u542B\u307E\
-    \u308C\u308B\u304B?\n        /// @param p \n        constexpr bool contains(const\
-    \ T &p) const { return l <= p && p < r; }\n\n        constexpr bool operator<(const\
-    \ Node &rhs) const {\n            if (l != rhs.l) { return l < rhs.l; }\n    \
-    \        return r < rhs.r;\n        }\n\n        friend ostream& operator<<(ostream\
-    \ &os, const Node &node) {\n            return os << \"([\" << node.l << \", \"\
-    \ << node.r << \"): \" << node.val << \")\";\n        }\n    };\n\n    const V\
-    \ nil; // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\n    size_t set_size;\n    set<Node>\
-    \ intervals;\n\n    template<class ADDFUNC>\n    void add_update(const ADDFUNC\
-    \ &add, const T l, const T r, const V &val) {\n        add(l, r, val);\n     \
-    \   set_size += r - l;\n    }\n\n    template<class DELFUNC>\n    void del_update(const\
-    \ DELFUNC &del, const T l, const T r, const V &val) {\n        del(l, r, val);\n\
-    \        set_size -= r - l;\n    }\n\n    public:\n    Interval_Set(): Interval_Set(V())\
-    \ {}\n\n    // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\u3092 nil \u3068\u3057\u3066\
-    , Interval Set \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u3092\u751F\u6210\u3059\u308B\
-    .\n    Interval_Set(const V &nil): nil(nil), set_size(0) {}\n\n    // iterators\n\
-    \    constexpr typename set<Node>::iterator begin() { return intervals.begin();\
-    \ }\n    constexpr typename set<Node>::iterator end() { return intervals.end();\
-    \ }\n\n    /// @brief p \u3092\u542B\u3080\u533A\u9593\u306E\u30A4\u30C6\u30EC\
-    \u30FC\u30BF\u3092\u6C42\u3081\u308B (\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
-    \u306F, end() \u304C\u8FD4\u308A\u5024).\n    /// @param p \n    constexpr typename\
-    \ set<Node>::iterator get(const T &p) const {\n        auto it = intervals.upper_bound(Node(p,\
-    \ numeric_limits<T>::max(), 0));\n        if (it == intervals.begin()) { return\
-    \ intervals.end(); }\n\n        // \u3053\u3053\u306B\u6765\u308B it \u306F, p\
-    \ \u3092\u542B\u3080\u533A\u9593\u306E\u6B21\u306E\u533A\u9593\u306A\u306E\u3067\
-    , 1 \u500B\u623B\u3059.\n        it = prev(it);\n\n        return it->contains(p)\
-    \ ? it : intervals.end();\n    }\n\n    /// @brief p \u4EE5\u4E0A\u3067\u3042\u308B\
-    \u6700\u5C0F\u306E\u8981\u7D20\u3092\u542B\u3093\u3067\u3044\u308B\u533A\u9593\
-    \u306E\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u6C42\u3081\u308B.\n    /// @param\
-    \ p\n    constexpr typename set<Node>::iterator lower_bound(const T &p) {\n  \
-    \      auto it = get(p);\n\n        if (it != intervals.end()) { return it; }\n\
-    \        return intervals.upper_bound(Node(p, numeric_limits<T>::max(), 0));\n\
-    \    }\n\n    /// @brief p \u3092\u542B\u3080\u304B?\n    /// @param p\n    constexpr\
-    \ bool covered(const T &p) {\n        return get(p) != intervals.end();\n    }\n\
-    \n    /// @brief \u533A\u9593 [l, r) \u3092\u542B\u3080\u304B?\n    /// @param\
-    \ l \n    /// @param r \n    constexpr bool covered(const T &l, const T &r) {\n\
-    \        assert(l <= r);\n\n        if (l == r) { return true; }\n\n        auto\
-    \ it = get(l);\n        return it != intervals.end() && r <= it->r;\n    }\n\n\
-    \    constexpr bool same(const T &p, const T &q) {\n        return covered(p)\
-    \ && covered(q) && get(p) == get(q);\n    }\n\n    /// @brief p \u3092\u542B\u3080\
-    \u53F3\u534A\u958B\u533A\u9593\u306B\u7D10\u3065\u3044\u3066\u3044\u308B\u5024\
-    \u3092\u6C42\u3081\u308B (\u305D\u306E\u3088\u3046\u306A\u53F3\u534A\u958B\u533A\
-    \u9593\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F nil \u304C\u8FD4\u308A\
-    \u5024)\n    /// @param p \n    constexpr V get_value(const T &p) const {\n  \
-    \      auto it = get(p);\n        return it != intervals.end() ? it->val : nil;\n\
-    \    }\n\n    V operator[](const T &p) const { return get_value(p); }\n\n    constexpr\
-    \ T get_mex(const T &p = 0) {\n        auto it = intervals.upper_bound(Node(p,\
+    \ntemplate<typename T, class V = ll>\nclass Interval_Set {\n    public:\n    struct\
+    \ Interval {\n        T l, r;\n        V val;\n\n        /// @brief \u5024 val\
+    \ \u304C\u7D10\u3065\u3044\u3066\u3044\u308B, \u53F3\u534A\u958B\u533A\u9593 [l,\
+    \ r) \u3092\u751F\u6210\u3059\u308B.\n        /// @param l \u5DE6\u7AEF\n    \
+    \    /// @param r \u53F3\u7AEF\n        /// @param val \u7D10\u3065\u3051\u308B\
+    \u8981\u7D20\n        Interval (const T &l, const T &r, const V &val): l(l), r(r),\
+    \ val(val) {};\n\n        /// @brief p \u306F\u3053\u306E\u53F3\u534A\u958B\u533A\
+    \u9593\u306B\u542B\u307E\u308C\u308B\u304B?\n        /// @param p\n        constexpr\
+    \ bool contains(const T &p) const { return l <= p && p < r; }\n\n        constexpr\
+    \ bool operator<(const Interval &rhs) const {\n            if (l != rhs.l) { return\
+    \ l < rhs.l; }\n            return r < rhs.r;\n        }\n\n        friend ostream&\
+    \ operator<<(ostream &os, const Interval &node) {\n            return os << \"\
+    ([\" << node.l << \", \" << node.r << \"): \" << node.val << \")\";\n        }\n\
+    \    };\n\n    private:\n    const V nil; // \u30C7\u30D5\u30A9\u30EB\u30C8\u5024\
+    \n    size_t set_size;\n    set<Interval> intervals;\n\n    template<class ADDFUNC>\n\
+    \    void add_update(const ADDFUNC &add, const T l, const T r, const V &val) {\n\
+    \        add(l, r, val);\n        set_size += r - l;\n    }\n\n    template<class\
+    \ DELFUNC>\n    void del_update(const DELFUNC &del, const T l, const T r, const\
+    \ V &val) {\n        del(l, r, val);\n        set_size -= r - l;\n    }\n\n  \
+    \  public:\n    Interval_Set(): Interval_Set(V()) {}\n\n    // \u30C7\u30D5\u30A9\
+    \u30EB\u30C8\u5024\u3092 nil \u3068\u3057\u3066, Interval Set \u30A4\u30F3\u30B9\
+    \u30BF\u30F3\u30B9\u3092\u751F\u6210\u3059\u308B.\n    Interval_Set(const V &nil):\
+    \ nil(nil), set_size(0) {}\n\n    // iterators\n    constexpr typename set<Interval>::iterator\
+    \ begin() { return intervals.begin(); }\n    constexpr typename set<Interval>::iterator\
+    \ end() { return intervals.end(); }\n\n    /// @brief p \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u6C42\u3081\u308B (\u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408\u306F, end() \u304C\u8FD4\u308A\u5024).\n    ///\
+    \ @param p \n    constexpr typename set<Interval>::iterator get(const T &p) const\
+    \ {\n        auto it = intervals.upper_bound(Interval(p, numeric_limits<T>::max(),\
+    \ 0));\n        if (it == intervals.begin()) { return intervals.end(); }\n\n \
+    \       // \u3053\u3053\u306B\u6765\u308B it \u306F, p \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u6B21\u306E\u533A\u9593\u306A\u306E\u3067, 1 \u500B\u623B\u3059.\n\
+    \        it = prev(it);\n\n        return it->contains(p) ? it : intervals.end();\n\
+    \    }\n\n    /// @brief p \u4EE5\u4E0A\u3067\u3042\u308B\u6700\u5C0F\u306E\u8981\
+    \u7D20\u3092\u542B\u3093\u3067\u3044\u308B\u533A\u9593\u306E\u30A4\u30C6\u30EC\
+    \u30FC\u30BF\u3092\u6C42\u3081\u308B.\n    /// @param p\n    constexpr typename\
+    \ set<Interval>::iterator lower_bound(const T &p) {\n        auto it = get(p);\n\
+    \n        if (it != intervals.end()) { return it; }\n        return intervals.upper_bound(Interval(p,\
+    \ numeric_limits<T>::max(), 0));\n    }\n\n    /// @brief p \u3092\u542B\u3080\
+    \u304B?\n    /// @param p\n    constexpr bool covered(const T &p) {\n        return\
+    \ get(p) != intervals.end();\n    }\n\n    /// @brief \u533A\u9593 [l, r) \u3092\
+    \u542B\u3080\u304B?\n    /// @param l \n    /// @param r \n    constexpr bool\
+    \ covered(const T &l, const T &r) {\n        assert(l <= r);\n\n        if (l\
+    \ == r) { return true; }\n\n        auto it = get(l);\n        return it != intervals.end()\
+    \ && r <= it->r;\n    }\n\n    constexpr bool same(const T &p, const T &q) {\n\
+    \        return covered(p) && covered(q) && get(p) == get(q);\n    }\n\n    ///\
+    \ @brief p \u3092\u542B\u3080\u53F3\u534A\u958B\u533A\u9593\u306B\u7D10\u3065\u3044\
+    \u3066\u3044\u308B\u5024\u3092\u6C42\u3081\u308B (\u305D\u306E\u3088\u3046\u306A\
+    \u53F3\u534A\u958B\u533A\u9593\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\
+    \u306F nil \u304C\u8FD4\u308A\u5024)\n    /// @param p \n    constexpr V get_value(const\
+    \ T &p) const {\n        auto it = get(p);\n        return it != intervals.end()\
+    \ ? it->val : nil;\n    }\n\n    V operator[](const T &p) const { return get_value(p);\
+    \ }\n\n    constexpr T get_mex(const T &p = 0) {\n        auto it = intervals.upper_bound(Interval(p,\
     \ numeric_limits<T>::max(), 0));\n        if (it == intervals.begin()) { return\
     \ p; }\n\n        it = prev(it);\n\n        return it->contains(p) ? it->r : p;\n\
     \    }\n\n    /// @brief val \u304C\u7D10\u3065\u3044\u305F, \u53F3\u534A\u958B\
@@ -567,21 +575,21 @@ data:
     \u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65E2\u5B58\u306E\u533A\u9593\
     \u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\u30AF\u3092\u958B\u59CB\u3059\u308B\
     \u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\u5B9A\u3059\u308B.\n        auto it\
-    \ = intervals.lower_bound(Node(l, 0, val));\n\n        // \u65B0\u3057\u3044\u533A\
-    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\u65E2\
-    \u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n        //\
-    \ it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\u304C\
-    \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end() &&\
-    \ it->l <= r) {\n            // Case 0: \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\
-    \u7AEF r \u304C\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l \u3068\
-    \u4E00\u81F4\u3059\u308B\u5834\u5408\n            // \u304B\u3064,\u5024\u3082\
-    \u540C\u3058\u5834\u5408\u306F\u533A\u9593\u3092\u7D50\u5408\u3059\u308B.\n  \
-    \          // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\
-    \u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\
-    \u308B.\n            if (r == it->l) {\n                if (it->val == val) {\n\
-    \                    r = it->r; // \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\u7AEF\
-    \u3092\u62E1\u5F35\n                    del_update(del, it->l, it->r, it->val);\
+    \ = intervals.lower_bound(Interval(l, 0, val));\n\n        // \u65B0\u3057\u3044\
+    \u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\
+    \u65E2\u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n  \
+    \      // it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\
+    \u304C\u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\
+    \u3042\u308B\u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end()\
+    \ && it->l <= r) {\n            // Case 0: \u65B0\u3057\u3044\u533A\u9593\u306E\
+    \u53F3\u7AEF r \u304C\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l\
+    \ \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            // \u304B\u3064,\u5024\
+    \u3082\u540C\u3058\u5834\u5408\u306F\u533A\u9593\u3092\u7D50\u5408\u3059\u308B\
+    .\n            // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\
+    \u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\
+    \u3051\u308B.\n            if (r == it->l) {\n                if (it->val == val)\
+    \ {\n                    r = it->r; // \u65B0\u3057\u3044\u533A\u9593\u306E\u53F3\
+    \u7AEF\u3092\u62E1\u5F35\n                    del_update(del, it->l, it->r, it->val);\
     \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
     \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
     \       }\n                break;\n            }\n\n            // Case 1: \u73FE\
@@ -611,176 +619,184 @@ data:
     \                  // [it->l, r) \u306E\u90E8\u5206\u306F\u65B0\u3057\u3044\u533A\
     \u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\u308C\u308B\u305F\u3081\
     ,[r, it->r) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\u308B.\n              \
-    \      Node node = *it;\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \           // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(it, r, node.r, node.val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                }\n            }\n        }\n\n        //\
-    \ \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\u3059\u3050\
-    \u5DE6\u306B\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\u30A7\u30C3\
-    \u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65B0\u3057\u3044\
-    \u533A\u9593\u3068\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\u306E\u7D50\u5408\
-    \u3084\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it != intervals.begin())\
-    \ {\n            it = prev(it); // \u5DE6\u5074\u306E\u533A\u9593\u3092\u53D6\u5F97\
-    \n            // Case 3: \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u306E\u53F3\
-    \u7AEF it->r \u304C\u65B0\u3057\u3044\u533A\u9593\u306E\u5DE6\u7AEF l \u3068\u4E00\
-    \u81F4\u3059\u308B\u5834\u5408\n            if (it->r == l) {\n              \
-    \  if (it->val == val) {\n                    // \u5024\u304C\u540C\u3058\u5834\
-    \u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\u5408\u3057,\u65B0\u3057\u3044\u533A\
-    \u9593\u306E\u5DE6\u7AEF\u3092\u62E1\u5F35\u3059\u308B.\n                    l\
-    \ = it->l;\n                    del_update(del, it->l, it->r, it->val); // \u65E2\
-    \u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\
-    \u901A\u77E5)\n                    it = intervals.erase(it);\n               \
-    \ }\n            } else if (l < it->r) {\n                // Case 4: \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u65B0\u3057\u3044\u533A\u9593 [l, r)\
-    \ \u3068\u91CD\u306A\u308B\u5834\u5408\n                // (it->l < l < it->r\
-    \ \u304C\u78BA\u5B9A)\n                if (it->val == val) {\n               \
-    \     // \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\
-    \u5408\u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u7BC4\u56F2\u3092\u62E1\u5F35\
-    \u3059\u308B.\n                    l = min(l, it->l);\n                    r =\
-    \ max(r, it->r);\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \       } else {\n                    // \u5024\u304C\u7570\u306A\u308B\u5834\u5408\
-    \u306F,\u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u3092\u65B0\u3057\u3044\u533A\
-    \u9593\u306B\u3088\u3063\u3066\u4E8C\u5206\u5272\u3059\u308B.\n              \
-    \      // [it->l, l) \u306E\u90E8\u5206\u3068 [l, it->r) \u306E\u90E8\u5206\u306B\
-    \u5206\u3051\u3089\u308C,\n                    // \u5F8C\u8005\u306F\u65B0\u3057\
-    \u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\u308C\u308B\
-    \u305F\u3081,[it->l, l) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\u308B.\n  \
-    \                  if (r < it->r) { // \u65B0\u3057\u3044\u533A\u9593\u304C\u5DE6\
-    \u5074\u306E\u533A\u9593\u306E\u4E00\u90E8\u3092\u30AB\u30D0\u30FC\u3059\u308B\
-    \u5834\u5408\n                        // \u5DE6\u5074\u306E\u533A\u9593\u306E\u6B8B\
-    \u308A\u306E\u90E8\u5206 [r, it->r) \u3092\u633F\u5165\n                     \
-    \   it = intervals.emplace_hint(next(it), r, it->r, it->val);\n              \
-    \          add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\
-    \u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\
-    \u901A\u77E5)\n                        it = prev(it); // \u30A4\u30C6\u30EC\u30FC\
-    \u30BF\u3092\u5143\u306B\u623B\u3059\n                    }\n                \
-    \    Node node = *it;\n                    del_update(del, it->l, it->r, it->val);\
-    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n         \
-    \           // \u6B8B\u308A\u306E\u533A\u9593 [node.l, l) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(it, node.l, l, node.val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                }\n            }\n        }\n\n        //\
-    \ \u9069\u5207\u306A\u4F4D\u7F6E\u306B\u30A4\u30C6\u30EC\u30FC\u30BF\u3092\u8ABF\
-    \u6574\u3059\u308B.\n        if (it != intervals.end()) { it = next(it); }\n\n\
-    \        // \u6700\u7D42\u7684\u306B\u78BA\u5B9A\u3057\u305F\u65B0\u3057\u3044\
-    \u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n        it = intervals.emplace_hint(it,\
-    \ l, r, val);\n        add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\
-    \u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\
-    \u5206\u3092\u901A\u77E5)\n    }\n\n    void update(const T &l, const T &r, const\
-    \ V &val) {\n        update(l, r, val, [](T, T, V){}, [](T, T, V){});\n    }\n\
-    \n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\u8FFD\u52A0\u307E\
-    \u305F\u306F\u66F4\u65B0\u3059\u308B. \u305D\u306E\u969B, \u767A\u751F\u3059\u308B\
-    \u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B.\n    ///\
-    \        \u3053\u306E\u95A2\u6570\u306F,\u65B0\u3057\u3044\u533A\u9593 [l, r)\
-    \ \u3068\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\u3092\u9069\u5207\
-    \u306B\u51E6\u7406\u3057,\u5FC5\u8981\u306B\u5FDC\u3058\u3066\u533A\u9593\u306E\
-    \u7D50\u5408,\u5206\u5272,\u524A\u9664\u3092\u884C\u3046.\n    /// @param l \u5DE6\
-    \u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B\u533A\u9593\u306E\
-    \u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\
-    \u65B0\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\
-    \u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570\
-    : T left, T right, V value)\n    /// @param del \u524A\u9664\u5DEE\u5206\u304C\
-    \u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406 (\u5F15\u6570: T left,\
-    \ T right, V value)\n    template<class ADDFUNC, class DELFUNC>\n    void insert(T\
-    \ l, T r, const ADDFUNC &add, const DELFUNC &del) {\n        update(l, r, V(),\
-    \ add, del);\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3092\
-    \u633F\u5165\u3059\u308B.\n    /// @param l \u5DE6\u7AEF\n    /// @param r \u53F3\
-    \u7AEF\n    void insert(const T &l, const T &r) {\n        update(l, r, V(), [](T,\
-    \ T, V){}, [](T, T, V){});\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593\
-    \ [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u524A\u9664\
-    \u3059\u308B.\u305D\u306E\u969B,\u767A\u751F\u3059\u308B\u5DEE\u5206\u3092 add,\
-    \ del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B.\n    ///        \u3053\u306E\
-    \u95A2\u6570\u306F,\u6307\u5B9A\u3055\u308C\u305F\u533A\u9593 [l, r) \u3068\u91CD\
-    \u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u524A\u9664\u3057,\u5FC5\u8981\
-    \u306B\u5FDC\u3058\u3066\u65E2\u5B58\u306E\u533A\u9593\u3092\u5206\u5272\u3059\
-    \u308B.\n    /// @param l \u5DE6\u7AEF (\u524A\u9664\u3059\u308B\u533A\u9593\u306E\
-    \u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u524A\u9664\u3059\u308B\u533A\u9593\
-    \u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\u5DEE\u5206\u304C\u767A\u751F\
-    \u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570: T left, T right, V value)\
-    \ - \u5206\u5272\u306B\u3088\u308A\u4E00\u90E8\u304C\u6B8B\u308B\u5834\u5408\u306B\
-    \u547C\u3070\u308C\u308B\n    /// @param del \u524A\u9664\u5DEE\u5206\u304C\u767A\
-    \u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406 (\u5F15\u6570: T left, T right,\
-    \ V value)\n    template<class ADDFUNC, class DELFUNC>\n    void erase(T l, T\
-    \ r, const ADDFUNC &add, const DELFUNC &del) {\n        // \u524A\u9664\u3057\u3088\
-    \u3046\u3068\u3057\u3066\u3044\u308B\u533A\u9593 [l, r) \u306E\u958B\u59CB\u70B9\
-    \ l \u4EE5\u4E0A\u3067\u6700\u3082\u8FD1\u3044\u533A\u9593\u3092\u898B\u3064\u3051\
-    \u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65E2\u5B58\u306E\u533A\u9593\
-    \u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\u30AF\u3092\u958B\u59CB\u3059\u308B\
-    \u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\u5B9A\u3059\u308B.\n        auto it\
-    \ = intervals.lower_bound(Node(l, 0, V()));\n\n        // \u65B0\u3057\u3044\u533A\
-    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\u80FD\u6027\u306E\u3042\u308B\u65E2\
-    \u5B58\u306E\u533A\u9593\u3092\u5168\u3066\u51E6\u7406\u3059\u308B.\n        //\
-    \ it->l <= r \u306F,\u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF\u304C\
-    \u524A\u9664\u533A\u9593 [l, r) \u306E\u53F3\u7AEF r \u4EE5\u4E0B\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u793A\u3059.\n        while (it != intervals.end() && it->l\
-    \ < r) { // it->l < r: \u524A\u9664\u533A\u9593\u304C\u73FE\u5728\u306E\u533A\u9593\
-    \u3068\u91CD\u306A\u3063\u3066\u3044\u308B\u9593\n            // Case 0: \u73FE\
-    \u5728\u306E\u533A\u9593 it \u306E\u5DE6\u7AEF it->l \u304C\u524A\u9664\u533A\u9593\
-    \u306E\u53F3\u7AEF r \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            //\
-    \ \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\
-    \u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\u308B.\n \
-    \           if (it->l == r) { break; }\n\n            // Case 1: \u73FE\u5728\u306E\
-    \u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u306B\u5B8C\
-    \u5168\u306B\u542B\u307E\u308C\u308B\u304B,\n            // \u307E\u305F\u306F\
-    ,\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF r \u3067\u7D42\u308F\u308B\u5834\u5408\
-    \ (it->r <= r)\n            // \u3053\u306E\u533A\u9593\u306F\u5B8C\u5168\u306B\
-    \u524A\u9664\u3055\u308C\u308B.\n            if (it->r <= r) {\n             \
-    \   del_update(del, it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\
-    \u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n              \
-    \  it = intervals.erase(it);\n            } else {\n                // Case 2:\
-    \ \u524A\u9664\u533A\u9593 [l, r) \u304C\u73FE\u5728\u306E\u533A\u9593 [it->l,\
-    \ it->r) \u306E\u4E00\u90E8\u3068\u91CD\u306A\u308B\u5834\u5408\n            \
-    \    // (l <= it->l < r < it->r \u304C\u78BA\u5B9A)\n                // \u73FE\
-    \u5728\u306E\u533A\u9593\u306F [it->l, r) \u304C\u524A\u9664\u3055\u308C,[r, it->r)\
-    \ \u306E\u90E8\u5206\u304C\u6B8B\u308B\u305F\u3081,\u5206\u5272\u3055\u308C\u308B\
-    .\n                Node node = *it;\n                del_update(del, it->l, it->r,\
+    \      Interval node = *it;\n                    del_update(del, it->l, it->r,\
     \ it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\
-    \u5DEE\u5206\u3092\u901A\u77E5)\n                it = intervals.erase(it);\n \
-    \               // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\u5165\
-    \u3059\u308B.\n                it = intervals.emplace_hint(it, r, node.r, node.val);\n\
-    \                add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\
-    \u533A\u9593\u3068\u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\
-    \u30D7\u3092\u629C\u3051\u308B.\n                break;\n            }\n     \
-    \   }\n\n        // \u524A\u9664\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                    // \u6B8B\u308A\u306E\u533A\u9593 [r, node.r) \u3092\u633F\
+    \u5165\u3059\u308B.\n                    it = intervals.emplace_hint(it, r, node.r,\
+    \ node.val);\n                    add_update(add, it->l, it->r, it->val); // \u8FFD\
+    \u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                }\n            }\n        }\n\
+    \n        // \u65B0\u3057\u3044\u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\
     \u3059\u3050\u5DE6\u306B\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\
-    \u30A7\u30C3\u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u5DE6\
-    \u5074\u306E\u65E2\u5B58\u533A\u9593\u304C\u524A\u9664\u533A\u9593\u3068\u91CD\
-    \u306A\u308B\u5834\u5408\u306E\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n  \
-    \      if (it != intervals.begin()) {\n            it = prev(it); // \u5DE6\u5074\
-    \u306E\u533A\u9593\u3092\u53D6\u5F97\n            if (l < it->r) { // \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3068\
-    \u91CD\u306A\u308B\u5834\u5408\n                // (it->l < l < it->r \u304C\u78BA\
-    \u5B9A)\n                if (r < it->r) {\n                    // \u5DE6\u5074\
-    \u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3092\
-    \u5B8C\u5168\u306B\u542B\u3080\u5834\u5408\n                    // [it->l, l)\
-    \ \u3068 [r, it->r) \u306E2\u3064\u306E\u533A\u9593\u306B\u5206\u5272\u3055\u308C\
-    \u308B.\n                    // \u307E\u305A [r, it->r) \u3092\u633F\u5165\u3059\
-    \u308B.\n                    it = intervals.emplace_hint(next(it), r, it->r, it->val);\n\
-    \                    add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\
-    \u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\
-    \u3092\u901A\u77E5)\n                    it = prev(it); // \u30A4\u30C6\u30EC\u30FC\
-    \u30BF\u3092\u5143\u306B\u623B\u3059\n                }\n                // \u5DE6\
-    \u5074\u306E\u533A\u9593\u306E\u5143\u306E\u90E8\u5206 [it->l, it->r) \u3092\u524A\
-    \u9664\u3057,\n                // \u65B0\u3057\u3044\u533A\u9593 [node.l, l) \u3092\
-    \u633F\u5165\u3059\u308B.\n                Node node = *it;\n                del_update(del,\
+    \u30A7\u30C3\u30AF\u3059\u308B.\n        // \u3053\u308C\u306B\u3088\u308A,\u65B0\
+    \u3057\u3044\u533A\u9593\u3068\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\u306E\
+    \u7D50\u5408\u3084\u5206\u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it\
+    \ != intervals.begin()) {\n            it = prev(it); // \u5DE6\u5074\u306E\u533A\
+    \u9593\u3092\u53D6\u5F97\n            // Case 3: \u5DE6\u5074\u306E\u533A\u9593\
+    \ [it->l, it->r) \u306E\u53F3\u7AEF it->r \u304C\u65B0\u3057\u3044\u533A\u9593\
+    \u306E\u5DE6\u7AEF l \u3068\u4E00\u81F4\u3059\u308B\u5834\u5408\n            if\
+    \ (it->r == l) {\n                if (it->val == val) {\n                    //\
+    \ \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\u3092\u7D50\u5408\
+    \u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u5DE6\u7AEF\u3092\u62E1\u5F35\u3059\
+    \u308B.\n                    l = it->l;\n                    del_update(del, it->l,\
+    \ it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                }\n            } else if (l < it->r) {\n                // Case\
+    \ 4: \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u304C\u65B0\u3057\u3044\u533A\
+    \u9593 [l, r) \u3068\u91CD\u306A\u308B\u5834\u5408\n                // (it->l\
+    \ < l < it->r \u304C\u78BA\u5B9A)\n                if (it->val == val) {\n   \
+    \                 // \u5024\u304C\u540C\u3058\u5834\u5408\u306F,\u4E21\u533A\u9593\
+    \u3092\u7D50\u5408\u3057,\u65B0\u3057\u3044\u533A\u9593\u306E\u7BC4\u56F2\u3092\
+    \u62E1\u5F35\u3059\u308B.\n                    l = min(l, it->l);\n          \
+    \          r = max(r, it->r);\n                    del_update(del, it->l, it->r,\
+    \ it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\
+    \u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                } else {\n                    // \u5024\u304C\u7570\u306A\u308B\
+    \u5834\u5408\u306F,\u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r) \u3092\u65B0\u3057\
+    \u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E8C\u5206\u5272\u3059\u308B.\n  \
+    \                  // [it->l, l) \u306E\u90E8\u5206\u3068 [l, it->r) \u306E\u90E8\
+    \u5206\u306B\u5206\u3051\u3089\u308C,\n                    // \u5F8C\u8005\u306F\
+    \u65B0\u3057\u3044\u533A\u9593\u306B\u3088\u3063\u3066\u4E0A\u66F8\u304D\u3055\
+    \u308C\u308B\u305F\u3081,[it->l, l) \u306E\u90E8\u5206\u306E\u307F\u304C\u6B8B\
+    \u308B.\n                    if (r < it->r) { // \u65B0\u3057\u3044\u533A\u9593\
+    \u304C\u5DE6\u5074\u306E\u533A\u9593\u306E\u4E00\u90E8\u3092\u30AB\u30D0\u30FC\
+    \u3059\u308B\u5834\u5408\n                        // \u5DE6\u5074\u306E\u533A\u9593\
+    \u306E\u6B8B\u308A\u306E\u90E8\u5206 [r, it->r) \u3092\u633F\u5165\n         \
+    \               it = intervals.emplace_hint(next(it), r, it->r, it->val);\n  \
+    \                      add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\
+    \u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\
+    \u5206\u3092\u901A\u77E5)\n                        it = prev(it); // \u30A4\u30C6\
+    \u30EC\u30FC\u30BF\u3092\u5143\u306B\u623B\u3059\n                    }\n    \
+    \                Interval node = *it;\n                    del_update(del, it->l,\
+    \ it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                    it = intervals.erase(it);\n\
+    \                    // \u6B8B\u308A\u306E\u533A\u9593 [node.l, l) \u3092\u633F\
+    \u5165\u3059\u308B.\n                    it = intervals.emplace_hint(it, node.l,\
+    \ l, node.val);\n                    add_update(add, it->l, it->r, it->val); //\
+    \ \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\
+    \u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                }\n            }\n    \
+    \    }\n\n        // \u9069\u5207\u306A\u4F4D\u7F6E\u306B\u30A4\u30C6\u30EC\u30FC\
+    \u30BF\u3092\u8ABF\u6574\u3059\u308B.\n        if (it != intervals.end()) { it\
+    \ = next(it); }\n\n        // \u6700\u7D42\u7684\u306B\u78BA\u5B9A\u3057\u305F\
+    \u65B0\u3057\u3044\u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n      \
+    \  it = intervals.emplace_hint(it, l, r, val);\n        add_update(add, it->l,\
+    \ it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\u77E5\
+    \ (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n    }\n\n    void update(const\
+    \ T &l, const T &r, const V &val) {\n        update(l, r, val, [](T, T, V){},\
+    \ [](T, T, V){});\n    }\n\n    /// @brief \u53F3\u534A\u958B\u533A\u9593 [l,\
+    \ r) \u3092\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B. \u305D\u306E\
+    \u969B, \u767A\u751F\u3059\u308B\u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\
+    \u51E6\u7406\u3059\u308B.\n    ///        \u3053\u306E\u95A2\u6570\u306F,\u65B0\
+    \u3057\u3044\u533A\u9593 [l, r) \u3068\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\
+    \u91CD\u8907\u3092\u9069\u5207\u306B\u51E6\u7406\u3057,\u5FC5\u8981\u306B\u5FDC\
+    \u3058\u3066\u533A\u9593\u306E\u7D50\u5408,\u5206\u5272,\u524A\u9664\u3092\u884C\
+    \u3046.\n    /// @param l \u5DE6\u7AEF (\u8FFD\u52A0\u307E\u305F\u306F\u66F4\u65B0\
+    \u3059\u308B\u533A\u9593\u306E\u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u8FFD\
+    \u52A0\u307E\u305F\u306F\u66F4\u65B0\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF\
+    )\n    /// @param add \u8FFD\u52A0\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\
+    \u306E\u51E6\u7406 (\u5F15\u6570: T left, T right, V value)\n    /// @param del\
+    \ \u524A\u9664\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\
+    \u7406 (\u5F15\u6570: T left, T right, V value)\n    template<class ADDFUNC, class\
+    \ DELFUNC>\n    void insert(T l, T r, const ADDFUNC &add, const DELFUNC &del)\
+    \ {\n        update(l, r, V(), add, del);\n    }\n\n    /// @brief \u53F3\u534A\
+    \u958B\u533A\u9593 [l, r) \u3092\u633F\u5165\u3059\u308B.\n    /// @param l \u5DE6\
+    \u7AEF\n    /// @param r \u53F3\u7AEF\n    void insert(const T &l, const T &r)\
+    \ {\n        update(l, r, V(), [](T, T, V){}, [](T, T, V){});\n    }\n\n    ///\
+    \ @brief \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\
+    \u306E\u533A\u9593\u3092\u524A\u9664\u3059\u308B.\u305D\u306E\u969B,\u767A\u751F\
+    \u3059\u308B\u5DEE\u5206\u3092 add, del \u95A2\u6570\u3067\u51E6\u7406\u3059\u308B\
+    .\n    ///        \u3053\u306E\u95A2\u6570\u306F,\u6307\u5B9A\u3055\u308C\u305F\
+    \u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\
+    \u524A\u9664\u3057,\u5FC5\u8981\u306B\u5FDC\u3058\u3066\u65E2\u5B58\u306E\u533A\
+    \u9593\u3092\u5206\u5272\u3059\u308B.\n    /// @param l \u5DE6\u7AEF (\u524A\u9664\
+    \u3059\u308B\u533A\u9593\u306E\u5DE6\u7AEF)\n    /// @param r \u53F3\u7AEF (\u524A\
+    \u9664\u3059\u308B\u533A\u9593\u306E\u53F3\u7AEF)\n    /// @param add \u8FFD\u52A0\
+    \u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u969B\u306E\u51E6\u7406 (\u5F15\u6570\
+    : T left, T right, V value) - \u5206\u5272\u306B\u3088\u308A\u4E00\u90E8\u304C\
+    \u6B8B\u308B\u5834\u5408\u306B\u547C\u3070\u308C\u308B\n    /// @param del \u524A\
+    \u9664\u5DEE\u5206\u304C\u767A\u751F\u3057\u305F\u5834\u5408\u306E\u51E6\u7406\
+    \ (\u5F15\u6570: T left, T right, V value)\n    template<class ADDFUNC, class\
+    \ DELFUNC>\n    void erase(T l, T r, const ADDFUNC &add, const DELFUNC &del) {\n\
+    \        // \u524A\u9664\u3057\u3088\u3046\u3068\u3057\u3066\u3044\u308B\u533A\
+    \u9593 [l, r) \u306E\u958B\u59CB\u70B9 l \u4EE5\u4E0A\u3067\u6700\u3082\u8FD1\u3044\
+    \u533A\u9593\u3092\u898B\u3064\u3051\u308B.\n        // \u3053\u308C\u306B\u3088\
+    \u308A,\u65E2\u5B58\u306E\u533A\u9593\u3068\u306E\u91CD\u8907\u30C1\u30A7\u30C3\
+    \u30AF\u3092\u958B\u59CB\u3059\u308B\u9069\u5207\u306A\u4F4D\u7F6E\u3092\u7279\
+    \u5B9A\u3059\u308B.\n        auto it = intervals.lower_bound(Interval(l, 0, V()));\n\
+    \n        // \u65B0\u3057\u3044\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u53EF\
+    \u80FD\u6027\u306E\u3042\u308B\u65E2\u5B58\u306E\u533A\u9593\u3092\u5168\u3066\
+    \u51E6\u7406\u3059\u308B.\n        // it->l <= r \u306F,\u73FE\u5728\u306E\u533A\
+    \u9593 it \u306E\u5DE6\u7AEF\u304C\u524A\u9664\u533A\u9593 [l, r) \u306E\u53F3\
+    \u7AEF r \u4EE5\u4E0B\u3067\u3042\u308B\u3053\u3068\u3092\u793A\u3059.\n     \
+    \   while (it != intervals.end() && it->l < r) { // it->l < r: \u524A\u9664\u533A\
+    \u9593\u304C\u73FE\u5728\u306E\u533A\u9593\u3068\u91CD\u306A\u3063\u3066\u3044\
+    \u308B\u9593\n            // Case 0: \u73FE\u5728\u306E\u533A\u9593 it \u306E\u5DE6\
+    \u7AEF it->l \u304C\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF r \u3068\u4E00\u81F4\
+    \u3059\u308B\u5834\u5408\n            // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\
+    \u533A\u9593\u3068\u306E\u91CD\u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\
+    \u30D7\u3092\u629C\u3051\u308B.\n            if (it->l == r) { break; }\n\n  \
+    \          // Case 1: \u73FE\u5728\u306E\u533A\u9593 [it->l, it->r) \u304C\u524A\
+    \u9664\u533A\u9593 [l, r) \u306B\u5B8C\u5168\u306B\u542B\u307E\u308C\u308B\u304B\
+    ,\n            // \u307E\u305F\u306F,\u524A\u9664\u533A\u9593\u306E\u53F3\u7AEF\
+    \ r \u3067\u7D42\u308F\u308B\u5834\u5408 (it->r <= r)\n            // \u3053\u306E\
+    \u533A\u9593\u306F\u5B8C\u5168\u306B\u524A\u9664\u3055\u308C\u308B.\n        \
+    \    if (it->r <= r) {\n                del_update(del, it->l, it->r, it->val);\
+    \ // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\
+    \u3092\u901A\u77E5)\n                it = intervals.erase(it);\n            }\
+    \ else {\n                // Case 2: \u524A\u9664\u533A\u9593 [l, r) \u304C\u73FE\
+    \u5728\u306E\u533A\u9593 [it->l, it->r) \u306E\u4E00\u90E8\u3068\u91CD\u306A\u308B\
+    \u5834\u5408\n                // (l <= it->l < r < it->r \u304C\u78BA\u5B9A)\n\
+    \                // \u73FE\u5728\u306E\u533A\u9593\u306F [it->l, r) \u304C\u524A\
+    \u9664\u3055\u308C,[r, it->r) \u306E\u90E8\u5206\u304C\u6B8B\u308B\u305F\u3081\
+    ,\u5206\u5272\u3055\u308C\u308B.\n                Interval node = *it;\n     \
+    \           del_update(del, it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\
+    \u3092\u524A\u9664 (del \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n  \
+    \              it = intervals.erase(it);\n                // \u6B8B\u308A\u306E\
+    \u533A\u9593 [r, node.r) \u3092\u633F\u5165\u3059\u308B.\n                it =\
+    \ intervals.emplace_hint(it, r, node.r, node.val);\n                add_update(add,\
+    \ it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\u533A\u9593\u3092\u901A\
+    \u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n              \
+    \  // \u3053\u308C\u4EE5\u4E0A\u53F3\u5074\u306E\u533A\u9593\u3068\u306E\u91CD\
+    \u8907\u306F\u306A\u3044\u305F\u3081,\u30EB\u30FC\u30D7\u3092\u629C\u3051\u308B\
+    .\n                break;\n            }\n        }\n\n        // \u524A\u9664\
+    \u533A\u9593 [l, r) \u306E\u5DE6\u7AEF l \u306E\u3059\u3050\u5DE6\u306B\u3042\u308B\
+    \u65E2\u5B58\u306E\u533A\u9593\u3092\u30C1\u30A7\u30C3\u30AF\u3059\u308B.\n  \
+    \      // \u3053\u308C\u306B\u3088\u308A,\u5DE6\u5074\u306E\u65E2\u5B58\u533A\u9593\
+    \u304C\u524A\u9664\u533A\u9593\u3068\u91CD\u306A\u308B\u5834\u5408\u306E\u5206\
+    \u5272\u3092\u51E6\u7406\u3059\u308B.\n        if (it != intervals.begin()) {\n\
+    \            it = prev(it); // \u5DE6\u5074\u306E\u533A\u9593\u3092\u53D6\u5F97\
+    \n            if (l < it->r) { // \u5DE6\u5074\u306E\u533A\u9593 [it->l, it->r)\
+    \ \u304C\u524A\u9664\u533A\u9593 [l, r) \u3068\u91CD\u306A\u308B\u5834\u5408\n\
+    \                // (it->l < l < it->r \u304C\u78BA\u5B9A)\n                if\
+    \ (r < it->r) {\n                    // \u5DE6\u5074\u306E\u533A\u9593 [it->l,\
+    \ it->r) \u304C\u524A\u9664\u533A\u9593 [l, r) \u3092\u5B8C\u5168\u306B\u542B\u3080\
+    \u5834\u5408\n                    // [it->l, l) \u3068 [r, it->r) \u306E2\u3064\
+    \u306E\u533A\u9593\u306B\u5206\u5272\u3055\u308C\u308B.\n                    //\
+    \ \u307E\u305A [r, it->r) \u3092\u633F\u5165\u3059\u308B.\n                  \
+    \  it = intervals.emplace_hint(next(it), r, it->r, it->val);\n               \
+    \     add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\u305F\
+    \u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\u901A\
+    \u77E5)\n                    it = prev(it); // \u30A4\u30C6\u30EC\u30FC\u30BF\u3092\
+    \u5143\u306B\u623B\u3059\n                }\n                // \u5DE6\u5074\u306E\
+    \u533A\u9593\u306E\u5143\u306E\u90E8\u5206 [it->l, it->r) \u3092\u524A\u9664\u3057\
+    ,\n                // \u65B0\u3057\u3044\u533A\u9593 [node.l, l) \u3092\u633F\u5165\
+    \u3059\u308B.\n                Interval node = *it;\n                del_update(del,\
     \ it->l, it->r, it->val); // \u65E2\u5B58\u533A\u9593\u3092\u524A\u9664 (del \u95A2\
     \u6570\u3067\u5DEE\u5206\u3092\u901A\u77E5)\n                it = intervals.erase(it);\n\
     \                it = intervals.emplace_hint(it, node.l, l, node.val);\n     \
     \           add_update(add, it->l, it->r, it->val); // \u8FFD\u52A0\u3055\u308C\
     \u305F\u533A\u9593\u3092\u901A\u77E5 (add \u95A2\u6570\u3067\u5DEE\u5206\u3092\
     \u901A\u77E5)\n            }\n        }\n    }\n\n    void erase(const T &l, const\
-    \ T &r) {\n        erase(l, r, [](T, T, V){}, [](T, T, V){});\n    }\n\n    constexpr\
-    \ size_t size() const { return set_size; }\n};\n"
+    \ T &r) {\n        erase(l, r, [](T, T, V){}, [](T, T, V){});\n    }\n\n    ///\
+    \ @brief \u4FDD\u6301\u3057\u3066\u3044\u308B\u5168\u3066\u306E\u533A\u9593\u3092\
+    , \u5DE6\u7AEF\u306E\u6607\u9806\u306B\u4E26\u3079\u305F\u30D9\u30AF\u30C8\u30EB\
+    \u3068\u3057\u3066\u53D6\u5F97\u3059\u308B.\n    /// @return \u5404\u8981\u7D20\
+    \ Interval \u306F, \u53F3\u534A\u958B\u533A\u9593 [l, r) \u3068, \u305D\u308C\u306B\
+    \u7D10\u3065\u3044\u3066\u3044\u308B\u5024 val \u3092\u6301\u3064.\n    vector<Interval>\
+    \ get_intervals() const {\n        return vector<Interval>(intervals.begin(),\
+    \ intervals.end());\n    }\n\n    constexpr size_t size() const { return set_size;\
+    \ }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -792,7 +808,7 @@ data:
   isVerificationFile: false
   path: Data_Structure/Interval_Set.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-03 23:29:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Data_Structure/Interval_Set.hpp
@@ -835,17 +851,17 @@ title: Interval Set
 ### begin / end
 
 ```cpp
-constexpr typename set<Node>::iterator begin()
-constexpr typename set<Node>::iterator end()
+constexpr typename set<Interval>::iterator begin()
+constexpr typename set<Interval>::iterator end()
 ```
 
-* 内部で管理している区間集合（`std::set<Node>`）のイテレータを返す.
-* イテレータをデリファレンスすることで `Node` オブジェクトが得られ、`it->l` (左端), `it->r` (右端), `it->val` (値) にアクセスできる.
+* 内部で管理している区間集合（`std::set<Interval>`）のイテレータを返す.
+* イテレータをデリファレンスすることで `Interval` オブジェクトが得られ、`it->l` (左端), `it->r` (右端), `it->val` (値) にアクセスできる.
 
 ### get
 
 ```cpp
-constexpr typename set<Node>::iterator get(const T &p) const
+constexpr typename set<Interval>::iterator get(const T &p) const
 ```
 
 * 点 $p$ を含む区間のイテレータを求める.
@@ -854,7 +870,7 @@ constexpr typename set<Node>::iterator get(const T &p) const
 ### lower_bound
 
 ```cpp
-constexpr typename set<Node>::iterator lower_bound(const T &p)
+constexpr typename set<Interval>::iterator lower_bound(const T &p)
 ```
 
 * 点 $p$ を含む区間、または $p$ より右側にある最初の区間のイテレータを求める.
