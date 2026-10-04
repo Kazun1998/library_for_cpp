@@ -1,20 +1,38 @@
 #pragma once
 
-#include"../../template/template.hpp"
+#include "../../template/template.hpp"
+#include "../Common.hpp"
 
 namespace digraph {
+    using graph_common::Empty;
+
+    /**
+     * @brief 弧
+     * @tparam W 重みの型 (重みなしの場合は Empty)
+     */
+    template<typename W = Empty>
     struct Arc {
         int id, source, target;
+        [[no_unique_address]] W weight;
 
-        Arc() = default;
-        Arc(int id, int source, int target): id(id), source(source), target(target) {}
+        Arc(): id(-1), source(-1), target(-1), weight() {}
+        Arc(int id, int source, int target, W weight): id(id), source(source), target(target), weight(weight) {}
     };
 
+    /**
+     * @brief 有向 Graph
+     * @tparam W 重みの型 (重みなしの場合は Empty)
+     * @note 弧は値で保持する. add_arc を呼ぶと get_arc で得た参照は無効になる可能性がある.
+     */
+    template<typename W = Empty>
     class Digraph {
+        public:
+        using Arc_Type = Arc<W>;
+
         private:
         int arc_id_offset;
-        vector<vector<Arc*>> adjacent_out, adjacent_in;
-        vector<Arc> arcs;
+        vector<vector<int>> adjacent_out, adjacent_in;
+        vector<Arc_Type> arcs;
 
         public:
         /**
@@ -27,7 +45,7 @@ namespace digraph {
             adjacent_in.assign(n, {});
             arcs.resize(arc_id_offset);
         }
-        
+
         /**
          * @brief 頂点数を取得する
          * @return int 頂点数
@@ -35,62 +53,54 @@ namespace digraph {
         inline int order() const { return int(adjacent_in.size()); }
 
         /**
-         * @brief 辺数を取得する
-         * @return int 辺数
+         * @brief 弧数を取得する
+         * @return int 弧数
          */
         inline int size() const { return int(arcs.size()) - arc_id_offset; }
 
         /**
-         * @brief 頂点 u から頂点 v への弧を追加する
-         * @param u 始点
-         * @param v 終点
-         * @return Arc* 追加された弧へのポインタ
+         * @brief 頂点 u から頂点 v への弧を追加する (重みなし用)
+         * @return int 追加された弧の ID
          */
-        Arc* add_arc(int u, int v) {
+        int add_arc(int u, int v) requires same_as<W, Empty> { return add_arc(u, v, Empty()); }
+
+        /**
+         * @brief 頂点 u から頂点 v への重み w の弧を追加する
+         * @return int 追加された弧の ID
+         */
+        int add_arc(int u, int v, W w) {
             int id = int(arcs.size());
 
-            Arc* arc_ptr = new Arc(id, u, v);
-            arcs.emplace_back(*arc_ptr);
-            
-            adjacent_out[u].emplace_back(arc_ptr);
-            adjacent_in[v].emplace_back(arc_ptr);
+            arcs.emplace_back(id, u, v, w);
+            adjacent_out[u].emplace_back(id);
+            adjacent_in[v].emplace_back(id);
 
-            return arc_ptr;
+            return id;
         }
 
         /**
-         * @brief 頂点 u から出る弧のリストを取得する
-         * @param u 頂点
-         * @return const vector<Arc*>& 弧のリスト
+         * @brief 頂点 u から出る弧の ID のリストを取得する
          */
-        inline const vector<Arc*>& successors(int u) const { return adjacent_out[u]; }
+        inline const vector<int>& successors(int u) const { return adjacent_out[u]; }
 
         /**
-         * @brief 頂点 u に入る弧のリストを取得する
-         * @param u 頂点
-         * @return const vector<Arc*>& 弧のリスト
+         * @brief 頂点 u に入る弧の ID のリストを取得する
          */
-        inline const vector<Arc*>& predecessors(int u) const { return adjacent_in[u]; }
+        inline const vector<int>& predecessors(int u) const { return adjacent_in[u]; }
 
         /**
-         * @brief 指定された ID の弧を取得する
-         * @param id 弧 ID
-         * @return const Arc 弧
+         * @brief 弧 ID が id である弧を取得する
          */
-        inline const Arc get_arc(int id) const { return arcs[id]; }
-        inline Arc get_arc(int id) { return arcs[id]; }
+        inline const Arc_Type& get_arc(int id) const { return arcs[id]; }
+        inline Arc_Type& get_arc(int id) { return arcs[id]; }
 
         /**
          * @brief 頂点 v の出次数を取得する
-         * @param v 頂点
-         * @return int 出次数
          */
         inline int out_degree(const int v) const { return adjacent_out[v].size(); }
 
         /**
          * @brief 頂点 v の入次数を取得する
-         * @param v 頂点
-         * @return int 入次数
          */
         inline int in_degree(const int v) const { return adjacent_in[v].size(); }
 
@@ -112,8 +122,8 @@ namespace digraph {
 
             for (int head = 0; head < reachable.size(); ++head) {
                 const int u = reachable[head];
-                for (const auto *arc : adjacent_out[u]) {
-                    const int v = arc->target;
+                for (const int id : adjacent_out[u]) {
+                    const int v = arcs[id].target;
                     if (visited[v]) continue;
 
                     visited[v] = true;
@@ -126,8 +136,6 @@ namespace digraph {
 
         /**
          * @brief 指定された頂点から到達可能な頂点のリストを取得する
-         * @param source 始点
-         * @return vector<int> 到達可能な頂点のリスト
          */
         vector<int> forward_reachable(const int source) const { return forward_reachable(vector<int>{source}); }
 
@@ -149,8 +157,8 @@ namespace digraph {
 
             for (int head = 0; head < reachable.size(); ++head) {
                 const int u = reachable[head];
-                for (const auto *arc : adjacent_in[u]) {
-                    const int v = arc->source;
+                for (const int id : adjacent_in[u]) {
+                    const int v = arcs[id].source;
                     if (visited[v]) continue;
 
                     visited[v] = true;
@@ -163,8 +171,6 @@ namespace digraph {
 
         /**
          * @brief 指定された頂点へ到達可能な頂点のリストを取得する
-         * @param target 終点
-         * @return vector<int> 到達可能な頂点のリスト
          */
         vector<int> backward_reachable(const int target) const { return backward_reachable(vector<int>{target}); }
     };

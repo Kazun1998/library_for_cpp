@@ -1,3 +1,5 @@
+#pragma once
+
 #include"Digraph.hpp"
 
 namespace digraph {
@@ -11,7 +13,8 @@ namespace digraph {
         vector<bool> used;
 
         public:
-        Strongly_Connected_Components(const Digraph &D) {
+        template<typename W>
+        Strongly_Connected_Components(const Digraph<W> &D) {
             int n = D.order();
 
             used.assign(n, false);
@@ -32,10 +35,11 @@ namespace digraph {
         }
 
         private:
-        void dfs1(const Digraph &D, int v) {
+        template<typename W>
+        void dfs1(const Digraph<W> &D, int v) {
             used[v] = true;
-            for (auto arc: D.successors(v)) {
-                int w = arc->target;
+            for (int id: D.successors(v)) {
+                int w = D.get_arc(id).target;
 
                 unless(used[w]) { dfs1(D, w); }
             }
@@ -43,11 +47,12 @@ namespace digraph {
             order.emplace_back(v);
         }
 
-        void dfs2(const Digraph &D, int v) {
+        template<typename W>
+        void dfs2(const Digraph<W> &D, int v) {
             components[group[v] = components.size() - 1].emplace_back(v);
 
-            for (auto arc: D.predecessors(v)) {
-                int w = arc->source;
+            for (int id: D.predecessors(v)) {
+                int w = D.get_arc(id).source;
                 if (group[w] == -1) { dfs2(D, w); }
             }
         }
