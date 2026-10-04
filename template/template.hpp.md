@@ -102,6 +102,10 @@ data:
     path: Convolution/Semilattice_Convolution_Base.hpp
     title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
+    path: Convolution/Subset_Convolution.hpp
+    title: "\u6DFB\u5B57\u304C\u96C6\u5408\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F\
+      \ (Subset Convolution)"
+  - icon: ':heavy_check_mark:'
     path: Counting/Combination_Calculator.hpp
     title: "\u7D44\u307F\u5408\u308F\u305B\u8AD6\u306B\u95A2\u3059\u308B\u57FA\u672C\
       \u7684\u306A\u8A08\u7B97"
@@ -1084,6 +1088,9 @@ data:
     path: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
     title: verify/yosupo_library_checker/string/Z_Algorithm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
+    title: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
     title: verify/yosupo_library_checker/tree/Cartesian_Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1640,6 +1647,7 @@ data:
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
   - Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+  - Convolution/Subset_Convolution.hpp
   - Convolution/Min_Plus_Convolution_Convex.hpp
   - Convolution/Double_Add_Convolution.hpp
   - Convolution/Convolution_Base.hpp
@@ -1728,6 +1736,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Point_Add_Range_Sum-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
   - verify/yosupo_library_checker/data_structure/Predecessor_Problem.test.cpp
+  - verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/q-Binomial_Coefficient_Prime_Mod.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp

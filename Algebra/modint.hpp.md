@@ -210,6 +210,9 @@ data:
     path: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
     title: verify/yosupo_library_checker/polynomial/Taylor_Shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
+    title: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Tree_Path_Composite_Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -522,6 +525,7 @@ data:
   - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Deque_Operate_All_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find_with_Non-Commutative_Group_Potential.test.cpp
+  - verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Factorial.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Bell_Number.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp

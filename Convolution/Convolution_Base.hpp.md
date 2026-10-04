@@ -45,6 +45,10 @@ data:
     path: Convolution/Semilattice_Convolution_Base.hpp
     title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
+    path: Convolution/Subset_Convolution.hpp
+    title: "\u6DFB\u5B57\u304C\u96C6\u5408\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F\
+      \ (Subset Convolution)"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Chromatic_Number.hpp
     title: "\u5F69\u8272\u6570"
   _extendedVerifiedWith:
@@ -60,6 +64,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
     title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
+    title: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -294,6 +301,7 @@ data:
   - Convolution/Bitwise_And_Convolution.hpp
   - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
+  - Convolution/Subset_Convolution.hpp
   - Convolution/Max_Convolution.hpp
   - Convolution/Semilattice_Convolution_Base.hpp
   - Convolution/Lcm_Convolution.hpp
@@ -304,6 +312,7 @@ data:
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Lcm_Convolution.test.cpp
   - verify/yosupo_library_checker/convolution/Gcd_Convolution.test.cpp
+  - verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
 documentation_of: Convolution/Convolution_Base.hpp
 layout: document
 title: "\u7573\u307F\u8FBC\u307F"
