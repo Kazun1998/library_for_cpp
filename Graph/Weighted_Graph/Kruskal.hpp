@@ -7,25 +7,25 @@
 
 namespace weighted_graph {
     template<typename W>
-    Minimum_Spanning_Tree<W> Kruskal(const Weighted_Graph<W> &G) {
-        using Edge = Weighted_Edge<W>;
+    Minimum_Spanning_Tree<W> Kruskal(const graph::Graph<W> &G) {
+        using Edge = graph::Edge<W>;
 
         Union_Find U(G.order());
-        vector<Edge*> edges;
-        for (Edge* edge: G.edges) {
-            if (edge != nullptr) { edges.emplace_back(edge); }
+        vector<Edge> edges;
+        for (int id = G.edge_id_offset; id < G.edge_id_offset + G.size(); ++id) {
+            edges.emplace_back(G.get_edge(id));
         }
 
-        vector<Edge*> tree_edges;
+        vector<Edge> tree_edges;
         W tree_weight = 0;
 
-        sort(edges.begin(), edges.end(), [](const Edge* e, const Edge* f) { return e->weight < f->weight; } );
+        sort(edges.begin(), edges.end(), [](const Edge &e, const Edge &f) { return e.weight < f.weight; } );
 
-        for (auto edge: edges) {
-            if (!U.unite(edge->source, edge->target)) { continue; }
+        for (const auto &edge: edges) {
+            if (!U.unite(edge.source, edge.target)) { continue; }
 
             tree_edges.emplace_back(edge);
-            tree_weight += edge->weight;
+            tree_weight += edge.weight;
         }
 
         return Minimum_Spanning_Tree<W> { tree_edges, tree_weight };

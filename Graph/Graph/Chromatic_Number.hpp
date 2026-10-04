@@ -4,7 +4,8 @@
 #include "../../Convolution/Bitwise_Or_Convolution.hpp"
 
 namespace graph {
-    int Chromatic_Number(const Graph &G) {
+    template<typename W>
+    int Chromatic_Number(const Graph<W> &G) {
         int n = G.order();
         if (n == 0) return 0;
 
@@ -14,7 +15,7 @@ namespace graph {
         vector<int> adj_mask(n, 0);
         for (int i = 0; i < n; ++i) {
             for (auto edge : G.incidence(i)) {
-                adj_mask[i] |= (1 << edge->target);
+                adj_mask[i] |= (1 << edge.target);
             }
         }
 

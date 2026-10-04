@@ -11,7 +11,8 @@ namespace graph {
         vector<bool> bridge, articulation;
         vector<int> ord, low;
 
-        Lowlink(const Graph &G) {
+        template<typename W>
+        Lowlink(const Graph<W> &G) {
             int N = G.order(), M = G.size();
             used.assign(N, false);
             ord.assign(N, -1);
@@ -27,7 +28,8 @@ namespace graph {
         }
 
         private:
-        int dfs(const Graph &G, int v, int k, int parent) {
+        template<typename W>
+        int dfs(const Graph<W> &G, int v, int k, int parent) {
             used[v] = true;
             ord[v] = k++;
             low[v] = ord[v];
@@ -36,7 +38,7 @@ namespace graph {
             int children_number = 0;
 
             for (auto edge: G.incidence(v)) {
-                int target = edge->target;
+                int target = edge.target;
                 if (used[target]) {
                     unless (target == parent) {
                         low[v] = min(low[v], ord[target]);
@@ -49,7 +51,7 @@ namespace graph {
                 low[v] = min(low[v], low[target]);
 
                 if (parent != -1 && ord[v] <= low[target]) { is_articulation = true; }
-                if (ord[v] < low[target]) { bridge[edge->id] = true; }
+                if (ord[v] < low[target]) { bridge[edge.id] = true; }
             }
 
             if (parent == -1 && children_number >= 2) { is_articulation = true; }

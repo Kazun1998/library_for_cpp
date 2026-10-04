@@ -8,13 +8,15 @@ namespace graph {
         vector<vector<int>> components;
         vector<int> component_ids;
 
-        Two_Edge_Connected_Components(const Graph &G) {
+        template<typename W>
+        Two_Edge_Connected_Components(const Graph<W> &G) {
             calculate(G);
         }
 
         private:
         vector<bool> bridges;
-        void calculate(const Graph &G) {
+        template<typename W>
+        void calculate(const Graph<W> &G) {
             bridges = Lowlink(G).bridge;
 
             components.clear();
@@ -26,7 +28,8 @@ namespace graph {
             }
         }
 
-        void dfs(const Graph &G, int start) {
+        template<typename W>
+        void dfs(const Graph<W> &G, int start) {
             int component_id = components.size();
 
             components.emplace_back();
@@ -39,8 +42,8 @@ namespace graph {
             while(!st.empty()) {
                 int x = st.top(); st.pop();
                 for (auto edge: G.incidence(x)) {
-                    int y = edge->target;
-                    if (bridges[edge->id]) { continue; }
+                    int y = edge.target;
+                    if (bridges[edge.id]) { continue; }
                     unless (component_ids[y] == -1) { continue; }
 
                     component_ids[y] = component_id;

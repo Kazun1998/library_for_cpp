@@ -8,7 +8,8 @@ namespace graph {
     /// @brief 二部グラフに関する情報を求める.
     /// @param G 
     /// @return そもそも二部グラフではない場合は nullout, 二部グラフである場合は, [(A0, B0), ..., (Ak, Bk)] の形で返される. (Ai, Bi) がそれぞれの連結成分における部集合になる.
-    optional<vector<pair<vector<int>, vector<int>>>> Biparte(const Graph &G) {
+    template<typename W>
+    optional<vector<pair<vector<int>, vector<int>>>> Biparte(const Graph<W> &G) {
         int n = G.order();
         vector<int> colors(n, -1);
 
@@ -24,7 +25,7 @@ namespace graph {
                 int v = stack.back(); stack.pop_back();
 
                 for (auto edge: G.incidence(v)) {
-                int u = edge->target;
+                int u = edge.target;
                 if (colors[u] != -1) {
                     if (colors[u] ^ 1 != colors[v]) return nullopt;
                     continue;
@@ -45,7 +46,8 @@ namespace graph {
     /// @brief G の二部グラフに対する部集合の例を求める.
     /// @param G 
     /// @return (A, B): A, B がそれぞれ部集合になる.
-    optional<pair<vector<int>, vector<int>>> Find_Bipartion(const Graph &G) {
+    template<typename W>
+    optional<pair<vector<int>, vector<int>>> Find_Bipartion(const Graph<W> &G) {
         auto bipartition = Biparte(G);
         if (!bipartition) { return nullopt; }
 
@@ -58,7 +60,8 @@ namespace graph {
         return make_pair(A, B);
     }
 
-    bool Is_Bipartite(const Graph &G) {
+    template<typename W>
+    bool Is_Bipartite(const Graph<W> &G) {
         int n = G.order();
         vector<int> colors(n, -1);
 
@@ -71,7 +74,7 @@ namespace graph {
                 int v = stack.back(); stack.pop_back();
 
                 for (auto edge: G.incidence(v)) {
-                    int u = edge->target;
+                    int u = edge.target;
                     if (colors[u] != -1) {
                         if (colors[u] == colors[v]) return false;
                         continue;
