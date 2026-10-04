@@ -47,7 +47,7 @@ $$ \sum_{A \cup B = S} f(A) g(B) x^{\lvert A \rvert + \lvert B \rvert} $$
 
 ## Contents
 
-`convolution::Subset_Convolution<R>` (別名 `convolution::Sub<R>`) は [Convolution_Base](Convolution_Base.hpp) を継承している. 以下では, $N$ を全体集合の大きさとし, ベクトルの長さ $n$ に対して $N = \lceil \log_2 n \rceil$ とする.
+`convolution::Subset_Convolution<R>` (別名 `convolution::Sub<R>`) は [Convolution_Base](Convolution_Base.hpp) を継承している. 以下では, $N$ を全体集合の大きさとする.
 
 ### Constructer
 
@@ -77,7 +77,7 @@ Subset_Convolution<R> A - B
 
 * 各点毎の和・差を求める.
 * **制約**
-  * `A` と `B` の長さが等しい.
+  * $A, B$ の長さが等しい.
 * **計算量**
   * $O(2^N)$ 時間.
 
@@ -101,12 +101,8 @@ Subset_Convolution<R>& A *= B
 
 * Subset Convolution $A * B$ を求める.
 * **制約**
-  * `A` と `B` の長さが等しい. 異なる場合は `std::length_error` を投げる.
+  * $A, B$ の長さが等しいことを要求する. 異なる場合は `std::length_error` を投げる.
 * **注意点**
   * 空列同士の積は空列になる.
 * **計算量**
-  * $O(2^N N^2)$ 時間, $O(2^N N)$ 領域.
-
-## Verify
-
-- [Library Checker: Subset Convolution](https://judge.yosupo.jp/problem/subset_convolution) ([verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp](../../verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp))
+  * $O(2^N N^2)$ 時間.
