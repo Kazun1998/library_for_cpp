@@ -3,7 +3,8 @@
 #include"Graph.hpp"
 
 namespace graph {
-    vector<vector<int>> Enumerate_Cliques(const Graph &G, bool empty = false) {
+    template<typename W>
+    vector<vector<int>> Enumerate_Cliques(const Graph<W> &G, bool empty = false) {
         vector<vector<int>> cliques;
 
         int N = G.order(), M = G.size();
@@ -16,7 +17,7 @@ namespace graph {
         vector<vector<bool>> E(N, vector<bool>(N, false));
         for (int u = 0; u < N; u++) {
             for (auto edge: G.incidence(u)) {
-                int v = edge->target;
+                int v = edge.target;
                 E[u][v] = true;
                 E[v][u] = true;
             }

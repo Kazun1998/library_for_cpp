@@ -5,7 +5,7 @@
 
 using namespace digraph;
 
-optional<Path> verify() {
+optional<Path<>> verify() {
     int n, m;
     cin >> n >> m;
     auto D = Digraph(n);
@@ -26,7 +26,7 @@ int main() {
             continue;
         }
 
-        Path trail = pre_trail.value();
+        Path<> trail = pre_trail.value();
         cout << "Yes" << "\n";
 
         cout << trail.vertices << "\n";

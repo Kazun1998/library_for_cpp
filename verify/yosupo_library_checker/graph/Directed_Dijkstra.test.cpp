@@ -4,7 +4,7 @@
 
 int main(){
   int N, M, s, t; cin >> N >> M >> s >> t;
-  auto D = weighted_digraph::Weighted_Digraph<long long>(N);
+  auto D = digraph::Digraph<long long>(N);
 
   for (int j = 0; j < M; j++) {
     int a, b; ll c;

@@ -4,7 +4,8 @@
 #include "Path.hpp"
 
 namespace graph {
-    optional<Path> Eulerian_Trail(const Graph &G) {
+    template<typename W>
+    optional<Path> Eulerian_Trail(const Graph<W> &G) {
         int n = G.order();
         int m = G.size();
         int start = -1, goal = -1;
@@ -32,16 +33,16 @@ namespace graph {
 
         vector<int> iter(n, 0);
         vector<bool> saw_edge_ids(m + G.edge_id_offset, false);
-        vector<Edge> path;
+        vector<Oriented_Edge> path;
 
         auto dfs = [&](auto self, const int v) -> void {
             const auto &edges = G.incidence(v);
             while (iter[v] < edges.size()) {
-                const Edge* edge = edges[iter[v]++];
-                if (saw_edge_ids[edge->id]) { continue; }
-                saw_edge_ids[edge->id] = true;
-                self(self, edge->target);
-                path.emplace_back(*edge);
+                const Oriented_Edge &edge = edges[iter[v]++];
+                if (saw_edge_ids[edge.id]) { continue; }
+                saw_edge_ids[edge.id] = true;
+                self(self, edge.target);
+                path.emplace_back(edge);
             }
         };
 

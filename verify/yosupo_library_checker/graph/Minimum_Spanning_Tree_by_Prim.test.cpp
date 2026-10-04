@@ -7,7 +7,7 @@ using namespace weighted_graph;
 
 int main() {
     int N, M; cin >> N >> M;
-    Weighted_Graph<ll> G(N);
+    graph::Graph<ll> G(N);
 
     for (int j = 0; j < M; j++) {
         int a, b; ll c;
@@ -19,7 +19,7 @@ int main() {
 
     cout << T.weight << endl;
     for (int k = 0; k < T.edges.size(); k++) {
-        cout << (k ? " " : "") << T.edges[k]->id;
+        cout << (k ? " " : "") << T.edges[k].id;
     }
 
     cout << "\n";

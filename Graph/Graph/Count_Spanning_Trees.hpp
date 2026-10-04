@@ -12,8 +12,8 @@ namespace graph {
      * @param G 対象となる無向グラフ
      * @return F 全域木の個数
      */
-    template<typename F>
-    F Count_Spanning_Trees(const Graph &G) {
+    template<typename F, typename W>
+    F Count_Spanning_Trees(const Graph<W> &G) {
         vector<vector<int>> L_pre = G.laplacian_matrix();
 
         const int n = G.order();

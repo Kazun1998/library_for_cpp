@@ -3,13 +3,14 @@
 #include"Graph.hpp"
 
 namespace graph {
-    vector<tuple<int, int, int>> Enumerate_Triangles(const Graph &G) {
+    template<typename W>
+    vector<tuple<int, int, int>> Enumerate_Triangles(const Graph<W> &G) {
         int N = G.order();
         vector<vector<int>> A(N);
 
         for (int u = 0; u < N; u++) {
             for (auto edge: G.incidence(u)) {
-                int v = edge->target;
+                int v = edge.target;
                 if (G.degree(u) > G.degree(v) || (G.degree(u) == G.degree(v) && u > v)) {
                     A[u].emplace_back(v);
                 }

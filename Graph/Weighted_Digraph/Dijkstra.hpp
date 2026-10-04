@@ -1,5 +1,5 @@
 #pragma once
-#include"Weighted_Digraph.hpp"
+#include"../Digraph/Digraph.hpp"
 
 namespace weighted_digraph::dijkstra {
     class UnreachableException : public exception {
@@ -18,7 +18,7 @@ namespace weighted_digraph::dijkstra {
   };
 
   template<typename W>
-  Shortest_Path<W> Dijkstra(Weighted_Digraph<W> &D, int start, int goal) {
+  Shortest_Path<W> Dijkstra(const digraph::Digraph<W> &D, int start, int goal) {
     int n = D.order();
 
     vector<bool> reachable(n, false); reachable[start] = true;
@@ -36,7 +36,7 @@ namespace weighted_digraph::dijkstra {
       if (dist[v] < d) { continue; }
 
       for (auto arc_id: D.successors(v)) {
-        Weighted_Arc<W> arc = D.get_arc(arc_id);
+        const auto &arc = D.get_arc(arc_id);
         if (!reachable[arc.target] || dist[arc.target] > dist[v] + arc.weight) {
           dist[arc.target] = dist[v] + arc.weight;
           reachable[arc.target] = true;

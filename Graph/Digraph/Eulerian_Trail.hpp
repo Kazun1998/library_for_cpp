@@ -4,7 +4,8 @@
 #include "Path.hpp"
 
 namespace digraph {
-    optional<Path> Eulerian_Trail(const Digraph &D) {
+    template<typename W>
+    optional<Path<W>> Eulerian_Trail(const Digraph<W> &D) {
         int n = D.order();
         int m = D.size();
         int start = -1, goal = -1;
@@ -36,13 +37,13 @@ namespace digraph {
         }
 
         vector<int> iter(n, 0);
-        vector<Arc> path;
+        vector<Arc<W>> path;
         auto dfs = [&](auto self, const int v) -> void {
             const auto &arcs = D.successors(v);
             while (iter[v] < arcs.size()) {
-                const Arc* arc = arcs[iter[v]++];
-                self(self, arc->target);
-                path.emplace_back(*arc);
+                const Arc<W> &arc = D.get_arc(arcs[iter[v]++]);
+                self(self, arc.target);
+                path.emplace_back(arc);
             }
         };
 
@@ -52,6 +53,6 @@ namespace digraph {
         if (path.size() < m) return nullopt;
 
         reverse(path.begin(), path.end());
-        return Path(start, path);
+        return Path<W>(start, path);
     }
 }

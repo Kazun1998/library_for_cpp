@@ -8,7 +8,8 @@ namespace graph {
         vector<vector<int>> components;
         vector<int> component_ids;
 
-        Connected_Components(const Graph &G) {
+        template<typename W>
+        Connected_Components(const Graph<W> &G) {
             components.clear();
             component_ids.assign(G.order(), -1);
 
@@ -19,7 +20,8 @@ namespace graph {
         };
 
         private:
-        void dfs(const Graph &G, int start) {
+        template<typename W>
+        void dfs(const Graph<W> &G, int start) {
             int component_id = components.size();
 
             components.emplace_back();
@@ -32,7 +34,7 @@ namespace graph {
             while(!st.empty()) {
                 int x = st.top(); st.pop();
                 for (auto edge: G.incidence(x)) {
-                    int y = edge->target;
+                    int y = edge.target;
                     unless (component_ids[y] == -1) { continue; }
 
                     component_ids[y] = component_id;
@@ -43,7 +45,8 @@ namespace graph {
         }
     };
 
-    bool is_Connected(const Graph &G) {
+    template<typename W>
+    bool is_Connected(const Graph<W> &G) {
         auto connected_components = Connected_Components(G);
         return connected_components.components.size() == 1;
     }

@@ -3,59 +3,71 @@
 #include"Graph.hpp"
 
 namespace graph {
+    /// @brief Lowlink
+    /// 橋・関節点を検出する. DFS は再帰を用いないため, 深いグラフでもスタックオーバーフローしない.
     class Lowlink {
-        private:
-        vector<bool> used;
-
         public:
         vector<bool> bridge, articulation;
         vector<int> ord, low;
 
-        Lowlink(const Graph &G) {
+        template<typename W>
+        Lowlink(const Graph<W> &G) {
             int N = G.order(), M = G.size();
-            used.assign(N, false);
             ord.assign(N, -1);
             low.assign(N, -1);
 
             bridge.assign(M + G.edge_id_offset, false);
             articulation.assign(N, false);
 
+            vector<int> parent(N, -1), parent_edge_id(N, -1), children_number(N, 0);
+
             int k = 0;
-            for (int i = 0; i < N; i++) {
-                unless(used[i]) { k = dfs(G, i, k, -1); }
-            }
-        }
+            // (頂点, 次に見る辺の位置)
+            vector<pair<int, int>> stack;
 
-        private:
-        int dfs(const Graph &G, int v, int k, int parent) {
-            used[v] = true;
-            ord[v] = k++;
-            low[v] = ord[v];
+            auto visit = [&](int v) -> void {
+                ord[v] = low[v] = k++;
+                stack.emplace_back(v, 0);
+            };
 
-            bool is_articulation = false;
-            int children_number = 0;
+            for (int s = 0; s < N; s++) {
+                if (ord[s] != -1) { continue; }
 
-            for (auto edge: G.incidence(v)) {
-                int target = edge->target;
-                if (used[target]) {
-                    unless (target == parent) {
-                        low[v] = min(low[v], ord[target]);
+                visit(s);
+                while (!stack.empty()) {
+                    int v = stack.back().first;
+                    const auto &edges = G.incidence(v);
+
+                    // v の辺を見終わった: 親に結果を伝える
+                    if (stack.back().second == int(edges.size())) {
+                        stack.pop_back();
+
+                        int p = parent[v];
+                        if (p == -1) {
+                            if (children_number[v] >= 2) { articulation[v] = true; }
+                            continue;
+                        }
+
+                        low[p] = min(low[p], low[v]);
+                        if (parent[p] != -1 && ord[p] <= low[v]) { articulation[p] = true; }
+                        if (ord[p] < low[v]) { bridge[parent_edge_id[v]] = true; }
+                        continue;
                     }
-                    continue;
+
+                    const auto &edge = edges[stack.back().second++];
+                    int target = edge.target;
+                    if (ord[target] != -1) {
+                        // 親へ来た辺そのものだけを無視する (親への多重辺は後退辺として扱う)
+                        if (edge.id != parent_edge_id[v]) { low[v] = min(low[v], ord[target]); }
+                        continue;
+                    }
+
+                    children_number[v]++;
+                    parent[target] = v;
+                    parent_edge_id[target] = edge.id;
+                    visit(target);
                 }
-
-                children_number++;
-                k = dfs(G, target, k, v);
-                low[v] = min(low[v], low[target]);
-
-                if (parent != -1 && ord[v] <= low[target]) { is_articulation = true; }
-                if (ord[v] < low[target]) { bridge[edge->id] = true; }
             }
-
-            if (parent == -1 && children_number >= 2) { is_articulation = true; }
-            if (is_articulation) { articulation[v] = true; }
-
-            return k;
         }
     };
 }
