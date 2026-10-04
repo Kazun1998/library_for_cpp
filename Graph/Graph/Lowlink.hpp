@@ -3,7 +3,8 @@
 #include"Graph.hpp"
 
 namespace graph {
-    /// @brief Lowlink (橋・関節点の検出). DFS は再帰を用いないため, 深いグラフでもスタックオーバーフローしない.
+    /// @brief Lowlink
+    /// 橋・関節点を検出する. DFS は再帰を用いないため, 深いグラフでもスタックオーバーフローしない.
     class Lowlink {
         public:
         vector<bool> bridge, articulation;

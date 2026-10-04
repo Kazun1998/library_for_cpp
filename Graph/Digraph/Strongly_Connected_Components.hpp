@@ -3,7 +3,8 @@
 #include"Digraph.hpp"
 
 namespace digraph {
-    /// @brief 強連結成分分解 (Kosaraju 法). DFS は再帰を用いないため, 深いグラフでもスタックオーバーフローしない.
+    /// @brief 強連結成分分解
+    /// Kosaraju 法による. DFS は再帰を用いないため, 深いグラフでもスタックオーバーフローしない.
     class Strongly_Connected_Components {
         public:
         vector<vector<int>> components;
