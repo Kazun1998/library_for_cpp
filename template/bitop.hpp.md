@@ -228,6 +228,9 @@ data:
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
     title: "\u6709\u5411 Graph"
   - icon: ':heavy_check_mark:'
@@ -238,7 +241,7 @@ data:
     title: Graph/Digraph/Path.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Strongly_Connected_Components.hpp
-    title: Graph/Digraph/Strongly_Connected_Components.hpp
+    title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
   - icon: ':warning:'
     path: Graph/Graph/Bipartition.hpp
     title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
@@ -265,7 +268,7 @@ data:
     title: "\u7121\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
-    title: Graph/Graph/Lowlink.hpp
+    title: Lowlink
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Path.hpp
     title: Graph/Graph/Path.hpp
@@ -276,11 +279,11 @@ data:
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
-    path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
-    title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
-  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+    title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Prim.hpp
     title: "Prim \u6CD5"
@@ -1281,10 +1284,12 @@ data:
   - Queries/Mo.hpp
   - Queries/Monotone_Minima.hpp
   - Queries/Two_Pointers.hpp
+  - Graph/Common.hpp
   - Graph/Digraph/Digraph.hpp
   - Graph/Digraph/Path.hpp
   - Graph/Digraph/Strongly_Connected_Components.hpp
   - Graph/Digraph/Eulerian_Trail.hpp
+  - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - Graph/Weighted_Graph/Prim.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
   - Graph/Graph/Two_Edge_Connected_Components.hpp
@@ -1298,7 +1303,6 @@ data:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Eulerian_Trail.hpp
   - Graph/Graph/Connected_Components.hpp
-  - Graph/Weighted_Digraph/Weighted_Digraph.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   - Summation/Summation.hpp
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp

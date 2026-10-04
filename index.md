@@ -271,6 +271,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Geometry/utility/Perpendicular_Bisector.hpp
       title: Geometry/utility/Perpendicular_Bisector.hpp
+  - name: Graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Graph/Common.hpp
+      title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
   - name: Graph/Digraph
     pages:
     - icon: ':heavy_check_mark:'
@@ -284,7 +289,7 @@ data:
       title: Graph/Digraph/Path.hpp
     - icon: ':heavy_check_mark:'
       path: Graph/Digraph/Strongly_Connected_Components.hpp
-      title: Graph/Digraph/Strongly_Connected_Components.hpp
+      title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
   - name: Graph/Graph
     pages:
     - icon: ':warning:'
@@ -313,7 +318,7 @@ data:
       title: "\u7121\u5411 Graph"
     - icon: ':heavy_check_mark:'
       path: Graph/Graph/Lowlink.hpp
-      title: Graph/Graph/Lowlink.hpp
+      title: Lowlink
     - icon: ':heavy_check_mark:'
       path: Graph/Graph/Path.hpp
       title: Graph/Graph/Path.hpp
@@ -325,9 +330,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Digraph/Dijkstra.hpp
       title: Graph/Weighted_Digraph/Dijkstra.hpp
-    - icon: ':heavy_check_mark:'
-      path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
-      title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
   - name: Graph/Weighted_Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -339,9 +341,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Graph/Prim.hpp
       title: "Prim \u6CD5"
-    - icon: ':heavy_check_mark:'
-      path: Graph/Weighted_Graph/Weighted_Graph.hpp
-      title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
   - name: Heuristic
     pages:
     - icon: ':warning:'

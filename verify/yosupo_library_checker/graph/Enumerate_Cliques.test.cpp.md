@@ -5,6 +5,9 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Cliques.hpp
     title: Graph/Graph/Enumerate_Cliques.hpp
   - icon: ':heavy_check_mark:'
@@ -247,42 +250,63 @@ data:
     \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
     \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
     \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Graph/Graph/Enumerate_Cliques.hpp\"\
-    \n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\n\
-    namespace graph {\n    struct Edge {\n        int id, source, target;\n      \
-    \  Edge *rev;\n\n        Edge() = default;\n        Edge(int id, int source, int\
-    \ target): id(id), source(source), target(target), rev(nullptr) {}\n    };\n\n\
-    \    class Graph {\n        private:\n        vector<vector<Edge*>> incidences;\n\
-    \        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\n        public:\n\
-    \        int edge_id_offset;\n\n        public:\n        Graph(int n, int edge_id_offset\
-    \ = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n            incidences.assign(n,\
-    \ {});\n            edges.resize(edge_id_offset, Edge());\n        }\n\n     \
-    \   /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570\
-    ) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return int(incidences.size());\
-    \ }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA\
-    \ (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline int size() const {\
-    \ return int(edges.size()) - edge_id_offset; }\n\n        /// @brief \u8FBA uv\
-    \ \u3092\u52A0\u3048\u308B.\n        int add_edge(int u, int v) {\n          \
-    \  int id = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v);\n\
-    \            Edge* rev_edge = new Edge(id, v, u);\n\n            edge->rev = rev_edge;\n\
-    \            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n            edges.emplace_back(*edge);\n\
-    \n            deg[u]++;\n            deg[v]++;\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\u3092\u53D6\u5F97\u3059\u308B.\n  \
-    \      const vector<Edge*>& incidence (int u) const { return incidences[u]; }\n\
-    \n        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const Edge& get_edge(int\
-    \ id) const { return edges[id]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline Edge& get_edge(int id) { return edges[id]; }\n\n        ///\
-    \ @brief \u9802\u70B9 v \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline\
-    \ int degree(const int v) const { return deg[v]; }\n\n        vector<vector<int>>\
+    \n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line 2 \"Graph/Common.hpp\"\n\n#line\
+    \ 4 \"Graph/Common.hpp\"\n\nnamespace graph_common {\n    /// @brief \u91CD\u307F\
+    \u306A\u3057\u3092\u8868\u3059\u578B\n    /// \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\
+    \u306E\u578B W \u306E\u65E2\u5B9A\u5024\u3068\u3057\u3066\u4F7F\u3046\u7A7A\u306E\
+    \u578B.\n    struct Empty {};\n}\n#line 5 \"Graph/Graph/Graph.hpp\"\n\nnamespace\
+    \ graph {\n    using graph_common::Empty;\n\n    /**\n     * @brief \u7121\u5411\
+    \u8FBA\n     * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\u307F\u306A\u3057\u306E\
+    \u5834\u5408\u306F Empty)\n     */\n    template<typename W = Empty>\n    struct\
+    \ Edge {\n        int id, source, target;\n        [[no_unique_address]] W weight;\n\
+    \n        Edge(): id(-1), source(-1), target(-1), weight() {}\n        Edge(int\
+    \ id, int source, int target, W weight): id(id), source(source), target(target),\
+    \ weight(weight) {}\n    };\n\n    /**\n     * @brief \u5411\u304D\u3092\u4ED8\
+    \u3051\u305F\u8FBA. \u9802\u70B9 source \u304B\u3089 target \u3078\u8FBA id \u3092\
+    \u305F\u3069\u308B\u3053\u3068\u3092\u8868\u3059.\n     * @note \u91CD\u307F\u306F\
+    \ get_edge(id).weight \u3067\u53D6\u5F97\u3059\u308B.\n     */\n    struct Oriented_Edge\
+    \ {\n        int id, source, target;\n\n        Oriented_Edge(int id, int source,\
+    \ int target): id(id), source(source), target(target) {}\n    };\n\n    /**\n\
+    \     * @brief \u7121\u5411 Graph\n     * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\
+    \u307F\u306A\u3057\u306E\u5834\u5408\u306F Empty)\n     * @note \u8FBA\u306F\u5024\
+    \u3067\u4FDD\u6301\u3059\u308B. add_edge \u3092\u547C\u3076\u3068 get_edge \u3067\
+    \u5F97\u305F\u53C2\u7167\u306F\u7121\u52B9\u306B\u306A\u308B\u53EF\u80FD\u6027\
+    \u304C\u3042\u308B.\n     */\n    template<typename W = Empty>\n    class Graph\
+    \ {\n        public:\n        using Edge_Type = Edge<W>;\n\n        private:\n\
+    \        vector<vector<Oriented_Edge>> incidences;\n        vector<Edge_Type>\
+    \ edges;\n\n        public:\n        int edge_id_offset;\n\n        /**\n    \
+    \     * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n         * @param n\
+    \ \u4F4D\u6570 (\u9802\u70B9\u6570)\n         * @param edge_id_offset \u8FBA ID\
+    \ \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n         */\n        Graph(int n, int\
+    \ edge_id_offset = 0): incidences(n), edges(edge_id_offset), edge_id_offset(edge_id_offset)\
+    \ {}\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u4F4D\u6570 (\u9802\
+    \u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int order() const { return\
+    \ int(incidences.size()); }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\
+    \u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\u308B.\n        inline\
+    \ int size() const { return int(edges.size()) - edge_id_offset; }\n\n        ///\
+    \ @brief \u8FBA uv \u3092\u52A0\u3048\u308B (\u91CD\u307F\u306A\u3057\u7528).\n\
+    \        /// @return \u8FFD\u52A0\u3057\u305F\u8FBA\u306E ID\n        int add_edge(int\
+    \ u, int v) requires same_as<W, Empty> { return add_edge(u, v, Empty()); }\n\n\
+    \        /// @brief \u91CD\u307F w \u306E\u8FBA uv \u3092\u52A0\u3048\u308B.\n\
+    \        /// @return \u8FFD\u52A0\u3057\u305F\u8FBA\u306E ID\n        int add_edge(int\
+    \ u, int v, W w) {\n            int id = int(edges.size());\n\n            edges.emplace_back(id,\
+    \ u, v, w);\n            incidences[u].emplace_back(id, u, v);\n            incidences[v].emplace_back(id,\
+    \ v, u);\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u3092, u \u304B\u3089\u51FA\u308B\u5411\
+    \u304D\u3067\u53D6\u5F97\u3059\u308B. \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F 2 \u56DE\
+    \u73FE\u308C\u308B.\n        inline const vector<Oriented_Edge>& incidence(int\
+    \ u) const { return incidences[u]; }\n\n        /// @brief \u8FBA ID \u304C id\
+    \ \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const\
+    \ Edge_Type& get_edge(int id) const { return edges[id]; }\n        inline Edge_Type&\
+    \ get_edge(int id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v\
+    \ \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline int degree(const\
+    \ int v) const { return int(incidences[v].size()); }\n\n        vector<vector<int>>\
     \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
     \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
-    \ + size(); ++j) {\n                Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
-    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
-    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
-    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ + size(); ++j) {\n                const Edge_Type &edge = edges[j];\n      \
+    \          matrix[edge.source][edge.target]++;\n                matrix[edge.target][edge.source]++;\n\
+    \            }\n\n            return matrix;\n        }\n\n        vector<vector<int>>\
+    \ degree_matrix() const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
     \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
     \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
     \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
@@ -290,47 +314,47 @@ data:
     \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
     \            }\n\n            return L;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Enumerate_Cliques.hpp\"\
-    \n\nnamespace graph {\n    vector<vector<int>> Enumerate_Cliques(const Graph &G,\
-    \ bool empty = false) {\n        vector<vector<int>> cliques;\n\n        int N\
-    \ = G.order(), M = G.size();\n        int M_sqrt = ceil_sqrt(M);\n\n        vector<int>\
-    \ deg(N, 0);\n        for (int v = 0; v < N; v++) { deg[v] = G.degree(v); }\n\n\
-    \        vector<bool> alive(N, true);\n        vector<vector<bool>> E(N, vector<bool>(N,\
-    \ false));\n        for (int u = 0; u < N; u++) {\n            for (auto edge:\
-    \ G.incidence(u)) {\n                int v = edge->target;\n                E[u][v]\
-    \ = true;\n                E[v][u] = true;\n            }\n        }\n\n     \
-    \   auto generate_bits_table = [&](const vector<int> &A) -> vector<ll> {\n   \
-    \         int K = A.size();\n            vector<ll> bits(K, 0);\n\n          \
-    \  for (int i = 0; i < K; i++) {\n                for (int j = 0; j < i; j++)\
-    \ {\n                    unless(E[A[i]][A[j]]) {\n                        bits[i]\
-    \ |= 1 << j;\n                        bits[j] |= 1 << i;\n                   \
-    \ }\n                }\n            }\n\n            return bits;\n        };\n\
-    \n        auto is_clique = [&](const vector<int> &A, const vector<ll> &bits, int\
-    \ S) -> bool {\n            for (int i = 0; i < A.size(); i++) {\n           \
-    \     if (get_bit(S, i) && (S & bits[i])) { return false; }\n            }\n\n\
-    \            return true;\n        };\n\n        auto subcalc = [&](const vector<int>\
-    \ &A, const int leader = -1) -> void {\n            bool empty_accept = (leader\
-    \ != -1) || empty;\n\n            int K = A.size();\n            auto bits = generate_bits_table(A);\n\
-    \n            for (int S = 0; S < (1 << K); S++) {\n                unless(is_clique(A,\
-    \ bits, S)) { continue; }\n\n                vector<int> C;\n                if\
-    \ (leader != -1) { C.emplace_back(leader); }\n\n                for (int i = 0;\
-    \ i < K; i++) {\n                    if (get_bit(S, i)) {\n                  \
-    \      C.emplace_back(A[i]);\n                    }\n                }\n\n   \
-    \             if(S > 0 || empty_accept) cliques.emplace_back(C);\n           \
-    \ }\n\n        };\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\u6E80\u306E\u9802\
-    \u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\u7B97\u3059\u308B\
-    \n        loop {\n            vector<int> A;\n\n            int leader = -1;\n\
-    \            for (int u = 0; u < N; u++) {\n                unless (alive[u] &&\
-    \ deg[u] < M_sqrt) { continue; }\n\n                for (int v = 0; v < N; v++)\
-    \ {\n                    if (u != v && alive[v] && E[u][v]) {\n              \
-    \          A.emplace_back(v);\n                    }\n                }\n\n  \
-    \              leader = u;\n                break;\n            }\n\n        \
-    \    if (leader == -1) { break; }\n\n            int K = A.size();\n         \
-    \   subcalc(A, leader);\n\n            alive[leader] = false;\n            deg[leader]\
-    \ = 0;\n\n            for (int v = 0; v < N; v++) {\n                if (leader\
-    \ != v && alive[v] && E[leader][v]) {\n                    deg[v]--;\n       \
-    \         }\n            }\n        }\n\n        // \u6B8B\u3063\u305F\u9802\u70B9\
-    \ M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\u308B \u2192 \u5168\u63A2\u7D22\n    \
-    \    vector<int> A;\n        for (int u = 0; u < N; u++) {\n            if(alive[u])\
+    \n\nnamespace graph {\n    template<typename W>\n    vector<vector<int>> Enumerate_Cliques(const\
+    \ Graph<W> &G, bool empty = false) {\n        vector<vector<int>> cliques;\n\n\
+    \        int N = G.order(), M = G.size();\n        int M_sqrt = ceil_sqrt(M);\n\
+    \n        vector<int> deg(N, 0);\n        for (int v = 0; v < N; v++) { deg[v]\
+    \ = G.degree(v); }\n\n        vector<bool> alive(N, true);\n        vector<vector<bool>>\
+    \ E(N, vector<bool>(N, false));\n        for (int u = 0; u < N; u++) {\n     \
+    \       for (auto edge: G.incidence(u)) {\n                int v = edge.target;\n\
+    \                E[u][v] = true;\n                E[v][u] = true;\n          \
+    \  }\n        }\n\n        auto generate_bits_table = [&](const vector<int> &A)\
+    \ -> vector<ll> {\n            int K = A.size();\n            vector<ll> bits(K,\
+    \ 0);\n\n            for (int i = 0; i < K; i++) {\n                for (int j\
+    \ = 0; j < i; j++) {\n                    unless(E[A[i]][A[j]]) {\n          \
+    \              bits[i] |= 1 << j;\n                        bits[j] |= 1 << i;\n\
+    \                    }\n                }\n            }\n\n            return\
+    \ bits;\n        };\n\n        auto is_clique = [&](const vector<int> &A, const\
+    \ vector<ll> &bits, int S) -> bool {\n            for (int i = 0; i < A.size();\
+    \ i++) {\n                if (get_bit(S, i) && (S & bits[i])) { return false;\
+    \ }\n            }\n\n            return true;\n        };\n\n        auto subcalc\
+    \ = [&](const vector<int> &A, const int leader = -1) -> void {\n            bool\
+    \ empty_accept = (leader != -1) || empty;\n\n            int K = A.size();\n \
+    \           auto bits = generate_bits_table(A);\n\n            for (int S = 0;\
+    \ S < (1 << K); S++) {\n                unless(is_clique(A, bits, S)) { continue;\
+    \ }\n\n                vector<int> C;\n                if (leader != -1) { C.emplace_back(leader);\
+    \ }\n\n                for (int i = 0; i < K; i++) {\n                    if (get_bit(S,\
+    \ i)) {\n                        C.emplace_back(A[i]);\n                    }\n\
+    \                }\n\n                if(S > 0 || empty_accept) cliques.emplace_back(C);\n\
+    \            }\n\n        };\n\n        // \u6B21\u6570\u304C M_sqrt \u672A\u6E80\
+    \u306E\u9802\u70B9\u3092\u542B\u3080\u30AF\u30EA\u30FC\u30AF\u3092\u8A08\u7B97\
+    \u3059\u308B\n        loop {\n            vector<int> A;\n\n            int leader\
+    \ = -1;\n            for (int u = 0; u < N; u++) {\n                unless (alive[u]\
+    \ && deg[u] < M_sqrt) { continue; }\n\n                for (int v = 0; v < N;\
+    \ v++) {\n                    if (u != v && alive[v] && E[u][v]) {\n         \
+    \               A.emplace_back(v);\n                    }\n                }\n\
+    \n                leader = u;\n                break;\n            }\n\n     \
+    \       if (leader == -1) { break; }\n\n            int K = A.size();\n      \
+    \      subcalc(A, leader);\n\n            alive[leader] = false;\n           \
+    \ deg[leader] = 0;\n\n            for (int v = 0; v < N; v++) {\n            \
+    \    if (leader != v && alive[v] && E[leader][v]) {\n                    deg[v]--;\n\
+    \                }\n            }\n        }\n\n        // \u6B8B\u3063\u305F\u9802\
+    \u70B9 M_sqrt \u500B\u4EE5\u4E0B\u3067\u3042\u308B \u2192 \u5168\u63A2\u7D22\n\
+    \        vector<int> A;\n        for (int u = 0; u < N; u++) {\n            if(alive[u])\
     \ { A.emplace_back(u); }\n        }\n\n        subcalc(A, -1);\n\n        return\
     \ cliques;\n    };\n}\n#line 6 \"verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp\"\
     \n\nusing namespace graph;\nusing mint = modint<998244353>;\n\nint main() {\n\
@@ -364,10 +388,11 @@ data:
   - Algebra/modint.hpp
   - Graph/Graph/Enumerate_Cliques.hpp
   - Graph/Graph/Graph.hpp
+  - Graph/Common.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp

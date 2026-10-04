@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
     title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Prim.hpp
     title: "Prim \u6CD5"
-  - icon: ':heavy_check_mark:'
-    path: Graph/Weighted_Graph/Weighted_Graph.hpp
-    title: "\u91CD\u307F\u4ED8\u304D\u7121\u5411\u30B0\u30E9\u30D5"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -207,77 +210,103 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Graph/Weighted_Graph/Prim.hpp\"\n\n#line 2 \"Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp\"\
-    \n\n#line 2 \"Graph/Weighted_Graph/Weighted_Graph.hpp\"\n\nnamespace weighted_graph\
-    \ {\n    template<typename W>\n    struct Weighted_Edge {\n        int id, source,\
-    \ target;\n        W weight;\n        Weighted_Edge *rev;\n\n        Weighted_Edge()\
-    \ = default;\n        Weighted_Edge (int id, int source, int target, W weight):\
-    \ id(id), source(source), target(target), weight(weight) {}\n    };\n    \n  \
-    \  template<typename W>\n    class Weighted_Graph {\n        using Edge = Weighted_Edge<W>;\n\
-    \n        private:\n        vector<vector<Edge*>> incidences;\n\n        public:\n\
-    \        int edge_id_offset;\n        vector<Edge*> edges, rev_edges;\n\n    \
-    \    /// @brief \u4F4D\u6570\u304C n \u306E\u91CD\u307F\u4ED8\u304D\u7121\u5411\
-    \u30B0\u30E9\u30D5\u3092\u751F\u6210\u3059\u308B.\n        /// @param n \u4F4D\
-    \u6570\n        /// @param edge_id_offset \u8FBA\u306E ID \u306E\u30AA\u30D5\u30BB\
-    \u30C3\u30C8\n        Weighted_Graph(int n, int edge_id_offset = 0): edge_id_offset(edge_id_offset),\
-    \ incidences(n), edges(edge_id_offset), rev_edges(edge_id_offset) {}\n\n     \
-    \   ~Weighted_Graph() {\n            for (Edge* edge: edges) {\n             \
-    \   if (edge != nullptr) { delete edge; }\n            }\n\n            for (Edge*\
-    \ rev_edge: rev_edges) {\n                if (rev_edge != nullptr) { delete rev_edge;\
-    \ }\n            }\n        }\n\n        /// @brief \u4F4D\u6570 (\u9802\u70B9\
-    \u306E\u6570) \u3092\u6C42\u3081\u308B\n        inline int order() const { return\
-    \ int(incidences.size()); }\n\n        /// @brief \u30B5\u30A4\u30BA (\u8FBA\u306E\
-    \u6570) \u3092\u6C42\u3081\u308B\n        inline int size() const { return int(edges.size())\
-    \ - edge_id_offset; }\n\n\n        /// @brief \u9802\u70B9 u \u304B\u3089\u9802\
-    \u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B\
-    .\n        /// @param u \u9802\u70B9 1\n        /// @param v \u9802\u70B9 2\n\
-    \        /// @param w \u91CD\u307F\n        /// @return \u8FFD\u52A0\u3057\u305F\
-    \u8FBA\u306E ID\n        int add_edge(int u, int v, W w){\n            int id\
-    \ = int(edges.size());\n\n            Edge* edge = new Edge(id, u, v, w);\n  \
-    \          Edge* rev_edge = new Edge(id, v, u, w);\n\n            edge->rev =\
-    \ rev_edge;\n            rev_edge->rev = edge;\n\n            incidences[u].emplace_back(edge);\n\
-    \            incidences[v].emplace_back(rev_edge);\n\n            edges.emplace_back(edge);\n\
-    \            rev_edges.emplace_back(rev_edge);\n\n            return id;\n   \
-    \     }\n\n        /// @brief \u9802\u70B9 u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\
-    \ (\u30A2\u30C9\u30EC\u30B9) \u306E\u30EA\u30B9\u30C8\u3092\u6C42\u3081\u308B\
-    .\n        /// @param u \n        inline const vector<Edge*>& incidence (int u)\
-    \ const { return incidences[u]; }\n\n        /// @brief \u8FBA ID \u304C id \u3067\
-    \u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        /// @param id\n   \
-    \     inline const Edge* get_edge(int id) const { return edges[id]; }\n\n    \
-    \    /// @brief \u8FBA ID \u304C id \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\
-    \u3059\u308B.\n        /// @param id\n        inline Edge* get_edge(int id) {\
-    \ return edges[id]; }\n    };\n}\n#line 4 \"Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp\"\
-    \n\nnamespace weighted_graph {\n    template<typename W>\n    struct Minimum_Spanning_Tree\
-    \ {\n        vector<Weighted_Edge<W>*> edges;\n        W weight;\n    };\n}\n\
-    #line 5 \"Graph/Weighted_Graph/Prim.hpp\"\n\nnamespace weighted_graph {\n    template<typename\
-    \ W>\n    Minimum_Spanning_Tree<W> Prim(const Weighted_Graph<W> &G) {\n      \
-    \  using Edge = Weighted_Edge<W>;\n        if (G.order() == 0) { return { vector<Edge*>(),\
-    \ W(0) }; }\n\n        auto compare = [](Edge *e, Edge *f) {\n            return\
-    \ e->weight > f->weight;\n        };\n\n        priority_queue<Edge*, vector<Edge*>,\
-    \ decltype(compare)> Q(compare);\n        for (auto edge: G.incidence(0)) {\n\
-    \            Q.push(edge);\n        }\n\n        vector<Edge*> tree_edges;\n \
-    \       W tree_weight = 0;\n\n        vector<bool> seen(G.order(), false);\n \
-    \       seen[0] = true;\n\n        while (!Q.empty()) {\n            Edge *e =\
-    \ Q.top(); Q.pop();\n\n            int t = e->target;\n            W w = e->weight;\n\
-    \n            if (seen[t]) { continue; }\n\n            seen[t] = true;\n    \
-    \        tree_weight += w;\n            tree_edges.emplace_back(e);\n\n      \
-    \      for (Edge* f: G.incidence(t)) {\n                if (!seen[f->target])\
-    \ { Q.push(f); }\n            }\n        }\n\n        return { tree_edges, tree_weight\
-    \ };\n    }\n}\n#line 5 \"verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp\"\
-    \n\nusing namespace weighted_graph;\n\nint main() {\n    int N, M; cin >> N >>\
-    \ M;\n    Weighted_Graph<ll> G(N);\n\n    for (int j = 0; j < M; j++) {\n    \
-    \    int a, b; ll c;\n        scanf(\"%d%d%lld\", &a, &b, &c);\n        G.add_edge(a,\
+    \    }\n};\n#line 2 \"Graph/Weighted_Graph/Prim.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
+    \n\n#line 2 \"Graph/Common.hpp\"\n\n#line 4 \"Graph/Common.hpp\"\n\nnamespace\
+    \ graph_common {\n    /// @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\
+    \n    /// \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\
+    \u5024\u3068\u3057\u3066\u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n\
+    }\n#line 5 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    using graph_common::Empty;\n\
+    \n    /**\n     * @brief \u7121\u5411\u8FBA\n     * @tparam W \u91CD\u307F\u306E\
+    \u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\u306F Empty)\n     */\n   \
+    \ template<typename W = Empty>\n    struct Edge {\n        int id, source, target;\n\
+    \        [[no_unique_address]] W weight;\n\n        Edge(): id(-1), source(-1),\
+    \ target(-1), weight() {}\n        Edge(int id, int source, int target, W weight):\
+    \ id(id), source(source), target(target), weight(weight) {}\n    };\n\n    /**\n\
+    \     * @brief \u5411\u304D\u3092\u4ED8\u3051\u305F\u8FBA. \u9802\u70B9 source\
+    \ \u304B\u3089 target \u3078\u8FBA id \u3092\u305F\u3069\u308B\u3053\u3068\u3092\
+    \u8868\u3059.\n     * @note \u91CD\u307F\u306F get_edge(id).weight \u3067\u53D6\
+    \u5F97\u3059\u308B.\n     */\n    struct Oriented_Edge {\n        int id, source,\
+    \ target;\n\n        Oriented_Edge(int id, int source, int target): id(id), source(source),\
+    \ target(target) {}\n    };\n\n    /**\n     * @brief \u7121\u5411 Graph\n   \
+    \  * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\
+    \u306F Empty)\n     * @note \u8FBA\u306F\u5024\u3067\u4FDD\u6301\u3059\u308B.\
+    \ add_edge \u3092\u547C\u3076\u3068 get_edge \u3067\u5F97\u305F\u53C2\u7167\u306F\
+    \u7121\u52B9\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B.\n     */\n\
+    \    template<typename W = Empty>\n    class Graph {\n        public:\n      \
+    \  using Edge_Type = Edge<W>;\n\n        private:\n        vector<vector<Oriented_Edge>>\
+    \ incidences;\n        vector<Edge_Type> edges;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n         * @param n \u4F4D\u6570 (\u9802\u70B9\u6570)\n        \
+    \ * @param edge_id_offset \u8FBA ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n   \
+    \      */\n        Graph(int n, int edge_id_offset = 0): incidences(n), edges(edge_id_offset),\
+    \ edge_id_offset(edge_id_offset) {}\n\n        /// @brief \u3053\u306E\u30B0\u30E9\
+    \u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n    \
+    \    inline int order() const { return int(incidences.size()); }\n\n        ///\
+    \ @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int size() const { return int(edges.size())\
+    \ - edge_id_offset; }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B\
+    \ (\u91CD\u307F\u306A\u3057\u7528).\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v) requires same_as<W, Empty>\
+    \ { return add_edge(u, v, Empty()); }\n\n        /// @brief \u91CD\u307F w \u306E\
+    \u8FBA uv \u3092\u52A0\u3048\u308B.\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v, W w) {\n            int id\
+    \ = int(edges.size());\n\n            edges.emplace_back(id, u, v, w);\n     \
+    \       incidences[u].emplace_back(id, u, v);\n            incidences[v].emplace_back(id,\
+    \ v, u);\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u3092, u \u304B\u3089\u51FA\u308B\u5411\
+    \u304D\u3067\u53D6\u5F97\u3059\u308B. \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F 2 \u56DE\
+    \u73FE\u308C\u308B.\n        inline const vector<Oriented_Edge>& incidence(int\
+    \ u) const { return incidences[u]; }\n\n        /// @brief \u8FBA ID \u304C id\
+    \ \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const\
+    \ Edge_Type& get_edge(int id) const { return edges[id]; }\n        inline Edge_Type&\
+    \ get_edge(int id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v\
+    \ \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline int degree(const\
+    \ int v) const { return int(incidences[v].size()); }\n\n        vector<vector<int>>\
+    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
+    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
+    \ + size(); ++j) {\n                const Edge_Type &edge = edges[j];\n      \
+    \          matrix[edge.source][edge.target]++;\n                matrix[edge.target][edge.source]++;\n\
+    \            }\n\n            return matrix;\n        }\n\n        vector<vector<int>>\
+    \ degree_matrix() const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
+    \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
+    \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
+    \            vector<vector<int>> L(order(), vector<int>(order()));\n         \
+    \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
+    \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
+    \            }\n\n            return L;\n        }\n    };\n}\n#line 2 \"Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp\"\
+    \n\n#line 4 \"Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp\"\n\nnamespace weighted_graph\
+    \ {\n    template<typename W>\n    struct Minimum_Spanning_Tree {\n        vector<graph::Edge<W>>\
+    \ edges;\n        W weight;\n    };\n}\n#line 6 \"Graph/Weighted_Graph/Prim.hpp\"\
+    \n\nnamespace weighted_graph {\n    template<typename W>\n    Minimum_Spanning_Tree<W>\
+    \ Prim(const graph::Graph<W> &G) {\n        using Edge = graph::Edge<W>;\n   \
+    \     if (G.order() == 0) { return { vector<Edge>(), W(0) }; }\n\n        vector<bool>\
+    \ seen(G.order(), false);\n\n        // (\u91CD\u307F, \u8FBA ID, \u5230\u9054\
+    \u5148)\n        using Item = tuple<W, int, int>;\n        priority_queue<Item,\
+    \ vector<Item>, greater<Item>> Q;\n        auto push_incidences = [&](int v) {\n\
+    \            for (const auto &edge: G.incidence(v)) {\n                if (!seen[edge.target])\
+    \ { Q.emplace(G.get_edge(edge.id).weight, edge.id, edge.target); }\n         \
+    \   }\n        };\n\n        seen[0] = true;\n        push_incidences(0);\n\n\
+    \        vector<Edge> tree_edges;\n        W tree_weight = 0;\n\n        while\
+    \ (!Q.empty()) {\n            auto [w, id, t] = Q.top(); Q.pop();\n          \
+    \  if (seen[t]) { continue; }\n\n            seen[t] = true;\n            tree_weight\
+    \ += w;\n            tree_edges.emplace_back(G.get_edge(id));\n\n            push_incidences(t);\n\
+    \        }\n\n        return { tree_edges, tree_weight };\n    }\n}\n#line 5 \"\
+    verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp\"\n\
+    \nusing namespace weighted_graph;\n\nint main() {\n    int N, M; cin >> N >> M;\n\
+    \    graph::Graph<ll> G(N);\n\n    for (int j = 0; j < M; j++) {\n        int\
+    \ a, b; ll c;\n        scanf(\"%d%d%lld\", &a, &b, &c);\n        G.add_edge(a,\
     \ b, c);\n    }\n\n    Minimum_Spanning_Tree T = Prim(G);\n\n    cout << T.weight\
     \ << endl;\n    for (int k = 0; k < T.edges.size(); k++) {\n        cout << (k\
-    \ ? \" \" : \"\") << T.edges[k]->id;\n    }\n\n    cout << \"\\n\";\n}\n"
+    \ ? \" \" : \"\") << T.edges[k].id;\n    }\n\n    cout << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
     \n\n#include\"../../../template/template.hpp\"\n#include\"../../../Graph/Weighted_Graph/Prim.hpp\"\
     \n\nusing namespace weighted_graph;\n\nint main() {\n    int N, M; cin >> N >>\
-    \ M;\n    Weighted_Graph<ll> G(N);\n\n    for (int j = 0; j < M; j++) {\n    \
-    \    int a, b; ll c;\n        scanf(\"%d%d%lld\", &a, &b, &c);\n        G.add_edge(a,\
+    \ M;\n    graph::Graph<ll> G(N);\n\n    for (int j = 0; j < M; j++) {\n      \
+    \  int a, b; ll c;\n        scanf(\"%d%d%lld\", &a, &b, &c);\n        G.add_edge(a,\
     \ b, c);\n    }\n\n    Minimum_Spanning_Tree T = Prim(G);\n\n    cout << T.weight\
     \ << endl;\n    for (int k = 0; k < T.edges.size(); k++) {\n        cout << (k\
-    \ ? \" \" : \"\") << T.edges[k]->id;\n    }\n\n    cout << \"\\n\";\n}\n"
+    \ ? \" \" : \"\") << T.edges[k].id;\n    }\n\n    cout << \"\\n\";\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -287,12 +316,13 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   - Graph/Weighted_Graph/Prim.hpp
+  - Graph/Graph/Graph.hpp
+  - Graph/Common.hpp
   - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
-  - Graph/Weighted_Graph/Weighted_Graph.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp

@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
-    title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Digraph.hpp
+    title: "\u6709\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -35,30 +38,30 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\n#line 2\
-    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Graph/Digraph/Digraph.hpp\"\n\n#line 2 \"template/template.hpp\"\
+    \n\nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
+    #include <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n\
+    #include <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n\
+    #include <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n\
+    #include <functional>\n#include <initializer_list>\n#include <iomanip>\n#include\
+    \ <ios>\n#include <iostream>\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <memory>\n#include <new>\n\
+    #include <numeric>\n#include <ostream>\n#include <optional>\n#include <queue>\n\
+    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
+    \ <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n\
+    #include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll\
+    \ = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\
+    \u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename\
+    \ T, typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a =\
+    \ b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B\
+    .\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty())\
+    \ throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -200,57 +203,99 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
-    \ weighted_digraph {\n  template<typename W>\n  struct Weighted_Arc {\n    int\
-    \ id, source, target;\n    W weight;\n\n    Weighted_Arc (int id, int source,\
-    \ int target, W weight): id(id), source(source), target(target), weight(weight)\
-    \ {}\n  };\n\n  template<typename W>\n  class Weighted_Digraph {\n    using Arc\
-    \ = Weighted_Arc<W>;\n\n    private:\n    int arc_id_offset;\n    vector<vector<int>>\
-    \ adjacent_out, adjacent_in;\n    vector<Arc> arcs;\n\n    public:\n    Weighted_Digraph(int\
-    \ n, int arc_id_offset = 0): arc_id_offset(arc_id_offset) {\n        adjacent_out.assign(n,\
-    \ {});\n        adjacent_in.assign(n, {});\n        arcs.resize(arc_id_offset,\
-    \ Weighted_Arc<W>(-1, -1, -1, W()));\n      }\n    \n    inline int order() const\
-    \ { return int(adjacent_in.size()); }\n\n    inline int size() const { return\
-    \ int(arcs.size()) - arc_id_offset; }\n\n    // \u9802\u70B9 u \u304B\u3089\u9802\
-    \u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B\
-    .\n    int add_arc(int u, int v, W w){\n      int id = int(arcs.size());\n\n \
-    \     adjacent_out[u].emplace_back(id);\n      adjacent_in[v].emplace_back(id);\n\
-    \      arcs.emplace_back(id, u, v, w);\n\n      return id;\n    }\n\n    // \u9802\
-    \u70B9 u \u304B\u3089\u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\
-    \u53D6\u5F97\n    inline const std::vector<int>& successors(int u) const { return\
-    \ adjacent_out[u]; }\n\n    // \u9802\u70B9 u \u306B\u5165\u308B\u5F27\u306E ID\
-    \ \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n    inline const std::vector<int>&\
-    \ predecessors(int u) const { return adjacent_in[u]; }\n\n    // \u5F27 ID \u304C\
-    \ id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n    inline const\
-    \ Arc& get_arc(int id) const { return arcs[id]; }\n    inline Arc& get_arc(int\
-    \ id) { return arcs[id]; }\n  };\n}\n#line 3 \"Graph/Weighted_Digraph/Dijkstra.hpp\"\
-    \n\nnamespace weighted_digraph::dijkstra {\n    class UnreachableException : public\
-    \ exception {\n      public: // public\u306B\u6307\u5B9A\n      const char* what()\
-    \ const noexcept override { return \"\u6C42\u3081\u308B\u30D1\u30B9\u304C\u5B58\
-    \u5728\u3057\u307E\u305B\u3093\"; }\n    };\n\n  template<typename W>\n  struct\
-    \ Shortest_Path {\n    vector<int> path_arc_ids;\n    vector<int> path_vertices;\n\
-    \    W length;\n\n    Shortest_Path(vector<int> path_arc_ids, vector<int> path_vertices,\
-    \ W length):\n      path_arc_ids(path_arc_ids), path_vertices(path_vertices),\
-    \ length(length) {}\n  };\n\n  template<typename W>\n  Shortest_Path<W> Dijkstra(Weighted_Digraph<W>\
-    \ &D, int start, int goal) {\n    int n = D.order();\n\n    vector<bool> reachable(n,\
-    \ false); reachable[start] = true;\n    vector<int> parent_arc_ids(n, -1);\n \
-    \   vector<W> dist(n); dist[start] = 0;\n\n    using P = pair<W, int>;\n    priority_queue<P,\
-    \ vector<P>, greater<P>> Q; Q.emplace(dist[start], start);\n\n    while (!Q.empty())\
-    \ {\n      P pair = Q.top(); Q.pop();\n      W d = pair.first;\n      int v =\
-    \ pair.second;\n\n      if (dist[v] < d) { continue; }\n\n      for (auto arc_id:\
-    \ D.successors(v)) {\n        Weighted_Arc<W> arc = D.get_arc(arc_id);\n     \
-    \   if (!reachable[arc.target] || dist[arc.target] > dist[v] + arc.weight) {\n\
-    \          dist[arc.target] = dist[v] + arc.weight;\n          reachable[arc.target]\
-    \ = true;\n          parent_arc_ids[arc.target] = arc.id;\n          Q.emplace(dist[arc.target],\
-    \ arc.target);\n        }\n      }\n    }\n\n    if (!reachable[goal]) { throw\
-    \ UnreachableException(); }\n\n    vector<int> path_arc_ids;\n    vector<int>\
-    \ path_vertices{goal}; \n\n    while (path_vertices.back() != start) {\n     \
-    \ int arc_id = parent_arc_ids[path_vertices.back()];\n      auto arc = D.get_arc(arc_id);\n\
-    \n      path_arc_ids.emplace_back(arc_id);\n      path_vertices.emplace_back(arc.source);\n\
-    \    }\n\n    reverse(path_arc_ids.begin(), path_arc_ids.end());\n    reverse(path_vertices.begin(),\
-    \ path_vertices.end());\n\n    return Shortest_Path<W>(path_arc_ids, path_vertices,\
-    \ dist[goal]);\n  }\n}\n"
-  code: "#pragma once\n#include\"Weighted_Digraph.hpp\"\n\nnamespace weighted_digraph::dijkstra\
+    \    }\n};\n#line 2 \"Graph/Common.hpp\"\n\n#line 4 \"Graph/Common.hpp\"\n\nnamespace\
+    \ graph_common {\n    /// @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\
+    \n    /// \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\
+    \u5024\u3068\u3057\u3066\u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n\
+    }\n#line 5 \"Graph/Digraph/Digraph.hpp\"\n\nnamespace digraph {\n    using graph_common::Empty;\n\
+    \n    /**\n     * @brief \u5F27\n     * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\
+    \u307F\u306A\u3057\u306E\u5834\u5408\u306F Empty)\n     */\n    template<typename\
+    \ W = Empty>\n    struct Arc {\n        int id, source, target;\n        [[no_unique_address]]\
+    \ W weight;\n\n        Arc(): id(-1), source(-1), target(-1), weight() {}\n  \
+    \      Arc(int id, int source, int target, W weight): id(id), source(source),\
+    \ target(target), weight(weight) {}\n    };\n\n    /**\n     * @brief \u6709\u5411\
+    \ Graph\n     * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\u307F\u306A\u3057\u306E\
+    \u5834\u5408\u306F Empty)\n     * @note \u5F27\u306F\u5024\u3067\u4FDD\u6301\u3059\
+    \u308B. add_arc \u3092\u547C\u3076\u3068 get_arc \u3067\u5F97\u305F\u53C2\u7167\
+    \u306F\u7121\u52B9\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B.\n  \
+    \   */\n    template<typename W = Empty>\n    class Digraph {\n        public:\n\
+    \        using Arc_Type = Arc<W>;\n\n        private:\n        int arc_id_offset;\n\
+    \        vector<vector<int>> adjacent_out, adjacent_in;\n        vector<Arc_Type>\
+    \ arcs;\n\n        public:\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n         * @param n \u9802\u70B9\u6570\n         * @param\
+    \ arc_id_offset \u5F27 ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n         */\n\
+    \        Digraph(int n, int arc_id_offset = 0): arc_id_offset(arc_id_offset) {\n\
+    \            adjacent_out.assign(n, {});\n            adjacent_in.assign(n, {});\n\
+    \            arcs.resize(arc_id_offset);\n        }\n\n        /**\n         *\
+    \ @brief \u9802\u70B9\u6570\u3092\u53D6\u5F97\u3059\u308B\n         * @return\
+    \ int \u9802\u70B9\u6570\n         */\n        inline int order() const { return\
+    \ int(adjacent_in.size()); }\n\n        /**\n         * @brief \u5F27\u6570\u3092\
+    \u53D6\u5F97\u3059\u308B\n         * @return int \u5F27\u6570\n         */\n \
+    \       inline int size() const { return int(arcs.size()) - arc_id_offset; }\n\
+    \n        /**\n         * @brief \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\
+    \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B (\u91CD\u307F\u306A\u3057\u7528)\n\
+    \         * @return int \u8FFD\u52A0\u3055\u308C\u305F\u5F27\u306E ID\n      \
+    \   */\n        int add_arc(int u, int v) requires same_as<W, Empty> { return\
+    \ add_arc(u, v, Empty()); }\n\n        /**\n         * @brief \u9802\u70B9 u \u304B\
+    \u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\u3092\u8FFD\u52A0\
+    \u3059\u308B\n         * @return int \u8FFD\u52A0\u3055\u308C\u305F\u5F27\u306E\
+    \ ID\n         */\n        int add_arc(int u, int v, W w) {\n            int id\
+    \ = int(arcs.size());\n\n            arcs.emplace_back(id, u, v, w);\n       \
+    \     adjacent_out[u].emplace_back(id);\n            adjacent_in[v].emplace_back(id);\n\
+    \n            return id;\n        }\n\n        /**\n         * @brief \u9802\u70B9\
+    \ u \u304B\u3089\u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\
+    \u5F97\u3059\u308B\n         */\n        inline const vector<int>& successors(int\
+    \ u) const { return adjacent_out[u]; }\n\n        /**\n         * @brief \u9802\
+    \u70B9 u \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\
+    \u5F97\u3059\u308B\n         */\n        inline const vector<int>& predecessors(int\
+    \ u) const { return adjacent_in[u]; }\n\n        /**\n         * @brief \u5F27\
+    \ ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B\n      \
+    \   */\n        inline const Arc_Type& get_arc(int id) const { return arcs[id];\
+    \ }\n        inline Arc_Type& get_arc(int id) { return arcs[id]; }\n\n       \
+    \ /**\n         * @brief \u9802\u70B9 v \u306E\u51FA\u6B21\u6570\u3092\u53D6\u5F97\
+    \u3059\u308B\n         */\n        inline int out_degree(const int v) const {\
+    \ return adjacent_out[v].size(); }\n\n        /**\n         * @brief \u9802\u70B9\
+    \ v \u306E\u5165\u6B21\u6570\u3092\u53D6\u5F97\u3059\u308B\n         */\n    \
+    \    inline int in_degree(const int v) const { return adjacent_in[v].size(); }\n\
+    \n        /**\n         * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u96C6\
+    \u5408\u304B\u3089\u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\
+    \u30C8\u3092\u53D6\u5F97\u3059\u308B\n         * @param sources \u59CB\u70B9\u306E\
+    \u96C6\u5408\n         * @return vector<int> \u5230\u9054\u53EF\u80FD\u306A\u9802\
+    \u70B9\u306E\u30EA\u30B9\u30C8\n         */\n        vector<int> forward_reachable(const\
+    \ vector<int> &sources) const {\n            const int n = order();\n        \
+    \    vector<bool> visited(n, false);\n            vector<int> reachable;\n\n \
+    \           for (const int s : sources) {\n                if (s < 0 || s >= n\
+    \ || visited[s]) continue;\n                visited[s] = true;\n             \
+    \   reachable.emplace_back(s);\n            }\n\n            for (int head = 0;\
+    \ head < reachable.size(); ++head) {\n                const int u = reachable[head];\n\
+    \                for (const int id : adjacent_out[u]) {\n                    const\
+    \ int v = arcs[id].target;\n                    if (visited[v]) continue;\n\n\
+    \                    visited[v] = true;\n                    reachable.emplace_back(v);\n\
+    \                }\n            }\n\n            return reachable;\n        }\n\
+    \n        /**\n         * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u304B\
+    \u3089\u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\
+    \u53D6\u5F97\u3059\u308B\n         */\n        vector<int> forward_reachable(const\
+    \ int source) const { return forward_reachable(vector<int>{source}); }\n\n   \
+    \     /**\n         * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u96C6\u5408\
+    \u3078\u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\
+    \u53D6\u5F97\u3059\u308B\n         * @param targets \u7D42\u70B9\u306E\u96C6\u5408\
+    \n         * @return vector<int> \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\
+    \u30EA\u30B9\u30C8\n         */\n        vector<int> backward_reachable(const\
+    \ vector<int> &targets) const {\n            const int n = order();\n        \
+    \    vector<bool> visited(n, false);\n            vector<int> reachable;\n\n \
+    \           for (const int t : targets) {\n                if (t < 0 || t >= n\
+    \ || visited[t]) continue;\n                visited[t] = true;\n             \
+    \   reachable.emplace_back(t);\n            }\n\n            for (int head = 0;\
+    \ head < reachable.size(); ++head) {\n                const int u = reachable[head];\n\
+    \                for (const int id : adjacent_in[u]) {\n                    const\
+    \ int v = arcs[id].source;\n                    if (visited[v]) continue;\n\n\
+    \                    visited[v] = true;\n                    reachable.emplace_back(v);\n\
+    \                }\n            }\n\n            return reachable;\n        }\n\
+    \n        /**\n         * @brief \u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u3078\
+    \u5230\u9054\u53EF\u80FD\u306A\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3092\u53D6\
+    \u5F97\u3059\u308B\n         */\n        vector<int> backward_reachable(const\
+    \ int target) const { return backward_reachable(vector<int>{target}); }\n    };\n\
+    }\n#line 3 \"Graph/Weighted_Digraph/Dijkstra.hpp\"\n\nnamespace weighted_digraph::dijkstra\
     \ {\n    class UnreachableException : public exception {\n      public: // public\u306B\
     \u6307\u5B9A\n      const char* what() const noexcept override { return \"\u6C42\
     \u3081\u308B\u30D1\u30B9\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\"; }\n    };\n\
@@ -258,14 +303,41 @@ data:
     \    vector<int> path_vertices;\n    W length;\n\n    Shortest_Path(vector<int>\
     \ path_arc_ids, vector<int> path_vertices, W length):\n      path_arc_ids(path_arc_ids),\
     \ path_vertices(path_vertices), length(length) {}\n  };\n\n  template<typename\
-    \ W>\n  Shortest_Path<W> Dijkstra(Weighted_Digraph<W> &D, int start, int goal)\
-    \ {\n    int n = D.order();\n\n    vector<bool> reachable(n, false); reachable[start]\
+    \ W>\n  Shortest_Path<W> Dijkstra(const digraph::Digraph<W> &D, int start, int\
+    \ goal) {\n    int n = D.order();\n\n    vector<bool> reachable(n, false); reachable[start]\
     \ = true;\n    vector<int> parent_arc_ids(n, -1);\n    vector<W> dist(n); dist[start]\
     \ = 0;\n\n    using P = pair<W, int>;\n    priority_queue<P, vector<P>, greater<P>>\
     \ Q; Q.emplace(dist[start], start);\n\n    while (!Q.empty()) {\n      P pair\
     \ = Q.top(); Q.pop();\n      W d = pair.first;\n      int v = pair.second;\n\n\
     \      if (dist[v] < d) { continue; }\n\n      for (auto arc_id: D.successors(v))\
-    \ {\n        Weighted_Arc<W> arc = D.get_arc(arc_id);\n        if (!reachable[arc.target]\
+    \ {\n        const auto &arc = D.get_arc(arc_id);\n        if (!reachable[arc.target]\
+    \ || dist[arc.target] > dist[v] + arc.weight) {\n          dist[arc.target] =\
+    \ dist[v] + arc.weight;\n          reachable[arc.target] = true;\n          parent_arc_ids[arc.target]\
+    \ = arc.id;\n          Q.emplace(dist[arc.target], arc.target);\n        }\n \
+    \     }\n    }\n\n    if (!reachable[goal]) { throw UnreachableException(); }\n\
+    \n    vector<int> path_arc_ids;\n    vector<int> path_vertices{goal}; \n\n   \
+    \ while (path_vertices.back() != start) {\n      int arc_id = parent_arc_ids[path_vertices.back()];\n\
+    \      auto arc = D.get_arc(arc_id);\n\n      path_arc_ids.emplace_back(arc_id);\n\
+    \      path_vertices.emplace_back(arc.source);\n    }\n\n    reverse(path_arc_ids.begin(),\
+    \ path_arc_ids.end());\n    reverse(path_vertices.begin(), path_vertices.end());\n\
+    \n    return Shortest_Path<W>(path_arc_ids, path_vertices, dist[goal]);\n  }\n\
+    }\n"
+  code: "#pragma once\n#include\"../Digraph/Digraph.hpp\"\n\nnamespace weighted_digraph::dijkstra\
+    \ {\n    class UnreachableException : public exception {\n      public: // public\u306B\
+    \u6307\u5B9A\n      const char* what() const noexcept override { return \"\u6C42\
+    \u3081\u308B\u30D1\u30B9\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\"; }\n    };\n\
+    \n  template<typename W>\n  struct Shortest_Path {\n    vector<int> path_arc_ids;\n\
+    \    vector<int> path_vertices;\n    W length;\n\n    Shortest_Path(vector<int>\
+    \ path_arc_ids, vector<int> path_vertices, W length):\n      path_arc_ids(path_arc_ids),\
+    \ path_vertices(path_vertices), length(length) {}\n  };\n\n  template<typename\
+    \ W>\n  Shortest_Path<W> Dijkstra(const digraph::Digraph<W> &D, int start, int\
+    \ goal) {\n    int n = D.order();\n\n    vector<bool> reachable(n, false); reachable[start]\
+    \ = true;\n    vector<int> parent_arc_ids(n, -1);\n    vector<W> dist(n); dist[start]\
+    \ = 0;\n\n    using P = pair<W, int>;\n    priority_queue<P, vector<P>, greater<P>>\
+    \ Q; Q.emplace(dist[start], start);\n\n    while (!Q.empty()) {\n      P pair\
+    \ = Q.top(); Q.pop();\n      W d = pair.first;\n      int v = pair.second;\n\n\
+    \      if (dist[v] < d) { continue; }\n\n      for (auto arc_id: D.successors(v))\
+    \ {\n        const auto &arc = D.get_arc(arc_id);\n        if (!reachable[arc.target]\
     \ || dist[arc.target] > dist[v] + arc.weight) {\n          dist[arc.target] =\
     \ dist[v] + arc.weight;\n          reachable[arc.target] = true;\n          parent_arc_ids[arc.target]\
     \ = arc.id;\n          Q.emplace(dist[arc.target], arc.target);\n        }\n \
@@ -278,7 +350,7 @@ data:
     \n    return Shortest_Path<W>(path_arc_ids, path_vertices, dist[goal]);\n  }\n\
     }\n"
   dependsOn:
-  - Graph/Weighted_Digraph/Weighted_Digraph.hpp
+  - Graph/Digraph/Digraph.hpp
   - template/template.hpp
   - template/utility.hpp
   - template/math.hpp
@@ -286,10 +358,11 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
+  - Graph/Common.hpp
   isVerificationFile: false
   path: Graph/Weighted_Digraph/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

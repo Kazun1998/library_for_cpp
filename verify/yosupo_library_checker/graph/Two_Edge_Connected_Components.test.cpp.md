@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
-    title: Graph/Graph/Lowlink.hpp
+    title: Lowlink
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
@@ -209,42 +212,63 @@ data:
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 2 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\n\n#line\
     \ 2 \"Graph/Graph/Lowlink.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\n\n#line\
-    \ 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct Edge {\n      \
-    \  int id, source, target;\n        Edge *rev;\n\n        Edge() = default;\n\
-    \        Edge(int id, int source, int target): id(id), source(source), target(target),\
-    \ rev(nullptr) {}\n    };\n\n    class Graph {\n        private:\n        vector<vector<Edge*>>\
-    \ incidences;\n        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\
-    \n        public:\n        int edge_id_offset;\n\n        public:\n        Graph(int\
-    \ n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n  \
-    \          incidences.assign(n, {});\n            edges.resize(edge_id_offset,\
-    \ Edge());\n        }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\
-    \u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int\
-    \ order() const { return int(incidences.size()); }\n\n        /// @brief \u3053\
-    \u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\
-    \u308B.\n        inline int size() const { return int(edges.size()) - edge_id_offset;\
-    \ }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B.\n        int add_edge(int\
-    \ u, int v) {\n            int id = int(edges.size());\n\n            Edge* edge\
-    \ = new Edge(id, u, v);\n            Edge* rev_edge = new Edge(id, v, u);\n\n\
-    \            edge->rev = rev_edge;\n            rev_edge->rev = edge;\n\n    \
-    \        incidences[u].emplace_back(edge);\n            incidences[v].emplace_back(rev_edge);\n\
-    \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
-    \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
-    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
-    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
-    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
-    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
-    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
-    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
-    \ deg[v]; }\n\n        vector<vector<int>> adjacency_matrix() const {\n      \
-    \      vector<vector<int>> matrix(order(), vector<int>(order(), 0));\n       \
-    \     for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {\n     \
-    \           Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
-    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
-    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
-    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \ 2 \"Graph/Common.hpp\"\n\n#line 4 \"Graph/Common.hpp\"\n\nnamespace graph_common\
+    \ {\n    /// @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\n    ///\
+    \ \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\u5024\u3068\
+    \u3057\u3066\u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n}\n#line 5\
+    \ \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    using graph_common::Empty;\n\
+    \n    /**\n     * @brief \u7121\u5411\u8FBA\n     * @tparam W \u91CD\u307F\u306E\
+    \u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\u306F Empty)\n     */\n   \
+    \ template<typename W = Empty>\n    struct Edge {\n        int id, source, target;\n\
+    \        [[no_unique_address]] W weight;\n\n        Edge(): id(-1), source(-1),\
+    \ target(-1), weight() {}\n        Edge(int id, int source, int target, W weight):\
+    \ id(id), source(source), target(target), weight(weight) {}\n    };\n\n    /**\n\
+    \     * @brief \u5411\u304D\u3092\u4ED8\u3051\u305F\u8FBA. \u9802\u70B9 source\
+    \ \u304B\u3089 target \u3078\u8FBA id \u3092\u305F\u3069\u308B\u3053\u3068\u3092\
+    \u8868\u3059.\n     * @note \u91CD\u307F\u306F get_edge(id).weight \u3067\u53D6\
+    \u5F97\u3059\u308B.\n     */\n    struct Oriented_Edge {\n        int id, source,\
+    \ target;\n\n        Oriented_Edge(int id, int source, int target): id(id), source(source),\
+    \ target(target) {}\n    };\n\n    /**\n     * @brief \u7121\u5411 Graph\n   \
+    \  * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\
+    \u306F Empty)\n     * @note \u8FBA\u306F\u5024\u3067\u4FDD\u6301\u3059\u308B.\
+    \ add_edge \u3092\u547C\u3076\u3068 get_edge \u3067\u5F97\u305F\u53C2\u7167\u306F\
+    \u7121\u52B9\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B.\n     */\n\
+    \    template<typename W = Empty>\n    class Graph {\n        public:\n      \
+    \  using Edge_Type = Edge<W>;\n\n        private:\n        vector<vector<Oriented_Edge>>\
+    \ incidences;\n        vector<Edge_Type> edges;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n         * @param n \u4F4D\u6570 (\u9802\u70B9\u6570)\n        \
+    \ * @param edge_id_offset \u8FBA ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n   \
+    \      */\n        Graph(int n, int edge_id_offset = 0): incidences(n), edges(edge_id_offset),\
+    \ edge_id_offset(edge_id_offset) {}\n\n        /// @brief \u3053\u306E\u30B0\u30E9\
+    \u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n    \
+    \    inline int order() const { return int(incidences.size()); }\n\n        ///\
+    \ @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int size() const { return int(edges.size())\
+    \ - edge_id_offset; }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B\
+    \ (\u91CD\u307F\u306A\u3057\u7528).\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v) requires same_as<W, Empty>\
+    \ { return add_edge(u, v, Empty()); }\n\n        /// @brief \u91CD\u307F w \u306E\
+    \u8FBA uv \u3092\u52A0\u3048\u308B.\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v, W w) {\n            int id\
+    \ = int(edges.size());\n\n            edges.emplace_back(id, u, v, w);\n     \
+    \       incidences[u].emplace_back(id, u, v);\n            incidences[v].emplace_back(id,\
+    \ v, u);\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u3092, u \u304B\u3089\u51FA\u308B\u5411\
+    \u304D\u3067\u53D6\u5F97\u3059\u308B. \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F 2 \u56DE\
+    \u73FE\u308C\u308B.\n        inline const vector<Oriented_Edge>& incidence(int\
+    \ u) const { return incidences[u]; }\n\n        /// @brief \u8FBA ID \u304C id\
+    \ \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const\
+    \ Edge_Type& get_edge(int id) const { return edges[id]; }\n        inline Edge_Type&\
+    \ get_edge(int id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v\
+    \ \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline int degree(const\
+    \ int v) const { return int(incidences[v].size()); }\n\n        vector<vector<int>>\
+    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
+    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
+    \ + size(); ++j) {\n                const Edge_Type &edge = edges[j];\n      \
+    \          matrix[edge.source][edge.target]++;\n                matrix[edge.target][edge.source]++;\n\
+    \            }\n\n            return matrix;\n        }\n\n        vector<vector<int>>\
+    \ degree_matrix() const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
     \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
     \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
     \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
@@ -252,44 +276,61 @@ data:
     \   for (int i = 0; i < order(); ++i) {\n                for (int j = 0; j < order();\
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
     \            }\n\n            return L;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Lowlink.hpp\"\
-    \n\nnamespace graph {\n    class Lowlink {\n        private:\n        vector<bool>\
-    \ used;\n\n        public:\n        vector<bool> bridge, articulation;\n     \
-    \   vector<int> ord, low;\n\n        Lowlink(const Graph &G) {\n            int\
-    \ N = G.order(), M = G.size();\n            used.assign(N, false);\n         \
-    \   ord.assign(N, -1);\n            low.assign(N, -1);\n\n            bridge.assign(M\
-    \ + G.edge_id_offset, false);\n            articulation.assign(N, false);\n\n\
-    \            int k = 0;\n            for (int i = 0; i < N; i++) {\n         \
-    \       unless(used[i]) { k = dfs(G, i, k, -1); }\n            }\n        }\n\n\
-    \        private:\n        int dfs(const Graph &G, int v, int k, int parent) {\n\
-    \            used[v] = true;\n            ord[v] = k++;\n            low[v] =\
-    \ ord[v];\n\n            bool is_articulation = false;\n            int children_number\
-    \ = 0;\n\n            for (auto edge: G.incidence(v)) {\n                int target\
-    \ = edge->target;\n                if (used[target]) {\n                    unless\
-    \ (target == parent) {\n                        low[v] = min(low[v], ord[target]);\n\
-    \                    }\n                    continue;\n                }\n\n \
-    \               children_number++;\n                k = dfs(G, target, k, v);\n\
-    \                low[v] = min(low[v], low[target]);\n\n                if (parent\
-    \ != -1 && ord[v] <= low[target]) { is_articulation = true; }\n              \
-    \  if (ord[v] < low[target]) { bridge[edge->id] = true; }\n            }\n\n \
-    \           if (parent == -1 && children_number >= 2) { is_articulation = true;\
-    \ }\n            if (is_articulation) { articulation[v] = true; }\n\n        \
-    \    return k;\n        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
+    \n\nnamespace graph {\n    /// @brief Lowlink\n    /// \u6A4B\u30FB\u95A2\u7BC0\
+    \u70B9\u3092\u691C\u51FA\u3059\u308B. DFS \u306F\u518D\u5E30\u3092\u7528\u3044\
+    \u306A\u3044\u305F\u3081, \u6DF1\u3044\u30B0\u30E9\u30D5\u3067\u3082\u30B9\u30BF\
+    \u30C3\u30AF\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044.\n  \
+    \  class Lowlink {\n        public:\n        vector<bool> bridge, articulation;\n\
+    \        vector<int> ord, low;\n\n        template<typename W>\n        Lowlink(const\
+    \ Graph<W> &G) {\n            int N = G.order(), M = G.size();\n            ord.assign(N,\
+    \ -1);\n            low.assign(N, -1);\n\n            bridge.assign(M + G.edge_id_offset,\
+    \ false);\n            articulation.assign(N, false);\n\n            vector<int>\
+    \ parent(N, -1), parent_edge_id(N, -1), children_number(N, 0);\n\n           \
+    \ int k = 0;\n            // (\u9802\u70B9, \u6B21\u306B\u898B\u308B\u8FBA\u306E\
+    \u4F4D\u7F6E)\n            vector<pair<int, int>> stack;\n\n            auto visit\
+    \ = [&](int v) -> void {\n                ord[v] = low[v] = k++;\n           \
+    \     stack.emplace_back(v, 0);\n            };\n\n            for (int s = 0;\
+    \ s < N; s++) {\n                if (ord[s] != -1) { continue; }\n\n         \
+    \       visit(s);\n                while (!stack.empty()) {\n                \
+    \    int v = stack.back().first;\n                    const auto &edges = G.incidence(v);\n\
+    \n                    // v \u306E\u8FBA\u3092\u898B\u7D42\u308F\u3063\u305F: \u89AA\
+    \u306B\u7D50\u679C\u3092\u4F1D\u3048\u308B\n                    if (stack.back().second\
+    \ == int(edges.size())) {\n                        stack.pop_back();\n\n     \
+    \                   int p = parent[v];\n                        if (p == -1) {\n\
+    \                            if (children_number[v] >= 2) { articulation[v] =\
+    \ true; }\n                            continue;\n                        }\n\n\
+    \                        low[p] = min(low[p], low[v]);\n                     \
+    \   if (parent[p] != -1 && ord[p] <= low[v]) { articulation[p] = true; }\n   \
+    \                     if (ord[p] < low[v]) { bridge[parent_edge_id[v]] = true;\
+    \ }\n                        continue;\n                    }\n\n            \
+    \        const auto &edge = edges[stack.back().second++];\n                  \
+    \  int target = edge.target;\n                    if (ord[target] != -1) {\n \
+    \                       // \u89AA\u3078\u6765\u305F\u8FBA\u305D\u306E\u3082\u306E\
+    \u3060\u3051\u3092\u7121\u8996\u3059\u308B (\u89AA\u3078\u306E\u591A\u91CD\u8FBA\
+    \u306F\u5F8C\u9000\u8FBA\u3068\u3057\u3066\u6271\u3046)\n                    \
+    \    if (edge.id != parent_edge_id[v]) { low[v] = min(low[v], ord[target]); }\n\
+    \                        continue;\n                    }\n\n                \
+    \    children_number[v]++;\n                    parent[target] = v;\n        \
+    \            parent_edge_id[target] = edge.id;\n                    visit(target);\n\
+    \                }\n            }\n        }\n    };\n}\n#line 4 \"Graph/Graph/Two_Edge_Connected_Components.hpp\"\
     \n\nnamespace graph {\n    class Two_Edge_Connected_Components {\n        public:\n\
     \        vector<vector<int>> components;\n        vector<int> component_ids;\n\
-    \n        Two_Edge_Connected_Components(const Graph &G) {\n            calculate(G);\n\
-    \        }\n\n        private:\n        vector<bool> bridges;\n        void calculate(const\
-    \ Graph &G) {\n            bridges = Lowlink(G).bridge;\n\n            components.clear();\n\
+    \n        template<typename W>\n        Two_Edge_Connected_Components(const Graph<W>\
+    \ &G) {\n            calculate(G);\n        }\n\n        private:\n        vector<bool>\
+    \ bridges;\n        template<typename W>\n        void calculate(const Graph<W>\
+    \ &G) {\n            bridges = Lowlink(G).bridge;\n\n            components.clear();\n\
     \            component_ids.assign(G.order(), -1);\n\n            for (int x =\
     \ 0; x < G.order(); x++) {\n                unless(component_ids[x] == -1) { continue;\
-    \ }\n                dfs(G, x);\n            }\n        }\n\n        void dfs(const\
-    \ Graph &G, int start) {\n            int component_id = components.size();\n\n\
-    \            components.emplace_back();\n            component_ids[start] = component_id;\n\
-    \n            stack<int> st;\n            st.emplace(start);\n            components[component_id].emplace_back(start);\n\
+    \ }\n                dfs(G, x);\n            }\n        }\n\n        template<typename\
+    \ W>\n        void dfs(const Graph<W> &G, int start) {\n            int component_id\
+    \ = components.size();\n\n            components.emplace_back();\n           \
+    \ component_ids[start] = component_id;\n\n            stack<int> st;\n       \
+    \     st.emplace(start);\n            components[component_id].emplace_back(start);\n\
     \n            while(!st.empty()) {\n                int x = st.top(); st.pop();\n\
     \                for (auto edge: G.incidence(x)) {\n                    int y\
-    \ = edge->target;\n                    if (bridges[edge->id]) { continue; }\n\
-    \                    unless (component_ids[y] == -1) { continue; }\n\n       \
-    \             component_ids[y] = component_id;\n                    components[component_id].emplace_back(y);\n\
+    \ = edge.target;\n                    if (bridges[edge.id]) { continue; }\n  \
+    \                  unless (component_ids[y] == -1) { continue; }\n\n         \
+    \           component_ids[y] = component_id;\n                    components[component_id].emplace_back(y);\n\
     \                    st.emplace(y);\n                }\n            }\n      \
     \  }\n    };\n}\n#line 5 \"verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp\"\
     \n\nint main() {\n    using namespace graph;\n\n    int N, M; cin >> N >> M;\n\
@@ -317,10 +358,11 @@ data:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Graph.hpp
+  - Graph/Common.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp

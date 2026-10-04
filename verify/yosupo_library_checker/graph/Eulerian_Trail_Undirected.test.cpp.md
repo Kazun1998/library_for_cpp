@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Common.hpp
+    title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Eulerian_Trail.hpp
     title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
   - icon: ':heavy_check_mark:'
@@ -208,42 +211,63 @@ data:
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 2 \"Graph/Graph/Eulerian_Trail.hpp\"\n\n#line 2 \"Graph/Graph/Graph.hpp\"\
-    \n\n#line 4 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    struct Edge {\n\
-    \        int id, source, target;\n        Edge *rev;\n\n        Edge() = default;\n\
-    \        Edge(int id, int source, int target): id(id), source(source), target(target),\
-    \ rev(nullptr) {}\n    };\n\n    class Graph {\n        private:\n        vector<vector<Edge*>>\
-    \ incidences;\n        vector<Edge> edges, rev_edges;\n        vector<int> deg;\n\
-    \n        public:\n        int edge_id_offset;\n\n        public:\n        Graph(int\
-    \ n, int edge_id_offset = 0): edge_id_offset(edge_id_offset), deg(n, 0) {\n  \
-    \          incidences.assign(n, {});\n            edges.resize(edge_id_offset,\
-    \ Edge());\n        }\n\n        /// @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\
-    \u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n        inline int\
-    \ order() const { return int(incidences.size()); }\n\n        /// @brief \u3053\
-    \u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570) \u3092\u6C42\u3081\
-    \u308B.\n        inline int size() const { return int(edges.size()) - edge_id_offset;\
-    \ }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B.\n        int add_edge(int\
-    \ u, int v) {\n            int id = int(edges.size());\n\n            Edge* edge\
-    \ = new Edge(id, u, v);\n            Edge* rev_edge = new Edge(id, v, u);\n\n\
-    \            edge->rev = rev_edge;\n            rev_edge->rev = edge;\n\n    \
-    \        incidences[u].emplace_back(edge);\n            incidences[v].emplace_back(rev_edge);\n\
-    \            edges.emplace_back(*edge);\n\n            deg[u]++;\n           \
-    \ deg[v]++;\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
-    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u306E\u30A2\u30C9\u30EC\u30B9\u4E00\u89A7\
-    \u3092\u53D6\u5F97\u3059\u308B.\n        const vector<Edge*>& incidence (int u)\
-    \ const { return incidences[u]; }\n\n        // \u8FBA ID \u304C id \u3067\u3042\
-    \u308A, source \u304C u \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B\
-    .\n        inline const Edge& get_edge(int id) const { return edges[id]; }\n\n\
-    \        // \u8FBA ID \u304C id \u3067\u3042\u308A, source \u304C u \u3067\u3042\
-    \u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline Edge& get_edge(int\
-    \ id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v \u306E\u6B21\u6570\
-    \u3092\u6C42\u3081\u308B\n        inline int degree(const int v) const { return\
-    \ deg[v]; }\n\n        vector<vector<int>> adjacency_matrix() const {\n      \
-    \      vector<vector<int>> matrix(order(), vector<int>(order(), 0));\n       \
-    \     for (int j = edge_id_offset; j < edge_id_offset + size(); ++j) {\n     \
-    \           Edge edge = edges[j];\n                matrix[edge.source][edge.target]++;\n\
-    \                matrix[edge.target][edge.source]++;\n            }\n\n      \
-    \      return matrix;\n        }\n\n        vector<vector<int>> degree_matrix()\
-    \ const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
+    \n\n#line 2 \"Graph/Common.hpp\"\n\n#line 4 \"Graph/Common.hpp\"\n\nnamespace\
+    \ graph_common {\n    /// @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\
+    \n    /// \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\
+    \u5024\u3068\u3057\u3066\u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n\
+    }\n#line 5 \"Graph/Graph/Graph.hpp\"\n\nnamespace graph {\n    using graph_common::Empty;\n\
+    \n    /**\n     * @brief \u7121\u5411\u8FBA\n     * @tparam W \u91CD\u307F\u306E\
+    \u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\u306F Empty)\n     */\n   \
+    \ template<typename W = Empty>\n    struct Edge {\n        int id, source, target;\n\
+    \        [[no_unique_address]] W weight;\n\n        Edge(): id(-1), source(-1),\
+    \ target(-1), weight() {}\n        Edge(int id, int source, int target, W weight):\
+    \ id(id), source(source), target(target), weight(weight) {}\n    };\n\n    /**\n\
+    \     * @brief \u5411\u304D\u3092\u4ED8\u3051\u305F\u8FBA. \u9802\u70B9 source\
+    \ \u304B\u3089 target \u3078\u8FBA id \u3092\u305F\u3069\u308B\u3053\u3068\u3092\
+    \u8868\u3059.\n     * @note \u91CD\u307F\u306F get_edge(id).weight \u3067\u53D6\
+    \u5F97\u3059\u308B.\n     */\n    struct Oriented_Edge {\n        int id, source,\
+    \ target;\n\n        Oriented_Edge(int id, int source, int target): id(id), source(source),\
+    \ target(target) {}\n    };\n\n    /**\n     * @brief \u7121\u5411 Graph\n   \
+    \  * @tparam W \u91CD\u307F\u306E\u578B (\u91CD\u307F\u306A\u3057\u306E\u5834\u5408\
+    \u306F Empty)\n     * @note \u8FBA\u306F\u5024\u3067\u4FDD\u6301\u3059\u308B.\
+    \ add_edge \u3092\u547C\u3076\u3068 get_edge \u3067\u5F97\u305F\u53C2\u7167\u306F\
+    \u7121\u52B9\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B.\n     */\n\
+    \    template<typename W = Empty>\n    class Graph {\n        public:\n      \
+    \  using Edge_Type = Edge<W>;\n\n        private:\n        vector<vector<Oriented_Edge>>\
+    \ incidences;\n        vector<Edge_Type> edges;\n\n        public:\n        int\
+    \ edge_id_offset;\n\n        /**\n         * @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n         * @param n \u4F4D\u6570 (\u9802\u70B9\u6570)\n        \
+    \ * @param edge_id_offset \u8FBA ID \u306E\u30AA\u30D5\u30BB\u30C3\u30C8\n   \
+    \      */\n        Graph(int n, int edge_id_offset = 0): incidences(n), edges(edge_id_offset),\
+    \ edge_id_offset(edge_id_offset) {}\n\n        /// @brief \u3053\u306E\u30B0\u30E9\
+    \u30D5\u306E\u4F4D\u6570 (\u9802\u70B9\u6570) \u3092\u6C42\u3081\u308B.\n    \
+    \    inline int order() const { return int(incidences.size()); }\n\n        ///\
+    \ @brief \u3053\u306E\u30B0\u30E9\u30D5\u306E\u30B5\u30A4\u30BA (\u8FBA\u6570\
+    ) \u3092\u6C42\u3081\u308B.\n        inline int size() const { return int(edges.size())\
+    \ - edge_id_offset; }\n\n        /// @brief \u8FBA uv \u3092\u52A0\u3048\u308B\
+    \ (\u91CD\u307F\u306A\u3057\u7528).\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v) requires same_as<W, Empty>\
+    \ { return add_edge(u, v, Empty()); }\n\n        /// @brief \u91CD\u307F w \u306E\
+    \u8FBA uv \u3092\u52A0\u3048\u308B.\n        /// @return \u8FFD\u52A0\u3057\u305F\
+    \u8FBA\u306E ID\n        int add_edge(int u, int v, W w) {\n            int id\
+    \ = int(edges.size());\n\n            edges.emplace_back(id, u, v, w);\n     \
+    \       incidences[u].emplace_back(id, u, v);\n            incidences[v].emplace_back(id,\
+    \ v, u);\n\n            return id;\n        }\n\n        /// @brief \u9802\u70B9\
+    \ u \u306B\u63A5\u7D9A\u3059\u308B\u8FBA\u3092, u \u304B\u3089\u51FA\u308B\u5411\
+    \u304D\u3067\u53D6\u5F97\u3059\u308B. \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F 2 \u56DE\
+    \u73FE\u308C\u308B.\n        inline const vector<Oriented_Edge>& incidence(int\
+    \ u) const { return incidences[u]; }\n\n        /// @brief \u8FBA ID \u304C id\
+    \ \u3067\u3042\u308B\u8FBA\u3092\u53D6\u5F97\u3059\u308B.\n        inline const\
+    \ Edge_Type& get_edge(int id) const { return edges[id]; }\n        inline Edge_Type&\
+    \ get_edge(int id) { return edges[id]; }\n\n        /// @brief \u9802\u70B9 v\
+    \ \u306E\u6B21\u6570\u3092\u6C42\u3081\u308B\n        inline int degree(const\
+    \ int v) const { return int(incidences[v].size()); }\n\n        vector<vector<int>>\
+    \ adjacency_matrix() const {\n            vector<vector<int>> matrix(order(),\
+    \ vector<int>(order(), 0));\n            for (int j = edge_id_offset; j < edge_id_offset\
+    \ + size(); ++j) {\n                const Edge_Type &edge = edges[j];\n      \
+    \          matrix[edge.source][edge.target]++;\n                matrix[edge.target][edge.source]++;\n\
+    \            }\n\n            return matrix;\n        }\n\n        vector<vector<int>>\
+    \ degree_matrix() const {\n            vector<vector<int>> matrix(order(), vector<int>(order(),\
     \ 0));\n            for (int i = 0; i < order(); ++i) matrix[i][i] = degree(i);\n\
     \            return matrix;\n        }\n\n        vector<vector<int>> laplacian_matrix()\
     \ const {\n            const vector<vector<int>> D = degree_matrix(), A = adjacency_matrix();\n\
@@ -252,30 +276,32 @@ data:
     \ ++j) {\n                    L[i][j] = D[i][j] - A[i][j];\n                }\n\
     \            }\n\n            return L;\n        }\n    };\n}\n#line 2 \"Graph/Graph/Path.hpp\"\
     \n\n#line 4 \"Graph/Graph/Path.hpp\"\n\nnamespace graph {\n    struct Path {\n\
-    \        vector<int> vertices;\n        vector<Edge> edges;\n\n        Path(const\
-    \ int first, const vector<Edge> &path): edges(path) {\n            vertices.emplace_back(first);\n\
-    \            for (const auto &edge: path) {\n                vertices.emplace_back(edge.target);\n\
-    \            }\n        }\n    };\n}\n#line 5 \"Graph/Graph/Eulerian_Trail.hpp\"\
-    \n\nnamespace graph {\n    optional<Path> Eulerian_Trail(const Graph &G) {\n \
-    \       int n = G.order();\n        int m = G.size();\n        int start = -1,\
-    \ goal = -1;\n\n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n      \
-    \  for (int v = 0; v < n; ++v) {\n            if (G.degree(v) % 2 == 1) {\n  \
-    \              if (start == -1) start = v;\n                else if (goal == -1)\
-    \ goal = v;\n                else return nullopt;\n            }\n        }\n\n\
-    \        // start, goal \u306E\u6C7A\u5B9A\n        if (start == -1) {\n     \
-    \       for (int v = 0; v < n; ++v) {\n                if (G.degree(v) > 0) {\n\
-    \                    start = goal = v;\n                    break;\n         \
-    \       }\n            }\n\n            if (start == -1) start = goal = 0;\n \
-    \       }\n\n        vector<int> iter(n, 0);\n        vector<bool> saw_edge_ids(m\
-    \ + G.edge_id_offset, false);\n        vector<Edge> path;\n\n        auto dfs\
-    \ = [&](auto self, const int v) -> void {\n            const auto &edges = G.incidence(v);\n\
-    \            while (iter[v] < edges.size()) {\n                const Edge* edge\
-    \ = edges[iter[v]++];\n                if (saw_edge_ids[edge->id]) { continue;\
-    \ }\n                saw_edge_ids[edge->id] = true;\n                self(self,\
-    \ edge->target);\n                path.emplace_back(*edge);\n            }\n \
-    \       };\n\n        dfs(dfs, start);\n\n        // \u5341\u5206\u6027\u306E\u30C1\
-    \u30A7\u30C3\u30AF\n        if (path.size() < m) return nullopt;\n\n        reverse(path.begin(),\
-    \ path.end());\n        return Path(start, path);\n    }\n}\n#line 6 \"verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp\"\
+    \        vector<int> vertices;\n        vector<Oriented_Edge> edges;\n\n     \
+    \   Path(const int first, const vector<Oriented_Edge> &path): edges(path) {\n\
+    \            vertices.emplace_back(first);\n            for (const auto &edge:\
+    \ path) {\n                vertices.emplace_back(edge.target);\n            }\n\
+    \        }\n    };\n}\n#line 5 \"Graph/Graph/Eulerian_Trail.hpp\"\n\nnamespace\
+    \ graph {\n    template<typename W>\n    optional<Path> Eulerian_Trail(const Graph<W>\
+    \ &G) {\n        int n = G.order();\n        int m = G.size();\n        int start\
+    \ = -1, goal = -1;\n\n        // \u5FC5\u8981\u6761\u4EF6\u306E\u5224\u5B9A\n\
+    \        for (int v = 0; v < n; ++v) {\n            if (G.degree(v) % 2 == 1)\
+    \ {\n                if (start == -1) start = v;\n                else if (goal\
+    \ == -1) goal = v;\n                else return nullopt;\n            }\n    \
+    \    }\n\n        // start, goal \u306E\u6C7A\u5B9A\n        if (start == -1)\
+    \ {\n            for (int v = 0; v < n; ++v) {\n                if (G.degree(v)\
+    \ > 0) {\n                    start = goal = v;\n                    break;\n\
+    \                }\n            }\n\n            if (start == -1) start = goal\
+    \ = 0;\n        }\n\n        vector<int> iter(n, 0);\n        vector<bool> saw_edge_ids(m\
+    \ + G.edge_id_offset, false);\n        vector<Oriented_Edge> path;\n\n       \
+    \ auto dfs = [&](auto self, const int v) -> void {\n            const auto &edges\
+    \ = G.incidence(v);\n            while (iter[v] < edges.size()) {\n          \
+    \      const Oriented_Edge &edge = edges[iter[v]++];\n                if (saw_edge_ids[edge.id])\
+    \ { continue; }\n                saw_edge_ids[edge.id] = true;\n             \
+    \   self(self, edge.target);\n                path.emplace_back(edge);\n     \
+    \       }\n        };\n\n        dfs(dfs, start);\n\n        // \u5341\u5206\u6027\
+    \u306E\u30C1\u30A7\u30C3\u30AF\n        if (path.size() < m) return nullopt;\n\
+    \n        reverse(path.begin(), path.end());\n        return Path(start, path);\n\
+    \    }\n}\n#line 6 \"verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp\"\
     \n\nusing namespace graph;\n\noptional<Path> verify() {\n    int n, m;\n    cin\
     \ >> n >> m;\n    auto D = Graph(n);\n    for (int j = 0; j < m; ++j) {\n    \
     \    int u, v; scanf(\"%d%d\", &u, &v);\n        D.add_edge(u, v);\n    }\n\n\
@@ -308,11 +334,12 @@ data:
   - template/exception.hpp
   - Graph/Graph/Eulerian_Trail.hpp
   - Graph/Graph/Graph.hpp
+  - Graph/Common.hpp
   - Graph/Graph/Path.hpp
   isVerificationFile: true
   path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp

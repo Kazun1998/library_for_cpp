@@ -24,41 +24,135 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Digraph.hpp
+    title: "\u6709\u5411 Graph"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Eulerian_Trail.hpp
+    title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Path.hpp
+    title: Graph/Digraph/Path.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Digraph/Strongly_Connected_Components.hpp
+    title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
+  - icon: ':warning:'
+    path: Graph/Graph/Bipartition.hpp
+    title: "\u4E8C\u90E8\u30B0\u30E9\u30D5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Chromatic_Number.hpp
+    title: "\u5F69\u8272\u6570"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Connected_Components.hpp
+    title: Graph/Graph/Connected_Components.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Count_Spanning_Trees.hpp
+    title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Enumerate_Cliques.hpp
+    title: Graph/Graph/Enumerate_Cliques.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Enumerate_Triangles.hpp
+    title: Graph/Graph/Enumerate_Triangles.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Eulerian_Trail.hpp
+    title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Graph.hpp
+    title: "\u7121\u5411 Graph"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Lowlink.hpp
+    title: Lowlink
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Path.hpp
+    title: Graph/Graph/Path.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Graph/Two_Edge_Connected_Components.hpp
+    title: Graph/Graph/Two_Edge_Connected_Components.hpp
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Kruskal.hpp
+    title: "Kruskal \u6CD5"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+    title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Graph/Prim.hpp
+    title: "Prim \u6CD5"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/alds1/11D.test.cpp
+    title: verify/aizu_online_judge/alds1/11D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/3A.test.cpp
+    title: verify/aizu_online_judge/grl/3A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/3B.test.cpp
+    title: verify/aizu_online_judge/grl/3B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+    title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+    title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+    title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+    title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+    title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+    title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+    title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+    title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
     links: []
-  bundledCode: "#line 2 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\n#line 2\
-    \ \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n#include\
-    \ <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
-    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
-    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
-    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
-    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
-    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
-    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+  bundledCode: "#line 2 \"Graph/Common.hpp\"\n\n#line 2 \"template/template.hpp\"\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
+    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
+    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
+    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
+    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
+    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
+    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
+    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
+    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
+    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -200,53 +294,14 @@ data:
     \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 4 \"Graph/Weighted_Digraph/Weighted_Digraph.hpp\"\n\nnamespace\
-    \ weighted_digraph {\n  template<typename W>\n  struct Weighted_Arc {\n    int\
-    \ id, source, target;\n    W weight;\n\n    Weighted_Arc (int id, int source,\
-    \ int target, W weight): id(id), source(source), target(target), weight(weight)\
-    \ {}\n  };\n\n  template<typename W>\n  class Weighted_Digraph {\n    using Arc\
-    \ = Weighted_Arc<W>;\n\n    private:\n    int arc_id_offset;\n    vector<vector<int>>\
-    \ adjacent_out, adjacent_in;\n    vector<Arc> arcs;\n\n    public:\n    Weighted_Digraph(int\
-    \ n, int arc_id_offset = 0): arc_id_offset(arc_id_offset) {\n        adjacent_out.assign(n,\
-    \ {});\n        adjacent_in.assign(n, {});\n        arcs.resize(arc_id_offset,\
-    \ Weighted_Arc<W>(-1, -1, -1, W()));\n      }\n    \n    inline int order() const\
-    \ { return int(adjacent_in.size()); }\n\n    inline int size() const { return\
-    \ int(arcs.size()) - arc_id_offset; }\n\n    // \u9802\u70B9 u \u304B\u3089\u9802\
-    \u70B9 v \u3078\u306E\u91CD\u307F w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B\
-    .\n    int add_arc(int u, int v, W w){\n      int id = int(arcs.size());\n\n \
-    \     adjacent_out[u].emplace_back(id);\n      adjacent_in[v].emplace_back(id);\n\
-    \      arcs.emplace_back(id, u, v, w);\n\n      return id;\n    }\n\n    // \u9802\
-    \u70B9 u \u304B\u3089\u51FA\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\
-    \u53D6\u5F97\n    inline const std::vector<int>& successors(int u) const { return\
-    \ adjacent_out[u]; }\n\n    // \u9802\u70B9 u \u306B\u5165\u308B\u5F27\u306E ID\
-    \ \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n    inline const std::vector<int>&\
-    \ predecessors(int u) const { return adjacent_in[u]; }\n\n    // \u5F27 ID \u304C\
-    \ id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\u308B.\n    inline const\
-    \ Arc& get_arc(int id) const { return arcs[id]; }\n    inline Arc& get_arc(int\
-    \ id) { return arcs[id]; }\n  };\n}\n"
-  code: "#pragma once\n\n#include \"../../template/template.hpp\"\n\nnamespace weighted_digraph\
-    \ {\n  template<typename W>\n  struct Weighted_Arc {\n    int id, source, target;\n\
-    \    W weight;\n\n    Weighted_Arc (int id, int source, int target, W weight):\
-    \ id(id), source(source), target(target), weight(weight) {}\n  };\n\n  template<typename\
-    \ W>\n  class Weighted_Digraph {\n    using Arc = Weighted_Arc<W>;\n\n    private:\n\
-    \    int arc_id_offset;\n    vector<vector<int>> adjacent_out, adjacent_in;\n\
-    \    vector<Arc> arcs;\n\n    public:\n    Weighted_Digraph(int n, int arc_id_offset\
-    \ = 0): arc_id_offset(arc_id_offset) {\n        adjacent_out.assign(n, {});\n\
-    \        adjacent_in.assign(n, {});\n        arcs.resize(arc_id_offset, Weighted_Arc<W>(-1,\
-    \ -1, -1, W()));\n      }\n    \n    inline int order() const { return int(adjacent_in.size());\
-    \ }\n\n    inline int size() const { return int(arcs.size()) - arc_id_offset;\
-    \ }\n\n    // \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u91CD\u307F\
-    \ w \u306E\u5F27\u3092\u8FFD\u52A0\u3059\u308B.\n    int add_arc(int u, int v,\
-    \ W w){\n      int id = int(arcs.size());\n\n      adjacent_out[u].emplace_back(id);\n\
-    \      adjacent_in[v].emplace_back(id);\n      arcs.emplace_back(id, u, v, w);\n\
-    \n      return id;\n    }\n\n    // \u9802\u70B9 u \u304B\u3089\u51FA\u308B\u5F27\
-    \u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\n    inline const std::vector<int>&\
-    \ successors(int u) const { return adjacent_out[u]; }\n\n    // \u9802\u70B9 u\
-    \ \u306B\u5165\u308B\u5F27\u306E ID \u306E\u30EA\u30B9\u30C8\u3092\u53D6\u5F97\
-    \n    inline const std::vector<int>& predecessors(int u) const { return adjacent_in[u];\
-    \ }\n\n    // \u5F27 ID \u304C id \u3067\u3042\u308B\u5F27\u3092\u53D6\u5F97\u3059\
-    \u308B.\n    inline const Arc& get_arc(int id) const { return arcs[id]; }\n  \
-    \  inline Arc& get_arc(int id) { return arcs[id]; }\n  };\n}\n"
+    \    }\n};\n#line 4 \"Graph/Common.hpp\"\n\nnamespace graph_common {\n    ///\
+    \ @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\n    /// \u8FBA\u30FB\
+    \u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\u5024\u3068\u3057\u3066\
+    \u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n}\n"
+  code: "#pragma once\n\n#include \"../template/template.hpp\"\n\nnamespace graph_common\
+    \ {\n    /// @brief \u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B\n    ///\
+    \ \u8FBA\u30FB\u5F27\u306E\u91CD\u307F\u306E\u578B W \u306E\u65E2\u5B9A\u5024\u3068\
+    \u3057\u3066\u4F7F\u3046\u7A7A\u306E\u578B.\n    struct Empty {};\n}\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -256,17 +311,48 @@ data:
   - template/bitop.hpp
   - template/exception.hpp
   isVerificationFile: false
-  path: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+  path: Graph/Common.hpp
   requiredBy:
+  - Graph/Digraph/Digraph.hpp
+  - Graph/Digraph/Path.hpp
+  - Graph/Digraph/Strongly_Connected_Components.hpp
+  - Graph/Digraph/Eulerian_Trail.hpp
+  - Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
+  - Graph/Weighted_Graph/Prim.hpp
+  - Graph/Weighted_Graph/Kruskal.hpp
+  - Graph/Graph/Two_Edge_Connected_Components.hpp
+  - Graph/Graph/Graph.hpp
+  - Graph/Graph/Enumerate_Triangles.hpp
+  - Graph/Graph/Chromatic_Number.hpp
+  - Graph/Graph/Path.hpp
+  - Graph/Graph/Count_Spanning_Trees.hpp
+  - Graph/Graph/Enumerate_Cliques.hpp
+  - Graph/Graph/Bipartition.hpp
+  - Graph/Graph/Lowlink.hpp
+  - Graph/Graph/Eulerian_Trail.hpp
+  - Graph/Graph/Connected_Components.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
+  - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
+  - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
-documentation_of: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+  - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
+  - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
+  - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+  - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
+  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/alds1/11D.test.cpp
+documentation_of: Graph/Common.hpp
 layout: document
 redirect_from:
-- /library/Graph/Weighted_Digraph/Weighted_Digraph.hpp
-- /library/Graph/Weighted_Digraph/Weighted_Digraph.hpp.html
-title: Graph/Weighted_Digraph/Weighted_Digraph.hpp
+- /library/Graph/Common.hpp
+- /library/Graph/Common.hpp.html
+title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
 ---
