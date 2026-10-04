@@ -1,5 +1,5 @@
 #pragma once
-#include"Weighted_Digraph.hpp"
+#include"../Digraph/Digraph.hpp"
 
 namespace weighted_digraph::dijkstra {
     class UnreachableException : public exception {

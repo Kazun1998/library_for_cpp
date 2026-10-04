@@ -1,7 +1,7 @@
 #pragma once
 
 #include"../../template/template.hpp"
-#include"Weighted_Graph.hpp"
+#include"../Graph/Graph.hpp"
 #include"Minimum_Spanning_Tree.hpp"
 #include"../../Union_Find/Union_Find.hpp"
 

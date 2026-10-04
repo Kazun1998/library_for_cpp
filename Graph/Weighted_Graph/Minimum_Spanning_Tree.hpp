@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Weighted_Graph.hpp"
+#include"../Graph/Graph.hpp"
 
 namespace weighted_graph {
     template<typename W>

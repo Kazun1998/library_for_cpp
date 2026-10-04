@@ -1,6 +1,7 @@
 #pragma once
 
 #include"../../template/template.hpp"
+#include"../Graph/Graph.hpp"
 #include"Minimum_Spanning_Tree.hpp"
 
 namespace weighted_graph {

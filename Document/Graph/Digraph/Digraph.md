@@ -11,13 +11,12 @@ documentation_of: //Graph/Digraph/Digraph.hpp
 - 重みあり (`Digraph<long long>` など) では `add_arc(u, v, w)` で追加する.
 - 弧は値で保持し, 隣接リスト (`successors`, `predecessors`) は弧 ID のリストを返す. 弧本体は `get_arc(id)` で取得する.
 - `add_arc` を呼ぶと, それ以前に `get_arc` で得た参照は無効になる可能性がある.
-- 旧 `weighted_digraph::Weighted_Digraph<W>` は `Digraph<W>` に統合された (互換のため別名は残している).
 
 ## History
 
 |日付|内容|
 |:---:|:---|
-|2026/10/04| 重みをテンプレート引数化し, 弧を値 + ID で保持するように変更 (Weighted_Digraph を統合) |
+|2026/10/04| 重みをテンプレート引数化し, 弧を値 + ID で保持するように変更 |
 |2026/02/21| forward_reachable, backward_reachable の実装 |
 |2026/02/16| out_degree, in_degree 実装 |
 |2026/01/01| 接続している弧をポインタで持つように |
