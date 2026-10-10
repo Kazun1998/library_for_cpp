@@ -324,8 +324,97 @@ data:
   - verify/aizu_online_judge/alds1/11D.test.cpp
 documentation_of: Graph/Graph/Connected_Components.hpp
 layout: document
-redirect_from:
-- /library/Graph/Graph/Connected_Components.hpp
-- /library/Graph/Graph/Connected_Components.hpp.html
-title: Graph/Graph/Connected_Components.hpp
+title: "\u9023\u7D50\u6210\u5206"
 ---
+
+## Outline
+
+無向グラフ $G = (V, E)$ の連結成分に関する計算を行う.
+
+## Definition
+
+* 頂点 $u, v \in V$ について, 頂点 $u$ と頂点 $v$ を結ぶ歩道が存在するとき, 頂点 $u, v$ は **連結** であるという.
+* $G$ が食うではなく, 任意の $2$ 頂点が連結であるとき, $G$ は **連結** であるという.
+* $V$ において, 連結であるという関係は同値になる (証明は後述). この同値関係による同値類を **連結成分** という.
+
+## Theory
+
+> 定理 1
+>
+> $V$ において, 連結であるという関係は同値になる.
+
+**証明**
+
+* (反射律) 任意の $v \in V$ に対して, 移動しない歩道 $(v)$ が $v$ と $v$ を結ぶ歩道である. よって, $v, v$ は連結である.
+* (対称律) $u, v \in V$ 連結であるとする. このとき, 頂点 $u$ と頂点 $v$ を結ぶ歩道を $(u = v_0, e_1, v_1, \dots, v_{n-1}, e_n, v_n = v)$ としたとき, $(v = v_n, e_n, v_{n-1}, \dots, v_1, e_1, v_0 = u)$ は頂点 $v$ と $u$ を結ぶ歩道である. よって, $v, u$ は連結である.
+* (推移律) $u, v, w \in V$ について, $u, v$ と $v, w$ はそれぞれ連結であるとする. このとき, 以下が存在する.
+  * $(u = v_0, e_1, v_1, \dots, v_{n-1}, e_n, v_n = v)$: $u, v$ を結ぶ歩道.
+  * $(v = w_0, f_1, w_1, \dots, w_{m-1}, f_m, w_m = w)$: $v, w$ を結ぶ歩道.
+
+  このとき,
+
+  $$ (u = v_0, e_1, v_1, \dots, e_n, v_n = v = w_0, f_1, w_1, \dots, f_m, w_m = w) $$
+
+  は $u, w$ を結ぶ歩道になる. よって, $u, w$ は連結である.
+
+> 定理 2
+>
+> $V$ において, 連結であるという関係は, 辺による隣接関係から生成する同値関係である.
+
+**証明**
+
+$V$ 上の関係 $\sim$ を「連結である」という関係とし, $R$ を「辺によって隣接している」という関係とする. $R$ から生成する同値関係を $\approx$ とする. すなわち, $\approx$ は $R$ を含む同値関係のうち最小のものである. $\sim$ と $\approx$ が一致することを示す.
+
+* ($\approx \subseteq \sim$)
+  * 定理 1 より, $\sim$ は同値関係である.
+  * $u, v \in V$ が $R$ によって隣接しているとする. このとき, $e = uv$ なる $e \in E$ が存在するので, $(u, e, v)$ は $u, v$ を結ぶ長さ $1$ の歩道である. よって, $u \sim v$ である. すなわち, $\sim$ は $R$ を含む.
+  * $\approx$ は $R$ を含む同値関係のうち最小であるから, $\approx \subseteq \sim$ である.
+* ($\sim \subseteq \approx$)
+  * $u \sim v$ とし, $u, v$ を結ぶ歩道を $(u = v_0, e_1, v_1, \dots, e_n, v_n = v)$ とする.
+  * 各 $i = 1, \dots, n$ について, $e_i = v_{i-1}v_i$ であるから, $v_{i-1}$ と $v_i$ は $R$ によって隣接している. $\approx$ は $R$ を含むので, $v_{i-1} \approx v_i$ である.
+  * $\approx$ は同値関係であるから, 推移律より $u = v_0 \approx v_n = v$ である.
+
+以上より, $\sim$ と $\approx$ は一致する.
+
+
+
+## Contents
+
+与えられるグラフ $G$ の位数を $N$, サイズを $M$ とする.
+
+```cpp
+template<typename W>
+Connected_Components(const Graph<W> &G)
+```
+
+* 無向グラフ $G$ の連結成分を求める. 連結成分は深さ優先探索 (スタックを用いた非再帰) で求める.
+* $G$ の頂点は $0, 1, \dots, N-1$ で表される.
+* **計算量**: $O(N + M)$ 時間.
+
+```cpp
+vector<vector<int>> components
+vector<int> component_ids
+```
+
+* `components`: 連結成分の一覧である. `components[i]` は第 $i$ 連結成分に属する頂点のリストである.
+  * 連結成分は, 含まれる頂点のうち最小のものが小さい順に並ぶ. 各連結成分の先頭の頂点は, その連結成分に含まれる頂点のうち最小のものである.
+* `component_ids`: 長さ $N$ の配列である. `component_ids[v]` は頂点 $v$ が属する連結成分の番号 $i$ (すなわち, `components[i]` が $v$ を含む) である.
+
+```cpp
+template<typename W>
+bool is_Connected(const Graph<W> &G)
+```
+
+* 無向グラフ $G$ が連結であるかどうかを判定する.
+* **返り値**
+  * $G$ の連結成分がちょうど $1$ つであるとき `true`, そうでないとき `false`.
+  * 特に, 頂点が $0$ 個のグラフに対しては `false` を返す.
+* **計算量**: $O(N + M)$ 時間.
+
+## History
+
+|日付|内容|
+|:---:|:---|
+|2026/10/10|連結成分のドキュメントの作成|
+|2025/09/19|`is_Connected` の実装|
+|2025/09/18|連結成分の実装|

@@ -43,7 +43,7 @@ data:
     title: "\u5F69\u8272\u6570"
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
-    title: Graph/Graph/Connected_Components.hpp
+    title: "\u9023\u7D50\u6210\u5206"
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Count_Spanning_Trees.hpp
     title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
