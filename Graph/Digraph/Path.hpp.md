@@ -32,7 +32,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Eulerian_Trail.hpp
     title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Digraph/Warshall_Floyd.hpp
+    title: "Warshall-Floyd \u6CD5"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/1C.test.cpp
+    title: verify/aizu_online_judge/grl/1C.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
     title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
@@ -324,10 +330,12 @@ data:
   path: Graph/Digraph/Path.hpp
   requiredBy:
   - Graph/Digraph/Eulerian_Trail.hpp
+  - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+  - verify/aizu_online_judge/grl/1C.test.cpp
 documentation_of: Graph/Digraph/Path.hpp
 layout: document
 redirect_from:

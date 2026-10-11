@@ -72,6 +72,9 @@ data:
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Digraph/Warshall_Floyd.hpp
+    title: "Warshall-Floyd \u6CD5"
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
   - icon: ':heavy_check_mark:'
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/alds1/11D.test.cpp
     title: verify/aizu_online_judge/alds1/11D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/1C.test.cpp
+    title: verify/aizu_online_judge/grl/1C.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3A.test.cpp
     title: verify/aizu_online_judge/grl/3A.test.cpp
@@ -331,6 +337,7 @@ data:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Eulerian_Trail.hpp
   - Graph/Graph/Connected_Components.hpp
+  - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -346,6 +353,7 @@ data:
   - verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
+  - verify/aizu_online_judge/grl/1C.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/alds1/11D.test.cpp

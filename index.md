@@ -330,6 +330,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Digraph/Dijkstra.hpp
       title: Graph/Weighted_Digraph/Dijkstra.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/Weighted_Digraph/Warshall_Floyd.hpp
+      title: "Warshall-Floyd \u6CD5"
   - name: Graph/Weighted_Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -903,6 +906,9 @@ data:
       title: verify/aizu_online_judge/dsl/5B.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/1C.test.cpp
+      title: verify/aizu_online_judge/grl/1C.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/3A.test.cpp
       title: verify/aizu_online_judge/grl/3A.test.cpp

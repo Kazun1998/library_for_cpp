@@ -38,7 +38,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Digraph/Warshall_Floyd.hpp
+    title: "Warshall-Floyd \u6CD5"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/1C.test.cpp
+    title: verify/aizu_online_judge/grl/1C.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
@@ -417,6 +423,7 @@ data:
   - Graph/Digraph/Path.hpp
   - Graph/Digraph/Strongly_Connected_Components.hpp
   - Graph/Digraph/Eulerian_Trail.hpp
+  - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   timestamp: '2026-10-04 17:28:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -424,6 +431,7 @@ data:
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
+  - verify/aizu_online_judge/grl/1C.test.cpp
 documentation_of: Graph/Digraph/Digraph.hpp
 layout: document
 title: "\u6709\u5411 Graph"
