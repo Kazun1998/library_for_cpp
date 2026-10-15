@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Eulerian_Trail.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Eulerian_Trail.hpp
 
 #include "Graph.hpp"
 #include "Path.hpp"

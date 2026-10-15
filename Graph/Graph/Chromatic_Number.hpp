@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Chromatic_Number.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Chromatic_Number.hpp
 
 #include "Graph.hpp"
 #include "../../Convolution/Bitwise_Or_Convolution.hpp"

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/String/Longest_Common_Prefix.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/String/Longest_Common_Prefix.hpp
 
 #include "Suffix_Array.hpp"
 

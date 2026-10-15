@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Queries/Two_Pointers.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Queries/Two_Pointers.hpp
 
 #include "../template/template.hpp"
 

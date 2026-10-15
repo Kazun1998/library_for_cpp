@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/preset/Range_Max.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/preset/Range_Max.hpp
 
 #include "../Segment_Tree.hpp"
 

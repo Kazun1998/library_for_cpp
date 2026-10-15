@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Two_SAT.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Two_SAT.hpp
 
 #include"../template/template.hpp"
 

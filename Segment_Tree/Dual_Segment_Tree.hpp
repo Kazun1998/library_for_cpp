@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Dual_Segment_Tree.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Dual_Segment_Tree.hpp
 
 #include"../template/template.hpp"
 

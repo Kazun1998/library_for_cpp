@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Find_Linear_Recurrence.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Find_Linear_Recurrence.hpp
 
 #include "../template/template.hpp"
 

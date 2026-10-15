@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Others/Topological_Sort.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Others/Topological_Sort.hpp
 
 #include "../template/template.hpp"
 

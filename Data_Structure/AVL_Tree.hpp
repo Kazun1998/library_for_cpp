@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/AVL_Tree.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/AVL_Tree.hpp
 
 #include"../template/template.hpp"
 

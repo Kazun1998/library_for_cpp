@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Z_Algorithm.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Z_Algorithm.hpp
 
 #include"../template/template.hpp"
 

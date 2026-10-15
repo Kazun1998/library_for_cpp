@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Group_Action_Union_Find.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Group_Action_Union_Find.hpp
 
 #include "../template/template.hpp"
 #include "../template/concepts.hpp"

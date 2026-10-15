@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slope_Trick.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slope_Trick.hpp
 
 
 #pragma once

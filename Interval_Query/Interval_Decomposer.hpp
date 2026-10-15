@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Interval_Decomposer.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Interval_Decomposer.hpp
 
 #include "../template/template.hpp"
 

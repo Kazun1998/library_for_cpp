@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Odd_Montgomery_Multiplication.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Odd_Montgomery_Multiplication.hpp
 
 #include "../template/template.hpp"
 

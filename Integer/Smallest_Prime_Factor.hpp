@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Smallest_Prime_Factor.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Smallest_Prime_Factor.hpp
 
 #include"../template/template.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Composite.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Composite.hpp
 
 #include"Modulo.hpp"
 

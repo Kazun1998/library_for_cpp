@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Interval_Product.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Interval_Product.hpp
 
 #include"../template/template.hpp"
 #include"../template/concepts.hpp"

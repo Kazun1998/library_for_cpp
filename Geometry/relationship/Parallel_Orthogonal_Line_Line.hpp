@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
 
 #include"../object/Line.hpp"
 

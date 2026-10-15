@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp
 
 using ll = long long;
 

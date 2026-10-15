@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Functional_Graph/Monoid_Functional_Graph.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Functional_Graph/Monoid_Functional_Graph.hpp
 
 #include "../template/template.hpp"
 #include "../template/concepts.hpp"

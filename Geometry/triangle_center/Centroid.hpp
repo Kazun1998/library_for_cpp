@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/triangle_center/Centroid.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/triangle_center/Centroid.hpp
 
 #include"../object/Triangle.hpp"
 

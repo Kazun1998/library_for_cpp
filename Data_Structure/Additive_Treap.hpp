@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Additive_Treap.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Additive_Treap.hpp
 
 #include"../template/template.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/preset/Range_Composite_Range_Sum.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/preset/Range_Composite_Range_Sum.hpp
 
 #include "../Lazy_Segment_Tree.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Path.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Path.hpp
 
 #include "Digraph.hpp"
 

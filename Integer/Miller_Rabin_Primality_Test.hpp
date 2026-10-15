@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Miller_Rabin_Primality_Test.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Miller_Rabin_Primality_Test.hpp
 
 #include "../template/template.hpp"
 #include "Prime.hpp"

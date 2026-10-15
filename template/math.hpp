@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/template/math.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/math.hpp
 
 // 演算子
 template<typename T>

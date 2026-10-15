@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/String/Number_of_Substrings.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/String/Number_of_Substrings.hpp
 
 #include "Longest_Common_Prefix.hpp"
 #include "Concat_with_Compression.hpp"

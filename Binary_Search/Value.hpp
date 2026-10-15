@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Search/Value.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Search/Value.hpp
 
 #include"../template/template.hpp"
 

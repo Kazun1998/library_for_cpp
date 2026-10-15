@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Fraction.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Fraction.hpp
 
 #include <concepts>
 #include <numeric>

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Subtree_Monoid_Vertex_Query.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Subtree_Monoid_Vertex_Query.hpp
 
 #include "../template/template.hpp"
 #include "Tree.hpp"

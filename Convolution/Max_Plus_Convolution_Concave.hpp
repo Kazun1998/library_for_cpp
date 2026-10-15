@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Max_Plus_Convolution_Concave.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Max_Plus_Convolution_Concave.hpp
 
 #include "../template/template.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Prime_Pi.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Prime_Pi.hpp
 
 #include"../template/template.hpp"
 #include"Prime.hpp"

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Min_Plus_Convolution_Convex.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Min_Plus_Convolution_Convex.hpp
 
 #include "../template/template.hpp"
 

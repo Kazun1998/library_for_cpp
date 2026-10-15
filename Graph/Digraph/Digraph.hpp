@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Digraph.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Digraph.hpp
 
 #include "../../template/template.hpp"
 #include "../Common.hpp"

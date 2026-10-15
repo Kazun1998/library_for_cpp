@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Sqrt_Decomposer.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Sqrt_Decomposer.hpp
 
 #include "Interval_Decomposer.hpp"
 

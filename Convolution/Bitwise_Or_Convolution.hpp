@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Bitwise_Or_Convolution.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Bitwise_Or_Convolution.hpp
 
 #include "Semilattice_Convolution_Base.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/intersection/Intersection_Circle_and_Line.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/intersection/Intersection_Circle_and_Line.hpp
 
 #include"../projection/Projection_Point_Line.hpp"
 #include"../object/Line.hpp"

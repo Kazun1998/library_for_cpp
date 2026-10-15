@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/triangle_center/Circumcenter.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/triangle_center/Circumcenter.hpp
 
 #include"../utility/Perpendicular_Bisector.hpp"
 #include"../intersection/Intersection_Line_and_Line.hpp"

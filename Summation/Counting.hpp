@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Summation/Counting.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Summation/Counting.hpp
 
 #include "Summation.hpp"
 #include <vector>

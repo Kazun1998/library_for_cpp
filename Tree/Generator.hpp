@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Generator.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Generator.hpp
 
 #include"Tree.hpp"
 

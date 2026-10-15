@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
 
 #include "../template/template.hpp"
 #include "Find_Linear_Recurrence.hpp"

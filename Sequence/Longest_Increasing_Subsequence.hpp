@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Longest_Increasing_Subsequence.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Longest_Increasing_Subsequence.hpp
 
 #include"../template/template.hpp"
 

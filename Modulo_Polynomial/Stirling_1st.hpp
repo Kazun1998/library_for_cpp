@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Stirling_1st.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Stirling_1st.hpp
 
 #include"Fast_Power_Series.hpp"
 #include"Taylor_Shift.hpp"

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Min_Cost_Flow/Min_Cost_Flow.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Min_Cost_Flow/Min_Cost_Flow.hpp
 
 #include "../template/template.hpp"
 

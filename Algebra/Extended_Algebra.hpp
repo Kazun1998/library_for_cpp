@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Extended_Algebra.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Extended_Algebra.hpp
 
 #include"../template/template.hpp"
 

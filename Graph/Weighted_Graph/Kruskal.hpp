@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Weighted_Graph/Kruskal.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Weighted_Graph/Kruskal.hpp
 
 #include"../../template/template.hpp"
 #include"../Graph/Graph.hpp"

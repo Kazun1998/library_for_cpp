@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slide_Maximum.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slide_Maximum.hpp
 
 #include "../template/template.hpp"
 

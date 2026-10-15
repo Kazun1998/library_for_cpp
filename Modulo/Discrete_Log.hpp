@@ -1,4 +1,4 @@
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Discrete_Log.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Discrete_Log.hpp
 
 #include"Modulo.hpp"
 

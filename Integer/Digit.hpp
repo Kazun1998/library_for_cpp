@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Digit.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Digit.hpp
 
 #include"../template/template.hpp"
 

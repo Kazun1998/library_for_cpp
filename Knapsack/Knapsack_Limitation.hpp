@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Knapsack/Knapsack_Limitation.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Knapsack/Knapsack_Limitation.hpp
 
 #include "Base.hpp"
 #include "Knapsack_01.hpp"

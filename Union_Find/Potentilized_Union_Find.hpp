@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Potentilized_Union_Find.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Potentilized_Union_Find.hpp
 
 #include"../template/template.hpp"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/template/bitop.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/bitop.hpp
 
 // 非負整数 x の bit legnth を求める.
 ll bit_length(ll x) {

@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Lowest_Common_Ancestor.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Lowest_Common_Ancestor.hpp
 
 #include "../template/template.hpp"
 #include "Tree.hpp"

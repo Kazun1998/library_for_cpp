@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Strongly_Connected_Components.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Strongly_Connected_Components.hpp
 
 #include"Digraph.hpp"
 

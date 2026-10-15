@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/template/macro.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/macro.hpp
 
 // マクロの定義
 #define all(x) x.begin(), x.end()

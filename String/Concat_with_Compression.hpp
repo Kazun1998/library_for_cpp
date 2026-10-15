@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/String/Concat_with_Compression.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/String/Concat_with_Compression.hpp
 
 #include "../template/template.hpp"
 

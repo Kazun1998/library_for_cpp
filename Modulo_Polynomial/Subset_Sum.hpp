@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Subset_Sum.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Subset_Sum.hpp
 
 #include"../Algebra/modint.hpp"
 #include"Fast_Power_Series.hpp"

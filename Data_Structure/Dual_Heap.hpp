@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Dual_Heap.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Dual_Heap.hpp
 
 #include"../template/template.hpp"
 

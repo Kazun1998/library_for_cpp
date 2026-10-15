@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Modulo_Polynomial.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Modulo_Polynomial.hpp
 
 #include"../template/template.hpp"
 #include"../Algebra/modint.hpp"

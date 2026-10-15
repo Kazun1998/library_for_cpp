@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Stirling_2nd.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Stirling_2nd.hpp
 
 #include"../Algebra/modint.hpp"
 #include"Numeric_Theory_Translation.hpp"

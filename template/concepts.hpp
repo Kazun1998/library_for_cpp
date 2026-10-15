@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/template/concepts.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/concepts.hpp
 
 // 単項演算子コンセプト
 template <typename Op, typename X>

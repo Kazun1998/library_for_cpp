@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Line.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Line.hpp
 
 #include"../projection/Projection_Point_Line.hpp"
 #include"Reflection_Point_Point.hpp"

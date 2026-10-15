@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Ordered_Set.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Ordered_Set.hpp
 
 #include "../template/template.hpp"
 #include <ext/pb_ds/assoc_container.hpp>

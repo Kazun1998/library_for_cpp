@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Triangle.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Triangle.hpp
 
 #include"Point.hpp"
 

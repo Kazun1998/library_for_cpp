@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Two_Edge_Connected_Components.hpp
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Two_Edge_Connected_Components.hpp
 
 #include"Lowlink.hpp"
 
