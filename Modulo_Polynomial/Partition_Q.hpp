@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Partition_Q.hpp
+
 #include"../Algebra/modint.hpp"
 #include"Subset_Sum.hpp"
 

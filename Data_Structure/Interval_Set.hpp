@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Interval_Set.hpp
+
 #include"../template/template.hpp"
 
 // Reference: https://github.com/drken1215/algorithm/blob/master/DataStructure/intervals_management.cpp

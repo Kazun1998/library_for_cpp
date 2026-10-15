@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Lazy_Segment_Tree.hpp
+
 /* 遅延セグメント木
 M を Monoid とする. M 上の列に対して, Monid F からの区間作用と, 連続部分列に対する区間積の計算の処理を高速に行う.
 

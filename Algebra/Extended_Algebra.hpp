@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Extended_Algebra.hpp
+
 #include"../template/template.hpp"
 
 class IndeterminateOperationError : public std::runtime_error {

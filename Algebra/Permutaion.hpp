@@ -1,3 +1,5 @@
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Permutaion.hpp
+
 #pragma
 
 #include"../template/template.hpp"

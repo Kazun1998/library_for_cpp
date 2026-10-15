@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Knapsack/Knapsack_Infinity.hpp
+
 #include"Base.hpp"
 
 namespace knapsack_problem {

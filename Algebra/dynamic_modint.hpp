@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/dynamic_modint.hpp
+
 #include"../template/template.hpp"
 
 template<int id>

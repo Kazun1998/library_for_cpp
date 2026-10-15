@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Bezout.hpp
+
 #include"../template/template.hpp"
 
 namespace bezout {

@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Predict_Nth_Term.hpp
+
 #include "Find_Linear_Recurrence.hpp"
 #include "../Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp"
 

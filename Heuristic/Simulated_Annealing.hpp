@@ -1,4 +1,7 @@
 #pragma once
+
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Heuristic/Simulated_Annealing.hpp
+
 #include <cmath>
 #include "Timer.hpp"
 #include "Random.hpp"

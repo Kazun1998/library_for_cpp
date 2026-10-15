@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Imos/Sparse_Imos_1.hpp
+
 #include "../template/template.hpp"
 
 template <typename T, typename I = long long>

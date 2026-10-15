@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Point.hpp
+
 #include"../base.hpp"
 
 namespace geometry {

@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/distance/Distance_Line_and_Point.hpp
+
 #include"../object/Line.hpp"
 
 namespace geometry {

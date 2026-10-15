@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Subset_Convolution.hpp
+
 #include "Convolution_Base.hpp"
 
 namespace convolution {

@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Fast_Power_Series.hpp
+
 #include"Modulo_Polynomial.hpp"
 #include"Numeric_Theory_Translation.hpp"
 

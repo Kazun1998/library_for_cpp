@@ -1,3 +1,5 @@
+// https://github.com/Kazun1998/library_for_cpp/blob/main/template/inout.hpp
+
 // 入出力
 #include <type_traits>
 #include <string>

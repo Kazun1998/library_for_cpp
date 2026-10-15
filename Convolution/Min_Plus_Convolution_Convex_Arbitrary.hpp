@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Min_Plus_Convolution_Convex_Arbitrary.hpp
+
 #include "../template/template.hpp"
 
 namespace convolution {

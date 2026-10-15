@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Ordered_Trie.hpp
+
 #include "../template/template.hpp"
 #include "../template/concepts.hpp"
 

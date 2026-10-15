@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/intersection/Intersection_Line_and_Line.hpp
+
 #include"../object/Line.hpp"
 #include"../relationship/Parallel_Orthogonal_Line_Line.hpp"
 

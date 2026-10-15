@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/tangent/Common_Tangent_Points.hpp
+
 #include"../object/Circle.hpp"
 #include"../object/Line.hpp"
 #include"../relationship/Relationship_Circle_and_Circle.hpp"

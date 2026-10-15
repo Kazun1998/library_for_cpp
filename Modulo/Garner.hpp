@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Garner.hpp
+
 #include "../template/template.hpp"
 #include "../Integer/Prime.hpp"
 #include "Modulo.hpp"

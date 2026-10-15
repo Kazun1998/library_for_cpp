@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Divisors.hpp
+
 #include"../template/template.hpp"
 
 // N 以下の約数を列挙

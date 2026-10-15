@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/utility/Division_Point.hpp
+
 #include"../object/Point.hpp"
 
 namespace geometry {

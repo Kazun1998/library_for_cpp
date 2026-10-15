@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Count_Spanning_Trees.hpp
+
 #include "../../template/template.hpp"
 #include "../../Linear_Algebra/Field_Matrix.hpp"
 #include "Graph.hpp"

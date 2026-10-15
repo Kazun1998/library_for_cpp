@@ -1,4 +1,7 @@
 #pragma once
+
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Heuristic/Random.hpp
+
 #include <random>
 
 // 競技プログラミング（マラソンマッチ）用の乱数生成クラス

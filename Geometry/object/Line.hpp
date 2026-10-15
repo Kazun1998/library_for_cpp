@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Line.hpp
+
 #include"../object/Point.hpp"
 #include"../utility/Counter_Clockwise.hpp"
 

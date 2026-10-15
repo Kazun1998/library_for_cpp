@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Order.hpp
+
 #include"Modulo.hpp"
 #include"../Integer/Euler_Totient.hpp"
 #include"../Integer/Divisors.hpp"

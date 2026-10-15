@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Enumerate_Powers.hpp
+
 #include "../template/template.hpp"
 #include "../Integer/Smallest_Prime_Factor.hpp"
 

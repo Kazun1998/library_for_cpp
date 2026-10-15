@@ -1,5 +1,7 @@
 #pragma once
 
+// https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+
 #include"../Algebra/modint.hpp"
 #include"Fast_Power_Series.hpp"
 #include"Fraction_Coefficient.hpp"
