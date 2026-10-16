@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Interval_Decomposer.hpp
+
 #include "../template/template.hpp"
 
 /// @brief 区間 [0, N) に対するクエリ区間分解の抽象基底クラス.

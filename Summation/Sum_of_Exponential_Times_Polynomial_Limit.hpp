@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Summation/Sum_of_Exponential_Times_Polynomial_Limit.hpp
+
 #include "../template/template.hpp"
 #include "../Counting/Combination_Calculator.hpp"
 #include "../Math/Enumerate_Geometrics.hpp"

@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Log.hpp
+
 #include"Calculus.hpp"
 
 template<typename mint>

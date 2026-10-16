@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Linear_Sieve.hpp
+
 #include "../template/template.hpp"
 
 vector<int> Linear_Sieve(const int n) {

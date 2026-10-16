@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/relationship/Relationship_Circle_and_Circle.hpp
+
 #include"../object/Circle.hpp"
 
 namespace geometry {
