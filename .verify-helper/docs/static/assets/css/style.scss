@@ -1,0 +1,49 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* 定義・命題・定理などの枠囲み. --c で枠線の色, --bg で背景色を決める. */
+.definition,
+.proposition,
+.theorem,
+.remark {
+  border: 1px solid var(--c);
+  border-left: 6px solid var(--c);
+  border-radius: 4px;
+  background: var(--bg);
+  padding: 0.5em 1em;
+  margin: 1em 0;
+}
+
+.definition  { --c: #1f77b4; --bg: #eef5fb; }
+.proposition { --c: #d4a017; --bg: #fdf8e6; }
+.theorem     { --c: #2e8b57; --bg: #eef8f2; }
+.remark      { --c: #888888; --bg: #f5f5f5; }
+
+.definition > :first-child,
+.proposition > :first-child,
+.theorem > :first-child,
+.remark > :first-child {
+  margin-top: 0;
+}
+
+/* 先頭の見出し (タイトル / --- ) をタイトルとして強調する. */
+.definition > h2:first-child,
+.proposition > h2:first-child,
+.theorem > h2:first-child,
+.remark > h2:first-child {
+  color: var(--c);
+  font-size: 1.1em;
+  font-weight: bold;
+  border-bottom: 1px solid var(--c);
+  padding-bottom: 0.2em;
+  margin: 0 0 0.6em;
+}
+
+.definition > :last-child,
+.proposition > :last-child,
+.theorem > :last-child,
+.remark > :last-child {
+  margin-bottom: 0;
+}
