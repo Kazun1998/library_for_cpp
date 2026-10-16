@@ -31,10 +31,18 @@ $$\mathrm{mex}~S := \min (\mathbb{N} \setminus S)$$
 
 このことから, 以下が従う.
 
-* $\oplus$ は $F_n$ において可換群になる. 特に, 以下が成り立つ.
-  * $x < 2^m < 2^n$ に対して, $x \oplus 2^m = x + 2^m$.
-  * 単位元は $0$ である.
-  * $x \in F_n$ の逆元は $x$ 自身である.
+<div class="proposition" markdown="1">
+
+命題 1
+---
+
+$\oplus$ は $F_n$ において可換群になる. 特に, 以下が成り立つ.
+
+* $x < 2^m < 2^n$ に対して, $x \oplus 2^m = x + 2^m$.
+* 単位元は $0$ である.
+* $x \in F_n$ の逆元は $x$ 自身である.
+
+</div>
 
 ### 乗法
 
@@ -48,6 +56,11 @@ $$ x \otimes y := \mathrm{mex} \left(\{(a \otimes y) \oplus (x \otimes b) \oplus
 
 #### 計算
 
+<div class="proposition" markdown="1">
+
+命題 2
+---
+
 可換体 $(F_{2^n}, \oplus, \otimes)$ に対して, 以下が成り立つ. ただし, 非負整数 $k~(< n) $ に対して,
 
 $$e_k := 2^{2^k}, \quad e'_k := 2^{2^k - 1} \left(= e_k / 2 \right)$$
@@ -56,6 +69,8 @@ $$e_k := 2^{2^k}, \quad e'_k := 2^{2^k - 1} \left(= e_k / 2 \right)$$
 
 * $x \in F$ に対して, $x < e_k$ ならば, $x \otimes e_k = x \times e_k$ である.
 * $e_k \otimes e_k = \frac{3}{2} e_k = e_k + e'_k = e_k \oplus e'_k $.
+
+</div>
 
 これらの性質により, $x, y \in F_{2^n}$ に対して, $x \oplus y$ の計算を次のようにして, $F_{2^{n-1}}$ 上の計算に帰着させることができる.
 
@@ -98,7 +113,14 @@ $x \in F_{2^n}$ は $x \neq 0$ であるとする. Nimber 積の意味での $x$
 
 まず, 平方根の定義ができることを証明する.
 
-> (定理 1) 任意の $b \in F_{2^n}$ に対して, $a \otimes a = b$ となる $a \in F_{2^n}$ がただ一つ存在する.
+<div class="theorem" markdown="1">
+
+定理 3
+---
+
+任意の $b \in F_{2^n}$ に対して, $a \otimes a = b$ となる $a \in F_{2^n}$ がただ一つ存在する.
+
+</div>
 
 (証明)
 

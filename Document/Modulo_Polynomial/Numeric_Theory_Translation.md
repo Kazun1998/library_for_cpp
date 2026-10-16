@@ -50,7 +50,14 @@ $\boldsymbol{a}, \boldsymbol{b} \in F^n$ とする. $\boldsymbol{a}, \boldsymbol
 
 ここで, フーリエ変換と畳み込み演算について, 以下の重大な式が成り立つ.
 
-> $\mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b}$
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$$\mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b}$$
+
+</div>
 
 #### 証明
 

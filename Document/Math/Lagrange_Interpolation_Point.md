@@ -15,6 +15,11 @@ $$ f(x_i) = y_i \quad (0 \leq i \leq d)$$
 
 ### Lagrange 多項式を使った, 多項式の決定
 
+<div class="proposition" markdown="1">
+
+命題 1
+---
+
 $F$ を体とする.
 
 $(d+1)$ 個の点 $(x_0, y_0), (x_1, y_1), \dots, (x_d, y_d)$ について, $x_0, x_1, \dots, x_d$ は互いに異なるとする.
@@ -22,7 +27,11 @@ $(d+1)$ 個の点 $(x_0, y_0), (x_1, y_1), \dots, (x_d, y_d)$ について, $x_0
 
 $$ f(x_i) = y_i \quad (0 \leq i \leq d)$$
 
-を満たす $d$ 次以下の多項式 $f$ はただ $1$ つ存在する. 証明は Vandermonde 行列が正則であることから従う.
+を満たす $d$ 次以下の多項式 $f$ はただ $1$ つ存在する.
+
+</div>
+
+証明は Vandermonde 行列が正則であることから従う.
 
 ---
 
