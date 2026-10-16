@@ -1,3 +1,5 @@
+#pragma once
+
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Functional_Graph/Functional_Graph.hpp
 
 #include"../template/template.hpp"

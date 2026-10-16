@@ -1,6 +1,6 @@
-// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Permutaion.hpp
+#pragma once
 
-#pragma
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Permutaion.hpp
 
 #include"../template/template.hpp"
 
