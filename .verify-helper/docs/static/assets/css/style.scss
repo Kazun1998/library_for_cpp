@@ -7,6 +7,8 @@
 .definition,
 .proposition,
 .theorem,
+.problem,
+.box,
 .remark {
   border: 1px solid var(--c);
   border-left: 6px solid var(--c);
@@ -19,11 +21,15 @@
 .definition  { --c: #1f77b4; --bg: #eef5fb; }
 .proposition { --c: #d4a017; --bg: #fdf8e6; }
 .theorem     { --c: #2e8b57; --bg: #eef8f2; }
+.problem     { --c: #7b4fb8; --bg: #f4effb; }
+.box         { --c: #555555; --bg: #ffffff; }
 .remark      { --c: #888888; --bg: #f5f5f5; }
 
 .definition > :first-child,
 .proposition > :first-child,
 .theorem > :first-child,
+.problem > :first-child,
+.box > :first-child,
 .remark > :first-child {
   margin-top: 0;
 }
@@ -32,6 +38,8 @@
 .definition > h2:first-child,
 .proposition > h2:first-child,
 .theorem > h2:first-child,
+.problem > h2:first-child,
+.box > h2:first-child,
 .remark > h2:first-child {
   color: var(--c);
   font-size: 1.1em;
@@ -44,6 +52,8 @@
 .definition > :last-child,
 .proposition > :last-child,
 .theorem > :last-child,
+.problem > :last-child,
+.box > :last-child,
 .remark > :last-child {
   margin-bottom: 0;
 }
