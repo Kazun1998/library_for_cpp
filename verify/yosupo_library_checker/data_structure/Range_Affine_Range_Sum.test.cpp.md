@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -11,25 +11,25 @@ data:
     path: Segment_Tree/preset/Range_Composite_Range_Sum.hpp
     title: "\u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB, \u533A\u9593\u548C\u306B\
       \u95A2\u3059\u308B\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -44,21 +44,22 @@ data:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\
-    \n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    \n#line 2 \"template/template.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp\n\
+    \nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
     . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
     template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
     \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
@@ -78,9 +79,10 @@ data:
     \u30C3\u30AF\u30B9\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
     \ size_t argmin(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
     vector is empty.\");\n\n    return distance(a.begin(), min_element(a.begin(),\
-    \ a.end()));\n}\n#line 61 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
-    \n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y)\
-    \ { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
+    \ a.end()));\n}\n#line 63 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/math.hpp\n\
+    \n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) {\
+    \ return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
     \ x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x *\
     \ y; }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<integral\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<integral\
@@ -138,8 +140,9 @@ data:
     \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
     \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
     \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
-    \ 64 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
-    \ \u5165\u51FA\u529B\n#line 4 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
+    \ 66 \"template/template.hpp\"\n\n// inout\n#line 2 \"template/inout.hpp\"\n\n\
+    // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/inout.hpp\n\
+    \n// \u5165\u51FA\u529B\n#line 8 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
     void input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\
     \ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&... b){\n  \
     \  cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\\n\";\n\
@@ -160,7 +163,7 @@ data:
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\n\
     \    for (int i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin >> el))\
     \ break;\n        res.push_back(std::move(el));\n    }\n    return res;\n}\n\n\
-    #line 63 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
+    #line 67 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
     \ n \u306E 1 \u6B21\u5143 vector \u3092\u4F5C\u308B\ntemplate<typename T>\nauto\
     \ make_multi_dimensional_vector(int n) {\n    return std::vector<T>(n);\n}\n\n\
     // 2. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA n \u3067\u521D\u671F\u5024 val \u3092\
@@ -169,76 +172,77 @@ data:
     \ n, T val) {\n    return std::vector<T>(n, val);\n}\n\n// 3. \u518D\u5E30\uFF1A\
     \u6B21\u5143\u3092\u524A\u308B\ntemplate<typename T, typename... Args>\nauto make_multi_dimensional_vector(int\
     \ n, Args... args) {\n    auto inner = make_multi_dimensional_vector<T>(args...);\n\
-    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 67 \"template/template.hpp\"\
-    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
-    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
-    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
-    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
-    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
-    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
-    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
-    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
-    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
-    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
-    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
-    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\n\n// bitop\n\
-    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
-    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
-    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
-    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
-    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
-    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
-    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
-    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
-    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
-    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
-    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
-    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
-    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
-    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
-    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\
-    \u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\
-    \u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x)); }\n#line 73\
-    \ \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
-    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
-    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 69 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/macro.hpp\n\
+    \n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
+    #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
+    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
+    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
+    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
+    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
+    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
+    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
+    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
+    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
+    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 72 \"template/template.hpp\"\
+    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/bitop.hpp\n\
+    \n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth \u3092\u6C42\u3081\u308B.\n\
+    ll bit_length(ll x) {\n    if (x == 0) { return 0; }\n    return (sizeof(long)\
+    \ * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\u8CA0\u6574\u6570 x \u306E\
+    \ popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll x) { return __builtin_popcountll(x);\
+    \ }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x))\
+    \ \u3092\u6C42\u3081\u308B.\nll floor_log2(ll x) { return bit_length(x) - 1; }\n\
+    \n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\
+    \u6C42\u3081\u308B.\nll ceil_log2(ll x) { return bit_length(x - 1); }\n\n// x\
+    \ \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\u3059\u308B\nint get_bit(ll\
+    \ x, int k) { return (x >> k) & 1; }\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\
+    \u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\
+    \u3068\u3059\u308B.\nvector<int> get_bits(ll x, int k) {\n    vector<int> bits(k);\n\
+    \    rep(i, k) {\n        bits[i] = x & 1;\n        x >>= 1;\n    }\n\n    return\
+    \ bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B\
+    .\nvector<int> get_bits(ll x) { return get_bits(x, bit_length(x)); }\n\n// x \u306B\
+    \u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\
+    \u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\u308B.\nll lowest_bit(const ll\
+    \ x) { return floor_log2(x & (-x)); }\n#line 75 \"template/template.hpp\"\n\n\
+    // exception\n#line 2 \"template/exception.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/exception.hpp\n\
+    \nclass NotExist: public exception {\n    private:\n    string message;\n\n  \
+    \  public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n#line 4 \"Algebra/modint.hpp\"\n\
-    \ntemplate<int M>\nclass modint {\n    public:\n    static constexpr int _mod\
-    \ = M; \n    uint64_t x;\n\n    public:\n    static constexpr int mod() { return\
-    \ _mod; }\n\n    static modint raw(int v) {\n        modint a;\n        a.x =\
-    \ v;\n        return a;\n    }\n\n    // \u521D\u671F\u5316\n    constexpr modint():\
-    \ x(0) {}\n    constexpr modint(int64_t a) {\n        int64_t w = (int64_t)(a)\
-    \ % mod();\n        if (w < 0) { w += mod(); }\n        x = w;\n    }\n\n    //\
-    \ \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-() const { return modint(-x);\
-    \ }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const modint &b){\n       \
-    \ if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\n    friend\
-    \ modint operator+(const modint &x, const modint &y) { return modint(x) += y;\
-    \ }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint &b){\n       \
-    \ if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \n    friend modint operator-(const modint &x, const modint &y) { return modint(x)\
-    \ -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint &b){\n \
-    \       (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend modint\
-    \ operator*(const modint &x, const modint &y) { return modint(x) *= y; }\n   \
-    \ friend modint operator*(const int &x, const modint &y) { return modint(x) *=\
-    \ y; }\n    friend modint operator*(const ll &x, const modint &y) { return modint(x)\
-    \ *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint &b){ return\
-    \ (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint &x, const\
-    \ modint &y) { return modint(x) /= y; }\n\n    modint inverse() const {\n    \
-    \    int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n        while\
-    \ (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b; swap(a,\
-    \ b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert (a ==\
-    \ 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend bool\
-    \ operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n    friend\
-    \ bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b, mod());\
-    \ }\n    friend bool operator!=(const modint &a, const modint &b) { return (a.x\
-    \ != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
-    \ modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
+    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/modint.hpp\n\
+    \n#line 6 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
+    \    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
+    \ constexpr int mod() { return _mod; }\n\n    static modint raw(int v) {\n   \
+    \     modint a;\n        a.x = v;\n        return a;\n    }\n\n    // \u521D\u671F\
+    \u5316\n    constexpr modint(): x(0) {}\n    constexpr modint(int64_t a) {\n \
+    \       int64_t w = (int64_t)(a) % mod();\n        if (w < 0) { w += mod(); }\n\
+    \        x = w;\n    }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\n    modint operator-()\
+    \ const { return modint(-x); }\n\n    // \u52A0\u6CD5\n    modint& operator+=(const\
+    \ modint &b){\n        if ((x += b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator+(const modint &x, const modint &y) { return\
+    \ modint(x) += y; }\n\n    // \u6E1B\u6CD5\n    modint& operator-=(const modint\
+    \ &b){\n        if ((x += mod() - b.x) >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n\n    friend modint operator-(const modint &x, const modint &y) { return\
+    \ modint(x) -= y; }\n\n    // \u4E57\u6CD5\n    modint& operator*=(const modint\
+    \ &b){\n        (x *= b.x) %= mod();\n        return *this;\n    }\n\n    friend\
+    \ modint operator*(const modint &x, const modint &y) { return modint(x) *= y;\
+    \ }\n    friend modint operator*(const int &x, const modint &y) { return modint(x)\
+    \ *= y; }\n    friend modint operator*(const ll &x, const modint &y) { return\
+    \ modint(x) *= y; }\n\n    // \u9664\u6CD5\n    modint& operator/=(const modint\
+    \ &b){ return (*this) *= b.inverse(); }\n\n    friend modint operator/(const modint\
+    \ &x, const modint &y) { return modint(x) /= y; }\n\n    modint inverse() const\
+    \ {\n        int64_t s = 1, t = 0;\n        int64_t a = x, b = mod();\n\n    \
+    \    while (b > 0) {\n            int64_t q = a / b;\n\n            a -= q * b;\
+    \ swap(a, b);\n            s -= q * t; swap(s, t);\n        }\n\n        assert\
+    \ (a == 1);\n\n        return modint(s);\n    }\n\n    // \u6BD4\u8F03\n    friend\
+    \ bool operator==(const modint &a, const modint &b) { return (a.x == b.x); }\n\
+    \    friend bool operator==(const modint &a, const int &b) { return a.x == safe_mod(b,\
+    \ mod()); }\n    friend bool operator!=(const modint &a, const modint &b) { return\
+    \ (a.x != b.x); }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
+    \ &is, modint &a) {\n        int64_t x;\n        is >> x;\n        a.x = safe_mod(x,\
     \ mod());\n        return is;\n    }\n\n    // \u51FA\u529B\n    friend ostream\
     \ &operator<<(ostream &os, const modint &a) { return os << a.x; }\n\n    bool\
     \ is_zero() const { return x == 0; }\n    bool is_member(ll a) const { return\
@@ -248,37 +252,39 @@ data:
     \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
     \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
     \  x *= x;\n    }\n\n    return res;\n}\n#line 2 \"Segment_Tree/preset/Range_Composite_Range_Sum.hpp\"\
-    \n\n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\n/* \u9045\u5EF6\u30BB\u30B0\
-    \u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\u308B. M \u4E0A\u306E\u5217\
-    \u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\u533A\u9593\u4F5C\u7528\u3068\
-    , \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\u308B\u533A\u9593\u7A4D\u306E\
-    \u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\u306B\u884C\u3046.\n\n* M: Monoid\n\
-    * F: Monoid\n* op: M x M \u2192 M: M \u4E0A\u306E\u6F14\u7B97\n* unit: M \u306E\
-    \u5358\u4F4D\u5143\n* act: F x M \u2192 M: F \u304B\u3089\u306E M \u306E\u6F14\
-    \u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\u306E\u5408\u6210 (\u5DE6\u306E\
-    \u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F \u306E\u5358\u4F4D\u5143\n\n(\u6761\
-    \u4EF6)\nM: Monoid, F = {f: F x M \u2192 M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\
-    \u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\
-    \u5408\u6210\u306B\u9589\u3058\u3066\u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\
-    \u306E f,g in F \u306B\u5BFE\u3057\u3066, comp(f,g) in F\n* F \u306F M \u306B\u4F5C\
-    \u7528\u3059\u308B. \u3064\u307E\u308A, \u4EE5\u4E0B\u304C\u6210\u308A\u7ACB\u3064\
-    .\n    * F \u306E\u5358\u4F4D\u5143 id \u306F\u6052\u7B49\u7684\u306B\u4F5C\u7528\
-    \u3059\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E x in M \u306B\u5BFE\u3057\
-    \u3066 id(x) = x \u3068\u306A\u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in\
-    \ M \u306B\u5BFE\u3057\u3066, f(xy) = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\
-    \u610F)\n\u4F5C\u7528\u7D20\u306F\u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\
-    \u3082\u5DE6\u304B\u3089\u884C\u3046.\n*/\n\n#line 27 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\
-    \n\ntemplate<typename M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n\
-    \    int n, depth;\n    const function<M(M, M)> op;\n    const function<M(F, M)>\
-    \ act;\n    const function<F(F, F)> comp;\n    vector<M> data; const M unit;\n\
-    \    vector<F> lazy; const F id;\n\n    public:\n    Lazy_Segment_Tree(int size,\
-    \ const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const\
-    \ function<F(F, F)> comp, const F id):\n        n(), op(op), unit(unit), act(act),\
-    \ comp(comp), id(id), depth(0) {\n            int m = 1;\n            while (size\
-    \ > m) { depth++, m *= 2; }\n            n = m;\n            data.assign(2 * m,\
-    \ unit);\n            lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const\
-    \ vector<M> &vec, const function<M(M, M)> op, const M unit, const function<M(F,\
-    \ M)> act, const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
+    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/preset/Range_Composite_Range_Sum.hpp\n\
+    \n#line 2 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Lazy_Segment_Tree.hpp\n\
+    \n/* \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\nM \u3092 Monoid \u3068\u3059\
+    \u308B. M \u4E0A\u306E\u5217\u306B\u5BFE\u3057\u3066, Monid F \u304B\u3089\u306E\
+    \u533A\u9593\u4F5C\u7528\u3068, \u9023\u7D9A\u90E8\u5206\u5217\u306B\u5BFE\u3059\
+    \u308B\u533A\u9593\u7A4D\u306E\u8A08\u7B97\u306E\u51E6\u7406\u3092\u9AD8\u901F\
+    \u306B\u884C\u3046.\n\n* M: Monoid\n* F: Monoid\n* op: M x M \u2192 M: M \u4E0A\
+    \u306E\u6F14\u7B97\n* unit: M \u306E\u5358\u4F4D\u5143\n* act: F x M \u2192 M:\
+    \ F \u304B\u3089\u306E M \u306E\u6F14\u7B97\n* comp: F x F \u2192 F: F \u540C\u58EB\
+    \u306E\u5408\u6210 (\u5DE6\u306E\u8981\u7D20\u304C\u65B0\u3057\u3044)\n* id: F\
+    \ \u306E\u5358\u4F4D\u5143\n\n(\u6761\u4EF6)\nM: Monoid, F = {f: F x M \u2192\
+    \ M: \u4F5C\u7528\u7D20} \u306B\u5BFE\u3057\u3066, \u4EE5\u4E0B\u304C\u6210\u7ACB\
+    \u3059\u308B.\n* F \u306F\u5199\u50CF\u306E\u5408\u6210\u306B\u9589\u3058\u3066\
+    \u3044\u308B. \u3064\u307E\u308A, \u4EFB\u610F\u306E f,g in F \u306B\u5BFE\u3057\
+    \u3066, comp(f,g) in F\n* F \u306F M \u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
+    \u308A, \u4EE5\u4E0B\u304C\u6210\u308A\u7ACB\u3064.\n    * F \u306E\u5358\u4F4D\
+    \u5143 id \u306F\u6052\u7B49\u7684\u306B\u4F5C\u7528\u3059\u308B. \u3064\u307E\
+    \u308A, \u4EFB\u610F\u306E x in M \u306B\u5BFE\u3057\u3066 id(x) = x \u3068\u306A\
+    \u308B.\n    * \u4EFB\u610F\u306E f in F, x,y in M \u306B\u5BFE\u3057\u3066, f(xy)\
+    \ = f(x) f(y) \u3067\u3042\u308B.\n\n\n(\u6CE8\u610F)\n\u4F5C\u7528\u7D20\u306F\
+    \u5DE6\u304B\u3089\u639B\u3051\u308B. \u66F4\u65B0\u3082\u5DE6\u304B\u3089\u884C\
+    \u3046.\n*/\n\n#line 29 \"Segment_Tree/Lazy_Segment_Tree.hpp\"\n\ntemplate<typename\
+    \ M, typename F>\nclass Lazy_Segment_Tree {\n    public:\n    int n, depth;\n\
+    \    const function<M(M, M)> op;\n    const function<M(F, M)> act;\n    const\
+    \ function<F(F, F)> comp;\n    vector<M> data; const M unit;\n    vector<F> lazy;\
+    \ const F id;\n\n    public:\n    Lazy_Segment_Tree(int size, const function<M(M,\
+    \ M)> op, const M unit, const function<M(F, M)> act, const function<F(F, F)> comp,\
+    \ const F id):\n        n(), op(op), unit(unit), act(act), comp(comp), id(id),\
+    \ depth(0) {\n            int m = 1;\n            while (size > m) { depth++,\
+    \ m *= 2; }\n            n = m;\n            data.assign(2 * m, unit);\n     \
+    \       lazy.assign(2 * m, id);\n        }\n\n    Lazy_Segment_Tree(const vector<M>\
+    \ &vec, const function<M(M, M)> op, const M unit, const function<M(F, M)> act,\
+    \ const function<F(F, F)> comp, const F id):\n        Lazy_Segment_Tree(vec.size(),\
     \ op, unit, act, comp, id){\n            for (int k = 0; k < vec.size(); k++)\
     \ { data[k+n] = vec[k]; }\n            for (int k = n - 1; k > 0; k--) { data[k]\
     \ = op(data[k << 1], data[k << 1 | 1]); }\n        }\n\n    private:\n    inline\
@@ -341,7 +347,7 @@ data:
     \ 1;\n                lazy[left] = (lazy[left] == id) ? lazy[m] : comp(lazy[m],\
     \ lazy[left]);\n\n                int right = m << 1 | 1;\n                lazy[right]\
     \ = (lazy[right] == id) ? lazy[m] : comp(lazy[m], lazy[m << 1 | 1]);\n       \
-    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 4 \"Segment_Tree/preset/Range_Composite_Range_Sum.hpp\"\
+    \     }\n            lazy[m] = id;\n        }\n    }\n};\n#line 6 \"Segment_Tree/preset/Range_Composite_Range_Sum.hpp\"\
     \n\n/**\n * @brief \u533A\u9593\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u30FB\u533A\
     \u9593\u548C\u53D6\u5F97\u3092\u884C\u3046\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
     \u30C8\u6728\n * @tparam T \u5024\u306E\u578B\n * @note \u4F5C\u7528\u7D20 (a,\
@@ -411,7 +417,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
+  timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Range_Affine_Range_Sum.test.cpp

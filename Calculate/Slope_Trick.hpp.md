@@ -1,42 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Data_Structure/Additive_Treap.hpp
     title: "key \u3092 1 \u3064\u524A\u9664\u3059\u308B."
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yukicoder/2654.test.cpp
     title: verify/yukicoder/2654.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u533A\u5206\u7DDA\u5F62\u51F8\u95A2\u6570 f(x) \u3092\u7BA1\u7406\
       \u3059\u308B\u30C7\u30FC\u30BF\u69CB\u9020 (Slope Trick)."
-    links: []
+    links:
+    - https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slope_Trick.hpp
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
@@ -45,13 +46,14 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ Calculate/Slope_Trick.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "\n#pragma once\n\n#include \"../Data_Structure/Additive_Treap.hpp\"\n\n///\
-    \ @brief \u533A\u5206\u7DDA\u5F62\u51F8\u95A2\u6570 f(x) \u3092\u7BA1\u7406\u3059\
-    \u308B\u30C7\u30FC\u30BF\u69CB\u9020 (Slope Trick).\n/// @tparam T \u5EA7\u6A19\
-    \u30FB\u5024\u306E\u578B (\u52A0\u7B97\u30FB\u6BD4\u8F03\u30FBmax \u304C\u5B9A\
-    \u7FA9\u3055\u308C\u305F\u6570\u5024\u578B\u3092\u60F3\u5B9A)\ntemplate<typename\
-    \ T>\nclass Slope_Trick {\n    Additive_Treap<T> negative, positive;\n    T f_min;\n\
+    \ Calculate/Slope_Trick.hpp: line 4: #pragma once found in a non-first line\n"
+  code: "// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Calculate/Slope_Trick.hpp\n\
+    \n\n#pragma once\n\n#include \"../Data_Structure/Additive_Treap.hpp\"\n\n/// @brief\
+    \ \u533A\u5206\u7DDA\u5F62\u51F8\u95A2\u6570 f(x) \u3092\u7BA1\u7406\u3059\u308B\
+    \u30C7\u30FC\u30BF\u69CB\u9020 (Slope Trick).\n/// @tparam T \u5EA7\u6A19\u30FB\
+    \u5024\u306E\u578B (\u52A0\u7B97\u30FB\u6BD4\u8F03\u30FBmax \u304C\u5B9A\u7FA9\
+    \u3055\u308C\u305F\u6570\u5024\u578B\u3092\u60F3\u5B9A)\ntemplate<typename T>\n\
+    class Slope_Trick {\n    Additive_Treap<T> negative, positive;\n    T f_min;\n\
     \n    public:\n    Slope_Trick(): negative(), positive(), f_min(0) {}\n\n    ///\
     \ @brief \u5B9A\u6570 a \u3092\u52A0\u7B97\u3059\u308B.\n    /// @param a\n  \
     \  void add_const(const T &a) { return f_min += a; }\n\n    /// @brief \u3053\u306E\
@@ -120,8 +122,8 @@ data:
   isVerificationFile: false
   path: Calculate/Slope_Trick.hpp
   requiredBy: []
-  timestamp: '2026-09-13 14:27:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 00:11:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yukicoder/2654.test.cpp
 documentation_of: Calculate/Slope_Trick.hpp

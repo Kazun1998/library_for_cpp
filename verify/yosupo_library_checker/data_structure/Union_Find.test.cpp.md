@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Union_Find/Union_Find.hpp
     title: Union Find
   _extendedRequiredBy: []
@@ -16,11 +16,12 @@ data:
     - https://judge.yosupo.jp/problem/unionfind
   bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Union_Find.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include<bits/stdc++.h>\n\
-    \nusing namespace std;\n\n#line 2 \"Union_Find/Union_Find.hpp\"\n\nclass Union_Find{\n\
-    \    private:\n    int N;\n    vector<int> data;\n    int _group_number;\n\n \
-    \   public:\n    Union_Find(int N) : N(N), data(N, -1), _group_number(N) {}\n\n\
-    \    // x \u304C\u5C5E\u3059\u308B\u65CF\u306E\u4EE3\u8868\u5143\u3092\u6C42\u3081\
-    \u308B.\n    int find(int x) { return data[x] < 0 ? x: data[x] = find(data[x]);\
+    \nusing namespace std;\n\n#line 2 \"Union_Find/Union_Find.hpp\"\n\n// Source:\
+    \ https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Union_Find.hpp\n\
+    \nclass Union_Find{\n    private:\n    int N;\n    vector<int> data;\n    int\
+    \ _group_number;\n\n    public:\n    Union_Find(int N) : N(N), data(N, -1), _group_number(N)\
+    \ {}\n\n    // x \u304C\u5C5E\u3059\u308B\u65CF\u306E\u4EE3\u8868\u5143\u3092\u6C42\
+    \u3081\u308B.\n    int find(int x) { return data[x] < 0 ? x: data[x] = find(data[x]);\
     \ }\n\n    // \u9802\u70B9\u3092 1 \u500B\u8FFD\u52A0\u3059\u308B.\n    int add_vertex()\
     \ {\n      data.emplace_back(-1);\n      N++;\n      _group_number++;\n\n    \
     \  return N - 1;\n    }\n\n    // \u9802\u70B9\u3092 k \u500B\u8FFD\u52A0\u3059\
@@ -55,7 +56,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
   requiredBy: []
-  timestamp: '2025-10-18 12:03:24+09:00'
+  timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp

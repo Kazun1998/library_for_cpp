@@ -1,47 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
     title: verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Modulo/Tower.hpp\"\n\n#line 2 \"template/template.hpp\"\n\
+    links:
+    - https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Tower.hpp
+  bundledCode: "#line 2 \"Modulo/Tower.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Tower.hpp\n\
+    \n#line 2 \"template/template.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
     \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
     \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
@@ -55,16 +57,16 @@ data:
     #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
     \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
     \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
-    \n// utility\n#line 2 \"template/utility.hpp\"\n\nusing ll = long long;\n\n//\
-    \ a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\u3055\
-    \u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T, typename\
-    \ U>\ninline bool chmax(T &a, const U b){\n    return (a < b ? a = b, 1: 0);\n\
-    }\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B. a \u304C\u66F4\u65B0\
-    \u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\ntemplate<typename T,\
-    \ typename U>\ninline bool chmin(T &a, const U b){\n    return (a > b ? a = b,\
-    \ 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\u3059\u308B.\n\
-    template<typename T>\ninline T max(const vector<T> &a){\n    if (a.empty()) throw\
-    \ invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp\n\
+    \nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
+    \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
+    template<typename T, typename U>\ninline bool chmin(T &a, const U b){\n    return\
+    \ (a > b ? a = b, 1: 0);\n}\n\n// a \u306E\u6700\u5927\u5024\u3092\u53D6\u5F97\
+    \u3059\u308B.\ntemplate<typename T>\ninline T max(const vector<T> &a){\n    if\
+    \ (a.empty()) throw invalid_argument(\"vector is empty.\");\n\n    return *max_element(a.begin(),\
     \ a.end());\n}\n\n// vector<T> a \u306E\u6700\u5C0F\u5024\u3092\u53D6\u5F97\u3059\
     \u308B.\ntemplate<typename T>\ninline T min(const vector<T> &a){\n    if (a.empty())\
     \ throw invalid_argument(\"vector is empty.\");\n\n    return *min_element(a.begin(),\
@@ -76,9 +78,10 @@ data:
     \u30C3\u30AF\u30B9\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
     \ size_t argmin(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
     vector is empty.\");\n\n    return distance(a.begin(), min_element(a.begin(),\
-    \ a.end()));\n}\n#line 61 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
-    \n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y)\
-    \ { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
+    \ a.end()));\n}\n#line 63 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/math.hpp\n\
+    \n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) {\
+    \ return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
     \ x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x *\
     \ y; }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<integral\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<integral\
@@ -136,8 +139,9 @@ data:
     \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
     \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
     \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
-    \ 64 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
-    \ \u5165\u51FA\u529B\n#line 4 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
+    \ 66 \"template/template.hpp\"\n\n// inout\n#line 2 \"template/inout.hpp\"\n\n\
+    // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/inout.hpp\n\
+    \n// \u5165\u51FA\u529B\n#line 8 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
     void input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\
     \ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&... b){\n  \
     \  cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\\n\";\n\
@@ -158,7 +162,7 @@ data:
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\n\
     \    for (int i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin >> el))\
     \ break;\n        res.push_back(std::move(el));\n    }\n    return res;\n}\n\n\
-    #line 63 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
+    #line 67 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
     \ n \u306E 1 \u6B21\u5143 vector \u3092\u4F5C\u308B\ntemplate<typename T>\nauto\
     \ make_multi_dimensional_vector(int n) {\n    return std::vector<T>(n);\n}\n\n\
     // 2. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA n \u3067\u521D\u671F\u5024 val \u3092\
@@ -167,113 +171,115 @@ data:
     \ n, T val) {\n    return std::vector<T>(n, val);\n}\n\n// 3. \u518D\u5E30\uFF1A\
     \u6B21\u5143\u3092\u524A\u308B\ntemplate<typename T, typename... Args>\nauto make_multi_dimensional_vector(int\
     \ n, Args... args) {\n    auto inner = make_multi_dimensional_vector<T>(args...);\n\
-    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 67 \"template/template.hpp\"\
-    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
-    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
-    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
-    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
-    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
-    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
-    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
-    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
-    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
-    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
-    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
-    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\n\n// bitop\n\
-    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
-    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
-    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
-    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
-    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
-    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
-    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
-    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
-    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
-    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
-    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
-    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
-    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
-    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
-    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\
-    \u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\
-    \u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x)); }\n#line 73\
-    \ \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
-    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
-    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 69 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/macro.hpp\n\
+    \n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
+    #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
+    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
+    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
+    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
+    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
+    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
+    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
+    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
+    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
+    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 72 \"template/template.hpp\"\
+    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/bitop.hpp\n\
+    \n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth \u3092\u6C42\u3081\u308B.\n\
+    ll bit_length(ll x) {\n    if (x == 0) { return 0; }\n    return (sizeof(long)\
+    \ * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\u8CA0\u6574\u6570 x \u306E\
+    \ popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll x) { return __builtin_popcountll(x);\
+    \ }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x))\
+    \ \u3092\u6C42\u3081\u308B.\nll floor_log2(ll x) { return bit_length(x) - 1; }\n\
+    \n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\
+    \u6C42\u3081\u308B.\nll ceil_log2(ll x) { return bit_length(x - 1); }\n\n// x\
+    \ \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\u3059\u308B\nint get_bit(ll\
+    \ x, int k) { return (x >> k) & 1; }\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\
+    \u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\
+    \u3068\u3059\u308B.\nvector<int> get_bits(ll x, int k) {\n    vector<int> bits(k);\n\
+    \    rep(i, k) {\n        bits[i] = x & 1;\n        x >>= 1;\n    }\n\n    return\
+    \ bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B\
+    .\nvector<int> get_bits(ll x) { return get_bits(x, bit_length(x)); }\n\n// x \u306B\
+    \u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\
+    \u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\u308B.\nll lowest_bit(const ll\
+    \ x) { return floor_log2(x & (-x)); }\n#line 75 \"template/template.hpp\"\n\n\
+    // exception\n#line 2 \"template/exception.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/exception.hpp\n\
+    \nclass NotExist: public exception {\n    private:\n    string message;\n\n  \
+    \  public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Modulo/Modulo.hpp\"\n\n#line 4 \"Modulo/Modulo.hpp\"\n\n\
-    namespace modulo {\n    class DifferentModulus : public exception {\n        public:\
-    \ // public\u306B\u6307\u5B9A\n        const char* what() const noexcept override\
-    \ { return \"\u7570\u306A\u308B\u6CD5\u540C\u58EB\u306E\u56DB\u5247\u6F14\u7B97\
-    \u3067\u3059\"; }\n    };\n\n    struct Modulo {\n        long long a, n;\n\n\
-    \        public:\n        // \u521D\u671F\u5316\n        Modulo(): a(0), n(1)\
-    \ {}\n        Modulo(long long a, long long n): a((a % n + n) % n), n(n) {}\n\n\
-    \        // \u30DE\u30A4\u30CA\u30B9\u5143\n        Modulo operator-() const {\
-    \ return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\n        Modulo& operator+=(const\
-    \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \n\
-    \            if ((a += y.a) >= n) a -= n;\n            return *this;\n       \
-    \ }\n\n        Modulo& operator+=(const long long &y) { return (*this) += Modulo(y,\
-    \ n); }\n\n        friend Modulo operator+(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) += y ; }\n        friend Modulo operator+(const Modulo &x,\
-    \ const long long &a) { return x + Modulo(a, x.n); }\n        friend Modulo operator+(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) + x; }\n\n        //\
-    \ \u6E1B\u6CD5\n        Modulo& operator-=(const Modulo &y) {\n            if\
-    \ (n != y.n) { throw DifferentModulus(); }\n            if ((a += (n - y.a)) >=\
-    \ n) a -= n;\n            return *this;\n        }\n\n        Modulo& operator-=(const\
-    \ long long &y) { return (*this) -= Modulo(y, n); }\n\n        friend Modulo operator-(const\
-    \ Modulo &x, const Modulo &y) { return Modulo(x) -= y; }\n        friend Modulo\
-    \ operator-(const Modulo &x, const long long &a) { return x - Modulo(a, x.n);\
-    \ }\n        friend Modulo operator-(const long long &a, const Modulo &x) { return\
-    \ Modulo(a, x.n) - x; }\n\n        // \u4E57\u6CD5\n        Modulo& operator*=(const\
+    \    }\n};\n#line 2 \"Modulo/Modulo.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Modulo.hpp\n\
+    \n#line 6 \"Modulo/Modulo.hpp\"\n\nnamespace modulo {\n    class DifferentModulus\
+    \ : public exception {\n        public: // public\u306B\u6307\u5B9A\n        const\
+    \ char* what() const noexcept override { return \"\u7570\u306A\u308B\u6CD5\u540C\
+    \u58EB\u306E\u56DB\u5247\u6F14\u7B97\u3067\u3059\"; }\n    };\n\n    struct Modulo\
+    \ {\n        long long a, n;\n\n        public:\n        // \u521D\u671F\u5316\
+    \n        Modulo(): a(0), n(1) {}\n        Modulo(long long a, long long n): a((a\
+    \ % n + n) % n), n(n) {}\n\n        // \u30DE\u30A4\u30CA\u30B9\u5143\n      \
+    \  Modulo operator-() const { return Modulo(-a, n); }\n\n        // \u52A0\u6CD5\
+    \n        Modulo& operator+=(const Modulo &y) {\n            if (n != y.n) { throw\
+    \ DifferentModulus(); }\n    \n            if ((a += y.a) >= n) a -= n;\n    \
+    \        return *this;\n        }\n\n        Modulo& operator+=(const long long\
+    \ &y) { return (*this) += Modulo(y, n); }\n\n        friend Modulo operator+(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) += y ; }\n        friend Modulo\
+    \ operator+(const Modulo &x, const long long &a) { return x + Modulo(a, x.n);\
+    \ }\n        friend Modulo operator+(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) + x; }\n\n        // \u6E1B\u6CD5\n        Modulo& operator-=(const\
     \ Modulo &y) {\n            if (n != y.n) { throw DifferentModulus(); }\n    \
-    \        (a *= y.a) %= n;\n            return *this;\n        }\n\n        Modulo&\
-    \ operator*=(const long long &y){return (*this) *= Modulo(y, n); }\n\n       \
-    \ friend Modulo operator*(const Modulo &x, const Modulo &y) { return Modulo(x)\
-    \ *= y; }\n        friend Modulo operator*(const Modulo &x, const long long &a)\
-    \ { return x * Modulo(a,x.n); }\n        friend Modulo operator*(const long long\
-    \ &a, const Modulo &x) { return Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\
-    \n        Modulo& operator/=(const Modulo &y){\n            if (n != y.n) { throw\
-    \ DifferentModulus(); }\n            return (*this) *= y.inverse();\n        }\n\
-    \n        Modulo& operator/=(const long long &y) {return (*this ) /= Modulo(y,\
-    \ n); }\n\n        friend Modulo operator/(const Modulo &x, const Modulo &y) {\
-    \ return Modulo(x) /= y; }\n        friend Modulo operator/(const Modulo &x, const\
-    \ long long &a) { return x / Modulo(a, x.n); }\n        friend Modulo operator/(const\
-    \ long long &a, const Modulo &x) { return Modulo(a, x.n) / x; }\n\n        //\
-    \ \u9000\u5316\n        Modulo& degenerate(const int m){\n            a %= m;\
-    \ n = m;\n            return *this;\n        }\n\n        // \u30E2\u30B8\u30E5\
-    \u30E9\u30FC\u9006\u5143\n        bool invertible() const {\n            long\
-    \ long x = a, y = n;\n            while (y) { swap(x = x % y, y); }\n        \
-    \    return x == 1;\n        }\n\n        Modulo inverse() const{\n          \
-    \  long long s = 1, t = 0;\n            long long x = a, y = n;\n            while\
-    \ (y){\n                auto q = x / y;\n                swap(x -= q * y, y);\n\
-    \                swap(s -= q * t, t);\n            }\n\n            return Modulo(s,\
-    \ n);\n        }\n\n        // include?\n        bool is_member(ll x) const {\
-    \ return safe_mod(x - a, n) == 0; }\n\n        bool is_zero() const { return is_member(0);\
-    \ }\n\n        // \u6BD4\u8F03\n        friend bool operator==(const Modulo &x,\
-    \ const Modulo &y) { return x.a==y.a; }\n        friend bool operator==(const\
-    \ Modulo &x, const long long &a) { return (x.a - a) % x.n == 0; }\n        friend\
-    \ bool operator==(const long long &a, const Modulo &x) { return (a - x.a) % x.n\
-    \ == 0; }\n\n        friend bool operator!=(const Modulo &x, const Modulo &y)\
-    \ { return x.a != y.a; }\n        friend bool operator!=(const Modulo &x, const\
-    \ long long &a) { return (x.a - a)% x.n != 0; }\n        friend bool operator!=(const\
-    \ long long &a, const Modulo &x) { return (a - x.a)% x.n != 0; }\n\n        //\
-    \ \u5165\u529B\n        friend istream &operator>>(istream &is, Modulo &x) {\n\
-    \            long long b, m;\n            is >> b >> m;\n            x = Modulo(b,\
-    \ m);\n            return (is);\n        }\n\n        // \u51FA\u529B\n      \
-    \  friend ostream &operator<<(ostream &os, const Modulo &x) { return os << x.a\
-    \ << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo pow(Modulo x, long long\
-    \ n) {\n        if (n < 0) { return pow(x, -n).inverse(); }\n\n        auto res\
-    \ = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n            if (n & 1) { res\
-    \ *= x; }\n            x *= x;\n        }\n\n        return res;\n    }\n}\n#line\
-    \ 2 \"Integer/Euler_Totient.hpp\"\n\n#line 2 \"Integer/Prime.hpp\"\n\n#line 4\
-    \ \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator {\n\
-    \    public:\n    struct Iterator {\n      long long prime = 1, step = 0;\n  \
-    \    long long operator*() const { return prime; }\n      Iterator& operator++()\
+    \        if ((a += (n - y.a)) >= n) a -= n;\n            return *this;\n     \
+    \   }\n\n        Modulo& operator-=(const long long &y) { return (*this) -= Modulo(y,\
+    \ n); }\n\n        friend Modulo operator-(const Modulo &x, const Modulo &y) {\
+    \ return Modulo(x) -= y; }\n        friend Modulo operator-(const Modulo &x, const\
+    \ long long &a) { return x - Modulo(a, x.n); }\n        friend Modulo operator-(const\
+    \ long long &a, const Modulo &x) { return Modulo(a, x.n) - x; }\n\n        //\
+    \ \u4E57\u6CD5\n        Modulo& operator*=(const Modulo &y) {\n            if\
+    \ (n != y.n) { throw DifferentModulus(); }\n            (a *= y.a) %= n;\n   \
+    \         return *this;\n        }\n\n        Modulo& operator*=(const long long\
+    \ &y){return (*this) *= Modulo(y, n); }\n\n        friend Modulo operator*(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) *= y; }\n        friend Modulo\
+    \ operator*(const Modulo &x, const long long &a) { return x * Modulo(a,x.n); }\n\
+    \        friend Modulo operator*(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) * x; }\n\n        // \u9664\u6CD5\n        Modulo& operator/=(const\
+    \ Modulo &y){\n            if (n != y.n) { throw DifferentModulus(); }\n     \
+    \       return (*this) *= y.inverse();\n        }\n\n        Modulo& operator/=(const\
+    \ long long &y) {return (*this ) /= Modulo(y, n); }\n\n        friend Modulo operator/(const\
+    \ Modulo &x, const Modulo &y) { return Modulo(x) /= y; }\n        friend Modulo\
+    \ operator/(const Modulo &x, const long long &a) { return x / Modulo(a, x.n);\
+    \ }\n        friend Modulo operator/(const long long &a, const Modulo &x) { return\
+    \ Modulo(a, x.n) / x; }\n\n        // \u9000\u5316\n        Modulo& degenerate(const\
+    \ int m){\n            a %= m; n = m;\n            return *this;\n        }\n\n\
+    \        // \u30E2\u30B8\u30E5\u30E9\u30FC\u9006\u5143\n        bool invertible()\
+    \ const {\n            long long x = a, y = n;\n            while (y) { swap(x\
+    \ = x % y, y); }\n            return x == 1;\n        }\n\n        Modulo inverse()\
+    \ const{\n            long long s = 1, t = 0;\n            long long x = a, y\
+    \ = n;\n            while (y){\n                auto q = x / y;\n            \
+    \    swap(x -= q * y, y);\n                swap(s -= q * t, t);\n            }\n\
+    \n            return Modulo(s, n);\n        }\n\n        // include?\n       \
+    \ bool is_member(ll x) const { return safe_mod(x - a, n) == 0; }\n\n        bool\
+    \ is_zero() const { return is_member(0); }\n\n        // \u6BD4\u8F03\n      \
+    \  friend bool operator==(const Modulo &x, const Modulo &y) { return x.a==y.a;\
+    \ }\n        friend bool operator==(const Modulo &x, const long long &a) { return\
+    \ (x.a - a) % x.n == 0; }\n        friend bool operator==(const long long &a,\
+    \ const Modulo &x) { return (a - x.a) % x.n == 0; }\n\n        friend bool operator!=(const\
+    \ Modulo &x, const Modulo &y) { return x.a != y.a; }\n        friend bool operator!=(const\
+    \ Modulo &x, const long long &a) { return (x.a - a)% x.n != 0; }\n        friend\
+    \ bool operator!=(const long long &a, const Modulo &x) { return (a - x.a)% x.n\
+    \ != 0; }\n\n        // \u5165\u529B\n        friend istream &operator>>(istream\
+    \ &is, Modulo &x) {\n            long long b, m;\n            is >> b >> m;\n\
+    \            x = Modulo(b, m);\n            return (is);\n        }\n\n      \
+    \  // \u51FA\u529B\n        friend ostream &operator<<(ostream &os, const Modulo\
+    \ &x) { return os << x.a << \" (mod \" << x.n << \")\"; }\n    };\n\n    Modulo\
+    \ pow(Modulo x, long long n) {\n        if (n < 0) { return pow(x, -n).inverse();\
+    \ }\n\n        auto res = Modulo(1, x.n);\n        for (; n; n >>= 1) {\n    \
+    \        if (n & 1) { res *= x; }\n            x *= x;\n        }\n\n        return\
+    \ res;\n    }\n}\n#line 2 \"Integer/Euler_Totient.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Euler_Totient.hpp\n\
+    \n#line 2 \"Integer/Prime.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Prime.hpp\n\
+    \n#line 6 \"Integer/Prime.hpp\"\n\nnamespace prime {\n  class Pseudo_Prime_Generator\
+    \ {\n    public:\n    struct Iterator {\n      long long prime = 1, step = 0;\n\
+    \      long long operator*() const { return prime; }\n      Iterator& operator++()\
     \ {\n        if (step) {\n          prime += step;\n          step = (step ==\
     \ 2) ? 4 : 2;\n        }\n        else if (prime == 1) { prime = 2; }\n      \
     \  else if (prime == 2) { prime = 3; }\n        else if (prime == 3) { prime =\
@@ -307,11 +313,11 @@ data:
     \ continue; }\n\n      for (auto j = (p * p - 1) / 2; j < m; j += p) { prime_flag[j]\
     \ = false; }\n    }\n\n    vector<long long> primes{2};\n\n    for (long long\
     \ k = 0; k < m; k++) {\n      if (prime_flag[k]) { primes.emplace_back(2 * k +\
-    \ 1); }\n    }\n\n    return primes;\n  }\n}\n#line 4 \"Integer/Euler_Totient.hpp\"\
+    \ 1); }\n    }\n\n    return primes;\n  }\n}\n#line 6 \"Integer/Euler_Totient.hpp\"\
     \n\nlong long Euler_Totient(long long N, bool mode = true) {\n    if (N == 1)\
     \ { return mode ? 1 : 0; }\n\n    long long phi = 1;\n    for (auto &&[p, e]:\
     \ prime::prime_factorization(N)) {\n        phi *= p - 1;\n        for (int k\
-    \ = 0; k < e - 1; k++) { phi *= p; }\n    }\n\n    return phi;\n}\n#line 6 \"\
+    \ = 0; k < e - 1; k++) { phi *= p; }\n    }\n\n    return phi;\n}\n#line 8 \"\
     Modulo/Tower.hpp\"\n\nnamespace modulo {\n    Modulo Power_Tower(vector<ll> tower,\
     \ ll m) {\n        auto helper_mod = [](const ll a, const ll m) -> ll { return\
     \ a < 2 * m ? a : safe_mod(a, m) + m; };\n        auto helper_mul = [&helper_mod](const\
@@ -342,36 +348,36 @@ data:
     \ (a == 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
     \ ceil_log2(m) + 1);\n        return Power_Tower(vector<ll>(k, a), m);\n    }\n\
     }\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"Modulo.hpp\"\
-    \n#include \"../Integer/Euler_Totient.hpp\"\n\nnamespace modulo {\n    Modulo\
-    \ Power_Tower(vector<ll> tower, ll m) {\n        auto helper_mod = [](const ll\
-    \ a, const ll m) -> ll { return a < 2 * m ? a : safe_mod(a, m) + m; };\n     \
-    \   auto helper_mul = [&helper_mod](const ll a, const ll b, const ll m) -> ll\
-    \ { return helper_mod(a * b, m); };\n        auto helper_power = [&helper_mul](ll\
-    \ a, ll k, const ll m) -> ll {\n            ll res = 1;\n            while (k)\
-    \ {\n                if (k & 1) { res = helper_mul(res, a, m); }\n\n         \
-    \       a = helper_mul(a, a, m);\n                k >>= 1;\n            }\n\n\
-    \            return res;\n        };\n\n        // \u518D\u5E30\u30E9\u30E0\u30C0\
-    \ (C++23 \u306E\u578B\u63A8\u8AD6\u3092\u5229\u7528)\n        auto solve = [&](auto\
-    \ self, size_t idx, ll current_m) -> ll {\n            // \u57FA\u5E95\u6761\u4EF6\
-    1: \u6CD5\u304C1\u306B\u306A\u308C\u3070\u3001\u62E1\u5F35\u30AA\u30A4\u30E9\u30FC\
-    \u306E\u6027\u8CEA\u4E0A\u3001\u4EE5\u964D\u306E\u5024\u306F\u5E38\u306B\u300C\
-    mod 1 + 1 = 1\u300D\u6271\u3044\n            if (current_m == 1) return 1;\n \
-    \           \n            // \u57FA\u5E95\u6761\u4EF62: \u30BF\u30EF\u30FC\u306E\
-    \u6700\u4E0A\u6BB5\u306B\u5230\u9054\n            if (idx == tower.size() - 1)\
-    \ return helper_mod(tower[idx], current_m);\n\n            // \u518D\u5E30\u30B9\
-    \u30C6\u30C3\u30D7:\n            // \u4E00\u3064\u4E0A\u306E\u968E\u5C64\uFF08\
-    \u6307\u6570\u90E8\u5206\uFF09\u3092\u3001phi(current_m) \u3092\u6CD5\u3068\u3057\
-    \u3066\u8A08\u7B97\n            ll phi = Euler_Totient(current_m);\n         \
-    \   ll exponent = self(self, idx + 1, phi);\n            \n            // \u73FE\
-    \u5728\u306E\u5E95\u3092\u8A08\u7B97\u3057\u305F\u6307\u6570\u3067\u7D2F\u4E57\
-    \u3059\u308B\n            return helper_power(tower[idx], exponent, current_m);\n\
-    \        };\n\n        if (tower.empty()) return Modulo(0, m); // \u30AC\u30FC\
-    \u30C9\u53E5\n        \n        // \u6700\u7D42\u7684\u306A\u7D50\u679C\u306F\u901A\
-    \u5E38\u306E mod m \u3067\u8FD4\u3059\n        return Modulo(solve(solve, 0, m),\
-    \ m);\n    }\n\n    Modulo Tetoration(ll a, ll k, ll m) {\n        // \u7279\u5225\
-    \u30B1\u30FC\u30B9\n        if (k == 0) return Modulo(1, m);\n        if (a ==\
-    \ 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
+  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Tower.hpp\n\
+    \n#include \"../template/template.hpp\"\n#include \"Modulo.hpp\"\n#include \"\
+    ../Integer/Euler_Totient.hpp\"\n\nnamespace modulo {\n    Modulo Power_Tower(vector<ll>\
+    \ tower, ll m) {\n        auto helper_mod = [](const ll a, const ll m) -> ll {\
+    \ return a < 2 * m ? a : safe_mod(a, m) + m; };\n        auto helper_mul = [&helper_mod](const\
+    \ ll a, const ll b, const ll m) -> ll { return helper_mod(a * b, m); };\n    \
+    \    auto helper_power = [&helper_mul](ll a, ll k, const ll m) -> ll {\n     \
+    \       ll res = 1;\n            while (k) {\n                if (k & 1) { res\
+    \ = helper_mul(res, a, m); }\n\n                a = helper_mul(a, a, m);\n   \
+    \             k >>= 1;\n            }\n\n            return res;\n        };\n\
+    \n        // \u518D\u5E30\u30E9\u30E0\u30C0 (C++23 \u306E\u578B\u63A8\u8AD6\u3092\
+    \u5229\u7528)\n        auto solve = [&](auto self, size_t idx, ll current_m) ->\
+    \ ll {\n            // \u57FA\u5E95\u6761\u4EF61: \u6CD5\u304C1\u306B\u306A\u308C\
+    \u3070\u3001\u62E1\u5F35\u30AA\u30A4\u30E9\u30FC\u306E\u6027\u8CEA\u4E0A\u3001\
+    \u4EE5\u964D\u306E\u5024\u306F\u5E38\u306B\u300Cmod 1 + 1 = 1\u300D\u6271\u3044\
+    \n            if (current_m == 1) return 1;\n            \n            // \u57FA\
+    \u5E95\u6761\u4EF62: \u30BF\u30EF\u30FC\u306E\u6700\u4E0A\u6BB5\u306B\u5230\u9054\
+    \n            if (idx == tower.size() - 1) return helper_mod(tower[idx], current_m);\n\
+    \n            // \u518D\u5E30\u30B9\u30C6\u30C3\u30D7:\n            // \u4E00\u3064\
+    \u4E0A\u306E\u968E\u5C64\uFF08\u6307\u6570\u90E8\u5206\uFF09\u3092\u3001phi(current_m)\
+    \ \u3092\u6CD5\u3068\u3057\u3066\u8A08\u7B97\n            ll phi = Euler_Totient(current_m);\n\
+    \            ll exponent = self(self, idx + 1, phi);\n            \n         \
+    \   // \u73FE\u5728\u306E\u5E95\u3092\u8A08\u7B97\u3057\u305F\u6307\u6570\u3067\
+    \u7D2F\u4E57\u3059\u308B\n            return helper_power(tower[idx], exponent,\
+    \ current_m);\n        };\n\n        if (tower.empty()) return Modulo(0, m); //\
+    \ \u30AC\u30FC\u30C9\u53E5\n        \n        // \u6700\u7D42\u7684\u306A\u7D50\
+    \u679C\u306F\u901A\u5E38\u306E mod m \u3067\u8FD4\u3059\n        return Modulo(solve(solve,\
+    \ 0, m), m);\n    }\n\n    Modulo Tetoration(ll a, ll k, ll m) {\n        // \u7279\
+    \u5225\u30B1\u30FC\u30B9\n        if (k == 0) return Modulo(1, m);\n        if\
+    \ (a == 0) return (k % 2 == 0) ? Modulo(1, m) : Modulo(0, m);\n\n        k = min<ll>(k,\
     \ ceil_log2(m) + 1);\n        return Power_Tower(vector<ll>(k, a), m);\n    }\n\
     }\n"
   dependsOn:
@@ -388,8 +394,8 @@ data:
   isVerificationFile: false
   path: Modulo/Tower.hpp
   requiredBy: []
-  timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 00:11:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
 documentation_of: Modulo/Tower.hpp

@@ -2,51 +2,52 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Math/Lagrange_Interpolation.hpp
     title: "Lagrange \u88DC\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Summation/Sum_of_Exponential_Times_Polynomial.hpp
     title: "(\u7B49\u6BD4) x (\u5358\u9805\u5F0F) \u306E\u7DCF\u548C"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/original/enumerable.test.cpp
     title: verify/original/enumerable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
     title: verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\u6570\
       \u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\u3044\
       \ `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002"
-    links: []
-  bundledCode: "#line 2 \"template/enumerable.hpp\"\n\n#include <vector>\n#include\
-    \ <functional>\n#include <type_traits>\n#include <iterator>\n#include <algorithm>\n\
-    #include <map>\n#include <set>\n#include <optional>\n#include <stdexcept>\n#include\
-    \ <utility>\n#include <concepts>\n\nnamespace enumerable {\n    /// @brief \u30B3\
-    \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\
-    \u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\u3044 `std::vector` \u3068\
-    \u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby \u306E `Enumerable#collect`\
-    \ (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E\
-    \ `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\
-    \u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\
-    \u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\u3059\u3002\n   \
-    \ /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\
-    \u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    /// @tparam Func\
-    \ \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\u578B\u3002\
-    \n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\u3002\n\
-    \    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\
-    \u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069)\u3002\
-    \n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\u7D0D\
-    \u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename Container,\
-    \ typename Func>\n    auto collect(const Container& container, const Func& func)\
-    \ {\n        using ResultType = std::invoke_result_t<Func, typename Container::const_reference>;\n\
-    \        std::vector<ResultType> result;\n        if constexpr (requires { std::size(container);\
-    \ }) {\n            result.reserve(std::size(container));\n        }\n       \
-    \ for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
+    links:
+    - https://github.com/Kazun1998/library_for_cpp/blob/main/template/enumerable.hpp
+  bundledCode: "#line 2 \"template/enumerable.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/enumerable.hpp\n\
+    \n#include <vector>\n#include <functional>\n#include <type_traits>\n#include <iterator>\n\
+    #include <algorithm>\n#include <map>\n#include <set>\n#include <optional>\n#include\
+    \ <stdexcept>\n#include <utility>\n#include <concepts>\n\nnamespace enumerable\
+    \ {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\
+    \u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\
+    \u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby\
+    \ \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\
+    \u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\
+    \u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector`\
+    \ \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\
+    \u3059\u3002\n    /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\
+    \u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    ///\
+    \ @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\
+    \u578B\u3002\n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\
+    \u3002\n    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\
+    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069\
+    )\u3002\n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\
+    \u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename\
+    \ Container, typename Func>\n    auto collect(const Container& container, const\
+    \ Func& func) {\n        using ResultType = std::invoke_result_t<Func, typename\
+    \ Container::const_reference>;\n        std::vector<ResultType> result;\n    \
+    \    if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
+    \        }\n        for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
     \ element));\n        }\n        return result;\n    }\n\n    /// @brief \u30B3\
     \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u5BFE\u3057\u3066\u8FF0\u8A9E\
     \u95A2\u6570\u3092\u9069\u7528\u3057\u3001\u771F\u3092\u8FD4\u3057\u305F\u8981\
@@ -213,28 +214,29 @@ data:
     \ seen;\n        for (const auto& element : container) {\n            if (seen.find(element)\
     \ == seen.end()) {\n                seen.insert(element);\n                result.push_back(element);\n\
     \            }\n        }\n        return result;\n    }\n\n} // namespace enumerable\n"
-  code: "#pragma once\n\n#include <vector>\n#include <functional>\n#include <type_traits>\n\
-    #include <iterator>\n#include <algorithm>\n#include <map>\n#include <set>\n#include\
-    \ <optional>\n#include <stdexcept>\n#include <utility>\n#include <concepts>\n\n\
-    namespace enumerable {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\
-    \u7D20\u306B\u95A2\u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\
-    \u3092\u65B0\u3057\u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n\
-    \    ///\n    /// Ruby \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`)\
-    \ \u306B\u76F8\u5F53\u3057\u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\
-    \u3066\u3044\u307E\u3059\u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\
-    \u65B0\u3057\u3044 `std::vector` \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\
-    \u304C\u7570\u306A\u308A\u307E\u3059\u3002\n    /// @tparam Container \u30A4\u30C6\
-    \u30EC\u30FC\u30C8\u53EF\u80FD\u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g.,\
-    \ std::vector<T>)\u3002\n    /// @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\
-    \u3059\u308B\u95A2\u6570\u306E\u578B\u3002\n    /// @param container \u5BFE\u8C61\
-    \u306E\u30B3\u30F3\u30C6\u30CA\u3002\n    /// @param func \u5404\u8981\u7D20\u306B\
-    \u9069\u7528\u3059\u308B\u95A2\u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\
-    \u30E0\u30C0\u5F0F\u306A\u3069)\u3002\n    /// @return \u95A2\u6570\u306E\u9069\
-    \u7528\u7D50\u679C\u3092\u683C\u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\
-    \n    template <typename Container, typename Func>\n    auto collect(const Container&\
-    \ container, const Func& func) {\n        using ResultType = std::invoke_result_t<Func,\
-    \ typename Container::const_reference>;\n        std::vector<ResultType> result;\n\
-    \        if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
+  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/enumerable.hpp\n\
+    \n#include <vector>\n#include <functional>\n#include <type_traits>\n#include <iterator>\n\
+    #include <algorithm>\n#include <map>\n#include <set>\n#include <optional>\n#include\
+    \ <stdexcept>\n#include <utility>\n#include <concepts>\n\nnamespace enumerable\
+    \ {\n    /// @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u95A2\
+    \u6570\u3092\u9069\u7528\u3057\u3001\u305D\u306E\u7D50\u679C\u3092\u65B0\u3057\
+    \u3044 `std::vector` \u3068\u3057\u3066\u8FD4\u3059\u3002\n    ///\n    /// Ruby\
+    \ \u306E `Enumerable#collect` (\u307E\u305F\u306F `map`) \u306B\u76F8\u5F53\u3057\
+    \u307E\u3059\u3002C++\u306E `std::transform` \u306B\u4F3C\u3066\u3044\u307E\u3059\
+    \u304C\u3001\u5E38\u306B\u51FA\u529B\u3068\u3057\u3066\u65B0\u3057\u3044 `std::vector`\
+    \ \u3092\u751F\u6210\u3057\u3066\u8FD4\u3059\u70B9\u304C\u7570\u306A\u308A\u307E\
+    \u3059\u3002\n    /// @tparam Container \u30A4\u30C6\u30EC\u30FC\u30C8\u53EF\u80FD\
+    \u306A\u30B3\u30F3\u30C6\u30CA\u306E\u578B (e.g., std::vector<T>)\u3002\n    ///\
+    \ @tparam Func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\u6570\u306E\
+    \u578B\u3002\n    /// @param container \u5BFE\u8C61\u306E\u30B3\u30F3\u30C6\u30CA\
+    \u3002\n    /// @param func \u5404\u8981\u7D20\u306B\u9069\u7528\u3059\u308B\u95A2\
+    \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8 (\u30E9\u30E0\u30C0\u5F0F\u306A\u3069\
+    )\u3002\n    /// @return \u95A2\u6570\u306E\u9069\u7528\u7D50\u679C\u3092\u683C\
+    \u7D0D\u3057\u305F\u65B0\u3057\u3044 `std::vector`\u3002\n    template <typename\
+    \ Container, typename Func>\n    auto collect(const Container& container, const\
+    \ Func& func) {\n        using ResultType = std::invoke_result_t<Func, typename\
+    \ Container::const_reference>;\n        std::vector<ResultType> result;\n    \
+    \    if constexpr (requires { std::size(container); }) {\n            result.reserve(std::size(container));\n\
     \        }\n        for (const auto& element : container) {\n            result.push_back(std::invoke(func,\
     \ element));\n        }\n        return result;\n    }\n\n    /// @brief \u30B3\
     \u30F3\u30C6\u30CA\u306E\u5404\u8981\u7D20\u306B\u5BFE\u3057\u3066\u8FF0\u8A9E\
@@ -408,8 +410,8 @@ data:
   requiredBy:
   - Summation/Sum_of_Exponential_Times_Polynomial.hpp
   - Math/Lagrange_Interpolation.hpp
-  timestamp: '2026-09-13 12:27:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-15 23:30:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/original/enumerable.test.cpp
   - verify/yosupo_library_checker/other/Sum_of_Exponential_Times_Polynomial.test.cpp

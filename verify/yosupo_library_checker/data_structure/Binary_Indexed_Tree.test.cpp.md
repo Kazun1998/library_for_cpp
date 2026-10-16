@@ -17,7 +17,8 @@ data:
   bundledCode: "#line 1 \"verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n\
     #include<bits/stdc++.h>\n\nusing namespace std;\n\n#line 2 \"Binary_Indexed_Tree/Binary_Indexed_Tree.hpp\"\
-    \n\ntemplate<typename G>\nclass Binary_Indexed_Tree{\n    private:\n    int n;\n\
+    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Indexed_Tree/Binary_Indexed_Tree.hpp\n\
+    \ntemplate<typename G>\nclass Binary_Indexed_Tree{\n    private:\n    int n;\n\
     \    vector<G> data;\n    G zero;\n    function<G(G, G)> op;\n    function<G(G)>\
     \ neg;\n\n    // \u521D\u671F\u5316\n    public:\n    Binary_Indexed_Tree() =\
     \ default;\n\n    Binary_Indexed_Tree(int n, const function<G(G, G)> op, const\
@@ -66,7 +67,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:49:33+09:00'
+  timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp

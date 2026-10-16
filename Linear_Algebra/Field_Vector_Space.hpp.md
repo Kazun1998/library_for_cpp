@@ -1,66 +1,69 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Linear_Algebra/Matrix_Vectors.hpp
     title: Linear_Algebra/Matrix_Vectors.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\u3059\u308B"
-    links: []
-  bundledCode: "#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\
-    \n\n#line 2 \"template/template.hpp\"\n\nusing namespace std;\n\n// intrinstic\n\
-    #include <immintrin.h>\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
-    #include <cassert>\n#include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include\
-    \ <chrono>\n#include <cinttypes>\n#include <climits>\n#include <cmath>\n#include\
-    \ <complex>\n#include <concepts>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <optional>\n\
-    #include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include\
-    \ <stack>\n#include <streambuf>\n#include <string>\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <typeinfo>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <utility>\n#include <vector>\n\n// utility\n#line 2 \"template/utility.hpp\"\
-    \n\nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
+    links:
+    - https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Field_Vector_Space.hpp
+  bundledCode: "#line 2 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Field_Vector_Space.hpp\n\
+    \n#line 2 \"Linear_Algebra/Field_Vector.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Field_Vector.hpp\n\
+    \n#line 2 \"template/template.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
+    \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
+    \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
+    \ <climits>\n#include <cmath>\n#include <complex>\n#include <concepts>\n#include\
+    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
+    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
+    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
+    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
+    #include <ostream>\n#include <optional>\n#include <queue>\n#include <random>\n\
+    #include <set>\n#include <sstream>\n#include <stack>\n#include <streambuf>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <typeinfo>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\n\
+    \n// utility\n#line 2 \"template/utility.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp\n\
+    \nusing ll = long long;\n\n// a \u2190 max(a, b) \u3092\u5B9F\u884C\u3059\u308B\
     . a \u304C\u66F4\u65B0\u3055\u308C\u305F\u3089, \u8FD4\u308A\u5024\u304C true.\n\
     template<typename T, typename U>\ninline bool chmax(T &a, const U b){\n    return\
     \ (a < b ? a = b, 1: 0);\n}\n\n// a \u2190 min(a, b) \u3092\u5B9F\u884C\u3059\u308B\
@@ -80,9 +83,10 @@ data:
     \u30C3\u30AF\u30B9\u3092\u53D6\u5F97\u3059\u308B.\ntemplate<typename T>\ninline\
     \ size_t argmin(const vector<T> &a){\n    if (a.empty()) throw invalid_argument(\"\
     vector is empty.\");\n\n    return distance(a.begin(), min_element(a.begin(),\
-    \ a.end()));\n}\n#line 61 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
-    \n\n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y)\
-    \ { return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
+    \ a.end()));\n}\n#line 63 \"template/template.hpp\"\n\n// math\n#line 2 \"template/math.hpp\"\
+    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/math.hpp\n\
+    \n// \u6F14\u7B97\u5B50\ntemplate<typename T>\nT add(const T &x, const T &y) {\
+    \ return x + y; }\n\ntemplate<typename T>\nT sub(const T &x, const T &y) { return\
     \ x - y; }\n\ntemplate<typename T>\nT mul(const T &x, const T &y) { return x *\
     \ y; }\n\ntemplate<typename T>\nT neg(const T &x) { return -x; }\n\ntemplate<integral\
     \ T>\nT bitwise_and(const T &x, const T &y) { return x & y; }\n\ntemplate<integral\
@@ -140,8 +144,9 @@ data:
     \ floor_sqrt(const ll &N) { return isqrt(N); }\n\n// ceil(sqrt(N)) \u3092\u6C42\
     \u3081\u308B (N < 0 \u306E\u3068\u304D\u306F, 0 \u3068\u3059\u308B).\nll ceil_sqrt(const\
     \ ll &N) {\n    ll x = isqrt(N);\n    return x * x == N ? x : x + 1;\n}\n#line\
-    \ 64 \"template/template.hpp\"\n\n// inout\n#line 1 \"template/inout.hpp\"\n//\
-    \ \u5165\u51FA\u529B\n#line 4 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
+    \ 66 \"template/template.hpp\"\n\n// inout\n#line 2 \"template/inout.hpp\"\n\n\
+    // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/inout.hpp\n\
+    \n// \u5165\u51FA\u529B\n#line 8 \"template/inout.hpp\"\n\ntemplate<class... T>\n\
     void input(T&... a){ (cin >> ... >> a); }\n\nvoid print(){ cout << \"\\n\"; }\n\
     \ntemplate<class T, class... Ts>\nvoid print(const T& a, const Ts&... b){\n  \
     \  cout << a;\n    (cout << ... << (cout << \" \", b));\n    cout << \"\\n\";\n\
@@ -162,7 +167,7 @@ data:
     \u308B\uFF08\u7279\u5225 indexed \u7528\uFF09\n    res.assign(offset, T());\n\n\
     \    for (int i = 0; i < n; ++i) {\n        T el;\n        if (!(std::cin >> el))\
     \ break;\n        res.push_back(std::move(el));\n    }\n    return res;\n}\n\n\
-    #line 63 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
+    #line 67 \"template/inout.hpp\"\n\n// 1. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA\
     \ n \u306E 1 \u6B21\u5143 vector \u3092\u4F5C\u308B\ntemplate<typename T>\nauto\
     \ make_multi_dimensional_vector(int n) {\n    return std::vector<T>(n);\n}\n\n\
     // 2. \u7D42\u7AEF\uFF1A\u30B5\u30A4\u30BA n \u3067\u521D\u671F\u5024 val \u3092\
@@ -171,91 +176,93 @@ data:
     \ n, T val) {\n    return std::vector<T>(n, val);\n}\n\n// 3. \u518D\u5E30\uFF1A\
     \u6B21\u5143\u3092\u524A\u308B\ntemplate<typename T, typename... Args>\nauto make_multi_dimensional_vector(int\
     \ n, Args... args) {\n    auto inner = make_multi_dimensional_vector<T>(args...);\n\
-    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 67 \"template/template.hpp\"\
-    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// \u30DE\u30AF\u30ED\u306E\u5B9A\
-    \u7FA9\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n#define unless(cond) if (!(cond))\n#define until(cond) while (!(cond))\n\
-    #define loop while (true)\n\n// \u30AA\u30FC\u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\
-    \u30AF\u30ED\n#define overload2(_1, _2, name, ...) name\n#define overload3(_1,\
-    \ _2, _3, name, ...) name\n#define overload4(_1, _2, _3, _4, name, ...) name\n\
-    #define overload5(_1, _2, _3, _4, _5, name, ...) name\n\n// \u7E70\u308A\u8FD4\
-    \u3057\u7CFB\n#define rep1(n) for (ll i = 0; i < n; i++)\n#define rep2(i, n) for\
-    \ (ll i = 0; i < n; i++)\n#define rep3(i, a, b) for (ll i = a; i < b; i++)\n#define\
-    \ rep4(i, a, b, c) for (ll i = a; i < b; i += c)\n#define rep(...) overload4(__VA_ARGS__,\
-    \ rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\n#define foreach1(x, a) for (auto &&x:\
-    \ a)\n#define foreach2(x, y, a) for (auto &&[x, y]: a)\n#define foreach3(x, y,\
-    \ z, a) for (auto &&[x, y, z]: a)\n#define foreach4(x, y, z, w, a) for (auto &&[x,\
-    \ y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__, foreach4, foreach3,\
-    \ foreach2, foreach1)(__VA_ARGS__)\n#line 70 \"template/template.hpp\"\n\n// bitop\n\
-    #line 2 \"template/bitop.hpp\"\n\n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth\
-    \ \u3092\u6C42\u3081\u308B.\nll bit_length(ll x) {\n    if (x == 0) { return 0;\
-    \ }\n    return (sizeof(long) * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\
-    \u8CA0\u6574\u6570 x \u306E popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll\
-    \ x) { return __builtin_popcountll(x); }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\
-    \u5BFE\u3057\u3066, floor(log2(x)) \u3092\u6C42\u3081\u308B.\nll floor_log2(ll\
-    \ x) { return bit_length(x) - 1; }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\
-    \u3057\u3066, ceil(log2(x)) \u3092\u6C42\u3081\u308B.\nll ceil_log2(ll x) { return\
-    \ bit_length(x - 1); }\n\n// x \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\
-    \u3059\u308B\nint get_bit(ll x, int k) { return (x >> k) & 1; }\n\n// x \u306E\
-    \u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\
-    \u30C8\u5217\u306E\u9577\u3055\u3068\u3059\u308B.\nvector<int> get_bits(ll x,\
-    \ int k) {\n    vector<int> bits(k);\n    rep(i, k) {\n        bits[i] = x & 1;\n\
-    \        x >>= 1;\n    }\n\n    return bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\
-    \u5217\u3092\u53D6\u5F97\u3059\u308B.\nvector<int> get_bits(ll x) { return get_bits(x,\
-    \ bit_length(x)); }\n\n// x \u306B\u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\
-    \u3057\u3089\u306E\u30D3\u30C3\u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\
-    \u308B.\nll lowest_bit(const ll x) { return floor_log2(x & (-x)); }\n#line 73\
-    \ \"template/template.hpp\"\n\n// exception\n#line 2 \"template/exception.hpp\"\
-    \n\nclass NotExist: public exception {\n    private:\n    string message;\n\n\
-    \    public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
+    \    return std::vector<decltype(inner)>(n, inner);\n}\n#line 69 \"template/template.hpp\"\
+    \n\n// macro\n#line 2 \"template/macro.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/macro.hpp\n\
+    \n// \u30DE\u30AF\u30ED\u306E\u5B9A\u7FA9\n#define all(x) x.begin(), x.end()\n\
+    #define len(x) ll(x.size())\n#define elif else if\n#define unless(cond) if (!(cond))\n\
+    #define until(cond) while (!(cond))\n#define loop while (true)\n\n// \u30AA\u30FC\
+    \u30D0\u30FC\u30ED\u30FC\u30C9\u30DE\u30AF\u30ED\n#define overload2(_1, _2, name,\
+    \ ...) name\n#define overload3(_1, _2, _3, name, ...) name\n#define overload4(_1,\
+    \ _2, _3, _4, name, ...) name\n#define overload5(_1, _2, _3, _4, _5, name, ...)\
+    \ name\n\n// \u7E70\u308A\u8FD4\u3057\u7CFB\n#define rep1(n) for (ll i = 0; i\
+    \ < n; i++)\n#define rep2(i, n) for (ll i = 0; i < n; i++)\n#define rep3(i, a,\
+    \ b) for (ll i = a; i < b; i++)\n#define rep4(i, a, b, c) for (ll i = a; i < b;\
+    \ i += c)\n#define rep(...) overload4(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)\n\
+    \n#define foreach1(x, a) for (auto &&x: a)\n#define foreach2(x, y, a) for (auto\
+    \ &&[x, y]: a)\n#define foreach3(x, y, z, a) for (auto &&[x, y, z]: a)\n#define\
+    \ foreach4(x, y, z, w, a) for (auto &&[x, y, z, w]: a)\n#define foreach(...) overload5(__VA_ARGS__,\
+    \ foreach4, foreach3, foreach2, foreach1)(__VA_ARGS__)\n#line 72 \"template/template.hpp\"\
+    \n\n// bitop\n#line 2 \"template/bitop.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/bitop.hpp\n\
+    \n// \u975E\u8CA0\u6574\u6570 x \u306E bit legnth \u3092\u6C42\u3081\u308B.\n\
+    ll bit_length(ll x) {\n    if (x == 0) { return 0; }\n    return (sizeof(long)\
+    \ * CHAR_BIT) - __builtin_clzll(x);\n}\n\n// \u975E\u8CA0\u6574\u6570 x \u306E\
+    \ popcount \u3092\u6C42\u3081\u308B.\nll popcount(ll x) { return __builtin_popcountll(x);\
+    \ }\n\n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, floor(log2(x))\
+    \ \u3092\u6C42\u3081\u308B.\nll floor_log2(ll x) { return bit_length(x) - 1; }\n\
+    \n// \u6B63\u306E\u6574\u6570 x \u306B\u5BFE\u3057\u3066, ceil(log2(x)) \u3092\
+    \u6C42\u3081\u308B.\nll ceil_log2(ll x) { return bit_length(x - 1); }\n\n// x\
+    \ \u306E\u7B2C k \u30D3\u30C3\u30C8\u3092\u53D6\u5F97\u3059\u308B\nint get_bit(ll\
+    \ x, int k) { return (x >> k) & 1; }\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\
+    \u53D6\u5F97\u3059\u308B.\n// k \u306F\u30D3\u30C3\u30C8\u5217\u306E\u9577\u3055\
+    \u3068\u3059\u308B.\nvector<int> get_bits(ll x, int k) {\n    vector<int> bits(k);\n\
+    \    rep(i, k) {\n        bits[i] = x & 1;\n        x >>= 1;\n    }\n\n    return\
+    \ bits;\n}\n\n// x \u306E\u30D3\u30C3\u30C8\u5217\u3092\u53D6\u5F97\u3059\u308B\
+    .\nvector<int> get_bits(ll x) { return get_bits(x, bit_length(x)); }\n\n// x \u306B\
+    \u7ACB\u3063\u3066\u3044\u308B\u306A\u3093\u304B\u3057\u3089\u306E\u30D3\u30C3\
+    \u30C8\u306E\u756A\u53F7\u3092\u51FA\u529B\u3059\u308B.\nll lowest_bit(const ll\
+    \ x) { return floor_log2(x & (-x)); }\n#line 75 \"template/template.hpp\"\n\n\
+    // exception\n#line 2 \"template/exception.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/exception.hpp\n\
+    \nclass NotExist: public exception {\n    private:\n    string message;\n\n  \
+    \  public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\n\n#line 4 \"Linear_Algebra/Field_Matrix.hpp\"\
-    \n\nclass SingularMatrixError: private exception{\n    const char* what() const\
-    \ throw() {\n        return \"\u975E\u6B63\u5247\u884C\u5217\u306B\u95A2\u3059\
-    \u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\u3057\u305F.\";\n    }\n};\n\ntemplate<typename\
-    \ F>\nclass Field_Matrix{\n    public:\n    vector<vector<F>> mat;\n    int row,\
-    \ col;\n\n    public:\n    Field_Matrix() = default;\n\n    Field_Matrix(int row,\
-    \ int col): row(row), col(col){\n        mat.assign(row, vector<F>(col, F()));\n\
-    \    }\n\n    Field_Matrix(int row): Field_Matrix(row, row){}\n\n    Field_Matrix(const\
-    \ vector<vector<F>> &ele): Field_Matrix(ele.size(), ele[0].size()){\n        for\
-    \ (int i = 0; i < row; i++){\n            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n\
-    \        }\n    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return\
-    \ Field_Matrix(row, col); }\n\n    static Field_Matrix Identity_Matrix(int size)\
-    \ {\n        Field_Matrix A(size);\n        for (int i = 0; i < size; i++) { A[i][i]\
-    \ = 1; }\n        return A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int,\
-    \ int> size() { return make_pair(row, col); }\n\n    // \u6B63\u65B9\u884C\u5217\
-    ?\n    bool is_square() const { return row == col; }\n\n    // \u8981\u7D20\n\
-    \    inline const vector<F> &operator[](int i) const { return mat[i]; }\n    inline\
-    \ vector<F> &operator[](int i) { return mat[i]; }\n\n    inline const F &operator[](const\
-    \ int i, const int j) const { return mat[i][j]; }\n    inline F &operator[](const\
-    \ int i, const int j) { return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const\
-    \ Field_Matrix &B) const {\n        if (row != B.row || col != B.col){ return\
-    \ false; }\n\n        for (int i = 0; i < row; i++){\n            for (int j =\
-    \ 0; j < col; j++){\n                if ((*this)[i] != B[i]) return false;\n \
-    \           }\n        }\n        return true;\n    }\n\n    bool operator!=(const\
-    \ Field_Matrix &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\
-    \u30B9\u5143\n    Field_Matrix operator-() const {\n        Field_Matrix A(row,\
-    \ col);\n        for (int i = 0; i < row; i++){\n            for (int j = 0; j\
-    \ < col; j++) A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\
-    \n    // \u52A0\u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n\
-    \        assert (row == B.row && col == B.col);\n        for (int i = 0; i < row;\
-    \ i++){\n            for (int j = 0; j < col; j++){\n                (*this)[i][j]\
-    \ += B[i][j];\n            }\n        }\n        return *this;\n    }\n\n    Field_Matrix\
-    \ operator+(const Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\
-    \n    // \u6E1B\u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n\
-    \        assert (row == B.row && col == B.col);\n        for (int i = 0; i < row;\
-    \ i++){\n            for (int j = 0; j < col; j++){\n                (*this)[i][j]\
-    \ -= B[i][j];\n            }\n        }\n        return *this;\n    }\n\n    Field_Matrix\
-    \ operator-(const Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\
-    \n    // \u4E57\u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n\
-    \        assert (col == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col,\
-    \ F()));\n\n        for (int i = 0; i < row; i++){\n            for (int k = 0;\
-    \ k < col; k++){\n                for (int j = 0; j < B.col; j++){\n         \
-    \           C[i][j] += mat[i][k] * B.mat[k][j];\n                }\n         \
-    \   }\n        }\n\n        mat.swap(C); col = B.col;\n        return *this;\n\
-    \    }\n\n    Field_Matrix operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B;\
-    \ }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
+    \    }\n};\n#line 2 \"Linear_Algebra/Field_Matrix.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Field_Matrix.hpp\n\
+    \n#line 6 \"Linear_Algebra/Field_Matrix.hpp\"\n\nclass SingularMatrixError: private\
+    \ exception{\n    const char* what() const throw() {\n        return \"\u975E\u6B63\
+    \u5247\u884C\u5217\u306B\u95A2\u3059\u308B\u64CD\u4F5C\u3092\u884C\u3044\u307E\
+    \u3057\u305F.\";\n    }\n};\n\ntemplate<typename F>\nclass Field_Matrix{\n   \
+    \ public:\n    vector<vector<F>> mat;\n    int row, col;\n\n    public:\n    Field_Matrix()\
+    \ = default;\n\n    Field_Matrix(int row, int col): row(row), col(col){\n    \
+    \    mat.assign(row, vector<F>(col, F()));\n    }\n\n    Field_Matrix(int row):\
+    \ Field_Matrix(row, row){}\n\n    Field_Matrix(const vector<vector<F>> &ele):\
+    \ Field_Matrix(ele.size(), ele[0].size()){\n        for (int i = 0; i < row; i++){\n\
+    \            copy(ele[i].begin(), ele[i].end(), mat[i].begin());\n        }\n\
+    \    }\n\n    static Field_Matrix Zero_Matrix(int row, int col) { return Field_Matrix(row,\
+    \ col); }\n\n    static Field_Matrix Identity_Matrix(int size) {\n        Field_Matrix\
+    \ A(size);\n        for (int i = 0; i < size; i++) { A[i][i] = 1; }\n        return\
+    \ A;\n    }\n\n    // \u30B5\u30A4\u30BA\n    pair<int, int> size() { return make_pair(row,\
+    \ col); }\n\n    // \u6B63\u65B9\u884C\u5217?\n    bool is_square() const { return\
+    \ row == col; }\n\n    // \u8981\u7D20\n    inline const vector<F> &operator[](int\
+    \ i) const { return mat[i]; }\n    inline vector<F> &operator[](int i) { return\
+    \ mat[i]; }\n\n    inline const F &operator[](const int i, const int j) const\
+    \ { return mat[i][j]; }\n    inline F &operator[](const int i, const int j) {\
+    \ return mat[i][j]; }\n\n    // \u6BD4\u8F03\n    bool operator==(const Field_Matrix\
+    \ &B) const {\n        if (row != B.row || col != B.col){ return false; }\n\n\
+    \        for (int i = 0; i < row; i++){\n            for (int j = 0; j < col;\
+    \ j++){\n                if ((*this)[i] != B[i]) return false;\n            }\n\
+    \        }\n        return true;\n    }\n\n    bool operator!=(const Field_Matrix\
+    \ &B) const { return !((*this) == B); }\n\n    // \u30DE\u30A4\u30CA\u30B9\u5143\
+    \n    Field_Matrix operator-() const {\n        Field_Matrix A(row, col);\n  \
+    \      for (int i = 0; i < row; i++){\n            for (int j = 0; j < col; j++)\
+    \ A[i][j] = -(*this)[i][j];\n        }\n        return A;\n    }\n\n    // \u52A0\
+    \u6CD5\n    Field_Matrix& operator+=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] += B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator+(const\
+    \ Field_Matrix &B) const { return Field_Matrix(*this) += B; }\n\n    // \u6E1B\
+    \u6CD5\n    Field_Matrix& operator-=(const Field_Matrix &B){\n        assert (row\
+    \ == B.row && col == B.col);\n        for (int i = 0; i < row; i++){\n       \
+    \     for (int j = 0; j < col; j++){\n                (*this)[i][j] -= B[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Field_Matrix operator-(const\
+    \ Field_Matrix &B) const  {return Field_Matrix(*this) -= B; }\n\n    // \u4E57\
+    \u6CD5\n    Field_Matrix& operator*=(const Field_Matrix &B){\n        assert (col\
+    \ == B.row);\n        vector<vector<F>> C(row, vector<F>(B.col, F()));\n\n   \
+    \     for (int i = 0; i < row; i++){\n            for (int k = 0; k < col; k++){\n\
+    \                for (int j = 0; j < B.col; j++){\n                    C[i][j]\
+    \ += mat[i][k] * B.mat[k][j];\n                }\n            }\n        }\n\n\
+    \        mat.swap(C); col = B.col;\n        return *this;\n    }\n\n    Field_Matrix\
+    \ operator*(const Field_Matrix &B) const { return Field_Matrix(*this)*=B; }\n\n\
+    \    // \u30B9\u30AB\u30E9\u30FC\u500D\n    friend Field_Matrix operator*(const\
     \ F &scaler, const Field_Matrix &rhs){\n        Field_Matrix res(rhs);\n     \
     \   for (int i = 0; i < rhs.row; i++){\n            for (int j = 0; j < rhs.col;\
     \ j++) { res[i][j] *= scaler; }\n        }\n\n        return res;\n    }\n\n \
@@ -335,7 +342,7 @@ data:
     \                for (int c = 0; c < B.col; c++) {\n                    res[row_offset\
     \ + r][col_offset + c] = B[r][c];\n                }\n            }\n        \
     \    col_offset += B.col;\n        }\n        row_offset += block_h;\n    }\n\
-    \    return res;\n}\n#line 5 \"Linear_Algebra/Field_Vector.hpp\"\n\n/**\n * @brief\
+    \    return res;\n}\n#line 7 \"Linear_Algebra/Field_Vector.hpp\"\n\n/**\n * @brief\
     \ \u4F53 F \u4E0A\u306E\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306E\u5143\uFF08\u30D9\
     \u30AF\u30C8\u30EB\uFF09\u3092\u8868\u3059\u30AF\u30E9\u30B9\n * @tparam F \u4F53\
     \u306E\u8981\u7D20\u306E\u578B\uFF08\u52A0\u6E1B\u4E57\u9664\u304C\u5B9A\u7FA9\
@@ -468,7 +475,7 @@ data:
     \    assert(A.col == v.dimension());\n\n    Field_Vector<F> res(A.row);\n    for\
     \ (int i = 0; i < A.row; i++) {\n        for (int j = 0; j < A.col; j++) {\n \
     \           res[i] += A[i, j] * v[j];\n        }\n    }\n\n    return res;\n}\n\
-    #line 4 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\ntemplate<typename F>\nclass\
+    #line 6 \"Linear_Algebra/Field_Vector_Space.hpp\"\n\ntemplate<typename F>\nclass\
     \ Field_Vector_Space {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>>\
     \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
     \ { basis.clear(); }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>>\
@@ -515,27 +522,27 @@ data:
     \u306E\u7B49\u4FA1\u6027\u3092\u5224\u5B9A\u3059\u308B\n     */\n    bool operator==(const\
     \ Field_Vector_Space &other) const {\n        return dimension() == other.dimension()\
     \ && *this <= other;\n    }\n};\n"
-  code: "#pragma once\n\n#include\"Field_Vector.hpp\"\n\ntemplate<typename F>\nclass\
-    \ Field_Vector_Space {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>>\
-    \ basis;\n    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n)\
-    \ { basis.clear(); }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>>\
-    \ &vectors): n(_n) {\n        for (Field_Vector<F> v: vectors) { add_vector(v);\
-    \ }\n    }\n\n    /**\n     * @brief \u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\
-    \u3059\u308B\n     * @param n \u5168\u7A7A\u9593\u306E\u6B21\u5143\n     * @return\
-    \ Field_Vector_Space \u96F6\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\u30B8\u30A7\
-    \u30AF\u30C8\n     */\n    static Field_Vector_Space Zero_Space(int n) {\n   \
-    \     return Field_Vector_Space(n);\n    }\n\n    /**\n     * @brief \u5168\u7A7A\
-    \u9593 F^n \u3092\u751F\u6210\u3059\u308B\n     * @param n \u6B21\u5143\n    \
-    \ * @return Field_Vector_Space \u5168\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\
-    \u30B8\u30A7\u30AF\u30C8\n     */\n    static Field_Vector_Space Full_Space(int\
-    \ n) {\n        Field_Vector_Space res(n);\n        for (int i = 0; i < n; i++)\
-    \ {\n            res.add_vector(Field_Vector<F>::Unit(n, i));\n        }\n   \
-    \     return res;\n    }\n\n    int dimension() const { return basis.size(); }\n\
-    \n    bool add_vector(const Field_Vector<F> &v) {\n        Field_Vector<F> w =\
-    \ projection(v);\n        if (w.is_zero()) { return false; }\n\n        int i\
-    \ = 0;\n        for (; i < n; i++) { unless(w[i] == 0) { break; } }\n\n      \
-    \  w *= w[i].inverse();\n        for (int k = 0; k < basis.size(); k++) {\n  \
-    \          basis[k] -= basis[k][i] * w;\n        }\n\n        index.emplace_back(i);\n\
+  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Field_Vector_Space.hpp\n\
+    \n#include\"Field_Vector.hpp\"\n\ntemplate<typename F>\nclass Field_Vector_Space\
+    \ {\n    private:\n    vector<int> index;\n    vector<Field_Vector<F>> basis;\n\
+    \    int n;\n\n    public:\n    Field_Vector_Space(const int _n): n(_n) { basis.clear();\
+    \ }\n    Field_Vector_Space(const int _n, const vector<Field_Vector<F>> &vectors):\
+    \ n(_n) {\n        for (Field_Vector<F> v: vectors) { add_vector(v); }\n    }\n\
+    \n    /**\n     * @brief \u96F6\u7A7A\u9593 {0} \u3092\u751F\u6210\u3059\u308B\
+    \n     * @param n \u5168\u7A7A\u9593\u306E\u6B21\u5143\n     * @return Field_Vector_Space\
+    \ \u96F6\u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n \
+    \    */\n    static Field_Vector_Space Zero_Space(int n) {\n        return Field_Vector_Space(n);\n\
+    \    }\n\n    /**\n     * @brief \u5168\u7A7A\u9593 F^n \u3092\u751F\u6210\u3059\
+    \u308B\n     * @param n \u6B21\u5143\n     * @return Field_Vector_Space \u5168\
+    \u7A7A\u9593\u3092\u8868\u3059\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n     */\n\
+    \    static Field_Vector_Space Full_Space(int n) {\n        Field_Vector_Space\
+    \ res(n);\n        for (int i = 0; i < n; i++) {\n            res.add_vector(Field_Vector<F>::Unit(n,\
+    \ i));\n        }\n        return res;\n    }\n\n    int dimension() const { return\
+    \ basis.size(); }\n\n    bool add_vector(const Field_Vector<F> &v) {\n       \
+    \ Field_Vector<F> w = projection(v);\n        if (w.is_zero()) { return false;\
+    \ }\n\n        int i = 0;\n        for (; i < n; i++) { unless(w[i] == 0) { break;\
+    \ } }\n\n        w *= w[i].inverse();\n        for (int k = 0; k < basis.size();\
+    \ k++) {\n            basis[k] -= basis[k][i] * w;\n        }\n\n        index.emplace_back(i);\n\
     \        basis.emplace_back(w);\n        return true;\n    }\n\n    Field_Vector<F>\
     \ projection(const Field_Vector<F> &v) const {\n        Field_Vector<F> w = Field_Vector(v);\n\
     \        for (int k = 0; k < dimension(); k++) {\n            w -= w[index[k]]\
@@ -577,8 +584,8 @@ data:
   requiredBy:
   - Linear_Algebra/Matrix_Vectors.hpp
   - Linear_Algebra/Matrix_Subspace.hpp
-  timestamp: '2026-08-09 00:58:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 00:11:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Field_Vector_Space.hpp
