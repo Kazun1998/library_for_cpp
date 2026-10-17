@@ -19,7 +19,15 @@ documentation_of: //Integer/Quotients.hpp
 
 ### 主となる定理の証明
 以下の定理が成り立つ.
-> $ \\# E_N = O(\sqrt{N})$
+
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$ \\# E_N = O(\sqrt{N})$
+
+</div>
 
 #### 証明
 

@@ -57,13 +57,20 @@ $$ V + W := \{ \boldsymbol{v} + \boldsymbol{w} \mid \boldsymbol{v} \in V, \bolds
 
 で定める. $V + W$ もまた $F^n$ の部分空間になる.
 
-**$V + W$ は基底の和集合が張る空間に一致する.**
+<div class="proposition" markdown="1">
 
-$\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q$ を $W$ の基底とする. このとき,
+命題 1
+---
+
+$V + W$ は基底の和集合が張る空間に一致する.
+
+すなわち, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q$ を $W$ の基底とすると,
 
 $$ V + W = \operatorname{Span}(\boldsymbol{e}_1, \dots, \boldsymbol{e}_p, \boldsymbol{f}_1, \dots, \boldsymbol{f}_q) $$
 
 が成り立つ.
+
+</div>
 
 **証明**
 
@@ -75,9 +82,16 @@ $$ V + W = \operatorname{Span}(\boldsymbol{e}_1, \dots, \boldsymbol{e}_p, \bolds
 
 ### 包含関係
 
-$V, W$ を $F^n$ の部分空間とする. $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底とする.
+<div class="theorem" markdown="1">
 
-**$V \subseteq W$ であることと, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ であることは同値である.**
+定理 2
+---
+
+$V, W$ を $F^n$ の部分空間とし, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底とする.
+
+このとき, $V \subseteq W$ であることと, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ であることは同値である.
+
+</div>
 
 **証明**
 

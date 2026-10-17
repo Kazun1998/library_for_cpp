@@ -14,7 +14,14 @@ $A$ を次数 $N$ の行列とする. また, $\boldsymbol{u}, \boldsymbol{v} \i
 
 このとき, 以下が従う.
 
-> $d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+
+</div>
 
 **証明**
 

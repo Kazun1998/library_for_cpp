@@ -15,9 +15,14 @@ documentation_of: //Graph/Graph/Connected_Components.hpp
 
 ## Theory
 
-> 定理 1
->
-> $V$ において, 連結であるという関係は同値になる.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$V$ において, 連結であるという関係は同値になる.
+
+</div>
 
 **証明**
 
@@ -33,9 +38,14 @@ documentation_of: //Graph/Graph/Connected_Components.hpp
 
   は $u, w$ を結ぶ歩道になる. よって, $u, w$ は連結である.
 
-> 定理 2
->
-> $V$ において, 連結であるという関係は, 辺による隣接関係から生成する同値関係である.
+<div class="theorem" markdown="1">
+
+定理 2
+---
+
+$V$ において, 連結であるという関係は, 辺による隣接関係から生成する同値関係である.
+
+</div>
 
 **証明**
 
