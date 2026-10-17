@@ -44,7 +44,10 @@ $g \in \mathbb{Z}/n \mathbb{Z}$ が原始根かどうかを判定する. その�
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 #### (a) ならば (b)
 
@@ -67,6 +70,8 @@ $g$ は $\mathbb{Z}/n \mathbb{Z}$ における原始根でないとする. $g^r 
 $$ g^{\frac{\varphi(n)}{q}} = g^{ra} = (g^r)^a = 1^a = 1 $$
 
 となり, (b) が成り立たなくなる.
+
+</div>
 
 
 ## Contents

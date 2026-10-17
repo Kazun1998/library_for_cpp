@@ -122,7 +122,10 @@ $x \in F_{2^n}$ は $x \neq 0$ であるとする. Nimber 積の意味での $x$
 
 </div>
 
-(証明)
+<div class="proof" markdown="1">
+
+証明
+---
 
 $x, y \in F_{2^n}$ に対して, $x \otimes x = y \otimes y$ とする. すると, $F_{2^n}$ は位数 $2$ の体であるため, Freshman's Dream により, $(x \oplus y) \otimes (x \oplus y) = 0$ が成り立つ.
 
@@ -131,6 +134,8 @@ $F_{2^n}$ は体であるため, $x \oplus y = 0$ である. つまり, $x = y$ 
 すると, $g: F_{2^n} \to F_{2^n}; x \mapsto x \otimes x$ は定義域と値域が同じ有限集合の $F_{2^n}$ である単射になるため, $g$ は全単射になる.
 
 故に, 任意の $b \in F_{2^n}$ に対して, $g(a) = b$ となる $a \in F_{2^n}$ がただ一つ存在する.
+
+</div>
 
 $b \in F_{2^n}$ に対して, $a \otimes a = b$ となる $a \in F_{2^n}$ のことを, $b$ の平方根といい, $\sqrt{b}$ と書く.
 

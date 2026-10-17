@@ -105,7 +105,10 @@ $$ \operatorname{clamp}(x) = x - \operatorname{relu}(x-u) + \operatorname{relu}(
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
 x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x)
@@ -157,6 +160,8 @@ $$\begin{align*}
 よって,
 
 $$ \operatorname{clamp}(x) = x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x) $$
+
+</div>
 
 であるため, 右辺についてそれぞれ総和を取ることで総和を計算できる.
 

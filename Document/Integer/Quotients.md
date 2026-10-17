@@ -29,7 +29,10 @@ $ \\# E_N = O(\sqrt{N})$
 
 </div>
 
-#### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
   $$ E_N = \left\{ f(x) ~\middle|~ 1 \leq x \leq \sqrt{N} \right\} \cup \left\{ f(x) ~\middle|~ \sqrt{N} \leq x \leq N \right\}$$
 
@@ -52,6 +55,8 @@ $x \geq \sqrt{N}$ に対して, $\dfrac{N}{x} \leq \sqrt{N}$ である. よっ�
   $$ \# E_N = \# (L_N \cup R_N) \leq \# L_N + \# R_N \leq 2 \sqrt{N}$$
 
 であるので, $\\# E_N = O(\sqrt{N})$ となる.
+
+</div>
 
 ### アルゴリズムの構築
 
