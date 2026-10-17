@@ -59,7 +59,10 @@ $$\mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a} 
 
 </div>
 
-#### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 $\boldsymbol{c} := \mathcal{F}_n\boldsymbol{a} \odot \mathcal{F}_n\boldsymbol{b}$ とおくことにする. このとき,
 
@@ -97,7 +100,7 @@ $$ \mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a}
 
 が成り立つ.
 
-$\square$
+</div>
 
 ### 畳み込みの応用
 
