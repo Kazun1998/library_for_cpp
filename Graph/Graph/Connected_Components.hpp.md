@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
   - icon: ':question:'
@@ -346,9 +346,14 @@ title: "\u9023\u7D50\u6210\u5206"
 
 ## Theory
 
-> 定理 1
->
-> $V$ において, 連結であるという関係は同値になる.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$V$ において, 連結であるという関係は同値になる.
+
+</div>
 
 **証明**
 
@@ -364,9 +369,14 @@ title: "\u9023\u7D50\u6210\u5206"
 
   は $u, w$ を結ぶ歩道になる. よって, $u, w$ は連結である.
 
-> 定理 2
->
-> $V$ において, 連結であるという関係は, 辺による隣接関係から生成する同値関係である.
+<div class="theorem" markdown="1">
+
+定理 2
+---
+
+$V$ において, 連結であるという関係は, 辺による隣接関係から生成する同値関係である.
+
+</div>
 
 **証明**
 

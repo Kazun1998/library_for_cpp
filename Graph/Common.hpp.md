@@ -23,16 +23,16 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
     title: "\u6709\u5411 Graph"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Eulerian_Trail.hpp
     title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Path.hpp
     title: Graph/Digraph/Path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
   - icon: ':warning:'
@@ -44,43 +44,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Connected_Components.hpp
     title: "\u9023\u7D50\u6210\u5206"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Count_Spanning_Trees.hpp
     title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Cliques.hpp
     title: Graph/Graph/Enumerate_Cliques.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Enumerate_Triangles.hpp
     title: Graph/Graph/Enumerate_Triangles.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Eulerian_Trail.hpp
     title: "\u7121\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
     title: Lowlink
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Path.hpp
     title: Graph/Graph/Path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Warshall_Floyd.hpp
     title: "Warshall-Floyd \u6CD5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
     title: Graph/Weighted_Graph/Minimum_Spanning_Tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Prim.hpp
     title: "Prim \u6CD5"
   _extendedVerifiedWith:
@@ -99,39 +99,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
     title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
     title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Eulerian_Trail_Undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
     links:
@@ -346,7 +346,7 @@ data:
   - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Prim.test.cpp
   - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Lowlink.hpp
     title: Lowlink
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -369,7 +369,7 @@ data:
   path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
 layout: document

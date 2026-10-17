@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   _extendedVerifiedWith:
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Lowlink
     links:
@@ -373,7 +373,7 @@ data:
   requiredBy:
   - Graph/Graph/Two_Edge_Connected_Components.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp

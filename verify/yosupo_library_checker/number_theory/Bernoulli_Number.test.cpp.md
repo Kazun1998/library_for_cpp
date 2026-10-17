@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
   - icon: ':question:'
@@ -49,9 +49,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
@@ -583,7 +583,7 @@ data:
   path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
 layout: document

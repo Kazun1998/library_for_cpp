@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
   - icon: ':question:'
@@ -32,16 +32,16 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Matrix_Vectors.hpp
@@ -572,7 +572,7 @@ data:
   requiredBy:
   - Linear_Algebra/Matrix_Subspace.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Matrix_Vectors.hpp

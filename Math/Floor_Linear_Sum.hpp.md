@@ -24,7 +24,7 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
     title: verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Floor_Linear_Sum.hpp
@@ -244,7 +244,7 @@ data:
   path: Math/Floor_Linear_Sum.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Min_of_Mod_of_Linear.test.cpp
   - verify/yosupo_library_checker/number_theory/Floor_Linear_Sum.test.cpp

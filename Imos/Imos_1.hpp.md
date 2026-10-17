@@ -302,9 +302,16 @@ $$ D \boldsymbol{y} = (y_0, y_1 - y_0, y_2 - y_1, \dots ) $$
 
 いもす法は, 以下の問いを高速に答えることができる.
 
-> $Q$ 個の $l_q \leq r_q$ を満たす非負整数の組 $(l_q, r_q)$ と $\alpha_q \in A$ が与えられる.
->
-> このとき, $\displaystyle \sum_{q=1}^Q \alpha_q \left(\sum_{i=l_q}^{r_q} \boldsymbol{e}_i \right)$ の先頭 $N$ 項を求めろ.
+<div class="problem" markdown="1">
+
+問題
+---
+
+$Q$ 個の $l_q \leq r_q$ を満たす非負整数の組 $(l_q, r_q)$ と $\alpha_q \in A$ が与えられる.
+
+このとき, $\displaystyle \sum_{q=1}^Q \alpha_q \left(\sum_{i=l_q}^{r_q} \boldsymbol{e}_i \right)$ の先頭 $N$ 項を求めろ.
+
+</div>
 
 愚直な方法だと, $O(NQ)$ 時間になるが, いもす法を使うことによって, $O(N+Q)$ 時間に短縮できる.
 

@@ -318,8 +318,16 @@ title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
 
 以下の定理がある.
 
-> 三角形 $\mathrm{ABC}$ において, 線分 $\mathrm{BC}, \mathrm{CA}, \mathrm{AB}$ の中点をそれぞれ $\mathrm{L}, \mathrm{M}, \mathrm{N}$ とおく.
-> このとき, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+三角形 $\mathrm{ABC}$ において, 線分 $\mathrm{BC}, \mathrm{CA}, \mathrm{AB}$ の中点をそれぞれ $\mathrm{L}, \mathrm{M}, \mathrm{N}$ とおく.
+
+このとき, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+
+</div>
 
 ### 証明
 

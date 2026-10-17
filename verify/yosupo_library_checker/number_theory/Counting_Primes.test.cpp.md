@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_primes
@@ -286,7 +286,7 @@ data:
   path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
 layout: document

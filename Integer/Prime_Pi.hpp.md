@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Quotients.hpp
     title: "\u5546\u306E\u5217\u6319 (Quotients)"
   - icon: ':question:'
@@ -30,12 +30,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "`N` \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u6570\u3092\u6C42\u3081\
       \u308B."
@@ -291,7 +291,7 @@ data:
   path: Integer/Prime_Pi.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
 documentation_of: Integer/Prime_Pi.hpp

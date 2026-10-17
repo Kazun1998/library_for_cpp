@@ -23,52 +23,52 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Count_Spanning_Trees.hpp
     title: "\u5168\u57DF\u6728\u306E\u8A08\u4E0A"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector.hpp
     title: "\u6570\u30D9\u30AF\u30C8\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Vector_Space.hpp
     title: "\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Subspace.hpp
     title: "\u884C\u5217\u304C\u4F5C\u308B\u7A7A\u9593"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Matrix_Vectors.hpp
     title: Linear_Algebra/Matrix_Vectors.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u8907\u6570\u306E\u884C\u5217\u3092\u4E26\u3079\u3066\u4E00\u3064\
       \u306E\u5927\u304D\u306A\u884C\u5217\uFF08\u30D6\u30ED\u30C3\u30AF\u884C\u5217\
@@ -516,7 +516,7 @@ data:
   - Linear_Algebra/Field_Vector_Space.hpp
   - Graph/Graph/Count_Spanning_Trees.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp

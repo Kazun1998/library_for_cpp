@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Discrete_Log.hpp
@@ -309,7 +309,7 @@ data:
   path: Modulo/Discrete_Log.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
 documentation_of: Modulo/Discrete_Log.hpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
   - icon: ':question:'
@@ -30,12 +30,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Linear_Algebra/Rank.hpp
@@ -371,7 +371,7 @@ data:
   path: Linear_Algebra/Rank.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
 documentation_of: Linear_Algebra/Rank.hpp

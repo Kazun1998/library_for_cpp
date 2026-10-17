@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
   - icon: ':question:'
@@ -26,16 +26,16 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Eulerian_Trail.hpp
     title: "\u6709\u5411 Graph \u306B\u304A\u3051\u308B Eulerian Trail"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Path.hpp
     title: Graph/Digraph/Path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Strongly_Connected_Components.hpp
     title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -45,18 +45,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/1C.test.cpp
     title: verify/aizu_online_judge/grl/1C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
     title: verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
     title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
     title: verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u5F27"
     links:
@@ -433,7 +433,7 @@ data:
   - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Strongly_Connected_Components.test.cpp
   - verify/yosupo_library_checker/graph/Directed_Dijkstra.test.cpp

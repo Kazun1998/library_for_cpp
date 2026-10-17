@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
     title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Linear_Algebra/Find_Linear_Recurrence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
@@ -348,7 +348,7 @@ data:
   path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
 layout: document

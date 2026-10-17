@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
   - icon: ':question:'
@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':x:'
@@ -742,7 +742,14 @@ $\boldsymbol{a}, \boldsymbol{b} \in F^n$ とする. $\boldsymbol{a}, \boldsymbol
 
 ここで, フーリエ変換と畳み込み演算について, 以下の重大な式が成り立つ.
 
-> $\mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b}$
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$$\mathcal{F}_n(\boldsymbol{a} * \boldsymbol{b}) = \mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b}$$
+
+</div>
 
 #### 証明
 

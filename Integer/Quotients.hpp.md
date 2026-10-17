@@ -23,19 +23,19 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Quotients.hpp
@@ -230,7 +230,7 @@ data:
   requiredBy:
   - Integer/Prime_Pi.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
@@ -255,7 +255,15 @@ title: "\u5546\u306E\u5217\u6319 (Quotients)"
 
 ### 主となる定理の証明
 以下の定理が成り立つ.
-> $ \\# E_N = O(\sqrt{N})$
+
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$ \\# E_N = O(\sqrt{N})$
+
+</div>
 
 #### 証明
 

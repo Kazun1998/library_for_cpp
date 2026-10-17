@@ -32,13 +32,13 @@ data:
   - icon: ':warning:'
     path: Integer/Interval_Sieve_of_Eratosthenes.hpp
     title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u6570\u5224\u5B9A"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime_Pi.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570\u8A08\u4E0A $\\pi(x)$"
   - icon: ':x:'
@@ -57,16 +57,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/ntl/1D.test.cpp
     title: verify/aizu_online_judge/ntl/1D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
     title: verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
     title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - icon: ':x:'

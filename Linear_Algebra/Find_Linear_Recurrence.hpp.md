@@ -23,7 +23,7 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
     title: "\u758E\u884C\u5217\u306B\u304A\u3051\u308B\u884C\u5217\u5F0F"
   - icon: ':warning:'
@@ -31,7 +31,7 @@ data:
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306B\u304A\u3051\u308B\u7B2C $N$ \u9805\
       \u306E\u4E88\u6E2C"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
     title: verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "Berlekamp-Massey\u6CD5\u306B\u3088\u308B\u6700\u77ED\u7DDA\u5F62\
       \u6F38\u5316\u5F0F\u306E\u767A\u898B"
@@ -289,7 +289,7 @@ data:
   - Linear_Algebra/Predict_Nth_Term.hpp
   - Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
   - verify/yosupo_library_checker/other/Find_Linear_Recurrence.test.cpp

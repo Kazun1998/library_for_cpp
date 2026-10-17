@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
     title: verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Union_Find.hpp
@@ -72,7 +72,7 @@ data:
   requiredBy:
   - Graph/Weighted_Graph/Kruskal.hpp
   timestamp: '2026-10-15 23:30:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find.test.cpp

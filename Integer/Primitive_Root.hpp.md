@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Odd_Montgomery_Multiplication.hpp
     title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
   - icon: ':question:'
@@ -454,9 +454,14 @@ $\mathbb{Z}/n \mathbb{Z}$ における原始根を求める.
 
 $g \in \mathbb{Z} / n \mathbb{Z}$ について, $\operatorname{ord} g = \varphi(n)$ が成り立つ時, $g$ は $\mathbb{Z} / n \mathbb{Z}$ における原始根という.
 
-## Theory 
+## Theory
 
 ### 原始根の存在性
+
+<div class="theorem" markdown="1">
+
+定理 1
+---
 
 原始根の存在性について, 以下の特徴づけがある.
 
@@ -466,12 +471,21 @@ $g \in \mathbb{Z} / n \mathbb{Z}$ について, $\operatorname{ord} g = \varphi(
   * 奇素数 $p$ と正の整数 $k$ を用いて, $n = p^k$ である.
   * 奇素数 $p$ と正の整数 $k$ を用いて, $n = 2p^k$ である.
 
+</div>
+
 ### 判定条件
 
 $g \in \mathbb{Z}/n \mathbb{Z}$ が原始根かどうかを判定する. そのためには, 以下の特徴づけを用いる.
 
+<div class="theorem" markdown="1">
+
+定理 2
+---
+
 * (a) $g$ は $\mathbb{Z}/n \mathbb{Z}$ における原始根である.
 * (b) 任意の $\varphi(n)$ の素因数 $q$ に対して, $g^{\frac{\varphi(n)}{q}} \neq 1$ である.
+
+</div>
 
 **証明**
 

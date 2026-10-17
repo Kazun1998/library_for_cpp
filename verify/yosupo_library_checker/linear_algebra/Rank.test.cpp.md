@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Rank.hpp
     title: Linear_Algebra/Rank.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Reduction.hpp
     title: Linear_Algebra/Reduction.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
@@ -421,7 +421,7 @@ data:
   path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
 layout: document

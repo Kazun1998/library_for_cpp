@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Field_Matrix.hpp
     title: "\u4F53\u4E0A\u306E\u884C\u5217"
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30B0\u30E9\u30D5 G \u306E\u5168\u57DF\u6728\u306E\u500B\u6570\
       \u3092\u6C42\u3081\u308B."
@@ -457,7 +457,7 @@ data:
   path: Graph/Graph/Count_Spanning_Trees.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
 documentation_of: Graph/Graph/Count_Spanning_Trees.hpp

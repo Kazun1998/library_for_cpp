@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':question:'
@@ -375,11 +375,19 @@ $X \in \mathbb{Z}/M \mathbb{Z}$ に対して, $X$ の位数を求める.
 
 $X \in \mathbb{Z}/M \mathbb{Z}$ の位数とは, $ X^K = 1 $ を満たす最小の正の整数 $K$ として定義される.
 
-位数が存在することに関する以下の命題を証明する.
+位数が存在することに関する以下の定理を証明する.
 
-> $X \in \mathbb{Z}/M \mathbb{Z}$ に対して, 以下は同値である.
-> * (a) $X^K = 1$ となる正の整数 $K$ が存在する.
-> * (b) $X$ は可逆である.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$X \in \mathbb{Z}/M \mathbb{Z}$ に対して, 以下は同値である.
+
+* (a) $X^K = 1$ となる正の整数 $K$ が存在する.
+* (b) $X$ は可逆である.
+
+</div>
 
 ### 証明
 

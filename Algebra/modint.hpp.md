@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
   - icon: ':question:'
@@ -137,37 +137,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
     title: verify/yosupo_library_checker/graph/Count_Spanning_Trees_Undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
     title: verify/yosupo_library_checker/graph/Enumerate_Triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Matrix_Product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Power_Matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':x:'

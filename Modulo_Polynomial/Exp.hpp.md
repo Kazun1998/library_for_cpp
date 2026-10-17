@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bell_Number.hpp
     title: "Bell \u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Bernoulli_Number.hpp
     title: "Bernoulli \u6570"
   - icon: ':heavy_check_mark:'
@@ -67,7 +67,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
     title: verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
     title: verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
   - icon: ':x:'

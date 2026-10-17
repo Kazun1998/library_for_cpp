@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: Modulo/Composite.hpp
     title: "\u5270\u4F59\u985E\u306E\u5408\u6210"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Discrete_Log.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
   - icon: ':x:'
@@ -45,7 +45,7 @@ data:
     path: Modulo/Tower.hpp
     title: "\u6307\u6570\u30BF\u30EF\u30FC"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
     title: verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: verify/yukicoder/Modulo_Order.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Modulo.hpp
@@ -386,7 +386,7 @@ data:
   - Modulo/Composite.hpp
   - Modulo/Order.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
   - verify/yosupo_library_checker/number_theory/Discrete_Log.test.cpp

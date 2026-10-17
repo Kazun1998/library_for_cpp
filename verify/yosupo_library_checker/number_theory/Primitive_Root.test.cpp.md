@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Odd_Montgomery_Multiplication.hpp
     title: "\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
   - icon: ':question:'

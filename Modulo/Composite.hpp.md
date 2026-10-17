@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':question:'

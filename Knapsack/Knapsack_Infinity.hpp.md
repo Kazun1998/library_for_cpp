@@ -301,10 +301,17 @@ Knapsack 問題を解く.
 
 以下で定義される最大化問題のことを, 「Knapsack 問題」という.
 
-> * maximize $\displaystyle \sum_{i=1}^N v_i x_i$.
-> * subject to
->    * $\displaystyle \sum_{i=1}^N w_i x_i \leq W$.
->    * $x_i \in \mathbb{N}$.
+<div class="problem" markdown="1">
+
+Knapsack 問題
+---
+
+* maximize $\displaystyle \sum_{i=1}^N v_i x_i$.
+* subject to
+  * $\displaystyle \sum_{i=1}^N w_i x_i \leq W$.
+  * $x_i \in \mathbb{N}$.
+
+</div>
 
 ## History
 

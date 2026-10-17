@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Linear_Algebra/Find_Linear_Recurrence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':question:'

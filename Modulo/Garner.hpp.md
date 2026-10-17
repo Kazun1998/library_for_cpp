@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':question:'

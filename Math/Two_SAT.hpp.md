@@ -422,7 +422,14 @@ title: 2-SAT
 
 SATISFIABILITY (SAT) とは, 次のような問題である.
 
-> $2N$ 個のリテラルからなる論理式 $\varphi(X_1,\dots, X_N)$ に対して, これを $\mathbb{T}$ にするような $X_1, \dots, X_N$ への $\mathbb{T}, \mathbb{F}$ は存在するか?
+<div class="problem" markdown="1">
+
+SAT
+---
+
+$2N$ 個のリテラルからなる論理式 $\varphi(X_1,\dots, X_N)$ に対して, これを $\mathbb{T}$ にするような $X_1, \dots, X_N$ への $\mathbb{T}, \mathbb{F}$ は存在するか?
+
+</div>
 
 また, SAT のうち, 次のような特別な場合には名前がついている.
 
@@ -431,13 +438,20 @@ SATISFIABILITY (SAT) とは, 次のような問題である.
 
 つまり, 2-SAT とは次のような問題である.
 
-> リテラル全体の集合を $\mathcal{X}:=\\{X_1, \ldots, X_N, \lnot X_1, \dots, \lnot X_N\\}$ とする.
->
-> $j=1,2, \dots, M$ に対して, $F_j, G_j \in \mathcal{X}$ とする.
->
-> $$\varphi(X_1, \dots, X_N):=\bigwedge_{j=1}^M (F_j \lor G_j)$$
->
-> と定めるとき, $\varphi(X_1, \dots, X_N)=\mathbb{T}$ となるような　$X_1, \dots, X_N$ への $\mathbb{T}, \mathbb{F}$ の割り当ては存在するか?
+<div class="problem" markdown="1">
+
+2-SAT
+---
+
+リテラル全体の集合を $\mathcal{X}:=\\{X_1, \ldots, X_N, \lnot X_1, \dots, \lnot X_N\\}$ とする.
+
+$j=1,2, \dots, M$ に対して, $F_j, G_j \in \mathcal{X}$ とする.
+
+$$\varphi(X_1, \dots, X_N):=\bigwedge_{j=1}^M (F_j \lor G_j)$$
+
+と定めるとき, $\varphi(X_1, \dots, X_N)=\mathbb{T}$ となるような　$X_1, \dots, X_N$ への $\mathbb{T}, \mathbb{F}$ の割り当ては存在するか?
+
+</div>
 
 ## Theory
 

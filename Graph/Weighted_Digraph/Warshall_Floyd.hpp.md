@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
     title: "\u6709\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Path.hpp
     title: Graph/Digraph/Path.hpp
   - icon: ':question:'

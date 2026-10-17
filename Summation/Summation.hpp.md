@@ -529,11 +529,20 @@ $$\operatorname{clamp}(x) := \begin{cases} d & (x \lt d) \\ x & (d \leq x \leq u
 
 $$ \operatorname{clamp}(x) = \max(d, \min(x, u)) $$
 
-が成り立つ. このとき, 
+が成り立つ.
+
+<div class="proposition" markdown="1">
+
+命題 1
+---
 
 $$ \operatorname{clamp}(x) = x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x) $$
 
-が成り立つ. これを証明する.
+が成り立つ.
+
+</div>
+
+**証明**
 
 $$\begin{align*}
 x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x)

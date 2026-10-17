@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Common.hpp
     title: "\u91CD\u307F\u306A\u3057\u3092\u8868\u3059\u578B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Digraph.hpp
     title: "\u6709\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Digraph/Path.hpp
     title: Graph/Digraph/Path.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
     title: verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Digraph/Eulerian_Trail.hpp
@@ -369,7 +369,7 @@ data:
   path: Graph/Digraph/Eulerian_Trail.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
 documentation_of: Graph/Digraph/Eulerian_Trail.hpp

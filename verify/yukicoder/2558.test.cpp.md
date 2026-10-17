@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: Modulo/Composite.hpp
     title: "\u5270\u4F59\u985E\u306E\u5408\u6210"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
   - icon: ':question:'

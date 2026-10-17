@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Linear_Algebra/Find_Linear_Recurrence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
     title: verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u758E\u884C\u5217\u306E\u884C\u5217\u5F0F\u3092\u8A08\u7B97\u3059\
       \u308B (Wiedemann\u6CD5)"
@@ -330,7 +330,7 @@ data:
   path: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/linear_algebra/Determinant_of_Sparse_Matrix.test.cpp
 documentation_of: Linear_Algebra/Determinant_of_Sparse_Matrix.hpp
@@ -349,7 +349,14 @@ $A$ を次数 $N$ の行列とする. また, $\boldsymbol{u}, \boldsymbol{v} \i
 
 このとき, 以下が従う.
 
-> $d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+<div class="theorem" markdown="1">
+
+定理 1
+---
+
+$d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+
+</div>
 
 **証明**
 

@@ -23,20 +23,20 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Miller_Rabin_Primality_Test.hpp
     title: "\u30DF\u30E9\u30FC\u30FB\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\u6CD5"
-  - icon: ':x:'
+  - icon: ':question:'
     path: Integer/Pollard_Rho.hpp
     title: Integer/Pollard_Rho.hpp
   - icon: ':x:'
     path: Integer/Primitive_Root.hpp
     title: "\u539F\u59CB\u6839"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
     title: verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
     title: verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u5270\u4F59"
     links:
@@ -297,7 +297,7 @@ data:
   - Integer/Miller_Rabin_Primality_Test.hpp
   - Integer/Primitive_Root.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
   - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp

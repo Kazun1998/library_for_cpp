@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: Math/Floor_Linear_Sum.hpp
     title: Floor Linear Sum
   - icon: ':question:'
