@@ -390,6 +390,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Integer/Euler_Totient.hpp
       title: "Euler's Totient \u95A2\u6570"
+    - icon: ':heavy_check_mark:'
+      path: Integer/Integer_Equation.hpp
+      title: "\u6574\u6570\u4FC2\u6570\u306E\u591A\u9805\u5F0F\u306B\u3088\u308B\u65B9\
+        \u7A0B\u5F0F"
+    - icon: ':heavy_check_mark:'
+      path: Integer/Integer_Inequality.hpp
+      title: "\u6574\u6570\u4FC2\u6570\u306E\u591A\u9805\u5F0F\u306B\u3088\u308B\u4E0D\
+        \u7B49\u5F0F"
     - icon: ':warning:'
       path: Integer/Interval_Prime_Factorization.hpp
       title: "\u533A\u9593\u7BE9\u306B\u3088\u308B\u7D20\u56E0\u6570\u5206\u89E3"
@@ -943,6 +951,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/original/Functional_Graph.test.cpp
       title: verify/original/Functional_Graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Integer_Equation.test.cpp
+      title: verify/original/Integer_Equation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Integer_Inequality.test.cpp
+      title: verify/original/Integer_Inequality.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/Partition_Q.test.cpp
       title: verify/original/Partition_Q.test.cpp
