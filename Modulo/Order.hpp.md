@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Divisors.hpp
     title: Integer/Divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Euler_Totient.hpp
     title: "Euler's Totient \u95A2\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Integer/Prime.hpp
     title: Integer/Prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo/Modulo.hpp
     title: Modulo/Modulo.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yukicoder/Modulo_Order.test.cpp
     title: verify/yukicoder/Modulo_Order.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo/Order.hpp
@@ -359,7 +359,7 @@ data:
   path: Modulo/Order.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/Modulo_Order.test.cpp
 documentation_of: Modulo/Order.hpp
@@ -389,7 +389,10 @@ $X \in \mathbb{Z}/M \mathbb{Z}$ に対して, 以下は同値である.
 
 </div>
 
-### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 * (a) ならば (b)
 
@@ -401,7 +404,7 @@ $M$ 個の値 $X^0, X^1, X^2, \dots, X^M$ について, 鳩ノ巣原理により
 
 $X$ は可逆であるため, $X^{b-a}=1$ である. $b-a \gt 0$ であるため, $X^K=1$ となる正の整数 $K$ が存在する.
 
-$\square$
+</div>
 
 これ以降, $X$ が可逆であるとして, $X$ の位数を求める.
 

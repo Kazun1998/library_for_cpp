@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Segment_Tree/preset/Range_Sum.hpp
     title: Segment_Tree/preset/Range_Sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Tree/Subtree_Monoid_Vertex_Query.hpp
     title: "\u90E8\u5206\u6728\u306B\u95A2\u3059\u308B\u30AF\u30A8\u30EA"
   _extendedVerifiedWith:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
     title: verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
     title: verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Segment_Tree.hpp
@@ -326,7 +326,7 @@ data:
   - Segment_Tree/preset/Range_Min.hpp
   - Segment_Tree/preset/Range_Sum.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
   - verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp

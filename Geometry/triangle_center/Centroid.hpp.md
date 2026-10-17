@@ -10,25 +10,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Triangle.hpp
     title: Geometry/object/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -329,7 +329,10 @@ title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
 
 </div>
 
-### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 線分 $\mathrm{AL}, \mathrm{BM}$ の交点を $\mathrm{G}$ とする. このとき, それぞれ
 
@@ -384,7 +387,7 @@ $$ G = \dfrac{\mathrm{A} + \mathrm{B} + \mathrm{C}}{3} = \dfrac{1}{3} \mathrm{C}
 
 以上から, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
 
-$\square$
+</div>
 
 この定理における, 点 $\mathrm{G}$ を三角形 $\mathrm{ABC}$ の重心という.
 

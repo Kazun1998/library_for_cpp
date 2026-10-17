@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -542,7 +542,10 @@ $$ \operatorname{clamp}(x) = x - \operatorname{relu}(x-u) + \operatorname{relu}(
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
 x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x)
@@ -594,6 +597,8 @@ $$\begin{align*}
 よって,
 
 $$ \operatorname{clamp}(x) = x - \operatorname{relu}(x-u) + \operatorname{relu}(d-x) $$
+
+</div>
 
 であるため, 右辺についてそれぞれ総和を取ることで総和を計算できる.
 

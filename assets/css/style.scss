@@ -57,3 +57,32 @@
 .remark > :last-child {
   margin-bottom: 0;
 }
+
+/* 証明. 枠で囲まず, 左の細い線と末尾の □ で本文と区別する. */
+.proof {
+  --c: #6b7a90;
+  border-left: 3px solid var(--c);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 1em 0;
+}
+
+.proof > :first-child {
+  margin-top: 0;
+}
+
+.proof > h2:first-child {
+  color: var(--c);
+  font-size: 1em;
+  font-weight: bold;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0 0 0.4em;
+}
+
+/* 末尾に □ を右寄せで自動表示する (本文に $\square$ は書かない). */
+.proof::after {
+  content: "\25A1";
+  display: block;
+  text-align: right;
+  color: var(--c);
+}

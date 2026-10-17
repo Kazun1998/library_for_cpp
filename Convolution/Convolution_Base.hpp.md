@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy:
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/Semilattice_Convolution_Base.hpp
     title: "\u6DFB\u5B57\u304C\u534A\u675F\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Convolution/Subset_Convolution.hpp
     title: "\u6DFB\u5B57\u304C\u96C6\u5408\u3067\u3042\u308B\u7573\u307F\u8FBC\u307F\
       \ (Subset Convolution)"
@@ -64,12 +64,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
     title: verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
     title: verify/yosupo_library_checker/subset_power_series/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Convolution/Convolution_Base.hpp
@@ -311,7 +311,7 @@ data:
   - Convolution/Semilattice_Convolution_Base.hpp
   - Convolution/Lcm_Convolution.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Chromatic_Number.test.cpp
   - verify/yosupo_library_checker/convolution/Bitwise_And_Convolution.test.cpp

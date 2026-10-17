@@ -7,25 +7,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Graph/Graph.hpp
     title: "\u7121\u5411 Graph"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -355,7 +355,10 @@ $V$ において, 連結であるという関係は同値になる.
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 * (反射律) 任意の $v \in V$ に対して, 移動しない歩道 $(v)$ が $v$ と $v$ を結ぶ歩道である. よって, $v, v$ は連結である.
 * (対称律) $u, v \in V$ 連結であるとする. このとき, 頂点 $u$ と頂点 $v$ を結ぶ歩道を $(u = v_0, e_1, v_1, \dots, v_{n-1}, e_n, v_n = v)$ としたとき, $(v = v_n, e_n, v_{n-1}, \dots, v_1, e_1, v_0 = u)$ は頂点 $v$ と $u$ を結ぶ歩道である. よって, $v, u$ は連結である.
@@ -369,6 +372,8 @@ $V$ において, 連結であるという関係は同値になる.
 
   は $u, w$ を結ぶ歩道になる. よって, $u, w$ は連結である.
 
+</div>
+
 <div class="theorem" markdown="1">
 
 定理 2
@@ -378,7 +383,10 @@ $V$ において, 連結であるという関係は, 辺による隣接関係か
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 $V$ 上の関係 $\sim$ を「連結である」という関係とし, $R$ を「辺によって隣接している」という関係とする. $R$ から生成する同値関係を $\approx$ とする. すなわち, $\approx$ は $R$ を含む同値関係のうち最小のものである. $\sim$ と $\approx$ が一致することを示す.
 
@@ -392,6 +400,8 @@ $V$ 上の関係 $\sim$ を「連結である」という関係とし, $R$ を�
   * $\approx$ は同値関係であるから, 推移律より $u = v_0 \approx v_n = v$ である.
 
 以上より, $\sim$ と $\approx$ は一致する.
+
+</div>
 
 
 

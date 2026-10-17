@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
     title: verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "x * y \u3092\u6C42\u3081\u308B\u305F\u3081\u306E\u30D8\u30EB\u30D1\
       \u30FC\u95A2\u6570"
@@ -399,7 +399,7 @@ data:
   path: Algebra/Nimber.hpp
   requiredBy: []
   timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Nim_Product.test.cpp
 documentation_of: Algebra/Nimber.hpp
@@ -526,7 +526,10 @@ $x \in F_{2^n}$ は $x \neq 0$ であるとする. Nimber 積の意味での $x$
 
 </div>
 
-(証明)
+<div class="proof" markdown="1">
+
+証明
+---
 
 $x, y \in F_{2^n}$ に対して, $x \otimes x = y \otimes y$ とする. すると, $F_{2^n}$ は位数 $2$ の体であるため, Freshman's Dream により, $(x \oplus y) \otimes (x \oplus y) = 0$ が成り立つ.
 
@@ -535,6 +538,8 @@ $F_{2^n}$ は体であるため, $x \oplus y = 0$ である. つまり, $x = y$ 
 すると, $g: F_{2^n} \to F_{2^n}; x \mapsto x \otimes x$ は定義域と値域が同じ有限集合の $F_{2^n}$ である単射になるため, $g$ は全単射になる.
 
 故に, 任意の $b \in F_{2^n}$ に対して, $g(a) = b$ となる $a \in F_{2^n}$ がただ一つ存在する.
+
+</div>
 
 $b \in F_{2^n}$ に対して, $a \otimes a = b$ となる $a \in F_{2^n}$ のことを, $b$ の平方根といい, $\sqrt{b}$ と書く.
 

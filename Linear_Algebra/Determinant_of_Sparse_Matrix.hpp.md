@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Linear_Algebra/Find_Linear_Recurrence.hpp
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -358,7 +358,10 @@ $d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ と
 
 </div>
 
-**証明**
+<div class="proof" markdown="1">
+
+証明
+---
 
 Cayley-Hamilton の定理により, $c_0, c_1, \dots, c_{N-1} \in  F$ が存在して,
 
@@ -384,6 +387,8 @@ $$
 $$ d_{N+k} = c_{N-1} d_{N+k-1} + \dots + c_1 d_{N+1} + c_0 d_N $$
 
 を持つ.
+
+</div>
 
 ### アルゴリズムの構築
 

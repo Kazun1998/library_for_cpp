@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
     title: Modulo_Polynomial/Fast_Power_Series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
       \u5F0F\u74B0"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
     title: "\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u5909\u63DB, \u6570\u8AD6\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/exception.hpp
     title: template/exception.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/inout.hpp
     title: template/inout.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macro.hpp
     title: template/macro.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/math.hpp
     title: template/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
@@ -619,7 +619,10 @@ $$ S^{(1)}_{n,k} = S^{(1)}_{n-1,k-1} + (n-1) S^{(1)}_{n-1,k} \quad (n \geq 1, 0 
 
 </div>
 
-#### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
     \sum_{k=0}^n S^{(1)}_{n,k} x^k
@@ -634,7 +637,7 @@ $$ S^{(1)}_{n,k} = S^{(1)}_{n-1,k-1} + (n-1) S^{(1)}_{n-1,k} $$
 
 となる.
 
-$\square$
+</div>
 
 ### 組み合わせ理論による特徴づけ
 
@@ -647,7 +650,10 @@ $n$ 次置換群 $\mathfrak{S}\_n$ の元のうち, ちょうど $k$ 個の互�
 
 </div>
 
-#### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 $n$ 次置換群 $\sigma \in \mathfrak{S}\_n$ の元のうち, ちょうど $k$ 個の互いに交わらない巡回置換の数を $T_{n,k}$ とする. これは次のようにして作ることができる.
 
@@ -671,7 +677,7 @@ $$ T_{n,k} = T_{n-1,k-1} + (n-1) T_{n-1,k} $$
 
 この漸化式は, $S^{(1)}\_{n,k}$ と一致する. また, $T_{0,0} = 1$ であるため, $T_{n,k} = S^{(1)}\_{n,k}$ となる.
 
-$\square$
+</div>
 
 ### 多項式による性質
 
@@ -686,7 +692,10 @@ $$ t (t-1) (t-2) \cdots (t-(n-1)) = \sum_{k=0}^n (-1)^{n-k} S^{(1)}_{n,k} t^k $$
 
 </div>
 
-### 証明
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
     t (t-1) (t-2) \cdots (t-(n-1))
@@ -696,6 +705,8 @@ $$\begin{align*}
     &= (-1)^n \sum_{k=0}^n (-1)^k S^{(1)}_{n,k} t^k \\
     &= \sum_{k=0}^n (-1)^{n-k} S^{(1)}_{n,k} t^k \\
 \end{align*}$$
+
+</div>
 
 なお, 第 I 種 Stirling 数を $(-1)^{n-k} S^{(1)}_{n,k}$ として定義する流儀もある.
 
