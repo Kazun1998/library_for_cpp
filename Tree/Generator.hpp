@@ -1,3 +1,7 @@
+#pragma once
+
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Generator.hpp
+
 #include"Tree.hpp"
 
 Tree Generate_Tree(int N, vector<vector<int>> adjacent, int root, int offset = 0) {

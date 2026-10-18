@@ -11,10 +11,17 @@ Knapsack 問題の特殊系である 0-1 Knapsack 問題を解く.
 
 以下で定義される最大化問題のことを, 「0-1 Knapsack 問題」という.
 
-> * maximize $\displaystyle \sum_{i \in I} v_i x_i$.
-> * subject to
->    * $\displaystyle \sum_{i \in I} w_i x_i \leq W$.
->    * $x_i \in \\{0, 1 \\}$.
+<div class="problem" markdown="1">
+
+0-1 Knapsack 問題
+---
+
+* maximize $\displaystyle \sum_{i \in I} v_i x_i$.
+* subject to
+  * $\displaystyle \sum_{i \in I} w_i x_i \leq W$.
+  * $x_i \in \\{0, 1 \\}$.
+
+</div>
 
 ### 容量に着目して解く
 

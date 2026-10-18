@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Sqrt_Decomposer.hpp
+
 #include "Interval_Decomposer.hpp"
 
 /// @brief 平方分割による区間分解. ブロック全体を depth=0, 端の単独要素を depth=1 として列挙する.

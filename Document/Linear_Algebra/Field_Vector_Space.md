@@ -57,33 +57,57 @@ $$ V + W := \{ \boldsymbol{v} + \boldsymbol{w} \mid \boldsymbol{v} \in V, \bolds
 
 で定める. $V + W$ もまた $F^n$ の部分空間になる.
 
-**$V + W$ は基底の和集合が張る空間に一致する.**
+<div class="proposition" markdown="1">
 
-$\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q$ を $W$ の基底とする. このとき,
+命題 1
+---
+
+$V + W$ は基底の和集合が張る空間に一致する.
+
+すなわち, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q$ を $W$ の基底とすると,
 
 $$ V + W = \operatorname{Span}(\boldsymbol{e}_1, \dots, \boldsymbol{e}_p, \boldsymbol{f}_1, \dots, \boldsymbol{f}_q) $$
 
 が成り立つ.
 
-**証明**
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 ($\subseteq$) $\boldsymbol{x} \in V + W$ とすると, ある $\boldsymbol{v} \in V, \boldsymbol{w} \in W$ が存在して $\boldsymbol{x} = \boldsymbol{v} + \boldsymbol{w}$ と書ける. $\boldsymbol{v}$ は $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ の, $\boldsymbol{w}$ は $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q$ の線形結合で表せるため, $\boldsymbol{x}$ もそれらの線形結合で表せる. よって $\boldsymbol{x} \in \operatorname{Span}(\boldsymbol{e}_1, \dots, \boldsymbol{e}_p, \boldsymbol{f}_1, \dots, \boldsymbol{f}_q)$.
 
-($\supseteq$) $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in V \subseteq V + W$ であり, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q \in W \subseteq V + W$ である. $V+W$ は部分空間なので, これらの線形結合もまた $V + W$ に含まれる. $\blacksquare$
+($\supseteq$) $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in V \subseteq V + W$ であり, $\boldsymbol{f}_1, \dots, \boldsymbol{f}_q \in W \subseteq V + W$ である. $V+W$ は部分空間なので, これらの線形結合もまた $V + W$ に含まれる.
+
+</div>
 
 これにより, $V + W$ の基底は, $V$ の基底と $W$ の基底を合わせたベクトルの組に対して掃き出し法 (`add_vector` の繰り返し適用) を行うことで得られる. これが `operator+` / `operator+=` の実装方針である.
 
 ### 包含関係
 
-$V, W$ を $F^n$ の部分空間とする. $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底とする.
+<div class="theorem" markdown="1">
 
-**$V \subseteq W$ であることと, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ であることは同値である.**
+定理 2
+---
 
-**証明**
+$V, W$ を $F^n$ の部分空間とし, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p$ を $V$ の基底とする.
+
+このとき, $V \subseteq W$ であることと, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ であることは同値である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 ($\Rightarrow$) $V \subseteq W$ とする. $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in V$ であるから, $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ である.
 
-($\Leftarrow$) $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ とする. 任意の $\boldsymbol{v} \in V$ は, ある $\alpha_1, \dots, \alpha_p \in F$ を用いて $\boldsymbol{v} = \alpha_1 \boldsymbol{e}_1 + \dots + \alpha_p \boldsymbol{e}_p$ と書ける. $W$ は部分空間であるため, この線形結合もまた $W$ に含まれる. よって $\boldsymbol{v} \in W$ となり, $V \subseteq W$ である. $\blacksquare$
+($\Leftarrow$) $\boldsymbol{e}_1, \dots, \boldsymbol{e}_p \in W$ とする. 任意の $\boldsymbol{v} \in V$ は, ある $\alpha_1, \dots, \alpha_p \in F$ を用いて $\boldsymbol{v} = \alpha_1 \boldsymbol{e}_1 + \dots + \alpha_p \boldsymbol{e}_p$ と書ける. $W$ は部分空間であるため, この線形結合もまた $W$ に含まれる. よって $\boldsymbol{v} \in W$ となり, $V \subseteq W$ である.
+
+</div>
 
 すなわち, $V \subseteq W$ であるかどうかは, $V$ のすべての元について判定する必要はなく, $V$ の基底の各ベクトルが $W$ に含まれるか (`contains`) を判定すれば十分である. これが `operator<=` の実装方針であり, 部分空間の等価性 $V = W$ の判定 (`operator==`) も, $\dim V = \dim W$ かつ $V \subseteq W$ であることの確認に帰着できる.
 

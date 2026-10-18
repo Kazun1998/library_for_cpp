@@ -1,3 +1,7 @@
+#pragma once
+
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Search/Value.hpp
+
 #include"../template/template.hpp"
 
 // ソート済みの vector<T> A に対して, x 未満で最大の要素を求める.

@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/concepts.hpp
+
 // 単項演算子コンセプト
 template <typename Op, typename X>
 concept Unary_Operator_Concept = requires(Op op, const X &x) {

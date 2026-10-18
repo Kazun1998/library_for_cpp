@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Pollard_Rho.hpp
+
 #include "../template/template.hpp"
 #include "Prime.hpp"
 #include "Odd_Montgomery_Multiplication.hpp"

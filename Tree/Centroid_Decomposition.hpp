@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Tree/Centroid_Decomposition.hpp
+
 #include"../template/template.hpp"
 #include"Tree.hpp"
 

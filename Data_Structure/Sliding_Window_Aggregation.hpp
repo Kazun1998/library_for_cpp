@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Sliding_Window_Aggregation.hpp
+
 #include "../template/template.hpp"
 #include "../template/concepts.hpp"
 

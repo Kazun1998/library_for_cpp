@@ -16,11 +16,22 @@ $$ x (x+1) (x+2) \cdots (x+n-1) = \sum_{k=0}^n S^{(1)}_{n,k} x^k $$
 ## Theory
 
 ### 漸化式としての特徴づけ
+
+<div class="proposition" markdown="1">
+
+命題 1
+---
+
 第 I 種 Stirling 数 $S^{(1)}_{n,k}$ について, 以下が成り立つ.
 
 $$ S^{(1)}_{n,k} = S^{(1)}_{n-1,k-1} + (n-1) S^{(1)}_{n-1,k} \quad (n \geq 1, 0 \leq k \leq n) $$
 
-#### 証明
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
     \sum_{k=0}^n S^{(1)}_{n,k} x^k
@@ -35,14 +46,23 @@ $$ S^{(1)}_{n,k} = S^{(1)}_{n-1,k-1} + (n-1) S^{(1)}_{n-1,k} $$
 
 となる.
 
-$\square$
+</div>
 
 ### 組み合わせ理論による特徴づけ
-$S^{(1)}_{n,k}$ について, 以下が成り立つ.
 
-> $n$ 次置換群 $\mathfrak{S}\_n$ の元のうち, ちょうど $k$ 個の互いに交わらない巡回置換の積で表せる置換の数は $S^{(1)}_{n,k}$ である.
+<div class="proposition" markdown="1">
 
-#### 証明
+命題 2
+---
+
+$n$ 次置換群 $\mathfrak{S}\_n$ の元のうち, ちょうど $k$ 個の互いに交わらない巡回置換の積で表せる置換の数は $S^{(1)}_{n,k}$ である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 $n$ 次置換群 $\sigma \in \mathfrak{S}\_n$ の元のうち, ちょうど $k$ 個の互いに交わらない巡回置換の数を $T_{n,k}$ とする. これは次のようにして作ることができる.
 
@@ -66,15 +86,25 @@ $$ T_{n,k} = T_{n-1,k-1} + (n-1) T_{n-1,k} $$
 
 この漸化式は, $S^{(1)}\_{n,k}$ と一致する. また, $T_{0,0} = 1$ であるため, $T_{n,k} = S^{(1)}\_{n,k}$ となる.
 
-$\square$
+</div>
 
 ### 多項式による性質
+
+<div class="theorem" markdown="1">
+
+定理 3
+---
 
 第 I 種 Stirling 数について, 以下が成り立つ.
 
 $$ t (t-1) (t-2) \cdots (t-(n-1)) = \sum_{k=0}^n (-1)^{n-k} S^{(1)}_{n,k} t^k $$
 
-### 証明
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 $$\begin{align*}
     t (t-1) (t-2) \cdots (t-(n-1))
@@ -84,6 +114,8 @@ $$\begin{align*}
     &= (-1)^n \sum_{k=0}^n (-1)^k S^{(1)}_{n,k} t^k \\
     &= \sum_{k=0}^n (-1)^{n-k} S^{(1)}_{n,k} t^k \\
 \end{align*}$$
+
+</div>
 
 なお, 第 I 種 Stirling 数を $(-1)^{n-k} S^{(1)}_{n,k}$ として定義する流儀もある.
 
