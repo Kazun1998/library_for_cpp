@@ -11,10 +11,21 @@ documentation_of: //Geometry/triangle_center/Centroid.hpp
 
 以下の定理がある.
 
-> 三角形 $\mathrm{ABC}$ において, 線分 $\mathrm{BC}, \mathrm{CA}, \mathrm{AB}$ の中点をそれぞれ $\mathrm{L}, \mathrm{M}, \mathrm{N}$ とおく.
-> このとき, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+<div class="theorem" markdown="1">
 
-### 証明
+定理 1
+---
+
+三角形 $\mathrm{ABC}$ において, 線分 $\mathrm{BC}, \mathrm{CA}, \mathrm{AB}$ の中点をそれぞれ $\mathrm{L}, \mathrm{M}, \mathrm{N}$ とおく.
+
+このとき, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 線分 $\mathrm{AL}, \mathrm{BM}$ の交点を $\mathrm{G}$ とする. このとき, それぞれ
 
@@ -69,7 +80,7 @@ $$ G = \dfrac{\mathrm{A} + \mathrm{B} + \mathrm{C}}{3} = \dfrac{1}{3} \mathrm{C}
 
 以上から, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
 
-$\square$
+</div>
 
 この定理における, 点 $\mathrm{G}$ を三角形 $\mathrm{ABC}$ の重心という.
 

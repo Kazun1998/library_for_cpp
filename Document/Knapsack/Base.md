@@ -17,10 +17,17 @@ Knapsack 問題に関する解を定める.
 
 以下で定義される最大化問題のことを, 「Knapsack 問題」という.
 
-> * maximize $\displaystyle \sum_{i \in I} v_i x_i$.
-> * subject to
->    * $\displaystyle \sum_{i \in I} w_i x_i \leq W$.
->    * $x_i \in M_i$.
+<div class="problem" markdown="1">
+
+Knapsack 問題
+---
+
+* maximize $\displaystyle \sum_{i \in I} v_i x_i$.
+* subject to
+  * $\displaystyle \sum_{i \in I} w_i x_i \leq W$.
+  * $x_i \in M_i$.
+
+</div>
 
 この問題は一般には NP 困難ではあるが, 特別な強い制約がつくと, 現実的な時間で解けるようになる.
 

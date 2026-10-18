@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Graph/Connected_Components.hpp
+
 #include"Graph.hpp"
 
 namespace graph {

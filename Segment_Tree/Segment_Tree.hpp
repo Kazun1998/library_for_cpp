@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Segment_Tree/Segment_Tree.hpp
+
 #include "../template/template.hpp"
 
 template<typename M, typename Op = function<M(M, M)>>

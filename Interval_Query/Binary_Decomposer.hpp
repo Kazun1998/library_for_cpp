@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Binary_Decomposer.hpp
+
 #include "Interval_Decomposer.hpp"
 
 /// @brief セグメント木型 (二分木) による区間分解. 根 [0, n) を depth=0 とし, mid = l + (r-l)/2 で再帰的に二分する.

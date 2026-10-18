@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
+
 template<typename G>
 class Binary_Indexed_Tree{
     private:

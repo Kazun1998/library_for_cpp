@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Sequence/Longest_Increasing_Subsequence.hpp
+
 #include"../template/template.hpp"
 
 template<typename O>

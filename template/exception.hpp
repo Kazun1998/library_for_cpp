@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/exception.hpp
+
 class NotExist: public exception {
     private:
     string message;

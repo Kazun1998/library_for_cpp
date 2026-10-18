@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Data_Structure/Disjoint_Sparse_Table.hpp
+
 #include"../template/bitop.hpp"
 
 template<typename M>

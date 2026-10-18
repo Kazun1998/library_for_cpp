@@ -11,9 +11,14 @@ $\mathbb{Z}/n \mathbb{Z}$ における原始根を求める.
 
 $g \in \mathbb{Z} / n \mathbb{Z}$ について, $\operatorname{ord} g = \varphi(n)$ が成り立つ時, $g$ は $\mathbb{Z} / n \mathbb{Z}$ における原始根という.
 
-## Theory 
+## Theory
 
 ### 原始根の存在性
+
+<div class="theorem" markdown="1">
+
+定理 1
+---
 
 原始根の存在性について, 以下の特徴づけがある.
 
@@ -23,14 +28,26 @@ $g \in \mathbb{Z} / n \mathbb{Z}$ について, $\operatorname{ord} g = \varphi(
   * 奇素数 $p$ と正の整数 $k$ を用いて, $n = p^k$ である.
   * 奇素数 $p$ と正の整数 $k$ を用いて, $n = 2p^k$ である.
 
+</div>
+
 ### 判定条件
 
 $g \in \mathbb{Z}/n \mathbb{Z}$ が原始根かどうかを判定する. そのためには, 以下の特徴づけを用いる.
 
+<div class="theorem" markdown="1">
+
+定理 2
+---
+
 * (a) $g$ は $\mathbb{Z}/n \mathbb{Z}$ における原始根である.
 * (b) 任意の $\varphi(n)$ の素因数 $q$ に対して, $g^{\frac{\varphi(n)}{q}} \neq 1$ である.
 
-**証明**
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 #### (a) ならば (b)
 
@@ -53,6 +70,8 @@ $g$ は $\mathbb{Z}/n \mathbb{Z}$ における原始根でないとする. $g^r 
 $$ g^{\frac{\varphi(n)}{q}} = g^{ra} = (g^r)^a = 1^a = 1 $$
 
 となり, (b) が成り立たなくなる.
+
+</div>
 
 
 ## Contents

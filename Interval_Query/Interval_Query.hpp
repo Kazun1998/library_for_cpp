@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Interval_Query/Interval_Query.hpp
+
 #include "Interval_Decomposer.hpp"
 
 /// @brief Interval_Decomposer による区間分解を用いて, 一点更新・区間クエリを行う汎用クラス.

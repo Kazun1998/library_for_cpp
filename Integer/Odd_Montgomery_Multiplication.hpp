@@ -1,4 +1,7 @@
 #pragma once
+
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Odd_Montgomery_Multiplication.hpp
+
 #include "../template/template.hpp"
 
 struct Odd_Montgomery_Multiplication {

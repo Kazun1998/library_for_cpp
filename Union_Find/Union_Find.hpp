@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Union_Find.hpp
+
 class Union_Find{
     private:
     int N;

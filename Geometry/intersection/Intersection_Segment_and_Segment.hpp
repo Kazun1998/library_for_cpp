@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/intersection/Intersection_Segment_and_Segment.hpp
+
 #include"../utility/Counter_Clockwise.hpp"
 #include"../object/Segment.hpp"
 

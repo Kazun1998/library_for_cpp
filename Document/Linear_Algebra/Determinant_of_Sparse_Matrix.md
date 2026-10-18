@@ -14,9 +14,19 @@ $A$ を次数 $N$ の行列とする. また, $\boldsymbol{u}, \boldsymbol{v} \i
 
 このとき, 以下が従う.
 
-> $d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+<div class="theorem" markdown="1">
 
-**証明**
+定理 1
+---
+
+$d_k := \left \langle \boldsymbol{u} \mid A^k \boldsymbol{v} \right \rangle$ としたとき, 列 $(d_k)$ は線形漸化式を持つ.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
 
 Cayley-Hamilton の定理により, $c_0, c_1, \dots, c_{N-1} \in  F$ が存在して,
 
@@ -42,6 +52,8 @@ $$
 $$ d_{N+k} = c_{N-1} d_{N+k-1} + \dots + c_1 d_{N+1} + c_0 d_N $$
 
 を持つ.
+
+</div>
 
 ### アルゴリズムの構築
 
