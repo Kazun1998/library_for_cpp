@@ -276,6 +276,9 @@ data:
     path: Graph/Graph/Two_Edge_Connected_Components.hpp
     title: Graph/Graph/Two_Edge_Connected_Components.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/Weighted_Digraph/Bellman_Ford.hpp
+    title: "Bellman-Ford \u6CD5"
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Digraph/Dijkstra.hpp
     title: Graph/Weighted_Digraph/Dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -768,6 +771,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/dsl/5B.test.cpp
     title: verify/aizu_online_judge/dsl/5B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/aizu_online_judge/grl/1B.test.cpp
+    title: verify/aizu_online_judge/grl/1B.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/1C.test.cpp
     title: verify/aizu_online_judge/grl/1C.test.cpp
@@ -1325,6 +1331,7 @@ data:
   - Graph/Graph/Lowlink.hpp
   - Graph/Graph/Eulerian_Trail.hpp
   - Graph/Graph/Connected_Components.hpp
+  - Graph/Weighted_Digraph/Bellman_Ford.hpp
   - Graph/Weighted_Digraph/Warshall_Floyd.hpp
   - Graph/Weighted_Digraph/Dijkstra.hpp
   - Summation/Summation.hpp
@@ -1557,6 +1564,7 @@ data:
   - verify/aizu_online_judge/cgl/7F.test.cpp
   - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/aizu_online_judge/grl/1C.test.cpp
+  - verify/aizu_online_judge/grl/1B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/aizu_online_judge/grl/4B.test.cpp

@@ -328,6 +328,9 @@ data:
   - name: Graph/Weighted_Digraph
     pages:
     - icon: ':heavy_check_mark:'
+      path: Graph/Weighted_Digraph/Bellman_Ford.hpp
+      title: "Bellman-Ford \u6CD5"
+    - icon: ':heavy_check_mark:'
       path: Graph/Weighted_Digraph/Dijkstra.hpp
       title: Graph/Weighted_Digraph/Dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -914,6 +917,9 @@ data:
       title: verify/aizu_online_judge/dsl/5B.test.cpp
   - name: verify/aizu_online_judge/grl
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/aizu_online_judge/grl/1B.test.cpp
+      title: verify/aizu_online_judge/grl/1B.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/1C.test.cpp
       title: verify/aizu_online_judge/grl/1C.test.cpp
