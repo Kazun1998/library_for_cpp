@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Semiring_Matrix.hpp
+
 #include "../template/template.hpp"
 #include "Extended_Algebra.hpp"
 

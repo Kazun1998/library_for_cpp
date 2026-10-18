@@ -13,9 +13,16 @@ documentation_of: //Imos/Imos_2.hpp
 
 $2$ 次元いもす法は, 以下の問いを高速に答えることができる. これ以降, $\otimes$ で線形写像やベクトルのテンソル積を表すことにする.
 
-> $Q$ 個の $u_q \leq d_q, l_q \leq r_q$ を満たす非負整数の組 $(u_q, d_q, l_q, r_q)$ と $\alpha_q \in A$ が与えられる.
->
-> このとき, $\displaystyle \sum_{q=1}^Q \alpha_q \left(\sum_{\substack{u_q \leq i \leq d_q \\ l_q \leq j \leq r_q}} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)$ の $0 \leq i < H, 0 \leq j < W$ における項を求めろ.
+<div class="problem" markdown="1">
+
+問題
+---
+
+$Q$ 個の $u_q \leq d_q, l_q \leq r_q$ を満たす非負整数の組 $(u_q, d_q, l_q, r_q)$ と $\alpha_q \in A$ が与えられる.
+
+このとき, $\displaystyle \sum_{q=1}^Q \alpha_q \left(\sum_{\substack{u_q \leq i \leq d_q \\ l_q \leq j \leq r_q}} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \right)$ の $0 \leq i < H, 0 \leq j < W$ における項を求めろ.
+
+</div>
 
 愚直な方法だと, $O(NHQ)$ 時間になるが, いもす法を使うことによって, $O(NH+Q)$ 時間に短縮できる.
 

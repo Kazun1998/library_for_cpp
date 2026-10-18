@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/utility/Perpendicular_Bisector.hpp
+
 #include"../object/Line.hpp"
 #include"../utility/Division_Point.hpp"
 

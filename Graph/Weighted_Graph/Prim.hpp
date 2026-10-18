@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Graph/Weighted_Graph/Prim.hpp
+
 #include"../../template/template.hpp"
 #include"../Graph/Graph.hpp"
 #include"Minimum_Spanning_Tree.hpp"

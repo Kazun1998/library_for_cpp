@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Math/Lagrange_Interpolation.hpp
+
 #include "../template/template.hpp"
 #include "../template/enumerable.hpp"
 #include "../Counting/Combination_Calculator.hpp"

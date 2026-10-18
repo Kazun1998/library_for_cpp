@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Quotients.hpp
+
 #include"../template/template.hpp"
 
 vector<tuple<ll, ll, ll>> Quotients(ll N) {

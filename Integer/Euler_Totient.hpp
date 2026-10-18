@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Integer/Euler_Totient.hpp
+
 #include"Prime.hpp"
 
 long long Euler_Totient(long long N, bool mode = true) {

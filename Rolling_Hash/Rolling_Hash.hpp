@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Rolling_Hash/Rolling_Hash.hpp
+
 #include "../template/template.hpp"
 #include "Rolling_Hash_Base.hpp"
 

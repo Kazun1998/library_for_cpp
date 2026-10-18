@@ -2,6 +2,11 @@
 
 ## Monge 行列
 
+<div class="definition" markdown="1">
+
+定義 1
+---
+
 $A$ を $n \times m$ 行列 ($A_{i,j}$ は全順序可換群 $G$ の元) とする.
 
 $A$ が **Monge 行列** であるとは, 任意の $0 \leq i_1 < i_2 < n$, $0 \leq j_1 < j_2 < m$ に対して
@@ -10,17 +15,40 @@ $$ A_{i_1,j_1} + A_{i_2,j_2} \leq A_{i_1,j_2} + A_{i_2,j_1} $$
 
 が成り立つことである. 不等号が逆向きのものは **逆 Monge 行列** という.
 
+</div>
+
 ### 隣接する成分による特徴づけ
+
+<div class="proposition" markdown="1">
+
+命題 2
+---
 
 $A$ が Monge 行列であることは, 任意の $0 \leq i < n - 1$, $0 \leq j < m - 1$ に対して
 
 $$ A_{i,j} + A_{i+1,j+1} \leq A_{i,j+1} + A_{i+1,j} $$
 
-が成り立つことと同値である. ($\Rightarrow$ は明らか. $\Leftarrow$ は, 隣接する $2 \times 2$ 部分行列の不等式を $i_2 - i_1$, $j_2 - j_1$ について足し合わせればよい.)
+が成り立つことと同値である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$\Rightarrow$ は明らか. $\Leftarrow$ は, 隣接する $2 \times 2$ 部分行列の不等式を $i_2 - i_1$, $j_2 - j_1$ について足し合わせればよい.
+
+</div>
 
 これにより, Monge 行列であるかの判定が $O(nm)$ 時間でできる.
 
 ## Monotone 行列
+
+<div class="definition" markdown="1">
+
+定義 3
+---
 
 $A$ を $n \times m$ 行列とする. 各行 $i$ に対して, $A_{i,j}$ を最小にする $j$ のうち最小のものを $j^\ast(i)$ とする.
 
@@ -28,25 +56,50 @@ $A$ が **Monotone** であるとは,
 
 $$ j^\ast(0) \leq j^\ast(1) \leq \dots \leq j^\ast(n - 1) $$
 
-が成り立つことである. これは, [Monotone Minima](/library_for_cpp/Queries/Monotone_Minima.html) が仮定する条件そのものである.
+が成り立つことである.
+
+</div>
+
+これは, [Monotone Minima](/library_for_cpp/Queries/Monotone_Minima.html) が仮定する条件そのものである.
 
 ### Monge ならば Monotone
 
-**命題**: Monge 行列は Monotone である.
+<div class="proposition" markdown="1">
 
-**証明**: Monge 行列 $A$ が Monotone でないと仮定する. このとき, ある $i_1 < i_2$ で $j_1 := j^\ast(i_2) < j^\ast(i_1) =: j_2$ となる. $j^\ast(i_1)$ の定め方 ($j_1 < j_2$ に注意) より $A_{i_1,j_2} < A_{i_1,j_1}$, $j^\ast(i_2)$ の定め方より $A_{i_2,j_1} \leq A_{i_2,j_2}$ である. 一方, $A$ が Monge 行列であることから $i_1 < i_2$, $j_1 < j_2$ に対して
+命題 4
+---
+
+Monge 行列は Monotone である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+Monge 行列 $A$ が Monotone でないと仮定する. このとき, ある $i_1 < i_2$ で $j_1 := j^\ast(i_2) < j^\ast(i_1) =: j_2$ となる. $j^\ast(i_1)$ の定め方 ($j_1 < j_2$ に注意) より $A_{i_1,j_2} < A_{i_1,j_1}$, $j^\ast(i_2)$ の定め方より $A_{i_2,j_1} \leq A_{i_2,j_2}$ である. 一方, $A$ が Monge 行列であることから $i_1 < i_2$, $j_1 < j_2$ に対して
 
 $$ A_{i_1,j_1} + A_{i_2,j_2} \leq A_{i_1,j_2} + A_{i_2,j_1} $$
 
-であり, 整理すると $A_{i_1,j_1} - A_{i_1,j_2} \leq A_{i_2,j_1} - A_{i_2,j_2} \leq 0$ となる. これは $A_{i_1,j_2} < A_{i_1,j_1}$ に矛盾する. $\square$
+であり, 整理すると $A_{i_1,j_1} - A_{i_1,j_2} \leq A_{i_2,j_1} - A_{i_2,j_2} \leq 0$ となる. これは $A_{i_1,j_2} < A_{i_1,j_1}$ に矛盾する.
+
+</div>
 
 ## 全単調行列
+
+<div class="definition" markdown="1">
+
+定義 5
+---
 
 $n \times m$ 行列 $A$ が **全単調** (totally monotone) であるとは, 任意の $0 \leq i_1 < i_2 < n$, $0 \leq j_1 < j_2 < m$ に対して
 
 $$ A_{i_1,j_1} > A_{i_1,j_2} \implies A_{i_2,j_1} > A_{i_2,j_2} $$
 
 が成り立つことである. すなわち, ある $2 \times 2$ 部分行列で, 上の行が「右の方が小さい」ならば, 下の行も「右の方が小さい」ということである.
+
+</div>
 
 この条件は $2 \times 2$ 部分行列に対するものなので, 全単調行列の部分行列は全単調行列である.
 
@@ -58,23 +111,65 @@ $$ \text{Monge} \implies \text{全単調} \implies \text{Monotone} $$
 
 また, 全単調であることは, 「任意の部分行列が Monotone である」ことと同値である.
 
-**命題 1**: Monge 行列は全単調である.
+<div class="proposition" markdown="1">
 
-**証明**: $i_1 < i_2$, $j_1 < j_2$ について $A_{i_1,j_1} > A_{i_1,j_2}$ とする. $A$ が Monge 行列であることから
+命題 6
+---
+
+Monge 行列は全単調である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$i_1 < i_2$, $j_1 < j_2$ について $A_{i_1,j_1} > A_{i_1,j_2}$ とする. $A$ が Monge 行列であることから
 
 $$ A_{i_1,j_1} - A_{i_1,j_2} \leq A_{i_2,j_1} - A_{i_2,j_2} $$
 
-であり, 左辺は正であるから, $A_{i_2,j_1} - A_{i_2,j_2} > 0$ すなわち $A_{i_2,j_1} > A_{i_2,j_2}$ である. $\square$
+であり, 左辺は正であるから, $A_{i_2,j_1} - A_{i_2,j_2} > 0$ すなわち $A_{i_2,j_1} > A_{i_2,j_2}$ である.
 
-**命題 2**: 全単調行列は Monotone である.
+</div>
 
-**証明**: 全単調行列 $A$ が Monotone でないと仮定すると, ある $i_1 < i_2$ で $j_1 := j^\ast(i_2) < j^\ast(i_1) =: j_2$ となる. $j^\ast(i_1)$ の定め方 ($j_1 < j_2$ に注意) より $A_{i_1,j_1} > A_{i_1,j_2}$ である. 全単調性より $A_{i_2,j_1} > A_{i_2,j_2}$ となるが, これは $j_1$ が第 $i_2$ 行の最小値を与えること ($A_{i_2,j_1} \leq A_{i_2,j_2}$) に矛盾する. $\square$
+<div class="proposition" markdown="1">
 
-**命題 3**: $A$ が全単調であることと, $A$ の任意の部分行列が Monotone であることは同値である.
+命題 7
+---
 
-**証明**: ($\Rightarrow$) 全単調行列の部分行列は全単調であり, 命題 2 より Monotone である.
+全単調行列は Monotone である.
 
-($\Leftarrow$) $i_1 < i_2$, $j_1 < j_2$ について $A_{i_1,j_1} > A_{i_1,j_2}$ とする. 行 $i_1, i_2$, 列 $j_1, j_2$ からなる $2 \times 2$ 部分行列を考えると, その第 $1$ 行 (行 $i_1$) の最小値のうち最小の位置は $j_2$ である. この部分行列は Monotone であるから, 第 $2$ 行 (行 $i_2$) の最小値のうち最小の位置も $j_2$ 以上, すなわち $j_2$ である. これは $A_{i_2,j_2} < A_{i_2,j_1}$ を意味する. $\square$
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+全単調行列 $A$ が Monotone でないと仮定すると, ある $i_1 < i_2$ で $j_1 := j^\ast(i_2) < j^\ast(i_1) =: j_2$ となる. $j^\ast(i_1)$ の定め方 ($j_1 < j_2$ に注意) より $A_{i_1,j_1} > A_{i_1,j_2}$ である. 全単調性より $A_{i_2,j_1} > A_{i_2,j_2}$ となるが, これは $j_1$ が第 $i_2$ 行の最小値を与えること ($A_{i_2,j_1} \leq A_{i_2,j_2}$) に矛盾する.
+
+</div>
+
+<div class="proposition" markdown="1">
+
+命題 8
+---
+
+$A$ が全単調であることと, $A$ の任意の部分行列が Monotone であることは同値である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+($\Rightarrow$) 全単調行列の部分行列は全単調であり, 命題 7 より Monotone である.
+
+($\Leftarrow$) $i_1 < i_2$, $j_1 < j_2$ について $A_{i_1,j_1} > A_{i_1,j_2}$ とする. 行 $i_1, i_2$, 列 $j_1, j_2$ からなる $2 \times 2$ 部分行列を考えると, その第 $1$ 行 (行 $i_1$) の最小値のうち最小の位置は $j_2$ である. この部分行列は Monotone であるから, 第 $2$ 行 (行 $i_2$) の最小値のうち最小の位置も $j_2$ 以上, すなわち $j_2$ である. これは $A_{i_2,j_2} < A_{i_2,j_1}$ を意味する.
+
+</div>
 
 ### 逆は成り立たない
 
@@ -104,13 +199,27 @@ Monge 行列 $A$ ($n \times m$) の各行の最小値の位置 $j^\ast(i)$ は, 
 
 ### 凸関数の差
 
+<div class="proposition" markdown="1">
+
+命題 9
+---
+
 $\varphi: \mathbb{Z} \to G$ が下に凸であるとき, $A_{i,j} := \varphi(i - j)$ は Monge 行列である.
 
-実際, $i_1 < i_2$, $j_1 < j_2$ に対して, $i_1 - j_2$ が最小, $i_2 - j_1$ が最大で, $i_1 - j_1$ と $i_2 - j_2$ はその間にあり, 和が等しい. よって $\varphi$ の凸性から
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$i_1 < i_2$, $j_1 < j_2$ に対して, $i_1 - j_2$ が最小, $i_2 - j_1$ が最大で, $i_1 - j_1$ と $i_2 - j_2$ はその間にあり, 和が等しい. よって $\varphi$ の凸性から
 
 $$ \varphi(i_1 - j_1) + \varphi(i_2 - j_2) \leq \varphi(i_1 - j_2) + \varphi(i_2 - j_1) $$
 
 である. ($\varphi$ の定義域外は $+\infty$ とみなすと, 帯状の領域になり, 性質は保たれる.)
+
+</div>
 
 #### (min, +) 畳み込み
 

@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/utility.hpp
+
 using ll = long long;
 
 // a ← max(a, b) を実行する. a が更新されたら, 返り値が true.

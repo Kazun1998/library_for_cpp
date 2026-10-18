@@ -1,5 +1,7 @@
 #pragma once
 
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Binary_Indexed_Tree/Range_Binary_Indexed_Tree.hpp
+
 #include"../template/template.hpp"
 #include"Binary_Indexed_Tree.hpp"
 

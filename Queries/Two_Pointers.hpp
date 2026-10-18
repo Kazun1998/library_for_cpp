@@ -1,3 +1,7 @@
+#pragma once
+
+// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Queries/Two_Pointers.hpp
+
 #include "../template/template.hpp"
 
 /// @brief 尺取り法の一般化版. 閉区間 [l, r] を管理する add/remove/cond を渡すことで, 区間和以外の条件にも対応できる.
