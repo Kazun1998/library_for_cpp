@@ -9,16 +9,16 @@
  */
 class Topological_Sort {
     vector<vector<int>> arcs;
-    bool self_loop;
+    bool ignore_self_loop;
     bool _is_DAG;
 
     public:
     /**
      * @brief コンストラクタ
      * @param n 頂点数
-     * @param self_loop 自己ループを許容するかどうか
+     * @param ignore_self_loop 自己ループを無視するかどうか (false の場合, 自己ループは閉路として扱われる)
      */
-    Topological_Sort(int n, bool self_loop = false): arcs(n), self_loop(self_loop), _is_DAG(false) {}
+    Topological_Sort(int n, bool ignore_self_loop = true): arcs(n), ignore_self_loop(ignore_self_loop), _is_DAG(false) {}
 
     /**
      * @brief 有向辺を追加する
@@ -26,7 +26,7 @@ class Topological_Sort {
      * @param target 終点
      */
     void add_arc(const int source, const int target) {
-        if (source == target && !self_loop) return;
+        if (source == target && ignore_self_loop) return;
 
         arcs[source].emplace_back(target);
     }
@@ -37,7 +37,7 @@ class Topological_Sort {
      * @param targets 新しい頂点からの終点のリスト
      * @return int 追加された頂点のインデックス
      */
-    int add_arc_multiple(const vector<int> sources, const vector<int> targets) {
+    int add_arc_multiple(const vector<int> &sources, const vector<int> &targets) {
         const int x = add_vertex();
 
         for (const int s: sources) add_arc(s, x);
