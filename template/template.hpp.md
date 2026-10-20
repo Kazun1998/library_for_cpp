@@ -558,7 +558,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Taylor_Shift.hpp
     title: Taylor Shift
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Others/Topological_Sort.hpp
     title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
@@ -795,9 +795,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/3B.test.cpp
     title: verify/aizu_online_judge/grl/3B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/4B.test.cpp
-    title: verify/aizu_online_judge/grl/4B.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/grl/6A.test.cpp
     title: verify/aizu_online_judge/grl/6A.test.cpp
@@ -1859,7 +1856,6 @@ data:
   - verify/aizu_online_judge/grl/1B.test.cpp
   - verify/aizu_online_judge/grl/3A.test.cpp
   - verify/aizu_online_judge/grl/3B.test.cpp
-  - verify/aizu_online_judge/grl/4B.test.cpp
   - verify/aizu_online_judge/grl/6B.test.cpp
   - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/aizu_online_judge/ntl/1E.test.cpp

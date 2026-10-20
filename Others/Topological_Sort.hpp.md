@@ -23,13 +23,10 @@ data:
     path: template/utility.hpp
     title: template/utility.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verify/aizu_online_judge/grl/4B.test.cpp
-    title: verify/aizu_online_judge/grl/4B.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u884C\
       \u3046\u30AF\u30E9\u30B9"
@@ -206,93 +203,99 @@ data:
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 6 \"Others/Topological_Sort.hpp\"\n\n/**\n * @brief \u30C8\u30DD\
     \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u884C\u3046\u30AF\u30E9\u30B9\
-    \n */\nclass Topological_Sort {\n    vector<vector<int>> arcs;\n    bool self_loop;\n\
+    \n */\nclass Topological_Sort {\n    vector<vector<int>> arcs;\n    bool ignore_self_loop;\n\
     \    bool _is_DAG;\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n     * @param n \u9802\u70B9\u6570\n     * @param self_loop\
-    \ \u81EA\u5DF1\u30EB\u30FC\u30D7\u3092\u8A31\u5BB9\u3059\u308B\u304B\u3069\u3046\
-    \u304B\n     */\n    Topological_Sort(int n, bool self_loop = false): arcs(n),\
-    \ self_loop(self_loop), _is_DAG(false) {}\n\n    /**\n     * @brief \u6709\u5411\
-    \u8FBA\u3092\u8FFD\u52A0\u3059\u308B\n     * @param source \u59CB\u70B9\n    \
-    \ * @param target \u7D42\u70B9\n     */\n    void add_arc(const int source, const\
-    \ int target) {\n        if (source == target && !self_loop) return;\n\n     \
-    \   arcs[source].emplace_back(target);\n    }\n\n    /**\n     * @brief \u6307\
-    \u5B9A\u3055\u308C\u305F\u59CB\u70B9\u7FA4\u304B\u3089\u306E\u8FBA\u3068\u3001\
-    \u6307\u5B9A\u3055\u308C\u305F\u7D42\u70B9\u7FA4\u3078\u306E\u8FBA\u3092\u6301\
-    \u3064\u65B0\u3057\u3044\u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n     * @param\
-    \ sources \u65B0\u3057\u3044\u9802\u70B9\u3078\u306E\u59CB\u70B9\u306E\u30EA\u30B9\
-    \u30C8\n     * @param targets \u65B0\u3057\u3044\u9802\u70B9\u304B\u3089\u306E\
-    \u7D42\u70B9\u306E\u30EA\u30B9\u30C8\n     * @return int \u8FFD\u52A0\u3055\u308C\
-    \u305F\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     */\n    int\
-    \ add_arc_multiple(const vector<int> sources, const vector<int> targets) {\n \
-    \       const int x = add_vertex();\n\n        for (const int s: sources) add_arc(s,\
-    \ x);\n        for (const int t: targets) add_arc(x, t);\n\n        return x;\n\
-    \    }\n\n    /**\n     * @brief \u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n\
-    \     * @return int \u8FFD\u52A0\u3055\u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n     */\n    int add_vertex() {\n        arcs.emplace_back(vector<int>{});\n\
-    \n        return arcs.size() - 1;\n    }\n\n    /**\n     * @brief \u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u5B9F\u884C\u3059\u308B\n   \
-    \  * @return optional<vector<int>> \u30BD\u30FC\u30C8\u3055\u308C\u305F\u9802\u70B9\
-    \u306E\u30EA\u30B9\u30C8\u3002\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B\u5834\
-    \u5408\u306F nullopt\n     */\n    optional<vector<int>> sort() const {\n    \
-    \    const int n = arcs.size();\n        vector<bool> marked(n, false), use(n,\
-    \ false);\n        vector<int> order;\n\n        auto visit = [&](auto func, const\
-    \ int x) -> bool {\n            if (use[x]) return false;\n            if (marked[x])\
-    \ return true;\n\n            use[x] = true;\n            for (const int &y :\
-    \ arcs[x]) {\n                if (!func(func, y)) return false;\n            }\n\
-    \n            marked[x] = true;\n            order.push_back(x);\n           \
-    \ use[x] = false;\n            return true;\n        };\n\n        for (int x\
-    \ = 0; x < n; ++x) {\n            if (!visit(visit, x)) return nullopt;\n    \
-    \    }\n\n        reverse(order.begin(), order.end());\n        return order;\n\
-    \    }\n\n    /**\n     * @brief \u30B0\u30E9\u30D5\u304CDAG (\u6709\u5411\u975E\
-    \u5DE1\u56DE\u30B0\u30E9\u30D5) \u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\
-    \u308B\n     * @return true DAG\u3067\u3042\u308B\n     * @return false DAG\u3067\
-    \u306A\u3044 (\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B)\n     */\n    bool is_DAG()\
+    \u30E9\u30AF\u30BF\n     * @param n \u9802\u70B9\u6570\n     * @param ignore_self_loop\
+    \ \u81EA\u5DF1\u30EB\u30FC\u30D7\u3092\u7121\u8996\u3059\u308B\u304B\u3069\u3046\
+    \u304B (false \u306E\u5834\u5408, \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F\u9589\u8DEF\
+    \u3068\u3057\u3066\u6271\u308F\u308C\u308B)\n     */\n    Topological_Sort(int\
+    \ n, bool ignore_self_loop = true): arcs(n), ignore_self_loop(ignore_self_loop),\
+    \ _is_DAG(false) {}\n\n    /**\n     * @brief \u6709\u5411\u8FBA\u3092\u8FFD\u52A0\
+    \u3059\u308B\n     * @param source \u59CB\u70B9\n     * @param target \u7D42\u70B9\
+    \n     */\n    void add_arc(const int source, const int target) {\n        if\
+    \ (source == target && ignore_self_loop) return;\n\n        arcs[source].emplace_back(target);\n\
+    \    }\n\n    /**\n     * @brief \u6307\u5B9A\u3055\u308C\u305F\u59CB\u70B9\u7FA4\
+    \u304B\u3089\u306E\u8FBA\u3068\u3001\u6307\u5B9A\u3055\u308C\u305F\u7D42\u70B9\
+    \u7FA4\u3078\u306E\u8FBA\u3092\u6301\u3064\u65B0\u3057\u3044\u9802\u70B9\u3092\
+    \u8FFD\u52A0\u3059\u308B\n     * @param sources \u65B0\u3057\u3044\u9802\u70B9\
+    \u3078\u306E\u59CB\u70B9\u306E\u30EA\u30B9\u30C8\n     * @param targets \u65B0\
+    \u3057\u3044\u9802\u70B9\u304B\u3089\u306E\u7D42\u70B9\u306E\u30EA\u30B9\u30C8\
+    \n     * @return int \u8FFD\u52A0\u3055\u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9\n     */\n    int add_arc_multiple(const vector<int>\
+    \ &sources, const vector<int> &targets) {\n        const int x = add_vertex();\n\
+    \n        for (const int s: sources) add_arc(s, x);\n        for (const int t:\
+    \ targets) add_arc(x, t);\n\n        return x;\n    }\n\n    /**\n     * @brief\
+    \ \u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n     * @return int \u8FFD\u52A0\u3055\
+    \u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     */\n\
+    \    int add_vertex() {\n        arcs.emplace_back(vector<int>{});\n\n       \
+    \ return arcs.size() - 1;\n    }\n\n    /**\n     * @brief \u30C8\u30DD\u30ED\u30B8\
+    \u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u5B9F\u884C\u3059\u308B\n     * @return optional<vector<int>>\
+    \ \u30BD\u30FC\u30C8\u3055\u308C\u305F\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3002\
+    \u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B\u5834\u5408\u306F nullopt\n     */\n\
+    \    optional<vector<int>> sort() const {\n        const int n = arcs.size();\n\
+    \        vector<int> in_degree(n, 0);\n        for (const auto &targets: arcs)\
+    \ {\n            for (const int y: targets) ++in_degree[y];\n        }\n\n   \
+    \     vector<int> order;\n        order.reserve(n);\n        for (int x = 0; x\
+    \ < n; ++x) {\n            if (in_degree[x] == 0) order.push_back(x);\n      \
+    \  }\n\n        // order[i] \u3092\u53D6\u308A\u9664\u3044\u305F\u3068\u304D,\
+    \ \u65B0\u305F\u306B\u5165\u6B21\u6570\u304C 0 \u306B\u306A\u308B\u9802\u70B9\u306F\
+    \ order[i] \u306E\u51FA\u8FD1\u508D\u306E\u307F\n        for (int i = 0; i < (int)order.size();\
+    \ ++i) {\n            for (const int y: arcs[order[i]]) {\n                if\
+    \ (--in_degree[y] == 0) order.push_back(y);\n            }\n        }\n\n    \
+    \    if ((int)order.size() < n) return nullopt;\n        return order;\n    }\n\
+    \n    /**\n     * @brief \u30B0\u30E9\u30D5\u304CDAG (\u6709\u5411\u975E\u5DE1\
+    \u56DE\u30B0\u30E9\u30D5) \u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \n     * @return true DAG\u3067\u3042\u308B\n     * @return false DAG\u3067\u306A\
+    \u3044 (\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B)\n     */\n    bool is_DAG()\
     \ const { return sort() != nullopt; }\n};\n"
   code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Others/Topological_Sort.hpp\n\
     \n#include \"../template/template.hpp\"\n\n/**\n * @brief \u30C8\u30DD\u30ED\u30B8\
     \u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u884C\u3046\u30AF\u30E9\u30B9\n */\nclass\
-    \ Topological_Sort {\n    vector<vector<int>> arcs;\n    bool self_loop;\n   \
-    \ bool _is_DAG;\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n     * @param n \u9802\u70B9\u6570\n     * @param self_loop\
-    \ \u81EA\u5DF1\u30EB\u30FC\u30D7\u3092\u8A31\u5BB9\u3059\u308B\u304B\u3069\u3046\
-    \u304B\n     */\n    Topological_Sort(int n, bool self_loop = false): arcs(n),\
-    \ self_loop(self_loop), _is_DAG(false) {}\n\n    /**\n     * @brief \u6709\u5411\
-    \u8FBA\u3092\u8FFD\u52A0\u3059\u308B\n     * @param source \u59CB\u70B9\n    \
-    \ * @param target \u7D42\u70B9\n     */\n    void add_arc(const int source, const\
-    \ int target) {\n        if (source == target && !self_loop) return;\n\n     \
-    \   arcs[source].emplace_back(target);\n    }\n\n    /**\n     * @brief \u6307\
-    \u5B9A\u3055\u308C\u305F\u59CB\u70B9\u7FA4\u304B\u3089\u306E\u8FBA\u3068\u3001\
-    \u6307\u5B9A\u3055\u308C\u305F\u7D42\u70B9\u7FA4\u3078\u306E\u8FBA\u3092\u6301\
-    \u3064\u65B0\u3057\u3044\u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n     * @param\
-    \ sources \u65B0\u3057\u3044\u9802\u70B9\u3078\u306E\u59CB\u70B9\u306E\u30EA\u30B9\
-    \u30C8\n     * @param targets \u65B0\u3057\u3044\u9802\u70B9\u304B\u3089\u306E\
-    \u7D42\u70B9\u306E\u30EA\u30B9\u30C8\n     * @return int \u8FFD\u52A0\u3055\u308C\
-    \u305F\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     */\n    int\
-    \ add_arc_multiple(const vector<int> sources, const vector<int> targets) {\n \
-    \       const int x = add_vertex();\n\n        for (const int s: sources) add_arc(s,\
-    \ x);\n        for (const int t: targets) add_arc(x, t);\n\n        return x;\n\
-    \    }\n\n    /**\n     * @brief \u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n\
-    \     * @return int \u8FFD\u52A0\u3055\u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n     */\n    int add_vertex() {\n        arcs.emplace_back(vector<int>{});\n\
-    \n        return arcs.size() - 1;\n    }\n\n    /**\n     * @brief \u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u5B9F\u884C\u3059\u308B\n   \
-    \  * @return optional<vector<int>> \u30BD\u30FC\u30C8\u3055\u308C\u305F\u9802\u70B9\
-    \u306E\u30EA\u30B9\u30C8\u3002\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B\u5834\
-    \u5408\u306F nullopt\n     */\n    optional<vector<int>> sort() const {\n    \
-    \    const int n = arcs.size();\n        vector<bool> marked(n, false), use(n,\
-    \ false);\n        vector<int> order;\n\n        auto visit = [&](auto func, const\
-    \ int x) -> bool {\n            if (use[x]) return false;\n            if (marked[x])\
-    \ return true;\n\n            use[x] = true;\n            for (const int &y :\
-    \ arcs[x]) {\n                if (!func(func, y)) return false;\n            }\n\
-    \n            marked[x] = true;\n            order.push_back(x);\n           \
-    \ use[x] = false;\n            return true;\n        };\n\n        for (int x\
-    \ = 0; x < n; ++x) {\n            if (!visit(visit, x)) return nullopt;\n    \
-    \    }\n\n        reverse(order.begin(), order.end());\n        return order;\n\
-    \    }\n\n    /**\n     * @brief \u30B0\u30E9\u30D5\u304CDAG (\u6709\u5411\u975E\
-    \u5DE1\u56DE\u30B0\u30E9\u30D5) \u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\
-    \u308B\n     * @return true DAG\u3067\u3042\u308B\n     * @return false DAG\u3067\
-    \u306A\u3044 (\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B)\n     */\n    bool is_DAG()\
-    \ const { return sort() != nullopt; }\n};"
+    \ Topological_Sort {\n    vector<vector<int>> arcs;\n    bool ignore_self_loop;\n\
+    \    bool _is_DAG;\n\n    public:\n    /**\n     * @brief \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n     * @param n \u9802\u70B9\u6570\n     * @param ignore_self_loop\
+    \ \u81EA\u5DF1\u30EB\u30FC\u30D7\u3092\u7121\u8996\u3059\u308B\u304B\u3069\u3046\
+    \u304B (false \u306E\u5834\u5408, \u81EA\u5DF1\u30EB\u30FC\u30D7\u306F\u9589\u8DEF\
+    \u3068\u3057\u3066\u6271\u308F\u308C\u308B)\n     */\n    Topological_Sort(int\
+    \ n, bool ignore_self_loop = true): arcs(n), ignore_self_loop(ignore_self_loop),\
+    \ _is_DAG(false) {}\n\n    /**\n     * @brief \u6709\u5411\u8FBA\u3092\u8FFD\u52A0\
+    \u3059\u308B\n     * @param source \u59CB\u70B9\n     * @param target \u7D42\u70B9\
+    \n     */\n    void add_arc(const int source, const int target) {\n        if\
+    \ (source == target && ignore_self_loop) return;\n\n        arcs[source].emplace_back(target);\n\
+    \    }\n\n    /**\n     * @brief \u6307\u5B9A\u3055\u308C\u305F\u59CB\u70B9\u7FA4\
+    \u304B\u3089\u306E\u8FBA\u3068\u3001\u6307\u5B9A\u3055\u308C\u305F\u7D42\u70B9\
+    \u7FA4\u3078\u306E\u8FBA\u3092\u6301\u3064\u65B0\u3057\u3044\u9802\u70B9\u3092\
+    \u8FFD\u52A0\u3059\u308B\n     * @param sources \u65B0\u3057\u3044\u9802\u70B9\
+    \u3078\u306E\u59CB\u70B9\u306E\u30EA\u30B9\u30C8\n     * @param targets \u65B0\
+    \u3057\u3044\u9802\u70B9\u304B\u3089\u306E\u7D42\u70B9\u306E\u30EA\u30B9\u30C8\
+    \n     * @return int \u8FFD\u52A0\u3055\u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9\n     */\n    int add_arc_multiple(const vector<int>\
+    \ &sources, const vector<int> &targets) {\n        const int x = add_vertex();\n\
+    \n        for (const int s: sources) add_arc(s, x);\n        for (const int t:\
+    \ targets) add_arc(x, t);\n\n        return x;\n    }\n\n    /**\n     * @brief\
+    \ \u9802\u70B9\u3092\u8FFD\u52A0\u3059\u308B\n     * @return int \u8FFD\u52A0\u3055\
+    \u308C\u305F\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n     */\n\
+    \    int add_vertex() {\n        arcs.emplace_back(vector<int>{});\n\n       \
+    \ return arcs.size() - 1;\n    }\n\n    /**\n     * @brief \u30C8\u30DD\u30ED\u30B8\
+    \u30AB\u30EB\u30BD\u30FC\u30C8\u3092\u5B9F\u884C\u3059\u308B\n     * @return optional<vector<int>>\
+    \ \u30BD\u30FC\u30C8\u3055\u308C\u305F\u9802\u70B9\u306E\u30EA\u30B9\u30C8\u3002\
+    \u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B\u5834\u5408\u306F nullopt\n     */\n\
+    \    optional<vector<int>> sort() const {\n        const int n = arcs.size();\n\
+    \        vector<int> in_degree(n, 0);\n        for (const auto &targets: arcs)\
+    \ {\n            for (const int y: targets) ++in_degree[y];\n        }\n\n   \
+    \     vector<int> order;\n        order.reserve(n);\n        for (int x = 0; x\
+    \ < n; ++x) {\n            if (in_degree[x] == 0) order.push_back(x);\n      \
+    \  }\n\n        // order[i] \u3092\u53D6\u308A\u9664\u3044\u305F\u3068\u304D,\
+    \ \u65B0\u305F\u306B\u5165\u6B21\u6570\u304C 0 \u306B\u306A\u308B\u9802\u70B9\u306F\
+    \ order[i] \u306E\u51FA\u8FD1\u508D\u306E\u307F\n        for (int i = 0; i < (int)order.size();\
+    \ ++i) {\n            for (const int y: arcs[order[i]]) {\n                if\
+    \ (--in_degree[y] == 0) order.push_back(y);\n            }\n        }\n\n    \
+    \    if ((int)order.size() < n) return nullopt;\n        return order;\n    }\n\
+    \n    /**\n     * @brief \u30B0\u30E9\u30D5\u304CDAG (\u6709\u5411\u975E\u5DE1\
+    \u56DE\u30B0\u30E9\u30D5) \u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \n     * @return true DAG\u3067\u3042\u308B\n     * @return false DAG\u3067\u306A\
+    \u3044 (\u9589\u8DEF\u304C\u5B58\u5728\u3059\u308B)\n     */\n    bool is_DAG()\
+    \ const { return sort() != nullopt; }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -304,10 +307,9 @@ data:
   isVerificationFile: false
   path: Others/Topological_Sort.hpp
   requiredBy: []
-  timestamp: '2026-10-17 00:11:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verify/aizu_online_judge/grl/4B.test.cpp
+  timestamp: '2026-10-20 23:23:24+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Others/Topological_Sort.hpp
 layout: document
 title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
@@ -315,34 +317,143 @@ title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
 
 ## Outline
 
-有向グラフについてのトポロジカルソートに関する計算を行う.
+有向グラフ $D = (V , A)$ のトポロジカルソートを求める. また, $D$ が DAG かどうかを判定する.
 
-## Define
+実装は DFS (深さ優先探索) に基づき, 計算量は頂点数 $n$, 弧数 $m$ に対して $O(n + m)$ である.
+
+## Theory
+
+<div class="definition" markdown="1">
+
+定義 1
+---
 
 $D = (V, A)$ を有向グラフとする. $D$ のトポロジカルソートとは, 以下を満たす $V$ 上の順序関係 $\leq$ のことである.
 
 * $\leq$ は全順序関係である.
 * 任意の $\overrightarrow{uv} \in A$ に対して, $u < v ~(\Leftrightarrow u \leq v \land u \neq v)$ である.
 
-なお, 以下は同値になる.
+</div>
 
-* $D$ はトポロジカルソートを持つ.
-* $D$ はサイクルを持たない. つまり, DAG である.
+<div class="definition" markdown="1">
 
+定義 2
+---
 
+$D = (V, A)$ を有向グラフとする. $D$ 内に回路を含まないとき, $D$ は有向非巡回グラフ (DAG) であるという.
+
+</div>
+
+<div class="proposition" markdown="1">
+
+命題 3
+---
+
+有向グラフ $D = (V, A)$ は $V \neq \emptyset$ であり, DAG であるとする. このとき, 入近傍が存在しない頂点が存在する.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+背理法で示す. 全ての頂点に入近傍が存在するとする.
+
+$v_0 \in V$ を固定する. このとき, 次のようにして $V$ 上の列 $v_0, v_1, v_2, \dots$ を取ることができる.
+
+* $v_i$ の入近傍を $1$ つ選び, $v_{i+1}$ とする. すなわち, $\overrightarrow{v_{i+1} v_i} \in A$ である.
+
+$D$ の位数を $n$ とすると, 鳩ノ巣原理により, $v_0, v_1, v_2, \dots, v_n$ の中に重複が存在する. その重複を $v_l = v_r ~ (0 \leq l < r \leq n)$ とする.
+
+すると, 各 $i$ について $\overrightarrow{v_{i+1} v_i} \in A$ なので,
+
+$$ v_r, v_{r-1}, \dots, v_l (= v_r) $$
+
+は $D$ 上の回路になり, $D$ が DAG であることに矛盾する.
+
+よって, $D$ には入近傍が存在しない頂点が存在する.
+
+</div>
+
+<div class="theorem" markdown="1">
+
+定理 4
+---
+
+有向グラフ $D = (V, A)$ について, 以下は同値である.
+
+* (a) $D$ はトポロジカルソートを持つ.
+* (b) $D$ は DAG である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+**(a) ならば (b)**
+
+対偶を示す. $D$ が DAG でないとする. このとき, $D$ 上の回路 $v_1, v_2, \dots, v_k, v_1 ~ (k \geq 1)$ が存在する. ここで, $v_{k+1} = v_1$ とおく.
+
+$D$ がトポロジカルソート $\leq$ を持つと仮定する. $\overrightarrow{v_i v_{i+1}} \in A ~ (1 \leq i \leq k)$ なので, 定義 1 より
+
+$$ v_1 < v_2 < \dots < v_k < v_{k+1} = v_1 $$
+
+である. ここで, $<$ は推移的である. 実際, $u < v < w$ とすると, 推移律より $u \leq w$ である. もし $u = w$ ならば $u \leq v \leq u$ となり反対称律より $u = v$ となって $u \neq v$ に矛盾するので, $u \neq w$ すなわち $u < w$ である.
+
+したがって $v_1 < v_1$ となるが, これは $v_1 \neq v_1$ を意味し矛盾する. (特に $k = 1$, つまり自己ループの場合は, $\overrightarrow{v_1 v_1} \in A$ から直ちに $v_1 < v_1$ となり矛盾する.)
+
+よって, $D$ はトポロジカルソートを持たない.
+
+**(b) ならば (a)**
+
+$D$ の位数 $n$ に関する数学的帰納法で示す.
+
+$n = 1$ のとき: $D$ は DAG なので自己ループを持たず, 弧は存在しない. よって, $V$ 上の唯一の全順序がトポロジカルソートである.
+
+$n$ のときに成立するとする. $D$ の位数が $n+1$ であり, DAG であるとする. 命題 3 より, $D$ には入近傍が存在しない頂点 $x$ が存在する.
+
+$D$ から $x$ と $x$ に接続する弧を除いた有向グラフを $D'$ とする. $D'$ の位数は $n$ である. また, $D'$ 上の回路は $D$ 上の回路でもあるので, $D'$ は DAG である. よって, 数学的帰納法の仮定により, $D'$ にはトポロジカルソート $\leq'$ が存在する.
+
+$\leq'$ を使って, $V$ 上の関係 $\leq$ を次のように定義する.
+
+* $u, v \in V$ に対して, 以下のうちのいずれかを満たすとき, そしてその時に限り $u \leq v$ とする.
+  * $u = x$.
+  * $u, v \neq x$ であり, $u \leq' v$.
+
+この $\leq$ が $D$ のトポロジカルソートであることを示す.
+
+* 反射律: $u = x$ ならば $u \leq u$. $u \neq x$ ならば $\leq'$ の反射律より $u \leq u$.
+* 反対称律: $u \leq v$ かつ $v \leq u$ とする. $u = x$ ならば, $v \leq x$ より $v = x$ なので $u = v$. $v = x$ の場合も同様. $u, v \neq x$ ならば, $u \leq' v$ かつ $v \leq' u$ なので $u = v$.
+* 推移律: $u \leq v$ かつ $v \leq w$ とする. $u = x$ ならば $u \leq w$. $u \neq x$ ならば, $u \leq v$ より $v \neq x$ であり, さらに $v \leq w$ より $w \neq x$ である. よって $u \leq' v \leq' w$ なので $u \leq w$.
+* 全順序性: $u = x$ または $v = x$ ならば, $u \leq v$ または $v \leq u$ が成り立つ. $u, v \neq x$ ならば, $\leq'$ が全順序なので $u \leq' v$ または $v \leq' u$ である.
+* 弧の条件: $\overrightarrow{uv} \in A$ とする. $x$ には入近傍が存在しないので $v \neq x$ である. $u = x$ ならば, $x \leq v$ かつ $x \neq v$ なので $u < v$. $u \neq x$ ならば, $\overrightarrow{uv}$ は $D'$ の弧であり, $\leq'$ の性質から $u <' v$ なので, $u \leq v$ かつ $u \neq v$ すなわち $u < v$.
+
+以上より, $\leq$ は $D$ のトポロジカルソートである.
+
+</div>
+
+定理 4 より, $D$ が DAG であることと $D$ がトポロジカルソートを持つことは同値である. よって, トポロジカルソートの存在判定がそのまま DAG 判定になる.
+
+また, 定理 4 の (b) ⇒ (a) の証明は構成的であり, 入近傍のない頂点を $1$ 個ずつ取り除いていくことでトポロジカルソートを構築できる. 途中で入近傍のない頂点がなくなったのに頂点が残っている場合, 残りの部分は命題 3 より DAG ではないので, $D$ は DAG ではない.
+
+頂点 $x$ を取り除いたとき, 新たに入近傍がなくなりうる頂点は $x$ の出近傍に限られる. そこで各頂点の入次数を管理し, $x$ の出近傍の入次数を $1$ ずつ減らして, $0$ になった頂点を次の候補に加える. 各頂点・各弧は高々 $1$ 回ずつしか処理されないので, 位数 $n$, 大きさ $m$ の有向グラフに対して $O(n+m)$ 時間でトポロジカルソートを構築できる.
 
 ## Contents
 
 ### Constructor
 
 ```cpp
-Topological_Sort(int n, bool self_loop = false)
+Topological_Sort(int n, bool ignore_self_loop = true)
 ```
 
 * $n$ 頂点の空有向グラフを生成する.
 * **引数**
-  * `self_loop`: 自己ループがあるときに, トポロジカルソートの存在を認めるか?
-    * `self_loop` = `true` にすると, 自己ループがあったとしても, トポロジカルソートの存在を認める. つまり, トポロジカルソートにおける条件について, $u < v$ の部分が $u \leq v$ になる.
+  * `ignore_self_loop`: 自己ループを無視するか?
+    * `true` (既定値) のとき, `add_arc` で追加される自己ループは無視される. つまり, 自己ループは順序の制約に影響しないものとして扱う.
+    * `false` のとき, 自己ループは通常の弧として追加される. 定義 1 より自己ループを持つ有向グラフはトポロジカルソートを持たないので, `sort` は `nullopt` を返す.
 
 ### add_arc
 
@@ -350,7 +461,7 @@ Topological_Sort(int n, bool self_loop = false)
 void add_arc(const int source, const int target)
 ```
 
-* 弧 $\overrightarrow{st}$ を追加する.
+* 弧 $\overrightarrow{st}$ を追加する. ただし, $s = t$ かつ `ignore_self_loop` = `true` のときは何もしない.
 
 ### add_arc_multiple
 
@@ -358,9 +469,13 @@ void add_arc(const int source, const int target)
 int add_arc_multiple(const vector<int> sources, const vector<int> targets)
 ```
 
-* `sources` の各頂点から `targets` への各頂点への弧を追加する.
+* `sources` の各頂点から `targets` の各頂点への弧を追加する.
+* 新しい頂点 $x$ を $1$ 個追加し, `sources` の各頂点から $x$ へ, $x$ から `targets` の各頂点へ弧を張ることで実現する. これにより, 弧の本数は $|\mathrm{sources}| \times |\mathrm{targets}|$ 本ではなく $|\mathrm{sources}| + |\mathrm{targets}|$ 本で済む.
 * **返り値**
-  * このメソッドを高速に実現するために, 頂点を $1$ 個追加する必要がある. その追加された頂点の番号が帰って来る.
+  * 追加された頂点 $x$ の番号が返ってくる.
+* **注意**
+  * $x$ は `sort` の結果にも現れる.
+  * `sources` と `targets` に共通する頂点 $s$ があると, $s \to x \to s$ という閉路ができるので, `ignore_self_loop` の設定にかかわらず `sort` は `nullopt` を返す.
 
 ### add_vertex
 
@@ -368,23 +483,39 @@ int add_arc_multiple(const vector<int> sources, const vector<int> targets)
 int add_vertex()
 ```
 
-* 頂点を $1$ 個追加する
+* 頂点を $1$ 個追加する.
 * **返り値**
-  * 追加された頂点の番号
+  * 追加された頂点の番号.
 
 ### sort
 
 ```cpp
-optional<vector<int>> sort()
+optional<vector<int>> sort() const
 ```
 
 * トポロジカルソートを求める.
 * **返り値**
-  * DAG の場合はトポロジカルソート (昇順).
+  * DAG の場合は, 全ての弧 $\overrightarrow{uv}$ について $u$ が $v$ より前に来るように並べた頂点列 (トポロジカルソートで小さい順).
   * DAG でない場合は `nullopt`.
+* **計算量**
+  * $O(n + m)$
 
-## History 
+### is_DAG
+
+```cpp
+bool is_DAG() const
+```
+
+* $D$ が DAG かどうかを判定する.
+* **返り値**
+  * DAG ならば `true`, そうでなければ `false`.
+* **計算量**
+  * $O(n + m)$
+
+## History
 
 |日付|内容|
 |:---:|:---:|
+|2026/10/20|`self_loop` を `ignore_self_loop` に改名 <br> トポロジカルソートの構築アルゴリズムを Kahn 法に変更|
 |2026/01/31|トポロジカルソートの実装|
+

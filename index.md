@@ -632,7 +632,7 @@ data:
       title: Taylor Shift
   - name: Others
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Others/Topological_Sort.hpp
       title: "\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
   - name: Queries
@@ -929,9 +929,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/3B.test.cpp
       title: verify/aizu_online_judge/grl/3B.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: verify/aizu_online_judge/grl/4B.test.cpp
-      title: verify/aizu_online_judge/grl/4B.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/aizu_online_judge/grl/6A.test.cpp
       title: verify/aizu_online_judge/grl/6A.test.cpp
