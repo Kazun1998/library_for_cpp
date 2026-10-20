@@ -62,29 +62,25 @@ class Topological_Sort {
      */
     optional<vector<int>> sort() const {
         const int n = arcs.size();
-        vector<bool> marked(n, false), use(n, false);
-        vector<int> order;
-
-        auto visit = [&](auto func, const int x) -> bool {
-            if (use[x]) return false;
-            if (marked[x]) return true;
-
-            use[x] = true;
-            for (const int &y : arcs[x]) {
-                if (!func(func, y)) return false;
-            }
-
-            marked[x] = true;
-            order.push_back(x);
-            use[x] = false;
-            return true;
-        };
-
-        for (int x = 0; x < n; ++x) {
-            if (!visit(visit, x)) return nullopt;
+        vector<int> in_degree(n, 0);
+        for (const auto &targets: arcs) {
+            for (const int y: targets) ++in_degree[y];
         }
 
-        reverse(order.begin(), order.end());
+        vector<int> order;
+        order.reserve(n);
+        for (int x = 0; x < n; ++x) {
+            if (in_degree[x] == 0) order.push_back(x);
+        }
+
+        // order[i] を取り除いたとき, 新たに入次数が 0 になる頂点は order[i] の出近傍のみ
+        for (int i = 0; i < (int)order.size(); ++i) {
+            for (const int y: arcs[order[i]]) {
+                if (--in_degree[y] == 0) order.push_back(y);
+            }
+        }
+
+        if ((int)order.size() < n) return nullopt;
         return order;
     }
 
