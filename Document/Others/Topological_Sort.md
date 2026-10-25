@@ -129,6 +129,65 @@ $\leq'$ を使って, $V$ 上の関係 $\leq$ を次のように定義する.
 
 頂点 $x$ を取り除いたとき, 新たに入近傍がなくなりうる頂点は $x$ の出近傍に限られる. そこで各頂点の入次数を管理し, $x$ の出近傍の入次数を $1$ ずつ減らして, $0$ になった頂点を次の候補に加える. 各頂点・各弧は高々 $1$ 回ずつしか処理されないので, 位数 $n$, 大きさ $m$ の有向グラフに対して $O(n+m)$ 時間でトポロジカルソートを構築できる.
 
+<div class="proposition" markdown="1">
+
+命題 5
+---
+
+有向グラフ $D = (V, A)$ と $S, T \subseteq V$ に対して, 次の $2$ つの有向グラフを考える.
+
+* $D^+ = (V, A^+)$: $A^+ = A \cup \{ \overrightarrow{st} \mid s \in S, t \in T \}$ とする.
+* $D^x = (V \cup \{x\}, A^x)$: $x \notin V$ を新しい頂点として, $A^x = A \cup \{ \overrightarrow{sx} \mid s \in S \} \cup \{ \overrightarrow{xt} \mid t \in T \}$ とする.
+
+このとき, 以下が成り立つ.
+
+* (a) $D^x$ のトポロジカルソート $\leq$ を $V$ に制限したものは, $D^+$ のトポロジカルソートである.
+* (b) $D^+$ がトポロジカルソートを持つならば, $D^x$ もトポロジカルソートを持つ.
+
+特に, 定理 4 より, $D^+$ が DAG であることと $D^x$ が DAG であることは同値である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+**(a)**
+
+$\leq$ を $D^x$ のトポロジカルソートとし, $V$ への制限を $\leq_V$ とする. 全順序を制限したものは全順序である. $\overrightarrow{uv} \in A^+$ とする.
+
+* $\overrightarrow{uv} \in A$ のとき: $\overrightarrow{uv} \in A^x$ なので $u < v$ である.
+* $u \in S$ かつ $v \in T$ のとき: $\overrightarrow{ux}, \overrightarrow{xv} \in A^x$ なので $u < x < v$ である. 推移律より $u \leq v$ であり, もし $u = v$ ならば $u \leq x \leq u$ から $u = x$ となって $u \neq x$ に矛盾する. よって $u < v$ である.
+
+よって, $\leq_V$ は $D^+$ のトポロジカルソートである.
+
+**(b)**
+
+$\leq$ を $D^+$ のトポロジカルソートとする. $S, T$ の任意の元 $s \in S, t \in T$ について $\overrightarrow{st} \in A^+$ なので $s < t$ である.
+
+$V \cup \{x\}$ 上の関係 $\leq^x$ を, $x$ を $S$ の最大元の直後に挿入することで, 次のように定める. $u, v \in V$ に対して $u \leq^x v \iff u \leq v$ とし, $x$ との比較は以下で定める.
+
+* $S = \emptyset$ のとき: 任意の $u \in V$ について $x \leq^x u$ (つまり $x$ を最小の元とする).
+* $S \neq \emptyset$ のとき: $s^* = \max S$ として, $u \in V$ について $u \leq^x x \iff u \leq s^*$, $x \leq^x u \iff s^* < u$ (つまり $x$ を $s^*$ の直後に置く).
+
+これは $\leq$ の全順序の $s^*$ と, その次の元の間に $x$ を挿入したものなので, 全順序である. また, $A$ の弧については $\leq$ と同じ順序なので条件を満たす. さらに,
+
+* 任意の $s \in S$ について, $s \leq s^* < x$ なので $s < x$ である.
+* 任意の $t \in T$ について, $S = \emptyset$ ならば $x < t$ である. $S \neq \emptyset$ ならば $s^* < t$ であり, $x$ は $s^*$ の直後なので $x < t$ である.
+
+よって, $\leq^x$ は $D^x$ のトポロジカルソートである.
+
+**最後の主張**
+
+$D^+$ が DAG ならば, 定理 4 より $D^+$ はトポロジカルソートを持つので, (b) より $D^x$ もトポロジカルソートを持ち, 定理 4 より $D^x$ は DAG である. 逆に, $D^x$ が DAG ならば, 定理 4 より $D^x$ はトポロジカルソートを持つので, (a) より $D^+$ もトポロジカルソートを持ち, 定理 4 より $D^+$ は DAG である.
+
+</div>
+
+命題 5 は, `add_arc_multiple` の理論的な裏付けである. `sources` を $S$, `targets` を $T$ とすると, $D^+$ は $S$ の各頂点から $T$ の各頂点へ弧を直接張ったグラフ, $D^x$ は `add_arc_multiple` が実際に作る (新しい頂点 $x$ を経由する) グラフに対応する. 命題 5 より, 弧を $\lvert S \rvert \times \lvert T \rvert$ 本張る代わりに $\lvert S \rvert + \lvert T \rvert$ 本で済ませても, DAG かどうかの判定は変わらない. また, $D^x$ のトポロジカルソートから $x$ を取り除けば, $D^+$ のトポロジカルソートが得られる.
+
+なお, 命題 5 では自己ループも通常の弧として扱う. $S \cap T \neq \emptyset$ のとき, $D^+$ は自己ループを, $D^x$ は $s \to x \to s$ という閉路を持つので, どちらも DAG ではない. これは `ignore_self_loop` = `false` の場合に対応し, `ignore_self_loop` = `true` の場合も `add_arc_multiple` では閉路が残るため `sort` は `nullopt` を返す.
+
 ## Contents
 
 ### Constructor
@@ -159,6 +218,7 @@ int add_arc_multiple(const vector<int> sources, const vector<int> targets)
 
 * `sources` の各頂点から `targets` の各頂点への弧を追加する.
 * 新しい頂点 $x$ を $1$ 個追加し, `sources` の各頂点から $x$ へ, $x$ から `targets` の各頂点へ弧を張ることで実現する. これにより, 弧の本数は $\lvert \mathrm{sources} \rvert \times \lvert \mathrm{targets} \rvert$ 本ではなく $\lvert \mathrm{sources} \rvert + \lvert \mathrm{targets} \rvert$ 本で済む.
+  * 命題 5 より, この方法でも DAG かどうかの判定は変わらず, 結果から $x$ を取り除けば直接弧を張った場合のトポロジカルソートが得られる.
 * **返り値**
   * 追加された頂点 $x$ の番号が返ってくる.
 * **注意**
