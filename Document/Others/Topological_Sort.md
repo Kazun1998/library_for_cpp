@@ -158,7 +158,7 @@ int add_arc_multiple(const vector<int> sources, const vector<int> targets)
 ```
 
 * `sources` の各頂点から `targets` の各頂点への弧を追加する.
-* 新しい頂点 $x$ を $1$ 個追加し, `sources` の各頂点から $x$ へ, $x$ から `targets` の各頂点へ弧を張ることで実現する. これにより, 弧の本数は $|\mathrm{sources}| \times |\mathrm{targets}|$ 本ではなく $|\mathrm{sources}| + |\mathrm{targets}|$ 本で済む.
+* 新しい頂点 $x$ を $1$ 個追加し, `sources` の各頂点から $x$ へ, $x$ から `targets` の各頂点へ弧を張ることで実現する. これにより, 弧の本数は $\lvert \mathrm{sources} \rvert \times \lvert \mathrm{targets} \rvert$ 本ではなく $\lvert \mathrm{sources} \rvert + \lvert \mathrm{targets} \rvert$ 本で済む.
 * **返り値**
   * 追加された頂点 $x$ の番号が返ってくる.
 * **注意**
