@@ -37,9 +37,10 @@ data:
     document_title: "\u8A9E. \u6587\u5B57 (0 \u4EE5\u4E0A K \u672A\u6E80\u306E\u6574\
       \u6570) \u306E\u5217. \u7A7A\u5217\u306F\u5358\u4F4D\u5143\u3092\u8868\u3059\
       ."
-    links: []
-  bundledCode: "#line 2 \"Algebra/Todd_Coxeter.hpp\"\n\n#line 2 \"template/template.hpp\"\
-    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
+    links:
+    - https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Todd_Coxeter.hpp
+  bundledCode: "#line 2 \"Algebra/Todd_Coxeter.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Todd_Coxeter.hpp\n\
+    \n#line 2 \"template/template.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
     \nusing namespace std;\n\n// intrinstic\n#include <immintrin.h>\n\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n#include <cctype>\n#include\
     \ <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include\
@@ -230,7 +231,7 @@ data:
     \ }\n\n    // x, y \u306F\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\u3042\u308B\
     ?\n    int same(int x, int y) { return find(x) == find(y); }\n\n    // \u9023\u7D50\
     \u6210\u5206\u306E\u6570\u3092\u6C42\u3081\u308B.\n    inline int group_count()\
-    \ const { return _group_number; }\n};\n#line 5 \"Algebra/Todd_Coxeter.hpp\"\n\n\
+    \ const { return _group_number; }\n};\n#line 7 \"Algebra/Todd_Coxeter.hpp\"\n\n\
     struct Todd_Coxeter {\n    public:\n    /// @brief \u8A9E. \u6587\u5B57 (0 \u4EE5\
     \u4E0A K \u672A\u6E80\u306E\u6574\u6570) \u306E\u5217. \u7A7A\u5217\u306F\u5358\
     \u4F4D\u5143\u3092\u8868\u3059.\n    using Word = vector<int>;\n\n    /// @brief\
@@ -316,7 +317,8 @@ data:
     \u5143\u306F 0).\n    int eval(const Word &w) const {\n        int alpha = 0;\n\
     \        for (int x: w) {\n            alpha = T[alpha][x];\n        }\n\n   \
     \     return alpha;\n    }\n};\n"
-  code: "#pragma once\n\n#include \"../template/template.hpp\"\n#include \"../Union_Find/Union_Find.hpp\"\
+  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Todd_Coxeter.hpp\n\
+    \n#include \"../template/template.hpp\"\n#include \"../Union_Find/Union_Find.hpp\"\
     \n\nstruct Todd_Coxeter {\n    public:\n    /// @brief \u8A9E. \u6587\u5B57 (0\
     \ \u4EE5\u4E0A K \u672A\u6E80\u306E\u6574\u6570) \u306E\u5217. \u7A7A\u5217\u306F\
     \u5358\u4F4D\u5143\u3092\u8868\u3059.\n    using Word = vector<int>;\n\n    ///\
@@ -414,7 +416,7 @@ data:
   isVerificationFile: false
   path: Algebra/Todd_Coxeter.hpp
   requiredBy: []
-  timestamp: '2026-10-31 18:45:17+09:00'
+  timestamp: '2026-10-31 19:47:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/original/Todd_Coxeter.test.cpp

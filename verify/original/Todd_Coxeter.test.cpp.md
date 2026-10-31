@@ -208,8 +208,8 @@ data:
     \  public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Algebra/Todd_Coxeter.hpp\"\n\n#line 2 \"Union_Find/Union_Find.hpp\"\
-    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Union_Find.hpp\n\
+    \    }\n};\n#line 2 \"Algebra/Todd_Coxeter.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/Todd_Coxeter.hpp\n\
+    \n#line 2 \"Union_Find/Union_Find.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Union_Find/Union_Find.hpp\n\
     \nclass Union_Find{\n    private:\n    int N;\n    vector<int> data;\n    int\
     \ _group_number;\n\n    public:\n    Union_Find(int N) : N(N), data(N, -1), _group_number(N)\
     \ {}\n\n    // x \u304C\u5C5E\u3059\u308B\u65CF\u306E\u4EE3\u8868\u5143\u3092\u6C42\
@@ -232,7 +232,7 @@ data:
     \ }\n\n    // x, y \u306F\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\u3042\u308B\
     ?\n    int same(int x, int y) { return find(x) == find(y); }\n\n    // \u9023\u7D50\
     \u6210\u5206\u306E\u6570\u3092\u6C42\u3081\u308B.\n    inline int group_count()\
-    \ const { return _group_number; }\n};\n#line 5 \"Algebra/Todd_Coxeter.hpp\"\n\n\
+    \ const { return _group_number; }\n};\n#line 7 \"Algebra/Todd_Coxeter.hpp\"\n\n\
     struct Todd_Coxeter {\n    public:\n    /// @brief \u8A9E. \u6587\u5B57 (0 \u4EE5\
     \u4E0A K \u672A\u6E80\u306E\u6574\u6570) \u306E\u5217. \u7A7A\u5217\u306F\u5358\
     \u4F4D\u5143\u3092\u8868\u3059.\n    using Word = vector<int>;\n\n    /// @brief\
@@ -469,7 +469,7 @@ data:
   isVerificationFile: true
   path: verify/original/Todd_Coxeter.test.cpp
   requiredBy: []
-  timestamp: '2026-10-31 18:45:17+09:00'
+  timestamp: '2026-10-31 19:47:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/original/Todd_Coxeter.test.cpp
