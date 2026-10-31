@@ -15,15 +15,7 @@ $M$ が無限のとき, Todd–Coxeter 法は終了しない (命題 12). 有限
 
 列/文字列に関する記法 (空列 $\emptyset$, 結合 $\oplus$, 長さ $\lvert \alpha \rvert$ など) は, [列/文字列](/String.html) に従う.
 
-* 実装では, アルファベットを $X = \lbrace 0, 1, \dots, K-1 \rbrace$ とし, 文字 $i$ は生成元 $x_i$ を表す.
-* 文字列は文字の列 (`vector<int>`) で表す. 空列 $\emptyset$ は $M$ の単位元 $e$ を表す.
-* 関係式 $l = r$ は, 文字列の組 $(l, r)$ (`pair<vector<int>, vector<int>>`) で表す.
-* 元は $0, 1, \dots, \lvert M \rvert - 1$ の整数で番号付けする. 単位元の番号は $0$ である.
-* 元 $\alpha$ に文字 $x$ を右から掛けた元を $\alpha \cdot x$ で表す.
-
-## Theory
-
-このページでは, $X$ をアルファベットとする. $X^\ast$ は文字列の結合 $\oplus$ に関してモノイドになる ([列/文字列](/String.html) の命題 4).
+$X$ をアルファベットとする. $X^\ast$ は文字列の結合 $\oplus$ に関してモノイドになる ([列/文字列](/String.html) の命題 4).
 
 ### 商モノイド
 
