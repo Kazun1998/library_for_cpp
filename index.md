@@ -22,6 +22,9 @@ data:
       path: Algebra/Semiring_Matrix.hpp
       title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
     - icon: ':heavy_check_mark:'
+      path: Algebra/Todd_Coxeter.hpp
+      title: "Todd\u2013Coxeter \u6CD5"
+    - icon: ':heavy_check_mark:'
       path: Algebra/dynamic_modint.hpp
       title: Algebra/dynamic_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -966,6 +969,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/original/Permutation.test.cpp
       title: verify/original/Permutation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Todd_Coxeter.test.cpp
+      title: verify/original/Todd_Coxeter.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/enumerable.test.cpp
       title: verify/original/enumerable.test.cpp

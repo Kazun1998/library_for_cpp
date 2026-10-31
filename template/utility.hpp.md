@@ -18,6 +18,9 @@ data:
     path: Algebra/Semiring_Matrix.hpp
     title: "\u534A\u74B0\u4E0A\u306E\u884C\u5217"
   - icon: ':heavy_check_mark:'
+    path: Algebra/Todd_Coxeter.hpp
+    title: "Todd\u2013Coxeter \u6CD5"
+  - icon: ':heavy_check_mark:'
     path: Algebra/dynamic_modint.hpp
     title: Algebra/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -814,6 +817,9 @@ data:
     path: verify/original/Permutation.test.cpp
     title: verify/original/Permutation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: verify/original/Todd_Coxeter.test.cpp
+    title: verify/original/Todd_Coxeter.test.cpp
+  - icon: ':heavy_check_mark:'
     path: verify/original/enumerable.test.cpp
     title: verify/original/enumerable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1392,6 +1398,7 @@ data:
   - Algebra/Permutaion.hpp
   - Algebra/Extended_Algebra.hpp
   - Algebra/dynamic_modint.hpp
+  - Algebra/Todd_Coxeter.hpp
   - Algebra/modint.hpp
   - Algebra/Semiring_Matrix.hpp
   - Algebra/Nimber.hpp
@@ -1548,6 +1555,7 @@ data:
   - verify/original/Fraction.test.cpp
   - verify/original/Integer_Equation.test.cpp
   - verify/original/enumerable.test.cpp
+  - verify/original/Todd_Coxeter.test.cpp
   - verify/original/Double_Add_Convolution.test.cpp
   - verify/original/Partition_Q.test.cpp
   - verify/aizu_online_judge/cgl/7D.test.cpp

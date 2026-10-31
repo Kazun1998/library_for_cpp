@@ -3,9 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Algebra/Todd_Coxeter.hpp
+    title: "Todd\u2013Coxeter \u6CD5"
+  - icon: ':heavy_check_mark:'
     path: Graph/Weighted_Graph/Kruskal.hpp
     title: "Kruskal \u6CD5"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verify/original/Todd_Coxeter.test.cpp
+    title: verify/original/Todd_Coxeter.test.cpp
   - icon: ':heavy_check_mark:'
     path: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
     title: verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
@@ -71,11 +77,13 @@ data:
   path: Union_Find/Union_Find.hpp
   requiredBy:
   - Graph/Weighted_Graph/Kruskal.hpp
+  - Algebra/Todd_Coxeter.hpp
   timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
+  - verify/original/Todd_Coxeter.test.cpp
 documentation_of: Union_Find/Union_Find.hpp
 layout: document
 title: Union Find
