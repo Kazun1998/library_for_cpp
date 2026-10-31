@@ -111,7 +111,7 @@ $(X, \leq)$ を全順序集合とする. このとき, 以下が成り立つ.
 定義 9
 ---
 
-$X$ を集合とする. $\alpha = (a_1, \dots, a_n) \in X^*$ に対して, $\alpha$ の逆順 $\overline{\alpha}$ を
+$X$ を集合とする. $\alpha = (a_1, \dots, a_n) \in X^*$ に対して, $\alpha$ の反転 $\overline{\alpha}$ を
 
 $$ \overline{\alpha} := (a_n, a_{n-1}, \dots, a_1) $$
 
