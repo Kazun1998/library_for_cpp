@@ -416,8 +416,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
   - verify/yosupo_library_checker/tree/Jump_on_tree.test.cpp
+  - verify/yosupo_library_checker/tree/Lowest_Common_Ancestor.test.cpp
 documentation_of: Tree/Lowest_Common_Ancestor.hpp
 layout: document
 title: "\u6700\u8FD1\u5171\u901A\u7956\u5148 (Lowest Common Ancestor)"

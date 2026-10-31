@@ -343,27 +343,27 @@ data:
   path: Integer/Prime.hpp
   requiredBy:
   - Modulo/Garner.hpp
-  - Modulo/Tower.hpp
   - Modulo/Order.hpp
-  - Integer/Pollard_Rho.hpp
-  - Integer/Euler_Totient.hpp
-  - Integer/Interval_Sieve_of_Eratosthenes.hpp
-  - Integer/Prime_Pi.hpp
+  - Modulo/Tower.hpp
   - Integer/Interval_Prime_Factorization.hpp
-  - Integer/Miller_Rabin_Primality_Test.hpp
+  - Integer/Euler_Totient.hpp
+  - Integer/Prime_Pi.hpp
   - Integer/Primitive_Root.hpp
+  - Integer/Miller_Rabin_Primality_Test.hpp
+  - Integer/Interval_Sieve_of_Eratosthenes.hpp
+  - Integer/Pollard_Rho.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
-  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
-  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
-  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
-  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
-  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
-  - verify/aizu_online_judge/ntl/1D.test.cpp
   - verify/yukicoder/Modulo_Order.test.cpp
   - verify/yukicoder/187.test.cpp
+  - verify/yosupo_library_checker/number_theory/Tetration_Mod.test.cpp
+  - verify/yosupo_library_checker/number_theory/Miller_Rabin_Primality_Test.test.cpp
+  - verify/yosupo_library_checker/number_theory/Factorize.test.cpp
+  - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Primitive_Root.test.cpp
+  - verify/aizu_online_judge/ntl/1D.test.cpp
 documentation_of: Integer/Prime.hpp
 layout: document
 redirect_from:

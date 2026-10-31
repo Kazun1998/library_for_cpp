@@ -301,15 +301,15 @@ data:
   isVerificationFile: false
   path: Convolution/Convolution_Base.hpp
   requiredBy:
-  - Graph/Graph/Chromatic_Number.hpp
-  - Convolution/Gcd_Convolution.hpp
-  - Convolution/Bitwise_And_Convolution.hpp
-  - Convolution/Bitwise_Or_Convolution.hpp
   - Convolution/Min_Convolution.hpp
-  - Convolution/Subset_Convolution.hpp
-  - Convolution/Max_Convolution.hpp
-  - Convolution/Semilattice_Convolution_Base.hpp
   - Convolution/Lcm_Convolution.hpp
+  - Convolution/Max_Convolution.hpp
+  - Convolution/Subset_Convolution.hpp
+  - Convolution/Gcd_Convolution.hpp
+  - Convolution/Semilattice_Convolution_Base.hpp
+  - Convolution/Bitwise_Or_Convolution.hpp
+  - Convolution/Bitwise_And_Convolution.hpp
+  - Graph/Graph/Chromatic_Number.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

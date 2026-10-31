@@ -597,8 +597,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/original/Partition_Q.test.cpp
   - verify/yosupo_library_checker/enumerate_combinatorics/Subset_Sum.test.cpp
+  - verify/original/Partition_Q.test.cpp
 documentation_of: Modulo_Polynomial/Subset_Sum.hpp
 layout: document
 title: "Subset Sum (\u591A\u9805\u5F0F)"

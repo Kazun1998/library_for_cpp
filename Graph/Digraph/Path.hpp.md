@@ -350,8 +350,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
-  - verify/aizu_online_judge/grl/1C.test.cpp
   - verify/aizu_online_judge/grl/1B.test.cpp
+  - verify/aizu_online_judge/grl/1C.test.cpp
 documentation_of: Graph/Digraph/Path.hpp
 layout: document
 redirect_from:

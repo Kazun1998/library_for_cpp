@@ -379,8 +379,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/data_structure/Static_Range_Frequency-2.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_Add_Range_Sum-2.test.cpp
+  - verify/yosupo_library_checker/data_structure/Static_Range_Frequency-2.test.cpp
 documentation_of: Interval_Query/Interval_Query.hpp
 layout: document
 title: Interval Query

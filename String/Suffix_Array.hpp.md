@@ -395,9 +395,9 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
   - verify/yosupo_library_checker/string/Number_of_Substrings.test.cpp
   - verify/yosupo_library_checker/string/Suffix_Array.test.cpp
+  - verify/yosupo_library_checker/string/Longest_Common_Substring.test.cpp
 documentation_of: String/Suffix_Array.hpp
 layout: document
 title: "Suffix Array (\u63A5\u5C3E\u8F9E\u914D\u5217)"
