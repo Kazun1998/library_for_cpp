@@ -154,7 +154,7 @@ namespace max_flow {
         /// @brief 1 頂点を追加する.
         /// @return 追加した頂点の番号
         int add_vertex() {
-            adj_out.emplace_back({});
+            adj_out.emplace_back();
             level.emplace_back(-1);
             iter.emplace_back(0);
 
