@@ -368,7 +368,7 @@ int F.add_arc(const int u, const int v, const Cap cap)
 * **返り値**
   * 追加した弧の番号. $0, 1, 2, \dots$ の順に振られる.
 * **制約**
-  * $0 \leq u, v < N$
+  * $0 \leq u < N, 0 \leq v < N$
   * `cap` $\geq 0$
 
 ### add_vertex
@@ -395,7 +395,7 @@ Cap F.max_flow(const int source, const int target, Cap flow_limit)
 * **注意**
   * 流した結果 (残余グラフ) はフロー場に残る. そのため, `max_flow` を続けて呼ぶと, 前回の流れに追加で流せる量が返る. 例えば, `flow_limit` を指定して途中で打ち切った後に `flow_limit` を指定せずに呼ぶと, $2$ 回の返り値の和が最大流量になる.
 * **制約**
-  * $0 \leq$ `source`, `target` $< N$
+  * $0 \leq$ `source` $< N$, $0 \leq$ `target` $< N$
   * `source` $\neq$ `target`
 * **計算量** : 計算量は色々ある.
   * 一般には $O(N^2 M)$ 時間.
