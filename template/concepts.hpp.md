@@ -86,14 +86,14 @@ data:
   isVerificationFile: false
   path: template/concepts.hpp
   requiredBy:
-  - Union_Find/Coloring_Union_Find.hpp
-  - Union_Find/Group_Action_Union_Find.hpp
+  - Math/Interval_Product.hpp
   - Functional_Graph/Monoid_Functional_Graph.hpp
+  - Data_Structure/Best_Sum.hpp
+  - Data_Structure/Sliding_Window_Aggregation.hpp
   - Sequence/Ordered_Trie.hpp
   - Sequence/Trie.hpp
-  - Math/Interval_Product.hpp
-  - Data_Structure/Sliding_Window_Aggregation.hpp
-  - Data_Structure/Best_Sum.hpp
+  - Union_Find/Group_Action_Union_Find.hpp
+  - Union_Find/Coloring_Union_Find.hpp
   timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

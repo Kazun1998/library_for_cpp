@@ -300,59 +300,122 @@ data:
     \ << \"-inf\"; }\n        return os << x.val;\n    }\n};\n#line 2 \"Max_Flow/Max_Flow.hpp\"\
     \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Max_Flow/Max_Flow.hpp\n\
     \n#line 6 \"Max_Flow/Max_Flow.hpp\"\n\nnamespace max_flow {\n    template<typename\
-    \ Cap>\n    struct Arc {\n        int id, source, target;\n        Cap cap, flow;\n\
-    \        bool direction;\n        Arc* rev;\n\n        Arc(int id, int source,\
-    \ int target, Cap cap, Cap flow, bool direction):\n            id(id), source(source),\
-    \ target(target), cap(cap), flow(flow), direction(direction), rev(nullptr) {}\n\
-    \n        inline bool is_flowable() const { return flow < cap; }\n        inline\
-    \ Cap remain() const { return cap - flow; }\n\n        void push(Cap d) {\n  \
-    \          flow += d;\n            rev->flow -= d;\n        }\n    };\n\n    template<typename\
-    \ Cap>\n    struct Max_Flow {\n        private:\n        using V = int;\n    \
-    \    vector<vector<Arc<Cap>*>> adj_out;\n        vector<Arc<Cap>*> arcs;\n   \
-    \     vector<int> level, iter;\n\n        bool bfs(const V s, const V t) {\n \
-    \           level.assign(order(), -1);\n            queue<V> Q;\n\n          \
-    \  Q.push(s);\n            level[s] = 0;\n\n            while (!Q.empty()) {\n\
-    \                V v = Q.front(); Q.pop();\n\n                for (Arc<Cap>* arc:\
-    \ adj_out[v]) {\n                    unless(arc->is_flowable() && level[arc->target]\
-    \ == -1) { continue; }\n\n                    level[arc->target] = level[v] +\
-    \ 1;\n                    if (arc->target == t) { return true; }\n\n         \
-    \           Q.push(arc->target);\n                }\n            }\n\n       \
-    \     return false;\n        }\n\n        Cap dfs(const V v, const V t, const\
-    \ Cap f) {\n            if (v == t) { return f; }\n\n            for (int i =\
-    \ iter[v]; i < adj_out[v].size(); ++i) {\n                Arc<Cap>* arc = adj_out[v][i];\n\
+    \ Cap>\n    struct Arc {\n        /// @brief \u5F27\u306E id (\u9806\u8FBA\u3068\
+    \u9006\u8FBA\u3067\u5171\u901A)\n        int id;\n\n        /// @brief \u5F27\u306E\
+    \u59CB\u70B9\u3068\u7D42\u70B9\n        int source, target;\n\n        /// @brief\
+    \ \u5BB9\u91CF\u3068\u73FE\u5728\u306E\u6D41\u91CF (\u9006\u8FBA\u3067\u306F cap\
+    \ = 0, flow = -(\u9806\u8FBA\u306E\u6D41\u91CF))\n        Cap cap, flow;\n\n \
+    \       /// @brief true \u2192 add_arc \u3067\u8FFD\u52A0\u3057\u305F\u5F27 (\u9806\
+    \u8FBA), false \u2192 \u6B8B\u4F59\u30B0\u30E9\u30D5\u7528\u306E\u9006\u8FBA\n\
+    \        bool direction;\n\n        /// @brief \u5BFE\u306B\u306A\u308B\u5F27\
+    \ (source \u3068 target \u3092\u5165\u308C\u66FF\u3048\u305F\u5F27) \u3078\u306E\
+    \u30DD\u30A4\u30F3\u30BF.\n        /// \u9806\u8FBA\u306A\u3089\u9006\u8FBA\u3092\
+    , \u9006\u8FBA\u306A\u3089\u9806\u8FBA\u3092\u6307\u3059.\n        Arc* rev;\n\
+    \n        Arc(int id, int source, int target, Cap cap, Cap flow, bool direction):\n\
+    \            id(id), source(source), target(target), cap(cap), flow(flow), direction(direction),\
+    \ rev(nullptr) {}\n\n        /// @brief \u6B8B\u4F59\u5BB9\u91CF\u304C\u6B63 (\u307E\
+    \u3060\u6D41\u305B\u308B) \u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \n        /// @return \u6B8B\u4F59\u5BB9\u91CF\u304C\u6B63\u306A\u3089\u3070 true\n\
+    \        inline bool is_flowable() const { return flow < cap; }\n\n        ///\
+    \ @brief \u6B8B\u4F59\u5BB9\u91CF\u3092\u6C42\u3081\u308B\n        /// @return\
+    \ \u6B8B\u4F59\u5BB9\u91CF cap - flow\n        inline Cap remain() const { return\
+    \ cap - flow; }\n\n        /// @brief \u3053\u306E\u5F27\u306B\u6D41\u91CF d \u3092\
+    \u6D41\u3059. \u5BFE\u306B\u306A\u308B\u5F27\u306E\u6D41\u91CF\u3082 -d \u3060\
+    \u3051\u66F4\u65B0\u3059\u308B.\n        /// @param d \u6D41\u3059\u91CF\n   \
+    \     void push(Cap d) {\n            flow += d;\n            rev->flow -= d;\n\
+    \        }\n    };\n\n    template<typename Cap>\n    struct Max_Flow {\n    \
+    \    private:\n        using V = int;\n        vector<vector<Arc<Cap>*>> adj_out;\n\
+    \        vector<Arc<Cap>*> arcs;\n        vector<int> level, iter;\n\n       \
+    \ /// @brief \u6B8B\u4F59\u30B0\u30E9\u30D5\u4E0A\u3067 s \u304B\u3089\u306E BFS\
+    \ \u3092\u884C\u3044, level (s \u304B\u3089\u306E\u8DDD\u96E2) \u3092\u8A08\u7B97\
+    \u3059\u308B.\n        /// t \u306B\u5230\u9054\u3057\u305F\u6642\u70B9\u3067\u6253\
+    \u3061\u5207\u308B.\n        /// @param s \u59CB\u70B9\n        /// @param t \u7D42\
+    \u70B9\n        /// @return \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067 s \u304B\u3089\
+    \ t \u306B\u5230\u9054\u53EF\u80FD\u306A\u3089\u3070 true\n        bool bfs(const\
+    \ V s, const V t) {\n            level.assign(order(), -1);\n            queue<V>\
+    \ Q;\n\n            Q.push(s);\n            level[s] = 0;\n\n            while\
+    \ (!Q.empty()) {\n                V v = Q.front(); Q.pop();\n\n              \
+    \  for (Arc<Cap>* arc: adj_out[v]) {\n                    unless(arc->is_flowable()\
+    \ && level[arc->target] == -1) { continue; }\n\n                    level[arc->target]\
+    \ = level[v] + 1;\n                    if (arc->target == t) { return true; }\n\
+    \n                    Q.push(arc->target);\n                }\n            }\n\
+    \n            return false;\n        }\n\n        /// @brief \u30EC\u30D9\u30EB\
+    \u30B0\u30E9\u30D5\u4E0A\u3067 v \u304B\u3089 t \u3078\u306E\u5897\u52A0\u30D1\
+    \u30B9\u3092 1 \u672C\u63A2\u3057, \u305D\u3053\u306B\u6D41\u3059.\n        ///\
+    \ iter[v] \u3092\u9032\u3081\u308B\u3053\u3068\u3067, 1 \u56DE\u306E\u30D5\u30A7\
+    \u30FC\u30BA\u5185\u3067\u540C\u3058\u5F27\u3092\u518D\u63A2\u7D22\u3057\u306A\
+    \u3044.\n        /// @param v \u73FE\u5728\u306E\u9802\u70B9\n        /// @param\
+    \ t \u7D42\u70B9\n        /// @param f \u6D41\u91CF\u306E\u4E0A\u9650 (unlimited\
+    \ = true \u306E\u3068\u304D\u306F\u7121\u8996\u3055\u308C\u308B)\n        ///\
+    \ @param unlimited true \u306E\u3068\u304D, \u6D41\u91CF\u306E\u4E0A\u9650\u306F\
+    \u7121\u3044\u3082\u306E\u3068\u3057\u3066\u6271\u3046\n        /// @return \u6D41\
+    \u3057\u305F\u91CF (\u5897\u52A0\u30D1\u30B9\u304C\u7121\u3051\u308C\u3070 0)\n\
+    \        Cap dfs(const V v, const V t, const Cap f, const bool unlimited) {\n\
+    \            if (v == t) { return f; }\n\n            for (int &i = iter[v]; i\
+    \ < (int)adj_out[v].size(); ++i) {\n                Arc<Cap>* arc = adj_out[v][i];\n\
     \n                unless(arc->is_flowable() && level[v] < level[arc->target])\
-    \ { continue; }\n\n                Cap d = (f == -1) ? dfs(arc->target, t, arc->remain())\
-    \ : dfs(arc->target, t, min(f, arc->remain()));\n\n                unless(d >\
-    \ 0) { continue; }\n\n                arc->push(d);\n                return d;\n\
-    \            }\n\n            return 0;\n        }\n\n        public:\n      \
-    \  Max_Flow(int N = 0) {\n            adj_out.resize(N);\n            level.resize(N);\n\
-    \            iter.resize(N);\n        }\n\n        ~Max_Flow() {\n           \
-    \ for (Arc<Cap>* arc : arcs) {\n                if (arc->rev) { delete arc->rev;\
-    \ }\n                delete arc;\n            }\n        }\n\n        inline int\
-    \ order() const { return adj_out.size(); }\n        inline int size() const {\
-    \ return arcs.size(); }\n\n        int add_arc(const V u, const V v, const Cap\
-    \ cap) {\n            int m = size();\n\n            Arc<Cap>* arc = new Arc<Cap>(m,\
-    \ u, v, cap, 0, true);\n            Arc<Cap>* rev_arc = new Arc<Cap>(m, v, u,\
-    \ 0, 0, false);\n\n            arc->rev = rev_arc;\n            rev_arc->rev =\
-    \ arc;\n\n            adj_out[u].emplace_back(arc);\n            adj_out[v].emplace_back(rev_arc);\n\
-    \            arcs.emplace_back(arc);\n\n            return m;\n        }\n\n \
-    \       int add_vertex() {\n            adj_out.emplace_back({});\n          \
-    \  level.emplace_back(-1);\n            iter.emplace_back(0);\n\n            return\
-    \ order() - 1;\n        }\n\n        Cap max_flow(const V source, const V target)\
-    \ {\n            Cap flow = 0;\n            while (bfs(source, target)) {\n  \
-    \              iter.assign(order(), 0);\n                Cap f;\n            \
-    \    while ((f = dfs(source, target, -1)) > 0) {\n                    flow +=\
-    \ f;\n                }\n            }\n\n            return flow;\n        }\n\
-    \n        Cap max_flow(const V source, const V target, Cap flow_limit) {\n   \
-    \         Cap flow = 0;\n            while (flow < flow_limit && bfs(source, target))\
-    \ {\n                iter.assign(order(), 0);\n                Cap f;\n      \
-    \          while ((f = dfs(source, target, -1)) > 0) {\n                    flow\
-    \ += f;\n                }\n            }\n\n            return flow;\n      \
-    \  }\n\n        vector<vector<tuple<int, V, Cap>>> get_flow() const {\n      \
-    \      vector<vector<tuple<int, V, Cap>>> flow(order());\n\n            for (Arc<Cap>*\
-    \ arc: arcs) {\n                flow[arc->source].emplace_back(\n            \
-    \        arc->id,\n                    arc->target,\n                    arc->flow\n\
-    \                );\n            }\n\n            return flow;\n        }\n\n\
+    \ { continue; }\n\n                Cap next_f = unlimited ? arc->remain() : min(f,\
+    \ arc->remain());\n                Cap d = dfs(arc->target, t, next_f, false);\n\
+    \n                unless(d > 0) { continue; }\n\n                arc->push(d);\n\
+    \                return d;\n            }\n\n            return 0;\n        }\n\
+    \n        public:\n        /// @brief N \u9802\u70B9\u306E\u30D5\u30ED\u30FC\u5834\
+    \u3092\u751F\u6210\u3059\u308B\n        /// @param N \u4F4D\u6570\n        Max_Flow(int\
+    \ N = 0) {\n            adj_out.resize(N);\n            level.resize(N);\n   \
+    \         iter.resize(N);\n        }\n\n        /// @brief \u78BA\u4FDD\u3057\u305F\
+    \u5F27 (\u9806\u8FBA\u3068\u9006\u8FBA) \u3092\u89E3\u653E\u3059\u308B\n     \
+    \   ~Max_Flow() {\n            for (Arc<Cap>* arc : arcs) {\n                if\
+    \ (arc->rev) { delete arc->rev; }\n                delete arc;\n            }\n\
+    \        }\n\n        /// @brief \u30D5\u30ED\u30FC\u5834\u306E\u4F4D\u6570\u3092\
+    \u8FD4\u3059\n        /// @return \u4F4D\u6570\n        inline int order() const\
+    \ { return adj_out.size(); }\n\n        /// @brief \u30D5\u30ED\u30FC\u5834\u306E\
+    \u30B5\u30A4\u30BA\u3092\u6C42\u3081\u308B\n        /// @return \u30B5\u30A4\u30BA\
+    \n        inline int size() const { return arcs.size(); }\n\n        /// @brief\
+    \ \u9802\u70B9 u \u304B\u3089\u9802\u70B9 v \u3078\u306E\u5BB9\u91CF cap \u306E\
+    \u5F27\u3092\u8FFD\u52A0\u3059\u308B\n        /// @param u \u59CB\u70B9\n    \
+    \    /// @param v \u7D42\u70B9\n        /// @param cap \u5BB9\u91CF\n        ///\
+    \ @return \u8FFD\u52A0\u3057\u305F\u5F27\u306E id\n        int add_arc(const V\
+    \ u, const V v, const Cap cap) {\n            int m = size();\n\n            Arc<Cap>*\
+    \ arc = new Arc<Cap>(m, u, v, cap, 0, true);\n            Arc<Cap>* rev_arc =\
+    \ new Arc<Cap>(m, v, u, 0, 0, false);\n\n            arc->rev = rev_arc;\n   \
+    \         rev_arc->rev = arc;\n\n            adj_out[u].emplace_back(arc);\n \
+    \           adj_out[v].emplace_back(rev_arc);\n            arcs.emplace_back(arc);\n\
+    \n            return m;\n        }\n\n        /// @brief 1 \u9802\u70B9\u3092\u8FFD\
+    \u52A0\u3059\u308B.\n        /// @return \u8FFD\u52A0\u3057\u305F\u9802\u70B9\u306E\
+    \u756A\u53F7\n        int add_vertex() {\n            adj_out.emplace_back();\n\
+    \            level.emplace_back(-1);\n            iter.emplace_back(0);\n\n  \
+    \          return order() - 1;\n        }\n\n        /// @brief source \u304B\u3089\
+    \ target \u3078\u306E\u6700\u5927\u6D41\u306E\u5927\u304D\u3055\u3092\u6C42\u3081\
+    \u308B\n        /// @param source \u59CB\u70B9\n        /// @param target \u7D42\
+    \u70B9\n        /// @return \u6700\u5927\u6D41\u306E\u5927\u304D\u3055\n     \
+    \   Cap max_flow(const V source, const V target) {\n            Cap flow = 0;\n\
+    \            while (bfs(source, target)) {\n                iter.assign(order(),\
+    \ 0);\n                Cap f;\n                while ((f = dfs(source, target,\
+    \ Cap(0), true)) > 0) {\n                    flow += f;\n                }\n \
+    \           }\n\n            return flow;\n        }\n\n        /// @brief source\
+    \ \u304B\u3089 target \u3078\u306E\u9AD8\u3005 flow_limit \u307E\u3067\u306E\u6700\
+    \u5927\u6D41\u306E\u5927\u304D\u3055\u3092\u6C42\u3081\u308B\n        /// @param\
+    \ source \u59CB\u70B9\n        /// @param target \u7D42\u70B9\n        /// @param\
+    \ flow_limit \u6D41\u3059\u5BB9\u91CF\u306E\u4E0A\u9650\n        /// @return \u6700\
+    \u5927\u6D41\u306E\u5927\u304D\u3055\n        Cap max_flow(const V source, const\
+    \ V target, Cap flow_limit) {\n            Cap flow = 0;\n            while (flow\
+    \ < flow_limit && bfs(source, target)) {\n                iter.assign(order(),\
+    \ 0);\n                Cap f;\n                while (flow < flow_limit && (f\
+    \ = dfs(source, target, flow_limit - flow, false)) > 0) {\n                  \
+    \  flow += f;\n                }\n            }\n\n            return flow;\n\
+    \        }\n\n        /// @brief max_flow \u3067\u6C42\u3081\u305F\u6D41\u308C\
+    \u3092\u53D6\u5F97\u3059\u308B.\n        /// @return \u7B2C u \u8981\u7D20\u306F\
+    , u \u3092\u59CB\u70B9\u3068\u3059\u308B\u5404\u5F27\u306B\u3064\u3044\u3066 (\u5F27\
+    \u306E id, \u7D42\u70B9, \u6D41\u91CF) \u3092\u4E26\u3079\u305F\u3082\u306E\n\
+    \        vector<vector<tuple<int, V, Cap>>> get_flow() const {\n            vector<vector<tuple<int,\
+    \ V, Cap>>> flow(order());\n\n            for (Arc<Cap>* arc: arcs) {\n      \
+    \          flow[arc->source].emplace_back(\n                    arc->id,\n   \
+    \                 arc->target,\n                    arc->flow\n              \
+    \  );\n            }\n\n            return flow;\n        }\n\n        /// @brief\
+    \ \u6700\u5C0F\u30AB\u30C3\u30C8\u3092\u6C42\u3081\u308B. max_flow(s, t) \u3092\
+    \u547C\u3093\u3060\u5F8C\u306B\u4F7F\u3046\u3053\u3068.\n        /// @param s\
+    \ \u59CB\u70B9\n        /// @return \u9577\u3055 N \u306E\u914D\u5217 group. \u6B8B\
+    \u4F59\u30B0\u30E9\u30D5\u3067 s \u304B\u3089\u5230\u9054\u53EF\u80FD\u306A\u9802\
+    \u70B9 (s \u5074) \u304C false, \u305D\u308C\u4EE5\u5916 (t \u5074) \u304C true\n\
     \        vector<bool> min_cut(const int s) {\n            vector<bool> group(order(),\
     \ true); group[s] = false;\n\n            deque<V> Q{s};\n\n            while\
     \ (!Q.empty()) {\n                V x = Q.front(); Q.pop_front();\n\n        \
@@ -482,7 +545,7 @@ data:
   isVerificationFile: false
   path: Max_Flow/Project_Selection_Problem.hpp
   requiredBy: []
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-06 00:23:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yukicoder/1984.test.cpp

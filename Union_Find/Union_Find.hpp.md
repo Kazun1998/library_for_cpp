@@ -76,13 +76,13 @@ data:
   isVerificationFile: false
   path: Union_Find/Union_Find.hpp
   requiredBy:
-  - Graph/Weighted_Graph/Kruskal.hpp
   - Algebra/Todd_Coxeter.hpp
+  - Graph/Weighted_Graph/Kruskal.hpp
   timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/yosupo_library_checker/data_structure/Union_Find.test.cpp
+  - verify/yosupo_library_checker/graph/Minimum_Spanning_Tree_by_Kruskal.test.cpp
   - verify/original/Todd_Coxeter.test.cpp
 documentation_of: Union_Find/Union_Find.hpp
 layout: document

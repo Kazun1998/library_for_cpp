@@ -321,18 +321,18 @@ data:
   isVerificationFile: false
   path: Segment_Tree/Segment_Tree.hpp
   requiredBy:
-  - Tree/Subtree_Monoid_Vertex_Query.hpp
   - Segment_Tree/preset/Range_Max.hpp
-  - Segment_Tree/preset/Range_Min.hpp
   - Segment_Tree/preset/Range_Sum.hpp
+  - Segment_Tree/preset/Range_Min.hpp
+  - Tree/Subtree_Monoid_Vertex_Query.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
-  - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
-  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
   - verify/yosupo_library_checker/data_structure/Segment_Tree_2.test.cpp
   - verify/yosupo_library_checker/data_structure/Point_add_Range_Sum.test.cpp
+  - verify/yosupo_library_checker/data_structure/Point_Set_Range_Composite.test.cpp
+  - verify/yosupo_library_checker/data_structure/Segment_Tree.test.cpp
+  - verify/yosupo_library_checker/tree/Vertex_Add_Subtree_Sum.test.cpp
 documentation_of: Segment_Tree/Segment_Tree.hpp
 layout: document
 title: Segment Tree
