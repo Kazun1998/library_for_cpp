@@ -15,7 +15,7 @@ class BaseException : public runtime_error {
      * * @param base 不正な底の値
      */
     BaseException(ll base) :
-        runtime_error("指定した底 " + to_string(base) + " は不正な底です."), 
+        runtime_error("指定した底 " + to_string(base) + " は不正な底です."),
         error_base(base) {}
 };
 
@@ -56,9 +56,9 @@ vector<ll> Integer_Digits(ll N, ll b = 10, int l = -1) {
 /// @param b 底 (b >= 2). Default to 10.
 int Integer_Length(ll N, ll b = 10) {
     if (b < 2) { throw BaseException(b); }
-    
+
     N = abs(N);
-    
+
     int length = 0;
     for (; N > 0; length++) { N /= b; }
 
@@ -70,11 +70,11 @@ int Integer_Length(ll N, ll b = 10) {
 /// @param b 底 (b >= 2). デフォルトは 10.
 ll Digit_Sum(ll N, ll b = 10) {
     if (b < 2) { throw BaseException(b); }
-    
+
     N = abs(N);
-    
+
     ll sum = 0;
-        
+
     while (N > 0) {
         sum += N % b;
         N /= b;
@@ -91,7 +91,7 @@ vector<ll> Digit_Count(ll N, ll b = 10) {
 
     N = abs(N);
 
-    vector<ll> count(b, 0);    
+    vector<ll> count(b, 0);
     for (ll d : Integer_Digits(N, b)) {
         count[d]++;
     }
