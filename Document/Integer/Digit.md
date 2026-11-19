@@ -202,7 +202,7 @@ $1, 2, \dots, b-1$ は $b - 1$ を法としてどの 2 つも合同でないか�
 vector<ll> Integer_Digits(ll N, const ll b = 10, const int l = -1)
 ```
 
-* $\lvert N \rvert$ の $b$ 進表記を求める ($N$ の符号は無視される).
+* $N$ の $b$ 進表記を求める.
 * **入力**
   * $b$ : 基数. デフォルトは $b = 10$.
   * $l$ : 出力される長さについて制御する.
@@ -213,8 +213,8 @@ vector<ll> Integer_Digits(ll N, const ll b = 10, const int l = -1)
 * **制約**
   * $b \geq 2$ (満たさない場合は `BaseException` が送出される).
   * $l = -1$ または $l \geq 0$.
-  * $N \neq -2^{63}$.
-* **計算量** : $l = -1$ のとき $O \left( \log_b \lvert N \rvert \right)$ 時間, $l \geq 0$ のとき $O(l)$ 時間.
+  * $N \geq 0$.
+* **計算量** : $l = -1$ のとき $O \left( \log_b N \right)$ 時間, $l \geq 0$ のとき $O(l)$ 時間.
 
 ### Integer_Length
 
@@ -222,14 +222,14 @@ vector<ll> Integer_Digits(ll N, const ll b = 10, const int l = -1)
 int Integer_Length(ll N, const ll b = 10)
 ```
 
-* $\lvert N \rvert$ の $b$ 進表記における桁数を求める ($N$ の符号は無視される).
+* $N$ の $b$ 進表記における桁数を求める.
 * **入力**
   * $b$ : 基数. デフォルトは $b = 10$.
 * **注意** : $0$ の桁数は $0$ とする. したがって, `Integer_Length(0)` と `Integer_Digits(0).size()` は一致しない.
 * **制約**
   * $b \geq 2$ (満たさない場合は `BaseException` が送出される).
-  * $N \neq -2^{63}$.
-* **計算量** : $O \left( \log_b \lvert N \rvert \right)$ 時間.
+  * $N \geq 0$.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
 
 ### Digit_Sum
 
@@ -237,13 +237,13 @@ int Integer_Length(ll N, const ll b = 10)
 ll Digit_Sum(ll N, const ll b = 10)
 ```
 
-* $\lvert N \rvert$ の $b$ 進表記における数字和を求める ($N$ の符号は無視される).
+* $N$ の $b$ 進表記における数字和を求める.
 * **入力**
   * $b$ : 基数. デフォルトは $b = 10$.
 * **制約**
   * $b \geq 2$ (満たさない場合は `BaseException` が送出される).
-  * $N \neq -2^{63}$.
-* **計算量** : $O \left( \log_b \lvert N \rvert \right)$ 時間.
+  * $N \geq 0$.
+* **計算量** : $O \left( \log_b N \right)$ 時間.
 
 ### Digit_Count
 
@@ -251,17 +251,17 @@ ll Digit_Sum(ll N, const ll b = 10)
 vector<ll> Digit_Count(ll N, const ll b = 10)
 ```
 
-* $\lvert N \rvert$ の $b$ 進表記における各数の出現回数を求める ($N$ の符号は無視される).
+* $N$ の $b$ 進表記における各数の出現回数を求める.
 * **入力**
   * $b$ : 基数. デフォルトは $b = 10$.
 * **出力**
-  * 長さ $b$ のリスト. 第 $j$ 要素には, $\lvert N \rvert$ の $b$ 進表記における $j$ の出現回数が格納されている.
+  * 長さ $b$ のリスト. 第 $j$ 要素には, $N$ の $b$ 進表記における $j$ の出現回数が格納されている.
   * $N = 0$ のときは, `Integer_Digits` と同様に $(0)$ を表記とみなすため, 第 $0$ 要素が $1$ になる.
 * **制約**
   * $b \geq 2$ (満たさない場合は `BaseException` が送出される).
-  * $N \neq -2^{63}$.
+  * $N \geq 0$.
   * 長さ $b$ の配列を確保するため, $b$ が大きすぎるとメモリが不足する.
-* **計算量** : $O \left( b + \log_b \lvert N \rvert \right)$ 時間, $O(b)$ 空間.
+* **計算量** : $O \left( b + \log_b N \right)$ 時間, $O(b)$ 空間.
 
 ### From_Digits
 

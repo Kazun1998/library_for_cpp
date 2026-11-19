@@ -20,14 +20,13 @@ class BaseException : public runtime_error {
 };
 
 /// @brief 整数 N の底を b とした場合の表現を求める.
-/// @param N 符号は無視される
+/// @param N 非負整数 (N >= 0)
 /// @param b 底 (b >= 2). Default to 10.
 /// @param l 長さが l になるように左側に 0 を埋めたり, 右から l 要素を取得する. -1 は無指定.
 /// @return vector<ll> 数のリスト (最上位桁から最下位桁の順).
 vector<ll> Integer_Digits(ll N, const ll b = 10, const int l = -1) {
     if (b < 2) { throw BaseException(b); }
 
-    N = abs(N);
     vector<ll> digits;
 
     if (l == -1) {
@@ -52,12 +51,10 @@ vector<ll> Integer_Digits(ll N, const ll b = 10, const int l = -1) {
 }
 
 /// @brief 整数 N の底を b とした場合の桁数を求める (0 は 0 桁とする).
-/// @param N 符号は無視される
+/// @param N 非負整数 (N >= 0)
 /// @param b 底 (b >= 2). Default to 10.
 int Integer_Length(ll N, const ll b = 10) {
     if (b < 2) { throw BaseException(b); }
-
-    N = abs(N);
 
     int length = 0;
     for (; N > 0; length++) { N /= b; }
@@ -66,12 +63,10 @@ int Integer_Length(ll N, const ll b = 10) {
 }
 
 /// @brief 整数 N の底を b とした場合の桁和を求める.
-/// @param N 符号は無視される
+/// @param N 非負整数 (N >= 0)
 /// @param b 底 (b >= 2). デフォルトは 10.
 ll Digit_Sum(ll N, const ll b = 10) {
     if (b < 2) { throw BaseException(b); }
-
-    N = abs(N);
 
     ll sum = 0;
 
@@ -83,13 +78,11 @@ ll Digit_Sum(ll N, const ll b = 10) {
 }
 
 /// @brief 整数 N の底を b とした場合における各数の出現回数を求める.
-/// @param N 符号は無視される
+/// @param N 非負整数 (N >= 0)
 /// @param b 底 (b >= 2). Default to 10.
 /// @return 長さ b の配列. 第 k 要素は k の出現回数.
 vector<ll> Digit_Count(ll N, const ll b = 10) {
     if (b < 2) { throw BaseException(b); }
-
-    N = abs(N);
 
     vector<ll> count(b, 0);
     for (ll d : Integer_Digits(N, b)) {
