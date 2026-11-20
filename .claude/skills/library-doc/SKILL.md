@@ -54,7 +54,7 @@ documentation_of: //<Topic>/<Name>.hpp
   </div>
   ```
 
-  種類は `definition` / `proposition` / `proof` / `remark`。番号は定義・命題・注意で通し番号。
+  種類は `definition` / `proposition` / `theorem` / `corollary` (系) / `proof` / `remark`。番号は定義・命題・定理・系・注意で通し番号。
 * Contents の各関数は、コードブロックのシグネチャ → 箇条書きの説明 → `* **制約**` / `* **計算量**` (その下に入れ子で内容)。
 * 計算量は、記号 (`N`, `K`, `L` など) を定義してから導出を Theory に書き、Contents には結論と参照だけを書く。決定不能な問題が絡むときは、**なぜ上界を示せないか**まで書く。
 
