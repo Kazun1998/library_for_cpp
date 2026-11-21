@@ -25,7 +25,7 @@ $F$ における作用は左からである. $\alpha \circ \beta$ において, 
 
 計算量において, $N$ を列の長さとする.
 
-### Constructer
+### Constructor
 
 ```cpp
 Lazy_Segment_Tree(int size, const function<M(M, M)> op, const M unit, const function<M(F, M)> act, const function<F(F, F)> comp, const F id)

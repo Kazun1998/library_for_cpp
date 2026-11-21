@@ -13,7 +13,7 @@ documentation_of: //Segment_Tree/Dual_Segment_Tree.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Dual_Segment_Tree(int N, std::function<F(F, F)> comp, const F& id): N(N), comp(comp), id(id)

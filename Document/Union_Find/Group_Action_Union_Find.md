@@ -16,7 +16,7 @@ documentation_of: //Union_Find/Group_Action_Union_Find.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Group_Action_Union_Find(int n)
