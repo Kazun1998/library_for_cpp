@@ -74,7 +74,7 @@ $$ \textrm{G} = \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3} = \dfrac{1}{3} \
 定義 2
 ---
 
-定理 1 における交点 $\textrm{G}$ を, 三角形 $\textrm{A}\textrm{B}\textrm{C}$ の重心という.
+三角形 $\textrm{A}\textrm{B}\textrm{C}$ において, 線分 $\textrm{B}\textrm{C}, \textrm{C}\textrm{A}, \textrm{A}\textrm{B}$ の中点をそれぞれ $\textrm{L}, \textrm{M}, \textrm{N}$ とおく. 線分 $\textrm{A}\textrm{L}, \textrm{B}\textrm{M}, \textrm{C}\textrm{N}$ の交点 $\textrm{G}$ を, 三角形 $\textrm{A}\textrm{B}\textrm{C}$ の重心という.
 
 </div>
 

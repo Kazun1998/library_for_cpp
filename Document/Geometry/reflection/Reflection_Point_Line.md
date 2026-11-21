@@ -48,7 +48,10 @@ $\textrm{M} = \textrm{H}$ を満たす $\textrm{Q}$ は, 点 $\textrm{H}$ に関
 
 $\textrm{P}$ を点, $\ell$ を直線とする.
 
-命題 1 の $\textrm{Q}$ を, 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点という.
+以下を満たすただ一つの点 $\textrm{Q}$ を, 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点という.
+
+* 線分 $\textrm{P}\textrm{Q}$ の中点が $\ell$ 上にある.
+* $\ell$ の方向ベクトルを $\boldsymbol{d}$ としたとき, $\overrightarrow{\textrm{P}\textrm{Q}} \cdot \boldsymbol{d} = 0$ である.
 
 </div>
 
