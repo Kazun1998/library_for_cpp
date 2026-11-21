@@ -207,78 +207,142 @@ data:
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
     \    }\n};\n#line 2 \"Functional_Graph/Functional_Graph.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Functional_Graph/Functional_Graph.hpp\n\
     \n#line 6 \"Functional_Graph/Functional_Graph.hpp\"\n\nclass Functional_Graph\
-    \ {\n    private:\n    vector<int> f;\n    vector<vector<int>> f_inv;\n    int\
-    \ N;\n\n    vector<vector<int>> cycles;\n    vector<int> cycle_ids, cycle_vertex_ids;\n\
-    \n    vector<int> tree_ids, tree_vertex_ids, tree_depth;\n    vector<vector<int>>\
-    \ tree_vertices;\n    vector<vector<vector<int>>> tree_doubling;\n\n    public:\n\
-    \    Functional_Graph(const vector<int> &f): f(f), N(f.size()) {\n        f_inv.resize(N);\n\
-    \        for (int x = 0; x < N; x++) { f_inv[f[x]].emplace_back(x); }\n      \
-    \  build_up();\n    }\n\n    private:\n    void build_up() {\n        build_cycles();\n\
-    \        build_branches();\n    }\n\n    // \u30B5\u30A4\u30AF\u30EB\u691C\u51FA\
-    \u30D1\u30FC\u30C8\n    void build_cycles() {\n        vector<int> indegree(N);\n\
-    \        stack<int> st;\n        for (int x = 0; x < N; x++) {\n            indegree[x]\
+    \ {\n    private:\n    struct Cycle {\n        // vertices = (c_0, c_1, ..., c_{m-1})\
+    \ \u3067, f(c_j) = c_{j+1}, f(c_{m-1}) = c_0 \u3092\u6E80\u305F\u3059.\n     \
+    \   vector<int> vertices;\n\n        Cycle() = default;\n        Cycle(vector<int>\
+    \ vertices): vertices(std::move(vertices)) {}\n\n        inline int size() const\
+    \ { return vertices.size(); }\n\n        // c_j \u304B\u3089 k \u56DE\u79FB\u52D5\
+    \u3057\u305F\u5148\u306E\u9802\u70B9 c_{(j + k) mod m} \u3092\u6C42\u3081\u308B\
+    .\n        int jump(int j, ll k) const {\n            int m = size();\n      \
+    \      return vertices[(j + safe_mod(k, m)) % m];\n        }\n    };\n\n    struct\
+    \ Tree {\n        // vertices[0] \u306F\u6839 (\u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\
+    \u9802\u70B9) \u3067\u3042\u308B.\n        vector<int> vertices;\n\n        //\
+    \ depth[i] \u306F vertices[i] \u306E\u6DF1\u3055\u3067\u3042\u308B.\n        vector<int>\
+    \ depth;\n\n        // doubling[b][i] \u306F vertices[i] \u304B\u3089 2^b \u56DE\
+    \u79FB\u52D5\u3057\u305F\u5148\u306E\u9802\u70B9\u306E\u6DFB\u5B57\u3067\u3042\
+    \u308B.\n        // \u305F\u3060\u3057, \u6839\u306F\u81EA\u5206\u81EA\u8EAB\u3078\
+    \u79FB\u308B\u3068\u3059\u308B.\n        vector<vector<int>> doubling;\n\n   \
+    \     Tree() = default;\n\n        // parent[i] \u306F f(vertices[i]) \u306E\u6DFB\
+    \u5B57 (parent[0] = 0) \u3067\u3042\u308B.\n        Tree(vector<int> vertices,\
+    \ const vector<int> &parent, vector<int> depth): vertices(std::move(vertices)),\
+    \ depth(std::move(depth)) {\n            int m = this->vertices.size();\n    \
+    \        int max_depth = *max_element(this->depth.begin(), this->depth.end());\n\
+    \            int L = max<int>(1, bit_length(max_depth));\n\n            doubling.assign(L,\
+    \ vector<int>(m));\n            doubling[0] = parent;\n            for (int b\
+    \ = 1; b < L; b++) {\n                for (int i = 0; i < m; i++) {\n        \
+    \            doubling[b][i] = doubling[b - 1][doubling[b - 1][i]];\n         \
+    \       }\n            }\n        }\n\n        inline int root() const { return\
+    \ vertices[0]; }\n\n        // vertices[i] \u304B\u3089 k \u56DE\u79FB\u52D5\u3057\
+    \u305F\u5148\u306E\u9802\u70B9\u3092\u6C42\u3081\u308B (0 <= k <= depth[i]).\n\
+    \        int upper(int i, ll k) const {\n            for (int b = 0; k; k >>=\
+    \ 1, b++) {\n                if (k & 1) { i = doubling[b][i]; }\n            }\n\
+    \            return vertices[i];\n        }\n    };\n\n    vector<int> f;\n  \
+    \  vector<vector<int>> f_inv;\n    int N;\n\n    vector<Cycle> cycles;\n    //\
+    \ cycle_ids[x]: x \u3092\u542B\u3080\u30B5\u30A4\u30AF\u30EB\u306E\u756A\u53F7\
+    \ (\u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9\u3067\u306A\u3051\u308C\u3070\
+    \ -1)\n    // cycle_vertex_ids[x]: x \u306E\u30B5\u30A4\u30AF\u30EB\u5185\u3067\
+    \u306E\u6DFB\u5B57 (\u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9\u3067\u306A\
+    \u3051\u308C\u3070 -1)\n    vector<int> cycle_ids, cycle_vertex_ids;\n\n    vector<Tree>\
+    \ trees;\n    // tree_ids[x]: x \u3092\u542B\u3080\u6728\u306E\u756A\u53F7\n \
+    \   // tree_vertex_ids[x]: x \u306E\u6728\u306E\u5185\u3067\u306E\u6DFB\u5B57\n\
+    \    vector<int> tree_ids, tree_vertex_ids;\n\n    public:\n    Functional_Graph(const\
+    \ vector<int> &f): f(f), N(f.size()) {\n        f_inv.resize(N);\n        for\
+    \ (int x = 0; x < N; x++) { f_inv[f[x]].emplace_back(x); }\n        build_up();\n\
+    \    }\n\n    private:\n    void build_up() {\n        build_cycles();\n     \
+    \   build_trees();\n    }\n\n    // \u30B5\u30A4\u30AF\u30EB\u691C\u51FA\u30D1\
+    \u30FC\u30C8\n    void build_cycles() {\n        vector<int> indegree(N);\n  \
+    \      stack<int> st;\n        for (int x = 0; x < N; x++) {\n            indegree[x]\
     \ = f_inv[x].size();\n            if (indegree[x] == 0) { st.push(x); }\n    \
     \    }\n\n        vector<bool> cycle_flag(N, true);\n\n        while (!st.empty())\
     \ {\n            int x = st.top();\n            st.pop();\n\n            cycle_flag[x]\
     \ = false;\n            indegree[f[x]]--;\n            if (indegree[f[x]] == 0)\
     \ { st.push(f[x]); }\n        }\n\n        cycles.clear();\n        cycle_ids.assign(N,\
     \ -1);\n        cycle_vertex_ids.assign(N, -1);\n\n        for (int x = 0; x <\
-    \ N; x++) {\n            if (!cycle_flag[x]) { continue; }\n\n            int\
-    \ cycle_id = cycles.size();\n\n            vector<int> cycle{x};\n           \
-    \ cycle_flag[x] = false;\n            int y = f[x];\n            while (y != x)\
-    \ {\n                cycle.emplace_back(y);\n                cycle_flag[y] = false;\n\
-    \                y = f[y];\n            }\n\n            cycles.emplace_back(cycle);\n\
-    \            for (int j = 0; j < cycle.size(); j++) {\n                int y =\
-    \ cycle[j];\n                cycle_ids[y] = cycle_id;\n                cycle_vertex_ids[y]\
-    \ = j;\n            }\n        }\n    }\n\n    void build_branches() {\n     \
-    \   tree_ids.assign(N, -1);\n        tree_vertex_ids.assign(N, -1);\n        tree_depth.assign(N,\
-    \ 0);\n\n        for (int x = 0; x < N; x++) {\n            if (cycle_ids[x] ==\
-    \ -1) { continue; }\n\n            int tree_id = tree_vertices.size();\n     \
-    \       vector<int> tree_vertex{x};\n\n            int vertex_id = 0;\n      \
-    \      tree_ids[x] = tree_id;\n            tree_vertex_ids[x] = vertex_id;\n\n\
-    \            stack<int> st;\n            st.push(x);\n\n            int max_depth\
-    \ = 0;\n\n            while (!st.empty()) {\n                int y = st.top();\
-    \ st.pop();\n\n                for (int z: f_inv[y]) {\n                    if\
-    \ (cycle_ids[z] != -1) { continue; }\n\n                    vertex_id++;\n   \
-    \                 tree_ids[z] = tree_id;\n                    tree_vertex_ids[z]\
-    \ = vertex_id;\n\n                    tree_depth[z] = tree_depth[y] + 1;\n   \
-    \                 chmax(max_depth, tree_depth[z]);\n\n                    st.push(z);\n\
-    \                    tree_vertex.emplace_back(z);\n                }\n       \
-    \     }\n\n            tree_vertices.emplace_back(tree_vertex);\n            int\
-    \ m = tree_vertex.size();\n            vector<vector<int>> doubling(max<int>(1,\
-    \ bit_length(max_depth)), vector<int>(m, -1));\n\n            for (int j = 1;\
-    \ j < m; j++) {\n                doubling[0][j] = tree_vertex_ids[f[tree_vertex[j]]];\n\
-    \            }\n\n            for (int b = 1; b < max<int>(1, bit_length(max_depth));\
-    \ b++) {\n                for (int j = 0; j < m; j++) {\n                    doubling[b][j]\
-    \ = doubling[b - 1][doubling[b - 1][j]];\n                }\n            }\n\n\
-    \            tree_doubling.emplace_back(doubling);\n        }\n    }\n\n    int\
-    \ upper(int x, ll k) {\n        int tree_id = tree_ids[x];\n        int vertex_id\
-    \ = tree_vertex_ids[x];\n\n        vector<vector<int>> doubling = tree_doubling[tree_id];\n\
-    \        for (int b = 0; k; k >>= 1, b++) {\n            if (k & 1) { vertex_id\
-    \ = doubling[b][vertex_id]; }\n        }\n\n        return tree_vertices[tree_id][vertex_id];\n\
-    \    }\n\n    int jump_on_cycle(int cycle_id, int vertex_id, ll k) {\n       \
-    \ auto &cycle = cycles[cycle_id];\n        int m = cycle.size();\n        k =\
-    \ safe_mod(k, m);\n        return cycle[(vertex_id + k) % m];\n    }\n\n    public:\n\
-    \    inline int root(int x) const { return tree_vertices[tree_ids[x]][0]; }\n\n\
-    \    int calculate(int x, ll k) {\n        if ( k < tree_depth[x]) { return upper(x,\
-    \ k); }\n\n        k -= tree_depth[x];\n        x = root(x);\n\n        int cycle_id\
-    \ = cycle_ids[x];\n        int vertex_id = cycle_vertex_ids[x];\n        return\
-    \ jump_on_cycle(cycle_id, vertex_id, k);\n    }\n\n    vector<vector<int>> &get_cycles()\
-    \ { return cycles; }\n};\n#line 5 \"verify/original/Functional_Graph.test.cpp\"\
-    \n\nvoid verify() {\n    vector<int> f = {77, 0, 39, 33, 1, 87, 20, 88, 75, 49,\
-    \ 58, 48, 78, 24, 60, 90, 26, 55, 31, 7, 18, 14, 77, 25, 75, 89, 99, 44, 72, 92,\
-    \ 64, 33, 91, 64, 19, 14, 37, 7, 0, 26, 35, 0, 45, 3, 89, 29, 16, 12, 53, 17,\
-    \ 8, 91, 97, 60, 65, 42, 3, 4, 48, 72, 57, 61, 74, 75, 2, 76, 67, 21, 91, 15,\
-    \ 52, 97, 13, 12, 60, 41, 81, 79, 41, 12, 64, 65, 48, 14, 82, 45, 85, 87, 7, 59,\
-    \ 27, 15, 0, 37, 15, 36, 38, 11, 51, 16};\n\n    Functional_Graph F(f);\n\n  \
-    \  int n = 100, k_max = 100000;\n    for (int v = 0; v < n; v++) {\n        int\
-    \ w = v;\n        for (int k = 0; k <= k_max; k++) {\n            if (F.calculate(v,\
-    \ k) == w) {\n                w = f[w];\n                continue;\n         \
-    \   } \n\n            cerr << \"Error\" << endl;\n            cerr << \"v = \"\
-    \ << v << \", k = \" << k << endl;\n            cerr << \"expect: \" << w << endl;\n\
-    \            cerr << \"returns: \" << F.calculate(v, k) << endl;\n           \
-    \ assert(false);\n        }\n    }\n}\n\nint main() {\n    verify();\n    cout\
-    \ << \"Hello World\" << endl;\n}\n"
+    \ N; x++) {\n            unless (cycle_flag[x]) { continue; }\n\n            int\
+    \ cycle_id = cycles.size();\n\n            vector<int> vertices{x};\n        \
+    \    cycle_flag[x] = false;\n            for (int y = f[x]; y != x; y = f[y])\
+    \ {\n                vertices.emplace_back(y);\n                cycle_flag[y]\
+    \ = false;\n            }\n\n            int m = vertices.size();\n          \
+    \  for (int j = 0; j < m; j++) {\n                cycle_ids[vertices[j]] = cycle_id;\n\
+    \                cycle_vertex_ids[vertices[j]] = j;\n            }\n\n       \
+    \     cycles.emplace_back(std::move(vertices));\n        }\n    }\n\n    // \u6728\
+    \u306E\u69CB\u7BC9\u30D1\u30FC\u30C8\n    void build_trees() {\n        trees.clear();\n\
+    \        tree_ids.assign(N, -1);\n        tree_vertex_ids.assign(N, -1);\n\n \
+    \       for (int x = 0; x < N; x++) {\n            unless (is_on_cycle(x)) { continue;\
+    \ }\n\n            int tree_id = trees.size();\n            vector<int> vertices{x},\
+    \ parent{0}, depth{0};\n            tree_ids[x] = tree_id;\n            tree_vertex_ids[x]\
+    \ = 0;\n\n            stack<int> st;\n            st.push(x);\n\n            while\
+    \ (!st.empty()) {\n                int y = st.top(); st.pop();\n             \
+    \   int i = tree_vertex_ids[y];\n\n                for (int z: f_inv[y]) {\n \
+    \                   if (is_on_cycle(z)) { continue; }\n\n                    tree_ids[z]\
+    \ = tree_id;\n                    tree_vertex_ids[z] = vertices.size();\n\n  \
+    \                  vertices.emplace_back(z);\n                    parent.emplace_back(i);\n\
+    \                    depth.emplace_back(depth[i] + 1);\n\n                   \
+    \ st.push(z);\n                }\n            }\n\n            trees.emplace_back(std::move(vertices),\
+    \ parent, std::move(depth));\n        }\n    }\n\n    // x \u304B\u3089 k \u56DE\
+    \u79FB\u52D5\u3057\u305F\u3068\u304D\u306B\u30B5\u30A4\u30AF\u30EB\u306B\u5230\
+    \u9054\u3057\u3066\u3044\u308B\u304B (f^k(x) \u304C\u30B5\u30A4\u30AF\u30EB\u4E0A\
+    \u306E\u9802\u70B9\u304B) \u3092\u5224\u5B9A\u3059\u308B.\n    // f(C) \u2282\
+    \ C \u3068\u6DF1\u3055\u306E\u6700\u5C0F\u6027\u3088\u308A, k >= depth(x) \u3068\
+    \u540C\u5024\u3067\u3042\u308B.\n    inline bool can_reach_cycle(int x, ll k)\
+    \ const { return k >= depth(x); }\n\n    public:\n    /// @brief \u9802\u70B9\
+    \ x \u304C\u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9\u304B\u3069\u3046\u304B\
+    \u3092\u5224\u5B9A\u3059\u308B.\n    /// @param x \u9802\u70B9\n    /// @return\
+    \ \u3042\u308B k >= 1 \u306B\u3064\u3044\u3066 f^k(x) = x \u306A\u3089\u3070 true\n\
+    \    inline bool is_on_cycle(int x) const { return cycle_ids[x] != -1; }\n\n \
+    \   /// @brief \u9802\u70B9 x \u306E\u6DF1\u3055 (f^k(x) \u304C\u30B5\u30A4\u30AF\
+    \u30EB\u4E0A\u306E\u9802\u70B9\u3068\u306A\u308B\u6700\u5C0F\u306E k >= 0) \u3092\
+    \u6C42\u3081\u308B.\n    /// @param x \u9802\u70B9\n    /// @return \u9802\u70B9\
+    \ x \u306E\u6DF1\u3055\n    inline int depth(int x) const { return trees[tree_ids[x]].depth[tree_vertex_ids[x]];\
+    \ }\n\n    /// @brief \u9802\u70B9 x \u306E\u6839 (x \u304B\u3089\u6DF1\u3055\u306E\
+    \u56DE\u6570\u3060\u3051\u79FB\u52D5\u3057\u3066\u521D\u3081\u3066\u5230\u9054\
+    \u3059\u308B\u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9) \u3092\u6C42\u3081\
+    \u308B.\n    /// @param x \u9802\u70B9\n    /// @return \u9802\u70B9 x \u306E\u6839\
+    \n    inline int root(int x) const { return trees[tree_ids[x]].root(); }\n\n \
+    \   /// @brief \u9802\u70B9 x \u304C\u5C5E\u3059\u308B\u5F31\u9023\u7D50\u6210\
+    \u5206\u306E\u30B5\u30A4\u30AF\u30EB\u306E\u756A\u53F7\u3092\u6C42\u3081\u308B\
+    .\n    /// @param x \u9802\u70B9\n    /// @return x \u306E\u6839\u3092\u542B\u3080\
+    \u30B5\u30A4\u30AF\u30EB\u306E\u756A\u53F7 (get_cycle, get_cycles \u306E\u6DFB\
+    \u5B57)\n    inline int get_cycle_id(int x) const { return cycle_ids[root(x)];\
+    \ }\n\n    /// @brief \u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9 c \u3092\
+    \u6839\u3068\u3059\u308B\u6728\u306E\u9802\u70B9\u96C6\u5408\u3092\u6C42\u3081\
+    \u308B.\n    /// @param c \u30B5\u30A4\u30AF\u30EB\u4E0A\u306E\u9802\u70B9\n \
+    \   /// @return \u6839\u304C c \u3067\u3042\u308B\u9802\u70B9\u5168\u4F53 (\u5148\
+    \u982D\u306F c)\n    const vector<int> &get_tree_vertices(int c) const {\n   \
+    \     assert(is_on_cycle(c));\n        return trees[tree_ids[c]].vertices;\n \
+    \   }\n\n    /// @brief f^k(x) \u3092\u6C42\u3081\u308B.\n    /// @param x \u9802\
+    \u70B9\n    /// @param k \u79FB\u52D5\u56DE\u6570 (k >= 0)\n    /// @return f^k(x)\n\
+    \    int calculate(int x, ll k) const {\n        assert(is_non_negative(k));\n\
+    \n        const Tree &tree = trees[tree_ids[x]];\n        int i = tree_vertex_ids[x];\n\
+    \        unless (can_reach_cycle(x, k)) { return tree.upper(i, k); }\n\n     \
+    \   int r = tree.root();\n        return cycles[cycle_ids[r]].jump(cycle_vertex_ids[r],\
+    \ k - tree.depth[i]);\n    }\n\n    /// @brief \u30B5\u30A4\u30AF\u30EB\u306E\u500B\
+    \u6570\u3092\u6C42\u3081\u308B.\n    inline int cycle_count() const { return cycles.size();\
+    \ }\n\n    /// @brief \u756A\u53F7 id \u306E\u30B5\u30A4\u30AF\u30EB\u3092\u6C42\
+    \u3081\u308B.\n    /// @param id \u30B5\u30A4\u30AF\u30EB\u306E\u756A\u53F7 (0\
+    \ <= id < cycle_count())\n    /// @return \u30B5\u30A4\u30AF\u30EB c_0, c_1, ...,\
+    \ c_{m-1} (f(c_j) = c_{j+1}, f(c_{m-1}) = c_0)\n    const vector<int> &get_cycle(int\
+    \ id) const { return cycles[id].vertices; }\n\n    /// @brief \u30B5\u30A4\u30AF\
+    \u30EB\u5168\u4F53\u3092\u6C42\u3081\u308B.\n    /// @return \u5404\u30B5\u30A4\
+    \u30AF\u30EB c_0, c_1, ..., c_{m-1} (f(c_j) = c_{j+1}, f(c_{m-1}) = c_0) \u306E\
+    \u30EA\u30B9\u30C8\n    vector<vector<int>> get_cycles() const {\n        vector<vector<int>>\
+    \ res;\n        res.reserve(cycles.size());\n        for (const Cycle &cycle:\
+    \ cycles) { res.emplace_back(cycle.vertices); }\n        return res;\n    }\n\
+    };\n#line 5 \"verify/original/Functional_Graph.test.cpp\"\n\nvoid verify() {\n\
+    \    vector<int> f = {77, 0, 39, 33, 1, 87, 20, 88, 75, 49, 58, 48, 78, 24, 60,\
+    \ 90, 26, 55, 31, 7, 18, 14, 77, 25, 75, 89, 99, 44, 72, 92, 64, 33, 91, 64, 19,\
+    \ 14, 37, 7, 0, 26, 35, 0, 45, 3, 89, 29, 16, 12, 53, 17, 8, 91, 97, 60, 65, 42,\
+    \ 3, 4, 48, 72, 57, 61, 74, 75, 2, 76, 67, 21, 91, 15, 52, 97, 13, 12, 60, 41,\
+    \ 81, 79, 41, 12, 64, 65, 48, 14, 82, 45, 85, 87, 7, 59, 27, 15, 0, 37, 15, 36,\
+    \ 38, 11, 51, 16};\n\n    Functional_Graph F(f);\n\n    int n = 100, k_max = 100000;\n\
+    \    for (int v = 0; v < n; v++) {\n        int w = v;\n        for (int k = 0;\
+    \ k <= k_max; k++) {\n            if (F.calculate(v, k) == w) {\n            \
+    \    w = f[w];\n                continue;\n            } \n\n            cerr\
+    \ << \"Error\" << endl;\n            cerr << \"v = \" << v << \", k = \" << k\
+    \ << endl;\n            cerr << \"expect: \" << w << endl;\n            cerr <<\
+    \ \"returns: \" << F.calculate(v, k) << endl;\n            assert(false);\n  \
+    \      }\n    }\n}\n\nint main() {\n    verify();\n    cout << \"Hello World\"\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include\"../../../library_for_cpp/template/template.hpp\"\n#include\"../../../library_for_cpp/Functional_Graph/Functional_Graph.hpp\"\
     \n\nvoid verify() {\n    vector<int> f = {77, 0, 39, 33, 1, 87, 20, 88, 75, 49,\
@@ -307,7 +371,7 @@ data:
   isVerificationFile: true
   path: verify/original/Functional_Graph.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-21 19:13:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/original/Functional_Graph.test.cpp
