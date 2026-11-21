@@ -418,7 +418,7 @@ $$ \dbinom{k_1 + k_2 + \dots + k_m}{k_1, \dots, k_m}_q := \dfrac{[k_1 + k_2 + \d
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Q_Analog_Combination_Calculator(const mint q, const int n)

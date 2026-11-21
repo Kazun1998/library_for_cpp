@@ -100,7 +100,7 @@ title: Union Find
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Union_Find U(int N)

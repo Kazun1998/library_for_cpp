@@ -407,7 +407,7 @@ title: Interval Query
 | `update` の $\alpha$ (`ancestors(i)`) | $O(1)$ | $O(\log N)$ |
 | `query` の $\alpha$ (`decompose(l, r)`) | $O(\sqrt{N})$ | $O(\log N)$ |
 
-### Constructer
+### Constructor
 
 ```cpp
 Interval_Query(

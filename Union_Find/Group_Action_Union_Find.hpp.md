@@ -363,7 +363,7 @@ title: "\u7FA4\u4F5C\u7528 Union Find"
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Group_Action_Union_Find(int n)

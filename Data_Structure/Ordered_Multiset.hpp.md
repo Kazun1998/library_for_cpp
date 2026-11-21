@@ -430,7 +430,7 @@ Policy-Based Data Structures の `tree` を利用した順序付き多重集合 
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 template<class T, class I = int>

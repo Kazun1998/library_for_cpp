@@ -295,7 +295,7 @@ title: "\u53CC\u5BFE Segment Tree"
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Dual_Segment_Tree(int N, std::function<F(F, F)> comp, const F& id): N(N), comp(comp), id(id)

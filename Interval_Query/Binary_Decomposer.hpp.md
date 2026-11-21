@@ -384,7 +384,7 @@ title: "\u4E8C\u5206\u6728\u5206\u5272"
 
 以下, $N$ を全体の要素数とする. ノードの総数は $2N - 1$ (ただし $N = 0$ のときは $0$ ), 木の高さは $O(\log N)$ である.
 
-### Constructer
+### Constructor
 
 ```cpp
 explicit Binary_Decomposer(int n)

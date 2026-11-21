@@ -458,7 +458,7 @@ split と merge を組み合わせることで, 挿入と削除を簡潔に実�
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 template<class T>

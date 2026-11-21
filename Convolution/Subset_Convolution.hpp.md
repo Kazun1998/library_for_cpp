@@ -463,7 +463,7 @@ $$ \sum_{A \cup B = S} f(A) g(B) x^{\lvert A \rvert + \lvert B \rvert} $$
 
 `convolution::Subset_Convolution<R>` (別名 `convolution::Sub<R>`) は [Convolution_Base](Convolution_Base.hpp) を継承している. 以下では, $N$ を全体集合の大きさとする.
 
-### Constructer
+### Constructor
 
 ```cpp
 Subset_Convolution<R> A(size_t N)

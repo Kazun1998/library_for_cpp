@@ -110,7 +110,7 @@ Monoid $M$ の静的な列 $S = (S_0, S_1, \dots, S_{N-1})$ に対する区間�
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Disjoint_Sparse_Table D(const std::vector<M> &data, const std::function<M(M, M)> op, const M unit)

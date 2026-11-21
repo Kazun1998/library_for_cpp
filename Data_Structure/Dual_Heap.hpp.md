@@ -290,7 +290,7 @@ title: Dual Heap
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 template<typename O>

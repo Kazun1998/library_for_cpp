@@ -98,7 +98,7 @@ title: Binary Indexed Tree (Fenwick Tree)
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Binary_Indexed_Tree B(int n, const function<G(G, G)> op, const G zero, const function<G(G)> neg)
