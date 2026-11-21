@@ -8,7 +8,7 @@
 
 namespace geometry {
     template<typename R>
-    Point<R> Circumcenter(const Triangle<R> &T) { 
+    Point<R> Circumcenter(const Triangle<R> &T) {
         Line<R> l = Perpendicular_Bisector(T.A, T.B), m = Perpendicular_Bisector(T.A, T.C);
         return Intersection(l, m);
     }
