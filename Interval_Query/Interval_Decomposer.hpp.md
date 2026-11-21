@@ -294,9 +294,9 @@ data:
   isVerificationFile: false
   path: Interval_Query/Interval_Decomposer.hpp
   requiredBy:
+  - Interval_Query/Sqrt_Decomposer.hpp
   - Interval_Query/Binary_Decomposer.hpp
   - Interval_Query/Interval_Query.hpp
-  - Interval_Query/Sqrt_Decomposer.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

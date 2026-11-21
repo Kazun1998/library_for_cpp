@@ -311,8 +311,8 @@ data:
   isVerificationFile: false
   path: Geometry/utility/Division_Point.hpp
   requiredBy:
-  - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/utility/Perpendicular_Bisector.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -387,7 +387,7 @@ data:
         \ 0 \u6B21)"
   - name: Integer
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Integer/Digit.hpp
       title: "\u6574\u6570\u306E\u6841"
     - icon: ':heavy_check_mark:'
@@ -948,6 +948,9 @@ data:
       title: verify/aizu_online_judge/ntl/1E.test.cpp
   - name: verify/original
     pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/original/Digit.test.cpp
+      title: verify/original/Digit.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/original/Double_Add_Convolution.test.cpp
       title: verify/original/Double_Add_Convolution.test.cpp

@@ -349,8 +349,8 @@ data:
   isVerificationFile: false
   path: Geometry/intersection/Intersection_Line_and_Line.hpp
   requiredBy:
-  - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
+  - Geometry/triangle_center/Circumcenter.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
