@@ -16,7 +16,7 @@ documentation_of: //Interval_Query/Sqrt_Decomposer.hpp
 
 以下, $N$ を全体の要素数, $B = \max(1, \lfloor \sqrt{N} \rfloor)$ をブロックサイズ, ブロック数を $\lceil N / B \rceil$ とする.
 
-### Constructer
+### Constructor
 
 ```cpp
 explicit Sqrt_Decomposer(int n)

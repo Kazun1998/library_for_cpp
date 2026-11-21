@@ -26,7 +26,7 @@ $$ [l, r) = I_1 \sqcup \dots \sqcup I_k $$
 
 以下, $N$ を全体の要素数とする. 各メソッドの計算量は, 派生クラスの実装に依存する.
 
-### Constructer
+### Constructor
 
 ```cpp
 explicit Interval_Decomposer(int n)

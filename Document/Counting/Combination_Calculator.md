@@ -85,7 +85,7 @@ documentation_of: //Counting/Combination_Calculator.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Combination_Calculator(const int n)

@@ -14,7 +14,7 @@ documentation_of: //Data_Structure/Dual_Heap.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 template<typename O>
