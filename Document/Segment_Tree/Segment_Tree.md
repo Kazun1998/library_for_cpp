@@ -9,7 +9,7 @@ documentation_of: //Segment_Tree/Segment_Tree.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Segment_Tree S(int size, const function<M(M, M)> op, const M unit)

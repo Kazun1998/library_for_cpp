@@ -14,7 +14,7 @@ documentation_of: //Union_Find/Union_Find.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Union_Find U(int N)

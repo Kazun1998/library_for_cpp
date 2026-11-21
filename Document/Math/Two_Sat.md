@@ -99,7 +99,7 @@ $$
 
 ---
 
-### Constructer
+### Constructor
 
 ```cpp
 Two_SAT(int N)

@@ -42,7 +42,7 @@ $D$ におけるそれぞれの弱連結成分 $\Gamma_i$ は次のようにし�
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Functional_Graph(const vector<int> &f)

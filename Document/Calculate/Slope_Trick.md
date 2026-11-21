@@ -89,7 +89,7 @@ $f$ は凸関数なので, 区間 $[l, r]$ 上の最小値は,
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Slope_Trick<T> F

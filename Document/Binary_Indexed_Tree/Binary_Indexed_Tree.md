@@ -9,7 +9,7 @@ documentation_of: //Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
 
 ## Contents
 
-### Constructer
+### Constructor
 
 ```cpp
 Binary_Indexed_Tree B(int n, const function<G(G, G)> op, const G zero, const function<G(G)> neg)
