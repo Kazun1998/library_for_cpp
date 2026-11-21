@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -46,10 +46,10 @@ data:
     title: Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incircle.hpp
-    title: Geometry/triangle_center/Incircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7A.test.cpp
@@ -332,23 +332,23 @@ data:
   isVerificationFile: false
   path: Geometry/object/Circle.hpp
   requiredBy:
-  - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/triangle_center/Incircle.hpp
-  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/intersection/Intersection_Circle_and_Line.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
+  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
   - verify/aizu_online_judge/cgl/7A.test.cpp
-  - verify/aizu_online_judge/cgl/7B.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
   - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
 documentation_of: Geometry/object/Circle.hpp
 layout: document
 redirect_from:

@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Triangle.hpp
     title: Geometry/object/Triangle.hpp
@@ -312,20 +312,22 @@ title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
 
 ## Outline
 
-三角形 $\mathrm{ABC}$ の重心 $\mathrm{G}$ を求める.
+三角形 $\textrm{A}\textrm{B}\textrm{C}$ の重心 $\textrm{G}$ を求める.
 
 ## Theory
-
-以下の定理がある.
 
 <div class="theorem" markdown="1">
 
 定理 1
 ---
 
-三角形 $\mathrm{ABC}$ において, 線分 $\mathrm{BC}, \mathrm{CA}, \mathrm{AB}$ の中点をそれぞれ $\mathrm{L}, \mathrm{M}, \mathrm{N}$ とおく.
+三角形 $\textrm{A}\textrm{B}\textrm{C}$ において, 線分 $\textrm{B}\textrm{C}, \textrm{C}\textrm{A}, \textrm{A}\textrm{B}$ の中点をそれぞれ $\textrm{L}, \textrm{M}, \textrm{N}$ とおく.
 
-このとき, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+このとき, 線分 $\textrm{A}\textrm{L}, \textrm{B}\textrm{M}, \textrm{C}\textrm{N}$ は一点で交わる. さらに, その交点は
+
+$$ \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3} $$
+
+である.
 
 </div>
 
@@ -334,62 +336,58 @@ title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
 証明
 ---
 
-線分 $\mathrm{AL}, \mathrm{BM}$ の交点を $\mathrm{G}$ とする. このとき, それぞれ
+$\boldsymbol{b} = \overrightarrow{\textrm{A}\textrm{B}}, \boldsymbol{c} = \overrightarrow{\textrm{A}\textrm{C}}$ とおく. $\textrm{A}, \textrm{B}, \textrm{C}$ は三角形を成すので, $\boldsymbol{b}, \boldsymbol{c}$ は一次独立である. また,
 
-$$ \mathrm{G} = s \mathrm{A} + (1-s) \mathrm{L} = s \mathrm{A} + (1-s) \cdot \dfrac{\mathrm{B}+\mathrm{C}}{2} $$
-
-$$ \mathrm{G} = t \mathrm{B} + (1-t) \mathrm{M} = t \mathrm{B} + (1-s) \cdot \dfrac{\mathrm{C}+\mathrm{A}}{2} $$
-
-となる $0$ 以上 $1$ 以下の整数 $s, t$ が存在する.
-
-$\mathrm{A}$ を始点とするベクトルに変換させると,
-
-* $\mathrm{G} = \overrightarrow{\mathrm{AG}} - \overrightarrow{\mathrm{AO}}$.
-* $s \mathrm{A} + (1-s) \cdot \dfrac{\mathrm{B}+\mathrm{C}}{2} = -s \overrightarrow{\mathrm{AO}} + (1-s) \cdot \dfrac{\left(\overrightarrow{\mathrm{AB}} - \overrightarrow{\mathrm{AO}} \right) + \left(\overrightarrow{\mathrm{AC}} - \overrightarrow{\mathrm{AO}} \right)}{2} = \dfrac{1-s}{2} \cdot \overrightarrow{\mathrm{AB}} + \dfrac{1-s}{2} \cdot \overrightarrow{\mathrm{AC}} - \overrightarrow{\mathrm{AO}}$
+$$ \overrightarrow{\textrm{A}\textrm{L}} = \dfrac{1}{2} \boldsymbol{b} + \dfrac{1}{2} \boldsymbol{c}, \quad \overrightarrow{\textrm{A}\textrm{M}} = \dfrac{1}{2} \boldsymbol{c} $$
 
 である.
 
-そのため,
+まず, 直線 $\textrm{A}\textrm{L}$ と直線 $\textrm{B}\textrm{M}$ の交点を求める. 直線 $\textrm{A}\textrm{L}$ 上の点 $\textrm{X}$ は, 実数 $s$ を用いて
 
-$$ \overrightarrow{\mathrm{AG}} = \dfrac{1-s}{2} \cdot \overrightarrow{\mathrm{AB}} + \dfrac{1-s}{2} \cdot \overrightarrow{\mathrm{AC}} \cdots (1) $$
+$$ \overrightarrow{\textrm{A}\textrm{X}} = s \overrightarrow{\textrm{A}\textrm{L}} = \dfrac{s}{2} \boldsymbol{b} + \dfrac{s}{2} \boldsymbol{c} $$
 
-が導ける.
+と表せる. 同様に, 直線 $\textrm{B}\textrm{M}$ 上の点 $\textrm{X}$ は, 実数 $t$ を用いて
 
-同様にして,
+$$ \overrightarrow{\textrm{A}\textrm{X}} = \overrightarrow{\textrm{A}\textrm{B}} + t \overrightarrow{\textrm{B}\textrm{M}} = \boldsymbol{b} + t \left(\dfrac{1}{2} \boldsymbol{c} - \boldsymbol{b} \right) = (1 - t) \boldsymbol{b} + \dfrac{t}{2} \boldsymbol{c} $$
 
-$$ \overrightarrow{\mathrm{AG}} = t \cdot \overrightarrow{\mathrm{AB}} + \dfrac{1-t}{2} \cdot \overrightarrow{\mathrm{AC}} \cdots (2) $$
+と表せる. $\boldsymbol{b}, \boldsymbol{c}$ は一次独立であるから, 点 $\textrm{X}$ が $2$ 直線の交点であることは, 係数を比較して
 
-も従う.
+$$ \dfrac{s}{2} = 1 - t, \quad \dfrac{s}{2} = \dfrac{t}{2} $$
 
-ここで, $\mathrm{A}, \mathrm{B}, \mathrm{C}$ は三角形を成す $3$ 点であるため, $\overrightarrow{\mathrm{AB}}, \overrightarrow{\mathrm{AC}}$ は一次独立である.
+を満たす実数 $s, t$ が存在することと同値である. これを解くと $s = t = \dfrac{2}{3}$ がただ一つの解である. よって, $2$ 直線はただ一点で交わり, その交点 $\textrm{G}$ は
 
-よって, (1), (2) における係数比較により, $s, t$ は
+$$ \overrightarrow{\textrm{A}\textrm{G}} = \dfrac{1}{3} \boldsymbol{b} + \dfrac{1}{3} \boldsymbol{c} = \dfrac{1}{3} \left(\overrightarrow{\textrm{A}\textrm{B}} + \overrightarrow{\textrm{A}\textrm{C}} \right) $$
 
-$$ \dfrac{1-s}{2} = t, \quad \dfrac{1-s}{2} = \dfrac{1-t}{2} $$
+すなわち
 
-を満たす. これを解くと,
+$$ \textrm{G} = \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3} $$
 
-$$ s = t = \dfrac{1}{3} $$
+である. さらに, $0 \leq s \leq 1, 0 \leq t \leq 1$ であるから, $\textrm{G}$ は線分 $\textrm{A}\textrm{L}$ 上にも線分 $\textrm{B}\textrm{M}$ 上にもある.
 
-となる.
+次に, 線分 $\textrm{C}\textrm{N}$ も $\textrm{G}$ を通ることを示す. $\textrm{N} = \dfrac{\textrm{A} + \textrm{B}}{2}$ であるから,
 
-これは, $\mathrm{G}$ は確かに 線分 $\mathrm{AL}, \mathrm{BM}$ 上に存在すること. そして,
+$$ \textrm{G} = \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3} = \dfrac{1}{3} \textrm{C} + \dfrac{2}{3} \cdot \dfrac{\textrm{A} + \textrm{B}}{2} = \dfrac{1}{3} \textrm{C} + \dfrac{2}{3} \textrm{N} $$
 
-$$\mathrm{G} = s \mathrm{A} + (1-s) \cdot \dfrac{\mathrm{B}+\mathrm{C}}{2} = \dfrac{\mathrm{A} + \mathrm{B} + \mathrm{C}}{3} $$
+である. 係数 $\dfrac{1}{3}, \dfrac{2}{3}$ はともに $0$ 以上 $1$ 以下で, 和が $1$ であるから, $\textrm{G}$ は線分 $\textrm{C}\textrm{N}$ 上の点である.
 
-であることを意味する.
-
-そして,
-
-$$ G = \dfrac{\mathrm{A} + \mathrm{B} + \mathrm{C}}{3} = \dfrac{1}{3} \mathrm{C} + \dfrac{2}{3} \cdot \dfrac{\mathrm{A} + \mathrm{B}}{2} = \dfrac{1}{3} \mathrm{C} + \dfrac{2}{3} \mathrm{N} $$
-
-であるため, $\mathrm{G}$ は線分 $\mathrm{CN}$ 上の点でもある.
-
-以上から, 線分 $\mathrm{AL}, \mathrm{BM}, \mathrm{CN}$ は一点で交わる.
+以上から, 線分 $\textrm{A}\textrm{L}, \textrm{B}\textrm{M}, \textrm{C}\textrm{N}$ は一点 $\textrm{G}$ で交わり, $\textrm{G} = \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3}$ である.
 
 </div>
 
-この定理における, 点 $\mathrm{G}$ を三角形 $\mathrm{ABC}$ の重心という.
+<div class="definition" markdown="1">
+
+定義 2
+---
+
+三角形 $\textrm{A}\textrm{B}\textrm{C}$ において, 線分 $\textrm{B}\textrm{C}, \textrm{C}\textrm{A}, \textrm{A}\textrm{B}$ の中点をそれぞれ $\textrm{L}, \textrm{M}, \textrm{N}$ とおく. 線分 $\textrm{A}\textrm{L}, \textrm{B}\textrm{M}, \textrm{C}\textrm{N}$ の交点 $\textrm{G}$ を, 三角形 $\textrm{A}\textrm{B}\textrm{C}$ の重心という.
+
+</div>
+
+定理 1 より, 三角形 $\textrm{A}\textrm{B}\textrm{C}$ の重心 $\textrm{G}$ は
+
+$$ \textrm{G} = \dfrac{\textrm{A} + \textrm{B} + \textrm{C}}{3} $$
+
+によって計算できる.
 
 ## Contents
 
@@ -398,4 +396,6 @@ template<typename R>
 Point<R> Centroid(const Triangle<R> &T)
 ```
 
-* 三角形 $\mathrm{T}$ の重心を求める.
+* 三角形 $\textrm{T}$ の重心を求める.
+* **計算量**
+  * $O(1)$.

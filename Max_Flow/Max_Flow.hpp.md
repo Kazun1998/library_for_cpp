@@ -476,8 +476,8 @@ data:
   timestamp: '2026-11-06 00:23:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/grl/6A.test.cpp
   - verify/yukicoder/1984.test.cpp
+  - verify/aizu_online_judge/grl/6A.test.cpp
 documentation_of: Max_Flow/Max_Flow.hpp
 layout: document
 title: "\u6700\u5927\u6D41"

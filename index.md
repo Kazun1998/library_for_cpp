@@ -201,7 +201,7 @@ data:
       title: Geometry/object/Line.hpp
     - icon: ':heavy_check_mark:'
       path: Geometry/object/Point.hpp
-      title: Geometry/object/Point.hpp
+      title: "\u70B9"
     - icon: ':heavy_check_mark:'
       path: Geometry/object/Polygon.hpp
       title: Geometry/object/Polygon.hpp
@@ -223,7 +223,7 @@ data:
       title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
     - icon: ':heavy_check_mark:'
       path: Geometry/reflection/Reflection_Point_Point.hpp
-      title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
+      title: "\u70B9\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - name: Geometry/relationship
     pages:
     - icon: ':heavy_check_mark:'
@@ -247,16 +247,16 @@ data:
       title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
     - icon: ':heavy_check_mark:'
       path: Geometry/triangle_center/Circumcenter.hpp
-      title: Geometry/triangle_center/Circumcenter.hpp
+      title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
     - icon: ':heavy_check_mark:'
       path: Geometry/triangle_center/Circumcircle.hpp
-      title: Geometry/triangle_center/Circumcircle.hpp
+      title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
     - icon: ':heavy_check_mark:'
       path: Geometry/triangle_center/Incenter.hpp
-      title: Geometry/triangle_center/Incenter.hpp
+      title: "\u4E09\u89D2\u5F62\u306E\u5185\u5FC3"
     - icon: ':heavy_check_mark:'
       path: Geometry/triangle_center/Incircle.hpp
-      title: Geometry/triangle_center/Incircle.hpp
+      title: "\u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186"
   - name: Geometry/utility
     pages:
     - icon: ':heavy_check_mark:'

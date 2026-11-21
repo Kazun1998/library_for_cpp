@@ -271,11 +271,11 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verify/aizu_online_judge/dpl1/1F.test.cpp
   - verify/aizu_online_judge/dpl1/1G.test.cpp
   - verify/aizu_online_judge/dpl1/1H.test.cpp
   - verify/aizu_online_judge/dpl1/1B.test.cpp
   - verify/aizu_online_judge/dpl1/1C.test.cpp
-  - verify/aizu_online_judge/dpl1/1F.test.cpp
 documentation_of: Knapsack/Base.hpp
 layout: document
 title: "Knapsack \u554F\u984C\u306E Base \u30AF\u30E9\u30B9"

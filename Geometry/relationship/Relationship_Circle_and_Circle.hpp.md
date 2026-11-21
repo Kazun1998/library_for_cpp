@@ -9,7 +9,7 @@ data:
     title: Geometry/object/Circle.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp

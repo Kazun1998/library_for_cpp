@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Polygon.hpp
     title: Geometry/object/Polygon.hpp
@@ -350,8 +350,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/4A.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
 documentation_of: Geometry/utility/Convex_Hull.hpp
 layout: document
 redirect_from:

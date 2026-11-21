@@ -64,7 +64,7 @@ data:
     title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Point.hpp
-    title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
+    title: "\u70B9\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - icon: ':heavy_check_mark:'
     path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
     title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
@@ -82,16 +82,16 @@ data:
     title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incenter.hpp
-    title: Geometry/triangle_center/Incenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5185\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incircle.hpp
-    title: Geometry/triangle_center/Incircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Argument_Sort.hpp
     title: Geometry/utility/Argument_Sort.hpp
@@ -452,57 +452,70 @@ data:
   isVerificationFile: false
   path: Geometry/object/Point.hpp
   requiredBy:
+  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/triangle_center/Incenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Centroid.hpp
+  - Geometry/object/Triangle.hpp
+  - Geometry/object/Polygon.hpp
+  - Geometry/object/Line.hpp
+  - Geometry/object/Circle.hpp
+  - Geometry/object/Segment.hpp
   - Geometry/distance/Distance_Line_and_Point.hpp
-  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
-  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
-  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
   - Geometry/intersection/Intersection_Circle_and_Line.hpp
   - Geometry/intersection/Intersection_Segment_and_Segment.hpp
-  - Geometry/utility/Argument_Sort.hpp
-  - Geometry/utility/Convex_Hull.hpp
-  - Geometry/utility/Division_Point.hpp
-  - Geometry/utility/Perpendicular_Bisector.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/intersection/Intersection_Circle_and_Circle.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
+  - Geometry/tangent/Tangent_Point_from_Point_to_Circle.hpp
   - Geometry/projection/Projection_Point_Line.hpp
   - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/reflection/Reflection_Point_Line.hpp
-  - Geometry/object/Line.hpp
-  - Geometry/object/Segment.hpp
-  - Geometry/object/Circle.hpp
-  - Geometry/object/Triangle.hpp
-  - Geometry/object/Polygon.hpp
+  - Geometry/relationship/Relationship_Circle_and_Circle.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/utility/Convex_Hull.hpp
+  - Geometry/utility/Counter_Clockwise.hpp
+  - Geometry/utility/Argument_Sort.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/utility/Division_Point.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/7E.test.cpp
-  - verify/aizu_online_judge/cgl/3A.test.cpp
-  - verify/aizu_online_judge/cgl/2B.test.cpp
-  - verify/aizu_online_judge/cgl/7A.test.cpp
-  - verify/aizu_online_judge/cgl/4A.test.cpp
-  - verify/aizu_online_judge/cgl/7B.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/2C.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
-  - verify/aizu_online_judge/cgl/7F.test.cpp
-  - verify/aizu_online_judge/cgl/1C.test.cpp
-  - verify/aizu_online_judge/cgl/7G.test.cpp
-  - verify/aizu_online_judge/cgl/1A.test.cpp
   - verify/yosupo_library_checker/geometry/Static_Convex_Hull.test.cpp
   - verify/yosupo_library_checker/geometry/Argument_Sort.test.cpp
+  - verify/aizu_online_judge/cgl/7A.test.cpp
+  - verify/aizu_online_judge/cgl/7G.test.cpp
+  - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/2C.test.cpp
+  - verify/aizu_online_judge/cgl/2B.test.cpp
+  - verify/aizu_online_judge/cgl/7E.test.cpp
+  - verify/aizu_online_judge/cgl/7B.test.cpp
+  - verify/aizu_online_judge/cgl/7F.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/4A.test.cpp
+  - verify/aizu_online_judge/cgl/3A.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/1C.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
 documentation_of: Geometry/object/Point.hpp
 layout: document
-redirect_from:
-- /library/Geometry/object/Point.hpp
-- /library/Geometry/object/Point.hpp.html
-title: Geometry/object/Point.hpp
+title: "\u70B9"
 ---
+
+## Outline
+
+平面上の点を表すクラス.
+
+## Theory
+
+平面には直交座標系が定められているとし, その原点を $\textrm{O}$ とする.
+
+このライブラリにおけるドキュメントでは, 実数 $x, y$ について, 以下の $3$ つを同一視する.
+
+* 実数の組 $(x, y)$.
+* 平面上の点 $(x, y)$, すなわち $x$ 座標が $x$, $y$ 座標が $y$ である点.
+* 原点 $\textrm{O}$ に関する点 $(x, y)$ への位置ベクトル.
+
+すなわち, 点 $\textrm{P} = (x, y)$ と位置ベクトル $\overrightarrow{\textrm{O}\textrm{P}}$ を区別せず, ともに実数の組 $(x, y)$ として扱う. この同一視のもとで, $2$ 点 $\textrm{P}, \textrm{Q}$ について $\overrightarrow{\textrm{P}\textrm{Q}} = \textrm{Q} - \textrm{P}$ である.

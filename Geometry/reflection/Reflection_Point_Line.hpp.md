@@ -9,13 +9,13 @@ data:
     title: Geometry/object/Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/projection/Projection_Point_Line.hpp
     title: "\u70B9\u306E\u76F4\u7DDA\u3078\u306E\u5C04\u5F71"
   - icon: ':heavy_check_mark:'
     path: Geometry/reflection/Reflection_Point_Point.hpp
-    title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
+    title: "\u70B9\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
@@ -309,14 +309,13 @@ data:
     \ t = dot(P - l.A, d) / norm_2(d); \n        return l.A + t * d;\n    }\n}\n#line\
     \ 2 \"Geometry/reflection/Reflection_Point_Point.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Point.hpp\n\
     \n#line 6 \"Geometry/reflection/Reflection_Point_Point.hpp\"\n\nnamespace geometry\
-    \ {\n    // \u70B9 P \u304C\u70B9 X \u306B\u95A2\u3057\u3066\u5BFE\u79F0\u79FB\
-    \u52D5\u3057\u305F\u5F8C\u306E\u70B9\u3092\u6C42\u3081\u308B.\n    template<typename\
-    \ R>\n    Point<R> Reflection(const Point<R> &P, const Point<R> &X) {\n      \
-    \  return 2 * X - P;\n    }\n}\n#line 7 \"Geometry/reflection/Reflection_Point_Line.hpp\"\
-    \n\nnamespace geometry {\n    // \u76F4\u7DDA L \u306B\u95A2\u3057\u3066, \u70B9\
-    \ P \u3068\u5BFE\u79F0\u306A\u70B9\n    template<typename R>\n    Point<R> Reflection(const\
-    \ Point<R> &P, const Line<R> &l) {\n        return Reflection(P, Projection(P,\
-    \ l));\n    }\n}\n"
+    \ {\n    // \u70B9 X \u306B\u95A2\u3057\u3066\u70B9 P \u3068\u5BFE\u79F0\u306A\
+    \u70B9\u3092\u6C42\u3081\u308B.\n    template<typename R>\n    Point<R> Reflection(const\
+    \ Point<R> &P, const Point<R> &X) {\n        return 2 * X - P;\n    }\n}\n#line\
+    \ 7 \"Geometry/reflection/Reflection_Point_Line.hpp\"\n\nnamespace geometry {\n\
+    \    // \u76F4\u7DDA L \u306B\u95A2\u3057\u3066, \u70B9 P \u3068\u5BFE\u79F0\u306A\
+    \u70B9\n    template<typename R>\n    Point<R> Reflection(const Point<R> &P, const\
+    \ Line<R> &l) {\n        return Reflection(P, Projection(P, l));\n    }\n}\n"
   code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Line.hpp\n\
     \n#include\"../projection/Projection_Point_Line.hpp\"\n#include\"Reflection_Point_Point.hpp\"\
     \n\nnamespace geometry {\n    // \u76F4\u7DDA L \u306B\u95A2\u3057\u3066, \u70B9\
@@ -340,7 +339,7 @@ data:
   isVerificationFile: false
   path: Geometry/reflection/Reflection_Point_Line.hpp
   requiredBy: []
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-21 02:14:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/1B.test.cpp
@@ -351,11 +350,81 @@ title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5
 
 ## Outline
 
-点 $\textrm{P}$ の直線 $\ell$ に関して対称な点を求める.
+直線 $\ell$ に関して点 $\textrm{P}$ と対称な点を求める.
 
 ## Theory
 
-点 $\textrm{P}$ の直線 $\ell$ に関して対称な点とは, [点 $\mathrm{P}$ の直線 $\ell$ への斜影](../projection/Projection_Point_Line.hpp)に関する[直線 $\textrm{P}$ と対称な点](../reflection/Reflection_Point_Point.hpp)である.
+<div class="proposition" markdown="1">
+
+命題 1
+---
+
+$\textrm{P}$ を点, $\ell$ を直線とする.
+
+以下を満たす $\textrm{Q}$ がただ一つ存在する.
+
+* 線分 $\textrm{P}\textrm{Q}$ の中点が $\ell$ 上にある.
+* $\ell$ の方向ベクトルを $\boldsymbol{d}$ としたとき, $\overrightarrow{\textrm{P}\textrm{Q}} \cdot \boldsymbol{d} = 0$ である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$\textrm{A}, \textrm{B}$ を $\ell$ 上の相異なる $2$ 点, $\textrm{H}$ を [$\textrm{P}$ の $\ell$ への射影](../projection/Projection_Point_Line.hpp)とする. $\overrightarrow{\textrm{A}\textrm{B}}$ も $\ell$ の方向ベクトルであるから, $\boldsymbol{d} = c \overrightarrow{\textrm{A}\textrm{B}}$ なる $0$ でない実数 $c$ が存在する.
+
+点 $\textrm{Q}$ に対して, 線分 $\textrm{P}\textrm{Q}$ の中点を $\textrm{M}$ とすると, $\overrightarrow{\textrm{P}\textrm{Q}} \cdot \boldsymbol{d} = 2c \overrightarrow{\textrm{P}\textrm{M}} \cdot \overrightarrow{\textrm{A}\textrm{B}}$ であり, $2c \neq 0$ であるから, $\textrm{Q}$ が条件を満たすことは
+
+* $\textrm{M}$ は $\ell$ 上の点である.
+* $\overrightarrow{\textrm{P}\textrm{M}} \cdot \overrightarrow{\textrm{A}\textrm{B}} = 0$ である.
+
+と同値である. [射影の特徴付け](../projection/Projection_Point_Line.hpp) (命題 3) より, これは $\textrm{M} = \textrm{H}$ と同値である.
+
+$\textrm{M} = \textrm{H}$ を満たす $\textrm{Q}$ は, 点 $\textrm{H}$ に関して点 $\textrm{P}$ と対称な点にほかならない. [点に関する対称移動](Reflection_Point_Point.hpp) (命題 2) より, そのような点はただ一つ存在する. よって, 条件を満たす $\textrm{Q}$ はただ一つ存在する.
+
+</div>
+
+<div class="definition" markdown="1">
+
+定義 2
+---
+
+$\textrm{P}$ を点, $\ell$ を直線とする.
+
+以下を満たすただ一つの点 $\textrm{Q}$ を, 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点という.
+
+* 線分 $\textrm{P}\textrm{Q}$ の中点が $\ell$ 上にある.
+* $\ell$ の方向ベクトルを $\boldsymbol{d}$ としたとき, $\overrightarrow{\textrm{P}\textrm{Q}} \cdot \boldsymbol{d} = 0$ である.
+
+</div>
+
+次の系 3 によって, 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点を具体的に計算することが可能になる.
+
+<div class="corollary" markdown="1">
+
+系 3
+---
+
+$\textrm{P}$ を点, $\ell$ を直線とし, $\textrm{H}$ を $\textrm{P}$ の $\ell$ への射影とする.
+
+このとき, 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点 $\textrm{Q}$ は
+
+$$ \textrm{Q} = 2 \textrm{H} - \textrm{P} $$
+
+である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+命題 1 の証明より, $\textrm{Q}$ は点 $\textrm{H}$ に関して点 $\textrm{P}$ と対称な点である. よって, $\textrm{Q} = 2 \textrm{H} - \textrm{P}$ である.
+
+</div>
 
 ## Contents
 
@@ -363,4 +432,8 @@ title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5
 Point<R> Reflection(const Point<R> &P, const Line<R> &l)
 ```
 
-* 点 $\textrm{P}$ の直線 $\ell$ に関して対称な点を求める.
+* 直線 $\ell$ に関して点 $\textrm{P}$ と対称な点を求める.
+* **制約**
+  * $\ell$ を定める $2$ 点 $\textrm{A}, \textrm{B}$ について, $\textrm{A} \neq \textrm{B}$.
+* **計算量**
+  * $O(1)$.

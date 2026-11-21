@@ -9,7 +9,7 @@ data:
     title: Geometry/object/Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
     title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
@@ -40,10 +40,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7C.test.cpp

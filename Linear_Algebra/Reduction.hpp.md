@@ -382,8 +382,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
   - verify/yosupo_library_checker/linear_algebra/Rank.test.cpp
+  - verify/yosupo_library_checker/linear_algebra/System_of_Linear_Equations.test.cpp
 documentation_of: Linear_Algebra/Reduction.hpp
 layout: document
 redirect_from:

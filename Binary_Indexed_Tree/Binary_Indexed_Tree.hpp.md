@@ -85,8 +85,8 @@ data:
   timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/dsl/2G.test.cpp
   - verify/yosupo_library_checker/data_structure/Binary_Indexed_Tree.test.cpp
+  - verify/aizu_online_judge/dsl/2G.test.cpp
 documentation_of: Binary_Indexed_Tree/Binary_Indexed_Tree.hpp
 layout: document
 title: Binary Indexed Tree (Fenwick Tree)

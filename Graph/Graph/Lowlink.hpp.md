@@ -375,9 +375,9 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/grl/3A.test.cpp
-  - verify/aizu_online_judge/grl/3B.test.cpp
   - verify/yosupo_library_checker/graph/Two_Edge_Connected_Components.test.cpp
+  - verify/aizu_online_judge/grl/3B.test.cpp
+  - verify/aizu_online_judge/grl/3A.test.cpp
 documentation_of: Graph/Graph/Lowlink.hpp
 layout: document
 redirect_from:

@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Counter_Clockwise.hpp
     title: Geometry/utility/Counter_Clockwise.hpp
@@ -48,9 +48,6 @@ data:
     path: Geometry/reflection/Reflection_Point_Line.hpp
     title: "\u70B9\u306E\u76F4\u7DDA\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
   - icon: ':heavy_check_mark:'
-    path: Geometry/reflection/Reflection_Point_Point.hpp
-    title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
-  - icon: ':heavy_check_mark:'
     path: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
     title: Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
   - icon: ':heavy_check_mark:'
@@ -58,10 +55,10 @@ data:
     title: Geometry/tangent/Common_Tangent_Points.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp
@@ -367,23 +364,22 @@ data:
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
   - Geometry/distance/Distance_Line_and_Point.hpp
-  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
-  - Geometry/tangent/Common_Tangent_Points.hpp
-  - Geometry/intersection/Intersection_Line_and_Line.hpp
   - Geometry/intersection/Intersection_Circle_and_Line.hpp
-  - Geometry/utility/Perpendicular_Bisector.hpp
+  - Geometry/intersection/Intersection_Line_and_Line.hpp
+  - Geometry/tangent/Common_Tangent_Points.hpp
   - Geometry/projection/Projection_Point_Line.hpp
-  - Geometry/reflection/Reflection_Point_Point.hpp
   - Geometry/reflection/Reflection_Point_Line.hpp
+  - Geometry/relationship/Parallel_Orthogonal_Line_Line.hpp
+  - Geometry/utility/Perpendicular_Bisector.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aizu_online_judge/cgl/7D.test.cpp
-  - verify/aizu_online_judge/cgl/1B.test.cpp
-  - verify/aizu_online_judge/cgl/7C.test.cpp
-  - verify/aizu_online_judge/cgl/2A.test.cpp
   - verify/aizu_online_judge/cgl/7G.test.cpp
   - verify/aizu_online_judge/cgl/1A.test.cpp
+  - verify/aizu_online_judge/cgl/7D.test.cpp
+  - verify/aizu_online_judge/cgl/1B.test.cpp
+  - verify/aizu_online_judge/cgl/2A.test.cpp
+  - verify/aizu_online_judge/cgl/7C.test.cpp
 documentation_of: Geometry/object/Line.hpp
 layout: document
 redirect_from:

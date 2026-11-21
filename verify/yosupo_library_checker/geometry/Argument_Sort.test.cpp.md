@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Argument_Sort.hpp
     title: Geometry/utility/Argument_Sort.hpp

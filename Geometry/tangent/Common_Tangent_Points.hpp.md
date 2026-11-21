@@ -15,7 +15,7 @@ data:
     title: Geometry/object/Line.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: Geometry/relationship/Relationship_Circle_and_Circle.hpp
     title: Geometry/relationship/Relationship_Circle_and_Circle.hpp

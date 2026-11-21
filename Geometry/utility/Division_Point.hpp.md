@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -31,10 +31,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/utility/Perpendicular_Bisector.hpp
     title: Geometry/utility/Perpendicular_Bisector.hpp

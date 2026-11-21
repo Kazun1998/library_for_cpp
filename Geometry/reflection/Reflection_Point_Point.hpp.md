@@ -5,14 +5,8 @@ data:
     path: Geometry/base.hpp
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/object/Line.hpp
-    title: Geometry/object/Line.hpp
-  - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/utility/Counter_Clockwise.hpp
-    title: Geometry/utility/Counter_Clockwise.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -50,7 +44,6 @@ data:
     - https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Point.hpp
   bundledCode: "#line 2 \"Geometry/reflection/Reflection_Point_Point.hpp\"\n\n// Source:\
     \ https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Point.hpp\n\
-    \n#line 2 \"Geometry/object/Line.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Line.hpp\n\
     \n#line 2 \"Geometry/object/Point.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/object/Point.hpp\n\
     \n#line 2 \"Geometry/base.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/base.hpp\n\
     \n#line 2 \"template/template.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/template/template.hpp\n\
@@ -278,39 +271,17 @@ data:
     \ }\n\n    template<typename R>\n    inline R norm_2(const Point<R> &P) { return\
     \ dot(P, P); }\n\n    template<typename R>\n    inline double norm(const Point<R>\
     \ &P) { return sqrt(norm_2(P)); }\n\n    template<typename R>\n    inline Real\
-    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 2 \"Geometry/utility/Counter_Clockwise.hpp\"\
-    \n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/utility/Counter_Clockwise.hpp\n\
-    \n#line 6 \"Geometry/utility/Counter_Clockwise.hpp\"\n\nnamespace geometry {\n\
-    \    constexpr int COUNTER_CLOCKWISE = +1;\n    constexpr int CLOCKWISE = -1;\n\
-    \    constexpr int ONLINE_BACK = -2;   // c-a-b\n    constexpr int ONLINE_FRONT\
-    \ = +2;  // a-b-c\n    constexpr int ON_SEGMENT = 0;     // a-c-b\n\n    // A\
-    \ -> B -> C \u3068\u9032\u3093\u3060\u6642\u306E\u9032\u884C\u65B9\u5411\u3092\
-    \u8ABF\u3079\u308B (B \u8996\u70B9)\n    // Input\n    // A: \u59CB\u70B9\n  \
-    \  // B: \u4E2D\u7D99\u5730\u70B9\n    // C: \u7D42\u70B9\n    template<typename\
-    \ R>\n    int Counter_Clockwise(const Point<R> &A, Point<R> B, Point<R> C) {\n\
-    \        B = B - A; C = C - A;\n        if (sign(cross(B, C)) == +1) { return\
-    \ COUNTER_CLOCKWISE; }\n        if (sign(cross(B, C)) == -1) { return CLOCKWISE;\
-    \ }\n        if (sign(dot(B, C)) == -1) { return ONLINE_BACK; }\n        if (norm_2(B)\
-    \ < norm_2(C)) { return ONLINE_FRONT; }\n        return ON_SEGMENT;\n    }\n}\n\
-    #line 7 \"Geometry/object/Line.hpp\"\n\nnamespace geometry {\n    template<typename\
-    \ R>\n    struct Line {\n        Point<R> A, B;\n\n        Line() = default;\n\
-    \        Line(const Point<R> &A, const Point<R> &B): A(A), B(B) {}\n\n       \
-    \ inline Point<R> vectorize() const { return B - A; }\n        inline Point<R>\
-    \ counter_vectorize() const { return A - B; }\n\n        Inclusion include(const\
-    \ Point<R> &P) {\n            int m = Counter_Clockwise(A, B, P);\n          \
-    \  return (m == ON_SEGMENT || m == ONLINE_BACK || m == ONLINE_FRONT) ? Inclusion::ON\
-    \ : Inclusion::OUT;\n        }\n    };\n}\n#line 6 \"Geometry/reflection/Reflection_Point_Point.hpp\"\
-    \n\nnamespace geometry {\n    // \u70B9 P \u304C\u70B9 X \u306B\u95A2\u3057\u3066\
-    \u5BFE\u79F0\u79FB\u52D5\u3057\u305F\u5F8C\u306E\u70B9\u3092\u6C42\u3081\u308B\
+    \ arg(const Point<R> &P) { return atan2(P.y, P.x); }\n}\n#line 6 \"Geometry/reflection/Reflection_Point_Point.hpp\"\
+    \n\nnamespace geometry {\n    // \u70B9 X \u306B\u95A2\u3057\u3066\u70B9 P \u3068\
+    \u5BFE\u79F0\u306A\u70B9\u3092\u6C42\u3081\u308B.\n    template<typename R>\n\
+    \    Point<R> Reflection(const Point<R> &P, const Point<R> &X) {\n        return\
+    \ 2 * X - P;\n    }\n}\n"
+  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Point.hpp\n\
+    \n#include \"../object/Point.hpp\"\n\nnamespace geometry {\n    // \u70B9 X \u306B\
+    \u95A2\u3057\u3066\u70B9 P \u3068\u5BFE\u79F0\u306A\u70B9\u3092\u6C42\u3081\u308B\
     .\n    template<typename R>\n    Point<R> Reflection(const Point<R> &P, const\
     \ Point<R> &X) {\n        return 2 * X - P;\n    }\n}\n"
-  code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Geometry/reflection/Reflection_Point_Point.hpp\n\
-    \n#include\"../object/Line.hpp\"\n\nnamespace geometry {\n    // \u70B9 P \u304C\
-    \u70B9 X \u306B\u95A2\u3057\u3066\u5BFE\u79F0\u79FB\u52D5\u3057\u305F\u5F8C\u306E\
-    \u70B9\u3092\u6C42\u3081\u308B.\n    template<typename R>\n    Point<R> Reflection(const\
-    \ Point<R> &P, const Point<R> &X) {\n        return 2 * X - P;\n    }\n}\n"
   dependsOn:
-  - Geometry/object/Line.hpp
   - Geometry/object/Point.hpp
   - Geometry/base.hpp
   - template/template.hpp
@@ -320,37 +291,63 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Geometry/utility/Counter_Clockwise.hpp
   isVerificationFile: false
   path: Geometry/reflection/Reflection_Point_Point.hpp
   requiredBy:
   - Geometry/reflection/Reflection_Point_Line.hpp
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-21 02:14:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aizu_online_judge/cgl/1B.test.cpp
 documentation_of: Geometry/reflection/Reflection_Point_Point.hpp
 layout: document
-title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
+title: "\u70B9\u306B\u95A2\u3059\u308B\u5BFE\u79F0\u79FB\u52D5"
 ---
 
 ## Outline
 
-点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点 $\textrm{Q}$ を求める.
+点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点を求める.
 
 ## Theory
 
-点 $\textrm{X}$ は線分 $\textrm{PQ}$ の中点である. よって,
+<div class="definition" markdown="1">
 
- $$ \dfrac{\textrm{P} + \textrm{Q}}{2} = \textrm{X} $$
+定義 1
+---
 
-が成り立つ.
+$\textrm{P}, \textrm{X}$ を点とする.
 
-これを $\textrm{Q}$ について整理すると,
+このとき, $\textrm{X}$ が線分 $\textrm{P}\textrm{Q}$ の中点となるような点 $\textrm{Q}$ を, 点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点という.
 
-  $$ \textrm{Q} = 2 \textrm{X} - \textrm{P} $$
+</div>
 
-が導ける.
+<div class="proposition" markdown="1">
+
+命題 2
+---
+
+$\textrm{P}, \textrm{X}$ を点とする.
+
+このとき, 点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点 $\textrm{Q}$ はただ一つ存在し,
+
+$$ \textrm{Q} = 2 \textrm{X} - \textrm{P} $$
+
+である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$\textrm{X}$ が線分 $\textrm{P}\textrm{Q}$ の中点であることは,
+
+$$ \textrm{X} = \dfrac{\textrm{P} + \textrm{Q}}{2} $$
+
+と同値である. これを $\textrm{Q}$ について解くと $\textrm{Q} = 2 \textrm{X} - \textrm{P}$ となり, $\textrm{Q}$ はただ一つに定まる.
+
+</div>
 
 ## Contents
 
@@ -358,5 +355,6 @@ title: "\u70B9\u306B\u95A2\u3059\u308B\u70B9\u306E\u53CD\u8EE2"
 Point<R> Reflection(const Point<R> &P, const Point<R> &X)
 ```
 
-* 点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点を求める.
-
+* 点 $\textrm{X}$ に関して点 $\textrm{P}$ と対称な点を, 命題 2 の式で求める.
+* **計算量**
+  * $O(1)$.

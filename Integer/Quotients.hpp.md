@@ -232,8 +232,8 @@ data:
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
   - verify/yosupo_library_checker/number_theory/Counting_Primes.test.cpp
+  - verify/yosupo_library_checker/number_theory/Enumerate_Quotients.test.cpp
 documentation_of: Integer/Quotients.hpp
 layout: document
 title: "\u5546\u306E\u5217\u6319 (Quotients)"

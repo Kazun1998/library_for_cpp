@@ -6,7 +6,7 @@ data:
     title: Geometry/base.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/object/Point.hpp
-    title: Geometry/object/Point.hpp
+    title: "\u70B9"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -34,16 +34,16 @@ data:
     title: "\u4E09\u89D2\u5F62\u306E\u91CD\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcenter.hpp
-    title: Geometry/triangle_center/Circumcenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Circumcircle.hpp
-    title: Geometry/triangle_center/Circumcircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incenter.hpp
-    title: Geometry/triangle_center/Incenter.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5185\u5FC3"
   - icon: ':heavy_check_mark:'
     path: Geometry/triangle_center/Incircle.hpp
-    title: Geometry/triangle_center/Incircle.hpp
+    title: "\u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aizu_online_judge/cgl/7B.test.cpp
@@ -326,10 +326,10 @@ data:
   isVerificationFile: false
   path: Geometry/object/Triangle.hpp
   requiredBy:
+  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Circumcenter.hpp
   - Geometry/triangle_center/Incenter.hpp
   - Geometry/triangle_center/Circumcircle.hpp
-  - Geometry/triangle_center/Incircle.hpp
   - Geometry/triangle_center/Centroid.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
