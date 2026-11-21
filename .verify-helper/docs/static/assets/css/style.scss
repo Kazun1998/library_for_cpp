@@ -7,6 +7,8 @@
 .definition,
 .proposition,
 .theorem,
+.corollary,
+.lemma,
 .problem,
 .box,
 .remark {
@@ -21,6 +23,8 @@
 .definition  { --c: #1f77b4; --bg: #eef5fb; }
 .proposition { --c: #d4a017; --bg: #fdf8e6; }
 .theorem     { --c: #2e8b57; --bg: #eef8f2; }
+.corollary   { --c: #17a2b8; --bg: #e8f7f9; }
+.lemma       { --c: #e67e22; --bg: #fdf2e9; }
 .problem     { --c: #7b4fb8; --bg: #f4effb; }
 .box         { --c: #555555; --bg: #ffffff; }
 .remark      { --c: #888888; --bg: #f5f5f5; }
@@ -28,6 +32,8 @@
 .definition > :first-child,
 .proposition > :first-child,
 .theorem > :first-child,
+.corollary > :first-child,
+.lemma > :first-child,
 .problem > :first-child,
 .box > :first-child,
 .remark > :first-child {
@@ -38,6 +44,8 @@
 .definition > h2:first-child,
 .proposition > h2:first-child,
 .theorem > h2:first-child,
+.corollary > h2:first-child,
+.lemma > h2:first-child,
 .problem > h2:first-child,
 .box > h2:first-child,
 .remark > h2:first-child {
@@ -52,6 +60,8 @@
 .definition > :last-child,
 .proposition > :last-child,
 .theorem > :last-child,
+.corollary > :last-child,
+.lemma > :last-child,
 .problem > :last-child,
 .box > :last-child,
 .remark > :last-child {
