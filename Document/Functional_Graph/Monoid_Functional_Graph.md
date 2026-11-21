@@ -5,7 +5,7 @@ documentation_of: //Functional_Graph/Monoid_Functional_Graph.hpp
 
 ## Outline
 
-弧に Monoid $M$ の重みが付いた Funtional Graph に関する構造の決定及び, パスの重みの総積を行う.
+弧に Monoid $M$ の重みが付いた Functional Graph に関する構造の決定及び, パスの重みの総積を行う.
 
 ## History
 
