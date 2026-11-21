@@ -9,8 +9,6 @@ documentation_of: //Geometry/reflection/Reflection_Point_Point.hpp
 
 ## Theory
 
-以下, 点 $\textrm{P}$ とその位置ベクトルを同一視する.
-
 <div class="definition" markdown="1">
 
 定義 1

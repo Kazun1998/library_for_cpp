@@ -9,7 +9,7 @@ documentation_of: //Geometry/triangle_center/Incircle.hpp
 
 ## Theory
 
-以下, 点とその位置ベクトルを同一視する. 中心 $\textrm{P}$, 半径 $r$ の円とは, $d(\textrm{P}, \textrm{X}) = r$ を満たす点 $\textrm{X}$ 全体のことである ( $r > 0$ ).
+中心 $\textrm{P}$, 半径 $r$ の円とは, $d(\textrm{P}, \textrm{X}) = r$ を満たす点 $\textrm{X}$ 全体のことである ( $r > 0$ ).
 
 中心 $\textrm{P}$, 半径 $r$ の円と直線 $\ell$ が接するとは, $\textrm{P}$ から $\ell$ までの距離が $r$ であることをいう. このとき, $\textrm{P}$ から $\ell$ に下ろした垂線の足を接点という. また, 円が線分 $\textrm{X}\textrm{Y}$ に接するとは, 円が直線 $\textrm{X}\textrm{Y}$ に接し, かつ接点が線分 $\textrm{X}\textrm{Y}$ 上にあることをいう.
 

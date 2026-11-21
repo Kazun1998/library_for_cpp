@@ -9,7 +9,7 @@ documentation_of: //Geometry/triangle_center/Incenter.hpp
 
 ## Theory
 
-以下, 点とその位置ベクトルを同一視する. また, 三角形 $\textrm{A}\textrm{B}\textrm{C}$ の頂点 $\textrm{A}$ における内角の二等分線とは, $\textrm{A}$ を端点とし, 角 $\textrm{B}\textrm{A}\textrm{C}$ を二等分する半直線のことである. 頂点 $\textrm{B}, \textrm{C}$ についても同様である.
+三角形 $\textrm{A}\textrm{B}\textrm{C}$ の頂点 $\textrm{A}$ における内角の二等分線とは, $\textrm{A}$ を端点とし, 角 $\textrm{B}\textrm{A}\textrm{C}$ を二等分する半直線のことである. 頂点 $\textrm{B}, \textrm{C}$ についても同様である.
 
 <div class="lemma" markdown="1">
 

@@ -9,8 +9,6 @@ documentation_of: //Geometry/triangle_center/Circumcenter.hpp
 
 ## Theory
 
-以下, 点とその位置ベクトルを同一視する.
-
 <div class="theorem" markdown="1">
 
 定理 1

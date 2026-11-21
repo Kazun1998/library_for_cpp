@@ -9,7 +9,7 @@ documentation_of: //Geometry/triangle_center/Circumcircle.hpp
 
 ## Theory
 
-以下, 点とその位置ベクトルを同一視する. また, 中心 $\textrm{P}$, 半径 $r$ の円とは, $d(\textrm{P}, \textrm{X}) = r$ を満たす点 $\textrm{X}$ 全体のことである ( $r > 0$ ).
+中心 $\textrm{P}$, 半径 $r$ の円とは, $d(\textrm{P}, \textrm{X}) = r$ を満たす点 $\textrm{X}$ 全体のことである ( $r > 0$ ).
 
 <div class="theorem" markdown="1">
 
