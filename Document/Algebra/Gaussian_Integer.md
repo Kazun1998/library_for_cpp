@@ -498,8 +498,8 @@ $$ g \text{ が } \alpha_k \text{ と } \alpha_{k+1} \text{ の最大公約数} 
 
 ```cpp
 template<typename R>
-Gaussian_Integer<R>(R re, R im)
-Gaussian_Integer<R>(R re)
+constexpr Gaussian_Integer<R>(R re, R im)
+constexpr Gaussian_Integer<R>(R re)
 ```
 
 * 1 つ目は Gauss 整数 $\textrm{re} + \textrm{im} \cdot i$ を生成する.
@@ -513,13 +513,13 @@ Gaussian_Integer<R>(R re)
 ### 加法・減法・乗法
 
 ```cpp
-Gaussian_Integer operator-() const
-Gaussian_Integer& operator+=(const Gaussian_Integer &b)
-Gaussian_Integer& operator-=(const Gaussian_Integer &b)
-Gaussian_Integer& operator*=(const Gaussian_Integer &b)
-friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer &y)
-friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer &y)
-friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer &y)
+constexpr Gaussian_Integer operator-() const
+constexpr Gaussian_Integer& operator+=(const Gaussian_Integer &b)
+constexpr Gaussian_Integer& operator-=(const Gaussian_Integer &b)
+constexpr Gaussian_Integer& operator*=(const Gaussian_Integer &b)
+friend constexpr Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer &y)
+friend constexpr Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer &y)
+friend constexpr Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer &y)
 ```
 
 * $\alpha = a + bi, \beta = c + di$ に対して, 以下を計算する.
@@ -546,16 +546,27 @@ friend Gaussian_Integer operator%(const Gaussian_Integer &x, const Gaussian_Inte
   * このとき, $\alpha = \beta q + r$ かつ $N(r) \leq \dfrac{1}{2} N(\beta)$ を満たす.
   * 条件を満たす $(q, r)$ は一意とは限らない (注意 17).
 * **制約**
-  * $\beta \neq 0$.
+  * $\beta \neq 0$. $\beta = 0$ のときは `invalid_argument` を送出する.
 * **注意**
   * 計算途中で $\alpha \overline{\beta}$ の実部・虚部と $N(\beta)$ を計算するので, これらが `R` の範囲に収まらない場合, オーバーフローする.
+* **計算量**
+  * $O(1)$ 時間.
+
+### 比較
+
+```cpp
+friend constexpr bool operator==(const Gaussian_Integer &x, const Gaussian_Integer &y)
+```
+
+* $\alpha = \beta$ かどうか (実部と虚部がそれぞれ等しいかどうか) を判定する.
+* `!=` も使える (C++20 以降, `==` から自動的に導かれる).
 * **計算量**
   * $O(1)$ 時間.
 
 ### conjugate
 
 ```cpp
-Gaussian_Integer conjugate() const
+constexpr Gaussian_Integer conjugate() const
 ```
 
 * $\alpha = a + bi$ の共役 $\overline{\alpha} = a - bi$ (定義 3) を返す.
@@ -565,7 +576,7 @@ Gaussian_Integer conjugate() const
 ### norm
 
 ```cpp
-R norm() const
+constexpr R norm() const
 ```
 
 * $\alpha = a + bi$ のノルム $N(\alpha) = \lvert \alpha \rvert^2 = a^2 + b^2$ (定義 4, 命題 5 (1)) を返す.
@@ -577,7 +588,7 @@ R norm() const
 ### is_zero
 
 ```cpp
-bool is_zero() const
+constexpr bool is_zero() const
 ```
 
 * $\alpha = 0$ かどうかを判定する.
@@ -592,8 +603,8 @@ friend ostream &operator<<(ostream &os, const Gaussian_Integer &x)
 ```
 
 * 入力: 実部, 虚部の順に 2 個の整数を読み込む.
-* 出力: `re+imi` の形式で出力する.
-  * 虚部が負の場合も `+` を出力する (例: $3 - 4i$ は `3+-4i` と出力される).
+* 出力: 実部, 虚部の順に 2 個の整数を空白区切りで出力する (例: $3 - 4i$ は `3 -4` と出力される).
+  * 入力と同じ形式なので, 出力したものをそのまま読み込める.
 * **計算量**
   * $O(1)$ 時間.
 
