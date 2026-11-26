@@ -13,39 +13,41 @@ class Gaussian_Integer {
     constexpr Gaussian_Integer(R re): re(re), im(0) {}
 
     // マイナス元
-    Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im); }
+    constexpr Gaussian_Integer operator-() const { return Gaussian_Integer(-re, -im); }
 
     // 加法
-    Gaussian_Integer& operator+=(const Gaussian_Integer &b){
+    constexpr Gaussian_Integer& operator+=(const Gaussian_Integer &b){
         re += b.re;
         im += b.im;
         return *this;
     }
 
-    friend Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }
+    friend constexpr Gaussian_Integer operator+(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }
 
     // 減法
-    Gaussian_Integer& operator-=(const Gaussian_Integer &b){
+    constexpr Gaussian_Integer& operator-=(const Gaussian_Integer &b){
         re -= b.re;
         im -= b.im;
         return *this;
     }
 
-    friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }
+    friend constexpr Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }
 
     // 乗法
-    Gaussian_Integer& operator*=(const Gaussian_Integer &b){
+    constexpr Gaussian_Integer& operator*=(const Gaussian_Integer &b){
         tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im * b.re);
         return *this;
     }
 
-    friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }
+    friend constexpr Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) *= y; }
 
     // 除法
     Gaussian_Integer& operator/=(const Gaussian_Integer &b){
-        R n = b.norm();
-        R x = round(re * b.re + im * b.im, n);
-        R y = round(im * b.re - re * b.im, n);
+        if (b.is_zero()) { throw invalid_argument("Gaussian_Integer: division by zero"); }
+
+        const R n = b.norm();
+        const R x = round(re * b.re + im * b.im, n);
+        const R y = round(im * b.re - re * b.im, n);
         re = x;
         im = y;
         return *this;
@@ -55,9 +57,9 @@ class Gaussian_Integer {
 
     // 剰余
     Gaussian_Integer& operator%=(const Gaussian_Integer &b){
-        Gaussian_Integer a(re, im);
-        auto q = a / b;
-        auto r = a - b * q;
+        const Gaussian_Integer a(re, im);
+        const Gaussian_Integer q = a / b;
+        const Gaussian_Integer r = a - b * q;
         re = r.re;
         im = r.im;
         return *this;
@@ -65,11 +67,14 @@ class Gaussian_Integer {
 
     friend Gaussian_Integer operator%(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }
 
+    // 比較
+    friend constexpr bool operator==(const Gaussian_Integer &x, const Gaussian_Integer &y) { return x.re == y.re && x.im == y.im; }
+
     // 共役
-    Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }
+    constexpr Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }
 
     // ノルム
-    R norm() const { return re * re + im * im; }
+    constexpr R norm() const { return re * re + im * im; }
 
     // 入力
     friend istream &operator>>(istream &is, Gaussian_Integer &a) {
@@ -78,15 +83,15 @@ class Gaussian_Integer {
     }
 
     // 出力
-    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x) { return os << x.re << "+" << x.im << "i"; }
+    friend ostream &operator<<(ostream &os, const Gaussian_Integer &x) { return os << x.re << " " << x.im; }
 
     // ゼロ?
-    bool is_zero() const { return re == 0 && im == 0; }
+    constexpr bool is_zero() const { return re == 0 && im == 0; }
 };
 
 template<typename R>
 Gaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R> beta) {
-    while(!beta.is_zero()) {
+    until(beta.is_zero()) {
         tie(alpha, beta) = make_pair(beta, alpha % beta);
     }
 
