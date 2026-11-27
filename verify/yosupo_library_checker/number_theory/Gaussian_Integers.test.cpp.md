@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: Algebra/Gaussian_Integer.hpp
-    title: Algebra/Gaussian_Integer.hpp
+    title: "Gauss \u6574\u6570"
   - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
@@ -209,39 +209,43 @@ data:
     \n#line 6 \"Algebra/Gaussian_Integer.hpp\"\n\ntemplate<typename R>\nclass Gaussian_Integer\
     \ {\n    public:\n    R re, im;\n\n    constexpr Gaussian_Integer(R re, R im):\
     \ re(re), im(im) {}\n    constexpr Gaussian_Integer(R re): re(re), im(0) {}\n\n\
-    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Gaussian_Integer operator-() const\
-    \ { return Gaussian_Integer(-re, -im); }\n\n    // \u52A0\u6CD5\n    Gaussian_Integer&\
-    \ operator+=(const Gaussian_Integer &b){\n        re += b.re;\n        im += b.im;\n\
-    \        return *this;\n    }\n\n    friend Gaussian_Integer operator+(const Gaussian_Integer\
-    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) += y; }\n\n    //\
-    \ \u6E1B\u6CD5\n    Gaussian_Integer& operator-=(const Gaussian_Integer &b){\n\
-    \        re -= b.re;\n        im -= b.im;\n        return *this;\n    }\n\n  \
-    \  friend Gaussian_Integer operator-(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) -= y; }\n\n    // \u4E57\u6CD5\n    Gaussian_Integer&\
-    \ operator*=(const Gaussian_Integer &b){\n        tie (re, im) = make_pair(re\
-    \ * b.re - im * b.im, re * b.im + im * b.re);\n        return *this;\n    }\n\n\
-    \    friend Gaussian_Integer operator*(const Gaussian_Integer &x, const Gaussian_Integer\
-    \ &y) { return Gaussian_Integer(x) *= y; }\n\n    // \u9664\u6CD5\n    Gaussian_Integer&\
-    \ operator/=(const Gaussian_Integer &b){\n        R n = b.norm();\n        R x\
-    \ = round(re * b.re + im * b.im, n);\n        R y = round(im * b.re - re * b.im,\
-    \ n);\n        re = x;\n        im = y;\n        return *this;\n    }\n\n    friend\
-    \ Gaussian_Integer operator/(const Gaussian_Integer &x, const Gaussian_Integer\
+    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    constexpr Gaussian_Integer operator-()\
+    \ const { return Gaussian_Integer(-re, -im); }\n\n    // \u52A0\u6CD5\n    constexpr\
+    \ Gaussian_Integer& operator+=(const Gaussian_Integer &b){\n        re += b.re;\n\
+    \        im += b.im;\n        return *this;\n    }\n\n    friend constexpr Gaussian_Integer\
+    \ operator+(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
+    \ += y; }\n\n    // \u6E1B\u6CD5\n    constexpr Gaussian_Integer& operator-=(const\
+    \ Gaussian_Integer &b){\n        re -= b.re;\n        im -= b.im;\n        return\
+    \ *this;\n    }\n\n    friend constexpr Gaussian_Integer operator-(const Gaussian_Integer\
+    \ &x, const Gaussian_Integer &y) { return Gaussian_Integer(x) -= y; }\n\n    //\
+    \ \u4E57\u6CD5\n    constexpr Gaussian_Integer& operator*=(const Gaussian_Integer\
+    \ &b){\n        tie (re, im) = make_pair(re * b.re - im * b.im, re * b.im + im\
+    \ * b.re);\n        return *this;\n    }\n\n    friend constexpr Gaussian_Integer\
+    \ operator*(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
+    \ *= y; }\n\n    // \u9664\u6CD5\n    Gaussian_Integer& operator/=(const Gaussian_Integer\
+    \ &b){\n        if (b.is_zero()) { throw invalid_argument(\"Gaussian_Integer:\
+    \ division by zero\"); }\n\n        const R n = b.norm();\n        const R x =\
+    \ round(re * b.re + im * b.im, n);\n        const R y = round(im * b.re - re *\
+    \ b.im, n);\n        re = x;\n        im = y;\n        return *this;\n    }\n\n\
+    \    friend Gaussian_Integer operator/(const Gaussian_Integer &x, const Gaussian_Integer\
     \ &y) { return Gaussian_Integer(x) /= y; }\n\n    // \u5270\u4F59\n    Gaussian_Integer&\
-    \ operator%=(const Gaussian_Integer &b){\n        Gaussian_Integer a(re, im);\n\
-    \        auto q = a / b;\n        auto r = a - b * q;\n        re = r.re;\n  \
-    \      im = r.im;\n        return *this;\n    }\n\n    friend Gaussian_Integer\
-    \ operator%(const Gaussian_Integer &x, const Gaussian_Integer &y) { return Gaussian_Integer(x)\
-    \ %= y; }\n\n    // \u5171\u5F79\n    Gaussian_Integer conjugate() const { return\
-    \ Gaussian_Integer(re, -im); }\n\n    // \u30CE\u30EB\u30E0\n    R norm() const\
-    \ { return re * re + im * im; }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream\
-    \ &is, Gaussian_Integer &a) {\n        is >> a.re >> a.im;\n        return is;\n\
-    \    }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
-    \ Gaussian_Integer &x) { return os << x.re << \"+\" << x.im << \"i\"; }\n\n  \
-    \  // \u30BC\u30ED?\n    bool is_zero() const { return re == 0 && im == 0; }\n\
-    };\n\ntemplate<typename R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha,\
-    \ Gaussian_Integer<R> beta) {\n    while(!beta.is_zero()) {\n        tie(alpha,\
-    \ beta) = make_pair(beta, alpha % beta);\n    }\n\n    return alpha;\n}\n#line\
-    \ 5 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
+    \ operator%=(const Gaussian_Integer &b){\n        const Gaussian_Integer a(re,\
+    \ im);\n        const Gaussian_Integer q = a / b;\n        const Gaussian_Integer\
+    \ r = a - b * q;\n        re = r.re;\n        im = r.im;\n        return *this;\n\
+    \    }\n\n    friend Gaussian_Integer operator%(const Gaussian_Integer &x, const\
+    \ Gaussian_Integer &y) { return Gaussian_Integer(x) %= y; }\n\n    // \u6BD4\u8F03\
+    \n    friend constexpr bool operator==(const Gaussian_Integer &x, const Gaussian_Integer\
+    \ &y) { return x.re == y.re && x.im == y.im; }\n\n    // \u5171\u5F79\n    constexpr\
+    \ Gaussian_Integer conjugate() const { return Gaussian_Integer(re, -im); }\n\n\
+    \    // \u30CE\u30EB\u30E0\n    constexpr R norm() const { return re * re + im\
+    \ * im; }\n\n    // \u5165\u529B\n    friend istream &operator>>(istream &is,\
+    \ Gaussian_Integer &a) {\n        is >> a.re >> a.im;\n        return is;\n  \
+    \  }\n\n    // \u51FA\u529B\n    friend ostream &operator<<(ostream &os, const\
+    \ Gaussian_Integer &x) { return os << x.re << \" \" << x.im; }\n\n    // \u30BC\
+    \u30ED?\n    constexpr bool is_zero() const { return re == 0 && im == 0; }\n};\n\
+    \ntemplate<typename R>\nGaussian_Integer<R> gcd(Gaussian_Integer<R> alpha, Gaussian_Integer<R>\
+    \ beta) {\n    until(beta.is_zero()) {\n        tie(alpha, beta) = make_pair(beta,\
+    \ alpha % beta);\n    }\n\n    return alpha;\n}\n#line 5 \"verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp\"\
     \n\nint main() {\n    int T; cin >> T;\n    for (int t = 0; t < T; t++){\n   \
     \     ll a1, b1, a2, b2;\n        scanf(\"%lld%lld%lld%lld\", &a1, &b1, &a2, &b2);\n\
     \        Gaussian_Integer<ll> x1(a1, b1), x2(a2, b2);\n        auto g = gcd(x1,\
@@ -264,7 +268,7 @@ data:
   isVerificationFile: true
   path: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-27 01:05:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/yosupo_library_checker/number_theory/Gaussian_Integers.test.cpp

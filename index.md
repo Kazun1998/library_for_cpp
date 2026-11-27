@@ -11,7 +11,7 @@ data:
       title: Algebra/Fraction.hpp
     - icon: ':heavy_check_mark:'
       path: Algebra/Gaussian_Integer.hpp
-      title: Algebra/Gaussian_Integer.hpp
+      title: "Gauss \u6574\u6570"
     - icon: ':heavy_check_mark:'
       path: Algebra/Nimber.hpp
       title: Nimber
