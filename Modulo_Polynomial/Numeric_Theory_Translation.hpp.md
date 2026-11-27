@@ -5,10 +5,6 @@ data:
     path: Algebra/modint.hpp
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: Modulo_Polynomial/Modulo_Polynomial.hpp
-    title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
-      \u5F0F\u74B0"
-  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -316,9 +312,7 @@ data:
     \  public:\n    NotExist() : message(\"\u6C42\u3081\u3088\u3046\u3068\u3057\u3066\
     \u3044\u305F\u3082\u306E\u306F\u5B58\u5728\u3057\u307E\u305B\u3093.\") {}\n\n\
     \    const char* what() const noexcept override {\n        return message.c_str();\n\
-    \    }\n};\n#line 2 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\n\n// Source:\
-    \ https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Modulo_Polynomial.hpp\n\
-    \n#line 2 \"Algebra/modint.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/modint.hpp\n\
+    \    }\n};\n#line 2 \"Algebra/modint.hpp\"\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Algebra/modint.hpp\n\
     \n#line 6 \"Algebra/modint.hpp\"\n\ntemplate<int M>\nclass modint {\n    public:\n\
     \    static constexpr int _mod = M; \n    uint64_t x;\n\n    public:\n    static\
     \ constexpr int mod() { return _mod; }\n\n    static modint raw(int v) {\n   \
@@ -357,186 +351,93 @@ data:
     \ {};\n\ntemplate<typename Mint>\nrequires is_modint<Mint>::value\nMint pow(Mint\
     \ x, long long n) {\n    if (n < 0) { return pow(x, -n).inverse(); }\n\n    Mint\
     \ res(1);\n    for (; n; n >>= 1) {\n        if (n & 1) { res *= x; }\n      \
-    \  x *= x;\n    }\n\n    return res;\n}\n#line 7 \"Modulo_Polynomial/Modulo_Polynomial.hpp\"\
-    \n\ntemplate<typename mint>\nclass Modulo_Polynomial {\n    public:\n    int precision\
-    \ = 0;\n\n    public:\n    vector<mint> poly;\n    Modulo_Polynomial(vector<mint>\
-    \ _poly, int precision): precision(precision) {\n        if (_poly.size() > precision)\
-    \ { _poly.resize(precision); }\n        poly = _poly;\n    }\n\n    Modulo_Polynomial()\
-    \ = default;\n    Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly,\
-    \ poly.size()) {}\n    Modulo_Polynomial(int precision) : Modulo_Polynomial({},\
-    \ precision) {}\n\n    // \u6F14\u7B97\u5B50\u306E\u5B9A\u7FA9\n    public:\n\
-    \    // \u30DE\u30A4\u30CA\u30B9\u5143\n    Modulo_Polynomial operator-() const\
-    \ {\n        Modulo_Polynomial res(*this);\n        for (auto &a : res.poly) {\
-    \ a = -a; }\n        return res;\n    }\n\n    // \u52A0\u6CD5\n    Modulo_Polynomial&\
-    \ operator+=(const Modulo_Polynomial &P){\n        if (size() < P.size()) { resize(P.size());\
-    \ }\n\n        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] += P[i];\
-    \ }\n        reduce();\n\n        return *this;\n    }\n\n    Modulo_Polynomial&\
-    \ operator+=(const mint &a){\n        if (poly.empty()) { resize(1); }\n     \
-    \   poly[0] += a;\n        reduce();\n\n        return *this;\n    }\n\n    friend\
-    \ Modulo_Polynomial operator+(const Modulo_Polynomial &lhs, const Modulo_Polynomial\
-    \ &rhs) { return Modulo_Polynomial(lhs) += rhs; }\n    Modulo_Polynomial operator+(const\
-    \ mint &a) const { return Modulo_Polynomial(*this) += a; }\n\n    // \u6E1B\u6CD5\
-    \n    Modulo_Polynomial& operator-=(const Modulo_Polynomial &P){\n        if (size()\
-    \ < P.size()) { resize(P.size()); }\n\n        for (int i = 0; i < (int) P.poly.size();\
-    \ i++) { poly[i] -= P[i]; }\n        reduce();\n\n        return *this;\n    }\n\
-    \n    Modulo_Polynomial& operator-=(const mint &a){\n        if (poly.empty())\
-    \ { resize(1); }\n        poly[0] -= a;\n        reduce();\n\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator-(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) -= rhs; }\n  \
-    \  Modulo_Polynomial operator-(const mint &a) const { return Modulo_Polynomial(*this)\
-    \ -= a; }\n\n    // \u30B9\u30AB\u30E9\u30FC\u500D\n    Modulo_Polynomial& operator*=(const\
-    \ mint &a){\n        for (int i = 0; i < size(); i++) { poly[i] *= a; }\n    \
-    \    reduce();\n        return *this;\n    }\n\n    Modulo_Polynomial operator*(const\
-    \ mint &a) const {return Modulo_Polynomial(*this) *= a;}\n\n    friend Modulo_Polynomial\
-    \ operator*(const mint &a, const Modulo_Polynomial &P) {\n        Modulo_Polynomial\
-    \ res(P);\n        res *= a;\n        return res;\n    }\n\n    // \u7A4D\n  \
-    \  Modulo_Polynomial& operator*=(const Modulo_Polynomial &P) {\n        int r\
-    \ = min({(int) (poly.size() + P.poly.size()) - 1, precision, P.precision});\n\
-    \        vector<mint> A(r);\n        for (int i = 0; i < size(); i++) {\n    \
-    \        for (int j = 0; j < P.size(); j++) {\n                if (i + j < r)\
-    \ { A[i + j] += poly[i] * P.poly[j]; }\n            }\n        }\n\n        poly\
-    \ = A;\n        precision = min(precision, P.precision);\n        return *this;\n\
-    \    }\n\n    friend Modulo_Polynomial operator*(const Modulo_Polynomial &lhs,\
-    \ const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) *= rhs; }\n\n\
-    \    // \u30B9\u30AB\u30E9\u30FC\u9664\u7B97\n    Modulo_Polynomial& operator/=(const\
-    \ mint &a) {\n        mint a_inv = a.inverse();\n        for (int i = 0; i < size();\
-    \ i++) { poly[i] *= a_inv; }\n        return *this;\n    }\n\n    Modulo_Polynomial\
-    \ operator/(const mint &a) const { return Modulo_Polynomial(*this) /= a; }\n\n\
-    \    // index\n    mint operator[] (int k) const { return (k < poly.size()) ?\
-    \ poly[k] : 0; }\n\n    // istream\n    friend istream &operator>>(istream &is,\
-    \ Modulo_Polynomial &P) {\n        P.poly.resize(P.precision);\n        for (int\
-    \ i = 0; i < (int)P.precision; i++) { is >> P.poly[i]; }\n        return (is);\n\
-    \    }\n\n    // ostream\n    friend ostream &operator<<(ostream &os, const Modulo_Polynomial\
-    \ &P){\n        for (int i = 0; i < (int)P.poly.size(); i++){\n            os\
-    \ << (i ? \" \" : \"\") << P[i];\n        }\n        return os;\n    }\n\n   \
-    \ // poly \u3067\u4FDD\u6301\u3057\u3066\u3044\u308B\u30D9\u30AF\u30C8\u30EB\u306E\
-    \u9577\u3055\u3092 size \u306B\u3059\u308B.\n    // size = -1 \u306E\u3068\u304D\
-    \u306F, size = precision \u306B\u5909\u63DB\u3055\u308C\u308B.\n    void resize(int\
-    \ size = -1) {\n        if (size == -1) { size = this -> precision; }\n      \
-    \  size = min(size, this -> precision);\n        poly.resize(size);\n    }\n\n\
-    \    /// @brief poly \u306E\u30B5\u30A4\u30BA\u304C size \u3088\u308A\u5927\u304D\
-    \u3044\u5834\u5408\u306E\u307F, size \u306B\u5207\u308A\u8A70\u3081\u308B.\n \
-    \   /// @param size \u6307\u5B9A\u3059\u308B\u30B5\u30A4\u30BA. -1 \u306E\u5834\
-    \u5408\u306F precision \u3092\u4F7F\u7528\u3059\u308B.\n    void weak_resize(int\
-    \ size = -1) {\n        if (size == -1) { size = this->precision; }\n\n      \
-    \  if (size >= this->poly.size()) return;\n\n        resize(size);\n    }\n\n\
-    \    bool is_zero() const {\n        for (auto &a: poly) { unless(a.is_zero())\
-    \ {return false;} }\n        return true;\n    }\n\n    // \u9AD8\u6B21\u306B\u9023\
-    \u306A\u308B 0 \u3092\u524A\u9664\u3059\u308B\n    void reduce() {\n        while\
-    \ (!poly.empty() && poly.back().is_zero()) { poly.pop_back(); }\n    }\n\n   \
-    \ // \u4FDD\u6301\u3057\u3066\u3044\u308B\u591A\u9805\u5F0F\u306E\u4E57\u6CD5\u306E\
-    \u9805\u306E\u9577\u3055\u3092\u6C42\u3081\u308B\n    int size() const { return\
-    \ poly.size(); }\n\n    // \u6B21\u6570\u3092\u6C42\u3081\u308B (\u30BC\u30ED\u591A\
-    \u9805\u5F0F\u306E\u6642\u306F -1)\n    int degree() const {\n        for (int\
-    \ d = size() - 1; d >= 0; d--) {\n            unless(poly[d].is_zero()) { return\
-    \ d; }\n        }\n        return -1;\n    }\n\n    // \u4F4D\u6570 (\u4FC2\u6570\
-    \u304C\u975E\u30BC\u30ED\u3067\u3042\u308B\u6B21\u6570\u306E\u6700\u5C0F\u5024\
-    )\n    int order() const {\n        for (int d = 0; d < size(); d++) {\n     \
-    \       unless(poly[d].is_zero()) { return d; }\n        }\n        return -1;\n\
-    \    }\n};\n#line 7 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\n\ntemplate<typename\
-    \ F>\nclass Numeric_Theory_Translation {\n    public:\n    F primitive;\n    vector<F>\
-    \ root, iroot, rate2, irate2, rate3, irate3;\n\n    public:\n    Numeric_Theory_Translation()\
-    \ {\n        primitive = primitive_root();\n        build_up();\n    }\n\n   \
-    \ private:\n    F primitive_root(){\n        if (F::mod() == 2) { return F(1);\
-    \ }\n        if (F::mod() == 998244353) { return F(3); }\n\n        vector<int>\
-    \ fac;\n        int v = F::mod() - 1;\n\n        for (int q = 2; q * q <= v; q++){\n\
-    \            int e = 0;\n            while (v % q == 0){\n                e++;\
-    \ v /= q;\n            }\n\n            if (e > 0) { fac.emplace_back(q); }\n\
-    \        }\n\n        if (v > 1) { fac.emplace_back(v); }\n\n        F g(2);\n\
-    \        while (true) {\n            bool flag = true;\n            for (int q:\
-    \ fac) {\n                if (pow(g, (F::mod() - 1) / q) == 1){\n            \
-    \        flag = false;\n                    break;\n                }\n      \
-    \      }\n            if (flag) { break; }\n            g += 1;\n        }\n \
-    \       return g;\n    }\n\n    void build_up() {\n        int x = ~(F::mod()\
-    \ - 1) & (F::mod() - 2);\n        int rank2 = bit_length(x);\n\n        root.resize(rank2\
-    \ + 1); iroot.resize(rank2 + 1);\n        rate2.resize(max(0, rank2 - 1)); irate2.resize(max(0,\
-    \ rank2 - 1));\n        rate3.resize(max(0, rank2 - 2)); irate3.resize(max(0,\
-    \ rank2 - 2));\n\n        root.back() = pow(primitive, (F::mod() - 1) >> rank2);\n\
-    \        iroot.back() = root.back().inverse();\n\n        for (int i = rank2 -\
-    \ 1; i >= 0; i--){\n            root[i] = root[i + 1] * root[i + 1];\n       \
-    \     iroot[i] = iroot[i + 1] * iroot[i + 1];\n        }\n\n        F prod(1),\
-    \ iprod(1);\n        for (int i = 0; i < rank2 - 1; i++){\n            rate2[i]\
-    \ = root[i + 2] * prod;\n            irate2[i] = iroot[i + 2] * prod;\n\n    \
-    \        prod *= iroot[i + 2]; iprod *= root[i + 2];\n        }\n\n        prod\
-    \ = 1; iprod = 1;\n        for (int i = 0; i < rank2 - 2; i++){\n            rate3[i]\
-    \ = root[i + 3] * prod;\n            irate3[i] = iroot[i + 3] * iprod;\n\n   \
-    \         prod *= iroot[i + 3]; iprod *= root[i + 3];\n        }\n    }\n\n  \
-    \  public:\n    void ntt(vector<F> &A){\n        int N = A.size();\n        int\
-    \ h = ceil_log2(N);\n\n        F I = root[2];\n        for (int l = 0; l < h;){\n\
-    \            if (h - l == 1){\n                int p = 1 << (h - l - 1);\n   \
-    \             F rot(1);\n                for (int s = 0; s < (1 << l); s++){\n\
-    \                    int offset = s << (h - l);\n                    for(int i\
-    \ = 0; i < p; i++){\n                        F x = A[i + offset], y = A[i + offset\
-    \ + p] * rot;\n                        A[i + offset] = x + y;\n              \
-    \          A[i + offset + p] = x - y;\n                    }\n\n             \
-    \       unless (s + 1 == (1 << l)){ rot *= rate2[bit_length(~s & -(~s)) - 1];\
-    \ }\n                }\n                l++;\n            } else {\n         \
-    \       int p = 1 << (h - l - 2);\n                F rot(1);\n               \
-    \ for (int s = 0; s < (1 << l); s++){\n                    F rot2 = rot * rot,\
-    \ rot3 = rot2 * rot;\n                    int offset = s << (h - l);\n       \
-    \             for (int i = 0; i < p; i++){\n                        F a0 = A[i\
-    \ + offset];\n                        F a1 = A[i + offset + p] * rot;\n      \
-    \                  F a2 = A[i + offset + 2 * p] * rot2;\n                    \
-    \    F a3 = A[i + offset + 3 * p] * rot3;\n\n                        F alpha =\
-    \ (a1 - a3) * I;\n\n                        A[i + offset]         = a0 + a2 +\
-    \ a1 + a3;\n                        A[i + offset + p]     = a0 + a2 - a1 - a3;\n\
-    \                        A[i + offset + 2 * p] = a0 - a2 + alpha;\n          \
-    \              A[i + offset + 3 * p] = a0 - a2 - alpha;\n                    }\n\
-    \n                    unless(s + 1 == 1 << l) { rot *= rate3[bit_length(~s & -(~s))\
-    \ - 1]; }\n                }\n                l += 2;\n            }\n       \
-    \ }\n    }\n\n    public:\n    void inverse_ntt(vector<F> &A){\n        int N\
-    \ = A.size();\n        int h = ceil_log2(N);\n\n        F J = iroot[2];\n    \
-    \    for (int l = h; l > 0;){\n            if (l == 1){\n                int p\
-    \ = 1 << (h - l);\n                F irot(1);\n                for (int s = 0;\
-    \ s < (1 << (l - 1)); s++){\n                    int offset = s << (h - l + 1);\n\
-    \                    for(int i = 0; i < p; i++){\n                        F x\
-    \ = A[i + offset], y = A[i + offset + p];\n                        A[i + offset]\
-    \   = x + y;\n                        A[i + offset + p] = (x - y) * irot;\n  \
-    \                  }\n\n                    unless (s+1 == 1 << (l - 1) ) { irot\
-    \ *= irate2[bit_length(~s & -(~s)) -1]; }\n                }\n               \
-    \ l--;\n            } else {\n                int p = 1 << (h - l);\n        \
-    \        F irot(1);\n                for (int s=0; s<(1<<(l-2)); s++){\n     \
-    \               F irot2 = irot * irot, irot3 = irot2  *irot;\n               \
-    \     int offset=s<<(h-l+2);\n                    for (int i = 0; i < p; i++){\n\
+    \  x *= x;\n    }\n\n    return res;\n}\n#line 7 \"Modulo_Polynomial/Numeric_Theory_Translation.hpp\"\
+    \n\ntemplate<typename F>\nclass Numeric_Theory_Translation {\n    public:\n  \
+    \  F primitive;\n    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n\
+    \    public:\n    Numeric_Theory_Translation() {\n        primitive = primitive_root();\n\
+    \        build_up();\n    }\n\n    private:\n    F primitive_root(){\n       \
+    \ if (F::mod() == 2) { return F(1); }\n        if (F::mod() == 998244353) { return\
+    \ F(3); }\n\n        vector<int> fac;\n        int v = F::mod() - 1;\n\n     \
+    \   for (int q = 2; q * q <= v; q++){\n            int e = 0;\n            while\
+    \ (v % q == 0){\n                e++; v /= q;\n            }\n\n            if\
+    \ (e > 0) { fac.emplace_back(q); }\n        }\n\n        if (v > 1) { fac.emplace_back(v);\
+    \ }\n\n        F g(2);\n        while (true) {\n            bool flag = true;\n\
+    \            for (int q: fac) {\n                if (pow(g, (F::mod() - 1) / q)\
+    \ == 1){\n                    flag = false;\n                    break;\n    \
+    \            }\n            }\n            if (flag) { break; }\n            g\
+    \ += 1;\n        }\n        return g;\n    }\n\n    void build_up() {\n      \
+    \  int x = ~(F::mod() - 1) & (F::mod() - 2);\n        int rank2 = bit_length(x);\n\
+    \n        root.resize(rank2 + 1); iroot.resize(rank2 + 1);\n        rate2.resize(max(0,\
+    \ rank2 - 1)); irate2.resize(max(0, rank2 - 1));\n        rate3.resize(max(0,\
+    \ rank2 - 2)); irate3.resize(max(0, rank2 - 2));\n\n        root.back() = pow(primitive,\
+    \ (F::mod() - 1) >> rank2);\n        iroot.back() = root.back().inverse();\n\n\
+    \        for (int i = rank2 - 1; i >= 0; i--){\n            root[i] = root[i +\
+    \ 1] * root[i + 1];\n            iroot[i] = iroot[i + 1] * iroot[i + 1];\n   \
+    \     }\n\n        F prod(1), iprod(1);\n        for (int i = 0; i < rank2 - 1;\
+    \ i++){\n            rate2[i] = root[i + 2] * prod;\n            irate2[i] = iroot[i\
+    \ + 2] * prod;\n\n            prod *= iroot[i + 2]; iprod *= root[i + 2];\n  \
+    \      }\n\n        prod = 1; iprod = 1;\n        for (int i = 0; i < rank2 -\
+    \ 2; i++){\n            rate3[i] = root[i + 3] * prod;\n            irate3[i]\
+    \ = iroot[i + 3] * iprod;\n\n            prod *= iroot[i + 3]; iprod *= root[i\
+    \ + 3];\n        }\n    }\n\n    public:\n    void ntt(vector<F> &A){\n      \
+    \  int N = A.size();\n        int h = ceil_log2(N);\n\n        F I = root[2];\n\
+    \        for (int l = 0; l < h;){\n            if (h - l == 1){\n            \
+    \    int p = 1 << (h - l - 1);\n                F rot(1);\n                for\
+    \ (int s = 0; s < (1 << l); s++){\n                    int offset = s << (h -\
+    \ l);\n                    for(int i = 0; i < p; i++){\n                     \
+    \   F x = A[i + offset], y = A[i + offset + p] * rot;\n                      \
+    \  A[i + offset] = x + y;\n                        A[i + offset + p] = x - y;\n\
+    \                    }\n\n                    unless (s + 1 == (1 << l)){ rot\
+    \ *= rate2[bit_length(~s & -(~s)) - 1]; }\n                }\n               \
+    \ l++;\n            } else {\n                int p = 1 << (h - l - 2);\n    \
+    \            F rot(1);\n                for (int s = 0; s < (1 << l); s++){\n\
+    \                    F rot2 = rot * rot, rot3 = rot2 * rot;\n                \
+    \    int offset = s << (h - l);\n                    for (int i = 0; i < p; i++){\n\
     \                        F a0 = A[i + offset];\n                        F a1 =\
-    \ A[i + offset + p];\n                        F a2 = A[i + offset + 2 * p];\n\
-    \                        F a3 = A[i + offset + 3 * p];\n\n                   \
-    \     F beta = (a2 - a3) * J;\n\n                        A[i + offset]       \
-    \  = a0 + a2 + a1 + a3;\n                        A[i + offset + p]     = (a0 -\
-    \ a1 + beta) * irot;\n                        A[i + offset + 2 * p] = (a0 + a1\
-    \ - a2 - a3) * irot2;\n                        A[i + offset + 3 * p] = (a0 - a1\
-    \ - beta) * irot3;\n                    }\n\n                    unless (s + 1\
-    \ == 1 << (l - 2)) { irot *= irate3[bit_length(~s & -(~s)) - 1]; }\n         \
-    \       }\n                l-=2;\n            }\n        }\n\n        F N_inv=F(N).inverse();\n\
-    \        for (int i=0; i<N; i++) A[i]*=N_inv;\n    }\n\n    vector<F> convolution(vector<F>\
-    \ A, vector<F> B){\n        if (A.empty() || B.empty()) return vector<F>{};\n\n\
-    \        int M=A.size(), N=B.size(), L=M+N-1;\n        if (min(M,N)<64){\n   \
-    \         vector<F> C(L);\n            for(int i=0; i<M; i++){\n             \
-    \   for (int j=0; j<N; j++){\n                    C[i+j]+=A[i]*B[j];\n       \
-    \         }\n            }\n            return C;\n        }\n\n        int h=bit_length(L);\n\
-    \        int K=1<<h;\n\n        vector<F> X(K), Y(K);\n        copy(A.begin(),\
-    \ A.end(), X.begin());\n        copy(B.begin(), B.end(), Y.begin());\n\n     \
-    \   ntt(X); ntt(Y);\n        for (int i=0; i<K; i++) X[i]*=Y[i];\n\n        inverse_ntt(X);\
-    \ X.resize(L);\n        return X;\n    }\n\n    vector<F> inverse(vector<F> P,\
-    \ int d) {\n        int n = P.size();\n        assert(!P.empty() && !P[0].is_zero());\n\
-    \n        vector<F> G{P[0].inverse()};\n        while (G.size() < d) {\n     \
-    \       int m = G.size();\n            vector<F> A(P.begin(), P.begin() + min(n,\
-    \ 2 * m));\n            A.resize(2 * m);\n            vector<F> B(G);\n      \
-    \      B.resize(2 * m);\n\n            ntt(A); ntt(B);\n            for (int i\
-    \ = 0; i < 2 * m; i++) { A[i] *= B[i]; }\n\n            inverse_ntt(A);\n    \
-    \        A.erase(A.begin(), A.begin() + m);\n            A.resize(2 * m);\n\n\
-    \            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
-    \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
-    \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
-    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
-    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
-    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
-    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
-    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
-    \        }\n\n        return A[queue.back()];\n    }\n};\n"
+    \ A[i + offset + p] * rot;\n                        F a2 = A[i + offset + 2 *\
+    \ p] * rot2;\n                        F a3 = A[i + offset + 3 * p] * rot3;\n\n\
+    \                        F alpha = (a1 - a3) * I;\n\n                        A[i\
+    \ + offset]         = a0 + a2 + a1 + a3;\n                        A[i + offset\
+    \ + p]     = a0 + a2 - a1 - a3;\n                        A[i + offset + 2 * p]\
+    \ = a0 - a2 + alpha;\n                        A[i + offset + 3 * p] = a0 - a2\
+    \ - alpha;\n                    }\n\n                    unless(s + 1 == 1 <<\
+    \ l) { rot *= rate3[bit_length(~s & -(~s)) - 1]; }\n                }\n      \
+    \          l += 2;\n            }\n        }\n    }\n\n    public:\n    void inverse_ntt(vector<F>\
+    \ &A){\n        int N = A.size();\n        int h = ceil_log2(N);\n\n        F\
+    \ J = iroot[2];\n        for (int l = h; l > 0;){\n            if (l == 1){\n\
+    \                int p = 1 << (h - l);\n                F irot(1);\n         \
+    \       for (int s = 0; s < (1 << (l - 1)); s++){\n                    int offset\
+    \ = s << (h - l + 1);\n                    for(int i = 0; i < p; i++){\n     \
+    \                   F x = A[i + offset], y = A[i + offset + p];\n            \
+    \            A[i + offset]   = x + y;\n                        A[i + offset +\
+    \ p] = (x - y) * irot;\n                    }\n\n                    unless (s+1\
+    \ == 1 << (l - 1) ) { irot *= irate2[bit_length(~s & -(~s)) -1]; }\n         \
+    \       }\n                l--;\n            } else {\n                int p =\
+    \ 1 << (h - l);\n                F irot(1);\n                for (int s=0; s<(1<<(l-2));\
+    \ s++){\n                    F irot2 = irot * irot, irot3 = irot2  *irot;\n  \
+    \                  int offset=s<<(h-l+2);\n                    for (int i = 0;\
+    \ i < p; i++){\n                        F a0 = A[i + offset];\n              \
+    \          F a1 = A[i + offset + p];\n                        F a2 = A[i + offset\
+    \ + 2 * p];\n                        F a3 = A[i + offset + 3 * p];\n\n       \
+    \                 F beta = (a2 - a3) * J;\n\n                        A[i + offset]\
+    \         = a0 + a2 + a1 + a3;\n                        A[i + offset + p]    \
+    \ = (a0 - a1 + beta) * irot;\n                        A[i + offset + 2 * p] =\
+    \ (a0 + a1 - a2 - a3) * irot2;\n                        A[i + offset + 3 * p]\
+    \ = (a0 - a1 - beta) * irot3;\n                    }\n\n                    unless\
+    \ (s + 1 == 1 << (l - 2)) { irot *= irate3[bit_length(~s & -(~s)) - 1]; }\n  \
+    \              }\n                l-=2;\n            }\n        }\n\n        F\
+    \ N_inv=F(N).inverse();\n        for (int i=0; i<N; i++) A[i]*=N_inv;\n    }\n\
+    \n    vector<F> convolution(vector<F> A, vector<F> B){\n        if (A.empty()\
+    \ || B.empty()) return vector<F>{};\n\n        int M=A.size(), N=B.size(), L=M+N-1;\n\
+    \        if (min(M,N)<64){\n            vector<F> C(L);\n            for(int i=0;\
+    \ i<M; i++){\n                for (int j=0; j<N; j++){\n                    C[i+j]+=A[i]*B[j];\n\
+    \                }\n            }\n            return C;\n        }\n\n      \
+    \  int h=bit_length(L);\n        int K=1<<h;\n\n        vector<F> X(K), Y(K);\n\
+    \        copy(A.begin(), A.end(), X.begin());\n        copy(B.begin(), B.end(),\
+    \ Y.begin());\n\n        ntt(X); ntt(Y);\n        for (int i=0; i<K; i++) X[i]*=Y[i];\n\
+    \n        inverse_ntt(X); X.resize(L);\n        return X;\n    }\n};\n"
   code: "#pragma once\n\n// Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Numeric_Theory_Translation.hpp\n\
-    \n#include\"../template/template.hpp\"\n#include\"Modulo_Polynomial.hpp\"\n\n\
+    \n#include \"../template/template.hpp\"\n#include \"../Algebra/modint.hpp\"\n\n\
     template<typename F>\nclass Numeric_Theory_Translation {\n    public:\n    F primitive;\n\
     \    vector<F> root, iroot, rate2, irate2, rate3, irate3;\n\n    public:\n   \
     \ Numeric_Theory_Translation() {\n        primitive = primitive_root();\n    \
@@ -620,24 +521,7 @@ data:
     \  int h=bit_length(L);\n        int K=1<<h;\n\n        vector<F> X(K), Y(K);\n\
     \        copy(A.begin(), A.end(), X.begin());\n        copy(B.begin(), B.end(),\
     \ Y.begin());\n\n        ntt(X); ntt(Y);\n        for (int i=0; i<K; i++) X[i]*=Y[i];\n\
-    \n        inverse_ntt(X); X.resize(L);\n        return X;\n    }\n\n    vector<F>\
-    \ inverse(vector<F> P, int d) {\n        int n = P.size();\n        assert(!P.empty()\
-    \ && !P[0].is_zero());\n\n        vector<F> G{P[0].inverse()};\n        while\
-    \ (G.size() < d) {\n            int m = G.size();\n            vector<F> A(P.begin(),\
-    \ P.begin() + min(n, 2 * m));\n            A.resize(2 * m);\n            vector<F>\
-    \ B(G);\n            B.resize(2 * m);\n\n            ntt(A); ntt(B);\n       \
-    \     for (int i = 0; i < 2 * m; i++) { A[i] *= B[i]; }\n\n            inverse_ntt(A);\n\
-    \            A.erase(A.begin(), A.begin() + m);\n            A.resize(2 * m);\n\
-    \n            ntt(A);\n            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i];\
-    \ }\n\n            inverse_ntt(A);\n\n            G.insert(G.end(), A.begin(),\
-    \ A.begin() + m);\n        }\n\n        G.resize(d);\n        return G;\n    }\n\
-    \n    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }\n\n    vector<F>\
-    \ multiple_convolution(vector<vector<F>> A) {\n        if (A.empty()) { return\
-    \ {1}; }\n\n        deque<int> queue(A.size());\n        iota(queue.begin(), queue.end(),\
-    \ 0);\n\n        while (queue.size() > 1) {\n            int i = queue.front();\
-    \ queue.pop_front();\n            int j = queue.front(); queue.pop_front();\n\n\
-    \            A[i] = convolution(A[i], A[j]);\n            queue.emplace_back(i);\n\
-    \        }\n\n        return A[queue.back()];\n    }\n};\n"
+    \n        inverse_ntt(X); X.resize(L);\n        return X;\n    }\n};\n"
   dependsOn:
   - template/template.hpp
   - template/utility.hpp
@@ -646,7 +530,6 @@ data:
   - template/macro.hpp
   - template/bitop.hpp
   - template/exception.hpp
-  - Modulo_Polynomial/Modulo_Polynomial.hpp
   - Algebra/modint.hpp
   isVerificationFile: false
   path: Modulo_Polynomial/Numeric_Theory_Translation.hpp
@@ -669,7 +552,7 @@ data:
   - Modulo_Polynomial/Fast_Power_Series.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
   - Modulo_Polynomial/Log.hpp
-  timestamp: '2026-10-17 00:11:50+09:00'
+  timestamp: '2026-11-27 23:01:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/yosupo_library_checker/number_theory/Bernoulli_Number.test.cpp
