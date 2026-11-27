@@ -82,16 +82,66 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         return Fast_Power_Series(tmp, tmp.size());
     }
 
+    // 係数列 P (P[0] != 0) の (mod X^d) における逆元の係数列を Newton 法で求める.
+    static vector<mint> inverse_vector(const vector<mint> &P, int d) {
+        int n = P.size();
+        assert(!P.empty() && !P[0].is_zero());
+
+        vector<mint> G{P[0].inverse()};
+        while ((int) G.size() < d) {
+            int m = G.size();
+            vector<mint> A(P.begin(), P.begin() + min(n, 2 * m));
+            A.resize(2 * m);
+            vector<mint> B(G);
+            B.resize(2 * m);
+
+            calculator.ntt(A); calculator.ntt(B);
+            for (int i = 0; i < 2 * m; i++) { A[i] *= B[i]; }
+
+            calculator.inverse_ntt(A);
+            A.erase(A.begin(), A.begin() + m);
+            A.resize(2 * m);
+
+            calculator.ntt(A);
+            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i]; }
+
+            calculator.inverse_ntt(A);
+
+            G.insert(G.end(), A.begin(), A.begin() + m);
+        }
+
+        G.resize(d);
+        return G;
+    }
+
     // (mod X^d) における逆元を求める
     // d = -1 のときは, d = precision になる.
-    Fast_Power_Series inverse(int d = -1) {
-        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision : min(d, this->precision));
+    Fast_Power_Series inverse(int d = -1) const {
+        vector<mint> p = inverse_vector(this->poly, (d == -1) ? this->precision : min(d, this->precision));
         return {p, this->precision};
+    }
+
+    // 多項式列 A[0], A[1], ... の総積の係数列を求める.
+    static vector<mint> multiple_convolution(vector<vector<mint>> A) {
+        if (A.empty()) { return {1}; }
+
+        deque<int> queue(A.size());
+        iota(queue.begin(), queue.end(), 0);
+
+        while (queue.size() > 1) {
+            int i = queue.front(); queue.pop_front();
+            int j = queue.front(); queue.pop_front();
+
+            A[i] = calculator.convolution(A[i], A[j]);
+            queue.emplace_back(i);
+        }
+
+        return A[queue.back()];
     }
 
     // 除算
     Fast_Power_Series& operator/=(const Fast_Power_Series &P) {
-        vector<mint> inv = calculator.inverse(P.poly, P.precision);
+        vector<mint> inv = inverse_vector(P.poly, P.precision);
         this->poly = calculator.convolution(this->poly, inv);
         this->precision = min(this->precision, P.precision);
         this->weak_resize();
@@ -116,7 +166,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         int k = n - m + 1;
         if (a_rev.size() > k) { a_rev.resize(k); }
         if (b_rev.size() > k) { b_rev.resize(k); }
-        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, k));
+        vector<mint> c = calculator.convolution(a_rev, inverse_vector(b_rev, k));
         c.resize(k);
         reverse(c.begin(), c.end());
         return Fast_Power_Series(c, n);

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/product_of_polynomial_sequence"
 
 #include"../../../template/template.hpp"
-#include"../../../Modulo_Polynomial/Numeric_Theory_Translation.hpp"
+#include"../../../Modulo_Polynomial/Fast_Power_Series.hpp"
 
 const ll Mod = 998244353;
 using mint = modint<Mod>;
@@ -15,7 +15,7 @@ int main() {
         for (int j = 0; j <= d; j++) { cin >> a[i][j]; }
     }
 
-    auto B = Numeric_Theory_Translation<mint>().multiple_convolution(a);
+    auto B = Fast_Power_Series<mint>::multiple_convolution(a);
 
     cout << B << endl;
 }

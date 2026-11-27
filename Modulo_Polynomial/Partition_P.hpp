@@ -3,12 +3,10 @@
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Partition_P.hpp
 
 #include"../Algebra/modint.hpp"
-#include"Numeric_Theory_Translation.hpp"
+#include"Fast_Power_Series.hpp"
 
 template<typename mint>
 vector<mint> Partitions_P(int N) {
-    Numeric_Theory_Translation<mint> calc;
-
     vector<mint> f(N + 1);
     f[0] = 1;
 
@@ -20,5 +18,5 @@ vector<mint> Partitions_P(int N) {
         if (d2 <= N) { f[d2] += m; }
     }
 
-    return calc.inverse(f);
+    return Fast_Power_Series<mint>(f, N + 1).inverse().poly;
 }
