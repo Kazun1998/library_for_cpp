@@ -2,63 +2,33 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Fast_Power_Series.hpp
 
-#include"Modulo_Polynomial.hpp"
-#include"Numeric_Theory_Translation.hpp"
+#include "Modulo_Polynomial.hpp"
+#include "Numeric_Theory_Translation.hpp"
 
 template<typename mint>
-class Fast_Power_Series : public Modulo_Polynomial<mint> {
+class Fast_Power_Series : public Modulo_Polynomial<mint, Fast_Power_Series<mint>> {
+    using Base = Modulo_Polynomial<mint, Fast_Power_Series<mint>>;
     protected:
     static Numeric_Theory_Translation<mint> calculator;
 
     public:
-    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly, _precision) {}
+    // 共有の数論変換器. ntt を直接使う処理 (Bostan-Mori 法など) から参照する.
+    static Numeric_Theory_Translation<mint>& translator() { return calculator; }
+
+    // 係数列 A, B の畳み込み (多項式としての積の係数列) を求める.
+    static vector<mint> convolution(const vector<mint> &A, const vector<mint> &B) { return calculator.convolution(A, B); }
+
+    Fast_Power_Series(vector<mint> _poly, int _precision) : Base(_poly, _precision) {}
 
     Fast_Power_Series() = default;
     Fast_Power_Series(vector<mint> _poly) : Fast_Power_Series(_poly, _poly.size()) {}
     Fast_Power_Series(int _precision) : Fast_Power_Series({}, _precision) {}
 
-    // 加算
-    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {
-        this->poly.resize(max(this->poly.size(), B.poly.size()));
-        for (int i = 0; i < B.poly.size(); i++) {
-            this->poly[i] += B.poly[i];
-        }
-        this->precision = min(this->precision, B.precision);
-        this->weak_resize();
-        this->reduce();
-        return *this;
-    }
-
-    friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
-        return Fast_Power_Series<mint>(lhs) += rhs; 
-    }
-
-    // 減算
-    Fast_Power_Series& operator-=(const Fast_Power_Series &B) {
-        this->poly.resize(max(this->poly.size(), B.poly.size()));
-        for (int i = 0; i < B.poly.size(); i++) {
-            this->poly[i] -= B.poly[i];
-        }
-        this->precision = min(this->precision, B.precision);
-        this->weak_resize();
-        this->reduce();
-        return *this;
-    }
-
-    friend Fast_Power_Series<mint> operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
-        return Fast_Power_Series<mint>(lhs) -= rhs; 
-    }
-
-    // スカラー倍
-    Fast_Power_Series& operator*=(const mint &a){
-        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }
-        this->reduce();
-        return *this;
-    }
-
-    Fast_Power_Series operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }
-
-    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series &P) { return Fast_Power_Series(P) *= a; }
+    // 線形演算 (加減算, スカラー倍・除算) は基底クラスのものを使う.
+    using Base::operator+=;
+    using Base::operator-=;
+    using Base::operator*=;
+    using Base::operator/=;
 
     friend Fast_Power_Series operator*(const ll &a, const Fast_Power_Series &P) { return mint(a) * P; }
 
@@ -82,16 +52,66 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         return Fast_Power_Series(tmp, tmp.size());
     }
 
+    // 係数列 P (P[0] != 0) の (mod X^d) における逆元の係数列を Newton 法で求める.
+    static vector<mint> inverse_vector(const vector<mint> &P, int d) {
+        int n = P.size();
+        assert(!P.empty() && !P[0].is_zero());
+
+        vector<mint> G{P[0].inverse()};
+        while ((int) G.size() < d) {
+            int m = G.size();
+            vector<mint> A(P.begin(), P.begin() + min(n, 2 * m));
+            A.resize(2 * m);
+            vector<mint> B(G);
+            B.resize(2 * m);
+
+            calculator.ntt(A); calculator.ntt(B);
+            for (int i = 0; i < 2 * m; i++) { A[i] *= B[i]; }
+
+            calculator.inverse_ntt(A);
+            A.erase(A.begin(), A.begin() + m);
+            A.resize(2 * m);
+
+            calculator.ntt(A);
+            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i]; }
+
+            calculator.inverse_ntt(A);
+
+            G.insert(G.end(), A.begin(), A.begin() + m);
+        }
+
+        G.resize(d);
+        return G;
+    }
+
     // (mod X^d) における逆元を求める
     // d = -1 のときは, d = precision になる.
-    Fast_Power_Series inverse(int d = -1) {
-        vector<mint> p = calculator.inverse(this->poly, (d == -1) ? this->precision : min(d, this->precision));
+    Fast_Power_Series inverse(int d = -1) const {
+        vector<mint> p = inverse_vector(this->poly, (d == -1) ? this->precision : min(d, this->precision));
         return {p, this->precision};
+    }
+
+    // 多項式列 A[0], A[1], ... の総積の係数列を求める.
+    static vector<mint> multiple_convolution(vector<vector<mint>> A) {
+        if (A.empty()) { return {1}; }
+
+        deque<int> queue(A.size());
+        iota(queue.begin(), queue.end(), 0);
+
+        while (queue.size() > 1) {
+            int i = queue.front(); queue.pop_front();
+            int j = queue.front(); queue.pop_front();
+
+            A[i] = calculator.convolution(A[i], A[j]);
+            queue.emplace_back(i);
+        }
+
+        return A[queue.back()];
     }
 
     // 除算
     Fast_Power_Series& operator/=(const Fast_Power_Series &P) {
-        vector<mint> inv = calculator.inverse(P.poly, P.precision);
+        vector<mint> inv = inverse_vector(P.poly, P.precision);
         this->poly = calculator.convolution(this->poly, inv);
         this->precision = min(this->precision, P.precision);
         this->weak_resize();
@@ -116,7 +136,7 @@ class Fast_Power_Series : public Modulo_Polynomial<mint> {
         int k = n - m + 1;
         if (a_rev.size() > k) { a_rev.resize(k); }
         if (b_rev.size() > k) { b_rev.resize(k); }
-        vector<mint> c = calculator.convolution(a_rev, calculator.inverse(b_rev, k));
+        vector<mint> c = calculator.convolution(a_rev, inverse_vector(b_rev, k));
         c.resize(k);
         reverse(c.begin(), c.end());
         return Fast_Power_Series(c, n);

@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Numeric_Theory_Translation.hpp
 
-#include"../template/template.hpp"
-#include"Modulo_Polynomial.hpp"
+#include "../template/template.hpp"
+#include "../Algebra/modint.hpp"
 
 template<typename F>
 class Numeric_Theory_Translation {
@@ -209,55 +209,5 @@ class Numeric_Theory_Translation {
 
         inverse_ntt(X); X.resize(L);
         return X;
-    }
-
-    vector<F> inverse(vector<F> P, int d) {
-        int n = P.size();
-        assert(!P.empty() && !P[0].is_zero());
-
-        vector<F> G{P[0].inverse()};
-        while (G.size() < d) {
-            int m = G.size();
-            vector<F> A(P.begin(), P.begin() + min(n, 2 * m));
-            A.resize(2 * m);
-            vector<F> B(G);
-            B.resize(2 * m);
-
-            ntt(A); ntt(B);
-            for (int i = 0; i < 2 * m; i++) { A[i] *= B[i]; }
-
-            inverse_ntt(A);
-            A.erase(A.begin(), A.begin() + m);
-            A.resize(2 * m);
-
-            ntt(A);
-            for (int i = 0; i < 2 * m; i++) { A[i] *= -B[i]; }
-
-            inverse_ntt(A);
-
-            G.insert(G.end(), A.begin(), A.begin() + m);
-        }
-
-        G.resize(d);
-        return G;
-    }
-
-    vector<F> inverse(vector<F> P) { return inverse(P, P.size()); }
-
-    vector<F> multiple_convolution(vector<vector<F>> A) {
-        if (A.empty()) { return {1}; }
-
-        deque<int> queue(A.size());
-        iota(queue.begin(), queue.end(), 0);
-
-        while (queue.size() > 1) {
-            int i = queue.front(); queue.pop_front();
-            int j = queue.front(); queue.pop_front();
-
-            A[i] = convolution(A[i], A[j]);
-            queue.emplace_back(i);
-        }
-
-        return A[queue.back()];
     }
 };

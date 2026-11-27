@@ -2,7 +2,7 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Taylor_Shift.hpp
 
-#include"Fast_Power_Series.hpp"
+#include "Fast_Power_Series.hpp"
 
 template<typename mint>
 Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const mint &a) {
@@ -25,10 +25,8 @@ Fast_Power_Series<mint> Taylor_Shift(const Fast_Power_Series<mint> &P, const min
 
     reverse(g.begin(), g.end());
 
-    static Numeric_Theory_Translation<mint> calculator;
+    vector<mint> h = Fast_Power_Series<mint>::convolution(f, g);
 
-    vector<mint> h = calculator.convolution(f, g);
-    
     vector<mint> res(n);
     for (int k = 0; k < n; k++) {
         res[k] = h[n - 1 + k] * fact_inv[k];

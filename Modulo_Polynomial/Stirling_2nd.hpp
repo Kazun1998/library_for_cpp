@@ -2,13 +2,11 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Stirling_2nd.hpp
 
-#include"../Algebra/modint.hpp"
-#include"Numeric_Theory_Translation.hpp"
+#include "../Algebra/modint.hpp"
+#include "Fast_Power_Series.hpp"
 
 template<typename mint>
 vector<mint> Stirling_2nd(int N) {
-    Numeric_Theory_Translation<mint> calc;
-
     vector<mint> fact(N + 1), fact_inv(N + 1);
 
     fact[0] = 1;
@@ -21,7 +19,7 @@ vector<mint> Stirling_2nd(int N) {
     for (int i = 0; i <= N; i++) { a[i] = pow(mint(i), N) * fact_inv[i]; }
     for (int j = 0; j <= N; j++) { b[j] = (j % 2 == 0) ? fact_inv[j] : -fact_inv[j]; }
 
-    vector<mint> c = calc.convolution(a, b);
+    vector<mint> c = Fast_Power_Series<mint>::convolution(a, b);
     c.erase(c.begin() + N + 1, c.end());
     return c;
 }

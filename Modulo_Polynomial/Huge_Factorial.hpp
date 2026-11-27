@@ -27,10 +27,9 @@ mint Huge_Factorial(const ll N) {
     for (int j = 0; j < N_sqrt; ++j) { points[j] = mint(j) * mint(N_sqrt); }
 
     using FPS = Fast_Power_Series<mint>;
-    auto calculator = Numeric_Theory_Translation<mint>();
 
     vector<mint> B = Multipoint_Evaluation<mint>(
-        FPS(calculator.multiple_convolution(A_seg)),
+        FPS(Fast_Power_Series<mint>::multiple_convolution(A_seg)),
         points
     );
 
