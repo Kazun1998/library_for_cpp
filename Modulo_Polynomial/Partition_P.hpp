@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Partition_P.hpp
 
-#include"../Algebra/modint.hpp"
-#include"Fast_Power_Series.hpp"
+#include "../Algebra/modint.hpp"
+#include "Fast_Power_Series.hpp"
 
 template<typename mint>
 vector<mint> Partitions_P(int N) {

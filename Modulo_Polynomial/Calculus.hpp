@@ -2,7 +2,7 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Calculus.hpp
 
-#include"Fast_Power_Series.hpp"
+#include "Fast_Power_Series.hpp"
 
 // A の形式的微分を求める
 template<typename mint>

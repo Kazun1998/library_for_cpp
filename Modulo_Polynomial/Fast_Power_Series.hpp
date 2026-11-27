@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Fast_Power_Series.hpp
 
-#include"Modulo_Polynomial.hpp"
-#include"Numeric_Theory_Translation.hpp"
+#include "Modulo_Polynomial.hpp"
+#include "Numeric_Theory_Translation.hpp"
 
 template<typename mint>
 class Fast_Power_Series : public Modulo_Polynomial<mint, Fast_Power_Series<mint>> {

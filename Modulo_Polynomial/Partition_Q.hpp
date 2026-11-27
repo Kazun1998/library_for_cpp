@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Partition_Q.hpp
 
-#include"../Algebra/modint.hpp"
-#include"Subset_Sum.hpp"
+#include "../Algebra/modint.hpp"
+#include "Subset_Sum.hpp"
 
 /// @brief n = 0, 1, ..., N に対して, n を異なる整数で分割する方法 (順序違いは同一視) の数を求める
 /// @tparam mint 

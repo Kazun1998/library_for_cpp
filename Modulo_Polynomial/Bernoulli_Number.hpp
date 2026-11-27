@@ -2,10 +2,10 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Bernoulli_Number.hpp
 
-#include"../template/template.hpp"
-#include"../Algebra/modint.hpp"
-#include"Fast_Power_Series.hpp"
-#include"Exp.hpp"
+#include "../template/template.hpp"
+#include "../Algebra/modint.hpp"
+#include "Fast_Power_Series.hpp"
+#include "Exp.hpp"
 
 template<typename mint>
 vector<mint> Bernoulli_Number(int N) {

@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Fraction_Coefficient.hpp
 
-#include"../Algebra/modint.hpp"
-#include"Fast_Power_Series.hpp"
+#include "../Algebra/modint.hpp"
+#include "Fast_Power_Series.hpp"
 
 template<typename mint>
 mint Fraction_Coefficient(const Fast_Power_Series<mint> &P, const Fast_Power_Series<mint> &Q, ll N) {

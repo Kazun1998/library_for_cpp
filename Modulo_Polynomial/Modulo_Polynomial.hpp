@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Modulo_Polynomial.hpp
 
-#include"../template/template.hpp"
-#include"../Algebra/modint.hpp"
+#include "../template/template.hpp"
+#include "../Algebra/modint.hpp"
 
 /// @brief 剰余環を係数とする多項式 (精度付き) の基底クラス. 保持・線形演算・添字・入出力を担う.
 /// @tparam mint 係数の型

@@ -2,8 +2,8 @@
 
 // Source: https://github.com/Kazun1998/library_for_cpp/blob/main/Modulo_Polynomial/Numeric_Theory_Translation.hpp
 
-#include"../template/template.hpp"
-#include"../Algebra/modint.hpp"
+#include "../template/template.hpp"
+#include "../Algebra/modint.hpp"
 
 template<typename F>
 class Numeric_Theory_Translation {
