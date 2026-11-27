@@ -8,9 +8,14 @@
 template<typename mint>
 mint Fraction_Coefficient(const Fast_Power_Series<mint> &P, const Fast_Power_Series<mint> &Q, ll N) {
     vector<mint> p(P.poly), q(Q.poly);
+
+    // Q(0) != 0 かつ deg P < deg Q (= |q| - 1 より大きくない) であること.
+    assert(!q.empty() && !q[0].is_zero());
+    assert(p.size() <= q.size());
+
     int m = 1 << ceil_log2(q.size());
 
-    Numeric_Theory_Translation<mint> calc;
+    auto &calc = Fast_Power_Series<mint>::translator();
 
     p.resize(2 * m);
     q.resize(2 * m);

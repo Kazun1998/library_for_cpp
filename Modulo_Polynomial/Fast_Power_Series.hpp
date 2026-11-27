@@ -12,6 +12,12 @@ class Fast_Power_Series : public Modulo_Polynomial<mint, Fast_Power_Series<mint>
     static Numeric_Theory_Translation<mint> calculator;
 
     public:
+    // 共有の数論変換器. ntt を直接使う処理 (Bostan-Mori 法など) から参照する.
+    static Numeric_Theory_Translation<mint>& translator() { return calculator; }
+
+    // 係数列 A, B の畳み込み (多項式としての積の係数列) を求める.
+    static vector<mint> convolution(const vector<mint> &A, const vector<mint> &B) { return calculator.convolution(A, B); }
+
     Fast_Power_Series(vector<mint> _poly, int _precision) : Base(_poly, _precision) {}
 
     Fast_Power_Series() = default;
