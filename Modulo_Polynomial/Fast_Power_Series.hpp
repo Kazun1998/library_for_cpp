@@ -6,59 +6,23 @@
 #include"Numeric_Theory_Translation.hpp"
 
 template<typename mint>
-class Fast_Power_Series : public Modulo_Polynomial<mint> {
+class Fast_Power_Series : public Modulo_Polynomial<mint, Fast_Power_Series<mint>> {
+    using Base = Modulo_Polynomial<mint, Fast_Power_Series<mint>>;
     protected:
     static Numeric_Theory_Translation<mint> calculator;
 
     public:
-    Fast_Power_Series(vector<mint> _poly, int _precision) : Modulo_Polynomial<mint>(_poly, _precision) {}
+    Fast_Power_Series(vector<mint> _poly, int _precision) : Base(_poly, _precision) {}
 
     Fast_Power_Series() = default;
     Fast_Power_Series(vector<mint> _poly) : Fast_Power_Series(_poly, _poly.size()) {}
     Fast_Power_Series(int _precision) : Fast_Power_Series({}, _precision) {}
 
-    // 加算
-    Fast_Power_Series& operator+=(const Fast_Power_Series &B) {
-        this->poly.resize(max(this->poly.size(), B.poly.size()));
-        for (int i = 0; i < B.poly.size(); i++) {
-            this->poly[i] += B.poly[i];
-        }
-        this->precision = min(this->precision, B.precision);
-        this->weak_resize();
-        this->reduce();
-        return *this;
-    }
-
-    friend Fast_Power_Series<mint> operator+(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
-        return Fast_Power_Series<mint>(lhs) += rhs; 
-    }
-
-    // 減算
-    Fast_Power_Series& operator-=(const Fast_Power_Series &B) {
-        this->poly.resize(max(this->poly.size(), B.poly.size()));
-        for (int i = 0; i < B.poly.size(); i++) {
-            this->poly[i] -= B.poly[i];
-        }
-        this->precision = min(this->precision, B.precision);
-        this->weak_resize();
-        this->reduce();
-        return *this;
-    }
-
-    friend Fast_Power_Series<mint> operator-(const Fast_Power_Series<mint> &lhs, const Fast_Power_Series<mint> &rhs) {
-        return Fast_Power_Series<mint>(lhs) -= rhs; 
-    }
-
-    // スカラー倍
-    Fast_Power_Series& operator*=(const mint &a){
-        for (int i = 0; i < this->size(); i++) { this->poly[i] *= a; }
-        this->reduce();
-        return *this;
-    }
-
-    Fast_Power_Series operator*(const mint &a) const {return Fast_Power_Series(*this) *= a; }
-
-    friend Fast_Power_Series operator*(const mint &a, const Fast_Power_Series &P) { return Fast_Power_Series(P) *= a; }
+    // 線形演算 (加減算, スカラー倍・除算) は基底クラスのものを使う.
+    using Base::operator+=;
+    using Base::operator-=;
+    using Base::operator*=;
+    using Base::operator/=;
 
     friend Fast_Power_Series operator*(const ll &a, const Fast_Power_Series &P) { return mint(a) * P; }
 

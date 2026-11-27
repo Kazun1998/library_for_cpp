@@ -5,7 +5,10 @@
 #include"../template/template.hpp"
 #include"../Algebra/modint.hpp"
 
-template<typename mint>
+/// @brief 剰余環を係数とする多項式 (精度付き) の基底クラス. 保持・線形演算・添字・入出力を担う.
+/// @tparam mint 係数の型
+/// @tparam Derived CRTP の派生クラス. 演算の戻り値の型になる. 積・除算は Derived 側で定義する.
+template<typename mint, typename Derived>
 class Modulo_Polynomial {
     public:
     int precision = 0;
@@ -13,7 +16,7 @@ class Modulo_Polynomial {
     public:
     vector<mint> poly;
     Modulo_Polynomial(vector<mint> _poly, int precision): precision(precision) {
-        if (_poly.size() > precision) { _poly.resize(precision); }
+        if ((int) _poly.size() > precision) { _poly.resize(precision); }
         poly = _poly;
     }
 
@@ -21,97 +24,77 @@ class Modulo_Polynomial {
     Modulo_Polynomial(vector<mint> poly) : Modulo_Polynomial(poly, poly.size()) {}
     Modulo_Polynomial(int precision) : Modulo_Polynomial({}, precision) {}
 
+    private:
+    Derived& self() { return static_cast<Derived&>(*this); }
+    const Derived& self() const { return static_cast<const Derived&>(*this); }
+
     // 演算子の定義
     public:
     // マイナス元
-    Modulo_Polynomial operator-() const {
-        Modulo_Polynomial res(*this);
+    Derived operator-() const {
+        Derived res(self());
         for (auto &a : res.poly) { a = -a; }
         return res;
     }
 
-    // 加法
-    Modulo_Polynomial& operator+=(const Modulo_Polynomial &P){
-        if (size() < P.size()) { resize(P.size()); }
-
-        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] += P[i]; }
+    // 加法 (精度は小さい方に合わせる)
+    Derived& operator+=(const Derived &P) {
+        poly.resize(max(poly.size(), P.poly.size()));
+        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] += P.poly[i]; }
+        precision = min(precision, P.precision);
+        weak_resize();
         reduce();
-
-        return *this;
+        return self();
     }
 
-    Modulo_Polynomial& operator+=(const mint &a){
+    Derived& operator+=(const mint &a) {
         if (poly.empty()) { resize(1); }
-        poly[0] += a;
+        unless (poly.empty()) { poly[0] += a; }
         reduce();
-
-        return *this;
+        return self();
     }
 
-    friend Modulo_Polynomial operator+(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) += rhs; }
-    Modulo_Polynomial operator+(const mint &a) const { return Modulo_Polynomial(*this) += a; }
+    friend Derived operator+(const Derived &lhs, const Derived &rhs) { return Derived(lhs) += rhs; }
+    Derived operator+(const mint &a) const { return Derived(self()) += a; }
 
-    // 減法
-    Modulo_Polynomial& operator-=(const Modulo_Polynomial &P){
-        if (size() < P.size()) { resize(P.size()); }
-
-        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] -= P[i]; }
+    // 減法 (精度は小さい方に合わせる)
+    Derived& operator-=(const Derived &P) {
+        poly.resize(max(poly.size(), P.poly.size()));
+        for (int i = 0; i < (int) P.poly.size(); i++) { poly[i] -= P.poly[i]; }
+        precision = min(precision, P.precision);
+        weak_resize();
         reduce();
-
-        return *this;
+        return self();
     }
 
-    Modulo_Polynomial& operator-=(const mint &a){
+    Derived& operator-=(const mint &a) {
         if (poly.empty()) { resize(1); }
-        poly[0] -= a;
+        unless (poly.empty()) { poly[0] -= a; }
         reduce();
-
-        return *this;
+        return self();
     }
 
-    friend Modulo_Polynomial operator-(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) -= rhs; }
-    Modulo_Polynomial operator-(const mint &a) const { return Modulo_Polynomial(*this) -= a; }
+    friend Derived operator-(const Derived &lhs, const Derived &rhs) { return Derived(lhs) -= rhs; }
+    Derived operator-(const mint &a) const { return Derived(self()) -= a; }
 
     // スカラー倍
-    Modulo_Polynomial& operator*=(const mint &a){
+    Derived& operator*=(const mint &a) {
         for (int i = 0; i < size(); i++) { poly[i] *= a; }
         reduce();
-        return *this;
+        return self();
     }
 
-    Modulo_Polynomial operator*(const mint &a) const {return Modulo_Polynomial(*this) *= a;}
-
-    friend Modulo_Polynomial operator*(const mint &a, const Modulo_Polynomial &P) {
-        Modulo_Polynomial res(P);
-        res *= a;
-        return res;
-    }
-
-    // 積
-    Modulo_Polynomial& operator*=(const Modulo_Polynomial &P) {
-        int r = min({(int) (poly.size() + P.poly.size()) - 1, precision, P.precision});
-        vector<mint> A(r);
-        for (int i = 0; i < size(); i++) {
-            for (int j = 0; j < P.size(); j++) {
-                if (i + j < r) { A[i + j] += poly[i] * P.poly[j]; }
-            }
-        }
-
-        poly = A;
-        precision = min(precision, P.precision);
-        return *this;
-    }
-
-    friend Modulo_Polynomial operator*(const Modulo_Polynomial &lhs, const Modulo_Polynomial &rhs) { return Modulo_Polynomial(lhs) *= rhs; }
+    Derived operator*(const mint &a) const { return Derived(self()) *= a; }
+    friend Derived operator*(const mint &a, const Derived &P) { return Derived(P) *= a; }
 
     // スカラー除算
-    Modulo_Polynomial& operator/=(const mint &a) {
+    Derived& operator/=(const mint &a) {
         mint a_inv = a.inverse();
         for (int i = 0; i < size(); i++) { poly[i] *= a_inv; }
-        return *this;
+        return self();
     }
 
-    Modulo_Polynomial operator/(const mint &a) const { return Modulo_Polynomial(*this) /= a; }
+    Derived operator/(const mint &a) const { return Derived(self()) /= a; }
 
     // index
     mint operator[] (int k) const { return (k < poly.size()) ? poly[k] : 0; }
