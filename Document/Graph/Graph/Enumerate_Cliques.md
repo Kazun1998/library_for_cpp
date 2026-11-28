@@ -1,6 +1,6 @@
 ---
 title: Clique に関する計算
-documentation_of: //Graph/Graph/Cliques.hpp
+documentation_of: //Graph/Graph/Enumerate_Cliques.hpp
 ---
 
 ## Outline
