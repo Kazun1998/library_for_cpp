@@ -426,5 +426,7 @@ vector<F> convolution(vector<F> A, vector<F> B)
 ## History
 
 |日付|内容|
-|---|---|
-|2026-11-28|高速離散フーリエ変換の Theory を追加した. Theory を, 離散フーリエ変換を多項式の評価で定義する形に書き直した. 逆元 (`inverse`) と `multiple_convolution` を [Fast_Power_Series](Fast_Power_Series.md) に移した. これに伴い, 逆元の節を移動した.|
+|:---:|:---:|
+|2026/11/28|高速離散フーリエ変換の Theory を追加した. Theory を, 離散フーリエ変換を多項式の評価で定義する形に書き直した. 逆元 (`inverse`) と `multiple_convolution` を [Fast_Power_Series](Fast_Power_Series.md) に移した. これに伴い, 逆元の節を移動した.|
+|2025/10/10|ドキュメントの作成|
+|2025/09/14|Numeric_Theory_Translation の実装|

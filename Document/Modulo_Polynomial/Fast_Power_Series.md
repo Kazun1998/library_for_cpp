@@ -285,5 +285,7 @@ pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series &B)
 ## History
 
 |日付|内容|
-|---|---|
-|2026-11-28|Numeric_Theory_Translation から `inverse`, `multiple_convolution` を移した. CRTP 化し, 線形演算を基底に移した. `translator`, `convolution` を公開した.|
+|:---:|:---:|
+|2026/11/28|Numeric_Theory_Translation から `inverse`, `multiple_convolution` を移した. CRTP 化し, 線形演算を基底に移した. `translator`, `convolution` を公開した.|
+|2026/11/28|ドキュメントの作成|
+|2025/09/14|Fast_Power_Series の実装|
