@@ -41,39 +41,140 @@ $$ (\boldsymbol{a} \ast \boldsymbol{b})_k = \sum_{i+j=k} a_i b_j = c_k $$
 
 ### 逆元
 
-定数項が $0$ でない形式的ベキ級数 $f$ に対して, $fg=1$ となる形式的ベキ級数 $g$ がただ一つ存在する. この $g$ を $f$ の逆元といい, $g = f^{-1}$ とかく.
+$F$ を体とする. 形式的ベキ級数 $f \in F[[X]]$ の $X^i$ の係数を $f_i$ と書く.
 
-$g$ の $N$ 次未満の係数を求めたい. $g^{(n)}$ を以下を満たす多項式とする.
+<div class="proposition" markdown="1">
 
-* $fg^{(n)} \equiv 1 \pmod{X^n}$.
-* $g^{(n)}$ は $n$ 次未満の多項式.
+命題 2
+---
 
-$g$ の一意性から, $g^{(n)} = g \bmod{X^n}$ である.
+$f_0 \neq 0$ ならば, $fg = 1$ を満たす $g \in F[[X]]$ がただ一つ存在する.
 
-まず, $g^{(1)}$ は定数多項式であり, $g^{(1)} = (f_0)^{-1}$ である.
+</div>
 
-$g^{(n)}$ が求まっているとき, $g^{(2n)}$ を求めたい. $g \equiv g^{(n)} \pmod{X^n}$ であるから,
+<div class="proof" markdown="1">
 
-$$ 0 \equiv \left(g - g^{(n)} \right)^2 = g^2 - 2 g g^{(n)} + \left(g^{(n)} \right)^2 \pmod{X^{2n}} $$
+証明
+---
 
-が成り立つ. 両辺に $f$ を掛け, $fg=1$ に注意して整理すると,
+$fg = 1$ は, 係数を比べると $f_0 g_0 = 1$ と, $n \geq 1$ に対する
 
-$$ g \equiv 2g^{(n)} - f \left(g^{(n)} \right)^2 \pmod{X^{2n}} \quad \cdots (\ast) $$
+$$ \sum_{i=0}^{n} f_i g_{n-i} = 0 $$
 
-となる. よって $g^{(2n)} = \left(2g^{(n)} - f \left(g^{(n)} \right)^2 \right) \bmod{X^{2n}}$ である. 求める計算量は $T(2n) = T(n) + O(n \log n)$ より, $T(N) = O(N \log N)$ 時間である.
+である. $f_0 \neq 0$ より $g_0 = f_0^{-1}$ と定まり, $n \geq 1$ に対しては $g_n = -f_0^{-1} \sum_{i=1}^{n} f_i g_{n-i}$ と, $g_0, \dots, g_{n-1}$ から一意に定まる. よって $g$ は存在して一意である.
 
-さらに定数倍を高速化できる. $fg^{(n)} \equiv 1 \pmod{X^n}$ であるから, ある形式的ベキ級数 $h^{(n)}$ が存在して,
+</div>
 
-$$ fg^{(n)} = 1 + X^n h^{(n)} $$
+<div class="definition" markdown="1">
 
-と書ける. $(\ast)$ に代入すると,
+定義 3
+---
 
-$$ g \equiv 2 g^{(n)} - \left(1 + X^n h^{(n)} \right) g^{(n)} = g^{(n)} - X^n g^{(n)} h^{(n)} \pmod{X^{2n}}$$
+命題 2 の $g$ を $f$ の**逆元**といい, $f^{-1}$ と書く.
 
-となる. この式から, $g$ の $2n$ 次未満の係数について以下が従う.
+</div>
 
-* $g$ の $n$ 次未満の係数は $g^{(n)}$ と一致する.
-* $g$ の $n$ 次以上 $2n$ 次未満の係数は, $-g^{(n)} h^{(n)}$ の $n$ 次未満の係数と一致する.
+以降, $f_0 \neq 0$ とし, $g := f^{-1}$ とおく. 正の整数 $n$ に対して, $g^{(n)} := g \bmod{X^n}$ ($n$ 次未満の多項式) とおく.
+
+<div class="proposition" markdown="1">
+
+命題 4
+---
+
+(a) $g^{(1)} = f_0^{-1}$ である.
+
+(b) $n$ 次未満の多項式 $g'$ が $fg' \equiv 1 \pmod{X^n}$ を満たすならば, $g' = g^{(n)}$ である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+(a) 命題 2 の証明より, $g_0 = f_0^{-1}$ である.
+
+(b) $fg = 1$ より $f(g' - g) \equiv 0 \pmod{X^n}$ である. $f_0 \neq 0$ なので $f$ は $F[[X]]$ で可逆であり, $g' \equiv g \pmod{X^n}$ を得る. $g'$ は $n$ 次未満なので $g' = g^{(n)}$ である.
+
+</div>
+
+次の命題が, 逆元を求める Newton 法の核心である.
+
+<div class="proposition" markdown="1">
+
+命題 5
+---
+
+正の整数 $n$ に対して,
+
+$$ g^{(2n)} = \left(2 g^{(n)} - f \left(g^{(n)} \right)^2 \right) \bmod{X^{2n}} $$
+
+が成り立つ.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$g \equiv g^{(n)} \pmod{X^n}$ であるから, $g - g^{(n)}$ は $X^n$ で割り切れ, $\left(g - g^{(n)} \right)^2 \equiv 0 \pmod{X^{2n}}$ である. すなわち,
+
+$$ g^2 - 2 g g^{(n)} + \left(g^{(n)} \right)^2 \equiv 0 \pmod{X^{2n}} $$
+
+である. 両辺に $f$ を掛け, $fg = 1$ に注意して整理すると,
+
+$$ g \equiv 2g^{(n)} - f \left(g^{(n)} \right)^2 \pmod{X^{2n}} $$
+
+である. $g^{(2n)} = g \bmod{X^{2n}}$ なので, 主張が従う.
+
+</div>
+
+命題 5 をそのまま使うと $f \left(g^{(n)} \right)^2$ に積が 2 回必要だが, 次の系を使うと定数倍が小さくなる.
+
+<div class="corollary" markdown="1">
+
+系 6
+---
+
+$fg^{(n)} \equiv 1 \pmod{X^n}$ であるから, ある多項式 $h^{(n)}$ が存在して $fg^{(n)} = 1 + X^n h^{(n)}$ と書ける. このとき,
+
+$$ g^{(2n)} = g^{(n)} - X^n \left(g^{(n)} h^{(n)} \bmod{X^n} \right) $$
+
+が成り立つ. すなわち, $g$ の $n$ 次未満の係数は $g^{(n)}$ と一致し, $n$ 次以上 $2n$ 次未満の係数は $-g^{(n)} h^{(n)}$ の $n$ 次未満の係数と一致する.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+命題 5 に $fg^{(n)} = 1 + X^n h^{(n)}$ を代入すると, $\bmod{X^{2n}}$ で
+
+$$ g^{(2n)} \equiv 2 g^{(n)} - \left(1 + X^n h^{(n)} \right) g^{(n)} = g^{(n)} - X^n g^{(n)} h^{(n)} $$
+
+である. 右辺の $X^n g^{(n)} h^{(n)}$ のうち, $2n$ 次未満の部分は $X^n$ 倍した $g^{(n)} h^{(n)}$ の $n$ 次未満の部分だけであるから, 主張が従う.
+
+</div>
+
+<div class="corollary" markdown="1">
+
+系 7
+---
+
+$n$ を正の整数とする. $g \bmod{X^n}$ は, 係数の積を $O(n \log n)$ 時間で行えるとき, $O(n \log n)$ 時間で求められる.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$n \leq M = 2^m$ となる最小の $M$ をとり, 命題 4 (a) の $g^{(1)}$ から系 6 を $m$ 回用いて $g^{(M)}$ を求める. $g \bmod{X^n} = g^{(M)} \bmod{X^n}$ である. $g^{(k)}$ から $g^{(2k)}$ を求めるには, $fg^{(k)}$ ($f$ は $2k$ 次未満まで使う) と $g^{(k)} h^{(k)}$ の 2 回の積が必要で, 長さは $O(k)$ であるから, $O(k \log k)$ 時間である. よって全体の時間は $\sum_{j=0}^{m-1} O(2^j \cdot j) = O(M \log M) = O(n \log n)$ である.
+
+</div>
 
 ### 除算
 
