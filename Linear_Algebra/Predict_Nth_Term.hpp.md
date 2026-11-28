@@ -9,7 +9,7 @@ data:
     title: "\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\u767A\u898B"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: "\u9AD8\u901F\u306A\u5F62\u5F0F\u7684\u30D9\u30AD\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fraction_Coefficient.hpp
     title: "\u5206\u6570\u5F0F\u306E\u4FC2\u6570"

@@ -6,7 +6,7 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: "\u9AD8\u901F\u306A\u5F62\u5F0F\u7684\u30D9\u30AD\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Huge_Factorial.hpp
     title: "\u5DE8\u5927\u306A $N$ \u306B\u5BFE\u3059\u308B $N!$"

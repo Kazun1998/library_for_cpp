@@ -76,8 +76,8 @@ data:
   isVerificationFile: false
   path: Union_Find/Union_Find.hpp
   requiredBy:
-  - Algebra/Todd_Coxeter.hpp
   - Graph/Weighted_Graph/Kruskal.hpp
+  - Algebra/Todd_Coxeter.hpp
   timestamp: '2026-10-15 23:30:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

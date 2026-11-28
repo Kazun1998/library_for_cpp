@@ -6,7 +6,7 @@ data:
     title: Algebra/modint.hpp
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Fast_Power_Series.hpp
-    title: Modulo_Polynomial/Fast_Power_Series.hpp
+    title: "\u9AD8\u901F\u306A\u5F62\u5F0F\u7684\u30D9\u30AD\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: Modulo_Polynomial/Modulo_Polynomial.hpp
     title: "\u5270\u4F59\u74B0\u3092\u4FC2\u6570\u4F53\u3068\u3059\u308B\u591A\u9805\
@@ -564,8 +564,8 @@ data:
   isVerificationFile: false
   path: Modulo_Polynomial/Fraction_Coefficient.hpp
   requiredBy:
-  - Linear_Algebra/Predict_Nth_Term.hpp
   - Modulo_Polynomial/Nth_Term_of_Linearly_Recurrent_Sequence.hpp
+  - Linear_Algebra/Predict_Nth_Term.hpp
   timestamp: '2026-11-27 23:01:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -344,14 +344,14 @@ data:
   path: Graph/Digraph/Path.hpp
   requiredBy:
   - Graph/Digraph/Eulerian_Trail.hpp
-  - Graph/Weighted_Digraph/Bellman_Ford.hpp
   - Graph/Weighted_Digraph/Warshall_Floyd.hpp
+  - Graph/Weighted_Digraph/Bellman_Ford.hpp
   timestamp: '2026-10-17 00:11:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
   - verify/aizu_online_judge/grl/1B.test.cpp
   - verify/aizu_online_judge/grl/1C.test.cpp
+  - verify/yosupo_library_checker/graph/Eulerian_Trail_Directed.test.cpp
 documentation_of: Graph/Digraph/Path.hpp
 layout: document
 redirect_from:
