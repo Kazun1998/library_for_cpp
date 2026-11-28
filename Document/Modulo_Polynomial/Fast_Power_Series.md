@@ -31,13 +31,17 @@ $f, g \in F[X]$ の次数をそれぞれ $d_f, d_g$ とし, $n \geq d_f + d_g + 
 
 $a_i, b_j$ は $i \leq d_f$, $j \leq d_g$ でないとき $0$ であり, $i + j \leq d_f + d_g \lt n$ である. よって $i + j \equiv k \pmod{n}$ かつ非零の項は $i + j = k$ のものに限られ,
 
-$$ (\boldsymbol{a} \ast \boldsymbol{b})_k = \sum_{i+j=k} a_i b_j = c_k $$
+$$\begin{align*}
+    (\boldsymbol{a} \ast \boldsymbol{b})_k
+    &= \sum_{i+j=k} a_i b_j \\
+    &= c_k
+\end{align*}$$
 
 である.
 
 </div>
 
-したがって, 十分大きい $n$ に対して原始 $n$ 乗根があれば, 多項式の積は Numeric_Theory_Translation の定理 8 により $\mathcal{F}_n$ と各点積と $\mathcal{F}_n^{-1}$ で計算できる. すなわち $\boldsymbol{c} = \mathcal{F}_n^{-1} \left(\mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b} \right)$ である.
+したがって, 十分大きい $n$ に対して原始 $n$ 乗根があれば, 多項式の積は Numeric_Theory_Translation の定理 9 により $\mathcal{F}_n$ と各点積と $\mathcal{F}_n^{-1}$ で計算できる. すなわち $\boldsymbol{c} = \mathcal{F}_n^{-1} \left(\mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b} \right)$ である.
 
 ### 逆元
 
