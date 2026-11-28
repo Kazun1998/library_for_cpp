@@ -1,0 +1,184 @@
+---
+title: 高速な形式的ベキ級数
+documentation_of: //Modulo_Polynomial/Fast_Power_Series.hpp
+---
+
+## Outline
+
+[数論変換](Numeric_Theory_Translation.md) を用いて, 精度付きの形式的ベキ級数の積・逆元・除算などを高速に行う. 加減算やスカラー倍などの線形演算は基底クラス [Modulo_Polynomial](Modulo_Polynomial.md) のものを使う.
+
+精度 $d$ の形式的ベキ級数は $P \bmod{X^d}$ を表す. 2 つの級数の演算では, 精度は小さい方に合わせる.
+
+## Theory
+
+### 積
+
+[Numeric_Theory_Translation](Numeric_Theory_Translation.md) の記号を用いる. すなわち, $\zeta$ を $1$ の原始 $n$ 乗根, $\mathcal{F}_n$ を離散フーリエ変換, $\ast$ を巡回畳み込み, $\odot$ を各点ごとの積とする.
+
+<div class="corollary" markdown="1">
+
+系 1
+---
+
+$f, g \in F[X]$ の次数をそれぞれ $d_f, d_g$ とし, $n \geq d_f + d_g + 1$ とする. $f, g, fg$ の $0$ 次から $n-1$ 次までの係数の列を $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c} \in F^n$ とすると, $\boldsymbol{c} = \boldsymbol{a} \ast \boldsymbol{b}$ である.
+
+</div>
+
+<div class="proof" markdown="1">
+
+証明
+---
+
+$a_i, b_j$ は $i \leq d_f$, $j \leq d_g$ でないとき $0$ であり, $i + j \leq d_f + d_g \lt n$ である. よって $i + j \equiv k \pmod{n}$ かつ非零の項は $i + j = k$ のものに限られ,
+
+$$ (\boldsymbol{a} \ast \boldsymbol{b})_k = \sum_{i+j=k} a_i b_j = c_k $$
+
+である.
+
+</div>
+
+したがって, 十分大きい $n$ に対して原始 $n$ 乗根があれば, 多項式の積は Numeric_Theory_Translation の定理 8 により $\mathcal{F}_n$ と各点積と $\mathcal{F}_n^{-1}$ で計算できる. すなわち $\boldsymbol{c} = \mathcal{F}_n^{-1} \left(\mathcal{F}_n \boldsymbol{a} \odot \mathcal{F}_n \boldsymbol{b} \right)$ である.
+
+### 逆元
+
+定数項が $0$ でない形式的ベキ級数 $f$ に対して, $fg=1$ となる形式的ベキ級数 $g$ がただ一つ存在する. この $g$ を $f$ の逆元といい, $g = f^{-1}$ とかく.
+
+$g$ の $N$ 次未満の係数を求めたい. $g^{(n)}$ を以下を満たす多項式とする.
+
+* $fg^{(n)} \equiv 1 \pmod{X^n}$.
+* $g^{(n)}$ は $n$ 次未満の多項式.
+
+$g$ の一意性から, $g^{(n)} = g \bmod{X^n}$ である.
+
+まず, $g^{(1)}$ は定数多項式であり, $g^{(1)} = (f_0)^{-1}$ である.
+
+$g^{(n)}$ が求まっているとき, $g^{(2n)}$ を求めたい. $g \equiv g^{(n)} \pmod{X^n}$ であるから,
+
+$$ 0 \equiv \left(g - g^{(n)} \right)^2 = g^2 - 2 g g^{(n)} + \left(g^{(n)} \right)^2 \pmod{X^{2n}} $$
+
+が成り立つ. 両辺に $f$ を掛け, $fg=1$ に注意して整理すると,
+
+$$ g \equiv 2g^{(n)} - f \left(g^{(n)} \right)^2 \pmod{X^{2n}} \quad \cdots (\ast) $$
+
+となる. よって $g^{(2n)} = \left(2g^{(n)} - f \left(g^{(n)} \right)^2 \right) \bmod{X^{2n}}$ である. 求める計算量は $T(2n) = T(n) + O(n \log n)$ より, $T(N) = O(N \log N)$ 時間である.
+
+さらに定数倍を高速化できる. $fg^{(n)} \equiv 1 \pmod{X^n}$ であるから, ある形式的ベキ級数 $h^{(n)}$ が存在して,
+
+$$ fg^{(n)} = 1 + X^n h^{(n)} $$
+
+と書ける. $(\ast)$ に代入すると,
+
+$$ g \equiv 2 g^{(n)} - \left(1 + X^n h^{(n)} \right) g^{(n)} = g^{(n)} - X^n g^{(n)} h^{(n)} \pmod{X^{2n}}$$
+
+となる. この式から, $g$ の $2n$ 次未満の係数について以下が従う.
+
+* $g$ の $n$ 次未満の係数は $g^{(n)}$ と一致する.
+* $g$ の $n$ 次以上 $2n$ 次未満の係数は, $-g^{(n)} h^{(n)}$ の $n$ 次未満の係数と一致する.
+
+### 除算
+
+形式的ベキ級数の除算 $P / Q$ は, $Q$ の逆元を求めて $P$ に掛けることで行う.
+
+### 多項式の商と余り
+
+多項式 $A$ ($n$ 次), $B$ ($m$ 次, $n \geq m$) に対して $A = BQ + R$, $\deg R \lt m$ を満たす $Q, R$ を求める. 係数列を反転した多項式を $A^{\mathrm{rev}}, B^{\mathrm{rev}}$ とすると,
+
+$$ Q^{\mathrm{rev}} \equiv A^{\mathrm{rev}} \left(B^{\mathrm{rev}}\right)^{-1} \pmod{X^{n-m+1}} $$
+
+である. よってこの式から $Q$ が求まり, $R = A - BQ$ となる.
+
+## Contents
+
+```cpp
+template<typename mint>
+class Fast_Power_Series : public Modulo_Polynomial<mint, Fast_Power_Series<mint>>
+```
+
+[Modulo_Polynomial](Modulo_Polynomial.md) を CRTP で継承する. 積と除算のみをこのクラスで定義し, 線形演算の戻り値は `Fast_Power_Series` になる.
+
+### コンストラクタ
+
+```cpp
+Fast_Power_Series(vector<mint> poly, int precision)
+Fast_Power_Series(vector<mint> poly)
+Fast_Power_Series(int precision)
+Fast_Power_Series()
+```
+
+* 係数列 `poly` と精度 `precision` から構築する. 精度を省略したときは `poly.size()`, 係数列を省略したときは零級数になる.
+
+### translator, convolution
+
+```cpp
+static Numeric_Theory_Translation<mint>& translator()
+static vector<mint> convolution(const vector<mint> &A, const vector<mint> &B)
+```
+
+* `translator` は, 全ての `Fast_Power_Series<mint>` で共有される数論変換器を返す. `ntt` を直接使う処理 (Bostan–Mori 法など) から参照する.
+* `convolution` は, 係数列 $A, B$ の畳み込みを求める.
+* **計算量** : [Numeric_Theory_Translation](Numeric_Theory_Translation.md) の `convolution` と同じ.
+
+### 積
+
+```cpp
+Fast_Power_Series& operator*=(const Fast_Power_Series &P)
+friend Fast_Power_Series operator*(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs)
+Fast_Power_Series mul_poly(const Fast_Power_Series &P) const
+```
+
+* `*`, `*=` は, 精度を小さい方に合わせた積 (精度を超える項は切り捨てる) を求める.
+* `mul_poly` は, 多項式としての積を求める. 精度は結果の長さになる.
+* **計算量** : 2 つの係数列の長さの和を $L$ として, $O(L \log L)$ 時間.
+
+### inverse_vector, inverse
+
+```cpp
+static vector<mint> inverse_vector(const vector<mint> &P, int d)
+Fast_Power_Series inverse(int d = -1) const
+```
+
+* `inverse_vector` は, 係数列 $P$ を持つ級数の $\bmod{X^d}$ における逆元の係数列を求める.
+* `inverse` は, $\bmod{X^d}$ における逆元を求める. $d = -1$ のときは $d$ は精度になる. $d$ が精度より大きいときは精度に切り詰める.
+* **制約** : $P$ は空でなく, 定数項は $0$ でない (満たさないときは `assert` に失敗する).
+* **計算量** : $O(d \log d)$ 時間.
+
+### multiple_convolution
+
+```cpp
+static vector<mint> multiple_convolution(vector<vector<mint>> A)
+```
+
+* 係数列の列 $A_0, A_1, \dots$ について, 多項式としての総積の係数列を求める. $A$ が空のときは $\lbrace 1 \rbrace$ を返す.
+* 先頭から 2 つずつ取り出して積を取り, 末尾に戻すことを繰り返す.
+* **計算量** : 総積の長さを $L$, 多項式の個数を $K$ として, $O(L \log L \log K)$ 時間.
+
+### 除算
+
+```cpp
+Fast_Power_Series& operator/=(const Fast_Power_Series &P)
+friend Fast_Power_Series operator/(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs)
+```
+
+* 形式的ベキ級数としての除算 $P_1 / P_2$ を, 精度を小さい方に合わせて求める.
+* **制約** : $P_2$ の定数項は $0$ でない.
+* **計算量** : 精度を $d$ として, $O(d \log d)$ 時間.
+
+### div, %, divmod
+
+```cpp
+Fast_Power_Series div(const Fast_Power_Series &B)
+Fast_Power_Series& operator%=(const Fast_Power_Series &B)
+friend Fast_Power_Series operator%(const Fast_Power_Series &lhs, const Fast_Power_Series &rhs)
+pair<Fast_Power_Series, Fast_Power_Series> divmod(const Fast_Power_Series &B)
+```
+
+* 多項式として $A = BQ + R$ とするときの, 商 $Q$ (`div`), 余り $R$ (`%`), 両方 (`divmod`) を求める.
+* $A$ の次数が $B$ の次数より小さいとき, 商は $0$ である.
+* **制約** : $B$ の最高次の係数は $0$ でない.
+* **計算量** : $A, B$ の長さを $n, m$ として, $O(n \log n)$ 時間.
+
+## History
+
+|日付|内容|
+|---|---|
+|2026-11-28|Numeric_Theory_Translation から `inverse`, `multiple_convolution` を移した. CRTP 化し, 線形演算を基底に移した. `translator`, `convolution` を公開した.|
